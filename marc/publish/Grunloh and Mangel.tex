@@ -1,0 +1,1451 @@
+%fleqn is for the left equations
+\documentclass[12pt, letterpaper, fleqn]{article}
+\usepackage{times}
+\linespread{1.66}
+\usepackage{lineno}
+\usepackage{epsfig}
+\usepackage{ulem}
+\usepackage{amsmath, amssymb}
+\usepackage{mathrsfs}
+\usepackage{graphics}
+\usepackage{color}
+\usepackage{setspace}
+\pagestyle{plain}
+\linenumbers
+\usepackage[left=1.5in,top=1.25in,right=1.25in,bottom=1.25in,nohead,includefoot]{geometry}
+%\usepackage{fullpage}
+%\textwidth 16cm 
+%\textheight 21cm
+%\title{A state dependent model for the development of life history skills via social interaction}
+
+%
+\title{State Dependent Behavioral Theory as a Means for Understanding the Evolution of Play}
+\author{Nicholas Grunloh$^1$ and Marc Mangel$^2$ }
+
+%
+\DeclareMathOperator{\E}{\mathbb{E}}
+%
+\def \figPlace {
+	/home/nick/Documents/school/ucscGrad/thesis/marc/publish/figures/
+}
+
+
+\begin{document}
+%for the left indent (3mm) equtions
+\setlength{\mathindent}{3mm}
+\maketitle
+%
+\noindent $^1$ {\color{red}Program} in Statistics and Applied Mathematics,  $^2$ Center for Stock Assessment Research,  University of California, Santa Cruz, CA, USA
+%
+\vspace{2.7 in}
+%
+\noindent \textbf{Corresponding author}\\
+Marc Mangel, Center for Stock Assessment Research, University of California, Santa Cruz, CA 95064, USA.\\
+Email: msmangel@ucsc.edu
+
+%
+%
+\newpage
+\section*{Abstract}
+%In general, organisms need to develop life history skills during ontogeny.  Social interaction -- play behavior -- has been shown to occur  in a surprisingly diverse range of animals, and yet relatively few details are known about the purpose of play in development, or the evolutionary history of play (Burghardt, 2006). %the motivations for its evolution. % of play behavior. 
+%  We develop a  state dependent life history model, implemented by Stochastic Dynamic Programming (SDP), on  the assumption that social play is an adaptive behavior and thus focus on play's contribution toward the development of skill and how such development  affects an individual's fitness. % fitness  in terms of the fitness gains related to the aquired skill.   
+%  This model does not focus on any one species directly, but rather takes a general view of play as a fundamental behavior of social animals in general.
+%  Behavioral models such as this one  have been shown to be effective tools for inquiry about a diverse range of behaviors by allowing behavioral ecologists to think more deeply about many of the factors contributing toward specific behaviors. %about the modivations for modeled behaviors. % for such behaviors.    
+  %This model suggests patterns of skill development associated with social play and proposes fitness relationships of skill development through time. \\
+  
+%  
+Understanding the evolutionary origins of play remains an unsolved problem.  
+%
+We show how state dependent behavioral theory, as implement by Stochastic Dynamic Programming can illuminate evolutionary biology of play.  
+%
+We first explain in generic terms the components of a state dependent behavioral model.  
+%
+We use this framework to then show how sexual play may be an incidental aspect of behavior during a non-breeding season.    
+%
+We then develop a  state dependent life history model on the assumption that social play is an adaptive behavior and thus focus on play's contribution toward the development of skill and how such development  affects an individual's fitness. 
+%
+We discuss the interaction of theory and empirical work, and how each can reinforce the other.\\
+%
+\newline
+\textbf{Keywords}
+Skill development, social play, stochastic dynamic programming, state dependence, life history\\
+\newline
+Date received:  ; revised:;  accepted: 
+
+%
+%
+\newpage
+\section*{Introduction}
+%{\it heading not to appear in final draft}\\
+% %
+% \indent Nearly all organisms --even some of the simplest ones-- need to develop life history skills during ontogeny.    
+% %
+% This can be done in many ways; in this paper we explore the role of intraspecific social interaction via play as a means of developing such skills, based on the assumption that social play facilitates the development of life history skills with subsequent fitness consequences.   
+
+%
+Burdghardt (2005) identifies play according to the following criteria:
+%
+\begin{itemize}
+\item[(i)] Play is behavior that is not immediately neccisary for survival.\\
+(Although, play may coincidentally contribute developmental future fitness.) %\\[.5pt]
+\item[(ii)] Play is a self-motivating behavior; done for its own sake (...because play is ``fun"). %\\[.5pt]
+%differs from any serious version of a similar non-play behavior. %\\[.1pt](i.e. play can be a non-serious version of other types of behaviors) %\\[.5pt]
+%can be
+\item[(iii)] Play is often a non-serious version of a similar non-play behavior.
+%heavily repeated (i.e. practiced often)
+\item[(iv)] Play is practiced often, yet loosely stereotyped and experimental in nature. %\\[.1pt]
+%(i.e. aspects of play behavior are learned or experimental in nature) %\\ [.5pt]
+\item[(v)] Play only occurs in a stress free environment (i.e. the ``relaxed field"). %\\[.1pt] 
+%(e.g. an environment with adequate food, that is free of predation or intense competition) %\\[6pt]
+\end{itemize}
+
+%
+%
+
+%
+These criteria do not define play, but they provide a clear framework for the sorts of behaviors that can, and cannot, be considered play. 
+%
+In addition, they give some sense of just how, and when, play can occur, for the purpose of guiding a model.  %
+The evolutionary basis for play behavior is a cloudy topic, but if we consider a few fundamental aspects of play, a structure for thinking about the topic emerges and it then becomes clear how to make abstractions in order to formulate a model.
+
+%
+%
+
+%follow
+To being, consider behaviors that fall within the above criteria (e.g. kittens wrestling).  
+%From here it is not hard to identify a suite of costs and benefits associated with these play behaviors.   
+Caro (1995) identifies several specific costs and benefits to playing in cheetah cubs ({\it Acinonyx jubatus}); see \mbox{Figure 1}. 
+% 
+In short, the benefits of play can be thought of in terms of the acquisition of skill to be used at some time in the future.
+%
+Whether that skill takes the form of maintenance of physical fitness, improved dexterity, or improved social standing,  we summarize these benefits  in terms of a single quantity, the player's skill. %survivorship
+%
+In a similar way, the costs associated with play can be loosely grouped into manageable quantities.
+%
+There are the costs associated with not playing (e.g. not maintaining physical fitness) and the costs which occur while playing (e.g. injury and mortality).
+%LATER IN DISCUSSION	
+%Since a fundamental criterion of play behavior is that play only occurs in a stress free environment, we did not include energy reserves and predation risks in the costs of play. 
+%The model assumes a "relaxed field"(Burghardt, 2006), to get at the motivations for play decisions independent of these factors.
+%Clearly if these factors became limiting in the model it would disqualify play from occurring by criterion (v) above.
+
+%
+%
+
+%
+The observation that play occurs in the presence of these costs, suggests that the benefits of play outweigh the costs.
+%
+Thus, it is reasonable to assume play behavior has adapted in order to allow individuals the benefits of play, in the face of those costs (Burghardt, 2006).  
+%Therefore be for the sake of the subsequent fitness associated with said skill
+Under the premise that play behavior is an evolutionary adaptation, the acquisition of skill through play must be for the sake of the increasing future fitness. 
+
+%
+%
+
+%
+If play is adaptive in this way, as opposed to a coincidental non-functional behavior, then play decisions should follow some pattern of increasing an organism's fitness through skill (i.e. decisions associated with play should be in some sense optimally tuned to increases fitness). %Transition to methods, bring inspiration together\\
+%
+That is, even though individuals are driven to play because it is ``fun" the functional interpretation as to why play has become ``fun" is that play at a given period of development increases an organism's fitness at some time in the future Burghardt (2006); Caro (1988).
+%
+We use Burghardt's criteria for recognizing play behavior as the rules of how and when play are allowed to occur, together with the assumption that play occurs on the basis of increasing (or maximizing) fitness as a foundation for modeling.
+
+
+
+%LATER
+%\noindent-close match-ups maximize skill(self-handicapping)?? slightly higher skills maximize skill per play event?? \\
+
+
+
+%\\
+%\\
+%\includegraphics[width=80mm]{identifyPlay.png}
+%\\
+%Gordon M.Burghardt:\\
+%-ambiguity of play (in general)\\
+%-what is play?(outlined criteria)\\
+%-social play\\
+%-No Stress(ie. NO Predation, NO Energy Reserves)\\
+%\\\\
+%*****************************************************\\
+%-basis for play as adaptive \\
+%-lead into discussion of Caro papers with respect to adaptive nature of play\\
+%*****************************************************\\
+%\\
+%\includegraphics[width=80mm]{caro.png}
+%\\
+%-basic summary of Caro's work and it as inspiration for our model (all 3 papers)\\
+%\\
+%\includegraphics[width=80mm]{assumtions.png}
+%\\
+%-Play adaptive\\
+%-develops skill\\
+%-skill increases fitness\\
+%-close match-ups maximize skill(self-handicapping)?? slightly higher skills maximize skill per play event?? \\
+%\\\\\\
+
+%
+%
+\section*{Methods}
+%
+%
+
+%
+We begin with a description of the components of a state dependent behavioral model.  
+%
+We then turn to the case in which play is incidental to other developmental processes, considering that play may be costless or costly.
+%
+After that analysis, we model a situation in which play is essential for the development of skills that contribute to subsequent lifetime reproductive success.  
+%is
+Neither of our models are intended to be `realistic', in the sense that we are not modeling a particular play situation by a particular animal. 
+%
+However, we expect that the models have much in common with many different organisms in many different situations, and thus may inspire other colleagues to get into the specific details.
+
+	%
+	%
+	\subsection*{The Components of a State Dependent Behavioral Theory }
+	%
+	%
+	
+	%
+	\textit{The Environment} \\
+	%
+	Organisms respond to the environment, so it must be described.  
+	%
+	In general, we must consider acquisition of food in the environment and the risk of acquiring that food (some older readers may recall the `crisis of the common currency' in behavioral ecology in the late 1970s and early to mid-1980s).  
+	%
+	Clearly, such risks are minimized for juveniles whose parents provide food and shelter.\\
+
+	%
+	%
+	
+	% \newline
+	\noindent\textit{States and Their Dynamics} \\
+	%
+	Organisms are interesting to us because they have physiological states (e.g. body mass, length, fat reserves) that change in time, in response to the environment and behavior.  
+	%
+	When we consider play that has fitness consequences, then another state variable is the level of skill developed through play, and its effect on fitness. \\
+	
+	%
+	%
+	
+	%\newline
+	\noindent\textit{The Fitness Increment and Lifetime Fitness} \\
+	%
+	Biology is well-suited for economic thinking because there is a natural pay-off from behavior: the representation of genes in future generations.  
+	%
+	Often, a proxy is used such as accumulated lifetime reproductive success or the number of grand offspring (Mangel and Clark 1988, Clark and Mangel 2000, Mangel 2006).  
+	%
+	In the case of a juvenile organism, the situation is simpler because by definition a juvenile is not accumulating reproductive success.  
+	%
+	However, at the end of the juvenile period, we may assess future fitness (Figure 1). 
+	%
+	The question is this: how do we associate play behavior during the juvenile period with future fitness? 
+	%
+	The equations of Stochastic Dynamic Programming (SDP) allow us to formalize this question mathematically and derive many predictions -- both quantitative and qualitative -- that both can be tested empirically and provide insight into the biological world. \\ 
+
+	%
+	%
+	
+	%
+	\noindent\textit{Thinking, Analysis, and Numerical Implementation}\\
+	%
+	As will be seen, deriving the equation of SDP forces one to think deeply about the biology (which is, after all, the goal of this work). 
+	%
+	Often, some kinds of preliminary analysis can be conducted on the model.  
+	%
+	However, and especially in the $21^{st}$ century, numerical solution of the SDP equation can provide exceptional insight -- both qualitative patterns and detailed numerical predictions. 
+	%
+% 	Indeed, as noted in Mangel and Clark (1998) and Clark and Mangel (2000), very often the intuition from a numerical model can be 
+	%
+	%Furthermore, in a world in which every researcher has access to incredibly powerful computing, the limitation that numerical methods are required for SDP is mitigated by the ability to conduct sensitivity analyses and through them develop the same kinds of intuition that mathematical analysis often provides. 
+	%
+	Indeed, as noted in Mangel and Clark (1988) and Clark and Mangel (2000), very often the intuition from a numerical model can be so powerful that one no longer needs the model to understand the phenomenon. 
+	%
+	And that, of course, is what we are aiming for -- understanding of the world. 
+
+	%
+	%
+	\subsection*{Play Is An Incidental Outcome of Development}
+	%
+	%
+ 
+	%as described above.  
+	We begin by considering the case in which play is an incidental outcome of development, so that skill is irrelevant to the fitness outcomes of play.
+	%
+	We consider an individual during a non-breeding period, in which the individual may either forage for food, at some risk, or remain in a central place that is devoid of both food and risk.  
+	%
+	As a state variable, we choose energy reserves, denoted by $X(t)$ with specific value $x$ (Table 1).  
+	%
+	To characterize the changes in state, we require the costs of foraging $a_f$, of remaining at home (henceforth burrow) inactive $a_0$, and of remaining at home and playing $a_p$ and the energetic benefits of encountering food $Y$. 
+	%
+	Thus, if the individual remains in the burrow when $X(t)=x$
+	%
+	\begin{equation}
+	X(t+1)=x-a_0
+	\end{equation}
+	%
+	while if the individual plays in the burrow
+	%
+	\begin{equation}
+	X(t+1)=x-a_p.
+	\end{equation}
+	%???Do we need to define mortality here???
+	If the individual chooses to forage and survives mortality, then with probability $\lambda$
+	%
+	\begin{equation}
+	X(t+1)=x-a_f+Y
+	\end{equation}
+	%
+	and with probability $1-\lambda$
+	%
+	\begin{equation}
+	X(t+1)=x-a_f.
+	\end{equation}
+	%
+	We assume that there is a critical level $x_c$ below which the individual dies from starvation.
+	
+	%
+	%
+ 
+	%
+	When foraging, the individual is at risk of mortality. 
+	%
+	We assume that the probability of surviving a single period of foraging given that $X(t)=x$ is $\exp\Big\{-\big(m_0+\frac{m_1}{x}\big)\Big\}$ where $m_0$ and $m_1$ are the mass-independent and mass-dependent components of mortality risk.
+	
+	%
+	%
+	
+	%
+	At the end of the non-breeding interval, the focal individual has future expected reproductive success $\Phi(x)$ determined by its state $X(T)$. 
+	%
+	For computations, we choose the saturating function
+	%
+	\begin{equation}
+	\Phi(x)=\frac{x}{x+0.25X_{max}}
+	\end{equation} 
+
+	%
+	%
+	
+	%
+	We ask: given that $X(t)=x$ at  time $t$ within the non-breeding interval, do we predict that the individual will remain in the burrow (and play) or forage?  
+	%
+	To answer this question, we introduce the fitness function
+	%
+	\begin{equation}
+	F(x,~t) =\text{max}\E\Big[\Phi\big(X(T)\big)~\big|~X(t)=x\Big]
+	\end{equation}
+	%
+	where `max' indicates that we are to take the maximum over behavioral choices (here remain in the burrow or forage) and `$\E$' denotes the expectation over the stochastic events of finding food or not and surviving predation.  
+	%
+	In words, $F(x,~t)$ is the maximum average value of future expected reproductive success at the end of the non-breeding interval given that  energy reserves at time $t$ are $x$.
+	
+	%
+	%
+	
+	%We thus consider three cases.
+	At any time previous to $T$, the individual has three options.
+	%
+	First, the individual may remain in its burrow and be inactive.  
+	%
+	In that case, given $X(t)=x$, the new state is $x-a_0$ and thus the fitness value of remaining in the burrow and resting is \mbox{$V_r(x,~t)=F(x-a_0,~t+1)$.}  
+	%
+	Second, the individual may remain in the burrow and play, in which case the new state is $x-a_p$ and the fitness value of playing is \mbox{$V_p(x,~t)=F(x-a_p,~t+1)$.} 
+	%
+	Third, the individual may forage.  
+	%
+	With probability $\lambda$ it finds food so that the new state is $x-a_f+Y$ and with probability $1-\lambda$ it does not find food so that its new state is $x-a_f$. 
+	%
+	In either case, it needs to survive predation.
+	%
+	Thus, the fitness value of foraging is
+	%
+	\begin{equation}
+	\nonumber V_f(x,~t)=\exp\bigg\{-\left(m_0+\frac{m_1}{x}\right)\bigg\}\big[\lambda F(x-a_f+Y,~t+1) + \lambda F(x-a_f,~t+1)\big]
+	\end{equation}
+	%
+	By its definition, we then choose the largest of these three to determine fitness at time $t$
+	%
+	\begin{equation}
+	F(x,~t)=\text{max}\big[V_r(x,t),~V_p(x,t),~V_f(x,t)\big]
+	\end{equation}
+	%
+	Eqn 7 is solved backwards in time, since we know its value at $t=T$ (see Mangel and Clark 1988, Clark and Mangel 2000 for details about how to do this).  
+	%
+	As this equation is solved we determine both the fitness function, and the optimal decision (to either remain in the burrow inactive or playing or to go foraging), $D^*(x,t)$.  
+	%
+	Intuition suggests, and computations will confirm, that in this case there is a threshold level of energy reserves $x_{th}(t)$ such that if $X(t)>x_{th}$ the optimal behavior is to remain in the burrow and that otherwise it is to play.  
+	%
+	Thus, animals do not need to solve an equation of dynamic programming; rather natural selection needs to act on this boundary.\\
+	
+	%
+	%
+	
+	%
+	\noindent\textit{Costless Play and Forward Iteration}\\
+	%
+	When play is costless (i.e. $a_p=a_0$), the fitness values of remaining inactive in the burrow and playing in the burrow are the same (they would be different, for example, if there were mortality with play but not with resting; see the next section for ideas about that).  
+	%
+	In general, we cannot easily observe the internal states of animals and it is virtually impossible to observe the threshold $X_{th}(t)$. 
+	%
+	Rather, we observe whether animals are in the burrow or out foraging.  
+	%
+	To be able to make predictions about such observations, we use forward Monte Carlo Iteration (Mangel and Clark 1988, Clark and Mangel 2000).
+	
+	%
+	%
+	
+	%
+	That is, imagine that we simulate the behavior of $K$ individuals and let $X_k(t)$ denote the state of the $k^{th}$ individual at time $t$.  
+	%
+	To begin, we specify the initial state, $X_k(1)$ for each individual. 
+	%
+	We then go forward in time. At any time $t$, if an individual is still alive we use the decision matrix $D^*\big(X_k(t),~t\big)$ to determine whether the individual remains in the burrow or not.  
+	%
+	If the decision is to remain in the burrow, then \mbox{$X_k(t+1)=X_k(t)-a_0$.}  
+	%
+	If the decision is to forage, then we draw a  random variable uniformly distributed between 0 and 1, $U$, and compare it with $\lambda$.  
+	%
+	If $U \le \lambda$ then this individual finds food and $X_k(t+1)=X_k(t)-a_f+Y$; otherwise this individual does not find food and $X_k(t+1)=X_k(t)-a_f$. 
+	%
+	If this value falls below the critical level then the individual is dead. We then draw another random variable, still denoted by $U$, to determine if the individual survives mortality by comparing the value of $U$ and $\exp\Big\{-\big(m_0+\frac{m_1}{x}\big)\Big\}$.  
+	%
+	In the next section, we summarize this kind of forward simulation in a formal algorithm.
+	
+	%
+	%
+	
+	%
+	In this manner, we construct the state $X_k(t)$ for $k=1, ...K$ and $t=1,...T$ (understanding that when an individual dies either through starvation or mortality, its state is set at $x_c$ for the entire rest of the forward iteration.  
+	%\color{red}{}
+	Once this is done, we can construct various statistics such as the number of individuals still alive at each time, the number of individuals in the burrow {\color{red}(key for our purposes here)}, the mean and variance of the state (something harder to observe in nature).\\
+	
+	%
+	%
+	
+	%
+	\noindent\textit{The Fitness Effect of Costly Play}\\
+	%
+	When $a_p>a_0$ it is easy to see that play can never be optimal if it does not provide a benefit to skill. 
+	%
+	We may ask, however, how much fitness is lost if the animal plays.  
+	%
+	John McNamara and Alasdair Houston, in their seminal paper on state variable modeling of behavior, called this the `canonical cost' of non-optimal behavior (McNamara and Houston 1986). 
+	%
+	We illustrate the idea here with a simple case.
+	%
+	Imagine another value of the state $x_p>x_{th}$ such that if $x>x_p$ then the animal, which is already in the burrow, plays rather than rests (so that its state the next period is $x-x_p$ rather than $x-x_0$.
+	
+	%
+	%
+	
+	%
+	Now let $F_p(x,~t)$ denote the value of  $\E\Big[\Phi\big(X(T)~|~x\big)\Big]$ given that the animal plays whenever $x \ge x_p$.  As before, $F(x,T)=\Phi(x)$.  
+	%
+	For previous times, we proceed as follows.
+	%
+	If the optimal decision when $X(t)=x$ is to forage then
+	%
+	\begin{equation}
+	F_p(x,~t)=\exp\bigg\{-\left(m_0+\frac{m_1}{x}\right)\bigg\}\big[\lambda F_p(x-a_f+Y,~t+1) + \lambda F_p(x-a_f,~t+1)\big]
+	\end{equation}
+	%
+	If the optimal decision when $X(t)=x$ is to remain in the burrow and $x < x_p$ then  
+	%
+	\begin{equation}
+	F_p(x,~t)=F_p(x-a_0,~t+1) 
+	\end{equation}
+	%
+	while if $x \ge x_p$
+	%
+	\begin{equation}
+	F_p(x,~t)=F_p(x-a_p,~t+1) 
+	\end{equation}
+	%
+	We solve Eqns 8-10 backwards in time as we did for $F(x,t)$ and define the fitness cost $C(x,t)$ of playing when $X(t)=x$ as
+	%
+	\begin{equation}
+	C(x,~t)=\frac{F(x,~t)-F_p(x,~t)}{F(x,~t)}
+	\end{equation}
+	
+	%
+	%
+	\subsection*{Play Develops Fitness Enhancing Skills}
+	%
+	%
+	
+	%
+	In order to simplify the dynamics of social play in the model, we consider a focal individual separately from all of the other potential play partners in the environment.     
+	%
+	Individuals can have skill levels ranging from a minimum skill, $S_L$, to a maximum skill, $S_U$. 
+	%
+	At time $t$, an individual has level of skill  $S(t)$, with particular value noted by $i$.  
+	%%, at any given time period within the model, as denoted by $i$
+	Similarly, potential play partners have particular skill levels denoted by $j$. 
+	%
+	Each time period of the model, the skill of the focal individual decrements by, $\alpha$, to capture the idea that skill requires maintenance through repeated practice.    
+	%
+	At each time period, the focal individual may encounter a play partner, or not; if a partner is encountered, then the focal individual decides to play, or not. 
+	
+	%
+	%
+   
+	%
+	We now assume that {\color{red}ontogenic development ??redundant??} of the skill stops at time $T$, at which time an individual with skill level $i$ has future lifetime fitness $\phi(i)$ (Figure 2).
+	%
+	For previous times we define a fitness function $\big($Mangel \& Clark (1988) as well as Clark \& Mangel (2000)$\big)$
+	%define T earlier at the number line of life caption
+	\begin{eqnarray}
+	F(i,~t)=\text{max}~\E\Big[\phi\big(S(T)\big)\Big].
+	\label{first}
+	\end{eqnarray}
+	
+	%
+	%
+	
+	%add F(i,T)\textit{E}
+	In this equation $\E$ denotes the expectation over encounters with potential partners and max denotes the maximum over the behavioral decision to play or not.      
+	%skill after the final time step of the model.%  with the skill level that leads to the maximum expected value of the fitness associated with the focal individual's skill after the final time step of the model.
+	%In this manner, we seek the pattern of behavior  that maximizes $\phi\big(S(T)\big)$.
+	%in such a way that develops their skill in order to maximize their future fitness.
+	Thus, individuals behave adaptively in that they choose whether or not to play based on maximizing their future fitness, not necessarily their immediate fitness.
+	%
+	By considering focal individuals with a range of skill levels at any given time within the model, we are able to see how factors independent of energy reserves and predation affect an organism's decision to play.
+	%
+	{\color{red}something about deep mathtalk about these details ??}
+	\\   
+    
+	%The fitness associated with a given skill level at any time, $t$, within the model is determined by a function, $F(i,t)$. % Each skill level is associated with a level of fitness at any time, $t$, within the periods of the model, as determined by a function, $F(i,t)$.
+	%Furthermore, each skill level is associated with some level of fitness in the future (i.e. beyond the directly modeled periods) by another function, $\phi(i)$.  %
+	%Organisms choose whether or not to play in such a way that develops their skill in order to maximize their future fitness, $\phi(i)$. 
+	%As described in (Mangel and Clark, 1988). %$\phi(i)$ is increasing with i so it then means play de %, so each skill levels is associated with some level of fitness at a given time within the model and future fitness beyond the the model. ($\phi(i)$).
+	%nd furthermore we can hypothesize about the driving forces of the evolution and adaptation of play. 
+	
+	%-If the focal individual's fitness at a given time within the model, $F(i,t)$, falls below 
+	%\\??include $\alpha$, $\tau$, exit dynamics?? (maybe just a basic idea of whats happening here then in the deep math talk about these details) ??\\    
+	
+	%
+	%
+	
+	%
+	\noindent \textit{Play Events}\\
+	%, and it is beneficial for the focal individual to play, in a given time period of the model, then the focal individual enters a play event.  %  decides to play in a given period of the model, it must pick an appropriate play partner, and enter a play event.% it must pick a play partner.
+	%If it is beneficial for a focal individual to play, and the focal individual is able to find an appropriate play partner, then the focal individual enters a play event with the found play partner. 
+	%decides it beneficial for itself to do so.make the
+	We assume that all play partners are willing and available to enter play events with the focal individual, contingent on the focal individual's decision whether or not to play with them.  
+	%LATER IN DISCUSSION:
+	When a play event occurs between the focal individual, of skill $i$, and a play partner, of skill $j$, the focal individual receives an increment to its skill denoted $\Delta S(i,~j)$. %add inspiration in introduction. %picture of skill difference function regions of significance.     
+	%
+	In order to capture the idea that skill associated with play events is not necessarily acquired instantaneously, the skill increment, $\Delta S(i,~j)$, of a particular play event is awarded to the focal individual a number of time periods, $\tau$, after the play event starts.
+	%
+	Since individuals incur a per period decrement to their skill, $\alpha$, every period of the model, and it takes $\tau$ time periods to gain skill from a play event, it follows that the total decrement to skill of a single play event is $\alpha \tau$ and the net change in skill when a player of level $i$ plays with a partner of level $j$ is $\Delta S(i,~j)-\alpha \tau$. %skill only increases when $\Delta S(i,j)$ is greater than $\alpha \tau$.
+	%So the focal individual, of skill $i$, is awarded $\Delta S(i,j)$ skill units, $\tau$ time steps beyond the time period, $t$, of the model in which the play event occurs.
+	%Furthermore $i$ loses $\alpha \tau$ skill units while waiting for $\Delta S(i,j)$ to be awarded.
+	%The number of time periods beyond the initiation of a play event $\tau$ time periods after the play event at time period, $t$.  
+	
+	%
+	%
+	
+	%play events are truncated at $T$.
+	In cases where play events collide with the time horizon of the model, $T$, we replace $t+\tau$ by $T$ and assume that the focal individual receives the net increment in skill $\Delta S(i,~j)-\alpha \tau$.
+	%
+	Doing this keeps the relationship between skill increments and skill decrements for truncated play events consistent with all other time periods.
+	%the per period skill decrement for experience an effectively per period decrement becuase the  is concentrated  
+	Although it is worth noting that the effective per period decrement in these truncated play events is higher due to compressing the total cost , $\alpha\tau$, over less than $\tau$ time steps.
+	\\
+	
+% 	%
+% 	That is, if $t'$ is the time period within the model at which a particular play event ends then,
+% 	%
+% 	\begin{equation*}
+% 	\text{if }t+\tau \ge T\text{ then }t'=T  
+% 	\end{equation*}
+% 	%
+% 	\begin{equation*}
+% 	\text{if }t+\tau < T\text{ then }t'=t+\tau.
+% 	\end{equation*}
+% 	%
+% 	and we assume that  the focal individual receives the full $\Delta S(i,~j)$ for truncated play events, and incurs skill decrements for all of the $\tau$ time periods even though the actual play event may actually be shorter than $\tau$ time periods. % for the periods spent in the play event.
+% 	%
+% 	This keeps the relationship between skill increments and skill decrements for truncated play events consistent with all other time periods of the model. \\ 
+% 	%Thus, play events at the end of the model are particularly valuable, due to discrepancy between the skill increment and the skill decrement. 
+	
+	
+	%
+	\noindent \textit{Skipping Play Events and Exiting the Playing Field}\\
+	%
+	The focal individual may skip a play event in a time period may be because of being unable to find an appropriate play partner, or because the available play partners in the environment do not allow $\Delta S(i,~j)$ to be greater than $\alpha \tau$. 
+	%
+	In this case, the focal individual only incurs the per period cost to skill, $\alpha$, for a single time period.
+	
+	%
+	%
+	
+	%
+	Caro's (1988, 1995) results suggest that different types of play occur at differing periods of development and thus a model of play behavior must include the ability of playing organisms to stop considering social play as a behavioral option altogether.
+	%
+	Thus, we include the behavioral option of exiting the play field entirely.
+	\\
+	%
+	%For an individual that has decided to stop considering social play, the pursuit of social play no longer benefits their overall fitness.
+	%
+	%Thus exiting individuals leave the model and would presumably enter another type of play to maintain their skill, or stop playing altogether. We explain how this is modeled below. \\
+	%The biological interpretation of an individual which exits our model is an individual which has enough skill to ____, and this means that these organisms     
+	%If the fitness of a focal individual at any time of the model, $F(i,t)$ ever falls below their future fitness, $\phi(i)$, then the focal individual is allowed to stop perusing play partners and is said to exit the model.
+	%As a discrete model we can only consider some range of time to consider play behavior.
+	%Similarly we can only model a range of skill levels.
+	%This is not worrisome, considering that individuals only display social play for a limited window in their development anyhow.
+	%We define $T$ to be the final time period of the model and $t$ to be any other specific time period within the model.
+	%Furthermore, the model only considers play behavior between a lower limit of skill, $S_L$, and an upper limit of skill, $S_U$. 
+	
+	%
+	%
+	
+        %
+	\noindent \textit{The Skill Increment}\\
+	%
+	We assume that when individuals whose skills are closely matched play, the increment in skill is greater than if the individuals have skills that are widely different (Burghardt, 2006).
+	%We assume that when a play partner is found, the   more similar that $i$ is to $j$ the greater that $\Delta S(i,~j)$ is.
+	%
+	%That is, we assume t individuals of similar skills are likely to be developing similar aspects of their overall skill suite (Burghardt, 2006).
+	%
+	Thus, $\Delta S(i,~j)$ reaches a maximum,  $S_{max}$, when $i=j$, and as $i$ becomes more different form $j$, $\Delta S(i,~j)$ decreases.
+	%
+	For the computation we use the symmetric form  
+	%
+	\begin{equation}
+	\Delta S(i,~j) = \Delta S_{max} \exp\left\{ -  \frac{(i-j)^2}{2\sigma^2}     \right\}.
+	\label{sdf}
+	\end{equation}   
+	%
+	Here $\sigma$ is a parameter that describes how similar the focal individual must be to the play partner in order to receive a meaningful skill increment from a play event (Figure 3).
+	%
+	%Biologically, a skill increment of $S_{max}$ is only possible in a ``perfect" play event where $j$ is perfectly suited for playing with $i$.
+	%Therefore
+	$\Delta S(i,~j)$ will always be maximized when the focal individual and the play partner have the same skill (i.e. $i = j$).    
+	%
+	Notice that the symmetry of Eqn 2 means that $\Delta S(i,~j)$ does not really depend on either $i$ or $j$, but rather the absolute difference between $i$ and $j$.    
+	
+	%
+	%
+	
+	%
+	As a thought experiment to help understand how focal individuals are motivated by the acquisition of skill through $\Delta S(i,~j)$, consider a focal individual that makes play decisions based only on the effects of those behaviors in the short-term.
+	
+	%
+	%
+	
+	% This myopic focal individual does not care about any of the opportunity costs of playing with one play partner over a better suited play partner. 
+	Such a myopic focal individual only considers whether a play event  causes an increase or decrease in skill, regardless of any ill effects these decisions my cause in further time periods. 
+	%
+	For the myopic focal individual the decision to play, or not, is really just a comparison between the skill decrement of the play event, $\alpha \tau$, and the skill increment, $\Delta S(i,~j)$.
+	%
+	If $\Delta S(i,~j)$ is greater than $\alpha \tau$ then the myopic individual will always play, regardless of how small the difference, and if $\alpha \tau$ is the greater than $\Delta S(i,~j)$, the myopic individual will never play.   
+	%
+	However, as long as $\tau>1$ (which we assume it always is), there is an opportunity cost associated with playing with a poorly matched partner. % in terms of lost time.  
+	%
+	Thus, optimally behaving individuals consider factors that introduce opportunity costs and lead to more selective behavior than in the myopic case. \\   
+	
+	%
+	%
+	
+	%
+	\noindent \textit{Play Partners}\\
+	%
+	We characterize the play environment through a probability distribution of potential partners. 
+	%
+	That is, we let $\lambda_j(t)$ be the probability that a focal individual encounters a potential play partner of skill $j$ at $t$.
+	%
+% 	\begin{equation}
+% 	\lambda_j(t)=Pr(\text{a focal individual encounters a potential play partner of skill }j\text{ at }t).
+% 	\end{equation} 
+	%LATER DISCUSSION: encountering more than one play partner at a time.   
+	For computations, we use an exponential distribution         
+	%
+	\begin{equation}
+	\lambda_j(t) = \delta_n \exp\{-cj\}
+	\label{lambda_j}
+	\end{equation}
+	%, and thus the remaining  probability
+	where $c$ is a scale parameter and $\delta_n$ is a normalization constant chosen so that $\sum_j \lambda_j(t)~\le~1$; $\lambda_0=\big(1-\sum_j \lambda_j(t)~\big)$ is the case in which the focal individual cannot find any play partner. %inorder to conserve probability, the remaining $(1-\sum_j \lambda_j(t)~)$ is the probability of not encountering any play partner.
+	%This allows for the possibility that the focal individual may not encounter any play partner in a given time period, with probability $(1-\sum \lambda_j(t)~)$.
+	The distribution of the potential social play partners in the environment, as an exponential, translates into an environment with initially many low skill individuals.
+	%
+	As potential play partners develop their own skills, and leave the population, a decreasing number of high skill individuals are left in the population. \\%as potential play partners develop and leave the pool of potential play partners. 
+	
+	%
+	%
+	
+	%
+	\noindent \textit{Fitness Function and SDP Equation}\\
+	%As a basis for thinking about the fitness of a focal individual, let us start by considering the fitness of an individual at the end of the model, $\phi(i)$. 
+	%The function $\phi(i)$ must account for all of the fitness associated with an individual of skill $i$ at the end of the model, and for the rest of the individual's life as described in Mangel and Clark (1988). 
+	%Eq.(\ref{first}) shows that $F(i,t)$ is based on the terminal fitness function $\phi(i)$.
+	%In order to use this logic I must first have some idea about the features $\phi(i)$ should have.
+	We assume that $\phi(i)$ is an increasing function of $i$, consistent with a higher level of skill at $T$ providing greater future fitness.
+	%
+	For computations, we choose a logistic function that has some threshold skill level after which fitness rises rapidly with skill (Figure 2):
+	%at which organisms quickly develop fitness, as they would in adolescence (Figure 2).   
+	%
+	\begin{equation}
+	\phi(i) = {(i-S_L)^\gamma \over {(i-S_L)^\gamma+(S_o-S_L)^\gamma} }.
+	\label{phi}
+	\end{equation}
+	
+	%
+	%
+	
+	%
+	Thus, $\phi(i)$ is normalized to a maximum value of 1, $S_o$ is the skill at which half maximal fitness is achieved, and $\gamma$ characterizes how quickly fitness increases with increased skill near the skill threshold.
+	
+	%
+	%
+	
+	%\label{equivalence}
+	In light of the definition of $F(i,~t)$ we have the end condition $F(i,~T) = \phi(i)$.
+	%
+	At each time prior to the the time horizon, $T$, an individual with skill level $i$ may exit the play field, thus obtaining future fitness $\phi(i)$ or may continue to seek partners.  
+	%
+	We let $V_{cont}(i,~t)$ denote the future expected fitness of an individual with skill level $i$ at time $t$ who continues to seek play partners.  
+	%
+	Then   
+	%
+	\begin{equation}
+	F(i,~t)=\text{max} \big[\phi(i),~V_{cont}(i,~t)\big]                                                                      
+	\label{breif}
+	\end{equation}
+	%
+	the fitness value of continuing to seek play partners depends upon the skill level of the partner encountered at time $t$, so that   
+        %
+        \hspace{-1cm}
+        \begin{eqnarray}
+	\small
+	V_{cont}(i,~t) &=& \left(1-\sum_j \lambda_j(t) \right) ~F(i-\alpha,~t+1) ~+~\\
+	&&\left(\sum_j \lambda_j(t)\right)~\text{max} 
+	\Big[F\big(~ i + \Delta S(i,~j) - \alpha \tau,~t+\tau ~\big),~F(i-\alpha,~t+1)\Big] \nonumber
+	\end{eqnarray}
+	
+	%
+	%
+	
+	%Above $\lambda_{null}$ is the probability of not encountering any play partner, while each $\lambda_j$ is the probability of encountering play partners of each skill level.
+	%Each possible play encounter is associated with a fitness based on the skill level, $j$, of the play partner encountered.
+	For example if the focal individual does not encounter a play partner (the first term on the right hand side) it is not awarded any skill, but still incurs the per period cost to skill, $\alpha$. 
+	%
+	If a play partner of skill level $j$ is encountered in period $t$, with probability $\lambda_j(t)$, the focal individual must decide between entering a play event or skipping the play event with the encountered play partner of skill $j$. 
+	%with that partnerthe skill increment for playing with that play partner, $\Delta S(i,j)$,  a skill 
+	If the focal individual decides to play, the focal individual's skill is incremented by $\Delta S(i,~j)$ and decremented by $\alpha$ for every period of the play event.  
+	%
+	Encountering a play partner and choosing not to play has the same fitness effect as having not encountered a partner in the first place.
+	%
+	%The amount of time required to skip playing does not involve entering a play event, so the time increment is only one period. % only takes $\tau$ time steps
+	%
+	The solution of Eqns 17-19 leads to two matrices of decisions depending upon $i$, $j$, and $t$. 
+	%
+	The first, $D_e^*(i,t)$ characterizes whether an individual with skill level $i$ at time $t$ exits the play field or not. 
+	%level is , or not, if such a partner is encountered
+	The second,  $D_p^*(i,j,t)$, characterizes whether an individual, of skill $i$, chooses to play with a partner, of skill $j$, at time $t$ of the model.\\
+	
+	%
+	%
+
+	%
+	\noindent \textit{Monte Carlo Implementation of Play Decisions Forward in Time} \\
+	%
+	To predict the behaviors of individuals, we use $D_e^*(i,t)$ and  $D_p^*(i,j,t)$ to run a Monte Carlo simulation forward through time $\big($Mangel and Clark (1988), Clark and Mangel (2000)$\big)$. 
+	%
+	In particular, we simulate a {\color{red}number of focal individuals, $k$,} making optimal play decisions as predicted by Eqns 16-17. 
+	%
+	We begin by considering $K$ focal individuals in a much larger play field and assign skill levels that are randomly drawn from a uniform distribution on $[S_L,S_U]$.
+	%, $k$, making optimal play focal individuals are generated with uniformly drawn random skill levels on the interval $[S_L,S_U]$. 
+	%
+	In each time period of the simulation, each of the focal individuals encounter a potential play partner drawn randomly from the probability distribution of encountering potential play partners of skill $j$. %, Eqns (7) and (8). 
+	%
+	At each potential play encounter the focal individual either enters a play event, skips a play event, or exits the model according to the decision matrices, at the particular $i$, $j$, $t$ conditions of the given play encounter.  
+	%
+	The simulation follows the following algorithm for each of the $K$ focal individuals:
+	%
+	\begin{itemize}
+	\item[(1)] $t=0$
+	\item[(2)] Randomly assign the $k^{th}$ focal individual an initial skill, $I_k(0)$, \mbox{between $S_L$ and $S_U$.}   
+	\item[(3)] Randomly draw a potential play partner skill level, $J$, from Eqn \ref{lambda_j}.
+	\item[(4)] Look up the appropriate play decision, $D_p^*\big(I_k(t),~J,~t\big)$.
+	\item[(5.1)] If the play decision is ``play"; $I_k(t+\tau)=I_{k}(t)+\Delta S(I_k(t),J)-\alpha \tau$ and $t \rightarrow t+\tau$. 
+	\item[(5.2)] If the play decision is ``skip"; $I_k(t+1)=I_{k}(t)-\alpha$ and $t \rightarrow t+1$.
+	\item[(5.3)] If the play decision is ``exit"; $I_k(t+1)=I_{k}(t)$ and $t \rightarrow T$.
+	\item[(6.1)] If $t < T$ go to step (3). 
+	\item[(6.2)] If $t \ge T$ then $I_k(T)=I_k(t)$.   
+	\end{itemize}
+	
+%
+%
+\section*{Results}
+%
+%
+
+%
+We separately discuss the different cases of play being incidental in development and play essential for the development of life history skills.
+
+	%
+	%
+	\subsection*{Play Is Incidental}
+	%
+	%
+	
+	%
+	In Figure 4, we show the boundary $x_{th}$ for three values of $Y$, which measures the richness of the environment when play is costless (i.e. $a_p=a_0=1$). 
+	%
+	It accords with intuition that in richer environments, even if individuals have the same probability of finding food, they need to forage less frequently, so can remain in the burrow -- thus avoiding the risk of predation.  
+	%
+	In the case of an environment that is less rich, even when an individual finds food the amount of food found does not increase the state as much, hence the boundary is lower.  
+	%
+	This boundary translates into the fraction of individuals remaining in the burrow as a function of time, which we show in Figure 5.  
+	%
+	Three phenomena appear in this figure. 
+	%
+	First, early in the time series, say $t=1-15$, no individual is in the burrow, simply because states are so low.  
+	%
+	For moderate times, say $t=15-50$, play is more frequent in the richer environments.  
+	%
+	Finally, for $t>50$, we see the effect of the end condition, interacting with the richness of the environment and the risk of mortality when foraging.
+	
+	%
+	%
+	
+	%
+	In Figure 6a, we show a heat map for the fitness cost of playing when $a_p=2$, and the threshold for playing is $x_p=75$. 
+	%
+	Note that play is predicted to have very small fitness consequences except for large values of state, and that it is predicted to have some consequences, of the order of 4 \% for values of state between about 50 or 60 and $x_p$, depending upon time.  
+	%
+	However, in Figure 6b we show the average and standard deviation of the state in this case and we see that on average state is about 40, so that even though play is costly, the cost is rarely paid.
+	
+	%
+	%
+	\subsection*{Play Develops Skills}
+	%
+	%
+
+	%
+	\noindent \textit{From the Backward Equation}\\
+	%Fully solving Eqns 17-19 backwards in time yields the decision matrices and the fitness values%for every focal skill level and time of the focal individual (Figure 7).
+	%
+	%
+	Focal individuals choose to play with a range of similarly skilled individuals about the diagonal of $D_p^*(i,~j,~t)$ where $i=j$ (Figure 7).
+	%
+	%$D^*(i,j,t)$ shows that focal individuals choose to play with a range of similarly skilled individuals about the diagonal of $d^*(i,j,t)$ where $i=j$.
+	%
+	If the cost of play, $\alpha \tau$, is larger than, $\Delta S(i,j)$, a focal individual is predicted not to play with the partner whose skill level is $j$.
+	%\alpha is expected very widely across species (determined by) and to a smaller extent between individuals within a species.
+	Thus, $\alpha \tau$ is a major driver in determining the extent to which $i$ must be similar to $j$ in order for the focal individual to enter a play event. 
+	
+	%
+	%
+	
+	%
+	We observe patterns in the total range of playable $j$'s based on the focal individuals skill and the time period of the model in which a play event occurs. %that at any given time, as $i$ increases the total span of playable $j$'s increase.       In addition to play events only occurring in a range about the diagonal of $D^*(i,j,t)$ where $i=j$, 
+	That is, at some $t$ and $i$, there exists a maximum $j$ that is beneficial for $i$ to play with; we denote this maximum playable $j$, $\hat J_{i}$.
+	%
+	Similarly there is some minimum $j$ that is beneficial for $i$ to play with, denoted by $\check J_{i}$.
+	%
+	We show the total range of potential play partners for every combination of $i$ and $t$       
+	%
+	\begin{equation}
+	R(i,t)=\hat J_i - \check J_{i}.
+	\end{equation}
+	%R(i|t)
+	in Figure 8.
+	
+	%
+	%
+	
+% 	%
+% 	For $t$ fixed, in general as $i$ increases $R(i,t)$ increases, until a threshold $i$ for which every subsequent $i$ exits the model.
+% 	%
+% 	Biologically this means that as individuals gain skill, they are willing to play with a broadening range of individuals in the environment.
+% 	%
+% 	Pre-exit high skill individuals have incentive to broaden their play range because they do not need much more fitness in order to exit the model.
+% 	%
+% 	These individuals can get the skill that they need to exit the model from a wide range of $j$'s.
+% 	%
+% 	However, low skill individuals need to increase their fitness a lot, and need large values for $\Delta S(i,j)$ to get high fitness.
+% 	%
+% 	Thus, at all values of $t$, low skill individuals are very selective for play partners, such that $\hat J_i \approx i$ and $\check J_i \approx i$. 
+%   
+% 	%
+% 	%
+%   
+% 	%R(t|i)
+% 	For fixed  $i$,  in general as $t$ increases $R(t|i)$ also increases.
+% 	%
+% 	That is, as individuals approach the time horizon they behave more and more similarly to the myopic focal individual discussed in section 2.2.1. % desperate for fitness, so they are forced to accept lower and lower values of $\Delta S(i,j)$.
+% 	%
+% 	Although optimal focal individuals do behave similarly to the myopic focal individual when $t$ is near $T$, the only time optimal focal individuals truly behave myopically is when $t=T-1$.   
+% 	
+% 	%
+% 	%
+% 	
+% 	%
+% 	Finally, as $t$ increases towards $T$, the exit threshold occurs at decreasing values of $i$. % changes because of $F(i,t)$ increases with time.
+% 	%
+% 	This is caused by the dynamics of $F(i,t)$ (Figure XX).
+% 	%
+% 	When many time periods remain i, $F(i,t)$ is greater than $\phi(i)$ for most values of $i$, excluding a few exit skills.
+% 	%
+% 	So most values of $i$ consider play behavior for some period of the model.
+% 	%
+% 	As $t$ approaches $T$, $F(i,t)$ decreases to approach $\phi(i)$ and thus $F(i,t)$ falls below $\phi(i)$ at lower values of $i$ at later time periods of the model. 
+% 	
+% 	%
+% 	%
+% 	
+% 	%
+% 	As seen in Figure XX, when $t$ is less than $T$; $F(i,t) \ge F(i,T)$.
+% 	%
+% 	This is due to the amount of time left in the model at $t$.
+% 	%
+% 	Notice that when many time periods of the model remain $F(i,t)$ is greater than $\phi(i)$. %initially for low skill individuals $F(i,1)$ is much greater than $F(i,T)$.
+% 	When there is a lot of time left in the model, individuals with relatively low skill can have high fitness due to the prospect of gaining skill in the future.    
+% 	%
+% 	Also notice when individuals gain high skill they exit the model at the skill level where $F(i,t)$ converges with $\phi(i)$.
+% 	%
+% 	So as $t$ approaches $T$, $F(i,t)$ approaches $\phi(i)$ from the top, and this exit skill decreases.\\
+% 
+% 	%
+% 	%
+	
+	%
+	\noindent \textit{Forward Monte Carlo Simulation}\\
+	%
+	%With the forward Monte Carlo simulation, we are interested in the long term perspective of play and how an individual's skill affects long term play decisions.      
+	%
+	%\it
+	%\subsubsection*{ Initial \& Final Skills}
+	%
+	%
+	%
+	%We assumed that initial levels of skill were  uniformly distributed, so by considering the distribution of the final skills can see the effect of play behavior on the population.
+	%
+	%{\color{red}$k=250$}
+	In Figure 9a we show the final skill distribution of $k=100000$ individuals making optimal decisions for 40 periods.
+	%bimodal
+	This distribution is a clear trimodal distribution. %to be trimodal, and if $k$ is increased, the final skill distribution becomes a clear bimodal distribution.
+	%
+	From the left to right, firstly we see the mode at about skill 15 representing the most common skill for individuals who have not yet exited the model.
+	%
+	%
+	Secondly, the mode around skill 30 is representative of the accumulation of individuals that begin the simulation below the exit threshold, but play to build enough skill to exit the playing stage. %exiting individuals throughout the modeled periods.
+	%
+	Thirdly, the right-most mode around a skill of 35, represents individuals that enter the model with skills high enough to automatically exit play behavior.
+	%
+	In Figure 9b we show the same final skill distribution of $k=100000$ individuals making optimal play decisions when the initial skill allocation is truncated to skills just prior to the automatic exit skill.
+	%
+	Comparison of Figures 9a and 9b demonstrate the basis of the Figure 9a's third mode around skill 35.
+	
+	%
+	%The mode centered around skill 15 is the most common skill for individuals who have not yet exited the model.
+	%
+	
+	
+	%
+	%
+	
+	%      
+	Another way of visualizing the results of Figure 9 is in the scatter plot seen in Figure 10, in which we show the relationship between the initial  and final levels of skill of the simulated individuals.
+	%\ref{mcmc}
+	The dotted red one-to-one line in Figure 10 shows the final skill level required to maintain the initial skill level.
+	%
+	By considering individuals that enter the model with a uniform distribution over the range of possible skills,we ensure that the results will cover all of the possible play strategies in the environment.    
+	%
+	In such a case, of course, some individuals start with high enough skill to exit the model immediately.
+	%
+	These are the individuals with initially high skill, on the one-to-one line in the region labeled ``Exit".
+	%
+	Individuals with initial skills below the initial exit skill all play to some degree, but the lower the initial skill the more selective the play decisions become.
+	%
+	With lower levels of skill, individuals are predicted to be more selective when choosing a play partner. %, however $\lambda_j(t)$ is defined such that these low skill individuals have a high likelihood of encountering just the play partners that they seek.
+	%
+	Playing organisms that have high enough final skills to find themselves above the one-to-one line, in the region labeled ``Lucky" are individuals that were able to successfully find the play partners that they need to improve their skill from their initial state.
+	%
+	Playing organisms that end up below the one-to-one line, in the region labeled ``Unlucky" are individuals seeking play partners, but were not able to find the play partners that they need to improve their skill. 
+	%
+	For low skill individuals it is relatively easy to find appropriate play partners, and thus they most often end up in the ``Lucky" region.
+	%
+% 	Again Figure 10b shows the same scatter plot as seen in Figure 10a except the initial skill allocation has been truncated to skills just prior to the automatic exit skill.
+
+%
+%\subsubsection{\it Skill Progressions \& Mortality}\\
+\section*{Discussion}
+%
+%
+
+%
+The major message of our first model is that even if play is costly and has no direct consequences on the development of life history skills, the fitness costs of play may be relatively small, so that we predict individuals will play even if it is not adaptive. 
+%
+Our second model assumes a “relaxed field” {\color{red}(sense Burghardt, 2006)}, and thus allows us to understand skill-dependent play decisions independent of energy reserves or predation risk while playing. 
+%
+However, it is relatively easily to consider play behavior with respect to these factors, but as a starting point it is instructive to understand the basics of play behavior within this simple model first. 
+%
+As more intricate models are made on play behavior, added considerations may make it hard to see some of the basic forces driving play behavior as seen in this model. 
+%
+In this model, for simplicity, we have allowed play events between a single focal individual and a single play partner at one time, but there is no reason that this has to be the case. 
+%
+For example litters of kittens often play in groups. 
+%
+This may present interesting results considering that the results of this model suggest that playing individuals tend to develop skill as a group. 
+%
+In addition to adding multiple play partners , adding mortality would give insight into a potentially strong cost of play t.
+
+%
+%
+
+%
+As described above, there is a pocket of time and skill where the general patterns do not hold true (Figure 9). 
+%
+We propose that this can be explained by the finite time horizon of the model, and its relation to play events as defined by the model. 
+%
+Recall that for time periods near $T$, play events cause $t + \tau$ to be greater than $T$. 
+%
+Due to the construction of the model the skill increments and decrements for play events in these periods are consistent with all other time periods of the model, however the fitness values associated with these skill levels must be truncated at $F(i,~T) = \phi(i)$ because by definition fitnesses for time periods beyond $T$ are defined by $\phi(i)$. 
+%
+This has the effect of decreasing $R(i,~t)$ for time periods just prior to the final time periods of the model. 
+%
+Skills high enough to exit the model have lower than expected values for $R(i,~t)$ several time periods before these individuals exit the model. 
+%
+Individuals several time steps before the end of the model are predicted to be very selective in their choice of play partners because the fitness associated with any skill level in these time periods of the model has been truncated to $F(i,~T) = \phi(i)$. 
+%
+Since play is not actually bounded in this way, it is useful to run the model with large values of $T$ and consider the general trends prior to this exception pocket.
+
+%
+%
+
+%
+When considering the general trends o prior to the exception pocket, we find that low skill individuals are predicted to be relatively selective in their play decisions, seeking with other low skill individuals. 
+%
+As individuals gain high skill, they become more willing to play with individuals of very dissimilar skill levels. In nature, high skill individuals may often self-handicap; this could be included in a version of the model in which self-handicapping is another behavioral decision.
+
+%
+%
+
+%
+As shown in Figure 8, the Monte Carlo, individuals with initially low skill (perhaps the most common natural occurrence) play to increase their skill, and on average they increase their skill level and exit play behavior in the same proportions as other playing individuals. 
+%
+However, one may expect that individuals entering the model with high pre-exit skill levels should have a developmental advantage, and exit the model more quickly and in higher proportions.
+%
+In general this is not the case, unless playing individuals enter the model virtually at the the exit threshold. 
+%
+Generally, individuals with initially high pre-exit skill levels quickly fit into very similar skill distributions as individuals with initially low skill. 
+This is due to the scarcity of favorable play partners in the pre-exit upper skill range. 
+%
+On average individuals in a confined social environment will develop their skill as a group. 
+%
+Regardless of an initially playing individual’s initial skill, the skill development of all individuals in the group converges toward the average skill development of the group.
+
+%
+%
+
+%
+Individuals with initially very high skill are immediately able to exit.
+%
+In these cases play behavior is never displayed. 
+%
+This is clearly a hypothetical, and largely unattainable situation for many social species, but these initially exiting individuals could have a meaningful interpretation when one considers behaviors that are not learned via play, or even the evolution of innate behaviors or reflexes.
+
+%
+%
+\section*{Acknowledgements}
+%
+%
+
+%
+We thank the Mangel Lab Group for helpful comments during the development of these ideas and {\color{red}XX, YY, and ZZ} for comments on the manuscript. 
+%
+This work was conducted as a part of the Evolution of Play Working Group at the National Institute for Mathematical and Biological Synthesis, sponsored by the National Science Foundation, the U.S. Department of Homeland Security, and the U.S. Department of Agriculture through NSF Awards EF-0832858 and DBI-1300426, with additional support from The University of Tennessee, Knoxville.
+
+
+% \noindent \textit{The Relaxed Field}\\
+% 	%
+% 	Since a fundamental criterion of play behavior is that play only occurs in a stress free environment, we did not include energy reserves or predation risks into the costs of play. 
+% 	%
+% 	This model assumes a ``relaxed field"(\textit{sense} Burghardt, 2006), and thus allows us to understand skill-dependent play decisions independent of energy reserves or predation risk while playing.
+% 	
+% 	%
+% 	%
+%    
+% 	%
+% 	However, it is relatively easily to consider play behavior with respect to these factors, but as a starting point it is instructive to understand the basics of play behavior within this simple model first.
+% 	%
+% 	As more intricate models are made on play behavior, added considerations may make it hard to see some of the basic forces driving play behavior as seen in this model.\\
+% 
+% 	%
+% 	\noindent \textit{ $D^*(i,j,t)$ Exception Pocket}\\
+% 	%T_{play} exceptions of D*(i,j,t)
+% 	In Figure \ref{mapExit}, we can see that the patterns outlined above hold true in general, however there is a pocket of time and skill where these patterns do not hold true.
+% 	%
+% 	We propose that this can be explained by the finite time horizon of the model, and its relation to play events as defined by the model. 
+% 	%
+% 	Recall that for time periods near $T$, play events cause $t+\tau$ to be greater than $T$.   
+% 	%
+% 	Due to the construction of the model the skill increments and decrements for play events in these periods are consistent with all other time periods of the model, however the fitness values associated with these skill levels must be truncated at $F(i,T)=\phi(i)$ because by definition fitnesses for time periods beyond $T$ are defined by $\phi(i)$. %this makes play events at the end of the model particularly valuable, due to discrepancy between the skill increment and the skill decrement.
+% 	%This means that individuals needing a lot of skill at the end of the model have a pocket of time in order to make larger than normal skill jumps.
+% 	%This also means that low skill individuals do not want to waste any time periods of this pocket by entering the pocket already in a play event.
+% 	%
+% 	This has the effect of decreasing $R(i,t)$ for time periods just prior to the final time periods of the model.
+% 	%
+% 	Skills high enough to exit the model have lower than expected values for $R(i,t)$ several time periods before these individuals exit the model.  % levelstime periods just before the beneficial pocket, so that individuals finish any previous play events, prior to entering the pocket.
+% 	%Thus individuals are available to enter play events once inside the pocket.
+% 	Individuals several time steps before the end of the model are predicted to be very selective in their choice of play partners because the fitness associated with any skill level in these time periods of the model has been truncated to $F(i,T)=\phi(i)$. %are appraised to have an artificially low value as a product of the time truncation of play events. %in this period of the model. % want to maximize their skill increment.
+% 	Since  play is not actually bounded in this way,  it is useful to run the model with large values of $T$ and consider the general trends of the model prior to this exception pocket. 
+% 	%
+% 	Individuals presumably would not have a finite time horizon I propose that $R(i,t)$ is artificially high for low skill individuals at times immediately before the pocket, and artificially low at times within the pocket. \\
+% 	
+% 	%
+% 	%
+% 	
+% 	%
+% 	\noindent \textit{Behavioral Evolution}\\
+% 	%
+% 	When considering the general trends of the model, prior to the exception pocket, we find that low skill individuals are predicted to be relatively selective in their play decisions, seeking with other low skill individuals.
+% 	%
+% 	As individuals gain high skill, they become more willing to play with individuals of very dissimilar skill levels. 
+%       
+% 	%handicap
+% 	High skill individuals have incentive to self-handicap, due to the relative abundance of each type of potential play partner.
+% 	%
+% 	In the model there are relatively few high skill individuals, but there are many low skill individuals to play with.
+% 	%
+% 	The high abundance of low skilled potential play partners helps motivate high skilled individuals to play with them due to their high probability of encounter, as defined by $\lambda_j(t)$ in Eq.(4).  
+% 	%
+% 	Although low skill individuals do not offer a lot of skill benefit to high skill individuals, the skill benefit that they do offer is just enough to push them over the exit threshold of the model.
+% 	
+% 	%
+% 	%
+%    
+% 	%
+% 	Figure 8 shows the Monte Carlo realization of these predictions:    individuals with initially low skill (perhaps the most common natural occurrence) play to increase their skill, and on average they increase their skill level and exit play behavior in the same proportions as other playing individuals.
+% 	%
+% 	However, one may expect that individuals entering the model with high pre-exit skill levels should have a developmental advantage, and exit the model more quickly and in higher proportions. 
+% 	%
+% 	In general this is not the case, unless playing individuals enter the model virtually at the the exit threshold.
+% 	%
+% 	Generally, individuals with initially high pre-exit skill levels quickly fit into very similar skill distributions as individuals with initially low skill.
+% 	%
+% 	This is due to the scarcity of favorable play partners in the pre-exit upper skill range. %FAB   , and the fact that otherwise favorable play partners for these individuals have already exited play behavior. 
+% 	%Individuals entering the model with intermediate-high pre-exit skill levels do not appear to exit the model in a larger proportions, due to the  for these individuals.
+% 	On average individuals in a confined social environment will develop their skill as a group.
+% 	%
+% 	Regardless of an initially playing individual's initial skill, the skill development of all individuals in the group converges toward the average skill development of the group. 
+% 	%When individuals begin the model with a uniform distribution of skill levels, the general trend in the average group skill level is to slowly increase skill to the point where most individuals are able to exit play behavior by late time periods of the model. 
+% 	
+% 	%
+% 	%
+% 	
+% 	%
+% 	Individuals with initially very high skill are immediately able to exit play behavior in the model. 
+% 	%
+% 	In these cases play behavior is never displayed.
+% 	%
+% 	This is clearly a hypothetical, and largely unattainable situation for many social species, but these initially exiting individuals could have a meaningful interpretation when one considers behaviors that are not learned via play, or even the evolution of innate behaviors or reflexes.\\ 
+% 	
+% 	%ed be reflective of species that are highly dependent on innate behaviors born with incredible "instincts".
+% 	%-Compare each model and describe the implications for play behavior and evolution.(possibly some of my results belong discussion).\\
+% 	%-biological implications of math above in results.\\
+% 	%-possible behavior of play evolutionarily/ a time period to play and a time to live.\\ 
+% 	%*****************************************************\\
+% 	%??Handicap principle??(Amotz Zahavi)\\
+% 	%??Arabian babbler??\\
+% 	%*****************************************************\\
+% 	
+% 	%
+% 	\noindent \textit{Model Modifications}\\   
+% 	%
+% 	In this model, for simplicity, we have allowed  play events between a single focal individual and a single play partner at one time, but there is no reason that this has to be the case.
+% 	%
+% 	For example litters of kittens often play in groups.
+% 	%
+% 	This may present interesting results considering that the results of this model suggest that playing individuals tend to develop skill as a group. %, and considering the . and this would have interesting resul 
+% 	%
+% 	In addition to adding multiple play partners, adding mortality would give insight into a potentially strong cost of play t%  some form of  
+% 		
+% 	%-Shifted $\Delta S(i,j)$
+% 	%\noindent-close match-ups maximize skill(self-handicapping)?? slightly higher skills maximize skill per play event?? \\
+% 	%-Multiple Play Partners Per Period
+% 	%-Erratic Mortality
+% 	
+% 	%
+% 	%
+% 	\subsection*{General Conclusions}
+% 	%
+% 	%
+% 	
+% 	%
+% 	%
+% 	\subsection*{Acknowledgements}
+% 	%
+% 	%
+% 	
+% 	%
+% 	We thank the Mangel Lab Group for helpful comments during the development of these ideas and XX, YY, and ZZ for comments on the manuscript.
+	
+% %
+% %
+% \singlespacing
+% \bibliographystyle{plain}
+% \bibliography{./bibTex/msCite}
+% %
+% %
+
+
+% 
+% 
+%\section*{Literature Cited}
+% 
+% 
+\singlespacing
+\begin{thebibliography}{2}
+%
+\bibitem{one} Burghardt, G. M. (2006). \textbf{The genesis of animal play: Testing the limits}. MIT Press, Cambridge, MA.
+%
+\bibitem{two} Caro, T. M. (1980). Effects of the mother, object play, and adult experience on predation in cats. Behavioral and Neural Biology, 29, 29-51.
+%
+\bibitem{three} Caro, T. M. (1988). Adaptive significance of play: Are we getting closer?. TREE, 3(2), 50-54.
+%
+\bibitem{four} Caro, T. M. (1988). Adaptive significance of play: Are we getting closer?. TREE, 3(2), 50-54.
+%
+\bibitem{five} Caro, T. M. (1995). Short-term costs and correlates of play in cheetas. Animal Behaviour, 49, 333-345.
+%
+\bibitem{six} Clark, C. and Mangel, M. (2000).  \textbf{Dynamic state variable models in ecology: Methods and Applications}. Oxford University Press, New York.
+%
+\bibitem{seven} Mangel, M. (2006). \textbf{The Theoretical Biologist's Toolbox. Quantitative Methods for Ecology and Evolutionary Biology}. Cambridge University Press, Cambridge, UK.
+%
+\bibitem{eight} Mangel, M. and Clark, C. (1988).  \textbf{Dynamic modeling in behavioral ecology}. Princeton University Press, Princeton, NJ.
+%
+\bibitem{nine} McNamara, J.M. and Houston, A.I. 1986. The common currency for behavioral decisions. The American Naturalist 127: 358-378.
+\end{thebibliography}
+\doublespacing
+
+
+
+
+
+
+%
+\clearpage 
+\hspace*{-2cm}
+\noindent
+\textbf{Table 1. Variables, Parameters, Their Interpretation, and Values for the Model in Which Play is Incidental.}
+%
+
+\hspace*{-2cm}\begin{tabular}{p{0.2\linewidth} p{0.7\linewidth} p{0.2\linewidth}}
+{\sl Symbol}	&{\sl Interpretation} 			&{\sl Value}		\\ \hline
+ $t$		&Time in the non-breeding period	&t=1-70			\\ 
+ $T$		&End time				&70			\\
+ $X(t)$		&State variable at time $t$		&Eqn {\color{red}XX}	\\
+ $X_{max}$	&Maximum value of state			&100			\\
+ $x$		&Particular value of $X(t)$		&$x$=1-$X_{max}$	\\
+ $a_f$		&Cost of foraging			&2			\\
+ $a_0$		&Cost of remaining at home inactive	&1			\\
+% 		& 				&1			\\
+ $a_p$		&Cost of remaining at home		&1 (costless play)	\\
+		& playing				&2 (costly play)	\\
+ $Y$		&Value of food if found			&13			\\
+ $\lambda$	&Probability of finding food		&0.15			\\
+ $x_c$		&Critical level for starvation		&5			\\
+ $m_0$		&Mass-independent rate of mortality	&			\\
+ $m_1$		&Mass-dependent rate of mortality	&			\\
+ $\Phi(x)$	&Future expected reproductive 		&			\\
+		& success, given $X(T)=x$		&Eqn {\color{red}XX}	\\
+\end{tabular}
+
+%
+\clearpage
+\hspace*{-2cm}
+\noindent
+\textbf{Table 1 continued}
+%
+
+\hspace*{-2cm}\begin{tabular}{p{0.2\linewidth} p{0.7\linewidth} p{0.2\linewidth}}
+{\sl Symbol} 	& {\sl Interpretation} 				& {\sl Value}		\\ \hline
+ $t$		&Time in the non-breeding period		&t=1-70			\\ 
+ $D^*_e(x,t)$	&Optimal behavioral decision			&			\\
+		&given that $X(t)=x$				&Output of Eqn 7	\\
+ $K$		&Number of simulated individuals		&100			\\
+ $X_k(t)$	&State of the $k_{th}$simulated individual	&Simulation		\\
+ $U$		&Uniformly distributed random variable		&$0 \le U \le 1$	\\
+ $x_p$		&Threshold for costly play			&$x_p=75$		\\
+ $F_p$		&Fitness function with costly play		& Eqn {\color{red}XX}	\\
+ \end{tabular}
+
+%
+\clearpage
+\hspace*{-2cm}
+\noindent 
+\textbf{Table 2. Variables, Parameters, Their Interpretation, and Values for the Model in Which Play Develops Skills.}
+%
+
+\hspace*{-2cm}\begin{tabular}{p{0.2\linewidth} p{0.7\linewidth} p{0.2\linewidth}}
+{\sl Symbol} 	& {\sl Interpretation} 						& {\sl Value}	\\ \hline
+$S(t)$		&Skill of focal individual at time $t$				&Eqn {\color{red}XX}\\
+$i$		&Particular value of skill level				&Varies		\\
+$j$		&Particular value of the skill of a possible play partner	&Varies		\\
+$S_L$		&Minimum level of skill						&0		\\
+$S_U$		&Maximum level of skill						&50		\\ 
+$\alpha$	&Per-period loss of skill					&0.9		\\
+$T$		&Time at which development of skill stops			&40		\\
+$\phi(i)$	&Future lifetime fitness for an individual with $S(T)=i$	&Eqn 15, Figure 2\\
+$F(i,t)$	&Fitness function for an individual with $S(t)=i$		&Eqn 16, Figure 2\\
+$\Delta S(i,j)$	&Gain in skill when an individual whose 			&		\\
+		& whose skill is $i$ plays with an individual			&Eqn 13, Figure 3\\
+		& whose skill is $j$ 						&		\\
+$\tau$		&Length of a play bout						&3		\\
+$\lambda_j(t)$	&Probability focal individual encounters			&		\\
+		&a play partner with skill level $j$				&Eqns 14, 15	\\
+\end{tabular}
+ 
+% 
+%
+
+\clearpage
+\textbf {Captions for Figures}
+
+%
+%
+
+%
+Figure 1.  
+%
+By definition a juvenile is not accumulating reproductive success.  
+%
+However, at the end of the juvenile period, which lasts from $t=1$ to $t=T$ in our models, fitness is assessed depending upon the state variables. 
+%
+The equations of SDP allow us to formalize the link between state variables, future fitness, and behavior during the juvenile period. 
+\\
+
+%
+%
+
+%
+Figure 2.
+%
+Three possible choices for terminal fitness of an individual with skill level $i$,  $\phi(i)$. 
+%
+Notice the greater the steepness parameter $\gamma$ the more quickly and dramatically the organism matures once it reaches adolescence. 
+\\
+
+%
+%
+
+%
+Figure 3.
+%
+The increment in skill  $\Delta S(i,j)$ for player with skill level $i$ playing against a player with skill level $j$. 
+%
+The horizontal line at $\alpha \tau$ is the decrement in skill during the play interval, so that net gain in skill is $\Delta S(i,j) - \alpha \tau$.
+\\
+
+%
+%
+
+%
+Figure 4.  
+%
+The boundary $x_{th}$ for three values of $Y$, which measures the richness of the environment.  
+%
+For values of $x>x_{th}$ we predict that the individual will remain in its burrow.
+\\
+
+%
+%
+
+%
+Figure 5.
+%
+The fraction of individuals remaining in the burrow as a function of time, with the associated standard deviation.
+\\
+
+%
+%
+
+%
+Figure 6.
+%
+a) A heat map for the fitness cost of playing when $a_p=2$, and the threshold for playing is $x_p=75$. 
+%
+b) The average and standard deviation of the state in this case and we see that on average state is about 40. 
+\\
+
+%
+%
+
+%
+Figure 7.
+%
+The focal individual fitness plotted against skill level. 
+%
+Each line is a single time period of the model. 
+%
+Three time periods of the model are plotted. 
+%
+Notice when many time periods remain in the model, fitness is relatively high for all skill levels, due to the prospect of gaining skill in the future. 
+%
+As the number of periods remaining in the model decreases, the fitness of low skill individuals decreases due to reduced prospect for the future. 
+%
+Additionally, the dotted vertical lines mark the skill at which $F(i,t)$ converges with $\phi(i)$. 
+%
+These dotted lines mark the skill at which the focal individual stops considering play behavior at the given time period of the model. 
+%
+Notice that with many time periods of the model remaining only very high skill individuals exit the model, and as the number of time periods remaining in the model decreases this exit skill decreases.
+\\
+
+%
+%
+
+%
+Figure 8.
+%
+A grey scale representation of the focal individual play range as a function of both time and focal individual skill level. 
+%
+Dark cells are representative of focal individuals willing to play with play partners of many different skill levels, while light cells are representative of focal individuals with relatively small play ranges.
+%
+In general as skill increases focal individual play range increases. Additionally as $t$ approaches $T$, in general, play range increases to the myopic condition, at $T-1$. 
+%
+However, a pocket of lower than expected play ranges does violate these general trends. 
+%
+This pocket occurs at relatively high values for $t$ and extends across all of the playing skill levels.
+%
+This pocket is produced by truncating play events as $t$ approaches $T$.
+\\
+
+%
+%
+
+%
+Figure 9.
+%{\color{red}$k=250$}
+Final skill distribution of $k=100000$ Monte Carlo simulated individuals. 
+%
+Each individual makes optimal decisions, based on $D_p^*(i,j,t)$, for 40 time periods.
+%
+a) Individuals start the simulation with a random uniformly chosen skill level on the interval $[S_L,S_U]$.
+%
+Notice the a trimodal final skill distribution. 
+%
+b) Individuals start the simulation with a random uniformly chosen skill level on the interval $[S_L, 34]$. 
+%
+Notice the resulting bimodal distribution of the final skills, due to the lack of initially exiting individuals. 
+\\
+
+%
+%
+
+%
+Figure 10.
+%{\color{red}$k=250$}
+Final skill distribution of $k=10000$ Monte Carlo simulated individuals plotted against the initial skill distribution. 
+%
+The red dotted line indicates the one-to-one relationship between initial and final skill. 
+%
+Individuals on the one-to-one line, in the region labeled ``Exit", enter the simulation with high enough skills to immediately exit play behavior. 
+%
+Notice for each initial skill below the initial exit skill, the final skill distributions are very similar. %, both to each other, and to the final skill distribution seen in Figure 7. 
+
+
+\end{document}

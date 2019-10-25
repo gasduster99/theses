@@ -1,0 +1,82 @@
+%
+The major message of our first model is that even if play is costly and has no direct consequences on the development of life history skills, the fitness costs of play may be relatively small, so that we predict individuals will play even if it is not adaptive. 
+%
+Our second model assumes a “relaxed field”(sense Burghardt, 2006), and thus allows us to understand skill-dependent play decisions independent of energy reserves or predation risk while playing. 
+%
+However, it is relatively easily to consider play behavior with respect to these factors, but as a starting point it is instructive to understand the basics of play behavior within this simple model first. 
+%
+As more intricate models are made on play behavior, added considerations may make it hard to see some of the basic forces driving play behavior as seen in this model. 
+%
+In this model, for simplicity, we have allowed play events between a single focal individual and a single play partner at one time, but there is no reason that this has to be the case. 
+%
+For example litters of kittens often play in groups. 
+%
+This may present interesting results considering that the results of this model suggest that playing individuals tend to develop skill as a group. 
+%
+In addition to adding multiple play partners , adding mortality would give insight into a potentially strong cost of play t.
+
+%
+%
+
+%
+As described above, there is a pocket of time and skill where the general patterns do not hold true (Figure 9). 
+%
+We propose that this can be explained by the finite time horizon of the model, and its relation to play events as defined by the model. 
+%
+Recall that for time periods near T, play events cause t + τ to be greater than T. 
+%
+Due to the construction of the model the skill increments and decrements for play events in these periods are consistent with all other time periods of the model, however the fitness values associated with these skill levels must be truncated at F(i, T) = φ(i) because by definition fitnesses for time periods beyond T are defined by φ(i). 
+%
+This has the effect of decreasing R(i, t) for time periods just prior to the final time periods of the model. 
+%
+Skills high enough to exit the model have lower than expected values for R(i, t) several time periods before these individuals exit the model. 
+%
+Individuals several time steps before the end of the model are predicted to be very selective in their choice of play partners because the fitness associated with any skill level in these time periods of the model has been truncated to F(i, T) = φ(i). 
+%
+Since play is not actually bounded in this way, it is useful to run the model with large values of T and consider the general trends prior to this exception pocket.
+
+%
+%
+
+%
+When considering the general trends o prior to the exception pocket, we find that low skill individuals are predicted to be relatively selective in their play decisions, seeking with other low skill individuals. 
+%
+As individuals gain high skill, they become more willing to play with individuals of very dissimilar skill levels. In nature, high skill individuals may often self-handicap; this could be included in a version of the model in which self-handicapping is another behavioral decision.
+
+%
+%
+
+%
+As shown in Figure 8, the Monte Carlo, individuals with initially low skill (perhaps the most common natural occurrence) play to increase their skill, and on average they increase their skill level and exit play behavior in the same proportions as other playing individuals. 
+%
+However, one may expect that individuals entering the model with high pre-exit skill levels should have a developmental advantage, and exit the model more quickly and in higher proportions.
+%
+In general this is not the case, unless playing individuals enter the model virtually at the the exit threshold. 
+%
+Generally, individuals with initially high pre-exit skill levels quickly fit into very similar skill distributions as individuals with initially low skill. 
+This is due to the scarcity of favorable play partners in the pre-exit upper skill range. 
+%
+On average individuals in a confined social environment will develop their skill as a group. 
+%
+Regardless of an initially playing individual’s initial skill, the skill development of all individuals in the group converges toward the average skill development of the group.
+
+%
+%
+
+%
+Individuals with initially very high skill are immediately able to exit.
+%
+In these cases play behavior is never displayed. 
+%
+This is clearly a hypothetical, and largely unattainable situation for many social species, but these initially exiting individuals could have a meaningful interpretation when one considers behaviors that are not learned via play, or even the evolution of innate behaviors or reflexes.
+
+%
+%
+\section{Acknowledgements}
+%
+%
+
+%
+We thank the Mangel Lab Group for helpful comments during the development of these ideas and XX, YY, and ZZ for comments on the manuscript. 
+%
+This work was conducted as a part of the Evolution of Play Working Group at the National Institute for Mathematical and Biological Synthesis, sponsored by the National Science Foundation, the U.S. Department of Homeland Security, and the U.S. Department of Agriculture through NSF Awards EF-0832858 and DBI-1300426, with additional support from The University of Tennessee, Knoxville.
