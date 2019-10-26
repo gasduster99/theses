@@ -1,0 +1,430 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage[margin=1in,footskip=0.2in]{geometry}%big footskip brings number down, small footskip brings number up
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{bm}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage[usenames]{color}
+\usepackage[utf8]{inputenc}
+
+
+\hypersetup{colorlinks   = true, %Colours links instead of ugly boxes
+            urlcolor     = black, %Colour for external hyperlinks
+	    citecolor    = blue,
+	    linkcolor    = black
+}
+
+\renewcommand*\contentsname{Table of Contents}
+
+
+%\usepackage{multimedia} 
+%\usepackage[noplaybutton]{media9}
+\usepackage{media9}
+\usepackage{attachfile2}
+
+\newcommand{\includemovie}[2][]{
+    \includemedia[
+        #1,
+        activate=pageopen,transparent,
+        addresource=#2.mp4,addresource=#2.png,
+        flashvars={
+            file=#2.mp4&image=#2.png&
+            stretching=uniform&start=0&
+            screencolor=white& %improves render in light backgrounds
+            controlbar.position=over&controlbar.idlehide=true&
+            autostart=true&repeat=always&smoothing=true
+            %&bufferlength=10 % may improve repetition of short videos
+        }
+    ]{ % for disabled content (in most cases this is fallback)
+        \begin{tabular}{ll}
+            \mbox{
+            %   \href{run:#2.mp4} % for not embedded fallback
+                \textattachfile[color={0 0 0}]{#2.mp4} % for embedded fallback
+                {\texttt{|\kern-.23em>}} % poor play button
+            } & \raisebox{-\height}{\includegraphics[#1]{#2}}
+        \end{tabular}
+    }{player.swf}
+}
+
+
+%draws a line across the page
+\newcommand{\E}[1]{
+        \mathbb{E}\left[#1\right]
+}
+
+\def \EI {
+	\mathbb{E}\left[~\mathcal{I}~\right]
+}
+
+\def \EIx {
+	\mathbb{E}\left[~\text{I}(\bm{x})~\right]
+}
+
+
+
+\begin{document}
+\input{coverPage.tex}
+
+\begin{abstract}
+\begin{verbatim}
+__________
+< Abstract Cow >
+ -------------
+        \   ^__^
+         \  (**)\_______
+            (__)\       )\/\
+             U  ||----w |
+                ||     ||
+\end{verbatim}
+\end{abstract}
+
+
+
+% \includemovie[width=10cm]{rast20}
+%\movie[height=0.6\textwidth,width=0.6\textwidth]{}{clt.gif}%Circle-m-increase3.mp4}
+
+% {\color{red} Figure out which figures and where.} 
+% {\color{red} Moving pictures?}
+
+\section{Introduction}
+	\begin{itemize}
+	\item Identify convergence problem
+	\item Define properties of convergence 
+	\item A taste of my stuff
+	\item Explicate road-map
+	\end{itemize}
+	%
+	\subsection{General}
+	\begin{itemize}
+	\item Optimization: Background and our Philosophy
+		\begin{itemize}
+		\item gradient free \cite{noGradBook}
+		\item GA \cite{noGradBook}, Simulated Annealing \cite{noGradBook}, Pattern Search \cite{noGradBook}, Trust Regions \cite{noGradBook} 
+		\item benefits of a model based approach (ie. uncertain measures)(i.e. General/No GP)
+		\item uncertainty measures as convergence criteria
+		\end{itemize}
+	%	
+	\item Statistical process control for monitoring convergence
+		\begin{itemize}
+		\item General \cite{shewhartBook} (ie. no EWMA)
+		\item tease EWMA
+		\end{itemize}
+	%
+	\end{itemize}
+	%
+	\subsection{Gaussian Process Models}
+	\begin{itemize}
+	\item Gaussian Process Surrogate Model
+	\item How does a Gaussian process work? \cite{gpJasa}
+	\item Add Flexibility through treed Partitioning \cite{tgp}
+	\end{itemize}
+	%
+	\subsection{Convergence Criteria}
+	\begin{itemize}
+	\item Measures?
+	\item Choose $\EIx$, why? \cite{gBook}, \cite{tgp2}
+	\item some characteristics [bounded at 0], decreasing.
+	\item which $\E{~\text{I}^g(\bm{x})~}$, ie. which $g$? \cite{gBook}
+	\item maximum $\EIx$ (i.e. the mean at the predictive location that achieves the maximum mean of the samples at that location)
+	\end{itemize}
+	%
+	\subsection{Optimization}
+	\begin{itemize}
+	\item Optimization Procedure \cite{tgp2}
+		\begin{itemize}
+		\item code appendix, using tgp
+		\end{itemize}
+	%
+	\item advantages of model based approach for convergence sake
+	\item $\EIx$ Behavior for convergence
+	%\item taste of SPC
+	\end{itemize}
+	%
+	\subsection{Statistical Process Control}
+		\subsubsection{Shewhart's $\bar{x}$ Chart}
+		\begin{itemize}
+		\item the notion of control (draw similarities to convergence). \cite{shewhartBook}
+		\item how the typical charts work
+		\item philosophy.
+			\begin{itemize}
+			\item establish control (herbies book)
+			\item control $\rightarrow$ out-of-control 
+			\end{itemize}
+		\item stumbling blocks of convergence for me.
+			\begin{itemize}
+			\item out-of-control $\rightarrow$ control
+			\item the notion of a sliding average (i.e. convergence)
+			\item normal assumptions are very strong for an application that strongly desired robustness in varied applications% {\color{red} list them}
+			\end{itemize}
+		\end{itemize}
+		%
+		\subsubsection{Exponentially Weighted Moving Average Chart}
+		\begin{itemize}
+		\item EWMA philosophy (Robustness) \cite{boxBook}.
+		\item How it works ({\color{red}derivation cite}).
+		\item look at the statistics and bounds
+		\item Tracking slight changes (general scale and behavior of $\EIx$) 
+		\item weight recent data more heavily to handle the sliding average (also mention later about the window; maybe set-up here)%and why thats better for this problem.
+		\end{itemize}
+		%
+\section{Identifying Convergence}
+	\begin{itemize}
+	\item tie this stuff together and motivate the coolness factor. 
+	\item use optimization procedure outlined \cite{tgp2} also above and in appendix.
+% 	\item look at the maximum $\EIx$. why? ({\color{red}maybe \cite{gBook}, \cite{tgp2}})
+	\item recall that the maximum $\EIx$ each iteration is the mean at the predictive location that achieves the highest mean value.  
+	\item SPC is based on normality assumptions of the underlying sampling distribution.
+	\item a thesis statement for the research that I did: SPC, EWMA, empirical predictive MCMC control limits, Log-Normal $\rightarrow$ model based limits.
+	\end{itemize}
+	\subsection{The Control Window}
+		\begin{itemize}
+		\item convergence formulated in the context of statistical process control has unique challenges since almost by definition max $\EIx$ starts in an out-of-control state then moves into a state of control the optimization routine approaches a state of convergence%. we need to establish a method for  
+		\item typical SPC goes through an initialization process, in which, initially out-of-control observation are investigated and systematically accounted for to establish an initial state of control.
+		\item introduce the window to automate this process and thus set the current control state at a window of the most recently observed values.
+		\item window of size $w$, tuning parameter, thus partitioning the observations into points in the control window(i.e. control training set) and points outside of the control window(i.e. control test set)
+		\item convergence rules: out-of-control in control test set and in-control in control training set.
+		\item choosing $w$ for difficulty of problem. 
+		\end{itemize}
+
+	\subsection{$\bar{x}$ Chart}
+		\begin{itemize}
+		\item basic shewhart chart
+		%\item equally weighted observations leads to false positive in identifying convegence since initial $\EIx$ may be very large.
+		\item issues with robustness since you often see linear trends toward the lower control limit as max$\EIx$ seems to converge in probability to 0 from the positive direction.  
+		\end{itemize}
+	
+	\subsection{Model-Based Transformation} %Robustness Transformation}
+		\begin{itemize}
+		\item Transformation
+		\item $\bar{x}$ Chart
+		\item equally weighted observations leads to false positive in identifying convergence since initial $\EIx$ may be very large.
+		\end{itemize}
+	
+	\subsection{EWMA Chart}%\subsection{Control Limits}%\subsection{Model Based Limits}
+		\begin{itemize}
+		\item
+		\end{itemize}
+%
+{\color{red} Example pictures above?, or keep most of the figures that I made in the below sections?, start Rosenbrok example early?:
+\begin{itemize}
+\item max$\EIx$, General Behavior (3 stages, not-converged(inital exploration), converging(pre-convergence) and converged(converged))
+\item 
+\end{itemize}
+}
+\section{Test Functions}
+	{\color{red} use each example as an excuse to look at different things?}
+	\subsection{Rosenbrock}
+		\begin{itemize}
+		\item write the general function down, focus on the 2-D case, code appendix ({\color{red}cite?})
+		\item get a good looking window
+		\item plot what function looks like in this window, perspective and heat plot,
+		\item gaussian process fit perspective and heat plot {\color{red}(movie?), thumbnail:first converged picture}%convert -delay 100 90*.jpeg rast20.mp4
+ 		\item Simple $\EIx$ Pictures
+ 			\begin{itemize}
+ 			\item $max\EIx$/best Z (tell three stages convergence story)
+ 			\item hist of $max\EIx$ samples
+ 			\item {\color{red}Q-Q plot?}
+ 			\item $\bar{x}$ Chart
+ 			\end{itemize}
+ 		\item Transformed Pictures
+ 			\begin{itemize}
+ 			\item $max\EIx$/best Z
+ 			\item hist of $max\EIx$ samples
+ 			\item {\color{red}Q-Q plot?}
+ 			\end{itemize}
+		\item discussion of results
+		\end{itemize}
+	%
+	\subsection{Rastringin}
+		\begin{itemize}
+		\item write down function {\color{red} cite)}
+		\item several mode window
+		\item plot what function looks like in this window, perspective and heat plot,
+		\item gaussian process fit perspective and heat plot {\color{red}(movie?), thumbnail:first converged picture}%convert -delay 100 90*.jpeg rast20.mp4
+		\item Transformed Picture $max\EIx$/best Z
+		\item discussion of results
+		\end{itemize}
+	%
+	\subsection{Easom}
+		\begin{itemize}
+		\item write down function {\color{red} cite}
+		\item Get reasonably flat window 
+		\item plot what function looks like in this window, perspective and heat plot,
+		\item gaussian process fit perspective and heat plot {\color{red}(movie?), thumbnail:first converged picture}%convert -delay 100 90*.jpeg rast20.mp4
+		\item Transformed Picture $max\EIx$/best Z
+		\item discussion of results
+		\end{itemize}
+	
+	\subsection{Real Data}
+		\begin{itemize}
+		\item explore this data {\color{red} cite}
+		\item get good lookin picture of objective function
+		\item gaussian process fit perspective and heat plot {\color{red}(movie?), thumbnail:first converged picture}%convert -delay 100 90*.jpeg rast20.mp4
+		\item Transformed Picture $max\EIx$/best Z
+		\item discussion of results
+		\end{itemize}
+
+\section{Discussion}
+	\begin{itemize}
+	\item argument for a convergence criteria based on above results
+	\item Robustness of EWMA \cite{boxBook}
+	\item further research partitioned model idea.
+	\end{itemize}
+	
+\section{Code Appendix}
+	\begin{itemize}
+	\item tgp optimization \cite{tgp2}
+	\item qcc EWMA SPC \cite{qccPack}
+	\item example implimentation (cite data)
+	\end{itemize}
+	
+	
+% \bibliographystyle{plain}%jasa}%
+% \bibliography{msCite}
+
+%\bibitem{tgpPack} {\color{red}cite tgp package?}
+%{\color{red} probably should be the 1931 book} Shewhart, W. A., \& Deming, W. E. (1939). {\em Statistical method from the viewpoint of quality control}. Washington: The Graduate School, The Dept. of Agriculture.
+\begin{thebibliography}{2}
+\bibitem{gpJasa} R. B. Gramacy, \& H. K. Lee. (2008). {\em Bayesian treed Gaussian process models with an application to computer modeling}. Journal of the American Statistical Association, 103, 1119-1130.
+\bibitem{tgp} R. B. Gramacy, (2007). {\em tgp: An R Package for Bayesian Nonstationary, Semiparametric Nonlinear Regression and Design by Treed Gaussian Process Models}. Journal of Statistical Software, 19(9), 1-46. %URL http://www.jstatsoft.org/v19/i09/.
+\bibitem{tgp2} R. B. Gramacy, \& M. Taddy (2010). {\em Categorical Inputs, Sensitivity Analysis, Optimization and Importance Tempering with tgp Version 2, an R Package for Treed Gaussian Process Models}. Journal of Statistical Software, 33(6), 1-48. %URL http://www.jstatsoft.org/v33/i06/.
+\bibitem{shewhartBook} W. Shewhart (1931). {\em Economic Control of Quality of Manufactured Product}. New York: D. Van Nostrand Company, Inc. 
+\bibitem{noGradBook} A. R. Conn, K. Scheinberg, \& L. Vicente (2009). {\em Introduction to derivative-free optimization}. Philadelphia: Society for Industrial and Applied Mathematics/Mathematical Programming Society.
+\bibitem{qccPack} L. Scrucca (2004). {\em qcc: an R package for quality control charting and statistical process control}. R News 4/1, 11-17.
+\bibitem{boxBook} G. E. Box, A. Luceno, \& M. Paniagua-Qui\~{n}ones, (1997). {\em Statistical control by monitoring and feedback adjustment}. New York: Wiley.
+\bibitem{gBook} M. Schonlau, D. R. Jones, \& W. J. Welch (1998). {\em Global versus local search in constrained optimization of computer models}. In {\em New developments and applications in experimental design}, number 34 in IMS Lecture Notes. Monograph Series, 11-25.
+\end{thebibliography}
+%   Robert B. Gramacy, Matthew Taddy (2010). Categorical Inputs,
+%   Sensitivity Analysis, Optimization and Importance Tempering with tgp
+%   Version 2, an R Package for Treed Gaussian Process Models. Journal of
+%   Statistical Software, 33(6), 1-48. URL
+%   http://www.jstatsoft.org/v33/i06/.
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	%
+% 	\subsection{Empirical Control Limits}
+% 	tell the story of our logic exploring the empirical approach
+% 		\begin{itemize}
+% 		\item how to best get Control Limits.
+% 		\item idea: since the data are generated from MCMC samples why not 
+% 		\end{itemize}
+
+% 		\begin{itemize}
+% 		\item Basic SPC
+% 		\item EWMA
+% 		\item model maximum $\EIx$ as a log-Normal
+% 		\item since 
+% 			\begin{itemize}
+% 			\item 
+% 			\end{itemize}
+% 		\end{itemize}
+		
+% 		\subsubsection{Implementation}
+% 		\begin{itemize}
+% 		\item Normal assumption on $\EIx$ (see Rosebrock for example)
+% 		\item 0 bound, model the log.
+% 		\item applied modeling skeme 
+% 			\begin{itemize}
+% 			\item sliding window
+% 			\item most recent bata looking back in time.
+% 			\item tuning parameter $w$
+% 			\item behaviour of $w$ (for choosing $w$)
+% 			\item code apendix, using qcc
+% 			\end{itemize}
+% 		\item convergence rule
+% 			\begin{itemize}
+% 			\item control in the window
+% 			\item out of control outside of the window (this means that you have moved)
+% 			\end{itemize}
+% 		\end{itemize}
+
+
+% 	\begin{itemize}
+% % 	\item Optimization: Background and our Philisophy
+% % 		\begin{itemize}
+% % 		\item gradient free \cite{noGradBook}
+% % 		\item GA({\color{red}cite \cite{noGradBook} }), Simulated Annealing({\color{red}cite} \cite{noGradBook} ), Pattern Search({\color{red}cite} \cite{noGradBook} ), Trust Regions({\color{red}cite} \cite{noGradBook} ) 
+% % 		\item benefits of a model based approach (ie. uncertainy measures)({\color{red}cite})
+% % 		\item uncertainty measures as convergence criteria
+% % 		\end{itemize}
+% 	\item Gaussian Process Surrogate Model(cite), thus E[I]({\color{red}cite})
+% 		\begin{itemize}
+% 		\item use as an optimization tool (surrogate model)
+% 		\end{itemize}
+% % 	\item Statistical process control fr monitoring convergence
+% % 		\begin{itemize}
+% % 		\item General \cite{shewhartBook} (ie. no EWMA)
+% % 		\end{itemize}
+% 	\end{itemize}
+
+% \section{Treed Gaussian Process Surrogate Model}
+% 	\begin{itemize}
+% 	\item how does a Gaussian process work({\color{red}cite})
+% 	\item Treed partioning for added flexability({\color{red}cite})
+% 	\item flexability and advantage of such a surrogate model({\color{red}cite?})
+% 	\end{itemize}
+
+% \section{Uncertainty measures associated with Gaussian Process}
+% 	\begin{itemize}
+% 	\item mention some measures
+% 	\item Choose $\EI$, why? \cite{gBook}, \cite{tgp2}
+% 	\item some characteristics [bounded at 0]
+% 	\item which $\E{~\text{I}^g(\bm{x})~}$, ie. which $g$? 
+% 	\end{itemize}
+
+% \section{Optimization Scheme}
+% 	\begin{itemize}
+% 	\item Optimization Proceedure \cite{tgp2}
+% 		\begin{itemize}
+% 		\item code appendix, using tgp
+% 		\end{itemize}
+% 	\item advantages of model based approach for convergence sake
+% 	\item $\EIx$ Behaviour for convergence
+% 	\item taste of SPC
+% 	\end{itemize}
+
+% \section{Statistical Process Control}
+% 	\subsection{Shewhart's $\bar x$ chart}
+% 	\begin{itemize}
+% 	\item the notion of control. \cite{shewhartBook}
+% 	\item how they work, and philosphy.
+% 	\item stumbling blocks for convergence for me.
+% 		\begin{itemize}
+% 		\item {\color{red} list them}
+% 		\end{itemize}
+% 	\end{itemize}
+% 	
+% 	\subsection{Exponentially Weighted Moving Average Chart}
+% 		\subsubsection{General Skeme}
+% 		\begin{itemize}
+% 		\item EWMA philosophy.
+% 		\item Tracking slight changes and why thats better for this problem.
+% 		\item How it works ({\color{red}derivation cite}).
+% 		\item basic statistics
+% 		\end{itemize}

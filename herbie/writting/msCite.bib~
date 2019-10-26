@@ -1,0 +1,59 @@
+%@ARTICLE{jones:schonlau:welch:1998,
+%    Author         = {Jones, D.R. and M. Schonlau and W. J. Welch},
+%    Journal        = {Journal of Global Optimization},
+%    Pages          = {455--492},
+%    Title          = {Efficient Global Optimization of Expensive Black Box Functions},
+%    Volume         = {13},
+%    Year           = {1998}
+%}
+%
+%@BOOK{sant:will:notz:2003,
+%    Address        = {New York, NY},
+%    Author         = {Santner, Thomas J. and Williams, Brian J. and Notz, William I.},
+%    Publisher      = {Springer-Verlag},
+%    Title          = {The Design and Analysis of Computer Experiments},
+%    Year           = {2003}
+%}
+%
+%
+%@ARTICLE{tgp,
+%    Author	= {}
+%}
+%
+%@ARTICLE{tgp2,
+%
+%}
+%
+%@ARTICLE{qccPack,
+%
+%}
+%
+%@BOOK{shewhartBook,
+%
+%}
+%
+%@BOOK{noGradBook,
+%
+%}
+ 
+@BOOK{boxBook,
+    Address	= {New York, NY}
+    Author	= {Box, George E. P. and Luce\~{n}o, Alberto and Paniagua-Qui\~{n}ones, Mar\'{i}a Del Carmen },
+    Publisher	= {Wiley},
+    Title	= {Statistical Control by Monitoring and Adjustment}
+    Year	= {1997}
+}
+
+%@BOOK{gBook,
+%    Address	= {}
+%    Author	= {Schonlau, Matthias and Welch, William J. and Jones, Donald R.},  
+%}
+
+%\bibitem{tgp} {\color{red}how to cite vingette??}
+% \bibitem{tgp2} {\color{red}how to cite vingette tgp2??}
+% \bibitem{tgpPack} {\color{red}cite tgp package?}
+% \bibitem{shewhartBook} {\color{red} probably should be the 1931 book} Shewhart, W. A., \& Deming, W. E. (1939). {\em Statistical method from the viewpoint of quality control}. Washington: The Graduate School, The Dept. of Agriculture.
+% \bibitem{noGradBook} Conn, A. R., Scheinberg, K., \& Vicente, L. (2009). {\em Introduction to derivative-free optimization}. Philadelphia: Society for Industrial and Applied Mathematics/Mathematical Programming Society.
+% \bibitem{qccPack} Scrucca, L. (2004). {\em qcc: an R package for quality control charting and statistical process control}. R News 4/1, 11-17.
+% \bibitem{boxBook} Box, G. E., Luceno, A., \& Paniagua-Quinones, M. d. (1997). {\em Statistical control by monitoring and feedback adjustment}. New York: Wiley.
+% \bibitem{gBook} Schonlau, M., Jones, D. R., \& Welch, W. J. (1998). {\em Global versus local search in constrained optimization of computer models}. In {\em New developments and applications in experimental design}, number 34 in IMS Lecture Notes. Monograph Series, pages 11-25.

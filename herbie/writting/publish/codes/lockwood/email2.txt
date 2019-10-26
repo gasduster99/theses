@@ -1,0 +1,5 @@
+Hi Nick.
+
+Attached is the original paper for the Lockwood problem.  It has appeared in Computers and Geosciences.  You don't need to understand any of the hydrological details, but it might help with understanding the general background of the problem.
+
+  --Herbie

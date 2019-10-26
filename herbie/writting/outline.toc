@@ -1,0 +1,20 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}General}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Gaussian Process Models}{2}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Optimization}{2}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Convergence Criteria}{2}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Statistical Process Control}{2}{subsection.1.5}
+\contentsline {subsubsection}{\numberline {1.5.1}Shewhart's $\mathaccentV {bar}016{x}$ Chart}{2}{subsubsection.1.5.1}
+\contentsline {subsubsection}{\numberline {1.5.2}Exponentially Weighted Moving Average Chart}{3}{subsubsection.1.5.2}
+\contentsline {section}{\numberline {2}Identifying Convergence}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}The Control Window}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}$\mathaccentV {bar}016{x}$ Chart}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Model-Based Transformation}{4}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}EWMA Chart}{4}{subsection.2.4}
+\contentsline {section}{\numberline {3}Test Functions}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}Rosenbrock}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Rastringin}{5}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Easom}{6}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Real Data}{6}{subsection.3.4}
+\contentsline {section}{\numberline {4}Discussion}{6}{section.4}
+\contentsline {section}{\numberline {5}Code Appendix}{6}{section.5}

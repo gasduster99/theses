@@ -1,0 +1,42 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \newline  $\nobreakspace  {}\nobreakspace  {}\nobreakspace  {}$Threshold Test: {\color  {red}{\fontencoding  {U}\fontfamily  {ding}\selectfont  \char '041\relax }/{\bf  X}} $\nobreakspace  {}$ {\fontencoding  {U}\fontfamily  {ding}\selectfont  \char '041\relax }$\nobreakspace  {}$ {\bf  X} \newline  Stationarity Test: {\color  {red}{\fontencoding  {U}\fontfamily  {ding}\selectfont  \char '041\relax }/{\bf  X}} $\nobreakspace  {}$ {\bf  X} $\nobreakspace  {}$ {\fontencoding  {U}\fontfamily  {ding}\selectfont  \char '041\relax }\newline  \relax }}{2}{figure.caption.1}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{introFig}{{1}{2}{\newline $~~~$Threshold Test: {\color {red}\Checkmark /{\bf X}} $~$ \Checkmark $~$ {\bf X} \newline Stationarity Test: {\color {red}\Checkmark /{\bf X}} $~$ {\bf X} $~$ \Checkmark \newline \relax }{figure.caption.1}{}}
+\bibstyle{plain}
+\bibdata{./msCite}
+\bibcite{boxBook}{1}
+\bibcite{noGradBook}{2}
+\bibcite{kriging}{3}
+\bibcite{windExample}{4}
+\bibcite{tgp}{5}
+\bibcite{gramacy2014}{6}
+\bibcite{gpJasa}{7}
+\bibcite{tgp2}{8}
+\bibcite{ewmaPaper}{9}
+\bibcite{lockCite}{10}
+\bibcite{rosePaper}{11}
+\bibcite{gpSurrogate}{12}
+\bibcite{qccPack}{13}
+\bibcite{shewhartBook}{14}
+\bibcite{steinBook}{15}
+\bibcite{adaptEWMA}{16}
+\bibcite{taddyOpt}{17}
+\bibcite{rastCite}{18}

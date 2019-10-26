@@ -1,0 +1,361 @@
+	Host: chordata 	Rank(ID): 2 	of Size: 8 on comm 1 
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+(./seeOut.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/psfrag/psfrag.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)) (./seeOut.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+<bestZrosenbrockTest2.pdf, id=1, 505.89pt x 505.89pt>
+<use bestZrosenbrockTest2.pdf>
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+<ewmaConvChartrosenbrockTest2.pdf, id=2, 505.89pt x 505.89pt>
+<use ewmaConvChartrosenbrockTest2.pdf> [1
+Non-PDF special ignored! <./bestZrosenbrockTest2.pdf> <./ewmaConvChartrosenbroc
+kTest2.pdf>] (./seeOut.aux) )
+Output written on seeOut.pdf (1 page, 10724 bytes).
+Transcript written on seeOut.log.
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+(./seeOut.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/psfrag/psfrag.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)) (./seeOut.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+<bestZrosenbrockTest2.pdf, id=1, 505.89pt x 505.89pt>
+<use bestZrosenbrockTest2.pdf>
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+<ewmaConvChartrosenbrockTest2.pdf, id=2, 505.89pt x 505.89pt>
+<use ewmaConvChartrosenbrockTest2.pdf> [1
+Non-PDF special ignored! <./bestZrosenbrockTest2.pdf> <./ewmaConvChartrosenbroc
+kTest2.pdf>] (./seeOut.aux) )
+Output written on seeOut.pdf (1 page, 10542 bytes).
+Transcript written on seeOut.log.
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+(./seeOut.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/psfrag/psfrag.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)) (./seeOut.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+<bestZrosenbrockTest2.pdf, id=1, 505.89pt x 505.89pt>
+<use bestZrosenbrockTest2.pdf>
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+<ewmaConvChartrosenbrockTest2.pdf, id=2, 505.89pt x 505.89pt>
+<use ewmaConvChartrosenbrockTest2.pdf> [1
+Non-PDF special ignored! <./bestZrosenbrockTest2.pdf> <./ewmaConvChartrosenbroc
+kTest2.pdf>] (./seeOut.aux) )
+Output written on seeOut.pdf (1 page, 10791 bytes).
+Transcript written on seeOut.log.
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+(./seeOut.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/psfrag/psfrag.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)) (./seeOut.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+<bestZrosenbrockTest2.pdf, id=1, 505.89pt x 505.89pt>
+<use bestZrosenbrockTest2.pdf>
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+<ewmaConvChartrosenbrockTest2.pdf, id=2, 505.89pt x 505.89pt>
+<use ewmaConvChartrosenbrockTest2.pdf> [1
+Non-PDF special ignored! <./bestZrosenbrockTest2.pdf> <./ewmaConvChartrosenbroc
+kTest2.pdf>] (./seeOut.aux) )
+Output written on seeOut.pdf (1 page, 10897 bytes).
+Transcript written on seeOut.log.
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+(./seeOut.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/psfrag/psfrag.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)) (./seeOut.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+<bestZrosenbrockTest2.pdf, id=1, 505.89pt x 505.89pt>
+<use bestZrosenbrockTest2.pdf>
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+<ewmaConvChartrosenbrockTest2.pdf, id=2, 505.89pt x 505.89pt>
+<use ewmaConvChartrosenbrockTest2.pdf> [1
+Non-PDF special ignored! <./bestZrosenbrockTest2.pdf> <./ewmaConvChartrosenbroc
+kTest2.pdf>] (./seeOut.aux) )
+Output written on seeOut.pdf (1 page, 11002 bytes).
+Transcript written on seeOut.log.
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+(./seeOut.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/psfrag/psfrag.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)) (./seeOut.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+<bestZrosenbrockTest2.pdf, id=1, 505.89pt x 505.89pt>
+<use bestZrosenbrockTest2.pdf>
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+<ewmaConvChartrosenbrockTest2.pdf, id=2, 505.89pt x 505.89pt>
+<use ewmaConvChartrosenbrockTest2.pdf> [1
+Non-PDF special ignored! <./bestZrosenbrockTest2.pdf> <./ewmaConvChartrosenbroc
+kTest2.pdf>] (./seeOut.aux) )
+Output written on seeOut.pdf (1 page, 10856 bytes).
+Transcript written on seeOut.log.

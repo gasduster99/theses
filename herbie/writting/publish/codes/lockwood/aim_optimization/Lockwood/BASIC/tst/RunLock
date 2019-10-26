@@ -1,0 +1,56 @@
+#!/bin/csh
+#----shell script for executing a function evalution using Ostrich (Mattot)-- GG 04/04/11
+#
+#
+#1 = /tmp/input.tag   (the file APPS or EAGLS creates containing the iterate 
+#                      to be evaluated)
+#2 = /tmp/output.tag  (the file APPS or EAGLS expects to be returned contatining the
+#                      function value)
+#3 = tag              (the unique identifier created by the optimizer for each 
+#                      different evaluation; used in file names)
+#################################################################
+#set HERE  = `pwd\`
+set newDir = Tag$3
+set Ost = ostIn.txt
+mkdir $newDir
+
+####copy the needed file to the tag specific temporary sub directoy
+cp split.tpl ./$newDir
+cp Bluebird ./$newDir
+cp Bluebird.sh ./$newDir
+cp Ostrich ./$newDir
+cp ostInTop ./$newDir
+cp $1 ./$newDir
+cd $newDir
+
+###STEP 1: Create the ostInput file
+touch ./$Ost
+cp ostInTop $Ost
+set i = 1
+set j = 2
+set input = (0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
+
+while( $i != 7)
+  set input[$i] = `head -$j $1 | tail -1`
+  @ i ++
+  @ j ++
+end
+echo "$input[1] $input[2] $input[3] $input[4] $input[5] $input[6]" >> ./$Ost
+echo "EndInitParams" >> ./$Ost
+
+####STEP 2: Calculate the function value by calling Ostrich
+./Ostrich >! redirectoutput.txt
+
+set Res = OstGcopOut.txt
+set Constr = ZoneBudget.csv
+set Output = output$3.out
+
+####STEP 3: Pass the result back to the optimizer
+touch $Output
+tail -1 $Res | awk '{print $1}' >> $Output
+cut -d "," -f 2 $Constr >> $Output
+cd ..
+cp $newDir/$Output $2
+\rm -r $newDir
+
+

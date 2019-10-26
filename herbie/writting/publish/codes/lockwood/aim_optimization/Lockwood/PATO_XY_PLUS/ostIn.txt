@@ -1,0 +1,90 @@
+ProgramType  ModelEvaluations
+PenalizeInfeasibleParameters  yes 1.0
+ModelSubdir  .
+NumDigitsOfPrecision  16
+ObjectiveFunction  GCOP
+ModelExecutable  ./Bluebird.sh
+
+BeginFilePairs
+split.tpl ; split.dat
+onoff.tpl ; onoff.txt
+RatesAndLocations.tpl ; RatesAndLocations.txt
+EndFilePairs
+
+BeginParams
+#name  init.	  lower  	upper	 	transformations
+RQ01   1000.00    0.00   	20000.00	none   none   none
+RQ02   1000.00    0.00   	20000.00	none   none   none
+RQ03   1000.00    0.00   	20000.00	none   none   none
+RQ04   1000.00    0.00   	20000.00	none   none   none
+RQ05   1000.00    0.00   	20000.00	none   none   none
+RQ06   1000.00    0.00   	20000.00	none   none   none
+XQ01   3500.00    2450.00       4600.00         none   none   none
+XQ02   4000.00    2450.00       4600.00         none   none   none
+XQ03   4300.00    4250.00       5700.00         none   none   none
+XQ04   4400.00    4250.00       5700.00         none   none   none
+XQ05   4500.00    4250.00       5700.00         none   none   none
+XQ06   4600.00    4250.00       5700.00         none   none   none
+YQ01   1200.00    750.00        1750.00         none   none   none
+YQ02   1300.00    750.00        1750.00         none   none   none
+YQ03   4000.00    3400.00       5100.00         none   none   none
+YQ04   4100.00    3400.00       5100.00         none   none   none
+YQ05   4200.00    3400.00       5100.00         none   none   none
+YQ06   4300.00    3400.00       5100.00         none   none   none
+EndParams
+
+BeginIntegerParams
+S01 1 0 1
+S02 1 0 1
+S03 1 0 1
+S04 1 0 1
+S05 1 0 1
+S06 1 0 1
+EndIntegerParams
+
+BeginTiedParams
+WQ01 2 RQ01 S01 linear 1.0 0.0 0.0 0.0
+WQ02 2 RQ02 S02 linear 1.0 0.0 0.0 0.0 
+WQ03 2 RQ03 S03 linear 1.0 0.0 0.0 0.0 
+WQ04 2 RQ04 S04 linear 1.0 0.0 0.0 0.0 
+WQ05 2 RQ05 S05 linear 1.0 0.0 0.0 0.0 
+WQ06 2 RQ06 S06 linear 1.0 0.0 0.0 0.0 
+EndTiedParams
+
+BeginResponseVars
+#name	filename		keyword		line	col	token
+ZFlux1	ZoneBudget.csv ;	OST_NULL	0	2	','
+ZFlux2	ZoneBudget.csv ;	OST_NULL	1	2	','
+Qout1	split.dat ; 		Well_1		1	3	' '
+Qout2	split.dat ; 		Well_2		1	3	' '
+Qout3	split.dat ; 		Well_3		1	3	' '
+Qout4	split.dat ; 		Well_4		1	3	' '
+Qout5	split.dat ; 		Well_5		1	3	' '
+Qout6	split.dat ; 		Well_6		1	3	' '
+Sout1   onoff.txt ;             OST_NULL        0       1       ' '
+Sout2   onoff.txt ;             OST_NULL        1       1       ' '
+Sout3   onoff.txt ;             OST_NULL        2       1       ' '
+Sout4   onoff.txt ;             OST_NULL        3       1       ' '
+Sout5   onoff.txt ;             OST_NULL        4       1       ' '
+Sout6   onoff.txt ;             OST_NULL        5       1       ' '
+EndResponseVars
+
+BeginTiedRespVars
+QCost 12 Qout1 Qout2 Qout3 Qout4 Qout5 Qout6 Sout1 Sout2 Sout3 Sout4 Sout5 Sout6 wsum 1.00 1.00 1.00 1.00 1.00 1.00 20000.0 20000.0 20000.0 20000.0 20000.0 20000.0 
+EndTiedRespVars
+
+BeginGCOP
+CostFunction QCost
+PenaltyFunction APM
+EndGCOP
+
+BeginConstraints
+#name     type     penalty    lwr   upr   resp.var
+OutFlux1  general  1.00       0.00  0.00  ZFlux1
+OutFlux2  general  1.00       0.00  0.00  ZFlux2
+EndConstraints
+
+BeginInitParams
+#Q1   Q2    Q3     Q4     Q5    Q6    X1   X2   X3   X4   X5   X6   Y1   Y2   Y3   Y4   Y5   Y6   S1  S2  S3  S4  S5  S6
+353   6003  13526  2472   777   600   2670 3340 4430 5130 4770 4500 1520 1000 5020 3715 4170 4585 1   1   1   1   1   1
+EndInitParams

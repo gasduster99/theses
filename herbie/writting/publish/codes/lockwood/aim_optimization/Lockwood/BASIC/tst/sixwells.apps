@@ -1,0 +1,52 @@
+# $Id: example1.apps,v 1.7 2004/08/13 20:23:35 tgkolda Exp $ 
+# $Source: /space/CVS-Acro/acro/packages/appspack/appspack/examples/example1.apps,v $ 
+
+#@HEADER
+# ************************************************************************
+# 
+#          APPSPACK: Asynchronous Parallel Pattern Search
+#                 Copyright (2003) Sandia Corporation
+# 
+# Under terms of Contract DE-AC04-94AL85000, there is a non-exclusive
+# license for use of this work by or on behalf of the U.S. Government.
+# 
+# This library is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as
+# published by the Free Software Foundation; either version 2.1 of the
+# License, or (at your option) any later version.
+#  
+# This library is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#                                                                                 
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+# USA.                                                                           .
+# 
+# Questions? Contact Tammy Kolda (tgkolda@sandia.gov) 
+# 
+# ************************************************************************
+#@HEADER
+
+
+@ "Bounds"
+"Upper" vector 6 20000 20000 20000 20000 20000 20000
+"Lower" vector 6 0 0 0 0 0 0 
+"Scaling" vector 6 20000 20000 20000 20000 20000 20000
+@@
+
+@ "Evaluator"
+"Executable Name" string "./RunLock"
+"Input Prefix" string "lock_in"
+"Output Prefix" string "lock_out"
+@@
+
+@ "Solver" 
+"Debug" int 4
+"Initial X" vector 6 1000 1000 1000 1000 1000 1000
+"Initial Step" double 4000
+"Step Tolerance" double 0.2
+"Cache Output File" string "lockwood.cache"
+@@

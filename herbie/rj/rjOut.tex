@@ -1,0 +1,147 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{psfrag}
+\usepackage{alltt}
+\usepackage{rotating}
+\usepackage{bm}
+
+\pagenumbering{gobble}
+
+
+\begin{document}
+
+\begin{figure}
+	\centering
+        \includegraphics[width=0.39\textwidth]{dataHist.pdf}	
+\end{figure}
+
+\section{Model}
+\begin{align}
+&~& &\mu_j \sim N(\xi, \kappa^{-1})&\nonumber\\
+&~& &\sigma^{-2} \sim \Gamma (\alpha, \beta)& \nonumber\\
+&\ell(\bm{y}|\bm{\mu},\bm{\sigma^2}, \bm{w}, \bm{z}) \propto\prod_{i=1}^n \prod_{j=1}^k\Big[ w_j N(y_i|\mu_j, \sigma^2_j) \Big]^{z_{ij}}&  &\beta \sim \Gamma(g, h)&\\
+&~& &\bm{w} \sim D(\bm{\delta})&\nonumber\\
+&~& &k \sim Poisson(\lambda)&\nonumber
+\end{align}
+
+\section{MCMC}
+\begin{itemize}
+\item Initialize $\bm{w}, \bm{\mu}, \bm{\sigma^2}, \beta$
+\item for $m\in\{1,2,...,M\}$
+	\begin{itemize}
+	\item $\bm{w}^{(m+1)}|... \sim D(\delta+n_1, ..., \delta+n_k)$
+	\item $\mu_j^{(m+1)}|... \sim N\left( \frac{ {\sigma_j}^{-2} \sum\limits_{i:z_i = j} y_i +\kappa \xi }{ {\sigma_j}^{-2}n_j + \kappa },~ \frac{1}{{\sigma_j}^{-2}n_j + \kappa}\right) ~~~~~~~~~~~ j\in\{1,2,...,k^{(m)}\}$
+	\item ${\sigma^{-2}_j}^{(m+1)}|... \sim \Gamma\left( \alpha+\frac{n_j}{2},~ \beta+\frac{1}{2}\sum\limits_{i:z_i = j}(y_i-\mu_j)^2 \right) ~~~ j\in\{1,2,...,k^{(m)}\}$
+	\item Allocate $y_i$'s to a $j\in\{1,2,...,k^{(m)}\}$ according to $p(z_i=j|...) \propto \frac{w_j}{\sigma_j}\exp\left\{ -\frac{(y_i-\mu_j)^2}{2\sigma_j^2} \right\}$.
+	\item ${\beta}^{(m+1)}|... \sim \Gamma\left( g+k\alpha,~h+\sum\limits_{j} \sigma_j^{-2} \right)$
+	\item Propose a Merge or Split:
+		\begin{itemize}
+		\item Transform components to get $\bm{\theta}^*=\left\{\bm{w}^*, \bm{\mu}^*, {\bm{\sigma^2}}^*, k^*\right\}$.
+		\item Reallocate $y_i$'s to a $j\in\{1,2,...,k^*\}$
+		\item Calculate acceptance probability, $\rho_1$.
+		\item $\bm{\theta}^{(m+1)}=\bm{\theta}^*$ with probability $\min(1, \rho_1)$. 	
+		\end{itemize}
+	\item Propose a Death or Birth:
+		\begin{itemize}
+		\item Transform components to get $\bm{\theta}^*=\left\{\bm{w}^*, \bm{\mu}^*, {\bm{\sigma^2}}^*, k^*\right\}$.
+		\item Calculate acceptance probability, $\rho_2$.
+		\item $\bm{\theta}^{(m+1)}=\bm{\theta}^*$ with probability $\min(1, \rho_2)$. 	
+		\end{itemize}
+	\item $\ell^{(m+1)} = \ell(\bm{y}|\bm{\mu}^{(m+1)},{\bm{\sigma^2}}^{(m+1)}, \bm{w}^{(m+1)}, \bm{z}^{(m+1)})$
+	\item $P^{(m+1)} = P(\bm{\theta}^{(m+1)}|\bm{y})$
+	\end{itemize} 
+\end{itemize}
+
+\clearpage
+
+\begin{sidewaysfigure}[h!]
+	\begin{minipage}[h!]{0.49\textwidth}
+		\centering
+		\includegraphics[width=1.15\textwidth]{muTrace2.pdf}
+	\end{minipage}
+	\begin{minipage}[h!]{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{muHist2.pdf}	
+	\end{minipage}
+\end{sidewaysfigure}
+
+\clearpage
+
+\begin{sidewaysfigure}[h!]
+	\begin{minipage}[h!]{0.49\textwidth}
+		\centering
+		\includegraphics[width=1.15\textwidth, height=4in]{wTrace2.pdf}
+	\end{minipage}
+	\begin{minipage}[h!]{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth, height=4in]{wHist2.pdf}	
+	\end{minipage}
+\end{sidewaysfigure}
+
+\clearpage
+
+\begin{sidewaysfigure}[h!]
+	\begin{minipage}[h!]{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth, height=4in]{kHist.pdf}
+	\end{minipage}
+	\begin{minipage}[h!]{0.49\textwidth}
+		\centering
+		\includegraphics[width=1.15\textwidth, height=4in]{sig2Trace2.pdf}	
+	\end{minipage}
+\end{sidewaysfigure}
+
+\clearpage
+
+\begin{sidewaysfigure}[h!]
+	\begin{minipage}[h!]{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth, height=4in]{postTrace.pdf}
+	\end{minipage}
+	\begin{minipage}[h!]{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth, height=4in]{likelyhoodTrace.pdf}	
+	\end{minipage}
+\end{sidewaysfigure}
+
+\clearpage
+
+\begin{sidewaysfigure}[h!]
+	\begin{minipage}[h!]{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth, height=4in]{kTrace.pdf}
+		\caption{Merge/Split and Death/Birth}	
+	\end{minipage}
+	\begin{minipage}[h!]{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth, height=3.5in]{kTraceMSOnly.pdf}
+		\caption{Merge/Split Only}	
+		\includegraphics[width=1\textwidth, height=3.5in]{kTraceDBOnly.pdf}
+		\caption{Death/Birth Only}
+	\end{minipage}
+\end{sidewaysfigure}
+
+\clearpage
+
+\begin{sidewaysfigure}[h!]
+	\begin{minipage}[h!]{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth, height=4in]{muTrace3.pdf}
+		\includegraphics[width=1\textwidth, height=4in]{muTrace4.pdf}
+	\end{minipage}
+	\begin{minipage}[h!]{0.49\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth, height=4in]{muHist3.pdf}
+		\includegraphics[width=1\textwidth, height=4in]{muHist4.pdf}	
+	\end{minipage}
+\end{sidewaysfigure}
+
+
+\end{document}
+

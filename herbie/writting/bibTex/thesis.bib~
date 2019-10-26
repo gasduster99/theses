@@ -1,0 +1,15 @@
+@book{boxBook,
+    address	= {New York, NY}
+    author	= {Box, George E. P. and Luceno, Alberto and Paniagua-Quinones, Maria Del Carmen },
+    publisher	= {Wiley},
+    title	= {Statistical Control by Monitoring and Adjustment}
+    year	= {1997}
+}
+
+BOOK{boxBook,
+    Address	= {New York, NY}
+    Author	= {Box, George E. P. and Luce\~{n}o, Alberto and Paniagua-Qui\~{n}ones, Mar\'{i}a Del Carmen },
+    Publisher	= {Wiley},
+    Title	= {Statistical Control by Monitoring and Adjustment}
+    Year	= {1997}
+}

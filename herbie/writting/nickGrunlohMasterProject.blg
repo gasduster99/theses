@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: nickGrunlohMasterProject.aux
+The style file: plain.bst
+Database file #1: ./bibTex/msCite.bib
+Warning--there's a number but no series in windExample
+You've used 18 entries,
+            2118 wiz_defined-function locations,
+            627 strings with 7111 characters,
+and the built_in function-call counts, 5486 in all, are:
+= -- 518
+> -- 273
+< -- 3
++ -- 111
+- -- 90
+* -- 397
+:= -- 957
+add.period$ -- 54
+call.type$ -- 18
+change.case$ -- 94
+chr.to.int$ -- 0
+cite$ -- 19
+duplicate$ -- 203
+empty$ -- 429
+format.name$ -- 90
+if$ -- 1113
+int.to.chr$ -- 0
+int.to.str$ -- 18
+missing$ -- 23
+newline$ -- 93
+num.names$ -- 36
+pop$ -- 96
+preamble$ -- 1
+purify$ -- 81
+quote$ -- 0
+skip$ -- 127
+stack$ -- 0
+substring$ -- 287
+swap$ -- 22
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 62
+warning$ -- 1
+while$ -- 50
+width$ -- 20
+write$ -- 197
+(There was 1 warning)

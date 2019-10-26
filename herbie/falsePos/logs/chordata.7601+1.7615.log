@@ -1,0 +1,5 @@
+	Host: chordata 	Rank(ID): 7 	of Size: 8 on comm 1 
+Warning in tgp(X, Z, XX, BTE, R, m0r1, linburn, params, itemps, pred.n,  :
+  for memory/storage reasons, trace not recommended when
+	 3*(10+d)*(BTE[2]-BTE[1])*R*(nn+1)/BTE[3]=18090000 > 1e+7.
+	 Try reducing nrow(XX)

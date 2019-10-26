@@ -1,0 +1,18 @@
+      user     system    elapsed 
+93.0777333  0.3409333 93.6085667 
+
+	Two-sample Kolmogorov-Smirnov test
+
+data:  set and null
+D = 5e-01, p-value = 1e+00
+alternative hypothesis: two-sided
+
+
+	Two-sample Kolmogorov-Smirnov test
+
+data:  set and null
+D = 9.565e-01, p-value = 1.117e-11
+alternative hypothesis: two-sided
+
+       user      system     elapsed 
+285.7632000   0.6505833 286.9054500 

@@ -1,0 +1,252 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww14260\viewh14980\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 DIRECTIONS FOR RUNNING THE LOCKWOOD PROBLEMS.\
+\
+(1) Compile the simulators\
+\
+First, you will need to compile Bluebird, and then Ostrich.  To do this, do the following:\
+> cd source\
+> sh build.sh\
+\
+NOTE: This will take stall on one line for several minutes and then list very a large number of warnings.  \
+\
+The resulting executables will now be located in a directory in source called executables.  Copy these executables into the \
+directory in which you will run the problem.  For example, if you want to run problem 1, located in the BASIC directory, do the following:\
+> cp source/executables/Bluebird BASIC\
+> cp source/executables/Ostrich BASIC\
+\
+-----------------------------------------------------------------------------------------------------\
+\
+(2) Problem 1: Located in the directory BASIC\
+\
+-Problem: Given the locations of 6 wells, determine their pumping rates.\
+-Function: F(x) = Total cost, in dollars, of operating the wells given the pumping rates \
+-Number of variables: 6\
+-Simple bounds on the variables: 0 <= x_i <= 20000 for i = 1,2,\'85,6 \
+Note that the units on the pumping rates are feet-cubed per day.\
+\
+To run, the files needed are: \
+(i) Bluebird: The executable created in step 1\
+(ii) Bluebird.sh: a script file which calls Bluebird\
+(iii) Ostrich: The executable created in step 1\
+ostIn.txt: The input file.  Note that the iterate goes in the second to last line of this file \
+  BeginInitParams\
+    x1 x2 x3 x4 x5 x6\
+  EndInitPArams\
+(iv) split.tpl: Describes the geography  \
+\
+Then, type\
+> ./Ostrich\
+\
+The files created are: \
+(i) Elements.bna \
+(ii) OstErrors0.txt: Reports any errors encountered while executing Ostrich on Processor 0\
+(iii) OstExeOut.txt: Reports the progress and output of the Bluebird Model\
+(iv) OstGcopOut.txt: Reports the final function value \
+(v) OstModel0.txt: Reports the objective function value found and the pumping rates used to find this value \
+(vi) OstOutput0.txt: Reports the Ostrich set-up including, the objective function, number of parameters, number of constraints, and \
+                            function value\
+(vii) TransectAnalysis.csv: Should be an empty file for this problem\
+(viii) ZoneBudget.csv: \
+(ix) debug.out: Reports the out message of the Ostrich iteration\
+(x) errors.csv: \
+(xi) exact.csv\
+(xii) obs_errors.csv: Should be empty if no errors occurred during the run\
+(xiii) progress.out\
+(xiv) solution.bbs: A more descriptive solution file\
+(xv) split.dat: Describes the geography of the area using split.tpl and the pumping rates\
+\
+In the directory BASIC/tst is a wrapper for the problem which can be used to interact with APPSPACK.  \
+The c-shell script RunLock does the following:\
+(i) Creates a temporary subdirectory named using the unique tag number associated with the iterate (As assigned by APPS)\
+and copies all the files needed to this directory.\
+(i) Reads in the iterate in the format prepared by APPSPACK.  The format is:\
+6 \
+x1\
+x2\
+\'85\
+x6\
+(2) Prepares the ostIn.txt file using ostInTop and the iterate\
+(3) Runs Ostrich\
+(4) Prepares a file containing the function value (gathered from the file GcopOut.txt) and write it in the format\
+f(x) \
+\
+If you want to test this script, you can do the following (remember that it is a C-shell script), \
+copy Bluebird, Bluebird.sh, Ostrich, and split.tpl into the same file as RunLock, ostInTop, and input.tst, then type\
+> ./RunLock input.tst output.tst 1\
+The function value will be returned in the file output.tst\
+\
+Finally, if you want to solve the problem using APPSPACK, the file sixwells.apps is the input file for the algorithm.\
+\
+-------------------------------------------------------------------------------------\
+\
+Problem 2: Located in the directory PATO_PLUS\
+-Problem: Given proposed locations of 6 wells, determine whether or not a well will be built, and if it is , determine its \
+pumping rate.\
+-Function: F(x) = Total cost, in dollars, of operating the wells given the pumping rates plus the installation cost of the wells\
+-Number of variables: 12, 6 are discrete (0/1) and 6 are continuous\
+-Simple bounds on the continuos variables: 0 <= x_i <= 20000 for i = 1,2,\'85,6 \
+Note that the units on the pumping rates are feet-cubed per day.\
+-Definition of the discrete variables: 0 = do not build, 1 = build \
+\
+To run, the files needed are: \
+(i) Bluebird: The executable created in step 1\
+(ii) Bluebird.sh: a script file which calls Bluebird\
+(iii) Ostrich: The executable created in step 1\
+ostIn.txt: The input file.  Note that the iterate goes in the second to last line of this file \
+  BeginInitParams\
+    x1 x2 x3 x4 x5 x6 i1 i2 i3 i4 i5 i6\
+  EndInitPArams\
+Note that the continuous variables must come before the integer variables.\
+(iv) split.tpl: Describes the geography  \
+(v) onoff.tpl: Template to describe whether or not a well will be built\
+\
+Then, type\
+> ./Ostrich\
+\
+The files created are: \
+(i) Elements.bna \
+(ii) OstErrors0.txt: Reports any errors encountered while executing Ostrich on Processor 0; for this problem, 6 file I/O errors will \
+     be reported.  However, this is not an issue to be concerned with as it is actually a bug in Ostrich.\
+(iii) OstExeOut.txt: Reports the progress and output of the Bluebird Model\
+(iv) OstGcopOut.txt: Reports the final function value \
+(v) OstModel0.txt: Reports the objective function value found and the pumping rates used to find this value \
+(vi) OstOutput0.txt: Reports the Ostrich set-up including, the objective function, number of parameters, number of constraints, and \
+                            function value\
+(vii) TransectAnalysis.csv: Should be an empty file for this problem\
+(viii) ZoneBudget.csv: \
+(ix) debug.out: Reports the out message of the Ostrich iteration\
+(x) errors.csv: \
+(xi) exact.csv\
+(xii) obs_errors.csv: Should be empty if no errors occurred during the run\
+(xiii) onoff.txt: Report the values of the integer variables used in the run\
+(xiv) progress.out\
+(xv) solution.bbs: A more descriptive solution file\
+(xvi) split.dat: Describes the geography of the area using split.tpl and the pumping rates\
+\
+In the directory PATO_PLUS/tst is a wrapper for the problem which can be used to interact with EAGLS.  \
+The c-shell script RunLock does the following:\
+(i) Creates a temporary subdirectory named using the unique tag number associated with the iterate (As assigned by EAGLS)\
+and copies all the files needed to this directory.\
+(i) Reads in the iterate in the format prepared by EAGLS.  The format is:\
+12\
+i1\
+i2\
+\'85\
+i6\
+x1\
+x2\
+\'85\
+x6\
+Note that EAGLS gives the integer variables first, followed by the continuous variables.\
+(2) Prepares the ostIn.txt file using ostInTop and the iterate.  The order of the variables is corrected.\
+(3) Runs Ostrich\
+(4) Prepares a file containing the function value (gathered from the file GcopOut.txt) and the distance of each constraint\
+from the feasible region  (gathered from ZoneBudget.csv) and writes it in the format\
+f(x)\
+d1(x)\
+d2(x) \
+Note that if di(x) = 0, then x is feasible with respect to constraint ci\
+\
+If you want to test this script, you can do the following (remember that it is a C-shell script), \
+copy Bluebird, Bluebird.sh, Ostrich, and split.tpl into the same file as RunLock, ostInTop, and input.tst, then type\
+> ./RunLock input.tst output.tst 1\
+The function value will be returned in the file output.tst\
+Or, you can try the input1.tst iterate which is infeasible.\
+\
+\
+--------------------------------------------------------------------------------------\
+\
+Problem 3: Located in the directory PATO_XY\
+-Problem: Design a system of up to 6 wells by determining whether or not a well will be built, and if it is , determine its \
+location in x-y space and its pumping rate.\
+-Function: F(x) = Total cost, in dollars, of operating the wells given the pumping rates plus the installation cost of the wells\
+-Number of variables: 24, 6 are discrete (0/1) and 18 are continuous\
+-Simple bounds on the continuos variables of the pumping rates 0 <= q_i <= 20000 for i = 1,2,\'85,6 \
+Note that the units on the pumping rates are feet-cubed per day.\
+Simple bounds on the continuous variables of the x-y locations are \
+2450 <= x1, x2 <= 4600\
+4250 <= x3, x4, x5, x6 <= 5700\
+750 <= y1, y2 <= 1750\
+3400 <= y3, y4, y5, y6 <= 5100\
+-Definition of the discrete variables: 0 = do not build, 1 = build \
+\
+To run, the files needed are: \
+(i) Bluebird: The executable created in step 1\
+(ii) Bluebird.sh: a script file which calls Bluebird\
+(iii) Ostrich: The executable created in step 1\
+ostIn.txt: The input file.  Note that the iterate goes in the second to last line of this file \
+  BeginInitParams\
+    q1 q2 q3 q4 q5 q6 x1 x2 x3 x4 x5 x6 y1 y2 y3 y4 y5 y6 i1 i2 i3 i4 i5 i6\
+  EndInitPArams\
+Note that the continuous variables must come before the integer variables.\
+(iv) split.tpl: Describes the geography  \
+(v) onoff.tpl: Template to describe whether or not a well will be built\
+(vi) RatesandLocations.tpl: Template to describe where the wells will be located and their corresponding pumping rates\
+\
+Then, type\
+> ./Ostrich\
+\
+The files created are: \
+(i) Elements.bna \
+(ii) OstErrors0.txt: Reports any errors encountered while executing Ostrich on Processor 0;\
+(iii) OstExeOut.txt: Reports the progress and output of the Bluebird Model\
+(iv) OstGcopOut.txt: Reports the final function value \
+(v) OstModel0.txt: Reports the objective function value found and the pumping rates used to find this value \
+(vi) OstOutput0.txt: Reports the Ostrich set-up including, the objective function, number of parameters, number of constraints, and \
+                            function value\
+(vii) RatesAndLocations.txt: Reports the locations, rates, and on/off status of each well  \
+(viii) TransectAnalysis.csv: Should be an empty file for this problem\
+(ix) ZoneBudget.csv: \
+(x) debug.out: Reports the out message of the Ostrich iteration\
+(xi) errors.csv: \
+(xii) exact.csv\
+(xiii) obs_errors.csv: Should be empty if no errors occurred during the run\
+(xiv) onoff.txt: Report the values of the integer variables used in the run\
+(xv) progress.out\
+(xvi) solution.bbs: A more descriptive solution file\
+(xvii) split.dat: Describes the geography of the area using split.tpl and the pumping rates\
+\
+In the directory PATO_XY/tst is a wrapper for the problem which can be used to interact with EAGLS.  \
+The c-shell script RunLock does the following:\
+(i) Creates a temporary subdirectory named using the unique tag number associated with the iterate (As assigned by EAGLS)\
+and copies all the files needed to this directory.\
+(i) Reads in the iterate in the format prepared by EAGLS.  The format is:\
+12\
+i1\
+i2\
+\'85\
+i6\
+q1\
+q2\
+\'85\
+q6\
+x1\
+x2\
+\'85\
+x6\
+y1\
+y2\
+\'85\
+y6\
+Note that EAGLS gives the integer variables first, followed by the continuous variables.\
+(2) Prepares the ostIn.txt file using ostInTop and the iterate.  The order of the variables is corrected.\
+(3) Runs Ostrich\
+(4) Prepares a file containing the function value (gathered from the file GcopOut.txt) and the distance of each constraint\
+from the feasible region  (gathered from ZoneBudget.csv) and writes it in the format\
+f(x)\
+d1(x)\
+d2(x) \
+Note that if di(x) = 0, then x is feasible with respect to constraint ci\
+\
+If you want to test this script, you can do the following (remember that it is a C-shell script), \
+copy Bluebird, Bluebird.sh, Ostrich, and split.tpl into the same file as RunLock, ostInTop, and input.tst, then type\
+> ./RunLock input.tst output.tst 1\
+The function value will be returned in the file output.tst\
+\
+\
+}

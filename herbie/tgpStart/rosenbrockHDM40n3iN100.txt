@@ -1,0 +1,127 @@
+    user   system  elapsed 
+46.56938  0.21895 46.84305 
+$X
+           [,1]        [,2]      [,3]
+[1,] -0.1547455 -0.87604949 0.6299072
+[2,] -1.4469648  0.59932048 0.9573816
+[3,]  0.2001772 -0.04389334 0.8269388
+
+$progress
+         x1          x2        x3         z       improv
+1 0.2108942 -0.04110541 0.6753857 -619878.3 0.0001439853
+
+$obj
+
+This is a 'tgp' class object.  
+It is basically a list with the following entries:
+
+ [1] X        n        d        Z        XX       nn       Xsplit   BTE     
+ [9] R        linburn  g        dparams  itemps   bimprov  Zp.mean  ZZ.mean 
+[17] Zp.km    ZZ.km    Zp.vark  ZZ.vark  Zp.q     ZZ.q     Zp.s2    ZZ.s2   
+[25] Zp.ks2   ZZ.ks2   Zp.q1    Zp.med   Zp.q2    ZZ.q1    ZZ.med   ZZ.q2   
+[33] improv   ess      gpcs     response parts    trees    posts    params  
+[41] m0r1    
+
+See ?btgp for an explanation of the individual entries.  
+See plot.tgp and tgp.trees for help with visualization.
+
+The $trace field, if it exists, is of class 'tgptraces' 
+and has its own print statement
+
+
+$X
+           [,1]        [,2]      [,3]
+[1,] -0.1547455 -0.87604949 0.6299072
+[2,] -1.4469648  0.59932048 0.9573816
+[3,]  0.2001772 -0.04389334 0.8269388
+
+$progress
+         x1          x2        x3         z       improv
+1 0.2108942 -0.04110541 0.6753857 -619878.3 0.0001439853
+
+$obj
+
+This is a 'tgp' class object.  
+It is basically a list with the following entries:
+
+ [1] X        n        d        Z        XX       nn       Xsplit   BTE     
+ [9] R        linburn  g        dparams  itemps   bimprov  Zp.mean  ZZ.mean 
+[17] Zp.km    ZZ.km    Zp.vark  ZZ.vark  Zp.q     ZZ.q     Zp.s2    ZZ.s2   
+[25] Zp.ks2   ZZ.ks2   Zp.q1    Zp.med   Zp.q2    ZZ.q1    ZZ.med   ZZ.q2   
+[33] improv   ess      gpcs     response parts    trees    posts    params  
+[41] m0r1    
+
+See ?btgp for an explanation of the individual entries.  
+See plot.tgp and tgp.trees for help with visualization.
+
+The $trace field, if it exists, is of class 'tgptraces' 
+and has its own print statement
+
+
+      user     system    elapsed 
+53.6968167  0.2701333 54.0583833 
+    user   system  elapsed 
+149.7855   0.4393 150.4683 
+
+	Two-sample Kolmogorov-Smirnov test
+
+data:  set and null
+D = 5e-01, p-value = 1e+00
+alternative hypothesis: two-sided
+
+
+	Two-sample Kolmogorov-Smirnov test
+
+data:  set and null
+D = 9.167e-01, p-value = 1.775e-05
+alternative hypothesis: two-sided
+
+
+	Two-sample Kolmogorov-Smirnov test
+
+data:  set and null
+D = 9.231e-01, p-value = 5e-06
+alternative hypothesis: two-sided
+
+
+	Two-sample Kolmogorov-Smirnov test
+
+data:  set and null
+D = 9.286e-01, p-value = 1.396e-06
+alternative hypothesis: two-sided
+
+
+	Two-sample Kolmogorov-Smirnov test
+
+data:  set and null
+D = 9.333e-01, p-value = 3.868e-07
+alternative hypothesis: two-sided
+
+
+	Two-sample Kolmogorov-Smirnov test
+
+data:  set and null
+D = 9.375e-01, p-value = 1.065e-07
+alternative hypothesis: two-sided
+
+
+	Two-sample Kolmogorov-Smirnov test
+
+data:  set and null
+D = 9.412e-01, p-value = 2.914e-08
+alternative hypothesis: two-sided
+
+
+	Two-sample Kolmogorov-Smirnov test
+
+data:  set and null
+D = 9.444e-01, p-value = 7.934e-09
+alternative hypothesis: two-sided
+
+
+	Two-sample Kolmogorov-Smirnov test
+
+data:  set and null
+D = 9.474e-01, p-value = 2.15e-09
+alternative hypothesis: two-sided
+

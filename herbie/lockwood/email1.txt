@@ -1,0 +1,34 @@
+Hi Nick.
+
+The attached code plume remediation code is meant to be run on a Mac.  So you may need to remotely log in to a Mac on campus.  You can try compiling it on a non-Mac, but it is not guaranteed to work, although I have had other students get it to run successfully on non-Macs.
+
+Once you have it compiled, here are examples of using it in 2-D and 6-D in R:
+
+runlock.basic.2d = function(rates=c(rep(10000,2)))
+{ #vector input version
+  write(c(6,rates,10000,10000,10000,10000),file="input.tst",ncol=1)
+  system("./RunLock input.tst output.tst 1")
+  output = scan(file="output.tst")
+  Y = output[1] + 40000*(abs(output[2])>0) + 40000*(abs(output[3])>0) + 2*abs(output[2]) + 2*abs(output[3])
+  return(Y)
+}
+
+runlock.basic = function(rates=c(rep(10000,6)))
+{ #vector input version
+  write(c(6, rates),file="input.tst",ncol=1)
+  system("./RunLock input.tst output.tst 1")
+  output = scan(file="output.tst")
+  Y = output[1] + 40000*(abs(output[2])>0) + 40000*(abs(output[3])>0) + 2*abs(output[2]) + 2*abs(output[3])
+  return(Y)
+
+}
+
+The output is a vector of length three.  The first element is the objective function to be minimized (it is actually the sum of the inputs), and the second and third elements are constraint violations (pollution escaping from each of the two plumes).  The constraints are met when both the second and third elements are zero.  Since you're not working on constrained optimization, we'll use a penalized approach, and the penalized objective function is given by Y in the above code.  I can't remember what the optimal penalty numbers were, 40000 might work well or it could be a little too large, it is possible that something like 20000 would work better.  I will forward a paper on the simulator next.
+
+If this is all too confusing, then we can talk it through when I get back in two weeks.  Some additional examples of optimization that we've done on this problem include: 
+http://www.soe.ucsc.edu/research/technical-reports/UCSC-SOE-12-09
+http://www.soe.ucsc.edu/research/technical-reports/UCSC-SOE-13-06
+http://arxiv.org/pdf/1403.4890.pdf
+
+
+  --Herbie

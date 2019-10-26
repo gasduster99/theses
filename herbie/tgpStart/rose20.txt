@@ -1,0 +1,12 @@
+    user   system  elapsed 
+6.453733 0.055400 6.513150 
+      user     system    elapsed 
+6.87998333 0.03706667 6.92053333 
+    user   system  elapsed 
+3.851033 0.039000 3.890950 
+      user     system    elapsed 
+7.07643333 0.04548333 7.12653333 
+      user     system    elapsed 
+41.7656167  0.1532667 41.9900500 
+       user      system     elapsed 
+256.8617833   0.5237667 257.7838833 

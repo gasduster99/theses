@@ -1,0 +1,20 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{General}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Gaussian Process Models}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Convergence Criteria}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Optimization}{section.1}% 5
+\BOOKMARK [2][-]{subsection.1.5}{Statistical Process Control}{section.1}% 6
+\BOOKMARK [3][-]{subsubsection.1.5.1}{Shewhart's \040Chart}{subsection.1.5}% 7
+\BOOKMARK [3][-]{subsubsection.1.5.2}{Exponentially Weighted Moving Average Chart}{subsection.1.5}% 8
+\BOOKMARK [1][-]{section.2}{Identifying Convergence}{}% 9
+\BOOKMARK [2][-]{subsection.2.1}{The Control Window}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.2}{ Chart}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.3}{Model-Based Transformation}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.4}{EWMA Chart}{section.2}% 13
+\BOOKMARK [1][-]{section.3}{Test Functions}{}% 14
+\BOOKMARK [2][-]{subsection.3.1}{Rosenbrock}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.2}{Rastringin}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.3}{Easom}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.4}{Real Data}{section.3}% 18
+\BOOKMARK [1][-]{section.4}{Discussion}{}% 19
+\BOOKMARK [1][-]{section.5}{Code Appendix}{}% 20

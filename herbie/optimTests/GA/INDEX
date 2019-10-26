@@ -1,0 +1,20 @@
+binary2decimal          Binary encoding of decimal numbers and
+                        viceversa.
+binary2gray             Gray encoding for binary strings
+ga                      Genetic Algorithms
+ga-class                Class "ga"
+gaControl               A function for setting or retrieving defaults
+                        genetic operators
+gaMonitor               Monitor genetic algorithm evolution
+ga_Crossover            Crossover operators in genetic algorithms
+ga_Mutation             Mutation operators in genetic algorithms
+ga_Population           Population initialization in genetic algorithms
+ga_Selection            Selection operators in genetic algorithms
+jet.colors              Jet Colors Palette
+numericOrNA-class       Virtual Class "numericOrNA" - Simple Class for
+                        subassignment Values
+parNames                Parameters or decision variables names from an
+                        object of class 'ga-class'.
+persp3D                 Perspective plot with colour levels
+plot,ga-method          Plot of Genetic Algorithm search path
+summary,ga-method       Summary for Genetic Algorithms

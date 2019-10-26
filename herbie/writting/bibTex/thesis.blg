@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: thesis.aux
+The style file: plain.bst
+Database file #1: msCite.bib
+I was expecting a `,' or a `}'---line 3 of file msCite.bib
+ :     
+ :     Author = {Box, George E. P. and Luce\~{n}o, Alberto and Paniagua-Qui\~{n}ones, Mar\'{i}a Del Carmen },
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--to sort, need author, editor, or key in boxBook
+Warning--empty author and editor in boxBook
+Warning--empty title in boxBook
+Warning--empty publisher in boxBook
+Warning--empty year in boxBook
+You've used 1 entry,
+            2118 wiz_defined-function locations,
+            500 strings with 4017 characters,
+and the built_in function-call counts, 198 in all, are:
+= -- 13
+> -- 1
+< -- 0
++ -- 1
+- -- 0
+* -- 19
+:= -- 27
+add.period$ -- 1
+call.type$ -- 1
+change.case$ -- 2
+chr.to.int$ -- 0
+cite$ -- 6
+duplicate$ -- 13
+empty$ -- 25
+format.name$ -- 0
+if$ -- 40
+int.to.chr$ -- 0
+int.to.str$ -- 1
+missing$ -- 1
+newline$ -- 6
+num.names$ -- 0
+pop$ -- 12
+preamble$ -- 1
+purify$ -- 2
+quote$ -- 0
+skip$ -- 5
+stack$ -- 0
+substring$ -- 5
+swap$ -- 0
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 2
+warning$ -- 5
+while$ -- 0
+width$ -- 2
+write$ -- 7
+(There was 1 error message)

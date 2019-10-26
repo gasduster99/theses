@@ -1,0 +1,13 @@
+#define additional include directories
+INCS = -I../MatrixLib -I../RxNLib -I../VectorLib -I.. -I.
+
+all:	*.o
+	ar r libVector.a *.o
+	ar t libVector.a
+	rm -f *.o
+
+*.o:	*.cpp *.h
+	#icpc -static -w1 -wd858 -wd1125 -wd470 -c -O2 -DUSE_MPI_STUB $(INCS) *.cpp
+	g++ -fpermissive -w -c -O2 $(INCS) *.cpp
+clean:
+	rm -f *.o

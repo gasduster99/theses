@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.24pt}
+\beamer@sectionintoc {1}{Numerical Optimization}{2}{0}{1}
+\beamer@sectionintoc {2}{Convergence}{10}{0}{2}
+\beamer@sectionintoc {3}{Examples}{15}{0}{3}
+\beamer@sectionintoc {4}{The End}{24}{0}{4}
