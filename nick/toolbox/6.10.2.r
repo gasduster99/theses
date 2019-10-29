@@ -62,7 +62,7 @@ AtoL = function(a, a0, k, Linf){
 #
 
 #max time
-Tea = 50
+Tea = 20
 #max age
 A   = 10
 #allometric coefficient
@@ -71,8 +71,8 @@ rho = 0.1
 k   = 0.25
 Linf= 50
 a0  = 0
-nm  = 0.1
-fm  = 0.5
+nm  = 0.2
+fm  = 0.4
 #BH parameters
 bhA = 3
 bhB = 1/50000

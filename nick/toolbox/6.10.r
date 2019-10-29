@@ -84,21 +84,40 @@ for(a in 1:(A-1)){
 
 #plot
 cols = brewer.pal(9, "Set1")
-matplot(N, type='l', col=cols[1:3], lwd=3)
-dev.new()
-matplot(Y, type='l', col=cols[1:3], lwd=3)
+png('./pictures/singleCohortN.png')
+matplot(N, type='l', 
+	col=cols[1:3], 
+	lwd=3,
+	xlab="Age",
+	main="Single Cohort Dynamics"
+	
+)
+legend('topright', legend=c("Af=2", "Af=3", "Af=4"), lty=1, lwd=3, col=c(cols[1], cols[2], cols[3]))
+dev.off()
+#
+png('./pictures/singleCohortYeild.png')
+matplot(Y, type='l', 
+	col=cols[1:3], 
+	lwd=3,
+	xlab="Age",
+	main="Single Cohort Yeild"
+	
+)
+legend('topleft', legend=c("Af=2", "Af=3", "Af=4"), lty=1, lwd=3, col=c(cols[1], cols[2], cols[3]))
+dev.off()
 
 #
 #PART TWO
 #
 
-
+#
+A = 100
 #
 Na = matrix(NA, nrow=1, ncol=3)
 colnames(N) = sprintf("ar%d", 2:4)
 Na[1,] = 500000
 #
-FF = seq(0, 0.2, 0.01)
+FF = seq(0, 0.02, 0.0001)
 FI = length(FF)
 #
 Y = matrix(0, nrow=FI, ncol=3)
