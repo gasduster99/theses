@@ -64,7 +64,7 @@ for(t in 1:Tea){
 #
 cols = brewer.pal(9, "Set1")
 #
-png("gulfOne.png")
+png("./pictures/gulfOne.png")
 plot(time, N1other, 'l', 
 	main = "Gulf of St. Laurence (Slow Growth)",
 	col  = cols[1], 
@@ -75,7 +75,7 @@ lines(time, N1msy, col=cols[2], lwd=3)
 legend('topright', legend=c('quarter of stock', 'MSY'), lty=1, lwd=3, col=c(cols[1], cols[2]))
 dev.off()
 #
-png("seaOne.png")
+png("./pictures/seaOne.png")
 plot(time, N2msy, 'l', 
 	main = "North Sea (Fast Growth)",
 	col  = cols[2], 
@@ -127,7 +127,7 @@ for(i in 1:R){
 #PLOT TWO
 #
 
-png('recovery.png')
+png('./pictures/recovery.png')
 plot(cRats*C1max, r1Time, 'l',
 	main = "",
 	ylab = "Recovery Time",
