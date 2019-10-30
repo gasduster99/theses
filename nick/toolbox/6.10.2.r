@@ -1,6 +1,9 @@
 rm(list=ls())
 
 #
+library(RColorBrewer)
+
+#
 #FUNCTIONS
 #
 
@@ -116,10 +119,38 @@ for(t in 1:(Tea-1)){
 #PLOT
 #
 
-#dev.new()
-plot(rowSums(N), type='l', ylim=c(0, max(rowSums(N))), lwd=3)
-matplot(N, type='l', add=T)
-
+#
+cols = brewer.pal(9, "Set1")
+ageCols = colorRampPalette(brewer.pal(11, "Spectral")[c(-4,-5,-6,-7)])( 10 )
+#brewer.pal(11, "Spectral")[-6]
+#
+png("./pictures/ageStructure.png")
+plot(rowSums(N), 
+	xlab = "Time",
+	ylab = "N",
+	main = "Age Structured Population",
+	type = 'l', 
+	ylim = c(0, max(rowSums(N))), 
+	lwd  = 3
+)
+matplot(N, 
+	type = 'l', 
+	add  = T,
+	lwd  = 1,
+	col  = ageCols
+)
+lines(1:A, N[1,], 
+	type = 'l',
+	col  = cols[2],
+	lwd  = 2
+)
+legend('topright', 
+	legend = c("Total", "Single Cohort", colnames(N)),
+	col    = c('black', cols[2], ageCols), 
+	lwd    = c(3, 2, rep(1, length(ageCols))),
+	lty    = c(1, 1, rep(1:5, 2))
+)
+dev.off()
 
 
 

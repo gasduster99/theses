@@ -140,3 +140,32 @@ plot(cRats*C1max, r1Time, 'l',
 lines(cRats*C2max, r2Time, lwd=3, col=cols[2])
 legend('bottomright', legend=c("Gulf of St. Laurence (Slow Growth)", "North Sea (Fast Growth)"), lty=1, lwd=3, col=c(cols[1], cols[2]))
 dev.off()
+
+#
+#ODE PLAY
+#
+
+library(deSolve)
+
+#
+TT = 1000000
+#
+dNdt = function(t, y, parms){
+	#
+	r = parms[1]
+	K = parms[2]
+	C = parms[3]
+	out = r*y*(1-y/K) - C*(1+sin(t))
+	#
+	return( list(out) )
+}
+
+#
+parms = c(r1, K1, 0.9*C1max)
+##
+#NN = matrix(NA, nrow=TT, ncol=1)
+#NN[1] = K1/5
+#for(t in 1:TT){ NN[t+1]=NN[t]+dNdt(t, NN[t], parms) }
+odeOut = ode(K1/5, 0:1000, dNdt, parms, "ode45")
+plot(odeOut)
+
