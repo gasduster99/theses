@@ -8,6 +8,20 @@ library(RColorBrewer)
 #
 
 #
+yeild = function(a, Na, Wa, Af, nm, fm){
+        #a      : age
+        #Na     : number at age
+        #Af     : knife edge age of fishing suceptiblity
+        #fm     : fishing mortality
+
+        #
+        y = 0
+        if(a>=Af){ y=(fm/(fm+nm))*(1-exp(-nm-fm))*Wa*Na }
+        #
+        return( y )
+}
+
+#
 live = function(Na, a, af, nm, fm){
 	#Na : number at age
 	#a  : age
@@ -92,6 +106,13 @@ As  = 3
 Ws = LtoW(AtoL(As:A,a0,k,Linf),rho)
 
 #
+Y = matrix(0, nrow=Tea-1, ncol=A)
+colnames(Y) = sprintf("AGE %d", 1:10)
+colnames(Y)[As] = sprintf("%s (As)", colnames(Y)[As])
+colnames(Y)[Af] = sprintf("%s (Af)", colnames(Y)[Af])
+rownames(Y) = sprintf("TIME %d", 1:(Tea-1))
+
+#
 N = matrix(NA, nrow=Tea, ncol=A)
 colnames(N) = sprintf("AGE %d", 1:10)
 colnames(N)[As] = sprintf("%s (As)", colnames(N)[As])
@@ -109,7 +130,9 @@ for(t in 1:(Tea-1)){
 	#live and die in LA
 	for(a in 1:(A-1)){
 		N[t+1,a+1] = live(N[t,a], a, Af, nm, fm)
+		Y[t, a] = yeild(a, N[t,a], LtoW(AtoL(a, a0, k, Linf), rho), Af, nm, fm) 
 	}
+	Y[t, A] = yeild(A, N[t,A], LtoW(AtoL(A, a0, k, Linf), rho), Af, nm, fm)
 	#baby makin
 	S = Ws %*% N[t,As:A]
 	N[t+1,1] = spawn(S, bhA, bhB)
@@ -122,7 +145,6 @@ for(t in 1:(Tea-1)){
 #
 cols = brewer.pal(9, "Set1")
 ageCols = colorRampPalette(brewer.pal(11, "Spectral")[c(-4,-5,-6,-7)])( 10 )
-#brewer.pal(11, "Spectral")[-6]
 #
 png("./pictures/ageStructure.png")
 plot(rowSums(N), 
@@ -152,6 +174,33 @@ legend('topright',
 )
 dev.off()
 
-
+#
+png("./pictures/ageStructureYeild.png")
+plot(rowSums(Y), 
+	xlab = "Time",
+	ylab = "Yeild",
+	main = "Age Structured Yeild",
+	type = 'l', 
+	ylim = c(0, max(rowSums(Y))), 
+	lwd  = 3
+)
+matplot(Y, 
+	type = 'l', 
+	add  = T,
+	lwd  = 1,
+	col  = ageCols
+)
+#lines(1:A, N[1,], 
+#	type = 'l',
+#	col  = cols[2],
+#	lwd  = 2
+#)
+legend('topright', 
+	legend = c("Total", colnames(N)),
+	col    = c('black', ageCols), 
+	lwd    = c(3, rep(1, length(ageCols))),
+	lty    = c(1, rep(1:5, 2))
+)
+dev.off()
 
 
