@@ -70,7 +70,7 @@ AtoL = function(a, a0, k, Linf){
 Tea  = 2000
 time = 1:Tea
 #max age
-A   = 10
+A   = Tea
 #age suseptable to fishing
 Af  = 3
 #age of first spawn 
@@ -96,30 +96,37 @@ Ws = LtoW(AtoL(As:A,a0,k,Linf),rho)
 
 #
 N = matrix(NA, nrow=Tea, ncol=A)
-colnames(N) = sprintf("AGE %d", 1:10)
+colnames(N) = sprintf("AGE %d", 1:A)
 colnames(N)[As] = sprintf("%s (As)", colnames(N)[As])
 colnames(N)[Af] = sprintf("%s (Af)", colnames(N)[Af])
 rownames(N) = sprintf("TIME %d", 1:Tea)
 
 
+#
+writeLines("ODE45")
+method = "ode45" #"rk4" #"euler" #"ode23" 
 #solve
-N[1,] = ode(500000, time[1:A], dNdt, c(Af, nm, fm), "ode45")[,2]
+N[1,] = ode(500000, time[1:A], dNdt, c(Af, nm, fm), method)[,2]
 #copy the upper diagonal over
 for(r in 2:A){ for(c in r:A){ N[r,c]=N[r-1,c] }}
 
 #
+i = 0
+DD = c()
 for(t in 1:(Tea-2)){
 	#Length of the diagonal which starts on row t+1 
-	D = min(A,Tea-t) 
-	d = ode(spawn(Ws%*%N[t,As:A], bhA, bhB), time[1:D], dNdt, c(Af, nm, fm), "ode45")[,2]
+	D = min(A,Tea-t); DD = c(DD, D)
+	d = ode(spawn(Ws%*%N[t,As:A], bhA, bhB), time[1:D], dNdt, c(Af, nm, fm), method)[,2]
 	for(a in 1:D){
 		N[t+a,a] = d[a]
+		i = i+1
 	} 
 }
 N[Tea,1] = spawn(Ws%*%N[t,As:A], bhA, bhB)
 
 
 ##
+#writeLines("EULER")
 #live = function(Na, a, af, nm, fm){
 #        #Na : number at age
 #        #a  : age
@@ -143,11 +150,13 @@ N[Tea,1] = spawn(Ws%*%N[t,As:A], bhA, bhB)
 #}
 #
 ##fill the rest of the matrix
+#i = 0
 #for(t in 1:(Tea-1)){
 #        #live and die in LA
 #        for(a in 1:(A-1)){
 #                N[t+1,a+1] = live(N[t,a], a, Af, nm, fm)
 #                #Y[t, a] = yeild(a, N[t,a], LtoW(AtoL(a, a0, k, Linf), rho), Af, nm, fm)
+#		i = i+1
 #        }
 #        #Y[t, A] = yeild(A, N[t,A], LtoW(AtoL(A, a0, k, Linf), rho), Af, nm, fm)
 #        #baby makin
