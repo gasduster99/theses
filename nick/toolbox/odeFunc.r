@@ -244,14 +244,161 @@ par$a0   = 0    #
 #MAIN
 #
 
+#Node45 = odeForward(N0, dNdt, A, TT, par, SRRshep, AtoL, LtoW, method="ode45")
+#Node23 = odeForward(N0, dNdt, A, TT, par, SRRshep, AtoL, LtoW, method="ode23")
+#Noil = eulerForward(N0, dNdt, A, TT, par, SRRshep, AtoL, LtoW, live)
+
 #
-Node45 = odeForward(N0, dNdt, A, TT, par, SRRshep, AtoL, LtoW, method="ode45")
-Node23 = odeForward(N0, dNdt, A, TT, par, SRRshep, AtoL, LtoW, method="ode23")
-Noil = eulerForward(N0, dNdt, A, TT, par, SRRshep, AtoL, LtoW, live)
+par$shepC = 0.5
+Node0.5 = odeForward(N0, dNdt, A, TT, par, SRRshep, AtoL, LtoW, method="ode45")
+#
+par$shepC = 2
+Node2 = odeForward(N0, dNdt, A, TT, par, SRRshep, AtoL, LtoW, method="ode45")
+#
+par$shepC = 1
+Node1 = odeForward(N0, dNdt, A, TT, par, SRRshep, AtoL, LtoW, method="ode45")
+
+#
+#PLOT
+#
+
+library(RColorBrewer)
+
+#
+cols = brewer.pal(3, "Set1")
+#
+to = 1e4
+png("./pictures/srrCompare.png")
+curve(SRRshep(x, par$bhA, par$bhB, 1/2), 
+	from=0, 
+	to=to, 
+	lwd=3,
+	col=cols[1],
+	ylab="Recruitment",
+	xlab="Stock Biomass",
+	main="Stock Recruitment Relationships"
+)
+curve(SRRshep(x, par$bhA, par$bhB, 2), 
+	from=0, 
+	to=to, 
+	col=cols[2], 
+	lwd=3,
+	add=T
+)
+curve(SRRshep(x, par$bhA, par$bhB, 1), 
+	from=0, 
+	to=to, 
+	col=cols[3], 
+	lwd=3,
+	add=T
+)
+legend('topleft',
+        legend = c(
+		sprintf("Shep(x, %s, %s, %s)", par$bhA, par$bhB, 1/2),
+		sprintf("Shep(x, %s, %s, %s)", par$bhA, par$bhB, 2),
+		sprintf("Shep(x, %s, %s, %s) = BH(x, %s, %s)", par$bhA, par$bhB, 1, par$bhA, par$bhB)
+	),
+        col    = cols,
+        lwd    = 3,
+        lty    = 1 
+)
+dev.off()
+
+#
+ageCols = colorRampPalette(brewer.pal(11, "Spectral")[c(-4,-5,-6,-7)])( 10 )
+#
+png("./pictures/shepAgeStructure.png")
+plot(time, rowSums(Node0.5), 'l',
+	#col=cols[1],
+	lwd=3,
+	main=sprintf("Age Structured Sheperd(x, %s, %s, %s) Model", par$bhA, par$bhB, 1/2),
+	xlab="Time",
+	ylab="N"
+)
+matplot(Node0.5,
+        type = 'l',
+        add  = T,
+        lwd  = 1,
+        col  = ageCols
+)
+#lines(1:A, Node0.5[1,],
+#        type = 'l',
+#        #col  = cols[2],
+#        lwd  = 2
+#)
+legend('right', 
+        legend = c("Total", colnames(Node0.5)),
+        col    = c('black', ageCols),
+        lwd    = c(3, rep(1, length(ageCols))),
+        lty    = c(1, rep(1:5, 2))
+)
+dev.off()
+
+##
+#plot(time, rowSums(Node2), 'l',
+#	col=cols[2],
+#	lwd=3
+#)
+#matplot(Node2,
+#        type = 'l',
+#        add  = T,
+#        lwd  = 1,
+#        col  = ageCols
+#)
+
+##
+#plot(time, rowSums(Node1), 'l',
+#	col=cols[3],
+#	lwd=3
+#)
+#matplot(Node1,
+#        type = 'l',
+#        add  = T,
+#        lwd  = 1,
+#        col  = ageCols
+#)
 
 
+#
+Ws = LtoW(AtoL(par$As:A,par$a0,par$k,par$Linf),par$rho)
+png("./pictures/shepWeightTime.png")
+plot(time, Ws%*%t(Node0.5[,par$As:A]), 'l', 
+	lwd=3,
+	main="Biomass thru Time",
+	ylab="Biomass",
+	xlab="Time"
+)
+dev.off()
 
+#
+dSRRshepdS = function(S, a, b, c){
+	a*( (1+(b*S)^c) - c*(b*S)^c )/(1+(b*S)^c)^2
+}
 
-
+#
+png("./pictures/shepDerivative.png")
+curve(dSRRshepdS(x, par$bhA, par$bhB, 1/2), 
+	from=0, 
+	to=1e4, 
+	ylim=c(-0.5, 3),
+	ylab="Dervative",
+	xlab="S",
+	main=expression(frac(a*( (1+(b*S)^c) - c*(b*S)^c ),(1+(b*S)^c)^2)),
+	col=cols[1],
+	lwd=3
+)
+curve(dSRRshepdS(x, par$bhA, par$bhB, 1), from=0, to=1e4, add=T, col=cols[3], lwd=3)
+curve(dSRRshepdS(x, par$bhA, par$bhB, 2), from=0, to=1e4, add=T, col=cols[2], lwd=3)
+legend('topright',
+        legend = c(
+                sprintf("Shep(x, %s, %s, %s)", par$bhA, par$bhB, 1/2),
+                sprintf("Shep(x, %s, %s, %s)", par$bhA, par$bhB, 2),
+                sprintf("Shep(x, %s, %s, %s) = BH(x, %s, %s)", par$bhA, par$bhB, 1, par$bhA, par$bhB)
+        ),
+        col    = cols,
+        lwd    = 3,
+        lty    = 1
+)
+dev.off()
 
 
