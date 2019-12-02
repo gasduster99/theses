@@ -364,9 +364,15 @@ Ws = LtoW(AtoL(par$As:A,par$a0,par$k,par$Linf),par$rho)
 png("./pictures/shepWeightTime.png")
 plot(time, Ws%*%t(Node0.5[,par$As:A]), 'l', 
 	lwd=3,
+	ylim=c(0, 5e9),
+	col=cols[1],
 	main="Biomass thru Time",
 	ylab="Biomass",
 	xlab="Time"
+)
+lines(time, Ws%*%t(Node1[,par$As:A]),
+	lwd=3,
+	col=cols[3]
 )
 dev.off()
 

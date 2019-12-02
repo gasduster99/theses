@@ -67,10 +67,10 @@ AtoL = function(a, a0, k, Linf){
 #
 
 #time
-Tea  = 2000
+Tea  = 20
 time = 1:Tea
 #max age
-A   = Tea
+A   = 10
 #age suseptable to fishing
 Af  = 3
 #age of first spawn 
@@ -85,7 +85,7 @@ nm  = 0.2
 fm  = 0.4
 #BH parameters
 bhA = 3
-bhB = 1/500
+bhB = 1/50000
 
 #
 #ITERATE
@@ -103,7 +103,7 @@ rownames(N) = sprintf("TIME %d", 1:Tea)
 
 
 #
-writeLines("ODE45")
+#writeLines("ODE45")
 method = "ode45" #"rk4" #"euler" #"ode23" 
 #solve
 N[1,] = ode(500000, time[1:A], dNdt, c(Af, nm, fm), method)[,2]
@@ -124,24 +124,131 @@ for(t in 1:(Tea-2)){
 }
 N[Tea,1] = spawn(Ws%*%N[t,As:A], bhA, bhB)
 
-
-##
-#writeLines("EULER")
-#live = function(Na, a, af, nm, fm){
-#        #Na : number at age
-#        #a  : age
-#        #af : age suseptible to fishing
-#        #nm : natural mortality
-#        #fm : fishing mortality
-#        #
-#        #value : iterate population size forward one step
 #
-#        #assume population is not in the fishery, but if it is include fishing mortality
-#        Na1 = Na*exp(-nm)
-#        if(a>=af){ Na1 = Na*exp(-nm-fm) }
-#        #
-#        return( Na1 )
-#}
+params = list()
+#mortality
+params$Af = Af
+params$nm = nm
+params$fm = fm
+#growth
+params$As  = As
+params$bhA = bhA
+params$bhB = bhB
+
+#
+N0 = 500000
+
+#
+odeForward = function(N0, dNdt, A, Tea, params, method="ode45"){
+	#
+	#UNPACK 
+	#
+
+	#mortality
+	Af = params$Af
+	nm = params$nm
+	fm = params$fm
+	#growth
+	As  = params$As
+	bhA = params$bhA
+	bhB = params$bhB
+	
+	#
+	#ITERATE
+	#
+
+	#initialize
+	N = matrix(NA, nrow=Tea, ncol=A)
+	colnames(N) = sprintf("AGE %d", 1:A)
+	colnames(N)[As] = sprintf("%s (As)", colnames(N)[As])
+	colnames(N)[Af] = sprintf("%s (Af)", colnames(N)[Af])
+	rownames(N) = sprintf("TIME %d", 1:Tea)		
+	#solve
+	N[1,] = ode(N0, time[1:A], dNdt, c(Af, nm, fm), method)[,2]
+	#copy the upper diagonal over
+	for(r in 2:A){ for(c in r:A){ N[r,c]=N[r-1,c] }}
+
+	#
+	i = 0
+	for(t in 1:(Tea-2)){
+		#Length of the diagonal which starts on row t+1 
+		D = min(A,Tea-t)
+		d = ode(spawn(Ws%*%N[t,As:A], bhA, bhB), time[1:D], dNdt, c(Af, nm, fm), method)[,2]
+		for(a in 1:D){
+			N[t+a,a] = d[a]
+			i = i+1
+		} 
+	}
+	N[Tea,1] = spawn(Ws%*%N[t,As:A], bhA, bhB)	
+	#
+	return(N)
+}
+
+#
+eulerForward = function(N0, dNdt, A, Tea, params, live, spawn){
+	#
+	#UNPACK 
+	#
+
+	#mortality
+	Af = params$Af
+	nm = params$nm
+	fm = params$fm
+	#growth
+	As  = params$As
+	bhA = params$bhA
+	bhB = params$bhB
+	
+	#
+	#ITERATE
+	#
+
+	#initialize
+	N = matrix(NA, nrow=Tea, ncol=A)
+	colnames(N) = sprintf("AGE %d", 1:A)
+	colnames(N)[As] = sprintf("%s (As)", colnames(N)[As])
+	colnames(N)[Af] = sprintf("%s (Af)", colnames(N)[Af])
+	rownames(N) = sprintf("TIME %d", 1:Tea)		
+	#First row
+	N[1,1] = 500000
+	for(a in 1:(A-1)){ 
+	        N[1,a+1] = live(N[1,a], a, Af, nm, fm)
+	}
+
+
+	#fill the rest of the matrix
+	for(t in 1:(Tea-1)){
+	        #live and die in LA
+	        for(a in 1:(A-1)){
+	                N[t+1,a+1] = live(N[t,a], a, Af, nm, fm)
+	        }
+	        #baby makin
+	        S = Ws %*% N[t,As:A]
+	        N[t+1,1] = spawn(S, bhA, bhB)
+	}
+	
+	#
+	return( N )
+} 
+
+
+#
+#writeLines("EULER")
+live = function(Na, a, af, nm, fm){
+        #Na : number at age
+        #a  : age
+        #af : age suseptible to fishing
+        #nm : natural mortality
+        #fm : fishing mortality
+        #
+        #value : iterate population size forward one step
+
+        #assume population is not in the fishery, but if it is include fishing mortality
+        Na1 = Na*exp(-nm)
+        if(a>=af){ Na1 = Na*exp(-nm-fm) }
+        #
+        return( Na1 )
+}
 #
 ##fill in first row
 #N[1,1] = 500000

@@ -7,7 +7,7 @@ from scipy.integrate import solve_ivp
 #
 class ageModel(object):
 	#
-	def __init__(self, dNdt, SRR, AtoL, LtoW, cats):
+	def __init__(self, dNdt, SRR, AtoL, LtoW, cats, **kwargs):
 		'''
 		dNdt 	: mortality derivative given as a function
 		SRR	: stock recruitment relationship given as a preloaded string or a function
@@ -39,7 +39,14 @@ class ageModel(object):
 		#
 		t0 = min(time)
 		tT = max(time)
-		self.NN[0,:] = solve_ivp(dNdt, [t0,tT], N0, t_eval=time).y
+		self.NN[0,:] = solve_ivp(lambda t, y: 
+						dNdt(t, y, 
+							self.kwargs['Af'], 
+							self.kwargs['nm'], 
+							self.kwargs['fm']
+						), [t0,tT], N0, t_eval=time).y
+		#
+
 		#odeObj.set_integrator(method)
 		#odeObj.set_initial_values(N0)
 		#odeObj.set_f_params()
