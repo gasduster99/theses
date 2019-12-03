@@ -18,7 +18,7 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 		time = NA,
 		TT   = NA,
 		#age
-		A  = NA,	
+		A  = NA,
 		As = NA,
 		Af = NA,	
 		#mortality
@@ -32,27 +32,40 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 		#computational
 		method = 'rk4',
 		#
-		initialize = function( 	N0  = NA,
-					time= NA,
-					A   = NA,	
-					As  = NA,
-					Af  = NA,
-					mn  = NA,
-					mf  = NA,  
-					dNdt= NA, 
-					SRR = NA,
-					AtoL= function(a,Linf,k,a0){ Linf*(1-exp(-k*(a-a0))) }, 
-					LtoW= function(l,rho,psi){ rho*l^psi }
+		initialize = function( 	N0   = NA,	
+					A    = NA,	
+					As   = NA,
+					Af   = NA,
+					mn   = NA,
+					mf   = NA,
+					time = NA,  
+					dNdt = NA, 
+					SRR  = NA,
+					AtoL = function(a,Linf,k,a0){ Linf*(1-exp(-k*(a-a0))) }, 
+					LtoW = function(l,rho,psi){ rho*l^psi }
 		){
+			#misc variable digestion
+			self$N0 = N0
+			self$A  = A
+			self$Af = Af
+			self$As = As
+			self$mn = mn
+			self$mf = mf
+			
 			#dNdt
 			stopifnot(is.function(dNdt))
 			self$dNdt = dNdt
+			private$dNdt_classify(dNdt)
+			
+			
 			#SRR
 			stopifnot(is.function(SRR))
 			private$classify(SRR, 1)
+			
 			#AtoL
 			stopifnot(is.function(AtoL))
 			private$classify(AtoL, 1)
+			
 			#LtoW
 			stopifnot(is.function(LtoW))
 			private$classify(LtoW, 1)
@@ -61,13 +74,9 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 			self$N0 = N0
 			private$buildN(time=time, A=A, As=As, Af=Af)
 			
-			#misc variable digestion
-			self$A  = A
-			self$Af = Af
-			self$As = As
-			self$mn = mn
-			self$mf = mf
+			
 		},
+		#
 		iterate = function(method=self$method){
 			#prechecking 
 			
@@ -100,6 +109,20 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 	),
 	#
 	private = list(
+		#
+		dNdt_par = list(),
+		#
+		dNdt_classify = function(fun){
+			#
+			arg = formals(fun)
+			bdy = body(fun)[-1]
+			extraArgs = names(arg[3:length(arg)])
+			for( ea in extraArgs ){
+				#fill dNdt_par
+				eval(parse( text=sprintf("private$dNdt_par[ea]=self$%s", ea) ))
+				#build par block
+			}
+		},
 		#	
 		classify = function(fun, numPars){
 			#
@@ -112,27 +135,12 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 				var = sprintf("self$%s_%s", name, ea)
 				bdy = gsub(ea, var, bdy)
 			}
+			print(bdy)
 			#
 			eval(parse( text=sprintf("self$%s=function(%s){}", name, names(arg[1:numPars])) ))
-			eval(parse( text=sprintf("body(self$%s)=parse(text=bdy)", name) ))
-			
-			##
-			#arg = formals(SRR)
-			#bdy = body(SRR)[-1]
-			#extraArgs = names(arg[2:length(arg)])
-			#for( ea in extraArgs ){
-			#	#
-			#	var = sprintf("self$SRR_%s", ea)
-			#	bdy = gsub(ea, var, bdy)
-			#	#var = sprintf("SRR_%s", ea)
-			#	#self$set("public", var, NA)
-			#	#eval(parse( text=paste(var, "=NA") ))
-			#}
-			##
-			#self$SRR = function(S){}
-			#body(self$SRR) = parse(text = bdy)
-			
+			eval(parse( text=sprintf("body(self$%s)=parse(text=bdy)", name) ))	
 		},
+		#
 		buildN = function(time=NA, A=NA, As=NA, Af=NA){
 			#preallocate N
 			if(!is.na(A) && !is.na(time)){

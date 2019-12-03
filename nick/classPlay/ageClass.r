@@ -87,3 +87,25 @@ am@par[['Linf']] = 50
 am@par[['a0']]   = 0
 am@par[['k']]    = 0.25
 
+
+
+
+
+
+
+                        ##
+                        #arg = formals(SRR)
+                        #bdy = body(SRR)[-1]
+                        #extraArgs = names(arg[2:length(arg)])
+                        #for( ea in extraArgs ){
+                        #       #
+                        #       var = sprintf("self$SRR_%s", ea)
+                        #       bdy = gsub(ea, var, bdy)
+                        #       #var = sprintf("SRR_%s", ea)
+                        #       #self$set("public", var, NA)
+                        #       #eval(parse( text=paste(var, "=NA") ))
+                        #}
+                        ##
+                        #self$SRR = function(S){}
+                        #body(self$SRR) = parse(text = bdy)
+

@@ -26,6 +26,19 @@ dNdt = function(t, y, par){
         #
         return( list(out) )
 }
+dNdt = function(t, y, Af, mn, mf){
+        #t      : current time step as requested by ode
+        #y      : value at previous time as requested by ode
+        #Af     : age suseptible to fishing given as integer
+        #mn     : natural mortality given as numeric
+        #mf     : fishing mortality given as numeric
+ 
+        #assume population is not in the fishery, but if it is include fishing mortality
+        out = y*(exp(-mn)-1)
+        if(t>=Af){ out = y*(exp(-mn-mf)-1) }
+        #
+        return( list(out) )
+}
 
 #SRR
 SRR = function(S, a, b, c){
@@ -65,7 +78,7 @@ am$LtoW_psi = 3
 #am$As = 3
 #am$TT = 200
 
-#
-am$iterate()
+##
+#am$iterate()
 
 
