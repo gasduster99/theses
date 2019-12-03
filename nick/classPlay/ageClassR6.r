@@ -24,13 +24,13 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 		#mortality
 		mn = NA,
 		mf = NA,
-		#functions
-		dNdt = NA,
+		#functions	
 		SRR  = NA,
 		AtoL = NA,
 		LtoW = NA,
 		#computational
 		method = 'rk4',
+		
 		#
 		initialize = function( 	N0   = NA,	
 					A    = NA,	
@@ -54,21 +54,19 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 			
 			#dNdt
 			stopifnot(is.function(dNdt))
-			self$dNdt = dNdt
 			private$dNdt_classify(dNdt)
-			
-			
+						
 			#SRR
 			stopifnot(is.function(SRR))
-			private$classify(SRR, 1)
+			private$classify(SRR)
 			
 			#AtoL
 			stopifnot(is.function(AtoL))
-			private$classify(AtoL, 1)
+			private$classify(AtoL)
 			
 			#LtoW
 			stopifnot(is.function(LtoW))
-			private$classify(LtoW, 1)
+			private$classify(LtoW)
 			
 			#preallocate N
 			self$N0 = N0
@@ -76,7 +74,7 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 			
 			
 		},
-		#
+		##NOTE: this only functions for consectutive times starting at 1 to self$TT
 		iterate = function(method=self$method){
 			#prechecking 
 			
@@ -88,8 +86,8 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 			
 			Ws = self$LtoW(self$AtoL(self$As:self$A))
 			
-			#solve
-        		self$N[1,] = ode(self$N0, self$time[1:self$A], self$dNdt, c(Af=self$Af, mn=self$mn, mf=self$mf), method)[,2]
+			#solve 
+        		self$N[1,] = ode(self$N0, self$time[1:self$A], private$dNdt, private$dNdt_par, method)[,2]
         		#copy the upper diagonal over
         		for(r in 2:self$A){ for(c in r:self$A){ self$N[r,c]=self$N[r-1,c] }}
 
@@ -97,9 +95,9 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
         		i = 0
         		for(t in 1:(self$TT-2)){
         		        #Length of the diagonal which starts on row t+1 
-        		        D = min(self$A,self$TT-t);
-        		        d = ode(self$SRR(Ws%*%self$N[t,self$As:self$A]), self$time[1:D], self$dNdt, c(Af=self$Af, mn=self$mn, mf=self$mf), method)[,2]
-        		        for(a in 1:D){
+        		        D = min(self$A,self$TT-t)
+        		        d = ode(self$SRR(Ws%*%self$N[t,self$As:self$A]), self$time[1:D], private$dNdt, private$dNdt_par, method)[,2]
+				for(a in 1:D){
         		                self$N[t+a,a] = d[a]
         		                i = i+1
         		        }
@@ -110,21 +108,27 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 	#
 	private = list(
 		#
-		dNdt_par = list(),
+		dNdt = NA,
+		dNdt_par = c(),	
 		#
 		dNdt_classify = function(fun){
 			#
 			arg = formals(fun)
-			bdy = body(fun)[-1]
+			bdy = as.character(body(fun)[-1])
 			extraArgs = names(arg[3:length(arg)])
+			parBlock = c()
 			for( ea in extraArgs ){
 				#fill dNdt_par
 				eval(parse( text=sprintf("private$dNdt_par[ea]=self$%s", ea) ))
 				#build par block
+				parBlock = c(parBlock, sprintf("%s = dNdt_par['%s']", ea, ea))
 			}
+			#
+			eval(parse( text=sprintf("private$dNdt=function(%s, %s, dNdt_par){}", names(arg[1]), names(arg[2])) ))
+			body(private$dNdt) = parse( text=c('{', parBlock, bdy, '}') )
 		},
-		#	
-		classify = function(fun, numPars){
+		#NOTE: numPars may only be 1 presently
+		classify = function(fun, numPars=1){
 			#
 			name = as.character(substitute(fun))
 			arg = formals(fun)
@@ -135,10 +139,9 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 				var = sprintf("self$%s_%s", name, ea)
 				bdy = gsub(ea, var, bdy)
 			}
-			print(bdy)
-			#
+			#NOTE: check the argument with numPars>1
 			eval(parse( text=sprintf("self$%s=function(%s){}", name, names(arg[1:numPars])) ))
-			eval(parse( text=sprintf("body(self$%s)=parse(text=bdy)", name) ))	
+			eval(parse( text=sprintf("body(self$%s)=parse(text=c('{', bdy, '}'))", name) ))	
 		},
 		#
 		buildN = function(time=NA, A=NA, As=NA, Af=NA){

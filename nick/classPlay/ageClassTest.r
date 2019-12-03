@@ -8,24 +8,6 @@ source('ageClassR6.r')
 #
 
 #dNdt
-dNdt = function(t, y, par){
-        #t      : current time step as requested by ode
-        #y      : value at previous time as requested by ode
-        #par    : parameters to be passed by value
-                #af     : age suseptible to fishing given as integer
-                #mn     : natural mortality given as numeric
-                #mf     : fishing mortality given as numeric
-
-        #unpack
-        Af = par['Af']
-        mn = par['mn']
-        mf = par['mf']
-        #assume population is not in the fishery, but if it is include fishing mortality
-        out = y*(exp(-mn)-1)
-        if(t>=Af){ out = y*(exp(-mn-mf)-1) }
-        #
-        return( list(out) )
-}
 dNdt = function(t, y, Af, mn, mf){
         #t      : current time step as requested by ode
         #y      : value at previous time as requested by ode
