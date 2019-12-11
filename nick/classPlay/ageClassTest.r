@@ -1,6 +1,8 @@
 rm(list=ls())
 
 #
+library(boot)
+#
 source('ageClassR6.r')
 
 #
@@ -8,16 +10,18 @@ source('ageClassR6.r')
 #
 
 #dNdt
-dNdt = function(t, y, Af, mn, mf){
+dNdt = function(t, y, mn, mf, Af, rf){
         #t      : current time step as requested by ode
-        #y      : value at previous time as requested by ode
-        #Af     : age suseptible to fishing given as integer
+        #y      : value at previous time as requested by ode 
         #mn     : natural mortality given as numeric
         #mf     : fishing mortality given as numeric
- 
-        #assume population is not in the fishery, but if it is include fishing mortality
-        out = y*(exp(-mn)-1)
-        if(t>=Af){ out = y*(exp(-mn-mf)-1) }
+	#Af     : age suseptible to fishing given as integer
+	#rf	: rate of fishing selectivity
+
+	#
+	#FF = (Af>=t)*mf
+	FF = inv.logit(rf*(t-Af))*mf
+	out = y*(exp(-mn-FF)-1)
         #
         return( list(out) )
 }
@@ -40,7 +44,7 @@ SRR = function(S, a, b, c){
 #
 
 #define functions
-am = ageModel$new( dNdt=dNdt, SRR=SRR, time=1:200, N0=500000, A=10, Af=3, As=3, mn=0.2, mf=0.2 )
+am = ageModel$new( dNdt=dNdt, SRR=SRR, time=1:20, N0=500000, A=10, Af=3, As=3, mn=0.2, mf=0.2, rf=1.2 )
 #SRR
 am$SRR_a = 3
 am$SRR_b = 1/500
@@ -55,5 +59,9 @@ am$LtoW_psi = 3
 
 #
 am$iterate()
+
+##
+#am$rf = 1200
+#am$iterate()
 
 

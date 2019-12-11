@@ -8,101 +8,59 @@ library(deSolve)
 #
 
 #
-ageModel = R6Class("AgeModel", lock_objects=FALSE,
+prodModel = R6Class("ProdModel", lock_objects=FALSE,
 	#
 	public = list(
 		#pop
 		N0 = NA,
 		N  = NA,
 		#time
-		time = NA,
-		TT   = NA,
-		#age
-		A  = NA,
-		As = NA,
-		Af = NA,	
+		time = NA,	
 		#mortality
 		mn = NA,
 		mf = NA,
-		#functions	
-		SRR  = NA,
+		#functions
 		AtoL = NA,
 		LtoW = NA,
 		#computational
 		method = 'rk4',
 		
 		#
-		initialize = function( 	N0   = NA,	
-					A    = NA,	
+		initialize = function( 	N0   = NA,
+					mn   = NA,
+					mf   = NA,
 					time = NA,  
-					dNdt = NA, 
-					SRR  = NA,
-					AtoL = function(a,Linf,k,a0){ Linf*(1-exp(-k*(a-a0))) }, 
-					LtoW = function(l,rho,psi){ rho*l^psi },
-					...
+					dNdt = NA	
 		){
 			#misc variable digestion
-			misc = list(...)
-			miscNames = names(misc)
-			for(m in miscNames){
-				eval(parse( text=sprintf("self$%s=misc[[m]]", m) )) 
-			}
-				
+			self$N0 = N0
+			self$mn = mn
+			self$mf = mf
+			self$time = time
+			
 			#dNdt
 			stopifnot(is.function(dNdt))
-			private$dNdt_classify(dNdt)
-						
-			#SRR
-			stopifnot(is.function(SRR))
-			private$classify(SRR)
-			
-			#AtoL
-			stopifnot(is.function(AtoL))
-			private$classify(AtoL)
-			
-			#LtoW
-			stopifnot(is.function(LtoW))
-			private$classify(LtoW)
+			private$dNdt_classify(dNdt)	
 			
 			#preallocate N
 			self$N0 = N0
-			self$A  = A
-			private$buildN(time=time, A=A)
-			
-			
+			self$N  = matrix(NA, nrow=length(time), ncol=1)
+			rownames(self$N) = sprintf("TIME %d", time)
 		},
-		##NOTE: this only functions for consectutive times starting at 1 to self$TT
+		#
 		iterate = function(method=self$method){
 			#prechecking 
 			
-			#digest ode method	
-			self$method = method
-			#digest new dNdt values
-			private$dNdt_classify(dNdt)	
-			#last minute allocation
-			private$buildN(time=self$time, A=self$A)
-			
-			#
-			Ws = self$LtoW(self$AtoL(self$As:self$A))
+			#digest and possibly change ode method	
+			self$method = method	
+		
+			#preallocate N
+                        self$N  = matrix(NA, nrow=length(self$time), ncol=1)
+                        rownames(self$N) = sprintf("TIME %d", self$time)
 			
 			#solve 
-        		self$N[1,] = ode(self$N0, self$time[1:self$A], private$dNdt, private$dNdt_par, method)[,2]
-        		#copy the upper diagonal over
-        		for(r in 2:self$A){ for(c in r:self$A){ self$N[r,c]=self$N[r-1,c] }}
-
-        		#NOTE: this loop assumes times are consecutive starting at 1 to self$TT
-        		i = 0
-        		for(t in 1:(self$TT-2)){
-        		        #Length of the diagonal which starts on row t+1 
-        		        D = min(self$A,self$TT-t)
-        		        d = ode(self$SRR(Ws%*%self$N[t,self$As:self$A]), self$time[1:D], private$dNdt, private$dNdt_par, method)[,2]
-				for(a in 1:D){
-        		                self$N[t+a,a] = d[a]
-        		                i = i+1
-        		        }
-        		}
-        		self$N[self$TT,1] = self$SRR(Ws%*%self$N[t,self$As:self$A]) 
-		}
+        		self$N = ode(self$N0, self$time, private$dNdt, private$dNdt_par, method)[,2]
+       		}
 	),
 	#
 	private = list(
@@ -141,26 +99,6 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 			#NOTE: check the argument with numPars>1
 			eval(parse( text=sprintf("self$%s=function(%s){}", name, names(arg[1:numPars])) ))
 			eval(parse( text=sprintf("body(self$%s)=parse(text=c('{', bdy, '}'))", name) ))	
-		},
-		#
-		buildN = function(time=NA, A=NA){ #, As=NA, Af=NA){
-			#preallocate N
-			if(!is.na(A) && !is.na(time)){
-				#basic
-				self$time = time
-				self$TT = max(time)
-				self$A  = A	
-				self$N  = matrix(NA, nrow=length(time), ncol=A)
-				colnames(self$N) = sprintf("AGE %d", 1:A)
-				rownames(self$N) = sprintf("TIME %d", time)
-				##fancy
-				#if(!is.na(As) & !is.na(Af)){
-				#	self$As = As
-				#	self$Af = Af
-        			#	colnames(self$N)[As] = sprintf("%s (As)", colnames(self$N)[As])
-        			#	colnames(self$N)[Af] = sprintf("%s (Af)", colnames(self$N)[Af])
-				#}
-			}
 		}
 	)
 )
