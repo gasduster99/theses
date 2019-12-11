@@ -43,8 +43,8 @@ SRR = function(S, a, b, c){
 am = ageModel$new( dNdt=dNdt, SRR=SRR, time=1:200, N0=500000, A=10, Af=3, As=3, mn=0.2, mf=0.2 )
 #SRR
 am$SRR_a = 3
-am$SRR_b = 1/50000
-am$SRR_c = 1
+am$SRR_b = 1/500
+am$SRR_c = 2 #0.5
 #AtoL
 am$AtoL_Linf = 50
 am$AtoL_a0   = 0
@@ -53,14 +53,7 @@ am$AtoL_k    = 0.25
 am$LtoW_rho = 0.1
 am$LtoW_psi = 3
 
-#N0 = 500000
-##define data structures
-#am$A  = 10
-#am$Af = 3
-#am$As = 3
-#am$TT = 200
-
-##
-#am$iterate()
+#
+am$iterate()
 
 
