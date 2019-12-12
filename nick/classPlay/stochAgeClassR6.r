@@ -29,7 +29,7 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 		AtoL = NA,
 		LtoW = NA,
 		#computational
-		method = 'rk4',
+		ODE_method = 'rk4',
 		
 		#
 		initialize = function( 	N0   = NA,	
@@ -75,11 +75,11 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 				
 		},
 		##NOTE: this only functions for consectutive times starting at 1 to self$TT
-		iterate = function(method=self$method){
+		iterate = function(method=self$ODE_method){
 			#prechecking 
 			
 			#digest ode method	
-			self$method = method
+			self$ODE_method = method
 			#digest new dNdt values
 			private$dNdt_classify(dNdt)	
 			#last minute allocation
@@ -108,7 +108,19 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
         		}
         		self$N[self$TT,1] = self$SRR(Ws%*%self$N[t,self$As:self$A]) + self$rDev[self$TT]
 		},
-		optimize = function(method, pars){
+		#
+		optimize = function(pars, lower, upper, method=self$OPT_method, cov=F, gaBoost=F){
+			#pars is a vector of variable names 
+			#estimates update self variables, and an optional 
+			#covariance matrix is defined (or returned?)
+			
+			#prechecking
+			
+			#digest opt method      
+                        self$OPT_method = method
+			
+			#I need to build the likelihood/prior handling system 
+			optim(par, fun, )
 		}
 	),
 	#
