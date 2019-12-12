@@ -3,7 +3,7 @@ rm(list=ls())
 #
 library(boot)
 #
-source('ageClassR6.r')
+source('stochAgeClassR6.r')
 
 #
 #FUNCTIONS
@@ -43,8 +43,11 @@ SRR = function(S, a, b, c){
 #MAIN
 #
 
+#
+TT = 20
+
 #define functions
-am = ageModel$new( dNdt=dNdt, SRR=SRR, time=1:20, N0=500000, A=10, Af=3, As=3, mn=0.2, mf=0.2, rf=1.2 )
+am = ageModel$new( dNdt=dNdt, SRR=SRR, time=1:TT, N0=500000, A=10, Af=3, As=3, mn=0.2, mf=0.2, rf=1.2 )
 #SRR
 am$SRR_a = 3
 am$SRR_b = 1/500
@@ -56,7 +59,9 @@ am$AtoL_k    = 0.25
 #LtoW
 am$LtoW_rho = 0.1
 am$LtoW_psi = 3
-
+#
+am$rDev = exp(rnorm(TT, 0, 7)) #rep(0, TT)
+#am$rDev[5] = 100000
 #
 am$iterate()
 
