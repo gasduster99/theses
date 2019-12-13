@@ -19,12 +19,16 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		#mortality
 		mn = NA,
 		mf = NA,
-		#functions
-		AtoL = NA,
-		LtoW = NA,
+		#model
+                sdp = NA,
+                sdo = NA,
+		#NOTE: the likelihood only distributions parameterized in terms of its mean and standard deviation
+                likelihood = list(observation=dlnorm, process=NA), 
+                prior = list(), #parameter name=function
+		#functions	
 		#computational
-		method = 'rk4',
-		
+		ODE_method = 'rk4',
+		OPT_method = 'L-BFGS-B',
 		#
 		initialize = function( 	N0   = NA,
 					mn   = NA,
@@ -54,19 +58,109 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			#digest and possibly change ode method	
 			self$method = method	
 		
-			#preallocate N
+			#last minute allocation and variable updates
                         self$N  = matrix(NA, nrow=length(self$time), ncol=1)
                         rownames(self$N) = sprintf("TIME %d", self$time)
-			
+
 			#solve 
         		self$N = ode(self$N0, self$time, private$dNdt, private$dNdt_par, method)[,2]
-       		}
+       		},
+		#
+                optimize = function(    data,
+					parNames,
+                                        lower, upper,
+                                        method=self$OPT_method,
+                                        cov=F,
+                                        gaBoost=F,
+                                        control = list()
+                ){
+                        #pars is a vector of variable names 
+                        #estimates update self variables, and an optional 
+                        #covariance matrix is defined (or returned?)
+
+                        #prechecking
+
+                        #digest opt method      
+                        self$OPT_method = method
+			
+			#I to reconsider how to build the likelihood/prior handling system
+
+                        #here I assemble the model
+                        #NOTE: the likelihood only allows distributions parameterized in terms of its mean and standard deviation
+                        fun = function(par){
+				#unpack par
+				private$parToSelf(par)
+				#compute mean function	
+				self$iterate()
+				#evaluate likelihood
+                                like = self$likelihood$observation(data, self$N, self$sdo, log=T)
+				#
+				return( -sum(like) )
+                        }
+
+                        ##possibly precondition guesses with ga
+
+                        #optim
+                        optimOut = optim(
+				private$selfToPar(parNames), 
+				fun,
+                        	lower = lower,
+                        	upper = upper,
+                        	hessian = cov,
+				method  = self$OPT_method, 
+                        	control = control
+                        )
+			
+			#how to handle covariance
+			
+			#
+			return( optimOut )
+		}
 	),
 	#
 	private = list(
 		#
 		dNdt = NA,
 		dNdt_par = c(),	
+		#
+		selfToPar = function(parNames){
+			#check if variable names exist
+
+			#
+			parValues = c()
+			for(pn in parNames){
+				eval(parse( text=sprintf("parValues['%s']=self$%s", pn, pn) ))
+			}
+			#
+			return(parValues)
+		},
+		#NOTE: parValues should be passed with names
+		parToSelf = function(parValues){
+			#check is names exist
+
+			#
+			parNames = names(parValues)
+			dNdt_parNames = names(private$dNdt_par)
+			#
+			for(pn in parNames){
+				#update self
+				eval(parse( text=sprintf("self$%s=parValues[pn]", pn) ))
+				#update dNdt_par
+				if(pn %in% dNdt_parNames){
+					eval(parse( text=sprintf("private$dNdt_par[pn]=self$%s", pn) ))	
+				}
+			}
+		},
+		##NOTE: parameters in the derivative are not optimizing because dNdt_par does not automatically update
+		##maybe use this function to strategically update, or maybe get rid of dNdt_par altogether, just add to self
+		#dNdt_par_update = function(parNames){
+		#	#
+		#	ins = parNames %in% names(private$dNdt_par)
+		#	for( p in parNames[ins] ){
+		#		#fill dNdt_par
+                #                eval(parse( text=sprintf("private$dNdt_par[p]=self$%s", p) ))
+		#	}
+		#}
 		#
 		dNdt_classify = function(fun){
 			#

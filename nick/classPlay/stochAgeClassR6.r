@@ -17,20 +17,20 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 		#time
 		time = NA,
 		TT   = NA,
-		#age
-		A  = NA,
-		As = NA,
-		Af = NA,	
-		#mortality
-		mn = NA,
-		mf = NA,
-		#functions	
+		#max age
+		A = NA,
+		#model
+		sdp = NA,
+		sdo = NA,
+		likelihood = list(observation=dlnorm, process=NA), #NOTE: the likelihood only takes normal and lognormal observation and process models
+		prior = list(),#parameter name=function
+		#functions
 		SRR  = NA,
 		AtoL = NA,
 		LtoW = NA,
 		#computational
 		ODE_method = 'rk4',
-		
+		OPT_method = 'L-BFGS-B',
 		#
 		initialize = function( 	N0   = NA,	
 					A    = NA,	
@@ -109,7 +109,13 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
         		self$N[self$TT,1] = self$SRR(Ws%*%self$N[t,self$As:self$A]) + self$rDev[self$TT]
 		},
 		#
-		optimize = function(pars, lower, upper, method=self$OPT_method, cov=F, gaBoost=F){
+		optimize = function(	pars, 
+					lower, upper, 
+					method=self$OPT_method, 
+					cov=F, 
+					gaBoost=F, 
+					control = list()
+		){
 			#pars is a vector of variable names 
 			#estimates update self variables, and an optional 
 			#covariance matrix is defined (or returned?)
@@ -119,8 +125,25 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 			#digest opt method      
                         self$OPT_method = method
 			
-			#I need to build the likelihood/prior handling system 
-			optim(par, fun, )
+			#I need to build the likelihood/prior handling system
+			
+			#build par vector from self
+			
+			#here I assemble the model
+			#NOTE: the likelihood only takes normal and lognormal observation and process models
+			fun = function(){
+				self$likelihood$observation()
+			}
+			
+			#possibly precondition guesses with ga
+			
+			#optim
+			optimOut = optim(par, fun, 
+				lower = lower, 
+				upper = upper,
+				hessian = cov,
+				control = control
+			)
 		}
 	),
 	#
