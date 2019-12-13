@@ -36,7 +36,8 @@ pm$likelihood$observation = dnorm
 pm$iterate()
 data = pm$N + rnorm(TT, 0, 10000)
 pm$mf = 0.4
-optOut = pm$optimize(data, c('sdo', 'mf'), lower=c(0, 0), upper=c(2000000, 1), cov=T)
+pm$N0 = 10000
+optOut = pm$optimize(data, c('sdo', 'mf', 'N0'), lower=c(0, 0, 0), upper=c(50000, 1, 1e6), cov=T, gaBoost=T)
 
 #
 #PLOT

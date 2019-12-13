@@ -48,7 +48,7 @@ ageModel = R6Class("AgeModel", lock_objects=FALSE,
 			for(m in miscNames){
 				eval(parse( text=sprintf("self$%s=misc[[m]]", m) )) 
 			}
-				
+			
 			#dNdt
 			stopifnot(is.function(dNdt))
 			private$dNdt_classify(dNdt)

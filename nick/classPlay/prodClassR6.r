@@ -1,6 +1,7 @@
 
 #
 library(R6)
+library(GA)
 library(deSolve)
 
 #
@@ -99,9 +100,23 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                         }
 
                         ##possibly precondition guesses with ga
+			if( gaBoost ){
+				gaOut = ga(
+					type 	= 'real-valued', 
+					fitness	= function(x){ -fun(x) },
+					lower	= lower,
+				        upper   = upper,
+				       	popSize = 1e3, 
+				       	maxiter = 100,
+				       	optim   = T,
+					parallel= T,
+					suggestions = private$selfToPar(parNames)
+				)
+				#sol = gaOut@solution
+			}
 
                         #optim
-                        optimOut = optim(
+                        optOut = optim(
 				private$selfToPar(parNames), 
 				fun,
                         	lower = lower,
@@ -111,10 +126,10 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                         	control = control
                         )
 			
-			#how to handle covariance
+			#?how to handle covariance?
 			
 			#
-			return( optimOut )
+			return( optOut )
 		}
 	),
 	#
