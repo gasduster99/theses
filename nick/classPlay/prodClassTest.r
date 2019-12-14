@@ -25,19 +25,27 @@ dNdt = function(t, y, mn, mf){
 #
 
 #
-TT = 10
+TT = 100
 
 #define functions
 pm = prodModel$new( dNdt=dNdt, time=1:TT, N0=500000, mn=0.2, mf=0.2 )
-#
-pm$sdo = 1
-pm$likelihood$observation = dnorm
-#
+#generate data
 pm$iterate()
 data = pm$N + rnorm(TT, 0, 10000)
-pm$mf = 0.4
-pm$N0 = 10000
-optOut = pm$optimize(data, c('sdo', 'mf', 'N0'), lower=c(0, 0, 0), upper=c(50000, 1, 1e6), cov=T, gaBoost=T)
+#initial guesses for optimization
+pm$mf 	= 0.4 	#0.17	#	
+pm$N0 	= 10000	#500000	#
+pm$sdo 	= 1 	#7000	#
+#define stats model
+pm$likelihood$observation = dnorm
+#optimize
+optOut = pm$optimize(data, 
+	c('sdo', 'mf', 'N0'), 
+	lower	= c(0, 0, 0), 
+	upper	= c(50000, 1, 1e6),  
+	gaBoost = T,
+	cov	= T
+)
 
 #
 #PLOT

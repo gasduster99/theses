@@ -16,32 +16,31 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		N0 = NA,
 		N  = NA,
 		#time
-		time = NA,	
-		#mortality
-		mn = NA,
-		mf = NA,
+		time = NA,
 		#model
                 sdp = NA,
                 sdo = NA,
 		#NOTE: the likelihood only distributions parameterized in terms of its mean and standard deviation
-                likelihood = list(observation=dlnorm, process=NA), 
+                #I need to reconsider how to build the likelihood/prior handling system
+		likelihood = list(observation=dlnorm, process=NA), 
                 prior = list(), #parameter name=function
 		#functions	
 		#computational
 		ODE_method = 'rk4',
 		OPT_method = 'L-BFGS-B',
+		
 		#
-		initialize = function( 	N0   = NA,
-					mn   = NA,
-					mf   = NA,
+		initialize = function( 	N0   = NA,	
 					time = NA,  
-					dNdt = NA	
-		){
+					dNdt = NA,
+					...
+		){	
 			#misc variable digestion
-			self$N0 = N0
-			self$mn = mn
-			self$mf = mf
-			self$time = time
+                        misc = list(...)
+                        miscNames = names(misc)
+                        for(m in miscNames){
+                                eval(parse( text=sprintf("self$%s=misc[[m]]", m) ))
+                        }
 			
 			#dNdt
 			stopifnot(is.function(dNdt))
@@ -49,9 +48,11 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			
 			#preallocate N
 			self$N0 = N0
+			self$time = time
 			self$N  = matrix(NA, nrow=length(time), ncol=1)
 			rownames(self$N) = sprintf("TIME %d", time)
 		},
+		
 		#
 		iterate = function(method=self$method){
 			#prechecking 
@@ -66,6 +67,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			#solve 
         		self$N = ode(self$N0, self$time, private$dNdt, private$dNdt_par, method)[,2]
        		},
+		
 		#
                 optimize = function(    data,
 					parNames,
@@ -75,16 +77,10 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                                         gaBoost=F,
                                         control = list()
                 ){
-                        #pars is a vector of variable names 
-                        #estimates update self variables, and an optional 
-                        #covariance matrix is defined (or returned?)
-
                         #prechecking
 
                         #digest opt method      
-                        self$OPT_method = method
-			
-			#I to reconsider how to build the likelihood/prior handling system
+                        self$OPT_method = method	
 
                         #here I assemble the model
                         #NOTE: the likelihood only allows distributions parameterized in terms of its mean and standard deviation
@@ -98,25 +94,36 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 				#
 				return( -sum(like) )
                         }
-
-                        ##possibly precondition guesses with ga
+			
+			#
+			out = list()		
+				
+                        #possibly precondition guesses with ga
 			if( gaBoost ){
-				gaOut = ga(
+				#
+				par = private$selfToPar(parNames)
+				nome = names(par)
+				#
+				out[['gaOut']] = ga(
 					type 	= 'real-valued', 
-					fitness	= function(x){ -fun(x) },
+					fitness	= function(x){ names(x)=nome; -fun(x) },
+					names	= nome,
 					lower	= lower,
 				        upper   = upper,
-				       	popSize = 1e3, 
-				       	maxiter = 100,
+				       	popSize = 1e4, 
+				       	maxiter = 1e3,
+					run	= 50,
 				       	optim   = T,
 					parallel= T,
-					suggestions = private$selfToPar(parNames)
+					#monitor = F,
+					suggestions = par
 				)
-				#sol = gaOut@solution
+				#make sure to update with the best solution
+				private$parToSelf(out[['gaOut']]@solution[1,])
 			}
 
                         #optim
-                        optOut = optim(
+                        out[['optimOut']] = optim(
 				private$selfToPar(parNames), 
 				fun,
                         	lower = lower,
@@ -127,16 +134,19 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                         )
 			
 			#?how to handle covariance?
+			if( cov ){ self$rsCov = solve(out$optimOut$hessian) }
 			
 			#
-			return( optOut )
+			return( out )
 		}
 	),
+	
 	#
 	private = list(
 		#
 		dNdt = NA,
 		dNdt_par = c(),	
+		
 		#
 		selfToPar = function(parNames){
 			#check if variable names exist
@@ -149,6 +159,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			#
 			return(parValues)
 		},
+		
 		#NOTE: parValues should be passed with names
 		parToSelf = function(parValues){
 			#check is names exist
@@ -161,21 +172,13 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 				#update self
 				eval(parse( text=sprintf("self$%s=parValues[pn]", pn) ))
 				#update dNdt_par
+				#NOTE: maybe get rid of dNdt_par altogether, just add to self
 				if(pn %in% dNdt_parNames){
 					eval(parse( text=sprintf("private$dNdt_par[pn]=self$%s", pn) ))	
 				}
 			}
 		},
-		##NOTE: parameters in the derivative are not optimizing because dNdt_par does not automatically update
-		##maybe use this function to strategically update, or maybe get rid of dNdt_par altogether, just add to self
-		#dNdt_par_update = function(parNames){
-		#	#
-		#	ins = parNames %in% names(private$dNdt_par)
-		#	for( p in parNames[ins] ){
-		#		#fill dNdt_par
-                #                eval(parse( text=sprintf("private$dNdt_par[p]=self$%s", p) ))
-		#	}
-		#}
+		
 		#
 		dNdt_classify = function(fun){
 			#
@@ -193,6 +196,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			eval(parse( text=sprintf("private$dNdt=function(%s, %s, dNdt_par){}", names(arg[1]), names(arg[2])) ))
 			body(private$dNdt) = parse( text=c('{', parBlock, bdy, '}') )
 		},
+		
 		#NOTE: numPars may only be 1 presently
 		classify = function(fun, numPars=1){
 			#
