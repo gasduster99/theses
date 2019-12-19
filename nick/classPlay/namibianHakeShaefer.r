@@ -36,13 +36,13 @@ pm$q = 0.00045
 pm$sdo 	= sd(cpue)
 #pm$iterate()
 #define stats model
-pm$likelihood$observation = dnorm
+#pm$likelihood$observation = dnorm
 #optimize
 optOut = pm$optimize(cpue, 
 	c('sdo', 'R', 'N0'), 
 	lower	= c(0.01, 0, 0), 
 	upper	= c(sd(cpue), 1, 1e5),  
-	#gaBoost = T,
+	gaBoost = T,
 	cov	= T
 )
 

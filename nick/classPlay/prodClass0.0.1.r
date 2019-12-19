@@ -229,12 +229,12 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			#
 			eval(parse( text=sprintf("self$%s=function(%s){}", name, paste(mainArgs, collapse=',')) ))
 			eval(parse( text=sprintf("body(self$%s)=parse(text=c('{', bdy, '}'))", name) ))	
-		}
+		},
 		
 		#
 		likes = list(
 			LN = function(self, data){
-				dnorm(data, log(self$q)+log(self$N), self$sdo, log=T)
+				dnorm(log(data), log(self$q)+log(self$N), self$sdo, log=T)
 			}
 		)
 	)
