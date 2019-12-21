@@ -1,7 +1,7 @@
 rm(list=ls())
 
 #
-source('prodClass0.0.1.r')
+source('prodClassR6.r')
 
 #
 #FUNCTIONS

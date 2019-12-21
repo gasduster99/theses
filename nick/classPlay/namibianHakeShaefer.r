@@ -12,7 +12,7 @@ dNdt = function(t, y, R, K, C){
         #t      : current time step as requested by ode
         #y      : value at previous time as requested by ode
         #r      : growth rate given as numeric
-        #K      : carrying capacity given as numeric
+        #K/N0   : carrying capacity given as numeric
 	#C	: catch time series
  
         #
@@ -30,31 +30,55 @@ cpue  = c(1.78, 1.31, 0.91, 0.96, 0.88, 0.90, 0.87, 0.72, 0.57, 0.45, 0.42, 0.42
 catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277, 254, 170, 97, 91, 177, 216, 229, 211, 231, 223)
 TT = length(cpue)
 
-#define functions
-pm = prodModel$new( dNdt=dNdt, time=1:TT, N0=2709, K=2709, R=0.39, C=catch )
-pm$q = 0.00045
-pm$sdo 	= sd(cpue)
-#pm$iterate()
-#define stats model
-#pm$likelihood$observation = dnorm
-#optimize
-optOut = pm$optimize(cpue, 
-	c('sdo', 'R', 'N0'), 
-	lower	= c(0.01, 0, 0), 
-	upper	= c(sd(cpue), 1, 1e5),  
-	gaBoost = T,
-	cov	= T
-)
+#
+pmLN = prodModel$new( dNdt=dNdt, time=1:TT, N0=3955.556, K=3955.556, R=0.38, C=catch )
+pmLN$q = 0.00045
+pmLN$sdo  = 0.1 
+pmLN$model$observation = 'LN'
+##optimize
+#optAns = pmLN$optimize(cpue, 
+#	c('sdo', 'R', 'K'), 
+#	lower	= c(0.001, 0, 0), 
+#	upper	= c(0.3, 1, 1e5),  
+#	gaBoost = T, 
+#	#list(maxiter=1e3, run=50, popSize=1e5), #T, #
+#	#method 	= "Nelder-Mead", 
+#	cov	= T	
+#)
 
-#
-#PLOT
-#
+##
+##dev.new()
+#jpeg('fishCode.jpg')
+#plot(cpue)
+##
+#lines(pmLN$time, pmLN$q*pmLN$N, lwd=3)
+#lines(pmLN$time, qlnorm(0.025, log(pmLN$q)+log(pmLN$N), pmLN$sdo), lty=2)
+#lines(pmLN$time, qlnorm(0.975, log(pmLN$q)+log(pmLN$N), pmLN$sdo), lty=2)
+#dev.off()
 
+##
+#pmN = prodModel$new( dNdt=dNdt, time=1:TT, N0=3955.556, K=3955.556, R=0.38, C=catch )
+#pmN$q = 0.00045
+#pmN$sdo 	= 0.1
+#pmN$model$observation = 'N'
+##
+#optAns = pmN$optimize(cpue, 
+#	c('sdo', 'R', 'K'), 
+#	lower	= c(0.001, 0, 0), 
+#	upper	= c(0.3, 1, 1e5),  
+#	gaBoost = T, 
+#	#list(maxiter=1e3, run=50, popSize=1e5), #T, #
+#	#method 	= "Nelder-Mead", 
+#	cov	= T	
+#)
 #
-dev.new()
-plot(cpue)
-lines(pm$time, pm$q*pm$N, lwd=3)
-lines(pm$time, qnorm(0.025, pm$q*pm$N, pm$sdo), col='blue', lty=2)
-lines(pm$time, qnorm(0.975, pm$q*pm$N, pm$sdo), col='blue', lty=2)
-
 #
+##
+##PLOT
+##
+#
+##
+#lines(pmN$time, pmN$q*pmN$N, lwd=3, col='blue')
+#lines(pmN$time, qnorm(0.025, pmN$q*pmN$N, pmN$sdo), col='blue', lty=2)
+#lines(pmN$time, qnorm(0.975, pmN$q*pmN$N, pmN$sdo), col='blue', lty=2)
+##

@@ -95,12 +95,14 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 				#evaluate likelihood
                                 #like = self$likelihood$observation(data, self$q*self$N, self$sdo, log=T)
 				like = private$likes[[self$model$observation]](self, data)
-				#
+				##
+				#print(self$q)
+				#print(self$sdo)	
+				#print(like)
+				#print(self$N)
+				##
 				return( -sum(like) )
                         }
-			
-			#
-			out = list()		
 				
                         #possibly precondition guesses with ga
 			if( gaBoost!=F ){
@@ -115,50 +117,103 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 				#
 				par = private$selfToPar(parNames)
 				nome = names(par)
+				
 				#
-				out[['gaOut']] = ga(
-					type 	= 'real-valued', 
-					fitness	= function(x){ names(x)=nome; -fun(x) },
-					names	= nome,
-					lower	= lower,
-				        upper   = upper,
-				       	popSize = gaBoost[['popSize']], 
-				       	maxiter = gaBoost[['maxiter']],
-					run	= gaBoost[['run']],
-				       	optim   = T,
-					parallel= T,
-					#monitor = F,
-					suggestions = par
-				)
-				#make sure to update with the best solution
-				private$parToSelf(out[['gaOut']]@solution[1,])
-			}
-			
-			#NOTE: consider case where ga is better than optim (or optim fails)
+				i = 0
+				flag = T	
+				while( flag ){ 
+					tryCatch({
+						#
+						out = list()
+						#
+						out[['gaOut']] = ga(
+							type 	= 'real-valued', 
+							fitness	= function(x){ names(x)=nome; -fun(x) },
+							names	= nome,
+							lower	= lower,
+						        upper   = upper,
+						       	popSize = gaBoost[['popSize']], 
+						       	maxiter = gaBoost[['maxiter']],
+							run	= gaBoost[['run']],
+						       	optim   = T,
+							parallel= T,
+							#monitor = F,
+							suggestions = par
+						)
+						#make sure to update with the best solution
+						private$parToSelf(out[['gaOut']]@solution[1,])
+						par = out[['gaOut']]@solution
+	
+						#optim
+                        			out[['optimOut']] = optim(
+                        			        par[1,],
+                        			        fun,
+                        			        lower = lower,
+                        			        upper = upper,
+                        			        hessian = cov,
+                        			        method  = self$OPT_method,
+                        			        control = control
+                        			)
+						
+						#make sure to update with the best solution
+                        			if( out[['gaOut']]@fitnessValue>out[['optimOut']]$value ){
+                        			        #
+                        			        private$parToSelf(out[['gaOut']]@solution[1,])
+                        			}
 
-                        #optim
-                        out[['optimOut']] = optim(
-				private$selfToPar(parNames), 
-				fun,
-                        	lower = lower,
-                        	upper = upper,
-                        	hessian = cov,
-				method  = self$OPT_method, 
-                        	control = control
-                        )
-			
-			#make sure to update with the best solution
-			if( gaBoost!=F && out[['gaOut']]@fitnessValue>out[['optimOut']]$value ){
-				#
-				private$parToSelf(out[['gaOut']]@solution[1,])
-			}
+                        			#?how to handle covariance?
+                        			if( cov ){ self$rsCov = solve(out$optimOut$hessian) }
+						
+						#
+						flag = F
+					}, error=function(err){
+						#
+						writeLines( sprintf("\nRound: %s\n", i) ) 
+						print( self )
+						#print( err )
+						#
+						return(T) 
+					}
+					)
+					#
+					i = i+1
+				}
 
-			#?how to handle covariance?
-			if( cov ){ self$rsCov = solve(out$optimOut$hessian) }
-			
+			} else{
+                        	#optim
+                        	out = optim(
+					private$selfToPar(parNames), 
+					fun,
+                        		lower = lower,
+                        		upper = upper,
+                        		hessian = cov,
+					method  = self$OPT_method, 
+                        		control = control
+                        	)	
+
+				#?how to handle covariance?
+				if( cov ){ self$rsCov = solve(out$optimOut$hessian) }
+			}
 			#
 			return( out )
-		}	
+		},
+		
+		#
+		print = function(){
+			#
+			nome = names(self)
+			display = nome[!nome%in%c(".__enclos_env__", "initialize", "iterate", "optimize", "clone", "print")]
+			#
+			for(d in display){
+				#
+				writeLines(sprintf('%s:', d))
+				typeof( eval(parse( text=sprintf("self$%s", d) )) )
+			}
+		}
+		
+		##
+		#plot = function(){
+		#}	
 	),
 	
 	#
@@ -233,8 +288,13 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		
 		#
 		likes = list(
+			#
 			LN = function(self, data){
 				dnorm(log(data), log(self$q)+log(self$N), self$sdo, log=T)
+			},
+			#
+			N = function(self, data){
+				dnorm(data, self$q*self$N, self$sdo, log=T)
 			}
 		)
 	)
