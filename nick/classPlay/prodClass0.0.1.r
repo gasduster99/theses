@@ -1,8 +1,8 @@
 
 #
-library(R6)
-library(GA)
-library(deSolve)
+suppressWarnings(suppressMessages( library(R6, quietly=TRUE) ))
+suppressWarnings(suppressMessages( library(GA, quietly=TRUE) ))
+suppressWarnings(suppressMessages( library(deSolve, quietly=TRUE) ))
 
 #
 #CLASS
@@ -20,12 +20,10 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		#model
                 sdp = NA,
                 sdo = NA,
-		#NOTE: the likelihood only distributions parameterized in terms of its mean and standard deviation
-                #I need to reconsider how to build the likelihood/prior handling system
+                #normalization constant
 		q = 1,
 		model = list(observation="LN", process=NA),
-		#likelihood = list(observation=dlnorm, process=NA), 
-                prior = list(), #parameter name=function
+                prior = list(),
 		#functions
 		#computational
 		ODE_method = 'rk4',
@@ -57,10 +55,14 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		
 		#
 		iterate = function(method=self$ODE_method){
+			#method	: optionally update the ODE method to be handed to the ode function (default 'rk4')
+			#
+			#value	: nothing returned, but self$N is updated with current values
+
 			#prechecking 
 			
 			#digest and possibly change ode method	
-			self$method = method	
+			self$ODE_method = method	
 		
 			#last minute allocation and variable updates
                         self$N  = matrix(NA, nrow=length(self$time), ncol=1)
@@ -80,6 +82,26 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                                         gaBoost=F,
                                         control = list()
                 ){
+			#data	  : a vector of data used to fit specified model.
+			#	In the future consider adding data to object as an inheritted form.
+			#parNames : a vector of strings matching the names of the parameters to be 
+			#	optimized.
+			#lower	  : a vector of lower bounds for searching parameter space
+			#upper    : a vector of upper bounds for searching parameter space
+			#method   : a string optionally defining the method of optimization to be 
+			#	handed to optim (default 'L-BFGS-B')
+			#cov	  : a logical optionally indicating if hessian should be computed and 
+			#	inverted in optimization process
+			#gaBoost  : a logical optionally (default F) indicating if a persistent 
+			#	genetic algorithm should be used to assist local optimization.
+			#	genetic algoithm repeates until first and second finite difference 
+			#	derivatives are successful and hessian is inverted. Optionally 
+			#	gaBoost may be given as a list containting names values for list(popSize, maxiter, run).
+			#control  : additional control parameters to be passed to optim
+			#
+			#value    : optimization objects are returned. Parameters values are 
+			#	updated inplace. rsCov is defined to self.
+			
                         #prechecking
 
                         #digest opt method      
@@ -93,14 +115,8 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 				#compute mean function	
 				self$iterate()
 				#evaluate likelihood
-                                #like = self$likelihood$observation(data, self$q*self$N, self$sdo, log=T)
 				like = private$likes[[self$model$observation]](self, data)
-				##
-				#print(self$q)
-				#print(self$sdo)	
-				#print(like)
-				#print(self$N)
-				##
+				#	
 				return( -sum(like) )
                         }
 				
@@ -191,7 +207,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                         		control = control
                         	)	
 
-				#?how to handle covariance?
+				#how to handle covariance
 				if( cov ){ self$rsCov = solve(out$optimOut$hessian) }
 			}
 			#

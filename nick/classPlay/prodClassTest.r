@@ -1,7 +1,8 @@
 rm(list=ls())
 
 #
-source('prodClassR6.r')
+#source('prodClassR6.r')
+source('prodClass0.0.1.r')
 
 #
 #FUNCTIONS
@@ -37,24 +38,24 @@ rsd = 10000
 pm$sdo = rsd
 #define stats model
 pm$likelihood$observation = dnorm
-#optimize
-optOut = pm$optimize(data, 
-	c('sdo', 'mf', 'N0'), 
-	lower	= c(0, 0, 0), 
-	upper	= c(sd(data), 1, 1e6),  
-	gaBoost = list(popSize=1e3, maxiter=1e4, run=20),
-	cov	= T
-)
-
+##optimize
+#optOut = pm$optimize(data, 
+#	c('sdo', 'mf', 'N0'), 
+#	lower	= c(0, 0, 0), 
+#	upper	= c(sd(data), 1, 1e6),  
+#	gaBoost = list(popSize=1e3, maxiter=1e4, run=20),
+#	cov	= T
+#)
 #
-#PLOT
+##
+##PLOT
+##
 #
-
-#
-dev.new()
-plot(data)
-lines(pm$time, pm$N, lwd=3)
-lines(pm$time, qnorm(0.025, pm$N, pm$sdo), col='blue', lty=2)
-lines(pm$time, qnorm(0.975, pm$N, pm$sdo), col='blue', lty=2)
+##
+#dev.new()
+#plot(data)
+#lines(pm$time, pm$N, lwd=3)
+#lines(pm$time, qnorm(0.025, pm$N, pm$sdo), col='blue', lty=2)
+#lines(pm$time, qnorm(0.975, pm$N, pm$sdo), col='blue', lty=2)
 
 
