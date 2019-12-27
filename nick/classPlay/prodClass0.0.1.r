@@ -5,6 +5,17 @@ suppressWarnings(suppressMessages( library(GA, quietly=TRUE) ))
 suppressWarnings(suppressMessages( library(deSolve, quietly=TRUE) ))
 
 #
+#FUNCTIONS
+#
+
+#
+makeTransparent<-function(someColor, alpha=100){
+  newColor<-col2rgb(someColor)
+  apply(newColor, 2, function(curcoldata){rgb(red=curcoldata[1], green=curcoldata[2],
+    blue=curcoldata[3],alpha=alpha, maxColorValue=255)})
+}
+
+#
 #CLASS
 #
 
@@ -105,7 +116,10 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                         #prechecking
 
                         #digest opt method      
-                        self$OPT_method = method	
+                        self$OPT_method = method
+			
+			#
+			out = list()
 
                         #here I assemble the model
                         #NOTE: the likelihood only allows distributions parameterized in terms of its mean and standard deviation
@@ -115,7 +129,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 				#compute mean function	
 				self$iterate()
 				#evaluate likelihood
-				like = private$likes[[self$model$observation]](self, data)
+				like = private$dLikes[[self$model$observation]](self, data)
 				#	
 				return( -sum(like) )
                         }
@@ -140,8 +154,6 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 				while( flag ){ 
 					tryCatch({
 						#
-						out = list()
-						#
 						out[['gaOut']] = ga(
 							type 	= 'real-valued', 
 							fitness	= function(x){ names(x)=nome; -fun(x) },
@@ -159,7 +171,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 						#make sure to update with the best solution
 						private$parToSelf(out[['gaOut']]@solution[1,])
 						par = out[['gaOut']]@solution
-	
+						
 						#optim
                         			out[['optimOut']] = optim(
                         			        par[1,],
@@ -197,7 +209,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 
 			} else{
                         	#optim
-                        	out = optim(
+                        	out[['optimOut']] = optim(
 					private$selfToPar(parNames), 
 					fun,
                         		lower = lower,
@@ -205,7 +217,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                         		hessian = cov,
 					method  = self$OPT_method, 
                         		control = control
-                        	)	
+                        	)
 
 				#how to handle covariance
 				if( cov ){ self$rsCov = solve(out$optimOut$hessian) }
@@ -217,19 +229,67 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		#
 		print = function(){
 			#
+			n = 5
+			#
 			nome = names(self)
-			display = nome[!nome%in%c(".__enclos_env__", "initialize", "iterate", "optimize", "clone", "print")]
+			display = nome[!nome%in%c(".__enclos_env__", "initialize", "iterate", "optimize", "clone", "print", "model", "prior", "plot")]
+			display = display[order(nchar(display))]
 			#
 			for(d in display){
 				#
-				writeLines(sprintf('%s:', d))
-				typeof( eval(parse( text=sprintf("self$%s", d) )) )
+				text = sprintf("self$%s", d)
+				if( typeof(eval(parse(text=text)))=='list' ){
+					#
+					cat( sprintf('%s\t:\n', d) )
+					print( eval(parse(text=text)) )
+				} else{
+					#	
+					if(length(eval(parse( text=text )))>n){
+						cat( sprintf('%s\t:', d), eval(parse( text=text ))[1:n], '...\n' )
+					} else{
+						cat( sprintf('%s\t:', d), eval(parse( text=text )), '\n' )
+					}
+				}
 			}
-		}
+		},
 		
-		##
-		#plot = function(){
-		#}	
+		#
+		plot = function(type='population', col='black', alpha=100, add=F){
+			#type	: 'population', 'posterior'
+			#add	: as in other R plots
+			
+			#population
+			if( type=='population' ){
+				#
+				if(!add){
+					plot(self$time, self$q*self$N, 
+						type='l',
+						lwd=3, 
+						col=col
+					)
+				} else{
+					lines(self$time, self$q*self$N, 
+						lwd=3, 
+						col=col
+					)
+				}
+	
+				#
+				polygon( c(self$time, rev(self$time)), c(private$qLikes[[self$model$observation]](self, 0.025), rev(private$qLikes[[self$model$observation]](self, 0.975))), col=makeTransparent(col, alpha=alpha), border=NA )
+
+				#lines(self$time, private$qLikes[[self$model$observation]](self, 0.025), 
+				#	lty=2, 
+				#	col=col
+				#)
+				#lines(self$time, private$qLikes[[self$model$observation]](self, 0.975), 
+				#	lty=2, 
+				#	col=col
+				#)
+			}
+			
+			
+			
+		}
 	),
 	
 	#
@@ -303,7 +363,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		},
 		
 		#
-		likes = list(
+		dLikes = list(
 			#
 			LN = function(self, data){
 				dnorm(log(data), log(self$q)+log(self$N), self$sdo, log=T)
@@ -311,6 +371,18 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			#
 			N = function(self, data){
 				dnorm(data, self$q*self$N, self$sdo, log=T)
+			}
+		),
+		
+		#
+		qLikes = list(
+			#
+			LN = function(self, prob){
+				qlnorm(prob, log(self$q)+log(self$N), self$sdo)
+			},
+			#
+			N = function(self, prob){
+				qnorm(prob, self$q*self$N, self$sdo)
 			}
 		)
 	)
