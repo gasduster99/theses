@@ -49,22 +49,25 @@ optAns = pmLN$optimize(cpue,
 #
 dev.new()
 plot(cpue)
-pmLN$plot(add=T)
+pmLN$plotMean(add=T)
+pmLN$plotBand()
 
-#
-#
-pmN = prodModel$new( dNdt=dNdt, time=1:TT, N0=3955.556, K=3955.556, R=0.38, C=catch )
-pmN$q = 0.00045
-pmN$sdo = 0.1
-pmN$model$observation = 'N'
-#
-optAns = pmN$optimize(cpue, 
-	c('sdo', 'R', 'K'), 
-	lower	= c(0.001, 0, 0), 
-	upper	= c(0.3, 1, 1e5),  
-	gaBoost = T, 
-	cov	= T	
-)
+dev.new()
+pmLN$plotMean()
 
+##
+#pmN = prodModel$new( dNdt=dNdt, time=1:TT, N0=3955.556, K=3955.556, R=0.38, C=catch )
+#pmN$q = 0.00045
+#pmN$sdo = 0.1
+#pmN$model$observation = 'N'
+##
+#optAns = pmN$optimize(cpue, 
+#	c('sdo', 'R', 'K'), 
+#	lower	= c(0.001, 0, 0), 
+#	upper	= c(0.3, 1, 1e5),  
+#	gaBoost = T, 
+#	cov	= T	
+#)
 #
-pmN$plot(add=T, col='red')
+##
+#pmN$plot(add=T, col='red')

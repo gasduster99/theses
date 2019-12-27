@@ -9,10 +9,11 @@ suppressWarnings(suppressMessages( library(deSolve, quietly=TRUE) ))
 #
 
 #
-makeTransparent<-function(someColor, alpha=100){
-  newColor<-col2rgb(someColor)
-  apply(newColor, 2, function(curcoldata){rgb(red=curcoldata[1], green=curcoldata[2],
-    blue=curcoldata[3],alpha=alpha, maxColorValue=255)})
+makeTransparent = function(someColor, alpha=100){
+	newColor = col2rgb(someColor)
+	apply(newColor, 2, function(curcoldata){
+		rgb(red=curcoldata[1], green=curcoldata[2], blue=curcoldata[3], alpha=alpha, maxColorValue=255)
+	})
 }
 
 #
@@ -29,7 +30,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		#time
 		time = NA,
 		#model
-                sdp = NA,
+                sdp = NA, #NOTE: Do I want this here, or possibly only when I create a model with process uncertainty
                 sdo = NA,
                 #normalization constant
 		q = 1,
@@ -41,8 +42,8 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		OPT_method = 'L-BFGS-B',
 		
 		#
-		initialize = function( 	N0   = NA,	
-					time = NA,  
+		initialize = function( 	N0   = NA,
+					time = NA,
 					dNdt = NA,
 					...
 		){	
@@ -232,7 +233,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			n = 5
 			#
 			nome = names(self)
-			display = nome[!nome%in%c(".__enclos_env__", "initialize", "iterate", "optimize", "clone", "print", "model", "prior", "plot")]
+			display = nome[!nome%in%c(".__enclos_env__", "initialize", "iterate", "optimize", "clone", "print", "model", "prior", "plotMean", "plotBand")]
 			display = display[order(nchar(display))]
 			#
 			for(d in display){
@@ -254,42 +255,42 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		},
 		
 		#
-		plot = function(type='population', col='black', alpha=100, add=F){
-			#type	: 'population', 'posterior'
-			#add	: as in other R plots
+		plotMean = function(col='black', alpha=100, lwd=3, add=F){
+			#arguments passed directly to plotting functions
 			
-			#population
-			if( type=='population' ){
-				#
-				if(!add){
-					plot(self$time, self$q*self$N, 
-						type='l',
-						lwd=3, 
-						col=col
-					)
-				} else{
-					lines(self$time, self$q*self$N, 
-						lwd=3, 
-						col=col
-					)
-				}
-	
-				#
-				polygon( c(self$time, rev(self$time)), c(private$qLikes[[self$model$observation]](self, 0.025), rev(private$qLikes[[self$model$observation]](self, 0.975))), col=makeTransparent(col, alpha=alpha), border=NA )
+			#	
+                        if(!add){
+                                plot(self$time, self$q*self$N, 
+                                        type='l',
+                                        lwd=lwd, 
+                                        col=col
+                                )
+                        } else{
+                                lines(self$time, self$q*self$N,
+                                        lwd=lwd,
+                                        col=col
+                                )
+                        }
 
-				#lines(self$time, private$qLikes[[self$model$observation]](self, 0.025), 
-				#	lty=2, 
-				#	col=col
-				#)
-				#lines(self$time, private$qLikes[[self$model$observation]](self, 0.975), 
-				#	lty=2, 
-				#	col=col
-				#)
-			}
+		},
+		
+		#
+		plotBand = function(prob=0.95, col='black', alpha=100){
+			#arguments passed directly to plotting functions
 			
-			
-			
-		}
+			#
+			left = (1-prob)/2
+			right = prob+left
+			#
+			polygon( c(self$time, rev(self$time)), 
+				c(
+					private$qLikes[[self$model$observation]](self, left), 
+					rev(private$qLikes[[self$model$observation]](self, right))
+				), 
+				col = makeTransparent(col, alpha=alpha), 
+				border = NA
+			)	
+		}	
 	),
 	
 	#
