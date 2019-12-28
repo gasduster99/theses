@@ -1,7 +1,8 @@
-
 #
 suppressWarnings(suppressMessages( library(R6, quietly=TRUE) ))
 suppressWarnings(suppressMessages( library(GA, quietly=TRUE) ))
+suppressWarnings(suppressMessages( library(GGally, quietly=TRUE) ))
+suppressWarnings(suppressMessages( library(mvtnorm, quietly=TRUE) ))
 suppressWarnings(suppressMessages( library(deSolve, quietly=TRUE) ))
 
 #
@@ -77,7 +78,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			self$ODE_method = method	
 		
 			#last minute allocation and variable updates
-                        self$N  = matrix(NA, nrow=length(self$time), ncol=1)
+                        self$N = matrix(NA, nrow=length(self$time), ncol=1)
                         rownames(self$N) = sprintf("TIME %d", self$time)
 			
 			#solve 
@@ -233,7 +234,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			n = 5
 			#
 			nome = names(self)
-			display = nome[!nome%in%c(".__enclos_env__", "initialize", "iterate", "optimize", "clone", "print", "model", "prior", "plotMean", "plotBand")]
+			display = nome[!nome%in%c(".__enclos_env__", "initialize", "iterate", "optimize", "clone", "print", "model", "prior", "plotMean", "plotBand", "plotRS")]
 			display = display[order(nchar(display))]
 			#
 			for(d in display){
@@ -290,6 +291,24 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 				col = makeTransparent(col, alpha=alpha), 
 				border = NA
 			)	
+		},
+		
+		#
+		plotRS = function(m=10^4, save=F){
+			#m	: how many samples
+			#save	: FALSE or a filename
+			
+			#
+			parNames = colnames(self$rsCov)	
+			sam = rmvnorm(m, private$selfToPar(parNames), self$rsCov)
+			#
+			if(save==F){
+				 GGally::print_if_interactive(ggpairs(as.data.frame(sam)))
+			} else{	
+				ggsave(filename=save, plot=ggpairs(as.data.frame(sam)))
+			}
+			#
+			return(sam)
 		}	
 	),
 	

@@ -52,8 +52,9 @@ plot(cpue)
 pmLN$plotMean(add=T)
 pmLN$plotBand()
 
+#
 dev.new()
-pmLN$plotMean()
+sam = pmLN$plotRS(m=1e5)#save='test.jpg')
 
 ##
 #pmN = prodModel$new( dNdt=dNdt, time=1:TT, N0=3955.556, K=3955.556, R=0.38, C=catch )
