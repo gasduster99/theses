@@ -137,9 +137,9 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                         }
 				
                         #possibly precondition guesses with ga
-			if( gaBoost!=F ){
+			if( gaBoost[[1]]!=F ){
 				#
-				if(gaBoost==T){
+				if(gaBoost[[1]]==T){
 					gaBoost = list(
 						popSize = 1e4,
 						maxiter = 1e3,
@@ -149,7 +149,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 				#
 				par = private$selfToPar(parNames)
 				nome = names(par)
-				
+
 				#
 				i = 0
 				flag = T	

@@ -40,8 +40,7 @@ optAns = pmLN$optimize(cpue,
 	c('sdo', 'R', 'K'), 
 	lower	= c(0.001, 0, 0), 
 	upper	= c(0.3, 1, 1e5),  
-	gaBoost = F, 
-	#list(maxiter=1e3, run=50, popSize=1e5), #T, #
+	gaBoost = list(maxiter=1e3, run=50, popSize=1e5), #T, #
 	#method 	= "Nelder-Mead", 
 	cov	= T	
 )
