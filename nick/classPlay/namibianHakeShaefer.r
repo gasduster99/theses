@@ -30,8 +30,8 @@ cpue  = c(1.78, 1.31, 0.91, 0.96, 0.88, 0.90, 0.87, 0.72, 0.57, 0.45, 0.42, 0.42
 catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277, 254, 170, 97, 91, 177, 216, 229, 211, 231, 223)
 TT = length(cpue)
 
-#
-pmLN = prodModel$new( dNdt=dNdt, time=1:TT, N0=3955.556, K=2345.843, R=0.465, C=catch )
+#K=2345.843, R=0.465
+pmLN = prodModel$new( dNdt=dNdt, time=1:TT, N0=3955.556, K=345.843, R=0.65, C=catch )
 pmLN$q = 0.00045
 pmLN$sdo  = 0.1 
 pmLN$model$observation = 'LN'
@@ -40,7 +40,7 @@ optAns = pmLN$optimize(cpue,
 	c('sdo', 'R', 'K'), 
 	lower	= c(0.001, 0, 0), 
 	upper	= c(0.3, 1, 1e5),  
-	gaBoost = list(maxiter=1e3, run=50, popSize=1e5), #T, #
+	gaBoost = T, #list(maxiter=1e3, run=10, popSize=1e5), #T, #
 	#method 	= "Nelder-Mead", 
 	cov	= T	
 )

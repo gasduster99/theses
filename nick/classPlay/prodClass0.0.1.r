@@ -200,6 +200,9 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 						#
 						writeLines( sprintf("\nRound: %s\n", i) ) 
 						print( self )
+                                                self$plotMean()
+                                                self$plotBand()
+                                                points(data)
 						#print( err )
 						#
 						return(T) 
@@ -283,6 +286,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			left = (1-prob)/2
 			right = prob+left
 			#
+			
 			polygon( c(self$time, rev(self$time)), 
 				c(
 					private$qLikes[[self$model$observation]](self, left), 
@@ -303,7 +307,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			sam = rmvnorm(m, private$selfToPar(parNames), self$rsCov)
 			#
 			if(save==F){
-				 GGally::print_if_interactive(ggpairs(as.data.frame(sam)))
+				GGally::print_if_interactive(ggpairs(as.data.frame(sam)))
 			} else{	
 				ggsave(filename=save, plot=ggpairs(as.data.frame(sam)))
 			}
