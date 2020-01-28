@@ -35,7 +35,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                 sdo = NA,
                 #normalization constant
 		q = 1,
-		model = list(observation="LN", process=NA),
+		model = list(observation="LN"),
                 prior = list(),
 		#functions
 		#computational
@@ -83,7 +83,6 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			
 			#solve 
         		self$N = ode(self$N0, self$time, private$dNdt, parms=NULL, method=method)[,2]
-       			#self$I = self$q*self$N
 		},
 		
 		#
