@@ -123,7 +123,7 @@ optimize = function(    data,
                                 #	self$plotBand()
 				#}
                                 #points(data)
-                                #print( err )
+                                cat( err )
                                 #
                                 return(T)
                         }
