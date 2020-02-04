@@ -48,9 +48,11 @@ optimize = function(    data,
                 private$parToSelf(par)
                 #compute mean function  
                 self$iterate()
+		#check for pathological series
+		if( any(is.na(self$N)) ){ return(NA) }
+		if( any(!self$N>0) ){ return(NA) }
                 #evaluate likelihood
-                like = private$dLikes[[self$model$observation]](self, data)
-                #       
+                like = private$dLikes[[self$model$observation]](self, data) 
                 return( -sum(like) )
         }
                 
@@ -110,20 +112,25 @@ optimize = function(    data,
                                 }
                                 
                                 #?how to handle covariance?
-                                if( cov ){ self$rsCov = solve(out$optimOut$hessian) }
+                                if( cov ){ 
+					#
+					self$rsCov = chol2inv(chol(out$optimOut$hessian)) 
+					colnames(self$rsCov) = parNames
+					rownames(self$rsCov) = parNames
+				}
                                 
                                 #
                                 flag = F
                         }, error=function(err){
                                 #
                                 writeLines( sprintf("\nRound: %s\n", i) )
-                                self$print()
+                                self$printSelf()
 				#if(!is.na(self$N[1])){
                                 #	self$plotMean()
                                 #	self$plotBand()
 				#}
                                 #points(data)
-                                cat( err )
+                                #do.call(cat, err)
                                 #
                                 return(T)
                         }

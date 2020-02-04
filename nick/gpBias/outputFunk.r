@@ -17,13 +17,13 @@ makeTransparent = function(someColor, alpha=100){
 #
 
 #
-print = function(){
+printSelf = function(){
         #
         n = 5
         #
         nome = names(self)
 	extraNames = c(
-	".__enclos_env__", "initialize", "iterate", "optimize", "clone", "print", 
+	".__enclos_env__", "initialize", "iterate", "optimize", "clone", "printSelf", 
 	"model", "prior", "plotMean", "plotBand", "plotRS", "N0Funk"
 	)
         display = nome[!nome%in%extraNames]
@@ -53,13 +53,13 @@ plotMean = function(col='black', alpha=100, lwd=3, add=F){
 
         #       
         if(!add){
-                plot(self$time, self$q*self$N,
+                plot(self$time, exp(self$lq+log(self$N)),
                         type='l',
                         lwd=lwd,
                         col=col
                 )
         } else{
-                lines(self$time, self$q*self$N,
+                lines(self$time, exp(self$lq+log(self$N)),
                         lwd=lwd,
                         col=col
                 )

@@ -24,7 +24,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		time = NA,
 		#model
                 sdo = NA, 
-		q = 1, #proportionality constant between cpue and N
+		lq = 0, #log proportionality constant between cpue and N
 		model = list(observation="LN"),
                 prior = list(),
 		#functions
@@ -90,7 +90,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                 optimize = optimize,
 		
 		#
-		print	 = print,
+		printSelf= printSelf,
 		plotMean = plotMean,
 		plotBand = plotBand,
 		plotRS 	 = plotRS

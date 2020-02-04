@@ -8,8 +8,8 @@ source('prodClass0.1.1.r')
 #
 
 #
-#dNdt
-dNdt = function(t, y, alpha, beta, gamma, H, delta){
+#dNdt alpha & beta
+dNdtAlphaBeta = function(t, y, alpha, beta, gamma, H, delta){
         #t      : current time step as requested by ode
         #y      : value at previous time as requested by ode
         #alpha  : recruitment parameter given as numeric
@@ -18,6 +18,28 @@ dNdt = function(t, y, alpha, beta, gamma, H, delta){
 
 	#Derivative
 	C = H[t]*y
+	#
+	R = alpha*(y-C)*(1-beta*gamma*(y-C))^(1/gamma)
+	out = R - delta*(y-C) - C
+	#
+	return( list(out) )
+}
+
+#dNdt alpha & beta
+dNdt = function(t, y, Cs, hs, gamma, H, delta){
+        #t      : current time step as requested by ode
+        #y      : value at previous time as requested by ode
+        #alpha  : recruitment parameter given as numeric
+        #beta   : recruitment parameter given as numeric
+        #gamma  : recruitment parameter given as numeric
+
+	#Derivative
+	C = H[t]*y
+	#
+	sh = (1-delta)*(1-sh)
+	alpha = (1-sh)/(1-hs) * (1+(gamma*hs)/(1-sh))^(1/gamma)
+	beta = (hs^2)/((1-hs)*(1-sh+gamma*hs)*Cs)
+	#
 	R = alpha*(y-C)*(1-beta*gamma*(y-C))^(1/gamma)
 	out = R - delta*(y-C) - C
 	#
