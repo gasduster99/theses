@@ -93,7 +93,10 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		printSelf= printSelf,
 		plotMean = plotMean,
 		plotBand = plotBand,
-		plotRS 	 = plotRS
+		plotRS 	 = plotRS,
+		#
+		save = function(fileName){ saveRDS(self, file=fileName) },
+		load = function(fileName){ readRDS(fileName) }
 	),
 	
 	#

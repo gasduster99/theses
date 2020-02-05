@@ -24,7 +24,7 @@ printSelf = function(){
         nome = names(self)
 	extraNames = c(
 	".__enclos_env__", "initialize", "iterate", "optimize", "clone", "printSelf", 
-	"model", "prior", "plotMean", "plotBand", "plotRS", "N0Funk"
+	"model", "prior", "plotMean", "plotBand", "plotRS", "N0Funk", "save", "load"
 	)
         display = nome[!nome%in%extraNames]
         display = display[order(nchar(display))]

@@ -80,13 +80,15 @@ optAns = mod$optimize(cpue,
         c('sdo', 'Cs', 'lhs', 'lq', 'gamma'),
         lower   = c(0.001, min(catch)*0.5, logit(0.01), log(1e-5), -5),
         upper   = c(1, max(catch), logit(0.5), log(1e-2), 5),
-        gaBoost = T,
+        gaBoost = list('parallel'=8), #T,
         cov     = T
 )
 mod$plotMean(add=T)
 mod$plotBand()
 #
 mod$printSelf()
+mod$save('mod.rds')
+
 
 #
 #TRANSFORM
@@ -113,8 +115,8 @@ xi   = Fs/M
 zeta = 1/(xi+2)
 gamma = logit(2*zeta)
 
-ins = gamma-min(gamma)+.Machine$double.eps
-out = boxcoxfit(gamma)
+#ins = gamma-min(gamma)+.Machine$double.eps
+out = boxcoxfit(gamma, lambda2=T)
 
 
 

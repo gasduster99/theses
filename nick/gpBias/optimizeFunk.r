@@ -59,13 +59,22 @@ optimize = function(    data,
         #possibly precondition guesses with ga
         if( gaBoost[[1]]!=F ){
                 #
-                if(gaBoost[[1]]==T){
-                        gaBoost = list( 
-                                popSize = 1e4,
-                                maxiter = 1e3,
-                                run     = 30
-                        )
-                }
+		set = list( 
+                        popSize = 1e4,
+                        maxiter = 1e3,
+                        run     = 30,
+			parallel= T
+                )
+		for(bn in names(gaBoost)){
+			set[[bn]] = gaBoost[[bn]]
+		}
+                #if(gaBoost[[1]]==T){
+                #        gaBoost = list( 
+                #                popSize = 1e4,
+                #                maxiter = 1e3,
+                #                run     = 30
+                #        )
+                #}
                 #
                 par = private$selfToPar(parNames)
                 nome = names(par)
@@ -82,11 +91,11 @@ optimize = function(    data,
                                         names   = nome,
                                         lower   = lower,
                                         upper   = upper,
-                                        popSize = gaBoost[['popSize']], 
-                                        maxiter = gaBoost[['maxiter']],
-                                        run     = gaBoost[['run']],
+                                        popSize = set[['popSize']], #gaBoost[['popSize']], 
+                                        maxiter = set[['maxiter']], #gaBoost[['maxiter']],
+                                        run     = set[['run']],     #gaBoost[['run']],
                                         optim   = T,
-                                        parallel= T,
+                                        parallel= set[['parallel']], 	    #T,
                                         #monitor = F, 
                                         suggestions = par
                                 )
