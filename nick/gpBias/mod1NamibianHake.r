@@ -58,28 +58,33 @@ TT = length(cpue)
 #
 M = 0.2
 
+##initialize
+#mod = prodModel$new(dNdt=dNdt, time=1:TT, N0Funk=N0Funk, delta=1-exp(-M), catch=catch, 
+#	Cs    = 263.9692, 	   #mean(catch),
+#	lhs   = logit(0.1702508),
+#	gamma = 1,  
+#	lq    = log(0.0004271659), #q = 0.00047, 
+#	sdo   = 0.146974
+#)
+#mod$model$observation = 'LN'
+
+#
+mod = readRDS('modAll.rds')
+mod$gamma = .Machine$double.eps
+mod$lq    = log(1e-5)
+mod$lhs   = logit(0.01)
+mod$Cs    = 470.0084 
+
 #
 dev.new()
 plot(cpue, ylim=c(0, max(cpue)*1.1))
-
-#initialize
-mod = prodModel$new(dNdt=dNdt, time=1:TT, N0Funk=N0Funk, delta=1-exp(-M), catch=catch, 
-	Cs    = 263.9692, 	   #mean(catch),
-	lhs   = logit(0.1702508),
-	gamma = 1,  
-	lq    = log(0.0004271659), #q = 0.00047, 
-	sdo   = 0.146974
-)
-mod$model$observation = 'LN'
-
-#
 mod$iterate()
 mod$plotMean(add=T, col='red')
 #optimize
 optAns = mod$optimize(cpue,
-        c('sdo', 'Cs', 'lhs', 'lq', 'gamma'),
-        lower   = c(0.001, min(catch)*0.5, logit(0.01), log(1e-5), -5),
-        upper   = c(1, max(catch), logit(0.5), log(1e-2), 5),
+        c('sdo', 'Cs', 'lhs', 'lq'),
+        lower   = c(0.001, min(catch)*0.5, logit(0.001), log(1e-7)),
+        upper   = c(1, max(catch), logit(0.5), log(1e-2)),
         gaBoost = list('parallel'=8), #T,
         cov     = T
 )
@@ -87,7 +92,7 @@ mod$plotMean(add=T)
 mod$plotBand()
 #
 mod$printSelf()
-mod$save('mod.rds')
+mod$save('gammaZero.rds')
 
 
 #
