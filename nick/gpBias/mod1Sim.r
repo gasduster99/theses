@@ -76,7 +76,7 @@ M = 0.2
 catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277, 254, 170, 97, 91, 177, 216, 229, 211, 231, 223)
 
 #
-zetaSims = seq(0.2, 0.6, 0.1)
+zetaSims = seq(0.3, 0.7, 0.1)
 xiSims = seq(0.5, 3, 0.5)
 
 #
@@ -89,6 +89,9 @@ for(zi in 1:length(zetaSims)){
 		#
 		B0 = 3000
 		Bs = B0*zetaSims[zi]
+		
+		#
+		writeLines(sprintf('xi: %s zeta: %s', xiSims[xj], zetaSims[zi]))
 		
 		#
 		fGA = function(x, pars){
@@ -113,11 +116,11 @@ for(zi in 1:length(zetaSims)){
 		        fitness = fGA, pars=par,
 		        lower   = c(0, -10),
 		        upper   = c(1000, 10),
-		        #popSize = 1e4, ##set[['popSize']], #gaBoost[['popSize']], 
-		        maxiter = 1e3, #set[['maxiter']], #gaBoost[['maxiter']],
-		        run     = 100, #set[['run']],     #gaBoost[['run']],
-		        optim   = T,
-		        parallel= T #set[['parallel']],        #T,
+		        #popSize = 1e3, ##set[['popSize']], #gaBoost[['popSize']], 
+		        maxiter = 1e4, #set[['maxiter']], #gaBoost[['maxiter']],
+		        run     = 200, #set[['run']],     #gaBoost[['run']],
+		        optim   = T #,
+		        #parallel= T #set[['parallel']],        #T,
 		        #monitor = F, 
 		        #suggestions = start
 		)
@@ -157,13 +160,16 @@ for(zi in 1:length(zetaSims)){
 			sdo	= 0.1
 		)
 		datGen$iterate()
-		dev.new()
-		datGen$plotMean()
-		#
-		cv=0.01
-		datGen$sdo = mean(datGen$N)*cv
-		cpue = rlnorm(TT, datGen$lq+log(datGen$N), datGen$sdo)
-		points(cpue)
+		if(!all(is.na(datGen$N))){
+			#
+			dev.new()
+			datGen$plotMean()
+			#
+			cv=0.01
+			datGen$sdo = mean(datGen$N)*cv
+			cpue = rlnorm(TT, datGen$lq+log(datGen$N), datGen$sdo)
+			points(cpue)
+		}
 		##
 		#dev.new()
 		#plot(cpue, ylim=c(0, max(cpue)*1.1))
