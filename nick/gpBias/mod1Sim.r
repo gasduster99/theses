@@ -109,105 +109,105 @@ datGen = readRDS('modAll.rds')
 #)
 
 
-##
-#zetaSims = 0.7 	#seq(0.3, 0.7, 0.1)
-#xiSims = 3 	#seq(0.5, 3, 0.5)
 #
-##
-#for(zi in 1:length(zetaSims)){
-#	for(xj in 1:length(xiSims)){
-#		#
-#		Fs = M*xiSims[xj]
-#		hs = 1-exp(-Fs)
-#		
-#		#
-#		B0 = 3000
-#		Bs = B0*zetaSims[zi]
-#		
-#		#
-#		writeLines(sprintf('xi: %s zeta: %s', xiSims[xj], zetaSims[zi]))	
-#		
-#		#
-#		par = data.frame(delta=1-exp(-M), lhs=logit(hs), B0=B0, Bs=Bs, GA=T)
-#		CGga = ga(type    = 'real-valued',
-#		        fitness = f, pars=par,
-#		        lower   = c(0, -10),
-#		        upper   = c(1000, 10),
-#		        #popSize = 1e3, 
-#		        maxiter = 1e4, 
-#		        run     = 200, 
-#		        optim   = T, 
-#		        #parallel= T
-#		        monitor = F 
-#		        #suggestions = start
-#		)
-#		
-#		#
-#		par$GA = F
-#		start = CGga@solution #c(300,1)#
-#		CG = multiroot(f, start, parms=par, maxiter=1e6)$root #, #rtol=.Machine$double.eps, #atol=.Machine$double.eps, #ctol=.Machine$double.eps	
-#		#	
-#		datGen$lhs   = logit(hs)
-#		datGen$Cs    = CG[1]
-#		datGen$gamma = CG[2]
-#		#
-#		datGen$iterate()
-#		if(!all(is.na(datGen$N))){
-#			#
-#			cpue = rlnorm(TT, datGen$lq+log(datGen$N), datGen$sdo)
-#			plot(cpue, ylim=c(min(cpue)/1.2, max(cpue)*1.2))
-#			datGen$plotMean(add=T)
-#			datGen$plotBand()
-#			datGen$printSelf()
-#			
-#			#
-#			#INFERENCE
-#			#
-#			
-#			#
-#			writeLines("\n## S ##\n")
-#			mod1 = datGen$clone()
-#			mod1$gamma = 1 #BH:-1, R:0, S:1
-#			opt1 = mod1$optimize(cpue,
-#                                c('lq', 'sdo', 'Cs', 'lhs'),
-#                                lower   = c(log(1e-10), 0.001, datGen$Cs*0.5, logit(0.001)),
-#                                upper   = c(log(1e-2), 1, datGen$Cs*2, logit(0.5)),
-#                                #gaBoost = list('parallel'=8), #T,
-#                                cov     = F
-#                        )
-#			mod1$plotMean(add=T, col='green')
-#                        mod1$plotBand(col='green')
-#			mod1$printSelf()
+zetaSims = 0.7 	#seq(0.3, 0.7, 0.1)
+xiSims = 3 	#seq(0.5, 3, 0.5)
+
 #
-#			#
-#			writeLines("\n## R ##\n")
-#			mod0 = datGen$clone()
-#			mod0$gamma = .Machine$double.eps #BH:-1, R:0, S:1
-#			opt0 = mod0$optimize(cpue,
-#                                c('lq', 'sdo', 'Cs', 'lhs'),
-#                                lower   = c(log(1e-10), 0.001, datGen$Cs*0.5, logit(0.001)),
-#                                upper   = c(log(1e-2), 1, datGen$Cs*2, logit(0.5)),
-#                                #gaBoost = list('parallel'=8), #T,
-#                                cov     = F
-#                        )
-#			mod0$plotMean(add=T, col='red')
-#                        mod0$plotBand(col='red')
-#			mod0$printSelf()
-#			
-#			#
-#			writeLines("\n## BH ##\n")
-#			modM1 = datGen$clone()
-#			modM1$gamma = -1 #BH:-1, R:0, S:1	
-#			optM1 = modM1$optimize(cpue,
-#			        c('lq', 'sdo', 'Cs', 'lhs'),
-#			        lower   = c(log(1e-10), 0.001, datGen$Cs*0.5, logit(0.001)),
-#			        upper   = c(log(1e-2), 1, datGen$Cs*2, logit(0.5)),
-#			        #gaBoost = list('parallel'=8), #T,
-#			        cov     = F
-#			)
-#			modM1$plotMean(add=T, col='blue')
-#			modM1$plotBand(col='blue')
-#			modM1$printSelf()
-#		}
-#	}
-#}
+for(zi in 1:length(zetaSims)){
+	for(xj in 1:length(xiSims)){
+		#
+		Fs = M*xiSims[xj]
+		hs = 1-exp(-Fs)
+		
+		#
+		B0 = 3000
+		Bs = B0*zetaSims[zi]
+		
+		#
+		writeLines(sprintf('xi: %s zeta: %s', xiSims[xj], zetaSims[zi]))	
+		
+		#
+		par = data.frame(delta=1-exp(-M), lhs=logit(hs), B0=B0, Bs=Bs, GA=T)
+		CGga = ga(type    = 'real-valued',
+		        fitness = f, pars=par,
+		        lower   = c(0, -10),
+		        upper   = c(1000, 10),
+		        #popSize = 1e3, 
+		        maxiter = 1e4, 
+		        run     = 200, 
+		        optim   = T, 
+		        #parallel= T
+		        monitor = F 
+		        #suggestions = start
+		)
+		
+		#
+		par$GA = F
+		start = CGga@solution #c(300,1)#
+		CG = multiroot(f, start, parms=par, maxiter=1e6)$root #, #rtol=.Machine$double.eps, #atol=.Machine$double.eps, #ctol=.Machine$double.eps	
+		#	
+		datGen$lhs   = logit(hs)
+		datGen$Cs    = CG[1]
+		datGen$gamma = CG[2]
+		#
+		datGen$iterate()
+		if(!all(is.na(datGen$N))){
+			#
+			cpue = rlnorm(TT, datGen$lq+log(datGen$N), datGen$sdo)
+			plot(cpue, ylim=c(min(cpue)/1.2, max(cpue)*1.2))
+			datGen$plotMean(add=T)
+			datGen$plotBand()
+			datGen$printSelf()
+			
+			#
+			#INFERENCE
+			#
+			
+			#
+			writeLines("\n## S ##\n")
+			mod1 = datGen$clone()
+			mod1$gamma = 1 #BH:-1, R:0, S:1
+			opt1 = mod1$optimize(cpue,
+                                c('lq', 'sdo', 'Cs', 'lhs'),
+                                lower   = c(log(1e-10), 0.001, datGen$Cs*0.5, logit(0.001)),
+                                upper   = c(log(1e-2), 1, datGen$Cs*2, logit(0.5)),
+                                gaBoost = list('parallel'=4), #T,
+                                cov     = F
+                        )
+			mod1$plotMean(add=T, col='green')
+                        mod1$plotBand(col='green')
+			mod1$printSelf()
+
+			##
+			#writeLines("\n## R ##\n")
+			#mod0 = datGen$clone()
+			#mod0$gamma = .Machine$double.eps #BH:-1, R:0, S:1
+			#opt0 = mod0$optimize(cpue,
+                        #        c('lq', 'sdo', 'Cs', 'lhs'),
+                        #        lower   = c(log(1e-10), 0.001, datGen$Cs*0.5, logit(0.001)),
+                        #        upper   = c(log(1e-2), 1, datGen$Cs*2, logit(0.5)),
+                        #        #gaBoost = list('parallel'=8), #T,
+                        #        cov     = F
+                        #)
+			#mod0$plotMean(add=T, col='red')
+                        #mod0$plotBand(col='red')
+			#mod0$printSelf()
+			#
+			##
+			#writeLines("\n## BH ##\n")
+			#modM1 = datGen$clone()
+			#modM1$gamma = -1 #BH:-1, R:0, S:1	
+			#optM1 = modM1$optimize(cpue,
+			#        c('lq', 'sdo', 'Cs', 'lhs'),
+			#        lower   = c(log(1e-10), 0.001, datGen$Cs*0.5, logit(0.001)),
+			#        upper   = c(log(1e-2), 1, datGen$Cs*2, logit(0.5)),
+			#        #gaBoost = list('parallel'=8), #T,
+			#        cov     = F
+			#)
+			#modM1$plotMean(add=T, col='blue')
+			#modM1$plotBand(col='blue')
+			#modM1$printSelf()
+		}
+	}
+}
