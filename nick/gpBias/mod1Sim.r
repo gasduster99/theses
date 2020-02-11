@@ -92,13 +92,15 @@ f = function(x, pars){
 #
 
 #
-TT = 40
+TT = 23
 M = 0.2
+catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277, 254, 170, 97, 91, 177, 216, 229, 211, 231, 223)
+datGen = readRDS('modAll.rds')
+
+#
 #cpue  = c(1.78, 1.31, 0.91, 0.96, 0.88, 0.90, 0.87, 0.72, 0.57, 0.45, 0.42, 0.42, 0.49, 0.43, 0.40, 0.45, 0.55, 0.53, 0.58, 0.64, 0.66, 0.65, 0.63)
 #cpue = c(cpue, rev(cpue))
-catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277, 254, 170, 97, 91, 177, 216, 229, 211, 231, 223)
 #catch = c(catch, rev(catch))
-datGen = readRDS('modAll.rds')
 #datGen$catch = catch
 #datOpt = datGen$optimize(cpue,
 #        c('lq', 'sdo', 'Cs', 'lhs', 'gamma'),
@@ -108,6 +110,16 @@ datGen = readRDS('modAll.rds')
 #        cov     = T
 #)
 
+##
+#datGen = prodModel$new( dNdt=dNdt, N0Funk=N0Funk, time=1:TT, delta=1-exp(-M), catch=catch,  
+#	sdo = 0.1,
+#	lhs = logit(0.01),
+#	lq  = log(0.0004),
+#	Cs  = 264,
+#	gamma = -1
+#)
+##
+#datGen$iterate()
 
 #
 zetaSims = 0.7 	#seq(0.3, 0.7, 0.1)
@@ -172,8 +184,9 @@ for(zi in 1:length(zetaSims)){
                                 c('lq', 'sdo', 'Cs', 'lhs'),
                                 lower   = c(log(1e-10), 0.001, datGen$Cs*0.5, logit(0.001)),
                                 upper   = c(log(1e-2), 1, datGen$Cs*2, logit(0.5)),
-                                gaBoost = list('parallel'=4), #T,
-                                cov     = F
+                                #gaBoost = list('parallel'=4), #T,
+				control = list('fnscale'=1e-1),
+                                cov     = T
                         )
 			mod1$plotMean(add=T, col='green')
                         mod1$plotBand(col='green')
