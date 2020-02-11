@@ -134,6 +134,7 @@ optimize = function(    data,
                                 #
                                 writeLines( sprintf("\nRound: %s\n", i) )
                                 self$printSelf()
+				print(err)
 				#if(!is.na(self$N[1])){
                                 #	self$plotMean()
                                 #	self$plotBand()
@@ -161,7 +162,13 @@ optimize = function(    data,
                 )
                 
                 #how to handle covariance
-                if( cov ){ self$rsCov = solve(out$optimOut$hessian) }
+		if( cov ){ 
+			#
+			self$rsCov = chol2inv(chol(out$optimOut$hessian)) 
+			colnames(self$rsCov) = parNames
+			rownames(self$rsCov) = parNames
+		}
+                #if( cov ){ self$rsCov = solve(out$optimOut$hessian) }
         }
         #
         return( out )
