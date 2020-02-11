@@ -185,7 +185,7 @@ for(zi in 1:length(zetaSims)){
                                 lower   = c(log(1e-10), 0.001, datGen$Cs*0.5, logit(0.001)),
                                 upper   = c(log(1e-2), 1, datGen$Cs*2, logit(0.5)),
                                 #gaBoost = list('parallel'=4), #T,
-				control = list('fnscale'=1e-1),
+				control = list('fnscale'=1e-10),
                                 cov     = T
                         )
 			mod1$plotMean(add=T, col='green')

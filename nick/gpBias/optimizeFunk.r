@@ -160,8 +160,8 @@ optimize = function(    data,
                         method  = self$OPT_method,
                         control = control
                 )
-                
-                #how to handle covariance
+               	
+ 		#how to handle covariance
 		if( cov ){ 
 			#
 			self$rsCov = chol2inv(chol(out$optimOut$hessian)) 
