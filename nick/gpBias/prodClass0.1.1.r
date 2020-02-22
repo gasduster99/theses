@@ -23,7 +23,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		#time
 		time = NA,
 		#model
-                sdo = NA, 
+                lsdo = NA, 
 		lq = 0, #log proportionality constant between cpue and N
 		model = list(observation="LN"),
                 prior = list(),

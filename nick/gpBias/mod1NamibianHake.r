@@ -11,7 +11,7 @@ source('prodClass0.1.1.r')
 #
 
 #dNdt
-dNdt = function(t, y, Cs, lhs, gamma, H, delta){
+dNdt = function(t, y, Cs, lhs, gamma, catch, delta){
         #t      : current time step as requested by ode
         #y      : value at previous time as requested by ode
         #lhs  	: logit of h* given as numeric
@@ -70,10 +70,10 @@ M = 0.2
 
 #
 mod = readRDS('modAll.rds')
-mod$gamma = .Machine$double.eps
-mod$lq    = log(1e-5)
-mod$lhs   = logit(0.01)
-mod$Cs    = 470.0084 
+#mod$gamma = .Machine$double.eps
+#mod$lq    = log(1e-5)
+#mod$lhs   = logit(0.01)
+#mod$Cs    = 470.0084 
 
 #
 dev.new()
@@ -85,43 +85,43 @@ optAns = mod$optimize(cpue,
         c('sdo', 'Cs', 'lhs', 'lq'),
         lower   = c(0.001, min(catch)*0.5, logit(0.001), log(1e-7)),
         upper   = c(1, max(catch), logit(0.5), log(1e-2)),
-        gaBoost = list('parallel'=8), #T,
+        #gaBoost = list('parallel'=8), #T,
         cov     = T
 )
 mod$plotMean(add=T)
 mod$plotBand()
 #
 mod$printSelf()
-mod$save('gammaZero.rds')
+#mod$save('gammaZero.rds')
 
 
+##
+##TRANSFORM
+##
 #
-#TRANSFORM
+##
+#boxTrans = function(x, lambda, lambda2=0){
+#        if(lambda==0){return(log(xi+lambda2))}
+#        return( ((x+lambda2)^lambda-1)/lambda )
+#}
 #
-
+##hats
+#hsHat = inv.logit(mod$lhs)
+#FsHat = -log(1-hsHat)
+#xiHat = FsHat/M
+#zetaHat = 1/(xiHat+2)
 #
-boxTrans = function(x, lambda, lambda2=0){
-        if(lambda==0){return(log(xi+lambda2))}
-        return( ((x+lambda2)^lambda-1)/lambda )
-}
-
-#hats
-hsHat = inv.logit(mod$lhs)
-FsHat = -log(1-hsHat)
-xiHat = FsHat/M
-zetaHat = 1/(xiHat+2)
-
-#rs distributions
-dev.new()
-sam  = mod$plotRS()
-hs   = inv.logit(sam[,'lhs'])
-Fs   = -log(1-hs)
-xi   = Fs/M
-zeta = 1/(xi+2)
-gamma = logit(2*zeta)
-
-#ins = gamma-min(gamma)+.Machine$double.eps
-out = boxcoxfit(gamma, lambda2=T)
+##rs distributions
+#dev.new()
+#sam  = mod$plotRS()
+#hs   = inv.logit(sam[,'lhs'])
+#Fs   = -log(1-hs)
+#xi   = Fs/M
+#zeta = 1/(xi+2)
+#gamma = logit(2*zeta)
+#
+##ins = gamma-min(gamma)+.Machine$double.eps
+#out = boxcoxfit(gamma, lambda2=T)
 
 
 

@@ -86,7 +86,7 @@ plotBand = function(prob=0.95, col='black', alpha=100){
 }
 
 #
-plotRS = function(m=10^4, save=F){
+plotRS = function(m=10^4, sample=F, save=F){
         #m      : how many samples
         #save   : FALSE or a filename
 
@@ -100,5 +100,5 @@ plotRS = function(m=10^4, save=F){
                 ggsave(filename=save, plot=ggpairs(as.data.frame(sam)))
         }
         #
-        return(sam)
+        if(sample){ return(sam) }
 }
