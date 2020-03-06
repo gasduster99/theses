@@ -3,6 +3,9 @@ rm(list=ls())
 #
 library(geoR)
 library(VGAM)
+library(parallel)
+library(foreach)
+library(doParallel)
 library(rootSolve)
 #
 source('prodClass0.1.1.r')
@@ -105,32 +108,65 @@ TT = length(hake)
 M = 0.2
 delta = 1-exp(-M)
 
-#initialize base class at a nice optimization for hake
-mod = readRDS('modAllCllhs.rds')
-datGen = prodModel$new(dNdt=dNdt, time=1:TT, N0Funk=N0Funk, delta=delta, catch=catch, 
-	Cs    = mod$Cs,		#mean(catch),
-	cllhs = mod$cllhs,	#cloglog(0.5034102),
-	gamma = mod$gamma, 	#-1,
-	lq    = mod$lq,		#log(0.0004905076),
-	lsdo  = log(exp(mod$lsdo))#log(0.1160256)
-)
-datGen$model$observation = 'LN'
-#
-datGen$iterate()
+##initialize base class at a nice optimization for hake
+#mod = readRDS('modAllCllhs.rds')
+#datGen = prodModel$new(dNdt=dNdt, time=1:TT, N0Funk=N0Funk, delta=delta, catch=catch, 
+#	Cs    = mod$Cs,		#mean(catch),
+#	cllhs = mod$cllhs,	#cloglog(0.5034102),
+#	gamma = mod$gamma, 	#-1,
+#	lq    = mod$lq,		#log(0.0004905076),
+#	lsdo  = log(exp(mod$lsdo))#log(0.1160256)
+#)
+#datGen$model$observation = 'LN'
+##
+#datGen$iterate()
 
 #
 #SIM
 #
 
 #
-zetaSims = rev(seq(0.25, 0.75, 0.1)) #0.55	#
-xiSims = seq(0.5, 3.5, 0.5) #2	#
+place = './modsFine/'
 
 #
-pdf('dataGrid.pdf', width=30, height=22)
-layout(matrix(1:(length(zetaSims)*length(xiSims)), nrow=length(zetaSims), ncol=length(xiSims), byrow=T))
-for(i in 1:length(zetaSims)){
+zetaSims = rev(seq(0.1, 0.8, 0.01)) 	#rev(seq(0.25, 0.75, 0.01))
+xiSims =   rev(seq(0.5, 3.5, 0.05))	#seq(0.5, 3.5, 0.05)	    
+
+##
+#pdf('dataGrid.pdf', width=30, height=22)
+#layout(matrix(1:(length(zetaSims)*length(xiSims)), nrow=length(zetaSims), ncol=length(xiSims), byrow=T))
+
+#
+registerDoParallel(8)
+opts = list(preschedule=F)
+foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
+#for(i in 1:length(zetaSims)){
+	#initialize base class at a nice optimization for hake
+	mod = readRDS('modAllCllhs.rds')
+	datGen = prodModel$new(dNdt=dNdt, time=1:TT, N0Funk=N0Funk, delta=delta, catch=catch, 
+		Cs    = mod$Cs,		#mean(catch),
+		cllhs = mod$cllhs,	#cloglog(0.5034102),
+		gamma = mod$gamma, 	#-1,
+		lq    = mod$lq,		#log(0.0004905076),
+		lsdo  = log(exp(mod$lsdo))#log(0.1160256)
+	)
+	datGen$model$observation = 'LN'
+	#
+	datGen$iterate()
+	
+	#
         for(j in 1:length(xiSims)){
+		#
+		#SKIP
+		#
+		
+		#
+		fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', place, xiSims[j], zetaSims[i])
+		if( file.exists(fileFit) ){ 
+			#writeLines(sprintf('\nSKIP Xi: %s, Zeta: %s\n', xiSims[j], zetaSims[i]))
+			next 
+		}
+
 		#
 		#INVERT
 		#
@@ -143,21 +179,24 @@ for(i in 1:length(zetaSims)){
                 B0 = 3000
                 Bs = B0*zetaSims[i]
 
-		#
-                par = data.frame(delta=delta, cllhs=cloglog(hs), B0=B0, Bs=Bs, GA=T)
-                CGga = ga(type    = 'real-valued',
-                        fitness = f, pars=par,
-                        lower   = c(0, gLow),
-                        upper   = c(1000, 10),
-                        maxiter = 1e4,
-                        run     = 200,
-                        optim   = T,
-                        monitor = F
-                )
-		#
-                par$GA = F
-                start = CGga@solution #c(300,1) #
-                CG = multiroot(f, start, parms=par, maxiter=1e6)$root
+		##
+		#tryCatch({
+                	par = data.frame(delta=delta, cllhs=cloglog(hs), B0=B0, Bs=Bs, GA=T)
+                	CGga = ga(type    = 'real-valued',
+                	        fitness = f, pars=par,
+                	        lower   = c(0, gLow),
+                	        upper   = c(1000, 10),
+				popSize = 100,
+                	        maxiter = 1e4,
+                	        run     = 200,
+                	        optim   = T,
+                	        monitor = F
+                	)
+			#
+                	par$GA = F
+                	start = CGga@solution #c(300,1) #
+                	CG = multiroot(f, start, parms=par, maxiter=1e6)$root
+		#}, error=function(err){ CG=c(0,0) })
 
 		#
 		#DATA
@@ -176,17 +215,18 @@ for(i in 1:length(zetaSims)){
 		#iterate
 		datGen$iterate()
 		
-		#
-		plot(c(0,0), ylim=c(0.25, 2), xlim=c(0, TT), ylab='cpue', main=sprintf("xi: %s,  zeta: %s ", xiSims[j], zetaSims[i]) )
+		##
+		#plot(c(0,0), ylim=c(0.25, 2), xlim=c(0, TT), ylab='cpue', main=sprintf("xi: %s,  zeta: %s ", xiSims[j], zetaSims[i]) )
 		if(!any(is.na(datGen$N)) & !any(datGen$N<0)){
 			#make data to fit
 			cpue = rlnorm(TT, datGen$lq+log(datGen$N), exp(datGen$lsdo))
 			#save
-			datGen$save(sprintf('modsHess/datGen_xi%s_zeta%s.rda', xiSims[j], zetaSims[i]))
-			#plot
-			points(1:TT, cpue)
-			datGen$plotMean(add=T)
-			datGen$plotBand()
+			datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, xiSims[j], zetaSims[i]))
+			##plot
+			#points(1:TT, cpue)
+			#datGen$plotMean(add=T)
+			#datGen$plotBand()
+			writeLines(sprintf('\nPID: %s, Xi: %s, Zeta: %s\n', Sys.getpid(), xiSims[j], zetaSims[i]))
 
 			#
 			#FIT
@@ -207,8 +247,7 @@ for(i in 1:length(zetaSims)){
 			        c('lsdo', 'Cs', 'cllhs', 'lq'),
 			        lower   = c(log(0.001), datGen$Cs*0.5, cloglog(0.0001), log(1e-7)),
 			        upper   = c(log(1), datGen$Cs*2, cloglog(0.999), log(1e-2)),
-			        gaBoost = list(parallel=8, run=5, popSize=10^3)#, #T,
-			        #cov     = T
+			        gaBoost = list(run=10, parallel=FALSE, popSize=10^3)
 			)
 			#get hessian if possible
 			tryCatch({
@@ -216,7 +255,6 @@ for(i in 1:length(zetaSims)){
 				        c('lsdo', 'Cs', 'cllhs', 'lq'),
 				        lower   = c(log(0.001), datGen$Cs*0.5, cloglog(0.0001), log(1e-7)),
 				        upper   = c(log(1), datGen$Cs*2, cloglog(0.999), log(1e-2)),
-				        #gaBoost = list(parallel=8, run=5, popSize=10^3)#, #T,
 				        cov     = T
 				)
 			}, error=function(err){
@@ -225,7 +263,6 @@ for(i in 1:length(zetaSims)){
 				        c('lsdo', 'Cs', 'cllhs', 'lq'),
 				        lower   = c(log(0.001), datGen$Cs*0.5, cloglog(0.0001), log(1e-7)),
 				        upper   = c(log(1), datGen$Cs*2, cloglog(0.999), log(1e-2)),
-				        #gaBoost = list(parallel=8, run=5, popSize=10^3)#, #T,
 				        cov     = F
 				)
 			})
@@ -234,11 +271,11 @@ for(i in 1:length(zetaSims)){
 			fit$hs  = cloglog(fit$cllhs, inverse=T)
 			fit$q   = exp(fit$lq) 
 			#save
-			fit$save(sprintf('modsHess/fit_xi%s_zeta%s.rda', xiSims[j], zetaSims[i]))	
-			#plot
-			fit$plotMean(add=T, col='blue')
-			fit$plotBand(col='blue', alpha=50)
+			fit$save(sprintf('%s/fit_xi%s_zeta%s.rda', place, xiSims[j], zetaSims[i]))	
+			##plot
+			#fit$plotMean(add=T, col='blue')
+			#fit$plotBand(col='blue', alpha=50)
 		}
 	}
 }
-dev.off()
+#dev.off()
