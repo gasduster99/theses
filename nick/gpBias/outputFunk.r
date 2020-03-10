@@ -17,17 +17,15 @@ makeTransparent = function(someColor, alpha=100){
 #
 
 #
-printSelf = function(){
+printSelf = function(ins, outs=c()){
         #
         n = 5
         #
         nome = names(self)
-	extraNames = c(
-	".__enclos_env__", "initialize", "iterate", "optimize", "clone", "printSelf", 
-	"model", "prior", "plotMean", "plotBand", "plotRS", "N0Funk", "save", "load"
-	)
-        display = nome[!nome%in%extraNames]
-        display = display[order(nchar(display))]
+	extraNames = c(outs, ".__enclos_env__", "initialize", "printSelf", "clone") #"iterate", "optimize", "clone", "model", "prior", "plotMean", "plotBand", "plotRS", "N0Funk", "save", "load")
+        display = nome[!nome%in%extraNames | nome%in%ins]
+	display = display[order(nchar(display))]
+	if(length(ins)>0){ display=display[display%in%ins] } 
         #
         for(d in display){
                 #

@@ -90,7 +90,14 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                 optimize = optimize,
 		
 		#
-		printSelf= printSelf,
+		printer   = printSelf 
+		printSelf = function(ins=c()){
+			self$printer(ins, outs=c(
+				"iterate", "optimize", "model",	"prior", 
+				"plotMean", "plotBand", "plotRS", "N0Funk", 
+				"save", "load", "printer"
+			))
+		},
 		plotMean = plotMean,
 		plotBand = plotBand,
 		plotRS 	 = plotRS,

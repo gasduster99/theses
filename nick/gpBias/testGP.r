@@ -4,10 +4,12 @@ rm(list=ls())
 library(VGAM)
 library(pracma)
 library(mvtnorm)
+library(parallel)
 library(plot.matrix)
 library(RColorBrewer)
 library(scatterplot3d)
-
+#
+source("gpClass0.0.1.r")
 
 #
 #FUNCTIONS
@@ -53,7 +55,16 @@ getData = function(dir, xiSims, zetaSims){
 	return(D)
 }
 
+#X's are 2-vectors; L is 2x2; s2 is scalar
+S2 = function(X0, X1, s2, v0, v1, cr=0){
+	maxD = dbinorm(X0[,1], X0[,2], X0[,1], X0[,2], v0, v1, sqrt(v0*v1)*cr, log=T)
+	s2*mapply(function(x01, x02, m){
+		exp(dbinorm(X1[,1], X1[,2], x01, x02, v0, v1, sqrt(v0*v1)*cr, log=T)-m)
+	}, X0[,1], X0[,2], maxD)#, mc.cores=1)	
+}
+
 #all parameters scalar
+Kr = function(x0, x1, l){ exp((-(x0-x1)^2)/(2*l^2)) }
 K = function(x0, x1, l){ exp((-(x0-x1)^2)/(2*l^2)) }
 Kmat = function(X, l){ 
 	#X	:a vector of predictors
@@ -88,10 +99,13 @@ KnPred = function(Xs, Ys, X, Y, lx, ly){
 }
 
 #
-loglikeL = function(y, D, lx, ly, sig2, g){
-	SIG2 = sig2*Kn(D$xi,D$zeta,lx,ly) + g*diag(nrow(D)) + diag(D$cllhsV)
-	return( dmvnorm(y,sigma=SIG2, log=T) )
-	
+loglikeL = function(y, D, lx, ly, r, s2){	#function(y, D, L, sig2){ #
+	#
+	X = cbind(D$xi, D$zeta)
+	SIG2 = S2(X, X, lx, ly, r, s2) + diag(D$cllhsV)
+		
+	#
+	return( dmvnorm(y, sigma=SIG2, log=T) )
 }
 
 #
@@ -109,44 +123,82 @@ M = 0.2
 #time: 70
 D = getData(dir, xiSims, zetaSims)
 D = D[D$cllhsV!=0,]
+X = cbind(D$xi, D$zeta)
 
 #
-xiPred   = seq(0.3,3.7,length.out=50)	
+xiPred   = seq(0.4,3.7,length.out=50)	
 zetaPred = seq(0.1,0.9,length.out=50)	
 predMesh = expand.grid(xiPred, zetaPred)
 colnames(predMesh) = c('xi', 'zeta')
 #
 line = lm(cllhs~xi+zeta, data=D)
-pp = predict( line )
-ppPred = predict(line, predMesh)
+gp = gpModel$new( lm=line, S2=S2, X=X, Y=D$cllhs, obsV=D$cllhsV,
+        v0 = 0.343979394716728,
+        v1 = 0.0270240223433852,
+        s2 = 2.93501281,
+        cr = -0.433574770896697
+)
 #
-L = c(0.54, 0.134, 5, 1)
-names(L) = c('lx', 'ly', 'sig2', 'g') 
-#time: 340
-t = system.time({ optOut = optim(L, function(x){-loglikeL(D$cllhs-pp, D, x[1], x[2], x[3], x[4])}) })
-writeLines(sprintf("Opt: %s",t[3]))
-lx = optOut$par['lx']
-ly = optOut$par['ly']
-sig2 = optOut$par['sig2']
-# 
-KInv = chol2inv(chol( sig2*Kn(D$xi,D$zeta,lx,ly) + diag(D$cllhsV) ))
-KPX  = sig2*KnPred(predMesh$xi, predMesh$zeta, D$xi, D$zeta, lx, ly)
-KXP  = sig2*KnPred(D$xi, D$zeta, predMesh$xi, predMesh$zeta, lx, ly)
-KPP  = sig2*KnPred(predMesh$xi, predMesh$zeta, predMesh$xi, predMesh$zeta, lx, ly)
-##time: 66
-ys = ppPred + KPX%*%KInv%*%(D$cllhs-pp) #cloglog(KPX%*%KInv%*%(D$cllhs-pp), inverse=T) #
-#time: 470
-Ss = KPP-KPX%*%KInv%*%KXP
-#writeLines(sprintf("Krig Var: %s",t[3]))
+gp$fit(c('v0', 'v1', 's2'),
+        lower   = c(eps(), eps(), eps()),
+        upper   = c(Inf, Inf, Inf),
+        cov     = T
+)
+
+
+
+
+#pp = predict( line )
+#ppPred = predict(line, predMesh)
+
+
+###
+##optOut = c(mean(c(0.34395317, 0.02705277)), 2.93501281) 
+##names(optOut) = c('lx', 'sig2')
+#optOut = c(0.34395317, 0.02705277, -0.43195056, 2.93501281) 
+#names(optOut) = c('lx', 'ly', 'cr', 'sig2')
+##optOut = c(0.34395317, 0.02705277, 2.93501281)
+##names(optOut) = c('lx', 'ly', 'sig2') 
+##time: 340
+#t = system.time({ 
+#	optOut = optim(optOut, 
+#		function(x){ 	
+#			-loglikeL(D$cllhs-pp, D, x[1], x[2], x[3], x[4])
+#		},
+#		lower = c(10^-6, 10^-6, -1, 0),
+#		upper = c(Inf, Inf, 1, Inf),
+#		method = "L-BFGS-B",
+#		hessian = T
+#	)
+#})
+#writeLines(sprintf("Opt: %s",t[3]))
+##IL = matrix(c(optOut$par[1], optOut$par[3], optOut$par[3], optOut$par[2]), nr=2)
+#lx   = optOut$par['lx']
+#ly   = optOut$par['ly']
+#r    = optOut$par['cr']
+#sig2 = optOut$par['sig2']
+## 
+##KInv = chol2inv(chol( sig2*Kn(D$xi,D$zeta,lx,ly) + diag(D$cllhsV) ))
+#X = cbind(D$xi, D$zeta)
+#KInv = chol2inv(chol( S2(X, X, lx, ly, r, sig2) + diag(D$cllhsV) ))
+##KPX  = sig2*KnPred(predMesh$xi, predMesh$zeta, D$xi, D$zeta, lx, ly)
+#KPX = S2(X, predMesh, lx, ly, r, sig2)
+##KXP  = sig2*KnPred(D$xi, D$zeta, predMesh$xi, predMesh$zeta, lx, ly)
+##KPP  = sig2*KnPred(predMesh$xi, predMesh$zeta, predMesh$xi, predMesh$zeta, lx, ly)
+####time: 66
+#ys = ppPred + KPX%*%KInv%*%(D$cllhs-pp) #cloglog(KPX%*%KInv%*%(D$cllhs-pp), inverse=T) #
+###time: 470
+##Ss = KPP-KPX%*%KInv%*%KXP
+###writeLines(sprintf("Krig Var: %s",t[3]))
 
 ##
 ##CLLHS OUTPUT
 ##
 #
 ##
-#pdf('gpCllhsFineSD.pdf')
+#pdf('gpCllhsFineR.pdf')
 #filled.contour(xiPred, zetaPred, matrix(ys, nrow=length(xiPred), byrow=T), 
-#	zlim=c(-4, 4),#c(-3,0),
+#	zlim=c(-3.5, 1.5), #c(-3,0),
 #	plot.axes = {
 #		points(D$xi, D$zeta)
 #		lines(seq(0,4,0.1), 1/(seq(0,4,0.1)+2), lwd=3)
@@ -160,7 +212,7 @@ Ss = KPP-KPX%*%KInv%*%KXP
 #m = 3.5
 #
 ##
-#pdf('gpXiBiasFineSD.pdf')
+#pdf('gpXiBiasFineR.pdf')
 #xDist = matrix((exp(ys)/M)-xiPred, nrow=length(xiPred), byrow=T)
 ##xDist[xDist<(-1.2)] = -10
 #filled.contour(xiPred, zetaPred, xDist, 
@@ -176,7 +228,7 @@ Ss = KPP-KPX%*%KInv%*%KXP
 #dev.off()
 #
 ##
-#pdf('gpZetaBiasFineSD.pdf')
+#pdf('gpZetaBiasFineR.pdf')
 #yDist = matrix((1/(exp(ys)/M+2))-zetaPred, nrow=length(xiPred), byrow=T)
 #filled.contour(xiPred, zetaPred, yDist, 
 #	zlim=c(-0.6,0.6),
@@ -196,7 +248,7 @@ Ss = KPP-KPX%*%KInv%*%KXP
 #	}, exp(ys)/M, xiPred, zetaPred
 #) 
 ##
-#pdf('gpBiasFineSD.pdf')
+#pdf('gpBiasFineR.pdf')
 ##m = 3.5 #quantile(abs(bigD), 0.5)
 #filled.contour(xiPred, zetaPred, matrix(bigD, nrow=length(xiPred), byrow=T), 
 #	zlim=c(0, m),
@@ -210,7 +262,7 @@ Ss = KPP-KPX%*%KInv%*%KXP
 #)
 #dev.off()
 
-##
+
 ###
 ##w = predMesh$X>0.5 & predMesh$X<3.5 & predMesh$Y>0.2 & predMesh$Y<0.75
 ###
