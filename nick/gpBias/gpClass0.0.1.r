@@ -17,9 +17,12 @@ gpModel = R6Class("GPModel", lock_objects=FALSE,
 		#
 		X = NA,
 		Y = NA,
-		g = 0,
+		#g = 0,
 		#
 		initialize = function(
+			X  = NA,
+			Y  = NA,
+			B  = NA,
 			S2 = NA,
 			...
 		){
@@ -30,9 +33,14 @@ gpModel = R6Class("GPModel", lock_objects=FALSE,
                                 eval(parse( text=sprintf("self$%s=misc[[m]]", m) ))
                         }
 			
-			#
-			self$yRes = self$Y-predict(self$lm)
+			##
+			#self$yRes = self$Y-predict(self$lm)
 			
+			#some check of B, X, and Y	
+			self$X = X
+			self$Y = Y
+			self$B = B
+
 			#
 			if(!'obsV'%in%miscNames){ self$obsV=rep(0, length(self$Y)) }
 			
@@ -52,8 +60,10 @@ gpModel = R6Class("GPModel", lock_objects=FALSE,
 			        #
 				private$parToSelf(par)
 				#
-			        SIG2 = self$S2(self$X, self$X) + diag(self$obsV) + self$g*diag(length(self$Y))
-				-dmvnorm(self$yRes, sigma=SIG2, log=T)
+				X = cbind(1, self$X)
+			        SIG2 = self$S2(self$X, self$X) + diag(self$obsV)
+				#-dmvnorm(self$yRes, sigma=SIG2, log=T)
+				-dmvnorm(self$Y, X%*%self$B, sigma=SIG2, log=T)
 			}
 			#
 			out = optim(
@@ -78,10 +88,31 @@ gpModel = R6Class("GPModel", lock_objects=FALSE,
 		},
 		
 		#
+		predictMean = function(XX){
+			if( !'KInv' %in% ls(self) ){	
+				self$KInv = chol2inv(chol( self$S2(self$X, self$X) + diag(self$obsV) ))
+			}
+			Xint  = cbind(1, self$X) #as.matrix(cbind(1, self$X))
+			XXint = cbind(1, XX)	 #as.matrix(cbind(1, XX))
+			#predict(self$lm, XX) + self$S2(self$X, XX)%*%self$KInv%*%self$yRes
+			XXint%*%self$B + self$S2(self$X, XX)%*%self$KInv%*%(self$Y-Xint%*%self$B)
+		},
+
+		#
+		predictVar = function(XX){
+			if( !'KInv' %in% ls(self) ){	
+				self$KInv = chol2inv(chol( self$S2(self$X, self$X) + diag(self$obsV) ))
+			}
+			#KPP-KPX%*%KInv%*%KXP
+			self$S2(XX, XX)	- self$S2(self$X, XX)%*%self$KInv%*%self$S2(XX, X)
+		},
+	
+		#
 		printer = printSelf,
                 printSelf = function(ins=c()){
                         self$printer(ins, outs=c(
-                                "S2", "fit", "save", "load", "lm", "printer"
+                                "S2", "fit", "save", "load", "lm", "printer", 
+				"predictMean", "predictVar"
                         ))
                 },
 		
@@ -91,7 +122,7 @@ gpModel = R6Class("GPModel", lock_objects=FALSE,
 	),
 	#
 	private = list(
-		#
+		#NOTE: maybe update classifyFunk with this function
 		classify = function(fun, numPars=1){
 		        #
 		

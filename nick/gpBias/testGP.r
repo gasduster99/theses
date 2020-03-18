@@ -2,6 +2,7 @@ rm(list=ls())
 
 #
 library(VGAM)
+library(boot)
 library(pracma)
 library(mvtnorm)
 library(parallel)
@@ -56,56 +57,16 @@ getData = function(dir, xiSims, zetaSims){
 }
 
 #X's are 2-vectors; L is 2x2; s2 is scalar
-S2 = function(X0, X1, s2, v0, v1, cr=0){
+S2 = function(X0, X1, s2, v0, v1, cr){
 	maxD = dbinorm(X0[,1], X0[,2], X0[,1], X0[,2], v0, v1, sqrt(v0*v1)*cr, log=T)
-	s2*mapply(function(x01, x02, m){
+	s2*mcmapply(function(x01, x02, m){
 		exp(dbinorm(X1[,1], X1[,2], x01, x02, v0, v1, sqrt(v0*v1)*cr, log=T)-m)
-	}, X0[,1], X0[,2], maxD)#, mc.cores=1)	
-}
-
-#all parameters scalar
-Kr = function(x0, x1, l){ exp((-(x0-x1)^2)/(2*l^2)) }
-K = function(x0, x1, l){ exp((-(x0-x1)^2)/(2*l^2)) }
-Kmat = function(X, l){ 
-	#X	:a vector of predictors
-	#l	:a scalar length scale
-	
-	#
-	sapply(X, function(x){K(x,X,l)})
-}
-#
-Kn = function(X, Y, lx, ly){ 
-	#X	:a vector of predictors
-	#Y	:a vector of predictors
-	#lx	:a scalar length scale for X
-	#ly	:a scalar length scale for Y
-	
-	#
-	sapply(Y, function(y){K(y,Y,ly)})*sapply(X, function(x){K(x,X,lx)})
-}
-#
-Ku = function(X, Y, lx, ly){ 
-	#X	:a vector of predictors
-	#Y	:a vector of predictors
-	#lx	:a scalar length scale for X
-	#ly	:a scalar length scale for Y
-	
-	#
-	sapply(Y, function(y){K(y,Y,ly)})+sapply(X, function(x){K(x,X,lx)})
-}
-#
-KnPred = function(Xs, Ys, X, Y, lx, ly){
-	sapply(Y, function(y){K(y,Ys,ly)})*sapply(X, function(x){K(x,Xs,lx)})
+	}, X0[,1], X0[,2], maxD, mc.cores=8)	
 }
 
 #
-loglikeL = function(y, D, lx, ly, r, s2){	#function(y, D, L, sig2){ #
-	#
-	X = cbind(D$xi, D$zeta)
-	SIG2 = S2(X, X, lx, ly, r, s2) + diag(D$cllhsV)
-		
-	#
-	return( dmvnorm(y, sigma=SIG2, log=T) )
+logitM = function(n, mu, sig, K=10^5){
+	mean( inv.logit(qnorm((1:(K-1))/K, mu, sig))^n )
 }
 
 #
@@ -128,22 +89,151 @@ X = cbind(D$xi, D$zeta)
 #
 xiPred   = seq(0.4,3.7,length.out=50)	
 zetaPred = seq(0.1,0.9,length.out=50)	
-predMesh = expand.grid(xiPred, zetaPred)
+predMesh = as.matrix(expand.grid(xiPred, zetaPred))
 colnames(predMesh) = c('xi', 'zeta')
 #
 line = lm(cllhs~xi+zeta, data=D)
-gp = gpModel$new( lm=line, S2=S2, X=X, Y=D$cllhs, obsV=D$cllhsV,
-        v0 = 0.343979394716728,
+gp = gpModel$new( S2=S2, X=X, Y=D$cllhs, obsV=D$cllhsV, #lm=line, 
+        B  = line$coeff,	#c(4.1894, -0.1452, -10.3066), 
+	v0 = 0.343979394716728,
         v1 = 0.0270240223433852,
         s2 = 2.93501281,
         cr = -0.433574770896697
 )
 #
-gp$fit(c('v0', 'v1', 's2'),
-        lower   = c(eps(), eps(), eps()),
-        upper   = c(Inf, Inf, Inf),
+optOut = gp$fit(c('v0', 'v1', 's2', 'cr'),
+        lower   = c(eps(), eps(), eps(), -1),
+        upper   = c(Inf, Inf, Inf, 1),
         cov     = T
 )
+#
+yy = gp$predictMean(predMesh)
+SS = diag(gp$predictVar(predMesh))
+#
+xS = exp(2*yy+SS)*(exp(SS)-1)/M^2
+K = 10^6
+yS = mcmapply(function(yy, SS){
+		logitM(2, log(2*M)-yy, SS, K=K) - logitM(1, log(2*M)-yy, SS, K=K)^2
+	}, yy, SS, mc.cores=8
+)
+xS = matrix(xS, nrow=length(xiPred), byrow=T)
+yS = matrix(yS, nrow=length(xiPred), byrow=T)
+
+#
+xDist = matrix((exp(yy)/M)-xiPred, nrow=length(xiPred), byrow=T)
+yDist = matrix((1/(exp(yy)/M+2))-zetaPred, nrow=length(xiPred), byrow=T)
+#
+bigD = mcmapply(function(xiHat, xi, zeta){
+                dist(xiHat, xi, zeta)
+        }, exp(yy)/M, xiPred, zetaPred, mc.cores=8
+)
+
+#
+#
+#
+
+#
+m = 3.5
+
+#
+filled.contour(xiPred, zetaPred, xDist, 
+	zlim=c(-m, m),
+	plot.axes = {
+		points(D$xi, D$zeta, pch='.')
+		lines(seq(0,4,0.1), 1/(seq(0,4,0.1)+2), lwd=3)
+		#points(D$xi[D$cllhsV==0], D$zeta[D$cllhsV==0], pch=16)
+		#points(D$xi[D$cllhsV==max(D$cllhsV)], D$zeta[D$cllhsV==max(D$cllhsV)], pch=16, col='blue')
+	},
+	color.palette = function(n) hcl.colors(n, "Blue-Red 3")
+)
+
+#
+dev.new()
+filled.contour(xiPred, zetaPred, xDist/sqrt(xS), 
+	zlim=c(-m*30, m*30),
+	plot.axes = {
+		points(D$xi, D$zeta, pch='.')
+		lines(seq(0,4,0.1), 1/(seq(0,4,0.1)+2), lwd=3)
+		#points(D$xi[D$cllhsV==0], D$zeta[D$cllhsV==0], pch=16)
+		#points(D$xi[D$cllhsV==max(D$cllhsV)], D$zeta[D$cllhsV==max(D$cllhsV)], pch=16, col='blue')
+	},
+	color.palette = function(n) hcl.colors(n, "Blue-Red 3")
+)
+
+#
+dev.new()
+filled.contour(xiPred, zetaPred, yDist, 
+	zlim=c(-0.6,0.6),
+	plot.axes = {
+		points(D$xi, D$zeta)
+		lines(seq(0,4,0.1), 1/(seq(0,4,0.1)+2), lwd=3)
+		#points(D$xi[D$cllhsV==0], D$zeta[D$cllhsV==0], pch=16)
+		#points(D$xi[D$cllhsV==max(D$cllhsV)], D$zeta[D$cllhsV==max(D$cllhsV)], pch=16, col='blue')
+	},
+	color.palette = function(n) hcl.colors(n, "Blue-Red 3")
+)
+
+#
+dev.new()
+filled.contour(xiPred, zetaPred, yDist/sqrt(yS), 
+	zlim=c(-0.6,0.6),
+	plot.axes = {
+		points(D$xi, D$zeta)
+		lines(seq(0,4,0.1), 1/(seq(0,4,0.1)+2), lwd=3)
+		#points(D$xi[D$cllhsV==0], D$zeta[D$cllhsV==0], pch=16)
+		#points(D$xi[D$cllhsV==max(D$cllhsV)], D$zeta[D$cllhsV==max(D$cllhsV)], pch=16, col='blue')
+	},
+	color.palette = function(n) hcl.colors(n, "Blue-Red 3")
+)
+
+
+
+
+##all parameters scalar
+#Kr = function(x0, x1, l){ exp((-(x0-x1)^2)/(2*l^2)) }
+#K = function(x0, x1, l){ exp((-(x0-x1)^2)/(2*l^2)) }
+#Kmat = function(X, l){ 
+#	#X	:a vector of predictors
+#	#l	:a scalar length scale
+#	
+#	#
+#	sapply(X, function(x){K(x,X,l)})
+#}
+##
+#Kn = function(X, Y, lx, ly){ 
+#	#X	:a vector of predictors
+#	#Y	:a vector of predictors
+#	#lx	:a scalar length scale for X
+#	#ly	:a scalar length scale for Y
+#	
+#	#
+#	sapply(Y, function(y){K(y,Y,ly)})*sapply(X, function(x){K(x,X,lx)})
+#}
+##
+#Ku = function(X, Y, lx, ly){ 
+#	#X	:a vector of predictors
+#	#Y	:a vector of predictors
+#	#lx	:a scalar length scale for X
+#	#ly	:a scalar length scale for Y
+#	
+#	#
+#	sapply(Y, function(y){K(y,Y,ly)})+sapply(X, function(x){K(x,X,lx)})
+#}
+##
+#KnPred = function(Xs, Ys, X, Y, lx, ly){
+#	sapply(Y, function(y){K(y,Ys,ly)})*sapply(X, function(x){K(x,Xs,lx)})
+#}
+#
+##
+#loglikeL = function(y, D, lx, ly, r, s2){	#function(y, D, L, sig2){ #
+#	#
+#	X = cbind(D$xi, D$zeta)
+#	SIG2 = S2(X, X, lx, ly, r, s2) + diag(D$cllhsV)
+#		
+#	#
+#	return( dmvnorm(y, sigma=SIG2, log=T) )
+#}
+
 
 
 

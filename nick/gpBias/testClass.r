@@ -3,7 +3,7 @@ rm(list=ls())
 #
 library(VGAM)
 #
-source("gpClass.0.0.1.r")
+source("gpClass0.0.1.r")
 
 #
 #FUNCTIONS
@@ -28,7 +28,7 @@ y = X[,1]+0.2*X[,2] #1:n #(X[,1]+0.2*X[,2])^2
 fit = lm(y~X)
 pp = predict(fit)
 #
-gp = prodModel$new( S2=S2, X=X, Y=y-pp,
+gp = gpModel$new( lm=fit, S2=S2, X=X, Y=y,
 	v0 = 1,
 	v1 = 0.1,
 	s2 = 5,
