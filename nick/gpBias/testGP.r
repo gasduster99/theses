@@ -87,8 +87,8 @@ D = D[D$cllhsV!=0,]
 X = cbind(D$xi, D$zeta)
 
 #
-xiPred   = seq(0.4,3.7,length.out=50)	
-zetaPred = seq(0.1,0.9,length.out=50)	
+xiPred   = seq(0.7,3.5,length.out=50)	#seq(0.5, 3.5, 0.01) 		#	
+zetaPred = seq(0.2,0.75,length.out=50)	#seq(0.1, 0.75, 0.01)   	#
 predMesh = as.matrix(expand.grid(xiPred, zetaPred))
 colnames(predMesh) = c('xi', 'zeta')
 #
@@ -108,20 +108,20 @@ optOut = gp$fit(c('v0', 'v1', 's2', 'cr'),
 )
 #
 yy = gp$predictMean(predMesh)
-SS = diag(gp$predictVar(predMesh))
-#
-xS = exp(2*yy+SS)*(exp(SS)-1)/M^2
-K = 10^6
-yS = mcmapply(function(yy, SS){
-		logitM(2, log(2*M)-yy, SS, K=K) - logitM(1, log(2*M)-yy, SS, K=K)^2
-	}, yy, SS, mc.cores=8
-)
-xS = matrix(xS, nrow=length(xiPred), byrow=T)
-yS = matrix(yS, nrow=length(xiPred), byrow=T)
+#SS = diag(gp$predictVar(predMesh))
+##
+#xS = exp(2*yy+SS)*(exp(SS)-1)/M^2
+#K = 10^6
+#yS = mcmapply(function(yy, SS){
+#		logitM(2, log(2*M)-yy, SS, K=K) - logitM(1, log(2*M)-yy, SS, K=K)^2
+#	}, yy, SS, mc.cores=8
+#)
+#xS = matrix(xS, nrow=length(xiPred))
+#yS = matrix(yS, nrow=length(xiPred))
 
 #
-xDist = matrix((exp(yy)/M)-xiPred, nrow=length(xiPred), byrow=T)
-yDist = matrix((1/(exp(yy)/M+2))-zetaPred, nrow=length(xiPred), byrow=T)
+xDist = matrix((exp(yy)/M)-xiPred, nrow=length(xiPred)) #, byrow=T)
+yDist = matrix((1/(exp(yy)/M+2))-zetaPred, nrow=length(xiPred))#, byrow=T)
 #
 bigD = mcmapply(function(xiHat, xi, zeta){
                 dist(xiHat, xi, zeta)
@@ -129,13 +129,15 @@ bigD = mcmapply(function(xiHat, xi, zeta){
 )
 
 #
-#
+#OUTPUT
 #
 
 #
-m = 3.5
+m = 2.5
 
 #
+pdf('gpXiBiasFineR.pdf')
+#dev.new()
 filled.contour(xiPred, zetaPred, xDist, 
 	zlim=c(-m, m),
 	plot.axes = {
@@ -143,48 +145,99 @@ filled.contour(xiPred, zetaPred, xDist,
 		lines(seq(0,4,0.1), 1/(seq(0,4,0.1)+2), lwd=3)
 		#points(D$xi[D$cllhsV==0], D$zeta[D$cllhsV==0], pch=16)
 		#points(D$xi[D$cllhsV==max(D$cllhsV)], D$zeta[D$cllhsV==max(D$cllhsV)], pch=16, col='blue')
+		#
+		axis(1, seq(min(xiPred), max(xiPred), by=0.5))
+                axis(2, seq(min(zetaPred), max(zetaPred), by=0.1))
 	},
+	plot.title = title(
+		main = "Bias in Estimated Optimal Fishing Rate",
+		ylab = expression(B[msy]/B[0]),
+        	xlab = expression(F[msy]/M),	
+	),
 	color.palette = function(n) hcl.colors(n, "Blue-Red 3")
 )
+dev.off()
 
 #
-dev.new()
-filled.contour(xiPred, zetaPred, xDist/sqrt(xS), 
-	zlim=c(-m*30, m*30),
+pdf('gpZetaBiasFineR.pdf')
+#dev.new()
+filled.contour(xiPred, zetaPred, yDist, 
+	zlim=c(-0.55,0.55),
+        ylab = expression(frac(F[msy]/F[0])),
 	plot.axes = {
 		points(D$xi, D$zeta, pch='.')
 		lines(seq(0,4,0.1), 1/(seq(0,4,0.1)+2), lwd=3)
 		#points(D$xi[D$cllhsV==0], D$zeta[D$cllhsV==0], pch=16)
-		#points(D$xi[D$cllhsV==max(D$cllhsV)], D$zeta[D$cllhsV==max(D$cllhsV)], pch=16, col='blue')
+		#points(D$xi[D$cllhsV==max(D$cllhsV)], D$zeta[D$cllhsV==max(D$cllhsV)], pch=16, col='blue')	
+		axis(1, seq(min(xiPred), max(xiPred), by=0.5))
+                axis(2, seq(min(zetaPred), max(zetaPred), by=0.1))
 	},
-	color.palette = function(n) hcl.colors(n, "Blue-Red 3")
+	plot.title = title(
+		main = "Bias in Estimated Optimal Biomass",
+		ylab = expression(B[msy]/B[0]),
+        	xlab = expression(F[msy]/M),	
+	),
+	color.palette = function(n) hcl.colors(n, "Blue-Red 3"),
 )
+dev.off()
 
 #
-dev.new()
-filled.contour(xiPred, zetaPred, yDist, 
-	zlim=c(-0.6,0.6),
-	plot.axes = {
-		points(D$xi, D$zeta)
-		lines(seq(0,4,0.1), 1/(seq(0,4,0.1)+2), lwd=3)
-		#points(D$xi[D$cllhsV==0], D$zeta[D$cllhsV==0], pch=16)
-		#points(D$xi[D$cllhsV==max(D$cllhsV)], D$zeta[D$cllhsV==max(D$cllhsV)], pch=16, col='blue')
-	},
-	color.palette = function(n) hcl.colors(n, "Blue-Red 3")
+pdf('gpBiasArrow.pdf')
+#dev.new()
+datGrid = expand.grid(xiSims, zetaSims)
+colnames(datGrid) = c('xi', 'zeta')
+w = (predMesh[,'xi']>0.5 & predMesh[,'xi']<3.5 & predMesh[,'zeta']>0.2 & predMesh[,'zeta']<0.75) #paste0(predMesh[,'xi'], predMesh[,'zeta'])%in%paste0(datGrid[,'xi'], datGrid[,'zeta']) #
+thin = c(T,rep(F,3))
+filled.contour(xiPred, zetaPred, matrix(bigD, nrow=length(xiPred)),
+        zlim=c(0, m),
+        plot.axes = {
+                quiver(
+			predMesh[w,'xi'][thin], predMesh[w,'zeta'][thin],
+			xDist[w][thin], yDist[w][thin],
+			scale=0.05
+		) 
+                lines(seq(0,4,0.1), 1/(seq(0,4,0.1)+2), lwd=3)
+		#
+		axis(1, seq(min(xiPred), max(xiPred), by=0.5))
+                axis(2, seq(min(zetaPred), max(zetaPred), by=0.1))
+        },
+	plot.title = title(
+		main = "Directional Bias",
+		ylab = expression(B[msy]/B[0]),
+        	xlab = expression(F[msy]/M),	
+	),
+	#key.title = title(main = "Directional Bias"),
+        color.palette = function(n) hcl.colors(n, "Reds", rev = TRUE)
 )
+dev.off()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #
-dev.new()
-filled.contour(xiPred, zetaPred, yDist/sqrt(yS), 
-	zlim=c(-0.6,0.6),
-	plot.axes = {
-		points(D$xi, D$zeta)
-		lines(seq(0,4,0.1), 1/(seq(0,4,0.1)+2), lwd=3)
-		#points(D$xi[D$cllhsV==0], D$zeta[D$cllhsV==0], pch=16)
-		#points(D$xi[D$cllhsV==max(D$cllhsV)], D$zeta[D$cllhsV==max(D$cllhsV)], pch=16, col='blue')
-	},
-	color.palette = function(n) hcl.colors(n, "Blue-Red 3")
-)
+#dev.new()
+#filled.contour(xiPred, zetaPred, yDist/sqrt(yS), 
+#	zlim=c(-0.6,0.6),
+#	plot.axes = {
+#		points(D$xi, D$zeta)
+#		lines(seq(0,4,0.1), 1/(seq(0,4,0.1)+2), lwd=3)
+#		#points(D$xi[D$cllhsV==0], D$zeta[D$cllhsV==0], pch=16)
+#		#points(D$xi[D$cllhsV==max(D$cllhsV)], D$zeta[D$cllhsV==max(D$cllhsV)], pch=16, col='blue')
+#	},
+#	color.palette = function(n) hcl.colors(n, "Blue-Red 3")
+#)
 
 
 

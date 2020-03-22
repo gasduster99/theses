@@ -21,7 +21,6 @@ S2 = function(X0, X1, s2, v){
         }, X0, maxD) 
 }
 
-
 #
 #SOUTH KOREA
 #
@@ -64,19 +63,21 @@ itR = rowSums(itDat[,3:4])
 itT = nrow(itDat)
 
 #
+itLast = readRDS('itLast.rda')
+#
 it = prodModel$new(time=1:itT, dNdt=dNdt, R=itR, model=list(observation="N"),
-        rr   = 0.2713875, #0.3179662,
-        K    = 42572.68,  #20129.5,
-        lsdo = 5.277671, #5.172899, #5.216676,
-        N0   = 27.83871 #13.80569
+        rr   = itLast$rr,   #0.2688801,	#0.2713875, #0.3179662,
+        K    = itLast$K,    #51941.15, 	#42572.68,  #20129.5,
+        lsdo = itLast$lsdo, #5.276156, 	#5.277671, #5.172899, #5.216676,
+        N0   = itLast$N0    #27.84039, 	#27.83871 #13.80569
 )
 
 #
 itOut = it$optimize(itDat$activeCases, 
 	c('lsdo', 'rr', 'K', 'N0'),
-	lower   = c(0, 0.26, 10^3, 5),
+	lower   = c(0, 0.21, 10^3, 5),
 	upper   = c(10, 1, 10^5, 50),       
-	#gaBoost = list(run=30, popSize=1e4, parallel=8),
+	gaBoost = list(run=30, popSize=1e4, parallel=8),
         cov     = T
 )
 #
@@ -93,19 +94,21 @@ usDat = read.table('us.csv', header=T, sep=',')
 usR = rowSums(usDat[,3:4])
 usT = nrow(usDat)
 
+#usLast = readRDS('us.rda')
+usLast = readRDS('usLast.rda')
 #
 us = prodModel$new(time=1:usT, dNdt=dNdt, R=usR, model=list(observation="N"),
-        rr   = 0.2747354,	#0.2901101,	
-        K    = 777867.2,	#232874.5, 
-        lsdo = 3.464444,	#3.026116, 	#4.866844, 	#5.216676,
-        N0   = 2.224132		#1.686993		#12		#13.80569
+        rr   = usLast$rr, 	#0.2718922, 	#0.2747354,	#0.2901101,	
+        K    = usLast$K,	#155160.2, 	#777867.2,	#232874.5, 
+        lsdo = usLast$lsdo,	#3.681168, 	#3.464444,	#3.026116, 	#4.866844, 	#5.216676,
+        N0   = usLast$N0	#2.35771, 	#2.224132		#1.686993		#12		#13.80569
 )
 
 #
 usOut = us$optimize(usDat$activeCases, 
 	c('lsdo', 'rr', 'K', 'N0'),
-	lower   = c(0, 0.25, 10^4, 1),
-	upper   = c(10, 1, 10^6, 50),       
+	lower   = c(0, 0.26, 10^5, 0.8),
+	upper   = c(10, 1, 0.6*330*10^6, 50),       
 	gaBoost = list(run=30, popSize=1e4, parallel=8),
         cov     = T
 )
@@ -131,7 +134,7 @@ us$printSelf()
 #tXX = seq(min(gp$X), max(gp$X)+15, 0.1) #seq(max(gp$X)+1, max(gp$X)+60, 1)
 #pm = gp$predictMean(tXX)
 #psd = sqrt(diag(gp$predictVar(tXX)))
-#
+
 ##
 #plot(gp$X, gp$Y, xlim=c(min(tXX), max(tXX)), ylim=c(0, max(pm)))
 #lines(tXX, pm)

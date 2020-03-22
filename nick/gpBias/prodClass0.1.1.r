@@ -90,7 +90,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                 optimize = optimize,
 		
 		#
-		printer   = printSelf 
+		printer   = printSelf, 
 		printSelf = function(ins=c()){
 			self$printer(ins, outs=c(
 				"iterate", "optimize", "model",	"prior", 
