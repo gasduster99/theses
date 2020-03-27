@@ -61,7 +61,7 @@ S2 = function(X0, X1, s2, v0, v1, cr){
 	maxD = dbinorm(X0[,1], X0[,2], X0[,1], X0[,2], v0, v1, sqrt(v0*v1)*cr, log=T)
 	s2*mcmapply(function(x01, x02, m){
 		exp(dbinorm(X1[,1], X1[,2], x01, x02, v0, v1, sqrt(v0*v1)*cr, log=T)-m)
-	}, X0[,1], X0[,2], maxD, mc.cores=8)	
+	}, X0[,1], X0[,2], maxD, mc.cores=detectCores())	
 }
 
 #
@@ -93,19 +93,32 @@ predMesh = as.matrix(expand.grid(xiPred, zetaPred))
 colnames(predMesh) = c('xi', 'zeta')
 #
 line = lm(cllhs~xi+zeta, data=D)
-gp = gpModel$new( S2=S2, X=X, Y=D$cllhs, obsV=D$cllhsV, #lm=line, 
-        B  = line$coeff,	#c(4.1894, -0.1452, -10.3066), 
-	v0 = 0.343979394716728,
-        v1 = 0.0270240223433852,
-        s2 = 2.93501281,
-        cr = -0.433574770896697
-)
+#gp = gpModel$new( S2=S2, X=X, Y=D$cllhs, obsV=D$cllhsV, #lm=line, 
+#        B  = line$coeff,	#c(4.1894, -0.1452, -10.3066), 
+#	v0 = 0.343979394716728,
+#        v1 = 0.0270240223433852,
+#        s2 = 2.93501281,
+#        cr = -0.433574770896697
+#)
+##
+#optOut0 = gp$fit(c('v0', 'v1', 's2', 'cr'),
+#        lower   = c(eps(), eps(), eps(), -1),
+#        upper   = c(Inf, Inf, Inf, 1),
+#        cov     = T
+#)
+#gp$save('gpHotStart.rda')
+gp = readRDS('gpHotStart.rda')
+gp$printSelf()
 #
-optOut = gp$fit(c('v0', 'v1', 's2', 'cr'),
-        lower   = c(eps(), eps(), eps(), -1),
-        upper   = c(Inf, Inf, Inf, 1),
+bnd = rep(Inf, length(line$coeff))
+optOut1 = gp$fit(c('v0', 'v1', 's2', 'cr', 'B'),
+        lower   = c(eps(), eps(), eps(), -1, -bnd),
+        upper   = c(Inf, Inf, Inf, 1, bnd),
+	gaBoost = list(run=30, popSize=detectCores(), parallel=detectCores()),
         cov     = T
 )
+gp$save('gpBigOpt.rda')
+gp$printSelf()
 #
 yy = gp$predictMean(predMesh)
 #SS = diag(gp$predictVar(predMesh))
@@ -125,7 +138,7 @@ yDist = matrix((1/(exp(yy)/M+2))-zetaPred, nrow=length(xiPred))#, byrow=T)
 #
 bigD = mcmapply(function(xiHat, xi, zeta){
                 dist(xiHat, xi, zeta)
-        }, exp(yy)/M, xiPred, zetaPred, mc.cores=8
+        }, exp(yy)/M, xiPred, zetaPred, mc.cores=detectCores()
 )
 
 #
@@ -136,7 +149,7 @@ bigD = mcmapply(function(xiHat, xi, zeta){
 m = 2.5
 
 #
-pdf('gpXiBiasFineR.pdf')
+pdf('gpXiBiasFineRB.pdf')
 #dev.new()
 filled.contour(xiPred, zetaPred, xDist, 
 	zlim=c(-m, m),
@@ -159,7 +172,7 @@ filled.contour(xiPred, zetaPred, xDist,
 dev.off()
 
 #
-pdf('gpZetaBiasFineR.pdf')
+pdf('gpZetaBiasFineRB.pdf')
 #dev.new()
 filled.contour(xiPred, zetaPred, yDist, 
 	zlim=c(-0.55,0.55),
@@ -182,7 +195,7 @@ filled.contour(xiPred, zetaPred, yDist,
 dev.off()
 
 #
-pdf('gpBiasArrow.pdf')
+pdf('gpBiasArrowB.pdf')
 #dev.new()
 datGrid = expand.grid(xiSims, zetaSims)
 colnames(datGrid) = c('xi', 'zeta')

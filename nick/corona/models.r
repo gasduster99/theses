@@ -77,7 +77,7 @@ itOut = it$optimize(itDat$activeCases,
 	c('lsdo', 'rr', 'K', 'N0'),
 	lower   = c(0, 0.21, 10^3, 5),
 	upper   = c(10, 1, 10^5, 50),       
-	gaBoost = list(run=30, popSize=1e4, parallel=8),
+	#gaBoost = list(run=30, popSize=1e3, parallel=4),
         cov     = T
 )
 #
@@ -109,7 +109,7 @@ usOut = us$optimize(usDat$activeCases,
 	c('lsdo', 'rr', 'K', 'N0'),
 	lower   = c(0, 0.26, 10^5, 0.8),
 	upper   = c(10, 1, 0.6*330*10^6, 50),       
-	gaBoost = list(run=30, popSize=1e4, parallel=8),
+	gaBoost = list(run=30, popSize=1e3, parallel=4),
         cov     = T
 )
 #
