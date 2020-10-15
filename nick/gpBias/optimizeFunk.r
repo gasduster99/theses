@@ -55,7 +55,7 @@ optimize = function(    data,
                 like = private$dLikes[[self$model$observation]](self, data) 
                 return( -sum(like) )
         }
-                
+        
         #possibly precondition guesses with ga
         if( gaBoost[[1]]!=F ){
                 #
@@ -77,8 +77,8 @@ optimize = function(    data,
                 #}
                 #
                 par = private$selfToPar(parNames)
-                nome = names(par)
-                
+                nome = names(par)	
+		
                 # 
                 i = 0
                 flag = T       

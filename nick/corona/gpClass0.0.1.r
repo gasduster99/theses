@@ -1,5 +1,6 @@
 #
 suppressWarnings(suppressMessages( library(R6, quietly=TRUE) ))
+suppressWarnings(suppressMessages( library(GA, quietly=TRUE) ))
 suppressWarnings(suppressMessages( library(mvtnorm, quietly=TRUE) ))
 
 #
@@ -18,6 +19,8 @@ gpModel = R6Class("GPModel", lock_objects=FALSE,
 		X = NA,
 		Y = NA,
 		g = 0,
+		#
+		OPT_method = 'L-BFGS-B',
 		#
 		initialize = function(
 			X  = NA,
@@ -52,9 +55,17 @@ gpModel = R6Class("GPModel", lock_objects=FALSE,
 		#
 		fit = function(	parNames,
                         	lower, upper,
+				method=self$OPT_method,
                         	cov=F,
+				gaBoost=F,
                         	control=list()
 		){
+			#digest opt method      
+       			self$OPT_method = method
+
+       		 	#
+       		 	out = list()
+			
 			#
 			loglikeL = function(par){
 			        #
@@ -65,25 +76,113 @@ gpModel = R6Class("GPModel", lock_objects=FALSE,
 				#-dmvnorm(self$yRes, sigma=SIG2, log=T)
 				-dmvnorm(self$Y, X%*%self$B, sigma=SIG2, log=T)
 			}
+
+	        	#possibly precondition guesses with ga
+	        	if( gaBoost[[1]]!=F ){
+	        	        #
+	        	        set = list(
+	        	                popSize = 1e4,
+	        	                maxiter = 1e3,
+	        	                run     = 30,
+	        	                parallel= T
+	        	        )
+	        	        for(bn in names(gaBoost)){
+	        	                set[[bn]] = gaBoost[[bn]]
+	        	        }
+				
+				#
+				par = private$selfToPar(parNames)
+                		nome = names(par)
+				
+                		# 
+                		i = 0
+                		flag = T
+		                while( flag ){
+		                        tryCatch({
+		                                #
+		                                out[['gaOut']] = ga(
+		                                        type    = 'real-valued',
+		                                        fitness = function(x){ names(x)=nome; -loglikeL(x) },
+		                                        names   = nome,
+		                                        lower   = lower,
+		                                        upper   = upper,
+		                                        popSize = set[['popSize']], #gaBoost[['popSize']], 
+		                                        maxiter = set[['maxiter']], #gaBoost[['maxiter']],
+		                                        run     = set[['run']],     #gaBoost[['run']],
+		                                        optim   = T,
+		                                        parallel= set[['parallel']],        #T,
+		                                        #monitor = F, 
+		                                        suggestions = par
+		                                )
+		                                #make sure to update with the best solution
+		                                private$parToSelf(out[['gaOut']]@solution[1,])
+		                                par = out[['gaOut']]@solution
+		
+		                                #optim
+		                                out[['optimOut']] = optim(
+		                                        par[1,],
+		                                        loglikeL,
+		                                        lower = lower,
+		                                        upper = upper,
+		                                        hessian = cov,
+		                                        method  = self$OPT_method,
+		                                        control = control
+		                                )
+		
+		                                #make sure to update with the best solution
+		                                if( out[['gaOut']]@fitnessValue>out[['optimOut']]$value ){
+		                                        #
+		                                        private$parToSelf(out[['gaOut']]@solution[1,])
+		                                }
+		
+		                                #
+		                                if( cov ){
+		                                        #
+		                                        self$rsCov = chol2inv(chol(out$optimOut$hessian))
+		                                        colnames(self$rsCov) = nome
+		                                        rownames(self$rsCov) = nome
+		                                }
+		
+		                                #
+		                                flag = F
+		                        }, error=function(err){	
+		                                #
+		                                writeLines( sprintf("\nRound: %s\n", i) )
+		                                self$printSelf()
+		                                print(err) 
+		                                #
+		                                return(T)
+		                        }
+		                        )
+		                        # 
+		                        i = i+1
+		                }
+        		} else{
+				#
+				par = private$selfToPar(parNames)
+                                nome = names(par)
+				
+				#
+				out[['optimOut']] = optim(
+                        		par,
+                        		loglikeL,
+                        		lower = lower,
+                        		upper = upper,
+                        		hessian = cov,
+                        		method  = 'L-BFGS-B',
+                        		control = control
+                		)
+				#
+				self$aic = 2*(out[['optimOut']]$value + length(parNames))
+				#
+                		if( cov ){
+                		        #
+                		        self$rsCov = chol2inv(chol(out$optimOut$hessian))
+                		        colnames(self$rsCov) = nome
+                		        rownames(self$rsCov) = nome
+                		}
+			}
 			#
-			out = optim(
-                        	private$selfToPar(parNames),
-                        	loglikeL,
-                        	lower = lower,
-                        	upper = upper,
-                        	hessian = cov,
-                        	method  = 'L-BFGS-B',
-                        	control = control
-                	)
-			#
-			self$aic = 2*(out$value + length(parNames))
-			#
-                	if( cov ){
-                	        #
-                	        self$rsCov = chol2inv(chol(out$hessian))
-                	        colnames(self$rsCov) = parNames
-                	        rownames(self$rsCov) = parNames
-                	}
 			return( out )
 		},
 		
