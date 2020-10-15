@@ -280,10 +280,15 @@ NN = 200
 makeOut = T
 
 #
-name = 'rosenbrockThirtyMPI'
+name = 'testMPI'
 f = rosenbrock
 rect = cbind(c(-2, -3), c(2, 5))
 W = 30
+##
+#name = 'rosenbrockThirtyMPI'
+#f = rosenbrock
+#rect = cbind(c(-2, -3), c(2, 5))
+#W = 30
 ##
 #name = 'rastriginW90NN'
 #f = rastrigin
@@ -318,10 +323,10 @@ clusterOut = mpi.applyLB( 1:M,
 	#parallel
 	rank = mpi.comm.rank() #(count-1)%%threads
 	nameCount = sprintf('%s%s', name, count)
-	dir.create(sprintf('/home/nick/Documents/school/ucscGrad/thesis/herbie/falsePos/rank%s', rank))
+	dir.create(sprintf('/home/nick/Documents/school/ucscGrad/theses/herbie/falsePos/rank%s', rank))
 	#dir.create(sprintf('/home/nick/Documents/falsePos/rank%s', rank))
 	#setwd(sprintf('/home/nick/Documents/falsePos/rank%s', rank))
-	setwd(sprintf('/home/nick/Documents/school/ucscGrad/thesis/herbie/falsePos/rank%s', rank))
+	setwd(sprintf('/home/nick/Documents/school/ucscGrad/theses/herbie/falsePos/rank%s', rank))
 	system(sprintf('cp ../seeOut.tex .'))	
 	#initializing
 	threshFlag = F

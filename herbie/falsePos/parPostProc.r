@@ -89,7 +89,7 @@ pdf('itConvRast.pdf')
 plot(itConv,
 	xlim=c(0,300), 
 	ylim=c(0,300),
-	main='Rosenbrock' #'Rastrigin'
+	main='Rosenbrock' # 'Rastrigin'
 )
 lines(-100:400, -100:400)
 dev.off()
