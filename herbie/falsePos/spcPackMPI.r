@@ -274,11 +274,10 @@ meat = function(init, it){
 #
 
 #fiddlers
-M = 10 #100 #1000
-threads = 7
+M = 10 #1000
+threads = 10
 NN = 200
 makeOut = T
-
 #
 name = 'testMPI'
 f = rosenbrock
@@ -323,10 +322,10 @@ clusterOut = mpi.applyLB( 1:M,
 	#parallel
 	rank = mpi.comm.rank() #(count-1)%%threads
 	nameCount = sprintf('%s%s', name, count)
-	dir.create(sprintf('/home/nick/Documents/school/ucscGrad/theses/herbie/falsePos/rank%s', rank))
-	#dir.create(sprintf('/home/nick/Documents/falsePos/rank%s', rank))
-	#setwd(sprintf('/home/nick/Documents/falsePos/rank%s', rank))
-	setwd(sprintf('/home/nick/Documents/school/ucscGrad/theses/herbie/falsePos/rank%s', rank))
+	#dir.create(sprintf('/home/nick/Documents/school/ucscGrad/theses/herbie/falsePos/rank%s', rank))
+	dir.create(sprintf('/home/nick/Documents/theses/herbie/falsePos/rank%s', rank))
+	setwd(sprintf('/home/nick/Documents/theses/herbie/falsePos/rank%s', rank))
+	#setwd(sprintf('/home/nick/Documents/school/ucscGrad/theses/herbie/falsePos/rank%s', rank))
 	system(sprintf('cp ../seeOut.tex .'))	
 	#initializing
 	threshFlag = F

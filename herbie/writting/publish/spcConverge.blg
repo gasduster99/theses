@@ -1,46 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2011/Fink)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: spcConverge.aux
-The style file: plain.bst
-Database file #1: ./msCite.bib
-You've used 1 entry,
-            2118 wiz_defined-function locations,
-            503 strings with 4143 characters,
-and the built_in function-call counts, 304 in all, are:
-= -- 24
-> -- 18
-< -- 0
-+ -- 8
-- -- 6
-* -- 19
-:= -- 59
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 5
-chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 12
-empty$ -- 23
-format.name$ -- 6
-if$ -- 59
-int.to.chr$ -- 0
+The style file: jasa.bst
+Database file #1: ./spcCite.bib
+Warning--empty publisher in gBook
+You've used 23 entries,
+            2666 wiz_defined-function locations,
+            771 strings with 8657 characters,
+and the built_in function-call counts, 10352 in all, are:
+= -- 999
+> -- 381
+< -- 25
++ -- 149
+- -- 118
+* -- 937
+:= -- 1796
+add.period$ -- 90
+call.type$ -- 23
+change.case$ -- 157
+chr.to.int$ -- 23
+cite$ -- 24
+duplicate$ -- 444
+empty$ -- 791
+format.name$ -- 184
+if$ -- 2037
+int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 2
-newline$ -- 8
-num.names$ -- 2
-pop$ -- 10
+missing$ -- 26
+newline$ -- 122
+num.names$ -- 92
+pop$ -- 136
 preamble$ -- 1
-purify$ -- 5
+purify$ -- 151
 quote$ -- 0
-skip$ -- 6
+skip$ -- 324
 stack$ -- 0
-substring$ -- 6
-swap$ -- 1
-text.length$ -- 0
+substring$ -- 618
+swap$ -- 101
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 2
-warning$ -- 0
-while$ -- 2
-width$ -- 2
-write$ -- 12
+type$ -- 195
+warning$ -- 1
+while$ -- 77
+width$ -- 0
+write$ -- 325
+(There was 1 warning)

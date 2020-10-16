@@ -1,8 +1,141 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{23}
+\newcommand{\enquote}[1]{``#1''}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
-\bibitem{santnerBook}
-Thomas~J. Santner, Brian~J. Williams, and William Notz.
-\newblock {\em The design and analysis of computer experiments}.
-\newblock Springer, 2003.
+\bibitem[\protect\citename{Abrahamsen, }1997]{abrahamsenBook}
+Abrahamsen, P. (1997).
+\newblock \enquote{A review of Gaussian random fields and correlation
+  functions.}
+\newblock Tech. Rep. 917, Norsk Regnesentral/Norwegian Computing Center.
+
+\bibitem[\protect\citename{Box and Cox, }1964]{boxCox1964}
+Box, G.~E. and Cox, D.~R. (1964).
+\newblock \enquote{An analysis of transformations.}
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  (Methodological)\/}, 26, 211--252.
+
+\bibitem[\protect\citename{Box et~al., }1997]{boxBook}
+Box, G. E.~P., Luce\~{n}o, A., and Paniagua-Qui\~{n}ones, M. D.~C. (1997).
+\newblock {\em Statistical Control by Monitoring and Adjustment\/}.
+\newblock New York: Wiley.
+
+\bibitem[\protect\citename{Diwale et~al., }2014]{windExample}
+Diwale, S.~S., Lymperopoulos, I., and Jones, C. (2014).
+\newblock \enquote{Optimization of an airborne wind energy system using
+  constrained Gaussian processes.}
+\newblock In {\em IEEE Multi-Conference on Systems and Control\/}.
+\newblock To appear.
+
+\bibitem[\protect\citename{Gramacy, }2007]{tgp}
+Gramacy, R.~B. (2007).
+\newblock \enquote{tgp: an R package for Bayesian nonstationary, semiparametric
+  nonlinear regression and design by treed Gaussian process models.}
+\newblock {\em Journal of Statistical Software\/}, 19, 9, 1--46.
+
+\bibitem[\protect\citename{Gramacy et~al., }2015]{gramacy2014}
+Gramacy, R.~B., Gray, G.~A., {Le Digabel}, S., Lee, H. K.~H., Ranjan, P.,
+  Wells, G., and Wild, S.~M. (2015).
+\newblock \enquote{Modeling an augmented Lagrangian for blackbox constrained
+  optimization.}
+\newblock {\em Technometrics\/}.
+\newblock To appear, preprint arXiv:1403.4890.
+
+\bibitem[\protect\citename{Gramacy and Lee, }2008]{gpJasa}
+Gramacy, R.~B. and Lee, H. K.~H. (2008).
+\newblock \enquote{Bayesian treed Gaussian process models with an application
+  to computer modeling.}
+\newblock {\em Journal of the American Statistical Association\/}, 103, 483.
+
+\bibitem[\protect\citename{Gramacy and Lee, }2012]{gramacy2012}
+--- (2012).
+\newblock \enquote{Cases for the nugget in modeling computer experiments.}
+\newblock {\em Statistics and Computing\/}, 22, 3, 713--722.
+
+\bibitem[\protect\citename{Gramacy and Taddy, }2010]{tgp2}
+Gramacy, R.~B. and Taddy, M. (2010).
+\newblock \enquote{Categorical inputs, sensitivity analysis, optimization and
+  importance tempering with tgp version 2, an R package for treed Gaussian
+  process models.}
+\newblock {\em Journal of Statistical Software\/}, 33, 6, 1--48.
+
+\bibitem[\protect\citename{Jones et~al., }1998]{jonesEIOpt}
+Jones, D.~R., Schonlau, M., and Welch, W.~J. (1998).
+\newblock \enquote{Efficient global optimization of expensive black-box
+  functions.}
+\newblock {\em Journal of Global Optimization\/}, 13, 4, 455--492.
+
+\bibitem[\protect\citename{Kolda et~al., }2003]{KoldLewiTorc2003}
+Kolda, T.~G., Lewis, R.~M., and Torczon, V. (2003).
+\newblock \enquote{Optimization by direct search: New perspectives on some
+  classical and modern methods.}
+\newblock {\em SIAM Review\/}, 45, 385--482.
+
+\bibitem[\protect\citename{Lucas and Saccucci, }1990]{ewmaPaper}
+Lucas, J.~M. and Saccucci, M.~S. (1990).
+\newblock \enquote{Exponentially weighted moving average control schemes:
+  properties and enhancements.}
+\newblock {\em Technometrics\/}, 32, 1, 1--12.
+
+\bibitem[\protect\citename{Matott et~al., }2011]{lockCite}
+Matott, S.~L., Leung, K., and Sim, J. (2011).
+\newblock \enquote{Application of MATLAB and Python optimizers to two case
+  studies involving groundwater flow and contaminant transport modeling.}
+\newblock {\em Computers \& Geosciences\/}, 37, 11, 1894--1899.
+
+\bibitem[\protect\citename{Mayer et~al., }2002]{mayer2002optimal}
+Mayer, A.~S., Kelley, C., and Miller, C.~T. (2002).
+\newblock \enquote{Optimal design for problems involving flow and transport
+  phenomena in saturated subsurface systems.}
+\newblock {\em Advances in Water Resources\/}, 25, 8, 1233--1256.
+
+\bibitem[\protect\citename{Rosenbrock, }1960]{rosePaper}
+Rosenbrock, H.~H. (1960).
+\newblock \enquote{An automatic method for finding the greatest or least value
+  of a function.}
+\newblock {\em The Computer Journal\/}, 3, 3, 175--184.
+
+\bibitem[\protect\citename{Sacks et~al., }1989]{sacksDesign}
+Sacks, J., Welch, W.~J., Mitchell, T.~J., and Wynn, H.~P. (1989).
+\newblock \enquote{Design and analysis of computer experiments.}
+\newblock {\em Statistical science\/}, 4, 409--423.
+
+\bibitem[\protect\citename{Santner et~al., }2003]{santnerBook}
+Santner, T.~J., Williams, B.~J., and Notz, W. (2003).
+\newblock {\em The design and analysis of computer experiments\/}.
+\newblock New York: Springer.
+
+\bibitem[\protect\citename{Schonlau et~al., }1998]{gBook}
+Schonlau, M., Jones, D., and Welch, W. (1998).
+\newblock \enquote{Global versus local search in constrained optimization of
+  computer models.}
+\newblock In {\em New Developments and applications in experimental design\/},
+  no.~34 in IMS Lecture Notes - Monograph Series,  11--25.
+
+\bibitem[\protect\citename{Scrucca, }2004]{qccPack}
+Scrucca, L. (2004).
+\newblock \enquote{qcc: an R package for quality control charting and
+  statistical process control.}
+\newblock {\em R News\/}, 4/1, 11--17.
+
+\bibitem[\protect\citename{Shewhart, }1931]{shewhartBook}
+Shewhart, W.~A. (1931).
+\newblock {\em Economic control of quality of manufactured product\/}.
+\newblock New York: D. Van Nostrand Company.
+
+\bibitem[\protect\citename{Stein, }1999]{steinBook}
+Stein, M.~L. (1999).
+\newblock {\em Interpolation of spatial data: some theory for kriging\/}.
+\newblock New York: Springer.
+
+\bibitem[\protect\citename{Taddy et~al., }2009]{taddyOpt}
+Taddy, M.~A., Lee, H. K.~H., Gray, G.~A., and Griffin, J.~D. (2009).
+\newblock \enquote{Bayesian guided pattern search for robust local
+  optimization.}
+\newblock {\em Technometrics\/}, 51, 4, 389--401.
+
+\bibitem[\protect\citename{Whitley et~al., }1996]{rastCite}
+Whitley, D., Rana, S., Dzubera, J., and Mathias, K.~E. (1996).
+\newblock \enquote{Evaluating evolutionary algorithms.}
+\newblock {\em Artificial Intelligence\/}, 85, 1-2, 245--276.
 
 \end{thebibliography}
