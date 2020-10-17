@@ -211,20 +211,19 @@ output = function(isOut, name, Zmax, it, mmu, lambda, ewma, W, test1){
                 #system( sprintf('mv bestZ%s.pdf /home/nick/Documents/falsePos/pictures/', name) )
                 #system( sprintf('mv ewmaConvChart%s.pdf /home/nick/Documents/falsePos/pictures/', name) )
                 #system( sprintf('cp seeOut.pdf /home/nick/Documents/falsePos/pictures/seeOut%s.pdf', name) )
-                system( sprintf('mv bestZ%s.pdf /home/nick/Documents/school/ucscGrad/thesis/herbie/falsePos/pictures/', name) )
-                system( sprintf('mv ewmaConvChart%s.pdf /home/nick/Documents/school/ucscGrad/thesis/herbie/falsePos/pictures/', name) )
-                system( sprintf('cp seeOut.pdf /home/nick/Documents/school/ucscGrad/thesis/herbie/falsePos/pictures/seeOut%s.pdf', name) )
-
+                system( sprintf('mv bestZ%s.pdf %s/pictures/', name, outPath) )
+                system( sprintf('mv ewmaConvChart%s.pdf %s/pictures/', name, outPath) )
+                system( sprintf('cp seeOut.pdf %s/pictures/seeOut%s.pdf', outPath, name) )
         }
 }
 
 #
-meat = function(init, it){
+meat = function(init, it){ #, dm){
         #
         #UNPACK INPUTS
         #
 
-        #[[1]]:X; [[2]]:Z; [[3]]:Zmax; [[4]]:wSamples; [[5]]:maxes; [[6]]:out; [[7]]:mcmcSize    
+        #[[1]]:X; [[2]]:Z; [[3]]:Zmax; [[4]]:wSamples; [[5]]:maxes; [[6]]:out; [[7]]:mcmcSize
         X = init[[1]]
         Z = init[[2]]
         Zmax = init[[3]]
@@ -232,16 +231,16 @@ meat = function(init, it){
         maxes = init[[5]]
         out = init[[6]]
         sLen = init[[7]]
-        nameCount = init[[8]]
+        #nameCount = init[[8]]
 
         #
         #OPTIMIZE
         #
 
         #               
-        out = tgp::optim.step.tgp( init$f, X=X, Z=Z, rect=init$rect, prev=out, improv=c(1,1), trace=T, verb=0, NN=init$NN )
-        ex = matrix(out$X, ncol=init$em)
-        fex = init$f(ex)
+        out = tgp::optim.step.tgp( init$f, X=X, Z=Z, rect=rect, prev=out, improv=c(1,1), trace=T, verb=0, NN=NN )
+        ex = matrix(out$X, ncol=dm)
+        fex = f(ex)
         X = rbind(X, ex)
         Z = c(Z, fex)
         Zmax = c(Zmax, min(Z))
@@ -257,18 +256,14 @@ meat = function(init, it){
         sLen = length(maxSamples)
 
         #
-        return( list(X=X,
+        return(list(
+		X=X,
                 Z=Z,
                 Zmax=Zmax,
                 samples=samples,
                 maxes=maxes,
                 out=out,
-                sLen=sLen,
-                nameCount=init$nameCount,
-                em=init$em,
-                rect=init$rect,
-                f=init$f,
-                NN=init$NN
+                sLen=sLen
         ))
 }
 
@@ -277,22 +272,140 @@ meat = function(init, it){
 #
 
 #fiddlers
-M = 10 #1000
-threads = 10
+M = 8 #1000
+threads = 8
 NN = 200
 makeOut = T
 #
+outPath = getwd() #'/home/nick/Documents/theses/herbie/falsePos/'
 name = 'test'
 f = rosenbrock
 rect = cbind(c(-2, -3), c(2, 5))
+dm = nrow(rect)
 W = 30
 
-##
-#registerDoParallel(cores=threads)
-#out = foreach( i=1:length(cats) )%dopar%{
-for(  ){
+#
+threshold = 5e-4
 
+#
+registerDoParallel(cores=threads)
+out = foreach( m=1:M )%dopar%{
+#for( m in 1:M ){
+	#parallel
+	rank = (m-1)%%threads
+	outName = sprintf('%s%s', name, m)
+	#
+	dir.create(sprintf('%s/rank%s', outPath, rank))
+	setwd(sprintf('%s/rank%s', outPath, rank))
+	system(sprintf('cp %s/seeOut.tex .', outPath))
+	
+	#sim init
+	flags = data.frame(
+		inLoop = T,
+		thresh = F, 
+		ewma   = F	
+	)		
+	itConv = data.frame(
+		thresh = NA,
+		ewma   = NA
+	)
+	it = 1
+	#optimization init
+	#dm = nrow(rect) 
+        X = lhs(40, rect)
+        Z = f(X)
+        Zmax = c(min(Z))
+        samples = c()
+        maxes = c()
+        out = NULL
+        sLen = NULL
+	#[[1]]:X; [[2]]:Z; [[3]]:Zmax; [[4]]:wSamples; [[5]]:maxes; [[6]]:out; [[7]]:sLen; 
+	init = list(
+		X=X, 
+		Z=Z,
+		Zmax=Zmax,
+		samples=samples,
+		maxes=maxes,
+		out=out,
+		sLen=sLen
+	)
+	#
+	while( flags$inLoop ){
+		#
+		init = meat(init, it)
+		#[[1]]:X; [[2]]:Z; [[3]]:Zmax; [[4]]:wSamples; [[5]]:maxes; [[6]]:out; [[7]]:sLen; 
+		X = init[[1]]
+		Z = init[[2]]
+		Zmax = init[[3]]
+		samples = init[[4]]
+		maxes = init[[5]]
+		out = init[[6]]
+		sLen = init[[7]]	
+		#
+		sEnd = length(samples)
+		back = W*sLen
+		lEnd = max(1, sEnd-back)
+		wSamples = samples[seq(lEnd, sEnd)]
+		mSamples = slice(samples, sLen)
+		#
+		wOut = LNToN(wSamples)
+		wm = wOut[[1]][1]
+		wv = wOut[[1]][2]
+		wmu = wOut[[2]][1]
+		ws2 = wOut[[2]][2]
+		#
+		mOut = lapply(mSamples, LNToN)
+		mm = getVect(mOut, "LN", "M")
+		mv = getVect(mOut, "LN", "V")
+		mmu = getVect(mOut, "N", "M")
+		ms2 = getVect(mOut, "N", "V")
+		#
+		if( it>W ){
+			 #
+                        optOut = tryCatch( optimize(theFunk, c(0, 1), Zmax, samples, sLen, ewmaConvChart, W, slice, LNToN, getVect, ewma, ssError),
+                                                error=function(x){return(list(minimum=lambda))}
+                        )
+                        lambda = optOut$minimum
+                        #optOut = optim(0.4, theFunk, Zmax, samples, sLen, ewmaConvChart, W, slice, LNToN, getVect, ewma, ssError)
+                        #lambda = optOut$par
+                        ewmaOut = ewma( rev(mmu)[1:W], lambda=lambda, newdata=rev(mmu)[(W+1):length(mmu)], plot=F )
+                        #
+                        loggy = rev(ewmaOut$y>ewmaOut$limits[,2] | ewmaOut$y<ewmaOut$limits[,1])
+                        place = length(loggy)-W
+                        loggyLeft = loggy[1:place]
+                        loggyRight = loggy[(place+1):length(loggy)]
+                        flags$ewma = (any(loggyLeft) & !any(loggyRight)) | flags$ewma
+                        #
+                        flags$inLoop = flags$ewma & flags$thresh
+                        #
+                        lambdas = c(lambdas, lambda)
+                        if(!flags$ewma){ itConv$ewma=it+1 }
+                        if(flags$ewma & it==(W+1)){ itConv$ewma=W+1 }	
+		}
+		#
+                flags$thresh = (min(mm)<threshold) | flags$thresh
+                if(!flags$thresh){ itConv$thresh=it+1 }
+                if(flags$thresh & it==1){ itConv$thresh=1 }
+                #
+                it = it+1
+                if( (it-1)>W ){ output( makeOut, nameCount, Zmax, it, mmu, lambda, ewma, W, test1 ) }
+	}
+	#output structure
+        outs = list(
+                lambdas=lambdas,
+                X=X[41:dim(X)[1],],
+                Zmax=Zmax[2:length(Zmax)],
+                itConv=itConv, 
+                origMean=mm,
+                transMean=mmu,
+                loggyLeft=loggyLeft,
+                loggyRight=loggyRight
+        )
+	#print(m)    
+	return(outs)
 }
 
 
-
+#grid of lambdas
+#grid of Ws
+#
