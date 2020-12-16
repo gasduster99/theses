@@ -293,12 +293,12 @@ outPath = getwd() #'/home/nick/Documents/theses/herbie/falsePos/'
 #wGrid = seq(20, 70, 5)
 #itMax = 200
 #
-name = 'rastriginTest'
+name = 'rastriginNoCensor'
 f = rastrigin
 rect = cbind(c(-2.5, -2.5), c(2.5, 2.5))
 zMin = 0
 xMin = rep(0, ncol(rect))
-wGrid = seq(20, 150, 5)
+wGrid = seq(20, 100, 5)
 itMax = 300
 #
 W = 40
@@ -465,8 +465,8 @@ out = foreach( m=1:M )%dopar%{
 		#
                 it = it+1
                 #if( (it-1)>W ){ output( makeOut, outName, Zmax, it, mmu, lambda, ewma, W, test1 ) }
-		#
-                flags$inLoop = !it>itMax #!( all(unlist(flags[-1])) | it>itMax )
+		#itMax introduces right censoring.
+                flags$inLoop = !all(unlist(flags[-1])) #!it>itMax #!( all(unlist(flags[-1])) | it>itMax )
 	}
 	#output structure
         outs = list(

@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.8.1)  15 NOV 2020 01:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.8.1)  16 DEC 2020 09:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\def\bestName{bestZrastriginTest84EwmaLAutoW150.00.pdf} \def\ewmaName{ewmaCon
-vChartrastriginTest84EwmaLAutoW150.00.pdf} \input{seeOut.tex}
+**\def\bestName{bestZrastriginNoCensor36EwmaLAutoW100.00.pdf} \def\ewmaName{ewm
+aConvChartrastriginNoCensor36EwmaLAutoW100.00.pdf} \input{seeOut.tex}
  (./seeOut.tex
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
@@ -266,11 +266,11 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c@lstlisting=\count274
-<bestZrastriginTest84EwmaLAutoW150.00.pdf, id=1, 505.89pt x 505.89pt>
-File: bestZrastriginTest84EwmaLAutoW150.00.pdf Graphic file (type pdf)
-<use bestZrastriginTest84EwmaLAutoW150.00.pdf>
-Package pdftex.def Info: bestZrastriginTest84EwmaLAutoW150.00.pdf  used on inpu
-t line 21.
+<bestZrastriginNoCensor36EwmaLAutoW100.00.pdf, id=1, 505.89pt x 505.89pt>
+File: bestZrastriginNoCensor36EwmaLAutoW100.00.pdf Graphic file (type pdf)
+<use bestZrastriginNoCensor36EwmaLAutoW100.00.pdf>
+Package pdftex.def Info: bestZrastriginNoCensor36EwmaLAutoW100.00.pdf  used on 
+input line 21.
 (pdftex.def)             Requested size: 354.12697pt x 354.13602pt.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 22.
 
@@ -283,27 +283,29 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 22.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<ewmaConvChartrastriginTest84EwmaLAutoW150.00.pdf, id=2, 505.89pt x 505.89pt>
-File: ewmaConvChartrastriginTest84EwmaLAutoW150.00.pdf Graphic file (type pdf)
-<use ewmaConvChartrastriginTest84EwmaLAutoW150.00.pdf>
-Package pdftex.def Info: ewmaConvChartrastriginTest84EwmaLAutoW150.00.pdf  used
- on input line 24.
+<ewmaConvChartrastriginNoCensor36EwmaLAutoW100.00.pdf, id=2, 505.89pt x 505.89p
+t>
+File: ewmaConvChartrastriginNoCensor36EwmaLAutoW100.00.pdf Graphic file (type p
+df)
+<use ewmaConvChartrastriginNoCensor36EwmaLAutoW100.00.pdf>
+Package pdftex.def Info: ewmaConvChartrastriginNoCensor36EwmaLAutoW100.00.pdf  
+used on input line 24.
 (pdftex.def)             Requested size: 354.12697pt x 354.13602pt.
  [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
- <./bestZrastriginTest84EwmaLAutoW150.00.pdf> <./ewmaConvChartrastriginTest84Ew
-maLAutoW150.00.pdf>] (./seeOut.aux) ) 
+ <./bestZrastriginNoCensor36EwmaLAutoW100.00.pdf> <./ewmaConvChartrastriginNoCe
+nsor36EwmaLAutoW100.00.pdf>] (./seeOut.aux) ) 
 Here is how much of TeX's memory you used:
  4525 strings out of 481239
- 59980 string characters out of 5920378
- 298774 words of memory out of 5000000
+ 60028 string characters out of 5920378
+ 298782 words of memory out of 5000000
  19764 multiletter control sequences out of 15000+600000
  534800 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 32i,10n,38p,350b,379s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 32i,10n,38p,358b,379s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on seeOut.pdf (1 page, 23154 bytes).
+Output written on seeOut.pdf (1 page, 25613 bytes).
 PDF statistics:
  23 PDF objects out of 1000 (max. 8388607)
  15 compressed objects within 1 object stream

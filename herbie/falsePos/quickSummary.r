@@ -21,21 +21,22 @@ unpackIts = function(out){
 		its = unlist(out[[i]]$itConv[-(1:(length(wGrid)+1))]); its[its>itMax] = itMax
 		lam = as.numeric(sapply(names(its), function(n){substring(strsplit(n, 'L')[[1]][2], 1, 4)}))
 		W = as.numeric(sapply(names(its), function(n){substring(strsplit(n, 'W')[[1]][2], 1, 5)}))
-		zMax = out[[i]]$Zmax[its]
+		zCvg = out[[i]]$Zmax[its]
 		xMax = out[[i]]$Xmax[its,]
 		colnames(xMax) = sprintf('x%d', 1:dm)
 		#
 		runsTil = c()
 		for(ii in 1:length(its)){
 			#
-			if( is.na(its[ii]) ){ r=NA 
-			}else{ r=its[ii]-min(which(out[[i]]$Zmax==zMax[ii])) }
+			less = out[[i]]$Zmax<=zThresh
+			if( is.na(its[ii]) | !any(less)){ r=NA 
+			}else{ r=its[ii]-min(which(less)) }
 			#
 			runsTil = c(runsTil, r)
 		}
 		#
 		nr = length(its)
-		outter = rbind(outter, cbind(lam, W, its, zMax, xMax, runsTil))
+		outter = rbind(outter, cbind(lam, W, its, zCvg, xMax, runsTil))
 	}
 	#
 	return( as.data.frame(outter) )
@@ -53,21 +54,22 @@ unpackAuto = function(out){
 		its = unlist(out[[i]]$itConv[nome]); its[its>itMax] = itMax
 		#lam = as.numeric(sapply(as.character(wGrid), function(n){}))
 		W = wGrid
-		zMax = out[[i]]$Zmax[its]
+		zCvg = out[[i]]$Zmax[its]
 		xMax = out[[i]]$Xmax[its,]
 		colnames(xMax) = sprintf('x%d', 1:dm)
 		#
                 runsTil = c()
                 for(ii in 1:length(its)){
                         #
-                        if( is.na(its[ii]) ){ r=NA 
-                        }else{ r=its[ii]-min(which(out[[i]]$Zmax==zMax[ii])) }
+			less = out[[i]]$Zmax<=zThresh
+                        if( is.na(its[ii]) | !any(less) ){ r=NA 
+                        }else{ r=its[ii]-min(which(less)) }
                         #
                         runsTil = c(runsTil, r)
                 }
 		#
 		nr = length(its)
-		outter = rbind(outter, cbind(W, its, zMax, xMax, runsTil))
+		outter = rbind(outter, cbind(W, its, zCvg, xMax, runsTil))
 	}
 	#
 	return( as.data.frame(outter) )
@@ -147,12 +149,14 @@ for(w in wGrid){
 #
 itX = unpackIts(out)
 xNorm = apply(itX[,c('x1', 'x2')]-xMin, 1, Norm)
-zDist = itX[,'zMax']-zMin
+zDist = itX[,'zCvg']-zMin
 itX = cbind(itX, zDist, xNorm)
+#
+itMax = max(itX$its)+100
 
 #
 png(sprintf('%sItPairs.png', name))
-pairs(itX[,-which(colnames(itX)%in%c('x1', 'x2', 'zMax'))])
+pairs(itX[,-which(colnames(itX)%in%c('x1', 'x2', 'zCvg'))])
 dev.off()
 
 ##
@@ -164,6 +168,16 @@ dev.off()
 threshIt = sapply( out, function(x){ x$itConv[[1]] } )
 threshZ = sapply( out, function(x){ x$Zmax[x$itConv[[1]]] } )
 threshX = t(sapply( out, function(x){ x$Xmax[x$itConv[[1]],] } ))
+#
+threshRunsTil = c()
+for(ii in 1:length(threshIt)){
+        #
+	less = out[[ii]]$Zmax<=zThresh
+        if( is.na(threshIt[ii]) | !any(less) ){ r=NA
+        }else{ r=threshIt[ii]-min(which(less)) }
+	#
+        threshRunsTil = c(threshRunsTil, r)
+}
 #
 threshBetaZ = mean(threshZ>zThresh)
 threshBetaX = mean(threshX>xThresh)
@@ -218,7 +232,7 @@ dev.off()
 #
 itAuto = unpackAuto(out)
 xNorm = apply(itAuto[,c('x1', 'x2')]-xMin, 1, Norm)
-zDist = itAuto[,'zMax']-zMin
+zDist = itAuto[,'zCvg']-zMin
 itAuto = cbind(itAuto, zDist, xNorm)
 #
 zProbAutoW = sapply(wGrid, function(x){ mean(itAuto[itAuto$W==x,'zDist']>zThresh, na.rm=T) })
@@ -263,6 +277,119 @@ png(sprintf('%sErrorZ.png', name))
 par(mar=c(5.1, 4.1, 4.1, 4.1))
 plot(t(alphasZ*betasZ), col=function(n) hcl.colors(n, "Blue-Red 3"))
 dev.off()
+
+#
+#ARL
+#
+
+#
+arlC  = sapply(wGrid, function(x){ mean(itAuto$its[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax], na.rm=T) })
+arlCNum = sapply(wGrid, function(x){ sum(itAuto$its[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax]>=0, na.rm=T) })
+arlCSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$its[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax], na.rm=T)) })
+arlCSE  = arlCSE/sqrt(arlCNum)
+#
+arlNCTil = sapply(wGrid, function(x){ mean(itAuto$runsTil[itAuto$W==x & itAuto$zCvg>zThresh & itAuto$its<itMax], na.rm=T) })
+arlNCNumTil = sapply(wGrid, function(x){ sum(itAuto$runsTil[itAuto$W==x & itAuto$zCvg>zThresh & itAuto$its<itMax]>=0, na.rm=T) })
+arlNCTilSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$runsTil[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax], na.rm=T)) })
+arlNCTilSE  = arlNCTilSE/sqrt(arlNCNumTil)
+
+#the situation where its==itMax represents right censored observations
+
+#we want arlNC as large as possible
+#in the case of no convergence, and the run gets to itMax, the run did the correct thing ans the true its-value may actually be larger
+#in the case of no convergence removing itAuto$its>=itMax makes the ARL articifically low which gives a generously conservative of the ARL 
+arlNC = sapply(wGrid, function(x){ mean(itAuto$its[itAuto$W==x & itAuto$zCvg>zThresh & itAuto$its<itMax], na.rm=T) })
+arlNCNum = sapply(wGrid, function(x){ sum(itAuto$its[itAuto$W==x & itAuto$zCvg>zThresh & itAuto$its<itMax]>=0, na.rm=T) })
+arlNCSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$its[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax], na.rm=T)) })
+arlNCSE  = arlNCSE/sqrt(arlNCNum)
+#we want arlCTil as small as possible
+#in the case of convergence, and the run gets to itMax, the run length is likely not doing the correct thing, and may have been larger than itMax
+#if itAuto$its<itMax limitation is not included the right-censored itMax its-value biases the arlCTil to be smaller than it should be (exactly the wrong direction)
+arlCTil  = sapply(wGrid, function(x){ mean(itAuto$runsTil[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax], na.rm=T) })
+arlCNumTil = sapply(wGrid, function(x){ sum(itAuto$runsTil[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax]>=0, na.rm=T) })
+arlCTilSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$runsTil[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax], na.rm=T)) })
+arlCTilSE  = arlCTilSE/sqrt(arlCNumTil)
+
+#
+arlNCThresh = mean(threshIt[threshZ>zThresh])
+arlNCThreshNum = length(threshIt[threshZ>zThresh])
+arlNCThreshSE = sqrt( var(threshIt[threshZ>zThresh])/arlNCThreshNum )
+#
+arlCThreshTil = mean(threshRunsTil[threshZ<zThresh])
+arlCThreshTilNum = length(threshRunsTil[threshZ<zThresh])
+arlCThreshTilSE = sqrt( var(threshRunsTil[threshZ>zThresh])/arlCThreshTilNum )
+
+#mean(itAuto$its[itAuto$W==x & itAuto$zCvg>zThresh & itAuto$its<itMax], na.rm=T)
+
+#
+falsePos = 1/arlNC
+falseNeg = 1/(1-arlC)
+#
+falsePosTil = 1/arlNCTil
+falseNegTil = 1/(1-arlCTil)
+
+##
+#png(sprintf('arl%s.png', name))
+#plot(wGrid, arlC, lwd=3, type='l', ylim=c(30, itMax), main='Average Run Length')
+#dubs = c(wGrid, rev(wGrid))
+#int = c(arlNC+2*arlNCSE, rev(arlNC-2*arlNCSE))
+#show = !is.na(int)
+#polygon(dubs[show], int[show], col='pink', border=F)
+#polygon(dubs, c(arlC+2*arlCSE, rev(arlC-2*arlCSE)), col='grey', border=F)
+#lines(wGrid, arlC, lwd=3)
+#lines(wGrid, arlNC, lwd=3, col='red')
+#legend('topright', legend=c('True Claim', 'False Claim'), lty=1, lwd=3, col=c('black', 'red'))
+#dev.off()
+
+#
+png(sprintf('arlNum%s.png', name))
+plot(wGrid, arlCNum, lwd=3, type='l', ylim=c(0, 100), main='Average Sample Size')
+lines(wGrid, arlNCNum, lwd=3, col='red')
+legend('topright', legend=c('True Claim', 'False Claim'), lty=1, lwd=3, col=c('black', 'red'))
+dev.off()
+
+##
+#png(sprintf('arlTil%s.png', name))
+#plot(wGrid, arlCTil, lwd=3, type='l', ylim=c(0, 100), main='Average Run Length')
+#dubs = c(wGrid, rev(wGrid))
+#int = c(arlNCTil+2*arlNCTilSE, rev(arlNCTil-2*arlNCTilSE))
+#show = !is.na(int)
+#polygon(dubs[show], int[show], col='pink', border=F)
+#polygon(dubs, c(arlCTil+2*arlCTilSE, rev(arlCTil-2*arlCTilSE)), col='grey', border=F)
+#lines(wGrid, arlCTil, lwd=3)
+#lines(wGrid, arlNCTil, lwd=3, col='red')
+#legend('topright', legend=c('True Claim', 'False Claim'), lty=1, lwd=3, col=c('black', 'red'))
+#dev.off()
+
+#
+png(sprintf('arlNumTil%s.png', name))
+plot(wGrid, arlCNumTil, lwd=3, type='l', ylim=c(0, 100), main='Average Sample Size')
+lines(wGrid, arlNCNumTil, lwd=3, col='red')
+legend('topright', legend=c('True Claim', 'False Claim'), lty=1, lwd=3, col=c('black', 'red'))
+dev.off()
+
+#
+png(sprintf('arlCombine%s.png', name))
+plot(wGrid, arlCTil, lwd=3, type='l', ylim=c(0, itMax), main='Average Run Length')
+dubs = c(wGrid, rev(wGrid))
+int = c(arlNC+2*arlNCSE, rev(arlNC-2*arlNCSE))
+show = !is.na(int)
+polygon(dubs[show], int[show], col='pink', border=F)
+int = c(arlCTil+2*arlCTilSE, rev(arlCTil-2*arlCTilSE))
+show = !is.na(int)
+polygon(dubs[show], int[show], col='grey', border=F)
+lines(wGrid, arlCTil, lwd=3)
+lines(wGrid, arlNC, lwd=3, col='red')
+abline(h=arlNCThresh, col='red')
+abline(h=arlNCThresh-2*arlNCThreshSE, col='red', lty=2)
+abline(h=arlNCThresh+2*arlNCThreshSE, col='red', lty=2)
+abline(h=arlCThreshTil)
+abline(h=arlCThreshTil-2*arlCThreshTilSE, lty=2)
+abline(h=arlCThreshTil+2*arlCThreshTilSE, lty=2)
+legend('topright', legend=c('True Claim', 'False Claim'), lty=1, lwd=3, col=c('black', 'red'))
+dev.off()
+
+#itX$its[itX$zCvg<zThresh & itX$its<itMax]
 
 #
 #JUNK
