@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.8.1)  16 DEC 2020 09:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.8.1)  19 DEC 2020 20:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\def\bestName{bestZrastriginNoCensor37EwmaLAutoW100.00.pdf} \def\ewmaName{ewm
-aConvChartrastriginNoCensor37EwmaLAutoW100.00.pdf} \input{seeOut.tex}
+**\def\bestName{bestZrastriginNoCensor77EwmaLAutoW80.00.pdf} \def\ewmaName{ewma
+ConvChartrastriginNoCensor77EwmaLAutoW80.00.pdf} \input{seeOut.tex}
  (./seeOut.tex
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
@@ -266,11 +266,11 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c@lstlisting=\count274
-<bestZrastriginNoCensor37EwmaLAutoW100.00.pdf, id=1, 505.89pt x 505.89pt>
-File: bestZrastriginNoCensor37EwmaLAutoW100.00.pdf Graphic file (type pdf)
-<use bestZrastriginNoCensor37EwmaLAutoW100.00.pdf>
-Package pdftex.def Info: bestZrastriginNoCensor37EwmaLAutoW100.00.pdf  used on 
-input line 21.
+<bestZrastriginNoCensor77EwmaLAutoW80.00.pdf, id=1, 505.89pt x 505.89pt>
+File: bestZrastriginNoCensor77EwmaLAutoW80.00.pdf Graphic file (type pdf)
+<use bestZrastriginNoCensor77EwmaLAutoW80.00.pdf>
+Package pdftex.def Info: bestZrastriginNoCensor77EwmaLAutoW80.00.pdf  used on i
+nput line 21.
 (pdftex.def)             Requested size: 354.12697pt x 354.13602pt.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 22.
 
@@ -283,29 +283,29 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 22.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<ewmaConvChartrastriginNoCensor37EwmaLAutoW100.00.pdf, id=2, 505.89pt x 505.89p
-t>
-File: ewmaConvChartrastriginNoCensor37EwmaLAutoW100.00.pdf Graphic file (type p
-df)
-<use ewmaConvChartrastriginNoCensor37EwmaLAutoW100.00.pdf>
-Package pdftex.def Info: ewmaConvChartrastriginNoCensor37EwmaLAutoW100.00.pdf  
-used on input line 24.
+<ewmaConvChartrastriginNoCensor77EwmaLAutoW80.00.pdf, id=2, 505.89pt x 505.89pt
+>
+File: ewmaConvChartrastriginNoCensor77EwmaLAutoW80.00.pdf Graphic file (type pd
+f)
+<use ewmaConvChartrastriginNoCensor77EwmaLAutoW80.00.pdf>
+Package pdftex.def Info: ewmaConvChartrastriginNoCensor77EwmaLAutoW80.00.pdf  u
+sed on input line 24.
 (pdftex.def)             Requested size: 354.12697pt x 354.13602pt.
  [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
- <./bestZrastriginNoCensor37EwmaLAutoW100.00.pdf> <./ewmaConvChartrastriginNoCe
-nsor37EwmaLAutoW100.00.pdf>] (./seeOut.aux) ) 
+ <./bestZrastriginNoCensor77EwmaLAutoW80.00.pdf> <./ewmaConvChartrastriginNoCen
+sor77EwmaLAutoW80.00.pdf>] (./seeOut.aux) ) 
 Here is how much of TeX's memory you used:
  4525 strings out of 481239
- 60028 string characters out of 5920378
- 298782 words of memory out of 5000000
+ 60016 string characters out of 5920378
+ 298780 words of memory out of 5000000
  19764 multiletter control sequences out of 15000+600000
  534800 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 32i,10n,38p,358b,379s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 32i,10n,38p,356b,379s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on seeOut.pdf (1 page, 26298 bytes).
+Output written on seeOut.pdf (1 page, 17475 bytes).
 PDF statistics:
  23 PDF objects out of 1000 (max. 8388607)
  15 compressed objects within 1 object stream

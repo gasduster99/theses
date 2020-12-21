@@ -5,6 +5,7 @@ library(tgp)
 library(qcc)
 #library(snow)
 #library(Rmpi)
+library(bigmemory)
 suppressMessages(library(foreach, quietly=FALSE))
 suppressMessages(library(doParallel, quietly=FALSE))
 
@@ -220,6 +221,43 @@ output = function(isOut, name, Zmax, it, mmu, lambda, ewma, W, test1, isSeeOut=T
 }
 
 #
+monitorLog = function(isOut, rank, seed, it, itConv, grid){
+	#look at output through:
+	#~/.../falsePos$ while sleep <time>; do clear; echo -e "$(cat rank*/monitor.txt)"; done
+	#or call bash monitor.sh which does that same thing 
+	
+	#
+	every = 8
+	if(isOut){
+		#
+		head = ''
+		if(rank%%every==0){ head='[r]:[s] |' }	
+		#
+		line = sprintf('%03d:%03d |', rank, seed)
+                #
+		for(i in 1:length(grid)){
+                        #
+			if( rank%%every==0 ){ 
+				#
+				head = sprintf('%s w%03d', head, grid[i]) 
+				#
+				if( i==length(grid) ){ head=sprintf('%s\n', head) }
+                        }
+			#
+			flag = '\\e[39m'
+			if( unlist(itConv[i])==it ){ flag='\\e[92m' }
+			line = sprintf('%s %s%4d', line, flag, unlist(itConv[i]))
+                }	
+		fBody = sprintf('%s%s\\e[39m', head, line)	
+
+		#
+		fc = file("monitor.txt")
+		writeLines(fBody, fc)
+		close(fc)
+	}
+}
+
+#
 meat = function(init, it){ #, dm){
         #
         #UNPACK INPUTS
@@ -298,7 +336,7 @@ f = rastrigin
 rect = cbind(c(-2.5, -2.5), c(2.5, 2.5))
 zMin = 0
 xMin = rep(0, ncol(rect))
-wGrid = seq(20, 100, 5)
+wGrid = seq(20, 80, 5)
 itMax = 300
 #
 W = 40
@@ -309,20 +347,31 @@ threshold = 5e-4
 rectVol = prod(rect[,2]-rect[,1])
 dm = nrow(rect)
 
+##
+#not = c(17, 8, 20, 5, 23, 7)
+#seed = 1:(M+length(not))
+#seed = seed[!1:length(seed)%in%not]
+seed = 1:M
 #
-not = c(17, 8, 20, 5, 23, 7)
-seed = 1:(M+length(not))
-seed = seed[!1:length(seed)%in%not]
-#
+pListDef = big.matrix(threads, 1,
+	init           = -1, 
+	backingfile    = 'pList.bin',
+	descriptorfile = "pList.desc"
+)
 registerDoParallel(cores=threads)
-out = foreach( m=1:M )%dopar%{
+out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
 #for( m in c(14) ){ #1:M ){
-	#admin
-	tic = Sys.time()
-	set.seed(seed[m])
 	#parallel
-	rank = (m-1)%%threads
+	pList = attach.big.matrix("pList.desc")
+	pid = Sys.getpid()
+	who = which(as.matrix(pList)==-1)
+        if( m<=threads ){ pList[m] = pid
+	} else{ pList[who[sample(1:length(who),1)]] = pid }
+	rank = which(as.matrix(pList)==pid)-1 #(m-1)%%threads
 	outName = sprintf('%s%s', name, m)
+	#admin
+	tic = Sys.time()	
+	set.seed(seed[m])	
 	#
 	dir.create(sprintf('%s/rank%02d', outPath, rank))
 	setwd(sprintf('%s/rank%02d', outPath, rank))
@@ -419,17 +468,21 @@ out = foreach( m=1:M )%dopar%{
                 	        loggyRight = loggy[(place+1):length(loggy)]
 				#
 				flags[[nome]] = (any(loggyLeft) & !any(loggyRight)) | flags[[nome]]
-				if(!flags[[nome]]){ itConv[[nome]]=it+1 }
+				#if(!flags[[nome]]){ itConv[[nome]]=it+1 }
 				#if(flags[[nome]] & it==(w+1)){ itConv[[nome]]=w+1 }
 				#
 				outNome = sprintf('%sEwmaLAutoW%.2f', outName, w)
 				output( makeOut, outNome, Zmax, it+1, mmu, lambda, ewma, w, test1 )
-			}
+			}	
+			
+			#
+			if(!flags[[nome]]){ itConv[[nome]]=it+1 }
 			
 			#
 			#Lambda Grids
 			#
-	
+			
+			#
 			for(lambda in lamGrid){
 				#
 				nome = sprintf('ewmaL%.2fW%.2f', lambda, w)
@@ -444,14 +497,20 @@ out = foreach( m=1:M )%dopar%{
                 		        loggyRight = loggy[(place+1):length(loggy)]
                 		        #
                 		        flags[[nome]] = (any(loggyLeft) & !any(loggyRight)) | flags[[nome]]
-                		        if(!flags[[nome]]){ itConv[[nome]]=it+1 }
+                		        #if(!flags[[nome]]){ itConv[[nome]]=it+1 }
                 		        #if(flags[[nome]] & it==(w+1)){ itConv[[nome]]=w+1 }	
 					#
 					outNome = sprintf('%sEwmaL%.2fW%.2f', outName, lambda, w)
 					output( makeOut, outNome, Zmax, it+1, mmu, lambda, ewma, w, test1, isSeeOut=F)
-				}	
+				}
+				
+				#
+				if(!flags[[nome]]){ itConv[[nome]]=it+1 }
 			}
 		}
+		
+		#	
+		monitorLog(makeOut, rank, seed[m], it+1, itConv[sprintf('ewmaAutoW%.2f', wGrid)], wGrid)
 		
 		#
 		#Threshold
@@ -466,7 +525,7 @@ out = foreach( m=1:M )%dopar%{
                 it = it+1
                 #if( (it-1)>W ){ output( makeOut, outName, Zmax, it, mmu, lambda, ewma, W, test1 ) }
 		#itMax introduces right censoring.
-                flags$inLoop = !all(unlist(flags[-1])) #!it>itMax #!( all(unlist(flags[-1])) | it>itMax )
+                flags$inLoop = !all(unlist(flags[2+(1:length(wGrid))])) #!it>itMax #!( all(unlist(flags[-1])) | it>itMax )
 	}
 	#output structure
         outs = list(
@@ -482,11 +541,14 @@ out = foreach( m=1:M )%dopar%{
 		seed=seed[m],
 		time=Sys.time()-tic
         )
+	#
+	pList[which(as.matrix(pList)==pid)] = -1
+	#
 	return(outs)
 }
 
 #
-save.image(sprintf('%sL%.2f%.2fW%.2f%.2f.RData', name, min(lamGrid), max(lamGrid), min(wGrid), max(wGrid)))
+save.image(sprintf('%sL%.3f%.2fW%.2f%.2f.RData', name, min(lamGrid), max(lamGrid), min(wGrid), max(wGrid)))
 
 
 

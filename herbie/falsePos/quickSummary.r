@@ -109,38 +109,38 @@ rastrigin = function(x, p=2){
 zThresh = 1e-4#1e-5
 xThresh = rectVol*0.01^dm
 
+##
+##AUTO
+##
 #
-#AUTO
-#
-
-#
-for(w in wGrid){
-	#
-	len = length(out[[1]]$autoLams[[as.character(w)]])
-	autoLamMat = matrix(NA, nrow=M, ncol=itMax-w)
-	autoLamMat[1,1:len] = out[[1]]$autoLams[[as.character(w)]]
-	#
-	png(sprintf('%sAutoLam%s.png', name, w))
-	plot(1:itMax, c(rep(NA, w), out[[1]]$autoLams[[as.character(w)]], rep(NA, (itMax-w)-len)), type='l', 
-		col=adjustcolor("black", alpha.f = 0.5),
-		ylim=c(0, 0.75),
-		ylab="Lambda Estimate",
-		main=sprintf("W Fixed at %s; Lambda Estimated", w)
-	)
-	#points(out[[1]]$itConv['ewmaAuto']-W, out[[1]]$autoLams[ unlist(out[[1]]$itConv['ewmaAuto']-W) ], col='red', pch=19)
-	for(i in 2:M){ 
-		#
-		lam = out[[i]]$autoLams[[as.character(w)]]
-		len = length(lam)
-		autoLamMat[i,1:len] = lam
-		#
-		lines(1:itMax, c(rep(NA, w), lam, rep(NA, (itMax-w)-len)), col=adjustcolor("black", alpha.f = 0.5)) 
-		#points(out[[i]]$itConv['ewmaAuto']-W, out[[i]]$autoLams[ unlist(out[[i]]$itConv['ewmaAuto']-W) ], col='red', pch=19)
-	}
-	#
-	lines(1:itMax, c(rep(NA, w), colMeans(autoLamMat, na.rm=T)), col='blue', lwd=3)
-	dev.off()
-}
+##
+#for(w in wGrid){
+#	#
+#	len = length(out[[1]]$autoLams[[as.character(w)]])
+#	autoLamMat = matrix(NA, nrow=M, ncol=itMax-w)
+#	autoLamMat[1,1:len] = out[[1]]$autoLams[[as.character(w)]]
+#	#
+#	png(sprintf('%sAutoLam%s.png', name, w))
+#	plot(1:itMax, c(rep(NA, w), out[[1]]$autoLams[[as.character(w)]], rep(NA, (itMax-w)-len)), type='l', 
+#		col=adjustcolor("black", alpha.f = 0.5),
+#		ylim=c(0, 0.75),
+#		ylab="Lambda Estimate",
+#		main=sprintf("W Fixed at %s; Lambda Estimated", w)
+#	)
+#	#points(out[[1]]$itConv['ewmaAuto']-W, out[[1]]$autoLams[ unlist(out[[1]]$itConv['ewmaAuto']-W) ], col='red', pch=19)
+#	for(i in 2:M){ 
+#		#
+#		lam = out[[i]]$autoLams[[as.character(w)]]
+#		len = length(lam)
+#		autoLamMat[i,1:len] = lam
+#		#
+#		lines(1:itMax, c(rep(NA, w), lam, rep(NA, (itMax-w)-len)), col=adjustcolor("black", alpha.f = 0.5)) 
+#		#points(out[[i]]$itConv['ewmaAuto']-W, out[[i]]$autoLams[ unlist(out[[i]]$itConv['ewmaAuto']-W) ], col='red', pch=19)
+#	}
+#	#
+#	lines(1:itMax, c(rep(NA, w), colMeans(autoLamMat, na.rm=T)), col='blue', lwd=3)
+#	dev.off()
+#}
 
 #
 #
@@ -151,8 +151,7 @@ itX = unpackIts(out)
 xNorm = apply(itX[,c('x1', 'x2')]-xMin, 1, Norm)
 zDist = itX[,'zCvg']-zMin
 itX = cbind(itX, zDist, xNorm)
-#
-itMax = max(itX$its)+100
+#itMax = max(itX$its)+100
 
 #
 png(sprintf('%sItPairs.png', name))
