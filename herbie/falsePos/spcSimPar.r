@@ -14,6 +14,64 @@ suppressMessages(library(doParallel, quietly=FALSE))
 #
 
 #
+camel3 = function(xx){
+	#
+	xx = matrix(xx, ncol=2)
+	x1 = xx[,1]
+	x2 = xx[,2]
+	#
+	term1 = 2*x1^2
+	term2 = -1.05*x1^4
+	term3 = x1^6 / 6
+	term4 = x1*x2
+	term5 = x2^2
+	#     
+	y = term1 + term2 + term3 + term4 + term5
+	return(y)
+}
+
+##
+#levy = function(xx){
+#	##########################################################################
+#	#
+#	# INPUT:
+#	#
+#	# xx = c(x1, x2, ..., xd)
+#	#
+#	##########################################################################
+#	
+#	#
+#	xx = matrix(xx, ncol=2)
+#	d = length(xx)
+#	w = 1 + (xx - 1)/4
+#	      
+#	term1 = (sin(pi*w[1]))^2 
+#	term3 = (w[d]-1)^2 * (1+1*(sin(2*pi*w[d]))^2)
+#	      
+#	wi  = w[1:(d-1)]
+#	sum = sum((wi-1)^2 * (1+10*(sin(pi*wi+1))^2))
+#	      
+#	y = term1 + sum + term3
+#	return(y)
+#}
+
+#
+mccorm = function(xx){
+	#
+	xx = matrix(x, ncol=2)
+	x1 = xx[,1]
+	x2 = xx[,2]
+	#
+	term1 = sin(x1 + x2)
+	term2 = (x1 - x2)^2
+	term3 = -1.5*x1
+	term4 = 2.5*x2
+	#     
+	y = term1 + term2 + term3 + term4 + 1
+	return(y)
+}
+
+#
 rosenbrock = function(x){
         #
 	x = matrix(x, ncol=2)
@@ -321,27 +379,37 @@ NN = 200
 makeOut = T
 #
 outPath = getwd() #'/home/nick/Documents/theses/herbie/falsePos/'
+#
+threads = 48
+name = 'mccormTry'
+function = mccorm
+rect = cbind(c(-1.5, -3), c(4, 4))
+zMin = -1.9133
+xMin = c(-0.54719, -1.54719)
+wGrid = seq(20, 40, 2)
+itMax = 200
 ##
-#threads = 34
-#name = 'rosenbrockTest'
+#threads = 8
+#name = 'rosenbrockNoCensor'
 #f = rosenbrock
 #rect = cbind(c(-2, -3), c(2, 5))
 #zMin = 0
 #xMin = c(1, 1)
-#wGrid = seq(20, 70, 5)
+#wGrid = seq(20, 40, 2)
 #itMax = 200
-#
-name = 'rastriginNoCensor'
-f = rastrigin
-rect = cbind(c(-2.5, -2.5), c(2.5, 2.5))
-zMin = 0
-xMin = rep(0, ncol(rect))
-wGrid = seq(20, 80, 5)
-itMax = 300
-#
+##
+#name = 'rastriginNoCensor'
+#f = rastrigin
+#rect = cbind(c(-2.5, -2.5), c(2.5, 2.5))
+#zMin = 0
+#xMin = rep(0, ncol(rect))
+#wGrid = seq(20, 80, 5)
+#itMax = 300
+##
 W = 40
 lamGrid = seq(0.1, 0.65, 0.05)	#seq(0.1, 0.9, 0.05)
 xInitPerVol = 2
+thresholdGrid = seq(4e-5, 1e-3, 4e-5) #seq(5e-5, 1e-3, 1e-4) #seq(2.75e-05, 7.75e-5, 5e-6)
 threshold = 5e-4
 #
 rectVol = prod(rect[,2]-rect[,1])
@@ -378,11 +446,11 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
 	system(sprintf('cp %s/seeOut.tex .', outPath))
 	
 	#sim init
-	flags = as.data.frame( t(c(T, F, rep(F, length(wGrid)), rep(F, length(lamGrid)*length(wGrid)))) )
+	flags = as.data.frame( t(c(T, rep(F, length(thresholdGrid)), rep(F, length(wGrid)), rep(F, length(lamGrid)*length(wGrid)))) )
 	nome = unlist(lapply(lamGrid, function(l) sprintf('ewmaL%.2fW%.2f', l, wGrid)))
-	colnames(flags) = c('inLoop', 'thresh', sprintf('ewmaAutoW%.2f', wGrid), nome)	
+	colnames(flags) = c('inLoop', sprintf('thresh%1.1e', thresholdGrid), sprintf('ewmaAutoW%.2f', wGrid), nome)	
 	itConv = as.data.frame( t(c(NA, rep(NA, length(wGrid)), rep(NA, length(lamGrid)*length(wGrid)))) )
-	colnames(itConv) = c('thresh', sprintf('ewmaAutoW%.2f', wGrid), nome)
+	colnames(itConv) = c('thresh', sprintf('thresh%1.1e', thresholdGrid), sprintf('ewmaAutoW%.2f', wGrid), nome)
 	
 	#optimization init
 	xInit = xInitPerVol*rectVol
@@ -472,7 +540,7 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
 				#if(flags[[nome]] & it==(w+1)){ itConv[[nome]]=w+1 }
 				#
 				outNome = sprintf('%sEwmaLAutoW%.2f', outName, w)
-				output( makeOut, outNome, Zmax, it+1, mmu, lambda, ewma, w, test1 )
+				output( F, outNome, Zmax, it+1, mmu, lambda, ewma, w, test1 )
 			}	
 			
 			#
@@ -501,7 +569,7 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
                 		        #if(flags[[nome]] & it==(w+1)){ itConv[[nome]]=w+1 }	
 					#
 					outNome = sprintf('%sEwmaL%.2fW%.2f', outName, lambda, w)
-					output( makeOut, outNome, Zmax, it+1, mmu, lambda, ewma, w, test1, isSeeOut=F)
+					output( F, outNome, Zmax, it+1, mmu, lambda, ewma, w, test1, isSeeOut=F)
 				}
 				
 				#
@@ -517,15 +585,18 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
 		#
 
 		#
-                flags$thresh = (min(mm)<threshold) | flags$thresh
-                if(!flags$thresh){ itConv$thresh=it+1 }
-                if(flags$thresh & it==1){ itConv$thresh=1 }
-                
+		for(threshold in thresholdGrid){
+			nome = sprintf('thresh%1.1e', threshold)
+                	flags$thresh[nome] = (min(mm)<threshold) | flags$thresh[nome]
+                	if(!flags$thresh[nome]){ itConv$thresh[nome]=it+1 }
+                	if(flags$thresh[nome] & it==1){ itConv$thresh[nome]=1 }
+                }
+
 		#
                 it = it+1
                 #if( (it-1)>W ){ output( makeOut, outName, Zmax, it, mmu, lambda, ewma, W, test1 ) }
 		#itMax introduces right censoring.
-                flags$inLoop = !all(unlist(flags[2+(1:length(wGrid))])) #!it>itMax #!( all(unlist(flags[-1])) | it>itMax )
+                flags$inLoop = !all(unlist(flags[1+(1:length(thresholdGrid))])) & !all(unlist(flags[1+length(thresholdGrid)+(1:length(wGrid))]))   #!it>itMax #!( all(unlist(flags[-1])) | it>itMax )
 	}
 	#output structure
         outs = list(

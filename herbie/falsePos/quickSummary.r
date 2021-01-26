@@ -18,7 +18,8 @@ unpackIts = function(out){
 	outter = c()#data.frame(lamda=numeric(), W=integer(), it=integer())
 	for(i in 1:length(out)){
 		#
-		its = unlist(out[[i]]$itConv[-(1:(length(wGrid)+1))]); its[its>itMax] = itMax
+		its = unlist(out[[i]]$itConv[-(1:(length(wGrid)+1))])
+		its[its>nrow(out[[i]]$Xmax)] = nrow(out[[i]]$Xmax)
 		lam = as.numeric(sapply(names(its), function(n){substring(strsplit(n, 'L')[[1]][2], 1, 4)}))
 		W = as.numeric(sapply(names(its), function(n){substring(strsplit(n, 'W')[[1]][2], 1, 5)}))
 		zCvg = out[[i]]$Zmax[its]
@@ -83,8 +84,9 @@ unpackAuto = function(out){
 #load('testRun.RData')
 #load('testL0.100.65W20.0070.00.RData')
 #load('rastriginTestL0.100.65W20.0070.00.RData')
-load('rastriginTestL0.100.65W20.00150.00.RData')
+#load('rastriginTestL0.100.65W20.00150.00.RData')
 #load('rosenbrockTestL0.100.65W20.0070.00.RData')
+load('rosenbrockNoCensorL0.1000.65W20.0040.00.RData')
 
 #
 rosenbrock = function(x){
@@ -106,7 +108,7 @@ rastrigin = function(x, p=2){
         return(out)
 }
 #
-zThresh = 1e-4#1e-5
+zThresh = 1e-5
 xThresh = rectVol*0.01^dm
 
 ##
@@ -166,7 +168,7 @@ dev.off()
 #
 threshIt = sapply( out, function(x){ x$itConv[[1]] } )
 threshZ = sapply( out, function(x){ x$Zmax[x$itConv[[1]]] } )
-threshX = t(sapply( out, function(x){ x$Xmax[x$itConv[[1]],] } ))
+threshX = t(sapply( out, function(x){ x$Xmax[min(x$itConv[[1]], nrow(x$Xmax)),] } ))
 #
 threshRunsTil = c()
 for(ii in 1:length(threshIt)){
@@ -310,13 +312,13 @@ arlCTilSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$runsTil[itAuto$W==x & it
 arlCTilSE  = arlCTilSE/sqrt(arlCNumTil)
 
 #
-arlNCThresh = mean(threshIt[threshZ>zThresh])
-arlNCThreshNum = length(threshIt[threshZ>zThresh])
-arlNCThreshSE = sqrt( var(threshIt[threshZ>zThresh])/arlNCThreshNum )
+arlNCThresh = mean(threshIt[threshZ>zThresh], na.rm=T)
+arlNCThreshNum = sum(!is.na(threshIt[threshZ>zThresh]))
+arlNCThreshSE = sqrt( var(threshIt[threshZ>zThresh], na.rm=T)/arlNCThreshNum )
 #
-arlCThreshTil = mean(threshRunsTil[threshZ<zThresh])
-arlCThreshTilNum = length(threshRunsTil[threshZ<zThresh])
-arlCThreshTilSE = sqrt( var(threshRunsTil[threshZ>zThresh])/arlCThreshTilNum )
+arlCThreshTil = mean(threshRunsTil[threshZ<zThresh], na.rm=T)
+arlCThreshTilNum = sum(!is.na(threshRunsTil[threshZ<zThresh]))
+arlCThreshTilSE = sqrt( var(threshRunsTil[threshZ>zThresh], na.rm=T)/arlCThreshTilNum )
 
 #mean(itAuto$its[itAuto$W==x & itAuto$zCvg>zThresh & itAuto$its<itMax], na.rm=T)
 
