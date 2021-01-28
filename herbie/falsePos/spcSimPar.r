@@ -405,21 +405,31 @@ meat = function(init, it){ #, dm){
 #
 
 #fiddlers
-M = 100 #48 #1000
+M = 8 #48 #100
 threads = 48
 NN = 200
 makeOut = T
 #
 outPath = getwd() #'/home/nick/Documents/theses/herbie/falsePos/'
 #
-threads = 48
-name = 'mccormTry'
-function = mccorm
-rect = cbind(c(-1.5, -3), c(4, 4))
-zMin = -1.9133
-xMin = c(-0.54719, -1.54719)
+threads = 8
+name = 'grlee12Try'
+f = grlee12
+rect = cbind(c(0.5), c(2.5))
+opt = optim(0.5, grlee12, method='Brent', lower=0.5, upper=0.7)
+zMin = opt$value
+xMin = opt$par
 wGrid = seq(20, 40, 2)
 itMax = 200
+##
+#threads = 48
+#name = 'mccormTry'
+#f = mccorm
+#rect = cbind(c(-1.5, -3), c(4, 4))
+#zMin = -1.9133
+#xMin = c(-0.54719, -1.54719)
+#wGrid = seq(20, 40, 2)
+#itMax = 200
 ##
 #threads = 8
 #name = 'rosenbrockNoCensor'
@@ -438,6 +448,8 @@ itMax = 200
 #wGrid = seq(20, 80, 5)
 #itMax = 300
 ##
+
+#
 W = 40
 lamGrid = seq(0.1, 0.65, 0.05)	#seq(0.1, 0.9, 0.05)
 xInitPerVol = 2
@@ -460,7 +472,7 @@ pListDef = big.matrix(threads, 1,
 )
 registerDoParallel(cores=threads)
 out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
-#for( m in c(14) ){ #1:M ){
+#for( m in c(1) ){ #1:M ){
 	#parallel
 	pList = attach.big.matrix("pList.desc")
 	pid = Sys.getpid()
@@ -481,8 +493,8 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
 	flags = as.data.frame( t(c(T, rep(F, length(thresholdGrid)), rep(F, length(wGrid)), rep(F, length(lamGrid)*length(wGrid)))) )
 	nome = unlist(lapply(lamGrid, function(l) sprintf('ewmaL%.2fW%.2f', l, wGrid)))
 	colnames(flags) = c('inLoop', sprintf('thresh%1.1e', thresholdGrid), sprintf('ewmaAutoW%.2f', wGrid), nome)	
-	itConv = as.data.frame( t(c(NA, rep(NA, length(wGrid)), rep(NA, length(lamGrid)*length(wGrid)))) )
-	colnames(itConv) = c('thresh', sprintf('thresh%1.1e', thresholdGrid), sprintf('ewmaAutoW%.2f', wGrid), nome)
+	itConv = as.data.frame( t(c(rep(NA, length(thresholdGrid)), rep(NA, length(wGrid)), rep(NA, length(lamGrid)*length(wGrid)))) )
+	colnames(itConv) = c(sprintf('thresh%1.1e', thresholdGrid), sprintf('ewmaAutoW%.2f', wGrid), nome)
 	
 	#optimization init
 	xInit = xInitPerVol*rectVol
@@ -619,9 +631,9 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
 		#
 		for(threshold in thresholdGrid){
 			nome = sprintf('thresh%1.1e', threshold)
-                	flags$thresh[nome] = (min(mm)<threshold) | flags$thresh[nome]
-                	if(!flags$thresh[nome]){ itConv$thresh[nome]=it+1 }
-                	if(flags$thresh[nome] & it==1){ itConv$thresh[nome]=1 }
+                	flags[nome] = (min(mm)<threshold) | flags[nome]
+                	if(!flags[nome]){ itConv[nome]=it+1 }
+                	if(flags[nome] & it==1){ itConv[nome]=1 }
                 }
 
 		#
