@@ -14,6 +14,38 @@ suppressMessages(library(doParallel, quietly=FALSE))
 #
 
 #
+michal = function(xx, m=10, p=2){
+  	##########################################################################
+  	#
+  	# INPUTS:
+  	#
+  	# xx = c(x1, x2)
+  	# m = constant (optional), with default value 10
+  	#
+  	##########################################################################
+  
+	#
+	xx = matrix(xx, ncol=p)
+  	ii = 1:p
+  	sum = rowSums(sin(xx) * (sin(sweep(xx^2/pi, 2, ii, '*')))^(2*m))
+	#
+	y = -sum
+  	return(y)
+}
+
+#
+grlee12 = function(xx){
+	#
+	xx = matrix(xx, ncol=1)
+	#
+	term1 = sin(10*pi*xx) / (2*xx)
+	term2 = (xx-1)^4
+  	#
+	y = term1 + term2
+  	return(y)
+}
+
+#
 camel3 = function(xx){
 	#
 	xx = matrix(xx, ncol=2)
@@ -31,7 +63,7 @@ camel3 = function(xx){
 }
 
 ##
-#levy = function(xx){
+#levy = function(xx, p=2){
 #	##########################################################################
 #	#
 #	# INPUT:
@@ -41,7 +73,7 @@ camel3 = function(xx){
 #	##########################################################################
 #	
 #	#
-#	xx = matrix(xx, ncol=2)
+#	xx = matrix(xx, ncol=p)
 #	d = length(xx)
 #	w = 1 + (xx - 1)/4
 #	      
