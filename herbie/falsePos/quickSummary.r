@@ -18,12 +18,14 @@ unpackIts = function(out){
 	outter = c()#data.frame(lamda=numeric(), W=integer(), it=integer())
 	for(i in 1:length(out)){
 		#
-		its = unlist(out[[i]]$itConv[-(1:(length(wGrid)+1))])
-		its[its>nrow(out[[i]]$Xmax)] = nrow(out[[i]]$Xmax)
+		out[[i]]$Xmax = as.matrix(out[[i]]$Xmax)
+		#
+		its = unlist(out[[i]]$itConv[substr(names(out[[i]]$itConv), 1, 5)=="ewmaL"]) #-(1:(length(wGrid)+1))])
+		#its[its>nrow(out[[i]]$Xmax)] = nrow(out[[i]]$Xmax)
 		lam = as.numeric(sapply(names(its), function(n){substring(strsplit(n, 'L')[[1]][2], 1, 4)}))
 		W = as.numeric(sapply(names(its), function(n){substring(strsplit(n, 'W')[[1]][2], 1, 5)}))
 		zCvg = out[[i]]$Zmax[its]
-		xMax = out[[i]]$Xmax[its,]
+		xMax = as.matrix(out[[i]]$Xmax[its,])
 		colnames(xMax) = sprintf('x%d', 1:dm)
 		#
 		runsTil = c()
@@ -52,7 +54,8 @@ unpackAuto = function(out){
 		#
 		nome = sprintf('ewmaAutoW%.2f', wGrid)
 		#
-		its = unlist(out[[i]]$itConv[nome]); its[its>itMax] = itMax
+		its = unlist(out[[i]]$itConv[nome]); 
+		#its[its>itMax] = itMax
 		#lam = as.numeric(sapply(as.character(wGrid), function(n){}))
 		W = wGrid
 		zCvg = out[[i]]$Zmax[its]
@@ -86,7 +89,8 @@ unpackAuto = function(out){
 #load('rastriginTestL0.100.65W20.0070.00.RData')
 #load('rastriginTestL0.100.65W20.00150.00.RData')
 #load('rosenbrockTestL0.100.65W20.0070.00.RData')
-load('rosenbrockNoCensorL0.1000.65W20.0040.00.RData')
+#load('rosenbrockNoCensorL0.1000.65W20.0040.00.RData')
+load('grlee12TryL0.1000.65W20.0040.00.RData')
 
 #
 rosenbrock = function(x){
@@ -149,15 +153,16 @@ xThresh = rectVol*0.01^dm
 #
 
 #
+xd = sprintf('x%d', 1:nrow(rect))
 itX = unpackIts(out)
-xNorm = apply(itX[,c('x1', 'x2')]-xMin, 1, Norm)
-zDist = itX[,'zCvg']-zMin
+xNorm = apply(as.matrix(itX[,xd]-xMin), 1, Norm)
+zDist = itX[,'zCvg']-zMin[1]
 itX = cbind(itX, zDist, xNorm)
 #itMax = max(itX$its)+100
 
 #
 png(sprintf('%sItPairs.png', name))
-pairs(itX[,-which(colnames(itX)%in%c('x1', 'x2', 'zCvg'))])
+pairs(itX[,-which(colnames(itX)%in%c(xd, 'zCvg'))])
 dev.off()
 
 ##
@@ -168,7 +173,7 @@ dev.off()
 #
 threshIt = sapply( out, function(x){ x$itConv[[1]] } )
 threshZ = sapply( out, function(x){ x$Zmax[x$itConv[[1]]] } )
-threshX = t(sapply( out, function(x){ x$Xmax[min(x$itConv[[1]], nrow(x$Xmax)),] } ))
+threshX = t(sapply( out, function(x){ as.matrix(x$Xmax)[x$itConv[[1]],] } ))
 #
 threshRunsTil = c()
 for(ii in 1:length(threshIt)){
