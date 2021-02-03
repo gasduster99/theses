@@ -405,32 +405,30 @@ meat = function(init, it){ #, dm){
 #
 
 #fiddlers
-M = 16 #8 #48 #100
-threads = 48
+M = 100 #8 #48 #100
+threads = 46
 NN = 200
 makeOut = T
 #
 outPath = getwd() #'/home/nick/Documents/theses/herbie/falsePos/'
-#
-threads = 8
-name = 'grlee12Try'
-f = grlee12
-rect = cbind(c(0.5), c(2.5))
-opt = optim(0.5, grlee12, method='Brent', lower=0.5, upper=0.7)
-zMin = opt$value
-xMin = opt$par
-wGrid = seq(20, 40, 2)
-itMax = 200
 ##
-#threads = 48
-#name = 'mccormTry'
-#f = mccorm
-#rect = cbind(c(-1.5, -3), c(4, 4))
-#zMin = -1.9133
-#xMin = c(-0.54719, -1.54719)
+#name = 'grlee12Try'
+#f = grlee12
+#rect = cbind(c(0.5), c(2.5))
+#opt = optim(0.5, grlee12, method='Brent', lower=0.5, upper=0.7)
+#zMin = opt$value
+#xMin = opt$par
 #wGrid = seq(20, 40, 2)
 #itMax = 200
-##
+#
+name = 'michal2D'
+f = michal
+rect = cbind(c(0, 0), c(pi, pi))
+zMin = -1.8013
+xMin = c(2.20, 1.57)
+wGrid = seq(20, 40, 2)
+itMax = 200
+#
 #threads = 8
 #name = 'rosenbrockNoCensor'
 #f = rosenbrock
@@ -664,7 +662,7 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
 }
 
 #
-save.image(sprintf('%sL%.3f%.2fW%.2f%.2f.RData', name, min(lamGrid), max(lamGrid), min(wGrid), max(wGrid)))
+save.image(sprintf('%sL%.3f%.2fW%.2f%.2fM%d.RData', name, min(lamGrid), max(lamGrid), min(wGrid), max(wGrid), M))
 
 
 
