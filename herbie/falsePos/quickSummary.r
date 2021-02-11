@@ -25,7 +25,7 @@ unpackIts = function(out){
 		lam = as.numeric(sapply(names(its), function(n){substring(strsplit(n, 'L')[[1]][2], 1, 4)}))
 		W = as.numeric(sapply(names(its), function(n){substring(strsplit(n, 'W')[[1]][2], 1, 5)}))
 		zCvg = out[[i]]$Zmax[its]
-		xMax = as.matrix(out[[i]]$Xmax[its,])
+		xMax = as.matrix(as.matrix(out[[i]]$Xmax)[its,])
 		colnames(xMax) = sprintf('x%d', 1:dm)
 		#
 		runsTil = c()
@@ -90,7 +90,8 @@ unpackAuto = function(out){
 #load('rastriginTestL0.100.65W20.00150.00.RData')
 #load('rosenbrockTestL0.100.65W20.0070.00.RData')
 #load('rosenbrockNoCensorL0.1000.65W20.0040.00.RData')
-load('grlee12TryL0.1000.65W20.0040.00.RData')
+#load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData')
+load('./zooid2/michal2DL0.1000.65W20.0040.00M100.RData')
 
 #
 rosenbrock = function(x){
@@ -112,7 +113,7 @@ rastrigin = function(x, p=2){
         return(out)
 }
 #
-zThresh = 1e-5
+zThresh = 1e-4
 xThresh = rectVol*0.01^dm
 
 ##
@@ -222,11 +223,11 @@ png(sprintf('%sFaslePosZ.png', name))
 par(mar=c(5.1, 4.1, 4.1, 4.1))
 plot(t(betasZ), col=function(n) hcl.colors(n, "Blue-Red 3"))
 dev.off()
-#
-png(sprintf('%sFaslePosX.png', name))
-par(mar=c(5.1, 4.1, 4.1, 4.1))
-plot(t(betasX), col=function(n) hcl.colors(n, "Blue-Red 3"))
-dev.off()
+##
+#png(sprintf('%sFaslePosX.png', name))
+#par(mar=c(5.1, 4.1, 4.1, 4.1))
+#plot(t(betasX), col=function(n) hcl.colors(n, "Blue-Red 3"))
+#dev.off()
 
 ##
 #zProbW = sapply(wGrid, function(x){ mean(itX[itX$lam==0.4 & itX$W==x,'zDist']>zThresh, na.rm=T) })
@@ -323,7 +324,7 @@ arlNCThreshSE = sqrt( var(threshIt[threshZ>zThresh], na.rm=T)/arlNCThreshNum )
 #
 arlCThreshTil = mean(threshRunsTil[threshZ<zThresh], na.rm=T)
 arlCThreshTilNum = sum(!is.na(threshRunsTil[threshZ<zThresh]))
-arlCThreshTilSE = sqrt( var(threshRunsTil[threshZ>zThresh], na.rm=T)/arlCThreshTilNum )
+arlCThreshTilSE = sqrt( var(threshRunsTil[threshZ<zThresh], na.rm=T)/arlCThreshTilNum )
 
 #mean(itAuto$its[itAuto$W==x & itAuto$zCvg>zThresh & itAuto$its<itMax], na.rm=T)
 
@@ -396,6 +397,66 @@ legend('topright', legend=c('True Claim', 'False Claim'), lty=1, lwd=3, col=c('b
 dev.off()
 
 #itX$its[itX$zCvg<zThresh & itX$its<itMax]
+
+#
+#02/03/21
+#
+
+#
+threshs = sprintf('thresh%1.1e', thresholdGrid)
+threshIt = t(sapply( out, function(x){ x$itConv[threshs] } ))
+threshZ = t(sapply( out, function(x){ x$Zmax[unlist(x$itConv[threshs])] } ))
+colnames(threshZ) = threshs
+threshFPR = colMeans(threshZ>zThresh)
+#
+threshRunsTils = c()
+arlCThreshTils = c()
+arlCThreshTilSE = c()
+for(thresh in threshs){
+	threshRunsTil = c()
+	for(ii in 1:length(threshIt[,thresh])){
+	        #
+	        less = out[[ii]]$Zmax<=zThresh
+	        if( is.na(threshIt[ii,thresh]) | !any(less) ){ r=NA
+	        }else{ r=unlist(threshIt[ii,thresh])-min(which(less)) }
+	        #
+	        threshRunsTil = c(threshRunsTil, r)
+	}
+	#
+	threshRunsTils = cbind(threshRunsTils, threshRunsTil)
+	arlCThreshTils = c(arlCThreshTils, mean(threshRunsTil[threshZ<zThresh], na.rm=T))
+	arlCThreshTilNum = sum(!is.na(threshRunsTil[threshZ<zThresh]))
+	arlCThreshTilSE = c(arlCThreshTilSE, sqrt( var(threshRunsTil[threshZ<zThresh], na.rm=T)/arlCThreshTilNum ))
+}
+colnames(threshRunsTils) = threshs
+names(arlCThreshTils) = threshs
+names(arlCThreshTilSE) = threshs
+#arlCThreshTils = mean(threshRunsTils[threshZ<zThresh], na.rm=T)
+
+
+#threshX = t(sapply( out, function(x){ as.matrix(x$Xmax)[x$itConv[[1]],] } ))
+
+#
+png(sprintf('%sOnlyFaslePosZThresh%.1e.png', name, zThresh))
+zProbAutoWSD = sapply(wGrid, function(x){ sqrt(var(itAuto[itAuto$W==x,'zDist']>zThresh, na.rm=T)/sum(!is.na(itAuto[itAuto$W==x,'zDist']>zThresh))) })
+plot(wGrid, zProbAutoW, 'l', lwd=3, ylim=c(0,1), main=sprintf('Errors w/ Thruth Threshhold=%.2e', zThresh))
+polygon(dubs, c(zProbAutoW+2*zProbAutoWSD, rev(zProbAutoW-2*zProbAutoWSD)), col='grey', border=F)
+lines(wGrid, zProbAutoW, 'l', lwd=3)
+dev.off()
+#
+png(sprintf('%sARLThresh%.1e.png', name, zThresh))
+int = c(arlCTil+2*arlCTilSE, rev(arlCTil-2*arlCTilSE))
+show = !is.na(int)
+plot(wGrid, arlCTil, lwd=3, type='l', ylim=c(0, max(int[show])), main='Average Run Length')
+polygon(dubs[show], int[show], col='grey', border=F)
+lines(wGrid, arlCTil, lwd=3)
+i = 50
+for(thresh in threshs){
+	abline(h=arlCThreshTils[thresh], col=sprintf('grey%d', i))
+	i = i-2
+}
+dev.off()
+
 
 #
 #JUNK
