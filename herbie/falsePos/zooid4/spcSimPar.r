@@ -19,7 +19,7 @@ michal = function(xx, m=10, p=2){
   	#
   	# INPUTS:
   	#
-  	# xx = c(x1, x2)
+  	# xx = matrix(c(x1, x2), ncol=p)
   	# m = constant (optional), with default value 10
   	#
   	##########################################################################
@@ -62,40 +62,40 @@ camel3 = function(xx){
 	return(y)
 }
 
-##
-#levy = function(xx, p=2){
-#	##########################################################################
-#	#
-#	# INPUT:
-#	#
-#	# xx = c(x1, x2, ..., xd)
-#	#
-#	##########################################################################
-#	
-#	#
-#	xx = matrix(xx, ncol=p)
-#	d = length(xx)
-#	w = 1 + (xx - 1)/4
-#	      
-#	term1 = (sin(pi*w[1]))^2 
-#	term3 = (w[d]-1)^2 * (1+1*(sin(2*pi*w[d]))^2)
-#	      
-#	wi  = w[1:(d-1)]
-#	sum = sum((wi-1)^2 * (1+10*(sin(pi*wi+1))^2))
-#	      
-#	y = term1 + sum + term3
-#	return(y)
-#}
-
 #
-mccorm = function(xx){
+levy = function(xx, d=2){
+	##########################################################################
 	#
-	xx = matrix(x, ncol=2)
-	x1 = xx[,1]
-	x2 = xx[,2]
+	# INPUT:
 	#
-	term1 = sin(x1 + x2)
-	term2 = (x1 - x2)^2
+	# xx = matrix(c(x1, x2, ..., xd), ncol=d)
+	#
+	##########################################################################
+	
+	##
+	#xx = matrix(xx, ncol=d)
+	##
+	#w = matrix(apply( xx, 2, function(x){1+(x-1)/4} ), ncol=d)
+	#term1 = (sin(pi*w[,1]))^2 
+	#term3 = (w[,d]-1)^2 * (1+1*(sin(2*pi*w[,d]))^2)
+	##
+	#wi  = matrix(w[,1:(d-1)], ncol=d-1)
+	#sum = rowSums((wi-1)^2 * (1+10*(sin(pi*wi+1))^2))
+	## 
+	#y = term1 + sum + term3
+	##
+	#return(y)
+}       #
+        #
+#       #
+mccorm =# function(xx){
+	##
+	#xx = matrix(x, ncol=2)
+	#x1 = xx[,1]
+	#x2 = xx[,2]
+	##
+	#term1 = sin(x1 + x2)
+	#term2 = (x1 - x2)^2
 	term3 = -1.5*x1
 	term4 = 2.5*x2
 	#     
@@ -406,19 +406,18 @@ meat = function(init, it){ #, dm){
 
 #fiddlers
 M = 16 #8 #48 #100
-threads = 48
+threads = 8
 NN = 200
-makeOut = T
+makeOut = T 
 #
 outPath = getwd() #'/home/nick/Documents/theses/herbie/falsePos/'
 #
 threads = 8
-name = 'grlee12Try'
-f = grlee12
-rect = cbind(c(0.5), c(2.5))
-opt = optim(0.5, grlee12, method='Brent', lower=0.5, upper=0.7)
-zMin = opt$value
-xMin = opt$par
+name = 'levy'
+f = levy
+rect = cbind(c(-10, -10), c(10, 10))
+zMin = f(c(1, 1))
+xMin = c(1, 1)
 wGrid = seq(20, 40, 2)
 itMax = 200
 ##
