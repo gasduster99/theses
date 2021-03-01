@@ -21,6 +21,9 @@ unpackIts = function(out){
 		out[[i]]$Xmax = as.matrix(out[[i]]$Xmax)
 		#
 		its = unlist(out[[i]]$itConv[substr(names(out[[i]]$itConv), 1, 5)=="ewmaL"]) #-(1:(length(wGrid)+1))])
+		##
+		#print( max(its) )
+		#print( dim(out[[i]]$Xmax) )
 		#its[its>nrow(out[[i]]$Xmax)] = nrow(out[[i]]$Xmax)
 		lam = as.numeric(sapply(names(its), function(n){substring(strsplit(n, 'L')[[1]][2], 1, 4)}))
 		W = as.numeric(sapply(names(its), function(n){substring(strsplit(n, 'W')[[1]][2], 1, 5)}))
@@ -55,11 +58,14 @@ unpackAuto = function(out){
 		nome = sprintf('ewmaAutoW%.2f', wGrid)
 		#
 		its = unlist(out[[i]]$itConv[nome]); 
+		#
+		#print( its )
+                #print( as.matrix(out[[i]]$Xmax) )
 		#its[its>itMax] = itMax
 		#lam = as.numeric(sapply(as.character(wGrid), function(n){}))
 		W = wGrid
 		zCvg = out[[i]]$Zmax[its]
-		xMax = out[[i]]$Xmax[its,]
+		xMax = matrix(matrix(out[[i]]$Xmax, ncol=dm)[its,], ncol=dm)
 		colnames(xMax) = sprintf('x%d', 1:dm)
 		#
                 runsTil = c()
@@ -90,7 +96,8 @@ unpackAuto = function(out){
 #load('rastriginTestL0.100.65W20.00150.00.RData')
 #load('rosenbrockTestL0.100.65W20.0070.00.RData')
 #load('rosenbrockNoCensorL0.1000.65W20.0040.00.RData')
-#load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData')
+#load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
+#load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})!=0; out=out[isGood]; M=sum(isGood); itMax=300
 load('./zooid2/michal2DL0.1000.65W20.0040.00M100.RData')
 
 #
@@ -113,7 +120,7 @@ rastrigin = function(x, p=2){
         return(out)
 }
 #
-zThresh = 1e-4
+zThresh = 1e-6#1e-4
 xThresh = rectVol*0.01^dm
 
 ##
@@ -238,9 +245,9 @@ dev.off()
 
 #
 itAuto = unpackAuto(out)
-xNorm = apply(itAuto[,c('x1', 'x2')]-xMin, 1, Norm)
+#xNorm = apply(itAuto[,sprintf('x%d', 1:dm)]-xMin, 1, Norm)
 zDist = itAuto[,'zCvg']-zMin
-itAuto = cbind(itAuto, zDist, xNorm)
+itAuto = cbind(itAuto, zDist) #, xNorm)
 #
 zProbAutoW = sapply(wGrid, function(x){ mean(itAuto[itAuto$W==x,'zDist']>zThresh, na.rm=T) })
 xProbAutoW = sapply(wGrid, function(x){ mean(itAuto[itAuto$W==x,'xNorm']>xThresh, na.rm=T) })
@@ -290,14 +297,14 @@ dev.off()
 #
 
 #
-arlC  = sapply(wGrid, function(x){ mean(itAuto$its[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax], na.rm=T) })
-arlCNum = sapply(wGrid, function(x){ sum(itAuto$its[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax]>=0, na.rm=T) })
-arlCSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$its[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax], na.rm=T)) })
+arlC  = sapply(wGrid, function(x){ mean(itAuto$its[itAuto$W==x & (itAuto$zCvg-zMin[1])<zThresh & itAuto$its<itMax], na.rm=T) })
+arlCNum = sapply(wGrid, function(x){ sum(itAuto$its[itAuto$W==x & (itAuto$zCvg-zMin[1])<zThresh & itAuto$its<itMax]>=0, na.rm=T) })
+arlCSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$its[itAuto$W==x & (itAuto$zCvg-zMin[1])<zThresh & itAuto$its<itMax], na.rm=T)) })
 arlCSE  = arlCSE/sqrt(arlCNum)
 #
-arlNCTil = sapply(wGrid, function(x){ mean(itAuto$runsTil[itAuto$W==x & itAuto$zCvg>zThresh & itAuto$its<itMax], na.rm=T) })
-arlNCNumTil = sapply(wGrid, function(x){ sum(itAuto$runsTil[itAuto$W==x & itAuto$zCvg>zThresh & itAuto$its<itMax]>=0, na.rm=T) })
-arlNCTilSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$runsTil[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax], na.rm=T)) })
+arlNCTil = sapply(wGrid, function(x){ mean(itAuto$runsTil[itAuto$W==x & (itAuto$zCvg-zMin[1])>zThresh & itAuto$its<itMax], na.rm=T) })
+arlNCNumTil = sapply(wGrid, function(x){ sum(itAuto$runsTil[itAuto$W==x & (itAuto$zCvg-zMin[1])>zThresh & itAuto$its<itMax]>=0, na.rm=T) })
+arlNCTilSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$runsTil[itAuto$W==x & (itAuto$zCvg-zMin[1])<zThresh & itAuto$its<itMax], na.rm=T)) })
 arlNCTilSE  = arlNCTilSE/sqrt(arlNCNumTil)
 
 #the situation where its==itMax represents right censored observations
@@ -305,26 +312,26 @@ arlNCTilSE  = arlNCTilSE/sqrt(arlNCNumTil)
 #we want arlNC as large as possible
 #in the case of no convergence, and the run gets to itMax, the run did the correct thing ans the true its-value may actually be larger
 #in the case of no convergence removing itAuto$its>=itMax makes the ARL articifically low which gives a generously conservative of the ARL 
-arlNC = sapply(wGrid, function(x){ mean(itAuto$its[itAuto$W==x & itAuto$zCvg>zThresh & itAuto$its<itMax], na.rm=T) })
-arlNCNum = sapply(wGrid, function(x){ sum(itAuto$its[itAuto$W==x & itAuto$zCvg>zThresh & itAuto$its<itMax]>=0, na.rm=T) })
-arlNCSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$its[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax], na.rm=T)) })
+arlNC = sapply(wGrid, function(x){ mean(itAuto$its[itAuto$W==x & (itAuto$zCvg-zMin[1])>zThresh & itAuto$its<itMax], na.rm=T) })
+arlNCNum = sapply(wGrid, function(x){ sum(itAuto$its[itAuto$W==x & (itAuto$zCvg-zMin[1])>zThresh & itAuto$its<itMax]>=0, na.rm=T) })
+arlNCSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$its[itAuto$W==x & (itAuto$zCvg-zMin[1])<zThresh & itAuto$its<itMax], na.rm=T)) })
 arlNCSE  = arlNCSE/sqrt(arlNCNum)
 #we want arlCTil as small as possible
 #in the case of convergence, and the run gets to itMax, the run length is likely not doing the correct thing, and may have been larger than itMax
 #if itAuto$its<itMax limitation is not included the right-censored itMax its-value biases the arlCTil to be smaller than it should be (exactly the wrong direction)
-arlCTil  = sapply(wGrid, function(x){ mean(itAuto$runsTil[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax], na.rm=T) })
-arlCNumTil = sapply(wGrid, function(x){ sum(itAuto$runsTil[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax]>=0, na.rm=T) })
-arlCTilSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$runsTil[itAuto$W==x & itAuto$zCvg<zThresh & itAuto$its<itMax], na.rm=T)) })
+arlCTil  = sapply(wGrid, function(x){ mean(itAuto$runsTil[itAuto$W==x & (itAuto$zCvg-zMin[1])<zThresh & itAuto$its<itMax], na.rm=T) })
+arlCNumTil = sapply(wGrid, function(x){ sum(itAuto$runsTil[itAuto$W==x & (itAuto$zCvg-zMin[1])<zThresh & itAuto$its<itMax]>=0, na.rm=T) })
+arlCTilSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$runsTil[itAuto$W==x & (itAuto$zCvg-zMin[1])<zThresh & itAuto$its<itMax], na.rm=T)) })
 arlCTilSE  = arlCTilSE/sqrt(arlCNumTil)
 
 #
-arlNCThresh = mean(threshIt[threshZ>zThresh], na.rm=T)
-arlNCThreshNum = sum(!is.na(threshIt[threshZ>zThresh]))
-arlNCThreshSE = sqrt( var(threshIt[threshZ>zThresh], na.rm=T)/arlNCThreshNum )
+arlNCThresh = mean(threshIt[(threshZ-zMin[1])>zThresh], na.rm=T)
+arlNCThreshNum = sum(!is.na(threshIt[(threshZ-zMin[1])>zThresh]))
+arlNCThreshSE = sqrt( var(threshIt[(threshZ-zMin[1])>zThresh], na.rm=T)/arlNCThreshNum )
 #
-arlCThreshTil = mean(threshRunsTil[threshZ<zThresh], na.rm=T)
-arlCThreshTilNum = sum(!is.na(threshRunsTil[threshZ<zThresh]))
-arlCThreshTilSE = sqrt( var(threshRunsTil[threshZ<zThresh], na.rm=T)/arlCThreshTilNum )
+arlCThreshTil = mean(threshRunsTil[(threshZ-zMin[1])<zThresh], na.rm=T)
+arlCThreshTilNum = sum(!is.na(threshRunsTil[(threshZ-zMin[1])<zThresh]))
+arlCThreshTilSE = sqrt( var(threshRunsTil[(threshZ-zMin[1])<zThresh], na.rm=T)/arlCThreshTilNum )
 
 #mean(itAuto$its[itAuto$W==x & itAuto$zCvg>zThresh & itAuto$its<itMax], na.rm=T)
 
@@ -407,8 +414,9 @@ threshs = sprintf('thresh%1.1e', thresholdGrid)
 threshIt = t(sapply( out, function(x){ x$itConv[threshs] } ))
 threshZ = t(sapply( out, function(x){ x$Zmax[unlist(x$itConv[threshs])] } ))
 colnames(threshZ) = threshs
-threshFPR = colMeans(threshZ>zThresh)
-#
+threshFPR = colMeans((threshZ-zMin[1])>zThresh)
+threshFPRSE = sqrt(apply((threshZ-zMin[1])>zThresh, 2, var)/nrow(threshZ))
+#oProbAutoW = sapply(wGrid, function(x){ mean(itAuto[itAuto$W==x,'zDist']>zThresh, na.rm=T) })
 threshRunsTils = c()
 arlCThreshTils = c()
 arlCThreshTilSE = c()
@@ -439,9 +447,14 @@ names(arlCThreshTilSE) = threshs
 #
 png(sprintf('%sOnlyFaslePosZThresh%.1e.png', name, zThresh))
 zProbAutoWSD = sapply(wGrid, function(x){ sqrt(var(itAuto[itAuto$W==x,'zDist']>zThresh, na.rm=T)/sum(!is.na(itAuto[itAuto$W==x,'zDist']>zThresh))) })
-plot(wGrid, zProbAutoW, 'l', lwd=3, ylim=c(0,1), main=sprintf('Errors w/ Thruth Threshhold=%.2e', zThresh))
+plot(wGrid, zProbAutoW, 'l', lwd=3, ylim=c(0,1), main=sprintf('Errors w/ Truth Threshhold=%.2e', zThresh))
 polygon(dubs, c(zProbAutoW+2*zProbAutoWSD, rev(zProbAutoW-2*zProbAutoWSD)), col='grey', border=F)
 lines(wGrid, zProbAutoW, 'l', lwd=3)
+i = 50
+for(thresh in threshs){
+        abline(h=threshFPR[thresh], col=sprintf('grey%d', i))
+        i = i-2
+}
 dev.off()
 #
 png(sprintf('%sARLThresh%.1e.png', name, zThresh))
@@ -455,6 +468,111 @@ for(thresh in threshs){
 	abline(h=arlCThreshTils[thresh], col=sprintf('grey%d', i))
 	i = i-2
 }
+dev.off()
+
+
+#
+#02/19/2021
+#
+
+#
+gridInt = function(val, grid, argGrid){
+	#
+	diffs = grid-val
+	#exact
+	out = range(argGrid[!(diffs>0 | diffs<0)])
+	if( !Inf%in%out ){ return(out) }
+	#check left and right
+	left = which(!diffs<0)
+	left = left[length(left)]
+	right = which(!diffs>0)[1]
+	#off left or right
+	if(length(left)==0 | length(right)==0){ return(c(NA, NA)) 
+	#not exact
+	}else{ return(c(argGrid[left], argGrid[right])) }	
+}
+
+#
+threshPal = hcl.colors(length(threshs), "Zissou 1")
+png(sprintf('%sFPRandARLThresh%.1e.png', name, zThresh))
+par(mar=c(5, 4, 4, 4)+0.3)
+#FPR
+zProbAutoWSD = sapply(wGrid, function(x){ sqrt(var(itAuto[itAuto$W==x,'zDist']>zThresh, na.rm=T)/sum(!is.na(itAuto[itAuto$W==x,'zDist']>zThresh))) })
+plot(wGrid, zProbAutoW, 'l', 
+	lwd=3, 
+	ylim=c(0,1), 
+	main=sprintf('Errors w/ Truth Threshhold=%.2e', zThresh), 
+	ylab='FPR'
+)
+i = 1
+width = 0.25
+pm = diff(range(wGrid))*width/100*2
+locs = c()
+for(thresh in threshs){
+        ##
+	#segments(min(wGrid), threshFPR[thresh], min(wGrid)+(max(wGrid)-min(wGrid))*width, threshFPR[thresh], 
+	#	col=threshPal[i], 
+	#	lwd=2
+	#)
+	
+	#
+	loc = gridInt(threshFPR[thresh], zProbAutoW, wGrid)
+	
+	#
+	if(!is.na(loc[1])){
+		#
+		segments(min(wGrid), threshFPR[thresh], range(wGrid)[2], threshFPR[thresh], 
+			col=threshPal[i], 
+			lwd=0.5,
+			lty=2
+		)
+	}
+	
+	#
+	locs = rbind(locs, loc)
+
+	#
+        i = i+1
+}
+polygon(dubs, c(zProbAutoW+2*zProbAutoWSD, rev(zProbAutoW-2*zProbAutoWSD)), 
+	col=adjustcolor("black", alpha.f=0.2), 
+	border=F
+)
+lines(wGrid, zProbAutoW, 'l', lwd=3)
+
+#
+par(new=T)
+
+#ARL
+int = c(arlCTil+2*arlCTilSE, rev(arlCTil-2*arlCTilSE))
+show = !is.na(int)
+plot(wGrid, arlCTil, 
+	lwd=3, 
+	type='l', 
+	ylim=range(c(arlCThreshTils, int)), #c(min(arlCThreshTils), max(int[show])), 
+	axes=F,
+	xlab='',
+	ylab='',
+)
+i = 1
+for(thresh in threshs){
+	segments(locs[i,1]-pm, arlCThreshTils[thresh], locs[i,2]+pm, arlCThreshTils[thresh],
+		col=threshPal[i],
+                lwd=2
+	)
+	#segments(min(wGrid)+(max(wGrid)-min(wGrid))*(1-width), arlCThreshTils[thresh], max(wGrid), arlCThreshTils[thresh],
+        #        col=threshPal[i],
+        #        lwd=2
+        #)
+        i = i+1
+}
+polygon(dubs[show], int[show], 
+	col=adjustcolor("black", alpha.f=0.2), 
+	border=F
+)
+lines(wGrid, arlCTil, lwd=3)
+axis(side=4, at=pretty(range(c(arlCThreshTils, int))))
+mtext('ARL', side=4, line=3)
 dev.off()
 
 
@@ -498,4 +616,21 @@ dev.off()
 
 
 
-
+	##case #1: off top
+	#if( all(diffs<0) ){
+	#	return(NA)
+	#}
+	#
+	##case #2: intersection
+	#if( any(diffs>=0) & any(diffs<=0) ){
+	#	#exact
+	#	if( any(diffs==0) ){
+	#		rightOn = which(diffs==0)
+	#		return( range(grid[rightOn]) )
+	#	#between
+	#	}else{	
+	#		above = which(diffs<0)
+	#		return( c(grid[above[length(above)+1]], grid[which(diffs>0)[1]] )
+	#	}
+	#}
+#}

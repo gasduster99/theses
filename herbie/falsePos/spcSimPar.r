@@ -311,11 +311,13 @@ output = function(isOut, name, Zmax, it, mmu, lambda, ewma, W, test1, isSeeOut=T
 }
 
 #
-monitorLog = function(isOut, rank, seed, it, itConv, grid){
+monitorLog = function(isOut, rank, seed, it, itConv, grid, fName){
 	#look at output through:
 	#~/.../falsePos$ while sleep <time>; do clear; echo -e "$(cat rank*/monitor.txt)"; done
 	#or call bash monitor.sh which does that same thing 
 	
+	#
+	letter = substr(fName,1,1)
 	#
 	every = 8
 	if(isOut){
@@ -329,19 +331,19 @@ monitorLog = function(isOut, rank, seed, it, itConv, grid){
                         #
 			if( rank%%every==0 ){ 
 				#
-				head = sprintf('%s w%03d', head, grid[i]) 
+				head = paste(sprintf('%s %s', head, letter), grid[i], sep='') 
 				#
 				if( i==length(grid) ){ head=sprintf('%s\n', head) }
                         }
-			#
+			#grey
 			flag = '\\e[39m'
-			if( unlist(itConv[i])==it ){ flag='\\e[92m' }
+			if( unlist(itConv[i])==it ){ flag='\\e[92m' } #green
 			line = sprintf('%s %s%4d', line, flag, unlist(itConv[i]))
                 }	
 		fBody = sprintf('%s%s\\e[39m', head, line)	
 
 		#
-		fc = file("monitor.txt")
+		fc = file(fName)
 		writeLines(fBody, fc)
 		close(fc)
 	}
@@ -412,7 +414,7 @@ makeOut = T
 #
 outPath = getwd() #'/home/nick/Documents/theses/herbie/falsePos/'
 #
-threads = 8
+threads = 6
 name = 'grlee12Try'
 f = grlee12
 rect = cbind(c(0.5), c(2.5))
@@ -453,7 +455,7 @@ itMax = 200
 W = 40
 lamGrid = seq(0.1, 0.65, 0.05)	#seq(0.1, 0.9, 0.05)
 xInitPerVol = 2
-thresholdGrid = seq(4e-5, 1e-3, 4e-5) #seq(5e-5, 1e-3, 1e-4) #seq(2.75e-05, 7.75e-5, 5e-6)
+thresholdGrid = seq(4e-5, 1e-3, 2*4e-5) #seq(5e-5, 1e-3, 1e-4) #seq(2.75e-05, 7.75e-5, 5e-6)
 threshold = 5e-4
 #
 rectVol = prod(rect[,2]-rect[,1])
@@ -619,10 +621,10 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
 				#
 				if(!flags[[nome]]){ itConv[[nome]]=it+1 }
 			}
-		}
+		}	
 		
 		#	
-		monitorLog(makeOut, rank, seed[m], it+1, itConv[sprintf('ewmaAutoW%.2f', wGrid)], wGrid)
+		monitorLog(makeOut, rank, seed[m], it+1, itConv[sprintf('ewmaAutoW%.2f', wGrid)], sprintf("%03d", wGrid), 'wMonitor.txt')	
 		
 		#
 		#Threshold
@@ -635,6 +637,9 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
                 	if(!flags[nome]){ itConv[nome]=it+1 }
                 	if(flags[nome] & it==1){ itConv[nome]=1 }
                 }
+
+		#
+		monitorLog(makeOut, rank, seed[m], it+1, itConv[sprintf('thresh%1.1e', thresholdGrid)], substr(sprintf('%1.1e', thresholdGrid), 1, 3), 'tMonitor.txt')
 
 		#
                 it = it+1
