@@ -72,30 +72,30 @@ levy = function(xx, d=2){
 	#
 	##########################################################################
 	
-	##
-	#xx = matrix(xx, ncol=d)
-	##
-	#w = matrix(apply( xx, 2, function(x){1+(x-1)/4} ), ncol=d)
-	#term1 = (sin(pi*w[,1]))^2 
-	#term3 = (w[,d]-1)^2 * (1+1*(sin(2*pi*w[,d]))^2)
-	##
-	#wi  = matrix(w[,1:(d-1)], ncol=d-1)
-	#sum = rowSums((wi-1)^2 * (1+10*(sin(pi*wi+1))^2))
-	## 
-	#y = term1 + sum + term3
-	##
-	#return(y)
-}       #
-        #
-#       #
-mccorm =# function(xx){
-	##
-	#xx = matrix(x, ncol=2)
-	#x1 = xx[,1]
-	#x2 = xx[,2]
-	##
-	#term1 = sin(x1 + x2)
-	#term2 = (x1 - x2)^2
+	#
+	xx = matrix(xx, ncol=d)
+	#
+	w = matrix(apply( xx, 2, function(x){1+(x-1)/4} ), ncol=d)
+	term1 = (sin(pi*w[,1]))^2 
+	term3 = (w[,d]-1)^2 * (1+1*(sin(2*pi*w[,d]))^2)
+	#
+	wi  = matrix(w[,1:(d-1)], ncol=d-1)
+	sum = rowSums((wi-1)^2 * (1+10*(sin(pi*wi+1))^2))
+	# 
+	y = term1 + sum + term3
+	#
+	return(y)
+}       
+        
+#       
+mccorm = function(xx){
+	#
+	xx = matrix(x, ncol=2)
+	x1 = xx[,1]
+	x2 = xx[,2]
+	#
+	term1 = sin(x1 + x2)
+	term2 = (x1 - x2)^2
 	term3 = -1.5*x1
 	term4 = 2.5*x2
 	#     
@@ -405,14 +405,14 @@ meat = function(init, it){ #, dm){
 #
 
 #fiddlers
-M = 16 #8 #48 #100
+M = 48 #8 #48 #100
 threads = 8
 NN = 200
 makeOut = T 
 #
 outPath = getwd() #'/home/nick/Documents/theses/herbie/falsePos/'
 #
-threads = 8
+threads = 48
 name = 'levy'
 f = levy
 rect = cbind(c(-10, -10), c(10, 10))
