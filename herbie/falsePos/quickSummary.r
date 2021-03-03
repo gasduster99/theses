@@ -96,9 +96,9 @@ unpackAuto = function(out){
 #load('rastriginTestL0.100.65W20.00150.00.RData')
 #load('rosenbrockTestL0.100.65W20.0070.00.RData')
 #load('rosenbrockNoCensorL0.1000.65W20.0040.00.RData')
-#load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
+load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
 #load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})!=0; out=out[isGood]; M=sum(isGood); itMax=300
-load('./zooid2/michal2DL0.1000.65W20.0040.00M100.RData')
+#load('./zooid2/michal2DL0.1000.65W20.0040.00M100.RData')
 
 #
 rosenbrock = function(x){
@@ -120,7 +120,7 @@ rastrigin = function(x, p=2){
         return(out)
 }
 #
-zThresh = 1e-6#1e-4
+zThresh = 1e-2#1e-4
 xThresh = rectVol*0.01^dm
 
 ##
