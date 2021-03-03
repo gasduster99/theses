@@ -93,10 +93,10 @@ levy = function(xx, d=2){
 }
 
 #
-optimStep = function(f, rect, trace=F){
-	#
-	xInitPerVol = 2
-        xInit = xInitPerVol*prod(rect[,2]-rect[,1])	
+optimStep = function(f, rect, xInit, trace=F){
+	##
+	#xInitPerVol = 2
+        #xInit = xInitPerVol*prod(rect[,2]-rect[,1])	
 	X = lhs(xInit, rect)
 	tgp::optim.step.tgp( f, X=X, Z=f(X), rect=rect, improv=c(1,1), verb=0, NN=200, trace=trace )
 }
@@ -144,9 +144,11 @@ rects = list(
 vols = sapply(rects, function(r){prod(r[,1]-r[,2])})
 
 #
+M = 8
+#
 trace = F
 #
-threads = min(8, length(names))
+threads = 4 #min(8, length(names)) 
 #
 pListDef = big.matrix(threads, 1,
         init           = -1,
@@ -155,40 +157,61 @@ pListDef = big.matrix(threads, 1,
 )
 
 #
-M = 8
-threads = 8
-#
 registerDoParallel(cores=threads)
 out = foreach( m=1:M )%dopar%{
 	#parallel
         pList = attach.big.matrix("pList.desc")
         pid = Sys.getpid()
         who = which(as.matrix(pList)==-1)
-        if( m<=threads ){ pList[m] = pid
+	if( m<=threads ){ pList[m] = pid
         } else{ pList[who[sample(1:length(who),1)]] = pid }
         rank = which(as.matrix(pList)==pid)-1
 	#move into a clean work space for TGP
 	outPath = getwd()
         dir.create(sprintf('%s/rank%02d', outPath, rank))
         setwd(sprintf('%s/rank%02d', outPath, rank))
-	#benchmark
-	#xInitPerVol = 2
-	#xInit = xInitPerVol*prod(rects[[n]][,2]-rects[[n]][,1])
+	#benchmarki
+	xInitPerVol = 2
+	#xInit = rep(10, length(names)) 
+	xInit = c(); for(n in names){ xInit=c(xInit, xInitPerVol*prod(rects[[n]][,2]-rects[[n]][,1])) }
 	fOut = microbenchmark(
-		optimStep(fs[[1]], rects[[1]], trace), 
-		optimStep(fs[[2]], rects[[2]], trace),
-		optimStep(fs[[3]], rects[[3]], trace),
-		optimStep(fs[[4]], rects[[4]], trace),
-		#optimStep(fs[[5]], rects[[5]], trace),
+		optimStep(fs[[1]], rects[[1]], xInit[1], trace=trace), 
+		optimStep(fs[[2]], rects[[2]], xInit[2], trace=trace),
+		optimStep(fs[[3]], rects[[3]], xInit[3], trace=trace),
+		optimStep(fs[[4]], rects[[4]], xInit[4], trace=trace),
+		optimStep(fs[[5]], rects[[5]], xInit[5], trace=trace),
 		unit='s', 
 		times=1
 	)
 	#
-	return( list(fOut=summary(fOut)) )
+	setwd('..')
+	pList[which(as.matrix(pList)==pid)] = -1
+	#
+	s = summary(fOut)
+	out = matrix(NA, nrow=nrow(s), ncol=3)
+	colnames(out) = c('expr', 'mean', 'xInit')
+	out = as.data.frame(out)
+	out[,'expr'] = as.character(names[1:nrow(s)])
+	out[,'mean'] = as.numeric(s[,'mean'])
+	out[,'xInit']= as.numeric(xInit[1:nrow(s)])
+	return( list(fOut=out) )
 }
-##
-#fOut = sapply(out, function(p){p['fOut']})
-#fOut = do.call(rbind, fOut)
+#
+fOut = sapply(out, function(p){p['fOut']})
+fOut = do.call(rbind, fOut)
+#
+results = aggregate(fOut[,'mean'], by=list(fOut[,'expr']), FUN=mean)
+results = cbind(results, aggregate(fOut[,'mean'], by=list(fOut[,'expr']), FUN=var)[,2])
+results = cbind(results, aggregate(fOut[,'mean'], by=list(fOut[,'expr']), FUN=length)[,2])
+results = cbind(results, sqrt(results[,3]/results[,4]))
+results = cbind(results, aggregate(fOut[,'xInit'], by=list(fOut[,'expr']), FUN=unique)[,2])
+colnames(results) = c('expr', 'mean', 'var', 'n', 'SE', 'xInit')
+results = results[,c('expr', 'mean', 'SE', 'n', 'xInit')]
+
+#
+#JUNK
+#
+
 #fOut = fOut[,-1]
 #rownames(fOut) = names
 ##
