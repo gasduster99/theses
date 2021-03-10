@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while sleep 2
+while sleep 30
 	do clear 
 	echo -e "$(cat rank*/wMonitor.txt)" 
 done

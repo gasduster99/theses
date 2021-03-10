@@ -1,6 +1,7 @@
 rm(list=ls())
 
 #
+library(GA)
 library(tgp)
 library(qcc)
 #library(snow)
@@ -424,13 +425,26 @@ outPath = getwd() #'/home/nick/Documents/theses/herbie/falsePos/'
 #wGrid = seq(20, 40, 2)
 #itMax = 200
 #
-name = 'michal2D'
-f = michal
-rect = cbind(c(0, 0), c(pi, pi))
-zMin = -1.8013
-xMin = c(2.20, 1.57)
+dm = 5
+name = sprintf('michal%dD', dm)
+f = function(x){ michal(x, p=dm) }
+rect = cbind(rep(0, dm), rep(pi, dm))
+zMin = -4.687658 #-1.8013
+xMin = c(2.202905, 1.570796, 1.284991, 1.923058, 1.72047)[1:dm]
 wGrid = seq(20, 40, 2)
 itMax = 200
+#opt = optim(xMin, f)
+gaOut = ga(
+	type='real-valued',
+	fitness=function(x){-f(x)},
+       	lower=rect[,1],
+	upper=rect[,2],
+	popSize=10^3,
+	optim=T,
+	parallel=T,
+	suggestions=matrix(xMin, ncol=dm)
+)
+xMin = gaOut@solution
 #
 #threads = 8
 #name = 'rosenbrockNoCensor'
@@ -453,7 +467,8 @@ itMax = 200
 #
 W = 40
 lamGrid = seq(0.1, 0.65, 0.05)	#seq(0.1, 0.9, 0.05)
-xInitPerVol = 2
+#xInitPerVol = 2
+xInitPerD = 10
 thresholdGrid = seq(1e-6, 1e-4, 5e-6) #seq(4e-5, 1e-3, 4e-5) 
 threshold = 5e-4
 #
@@ -498,7 +513,7 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
 	colnames(itConv) = c(sprintf('thresh%1.1e', thresholdGrid), sprintf('ewmaAutoW%.2f', wGrid), nome)
 	
 	#optimization init
-	xInit = xInitPerVol*rectVol
+	xInit = xInitPerD*dm #Vol*rectVol
         X = lhs(xInit, rect)
         Z = f(X)
         Xmax = X[Z==min(Z),]
