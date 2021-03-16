@@ -144,11 +144,11 @@ rects = list(
 vols = sapply(rects, function(r){prod(r[,1]-r[,2])})
 
 #
-M = 8
+M = 48
 #
 trace = F
 #
-threads = 4 #min(8, length(names)) 
+threads = 48 #min(8, length(names)) 
 #
 pListDef = big.matrix(threads, 1,
         init           = -1,
@@ -170,10 +170,10 @@ out = foreach( m=1:M )%dopar%{
 	outPath = getwd()
         dir.create(sprintf('%s/rank%02d', outPath, rank))
         setwd(sprintf('%s/rank%02d', outPath, rank))
-	#benchmarki
-	xInitPerVol = 2
-	#xInit = rep(10, length(names)) 
+	#benchmarking
+	xInitPerVol = 2 
 	xInit = c(); for(n in names){ xInit=c(xInit, xInitPerVol*prod(rects[[n]][,2]-rects[[n]][,1])) }
+	#xInit = rep(20, length(names))
 	fOut = microbenchmark(
 		optimStep(fs[[1]], rects[[1]], xInit[1], trace=trace), 
 		optimStep(fs[[2]], rects[[2]], xInit[2], trace=trace),
@@ -194,6 +194,7 @@ out = foreach( m=1:M )%dopar%{
 	out[,'expr'] = as.character(names[1:nrow(s)])
 	out[,'mean'] = as.numeric(s[,'mean'])
 	out[,'xInit']= as.numeric(xInit[1:nrow(s)])
+	#
 	return( list(fOut=out) )
 }
 #
