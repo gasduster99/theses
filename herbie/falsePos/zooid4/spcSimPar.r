@@ -455,7 +455,7 @@ W = 40
 lamGrid = seq(0.1, 0.65, 0.05)	#seq(0.1, 0.9, 0.05)
 #xInitPerVol = 2
 xInitPerD = 10
-thresholdGrid = seq(4e-5, 1e-3, 4e-5) #seq(4e-5, 1e-3, 4e-5) 
+thresholdGrid = seq(4e-6, 8e-5, 4e-6) #seq(4e-5, 1e-3, 4e-5) 
 #seq(5e-5, 1e-3, 1e-4) #seq(2.75e-05, 7.75e-5, 5e-6)
 threshold = 5e-4
 #
