@@ -431,7 +431,7 @@ f = function(x){ michal(x, p=dm) }
 rect = cbind(rep(0, dm), rep(pi, dm))
 zMin = -4.687658 #-1.8013
 xMin = c(2.202905, 1.570796, 1.284991, 1.923058, 1.72047)[1:dm]
-wGrid = seq(20, 40, 2)
+wGrid = seq(50, 100, 5) #seq(20, 40, 2)
 itMax = 200
 #opt = optim(xMin, f)
 gaOut = ga(
