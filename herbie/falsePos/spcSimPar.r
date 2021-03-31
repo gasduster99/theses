@@ -433,7 +433,7 @@ outPath = getwd() #'/home/nick/Documents/theses/herbie/falsePos/'
 #wGrid = seq(20, 40, 2)
 #itMax = 200
 #
-threads = 48
+threads = 45
 name = 'rosenbrockNoCensor'
 f = rosenbrock
 rect = cbind(c(-2, -3), c(2, 5))
@@ -454,7 +454,8 @@ itMax = 300
 #
 W = 40
 lamGrid = seq(0.1, 0.65, 0.05)	#seq(0.1, 0.9, 0.05)
-xInitPerVol = 2
+#xInitPerVol = 2
+xInitPerD = 10
 thresholdGrid = seq(4e-5, 1e-3, 2*4e-5) #seq(5e-5, 1e-3, 1e-4) #seq(2.75e-05, 7.75e-5, 5e-6)
 threshold = 5e-4
 #
@@ -499,7 +500,7 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
 	colnames(itConv) = c(sprintf('thresh%1.1e', thresholdGrid), sprintf('ewmaAutoW%.2f', wGrid), nome)
 	
 	#optimization init
-	xInit = xInitPerVol*rectVol
+	xInit = xInitPerD*dm #Vol*rectVol
         X = lhs(xInit, rect)
         Z = f(X)
         Xmax = X[Z==min(Z),]
