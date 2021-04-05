@@ -368,8 +368,8 @@ meat = function(init, it){ #, dm){
         #OPTIMIZE
         #
 
-        #               
-        out = suppressWarnings(tgp::optim.step.tgp( init$f, X=X, Z=Z, rect=rect, prev=out, improv=c(1,1), trace=T, verb=0, NN=NN ))
+        #	
+        out = suppressWarnings(tgp::optim.step.tgp( init$f, X=X, Z=Z, rect=rect, prev=out, improv=c(1,1), trace=T, verb=0, NN=NN, BTE=BTE ))
         ex = matrix(out$X, ncol=dm)
         fex = f(ex)
         X = rbind(X, ex)
@@ -420,6 +420,7 @@ zMin = opt$value
 xMin = opt$par
 wGrid = seq(20, 40, 2)
 itMax = 200
+BTE = c(2000, 27000, 10) #c(2000, 22000, 5) #c(2000, 7000, 2)
 ##
 #threads = 48
 #name = 'mccormTry'
@@ -459,11 +460,11 @@ threshold = 5e-4
 rectVol = prod(rect[,2]-rect[,1])
 dm = nrow(rect)
 
-##
-#not = c(17, 8, 20, 5, 23, 7)
-#seed = 1:(M+length(not))
-#seed = seed[!1:length(seed)%in%not]
-seed = 1:M
+#
+not = c(47)#17, 8, 20, 5, 23, 7)
+seed = 1:(M+length(not))
+seed = seed[!1:length(seed)%in%not]
+#seed = 1:M
 #
 pListDef = big.matrix(threads, 1,
 	init           = -1, 
@@ -471,7 +472,7 @@ pListDef = big.matrix(threads, 1,
 	descriptorfile = "pList.desc"
 )
 registerDoParallel(cores=threads)
-out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
+out = foreach( m=1:M, .options.multicore=list(preschedule=F), .errorhandling="pass" )%dopar%{
 #for( m in c(1) ){ #1:M ){
 	#parallel
 	pList = attach.big.matrix("pList.desc")
