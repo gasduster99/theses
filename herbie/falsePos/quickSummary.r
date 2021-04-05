@@ -21,7 +21,7 @@ unpackIts = function(out){
 		out[[i]]$Xmax = as.matrix(out[[i]]$Xmax)
 		#
 		its = unlist(out[[i]]$itConv[substr(names(out[[i]]$itConv), 1, 5)=="ewmaL"]) #-(1:(length(wGrid)+1))])
-		##
+		#
 		#print( max(its) )
 		#print( dim(out[[i]]$Xmax) )
 		#its[its>nrow(out[[i]]$Xmax)] = nrow(out[[i]]$Xmax)
@@ -98,7 +98,12 @@ unpackAuto = function(out){
 #load('rosenbrockNoCensorL0.1000.65W20.0040.00.RData')
 load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
 #load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})!=0; out=out[isGood]; M=sum(isGood); itMax=300
-#load('./zooid2/michal2DL0.1000.65W20.0040.00M100.RData')
+#load('./zooid2/michal2DL0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})!=0; out=out[isGood]; M=sum(isGood); itMax=300
+#load('./zooid2/michal5DL0.1000.65W20.0040.00M100.RData')
+#load('./zooid2/michal5DL0.1000.65W50.00100.00M100.RData')
+#load('./zooid4/levyL0.1000.65W20.0040.00.RData')
+#load('./zooid4/levyL0.1000.65W40.0080.00.RData')
+
 
 #
 rosenbrock = function(x){
@@ -120,7 +125,7 @@ rastrigin = function(x, p=2){
         return(out)
 }
 #
-zThresh = 1e-2#1e-4
+zThresh = 1e-3
 xThresh = rectVol*0.01^dm
 
 ##
@@ -196,52 +201,52 @@ for(ii in 1:length(threshIt)){
 threshBetaZ = mean(threshZ>zThresh)
 threshBetaX = mean(threshX>xThresh)
 
-#
-#PROBS
-#
-
-#betaAvgZ = mean(itX[itX$lam==0.45 & itX$W==35,'zDist']>zThresh, na.rm=T)
-FPR = mean(itX[itX$lam==0.45 & itX$W==35,'zDist']>zThresh, na.rm=T)
-TP = sum(itX[itX$lam==0.45 & itX$W==35,'zDist']<zThresh)
-
-#
-betasZ = matrix(NA, length(wGrid), length(lamGrid))
-colnames(betasZ) = sprintf('L:%.2f', lamGrid)
-rownames(betasZ) = sprintf('W:%.2f', wGrid)
-for(j in 1:ncol(betasZ)){
-	for(i in 1:nrow(betasZ)){
-		betasZ[i, j] = mean(itX[itX$lam==round(lamGrid[j],2) & itX$W==wGrid[i],'zDist']>zThresh, na.rm=T)
-	}
-}
-
-#
-betaAvgX = mean(itX[itX$lam==0.45 & itX$W==35,'xNorm']>xThresh, na.rm=T)
-betasX = matrix(NA, length(wGrid), length(lamGrid))
-colnames(betasX) = sprintf('L:%.2f', lamGrid)
-rownames(betasX) = sprintf('W:%.2f', wGrid)
-for(j in 1:ncol(betasX)){
-	for(i in 1:nrow(betasX)){
-		betasX[i, j] = mean(itX[itX$lam==round(lamGrid[j],2) & itX$W==wGrid[i],'xNorm']>xThresh, na.rm=T)
-	}
-}
-
-#
-png(sprintf('%sFaslePosZ.png', name))
-par(mar=c(5.1, 4.1, 4.1, 4.1))
-plot(t(betasZ), col=function(n) hcl.colors(n, "Blue-Red 3"))
-dev.off()
 ##
-#png(sprintf('%sFaslePosX.png', name))
+##PROBS
+##
+#
+###betaAvgZ = mean(itX[itX$lam==0.45 & itX$W==35,'zDist']>zThresh, na.rm=T)
+##FPR = mean(itX[itX$lam==0.45 & itX$W==35,'zDist']>zThresh, na.rm=T)
+##TP = sum(itX[itX$lam==0.45 & itX$W==35,'zDist']<zThresh)
+#
+##
+#betasZ = matrix(NA, length(wGrid), length(lamGrid))
+#colnames(betasZ) = sprintf('L:%.2f', lamGrid)
+#rownames(betasZ) = sprintf('W:%.2f', wGrid)
+#for(j in 1:ncol(betasZ)){
+#	for(i in 1:nrow(betasZ)){
+#		betasZ[i, j] = mean(itX[itX$lam==round(lamGrid[j],2) & itX$W==wGrid[i],'zDist']>zThresh, na.rm=T)
+#	}
+#}
+#
+##
+#betaAvgX = mean(itX[itX$lam==0.45 & itX$W==35,'xNorm']>xThresh, na.rm=T)
+#betasX = matrix(NA, length(wGrid), length(lamGrid))
+#colnames(betasX) = sprintf('L:%.2f', lamGrid)
+#rownames(betasX) = sprintf('W:%.2f', wGrid)
+#for(j in 1:ncol(betasX)){
+#	for(i in 1:nrow(betasX)){
+#		betasX[i, j] = mean(itX[itX$lam==round(lamGrid[j],2) & itX$W==wGrid[i],'xNorm']>xThresh, na.rm=T)
+#	}
+#}
+#
+##
+#png(sprintf('%sFaslePosZ.png', name))
 #par(mar=c(5.1, 4.1, 4.1, 4.1))
-#plot(t(betasX), col=function(n) hcl.colors(n, "Blue-Red 3"))
+#plot(t(betasZ), col=function(n) hcl.colors(n, "Blue-Red 3"))
 #dev.off()
-
-##
-#zProbW = sapply(wGrid, function(x){ mean(itX[itX$lam==0.4 & itX$W==x,'zDist']>zThresh, na.rm=T) })
-#zProbL = sapply(lamGrid, function(x){ mean(itX[itX$lam==x & itX$W==40,'zDist']>zThresh, na.rm=T) })
-##
-#xProbW = sapply(wGrid, function(x){ mean(itX[itX$lam==0.4 & itX$W==x,'xNorm']>xThresh, na.rm=T) })
-#xProbL = sapply(lamGrid, function(x){ mean(itX[itX$lam==x & itX$W==40,'xNorm']>xThresh, na.rm=T) })
+###
+##png(sprintf('%sFaslePosX.png', name))
+##par(mar=c(5.1, 4.1, 4.1, 4.1))
+##plot(t(betasX), col=function(n) hcl.colors(n, "Blue-Red 3"))
+##dev.off()
+#
+###
+##zProbW = sapply(wGrid, function(x){ mean(itX[itX$lam==0.4 & itX$W==x,'zDist']>zThresh, na.rm=T) })
+##zProbL = sapply(lamGrid, function(x){ mean(itX[itX$lam==x & itX$W==40,'zDist']>zThresh, na.rm=T) })
+###
+##xProbW = sapply(wGrid, function(x){ mean(itX[itX$lam==0.4 & itX$W==x,'xNorm']>xThresh, na.rm=T) })
+##xProbL = sapply(lamGrid, function(x){ mean(itX[itX$lam==x & itX$W==40,'xNorm']>xThresh, na.rm=T) })
 
 #
 itAuto = unpackAuto(out)
@@ -266,31 +271,31 @@ lines(wGrid, zProbAutoW, 'l', lwd=5)
 abline(h=threshBetaZ, lty=2, col='red')
 dev.off()
 
+##
+##False negative
+##
 #
-#False negative
+##Number of runs until convergence from best found before convergence (false negative)
+#alphasZ = matrix(NA, length(wGrid), length(lamGrid))
+#colnames(alphasZ) = sprintf('L:%.2f', lamGrid)
+#rownames(alphasZ) = sprintf('W:%.2f', wGrid)
+#for(j in 1:ncol(betasZ)){
+#        for(i in 1:nrow(betasZ)){
+#                alphasZ[i, j] = mean(itX[itX$lam==round(lamGrid[j],2) & itX$W==wGrid[i],'runsTil']/wGrid[i], na.rm=T)
+#        }
+#}
 #
-
-#Number of runs until convergence from best found before convergence (false negative)
-alphasZ = matrix(NA, length(wGrid), length(lamGrid))
-colnames(alphasZ) = sprintf('L:%.2f', lamGrid)
-rownames(alphasZ) = sprintf('W:%.2f', wGrid)
-for(j in 1:ncol(betasZ)){
-        for(i in 1:nrow(betasZ)){
-                alphasZ[i, j] = mean(itX[itX$lam==round(lamGrid[j],2) & itX$W==wGrid[i],'runsTil']/wGrid[i], na.rm=T)
-        }
-}
-
+##
+#png(sprintf('%sFasleNegZ.png', name))
+#par(mar=c(5.1, 4.1, 4.1, 4.1))
+#plot(t(alphasZ), col=function(n) hcl.colors(n, "Blue-Red 3"))
+#dev.off()
 #
-png(sprintf('%sFasleNegZ.png', name))
-par(mar=c(5.1, 4.1, 4.1, 4.1))
-plot(t(alphasZ), col=function(n) hcl.colors(n, "Blue-Red 3"))
-dev.off()
-
-#
-png(sprintf('%sErrorZ.png', name))
-par(mar=c(5.1, 4.1, 4.1, 4.1))
-plot(t(alphasZ*betasZ), col=function(n) hcl.colors(n, "Blue-Red 3"))
-dev.off()
+##
+#png(sprintf('%sErrorZ.png', name))
+#par(mar=c(5.1, 4.1, 4.1, 4.1))
+#plot(t(alphasZ*betasZ), col=function(n) hcl.colors(n, "Blue-Red 3"))
+#dev.off()
 
 #
 #ARL
@@ -444,31 +449,31 @@ names(arlCThreshTilSE) = threshs
 
 #threshX = t(sapply( out, function(x){ as.matrix(x$Xmax)[x$itConv[[1]],] } ))
 
-#
-png(sprintf('%sOnlyFaslePosZThresh%.1e.png', name, zThresh))
-zProbAutoWSD = sapply(wGrid, function(x){ sqrt(var(itAuto[itAuto$W==x,'zDist']>zThresh, na.rm=T)/sum(!is.na(itAuto[itAuto$W==x,'zDist']>zThresh))) })
-plot(wGrid, zProbAutoW, 'l', lwd=3, ylim=c(0,1), main=sprintf('Errors w/ Truth Threshhold=%.2e', zThresh))
-polygon(dubs, c(zProbAutoW+2*zProbAutoWSD, rev(zProbAutoW-2*zProbAutoWSD)), col='grey', border=F)
-lines(wGrid, zProbAutoW, 'l', lwd=3)
-i = 50
-for(thresh in threshs){
-        abline(h=threshFPR[thresh], col=sprintf('grey%d', i))
-        i = i-2
-}
-dev.off()
-#
-png(sprintf('%sARLThresh%.1e.png', name, zThresh))
-int = c(arlCTil+2*arlCTilSE, rev(arlCTil-2*arlCTilSE))
-show = !is.na(int)
-plot(wGrid, arlCTil, lwd=3, type='l', ylim=c(0, max(int[show])), main='Average Run Length')
-polygon(dubs[show], int[show], col='grey', border=F)
-lines(wGrid, arlCTil, lwd=3)
-i = 50
-for(thresh in threshs){
-	abline(h=arlCThreshTils[thresh], col=sprintf('grey%d', i))
-	i = i-2
-}
-dev.off()
+##
+#png(sprintf('%sOnlyFaslePosZThresh%.1e.png', name, zThresh))
+#zProbAutoWSD = sapply(wGrid, function(x){ sqrt(var(itAuto[itAuto$W==x,'zDist']>zThresh, na.rm=T)/sum(!is.na(itAuto[itAuto$W==x,'zDist']>zThresh))) })
+#plot(wGrid, zProbAutoW, 'l', lwd=3, ylim=c(0,1), main=sprintf('Errors w/ Truth Threshhold=%.2e', zThresh))
+#polygon(dubs, c(zProbAutoW+2*zProbAutoWSD, rev(zProbAutoW-2*zProbAutoWSD)), col='grey', border=F)
+#lines(wGrid, zProbAutoW, 'l', lwd=3)
+#i = 50
+#for(thresh in threshs){
+#        abline(h=threshFPR[thresh], col=sprintf('grey%d', i))
+#        i = i-2
+#}
+#dev.off()
+##
+#png(sprintf('%sARLThresh%.1e.png', name, zThresh))
+#int = c(arlCTil+2*arlCTilSE, rev(arlCTil-2*arlCTilSE))
+#show = !is.na(int)
+#plot(wGrid, arlCTil, lwd=3, type='l', ylim=c(0, max(int[show])), main='Average Run Length')
+#polygon(dubs[show], int[show], col='grey', border=F)
+#lines(wGrid, arlCTil, lwd=3)
+#i = 50
+#for(thresh in threshs){
+#	abline(h=arlCThreshTils[thresh], col=sprintf('grey%d', i))
+#	i = i-2
+#}
+#dev.off()
 
 
 #

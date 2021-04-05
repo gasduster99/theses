@@ -432,24 +432,25 @@ outPath = getwd() #'/home/nick/Documents/theses/herbie/falsePos/'
 #xMin = c(-0.54719, -1.54719)
 #wGrid = seq(20, 40, 2)
 #itMax = 200
+##
+#threads = 45
+#name = 'rosenbrockNoCensor'
+#f = rosenbrock
+#rect = cbind(c(-2, -3), c(2, 5))
+#zMin = 0
+#xMin = c(1, 1)
+#wGrid = seq(20, 40, 2)
+#itMax = 300
 #
-threads = 45
-name = 'rosenbrockNoCensor'
-f = rosenbrock
-rect = cbind(c(-2, -3), c(2, 5))
+threads = 46
+name = 'rastriginNoCensor'
+f = rastrigin
+rect = cbind(c(-2.5, -2.5), c(2.5, 2.5))
 zMin = 0
-xMin = c(1, 1)
-wGrid = seq(20, 40, 2)
+xMin = rep(0, ncol(rect))
+wGrid = seq(20, 80, 5)
 itMax = 300
 #
-#name = 'rastriginNoCensor'
-#f = rastrigin
-#rect = cbind(c(-2.5, -2.5), c(2.5, 2.5))
-#zMin = 0
-#xMin = rep(0, ncol(rect))
-#wGrid = seq(20, 80, 5)
-#itMax = 300
-##
 
 #
 W = 40
@@ -475,7 +476,7 @@ pListDef = big.matrix(threads, 1,
 	descriptorfile = "pList.desc"
 )
 registerDoParallel(cores=threads)
-out = foreach( m=1:M, .options.multicore=list(preschedule=F) )%dopar%{
+out = foreach( m=1:M, .options.multicore=list(preschedule=F), .errorhandling="pass" )%dopar%{
 #for( m in c(1) ){ #1:M ){
 	#parallel
 	pList = attach.big.matrix("pList.desc")
