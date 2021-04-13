@@ -96,14 +96,14 @@ unpackAuto = function(out){
 #load('rastriginTestL0.100.65W20.00150.00.RData')
 #load('rosenbrockTestL0.100.65W20.0070.00.RData')
 #load('rosenbrockNoCensorL0.1000.65W20.0040.00.RData')
-load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
-#load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})!=0; out=out[isGood]; M=sum(isGood); itMax=300
+#load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
+#load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=300
 #load('./zooid2/michal2DL0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})!=0; out=out[isGood]; M=sum(isGood); itMax=300
 #load('./zooid2/michal5DL0.1000.65W20.0040.00M100.RData')
 #load('./zooid2/michal5DL0.1000.65W50.00100.00M100.RData')
 #load('./zooid4/levyL0.1000.65W20.0040.00.RData')
 #load('./zooid4/levyL0.1000.65W40.0080.00.RData')
-
+load('./zooid4/levy3DL0.1000.65W50.00100.00.RData')
 
 #
 rosenbrock = function(x){
@@ -554,7 +554,7 @@ show = !is.na(int)
 plot(wGrid, arlCTil, 
 	lwd=3, 
 	type='l', 
-	ylim=range(c(arlCThreshTils, int)), #c(min(arlCThreshTils), max(int[show])), 
+	ylim=range(c(arlCThreshTils, int), na.rm=T), #c(min(arlCThreshTils), max(int[show])), 
 	axes=F,
 	xlab='',
 	ylab='',
