@@ -96,14 +96,14 @@ unpackAuto = function(out){
 #load('rastriginTestL0.100.65W20.00150.00.RData')
 #load('rosenbrockTestL0.100.65W20.0070.00.RData')
 #load('rosenbrockNoCensorL0.1000.65W20.0040.00.RData')
-#load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
+load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
 #load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=300
 #load('./zooid2/michal2DL0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})!=0; out=out[isGood]; M=sum(isGood); itMax=300
 #load('./zooid2/michal5DL0.1000.65W20.0040.00M100.RData')
 #load('./zooid2/michal5DL0.1000.65W50.00100.00M100.RData')
 #load('./zooid4/levyL0.1000.65W20.0040.00.RData')
 #load('./zooid4/levyL0.1000.65W40.0080.00.RData')
-load('./zooid4/levy3DL0.1000.65W50.00100.00.RData')
+#load('./zooid4/levy3DL0.1000.65W50.00100.00.RData')
 
 #
 rosenbrock = function(x){
@@ -329,6 +329,13 @@ arlCNumTil = sapply(wGrid, function(x){ sum(itAuto$runsTil[itAuto$W==x & (itAuto
 arlCTilSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$runsTil[itAuto$W==x & (itAuto$zCvg-zMin[1])<zThresh & itAuto$its<itMax], na.rm=T)) })
 arlCTilSE  = arlCTilSE/sqrt(arlCNumTil)
 
+#E[runsTil | runsTill>0]
+cond = (itAuto$zCvg-zMin[1])<zThresh & itAuto$runsTil>=0
+arlCTilGiven  = sapply(wGrid, function(x){ mean(itAuto$runsTil[itAuto$W==x & cond], na.rm=T) })
+arlCNumTilGiven = sapply(wGrid, function(x){ sum(itAuto$runsTil[itAuto$W==x & cond]>=0, na.rm=T) })
+arlCTilGivenSE  = sapply(wGrid, function(x){ sqrt(var(itAuto$runsTil[itAuto$W==x & cond], na.rm=T)) })
+arlCTilGivenSE  = arlCTilGivenSE/sqrt(arlCNumTilGiven)
+
 #
 arlNCThresh = mean(threshIt[(threshZ-zMin[1])>zThresh], na.rm=T)
 arlNCThreshNum = sum(!is.na(threshIt[(threshZ-zMin[1])>zThresh]))
@@ -423,8 +430,17 @@ threshFPR = colMeans((threshZ-zMin[1])>zThresh)
 threshFPRSE = sqrt(apply((threshZ-zMin[1])>zThresh, 2, var)/nrow(threshZ))
 #oProbAutoW = sapply(wGrid, function(x){ mean(itAuto[itAuto$W==x,'zDist']>zThresh, na.rm=T) })
 threshRunsTils = c()
-arlCThreshTils = c()
+#arlCThreshTils = c()
+#arlCThreshTilSE = c()
+#
+arlCThreshTil = c()
 arlCThreshTilSE = c()
+#
+arlCThreshTilGiven = c()
+arlCThreshTilGivenSE = c()
+#
+arlCThreshTilChop = c()
+arlCThreshTilChopSE = c()
 for(thresh in threshs){
 	threshRunsTil = c()
 	for(ii in 1:length(threshIt[,thresh])){
@@ -437,14 +453,45 @@ for(thresh in threshs){
 	}
 	#
 	threshRunsTils = cbind(threshRunsTils, threshRunsTil)
-	arlCThreshTils = c(arlCThreshTils, mean(threshRunsTil[threshZ<zThresh], na.rm=T))
-	arlCThreshTilNum = sum(!is.na(threshRunsTil[threshZ<zThresh]))
-	arlCThreshTilSE = c(arlCThreshTilSE, sqrt( var(threshRunsTil[threshZ<zThresh], na.rm=T)/arlCThreshTilNum ))
+	#
+	#arlCThreshTils = c(arlCThreshTils, mean(threshRunsTil[threshZ<zThresh], na.rm=T))
+	#arlCThreshTilNum = sum(!is.na(threshRunsTil[threshZ<zThresh]))
+	#arlCThreshTilSE = c(arlCThreshTilSE, sqrt( var(threshRunsTil[threshZ<zThresh], na.rm=T)/arlCThreshTilNum ))
+	
+	#E[ RL ]
+        cond = threshZ<zThresh
+        arlCThreshTil = c(arlCThreshTil, mean(threshRunsTil[cond], na.rm=T))
+        arlCThreshTilNum = sum(!is.na(threshRunsTil[cond]))
+        arlCThreshTilSE = c(arlCThreshTilSE, sqrt( var(threshRunsTil[cond], na.rm=T)/arlCThreshTilNum ))
+        #E[ runsTil*1(runsTil>0) ]: use same cond from above
+        threshRunsTilChop = threshRunsTil
+        threshRunsTilChop[threshRunsTilChop<0] = 0 
+        arlCThreshTilChop = c(arlCThreshTilChop, mean(threshRunsTilChop[cond], na.rm=T))
+        arlCThreshTilChopNum = sum(!is.na(threshRunsTilChop[cond]))
+        arlCThreshTilChopSE = c(arlCThreshTilChopSE, sqrt( var(threshRunsTilChop[cond], na.rm=T)/arlCThreshTilChopNum ))
+        #E[runsTil | runsTill>0] 
+        cond = threshZ<zThresh & threshRunsTil>=0
+        arlCThreshTilGiven = c(arlCThreshTilGiven, mean(threshRunsTil[cond], na.rm=T))
+        arlCThreshTilGivenNum = sum(!is.na(threshRunsTil[cond]))
+        arlCThreshTilGivenSE = c(arlCThreshTilGivenSE, sqrt( var(threshRunsTil[cond], na.rm=T)/arlCThreshTilGivenNum ))
 }
+#colnames(threshRunsTils) = threshs
+#names(arlCThreshTils) = threshs
+#names(arlCThreshTilSE) = threshs
+##arlCThreshTils = mean(threshRunsTils[threshZ<zThresh], na.rm=T)
+#
 colnames(threshRunsTils) = threshs
-names(arlCThreshTils) = threshs
+#
+names(arlCThreshTil) = threshs
 names(arlCThreshTilSE) = threshs
-#arlCThreshTils = mean(threshRunsTils[threshZ<zThresh], na.rm=T)
+#
+names(arlCThreshTilChop) = threshs
+names(arlCThreshTilChopSE) = threshs
+#
+names(arlCThreshTilGiven) = threshs
+names(arlCThreshTilGivenSE) = threshs
+
+
 
 
 #threshX = t(sapply( out, function(x){ as.matrix(x$Xmax)[x$itConv[[1]],] } ))
@@ -554,18 +601,18 @@ show = !is.na(int)
 plot(wGrid, arlCTil, 
 	lwd=3, 
 	type='l', 
-	ylim=range(c(arlCThreshTils, int), na.rm=T), #c(min(arlCThreshTils), max(int[show])), 
+	ylim=range(c(arlCThreshTil, int), na.rm=T), #c(min(arlCThreshTil), max(int[show])), 
 	axes=F,
 	xlab='',
 	ylab='',
 )
 i = 1
 for(thresh in threshs){
-	segments(locs[i,1]-pm, arlCThreshTils[thresh], locs[i,2]+pm, arlCThreshTils[thresh],
+	segments(locs[i,1]-pm, arlCThreshTil[thresh], locs[i,2]+pm, arlCThreshTil[thresh],
 		col=threshPal[i],
                 lwd=2
 	)
-	#segments(min(wGrid)+(max(wGrid)-min(wGrid))*(1-width), arlCThreshTils[thresh], max(wGrid), arlCThreshTils[thresh],
+	#segments(min(wGrid)+(max(wGrid)-min(wGrid))*(1-width), arlCThreshTil[thresh], max(wGrid), arlCThreshTil[thresh],
         #        col=threshPal[i],
         #        lwd=2
         #)
@@ -576,9 +623,101 @@ polygon(dubs[show], int[show],
 	border=F
 )
 lines(wGrid, arlCTil, lwd=3)
-axis(side=4, at=pretty(range(c(arlCThreshTils, int))))
+axis(side=4, at=pretty(range(c(arlCThreshTil, int))))
 mtext('ARL', side=4, line=3)
 dev.off()
+
+#
+#GIVEN PLOT
+#
+
+#
+threshPal = hcl.colors(length(threshs), "Zissou 1")
+png(sprintf('%sFPRandARLGivenThresh%.1e.png', name, zThresh))
+par(mar=c(5, 4, 4, 4)+0.3)
+#FPR
+zProbAutoWSD = sapply(wGrid, function(x){ sqrt(var(itAuto[itAuto$W==x,'zDist']>zThresh, na.rm=T)/sum(!is.na(itAuto[itAuto$W==x,'zDist']>zThresh))) })
+plot(wGrid, zProbAutoW, 'l', 
+	lwd=3, 
+	ylim=c(0,1), 
+	main=sprintf('Errors w/ Truth Threshhold=%.2e', zThresh), 
+	ylab='FPR'
+)
+i = 1
+width = 0.25
+pm = diff(range(wGrid))*width/100*2
+locs = c()
+for(thresh in threshs){
+        ##
+	#segments(min(wGrid), threshFPR[thresh], min(wGrid)+(max(wGrid)-min(wGrid))*width, threshFPR[thresh], 
+	#	col=threshPal[i], 
+	#	lwd=2
+	#)
+	
+	#
+	loc = gridInt(threshFPR[thresh], zProbAutoW, wGrid)
+	
+	#
+	if(!is.na(loc[1])){
+		#
+		segments(min(wGrid), threshFPR[thresh], range(wGrid)[2], threshFPR[thresh], 
+			col=threshPal[i], 
+			lwd=0.5,
+			lty=2
+		)
+	}
+	
+	#
+	locs = rbind(locs, loc)
+
+	#
+        i = i+1
+}
+polygon(dubs, c(zProbAutoW+2*zProbAutoWSD, rev(zProbAutoW-2*zProbAutoWSD)), 
+	col=adjustcolor("black", alpha.f=0.2), 
+	border=F
+)
+lines(wGrid, zProbAutoW, 'l', lwd=3)
+
+#
+par(new=T)
+
+#ARL
+int = c(arlCTilGiven+2*arlCTilGivenSE, rev(arlCTilGiven-2*arlCTilGivenSE))
+show = !is.na(int)
+plot(wGrid, arlCTilGiven, 
+	lwd=3, 
+	type='l', 
+	ylim=range(c(arlCThreshTilGiven, int), na.rm=T), #c(min(arlCThreshTilGiven), max(int[show])), 
+	axes=F,
+	xlab='',
+	ylab='',
+)
+i = 1
+for(thresh in threshs){
+	segments(locs[i,1]-pm, arlCThreshTilGiven[thresh], locs[i,2]+pm, arlCThreshTilGiven[thresh],
+		col=threshPal[i],
+                lwd=2
+	)
+	#segments(min(wGrid)+(max(wGrid)-min(wGrid))*(1-width), arlCThreshTilGiven[thresh], max(wGrid), arlCThreshTilGiven[thresh],
+        #        col=threshPal[i],
+        #        lwd=2
+        #)
+        i = i+1
+}
+polygon(dubs[show], int[show], 
+	col=adjustcolor("black", alpha.f=0.2), 
+	border=F
+)
+lines(wGrid, arlCTilGiven, lwd=3)
+axis(side=4, at=pretty(range(c(arlCThreshTilGiven, int))))
+mtext('ARL', side=4, line=3)
+dev.off()
+
+
+
+
+
 
 
 #
