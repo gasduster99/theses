@@ -75,7 +75,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 			self$ODE_method = method	
 	
 			#N0
-                        if( is.function(N0Funk) ){ N0=self$N0Funk() }
+                        if( is.function(self$N0Funk) ){ N0=self$N0Funk() }
 				
 			#last minute allocation and variable updates
 			self$N0 = N0
