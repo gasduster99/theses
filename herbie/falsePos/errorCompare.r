@@ -54,11 +54,13 @@ unpackAuto = function(out){
 #
 
 #
-#load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
-load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})!=0; out=out[isGood]; M=sum(isGood); itMax=300
+#load('rastriginNoCensorL0.1000.65W20.0080.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
+load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
+#load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=300
 #load('./zooid2/michal2DL0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})!=0; out=out[isGood]; M=sum(isGood); itMax=300
 #load('./zooid2/michal5DL0.1000.65W20.0040.00M100.RData')
 #load('./zooid2/michal5DL0.1000.65W50.00100.00M100.RData')
+#load('./zooid2/michal3DL0.1000.65W100.00200.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 #load('./zooid4/levyL0.1000.65W20.0040.00.RData')
 #load('./zooid4/levyL0.1000.65W40.0080.00.RData')
 
@@ -271,6 +273,115 @@ polygon(dubs, c(ewmaFPR+2*ewmaFPRSE, rev(ewmaFPR-2*ewmaFPRSE)),
 lines(wGrid, ewmaFPR, 'l', lwd=3)
 dev.off()
 
+
+#
+#rowCombine FRP
+#
+
+#
+cols = brewer.pal(8, "Set1")
+
+#
+png(sprintf('%sFPRCombine%.1e.png', name, zThresh))
+par(mar=c(5, 4, 5, 4)+0.3)
+
+#EWMA
+plot(wGrid, ewmaFPR, 'l',
+        lwd=3,
+        ylim=c(0,1),
+        main='', #sprintf('Errors w/ Truth Threshhold=%.2e', zThresh),
+	#axes=F,
+	xlab='',
+        ylab='FPR',
+	col=cols[1]
+)
+polygon(dubs, c(ewmaFPR+2*ewmaFPRSE, rev(ewmaFPR-2*ewmaFPRSE)),
+        col=adjustcolor(cols[1], alpha.f=0.2),
+        border=F
+)
+lines(wGrid, ewmaFPR, 'l', lwd=3, col=cols[1])
+
+#
+mtext('Window Size', side=1, line=3, col=cols[1])
+
+#
+par(new=T)
+
+#THRESH
+plot(-thresholdGrid, threshFPR, 'l', 
+	ylab="", 
+	xlab="", 
+	axes=F, 
+	col=cols[2], 
+	lwd=3,
+	ylim=c(0,1)
+)
+polygon(-ts, c(threshFPR+2*threshFPRSE, rev(threshFPR-2*threshFPRSE)),
+        col=adjustcolor(cols[2], alpha.f=0.2),
+        border=F
+)
+
+#
+axis(side=3, at=pretty(range(c(-thresholdGrid, -ts))))
+mtext('-EI Threshold', side=3, line=3, col=cols[2])
+
+#
+dev.off()
+
+#
+#rowCombine ARL
+#
+
+#
+png(sprintf('%sARLCombine%.1e.png', name, zThresh))
+par(mar=c(5, 4, 5, 4)+0.3)
+
+#ewma interval
+intChop = c(arlCTilChop+2*arlCTilChopSE, rev(arlCTilChop-2*arlCTilChopSE))
+showChop = !is.na(intChop)
+#thresh interval
+thInt = c(arlCThreshTilChop+2*arlCThreshTilChopSE, rev(arlCThreshTilChop-2*arlCThreshTilChopSE))
+ylim = range(intChop, thInt)
+#
+plot(wGrid, arlCTilChop, 'l',
+	lwd=3, 
+	col=cols[1],
+	xlab='',
+	ylab="ARL",
+	ylim=ylim
+)
+polygon(dubs[showChop], intChop[showChop],
+        col=adjustcolor(cols[1], alpha.f=0.2),
+        border=F
+)
+
+#
+mtext('Window Size', side=1, line=3, col=cols[1])
+
+
+#
+par(new=T)
+
+#THRESH
+plot(-thresholdGrid, arlCThreshTilChop, 'l', 
+	col=cols[2],
+	lwd=3,
+	xlab='',
+	ylab='',
+	axes=F,
+	ylim=ylim
+)
+polygon(-ts, thInt,
+        col=adjustcolor(cols[2], alpha.f=0.2),
+        border=F
+)
+
+#
+axis(side=3, at=pretty(range(c(-thresholdGrid, -ts))))
+mtext('-EI Threshold', side=3, line=3, col=cols[2])
+
+#
+dev.off()
 
 
 

@@ -94,16 +94,19 @@ unpackAuto = function(out){
 #load('testL0.100.65W20.0070.00.RData')
 #load('rastriginTestL0.100.65W20.0070.00.RData')
 #load('rastriginTestL0.100.65W20.00150.00.RData')
+#load('rastriginNoCensorL0.1000.65W20.0080.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 #load('rosenbrockTestL0.100.65W20.0070.00.RData')
 #load('rosenbrockNoCensorL0.1000.65W20.0040.00.RData')
-load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
+#load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
 #load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=300
 #load('./zooid2/michal2DL0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})!=0; out=out[isGood]; M=sum(isGood); itMax=300
+#load('./zooid2/michal3DL0.1000.65W100.00200.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 #load('./zooid2/michal5DL0.1000.65W20.0040.00M100.RData')
 #load('./zooid2/michal5DL0.1000.65W50.00100.00M100.RData')
 #load('./zooid4/levyL0.1000.65W20.0040.00.RData')
 #load('./zooid4/levyL0.1000.65W40.0080.00.RData')
 #load('./zooid4/levy3DL0.1000.65W50.00100.00.RData')
+load('zooid4/levy3DL0.1000.65W100.00180.00.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 
 #
 rosenbrock = function(x){
@@ -125,7 +128,7 @@ rastrigin = function(x, p=2){
         return(out)
 }
 #
-zThresh = 1e-3
+zThresh = 1e-6
 xThresh = rectVol*0.01^dm
 
 ##

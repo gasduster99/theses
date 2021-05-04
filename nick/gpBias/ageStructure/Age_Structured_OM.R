@@ -17,7 +17,7 @@ tot.sims <- 1
  dir.create(paste(drive,":\\DBSRA\\",LH,sep=""))
  dir.create(paste(drive,":\\DBSRA\\",LH,"\\",model,sep=""))
  dir.create(paste(drive,":\\DBSRA\\",LH,"\\",model,"\\Run_Data",sep=""))
- 
+
  wd <- paste(drive,":\\DBSRA\\",LH,"\\",model,sep="")
  setwd(wd)
  

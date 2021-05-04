@@ -138,10 +138,14 @@ howGood = function(par, extra){
         gamma = par[3]
         #compute
         fOut = f(par, extra)
+	#
+	PStar = fOut[2]+extra$P0*extra$zeta
+	PZero = fOut[3]+extra$P0
         #handel case of some numerical issue in either PBar or FMsy 
         if( length(fOut)<3 ){ return(-Inf) }
-        #c(FStar/M-xi, PStar/PZero-zeta)
-        refComp = c(fOut[1]/extra$M, (fOut[2]+extra$P0*extra$zeta)/(fOut[3]+extra$P0)-extra$zeta)
+	if( PZero<0 ){ return(-Inf) }
+	#c(FStar/M-xi, PStar/PZero-zeta)
+        refComp = c(fOut[1]/extra$M, PStar/PZero-extra$zeta)
         propNorm = norm(matrix(refComp, ncol=2))/norm(matrix(c(extra$xi, extra$zeta), ncol=2))
         return( -propNorm )
 }
@@ -164,8 +168,8 @@ M = 0.2
 P0 = 3000
 
 #               
-xi = 0.6		#2          #3.4    #1.1
-zeta = 0.75	#0.25     #0.74   #0.6
+xi = 1.5		#2          #3.4    #1.1
+zeta = 0.45	#0.25     #0.74   #0.6
 
 #
 #MODELS
@@ -185,7 +189,7 @@ par = c(alpha, beta, gamma)
 extra = data.frame(xi=xi, zeta=zeta, M=M, P0=P0)
 
 #
-sr = strongRoot(f, par, extra, howGood, lower=c(0, 0, -5), upper=c(10, 10, 5), monitor=T)
+sr = strongRoot(f, par, extra, howGood, lower=c(0, 0, -5), upper=c(10, 10, 10), monitor=T)
 alpha = sr[1]
 beta  = sr[2]
 gamma = sr[3]
