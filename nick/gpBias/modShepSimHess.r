@@ -189,11 +189,11 @@ P0 = 3000
 #
 
 #a place to store data
-place = './modsShepTry/'
+place = './modsShepFine/'
 
 #grid for simulation
-zetaSims = rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
-xiSims =   c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
+zetaSims = rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
+xiSims =   rev(seq(0.5, 3.5, 0.05)) #c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
 
 #start the parameters here
 alpha = 2

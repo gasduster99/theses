@@ -129,14 +129,14 @@ anisoNorm = function(AX1, AX2, l1, l2, th){
 	}, AX2[,1], AX2[,2], mc.cores=detectCores()-1) #mc.preschedule=F,
 }
 
-#
-rectDist = function(x, y){
-        mcmapply(function(y1, y2){
-                apply(x, 1, function(xi){
-                        norm(c(y1,y2)-xi, '2')
-                })
-        }, y[,1], y[,2], mc.cores=detectCores())
-}
+##
+#rectDist = function(x, y){
+#        mcmapply(function(y1, y2){
+#                apply(x, 1, function(xi){
+#                        norm(c(y1,y2)-xi, '2')
+#                })
+#        }, y[,1], y[,2], mc.cores=detectCores())
+#}
 
 #
 l1a=2; l1b=0.1
@@ -282,6 +282,8 @@ gpMAP = function( par, lower=rep(eps(), 5), upper=c(Inf, Inf, pi/2, 10, Inf), he
 
 #
 gpPredict = function(XStar, axeStar, gpFit, asMat=T){
+	#
+	XStar = as.matrix(XStar)
 	#
 	out = XStar%*%gpFit$beta +
 	( maternCor(anisoNorm(axeStar, axes, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] ) %*%
