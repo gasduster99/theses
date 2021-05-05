@@ -432,25 +432,25 @@ outPath = getwd() #'/home/nick/Documents/theses/herbie/falsePos/'
 #xMin = c(-0.54719, -1.54719)
 #wGrid = seq(20, 40, 2)
 #itMax = 200
-##
-#threads = 45
-#name = 'rosenbrockNoCensor'
-#f = rosenbrock
-#rect = cbind(c(-2, -3), c(2, 5))
-#zMin = 0
-#xMin = c(1, 1)
-#wGrid = seq(20, 40, 2)
-#itMax = 300
 #
-threads = 46
-name = 'rastriginNoCensor'
-f = rastrigin
-rect = cbind(c(-2.5, -2.5), c(2.5, 2.5))
+threads = 45
+name = 'rosenbrockNoCensor'
+f = rosenbrock
+rect = cbind(c(-2, -3), c(2, 5))
 zMin = 0
-xMin = rep(0, ncol(rect))
-wGrid = seq(20, 80, 5)
-itMax = 300
-#
+xMin = c(1, 1)
+wGrid = seq(10, 40, 2)
+itMax = 500
+##
+#threads = 46
+#name = 'rastriginNoCensor'
+#f = rastrigin
+#rect = cbind(c(-2.5, -2.5), c(2.5, 2.5))
+#zMin = 0
+#xMin = rep(0, ncol(rect))
+#wGrid = seq(20, 80, 5)
+#itMax = 300
+##
 
 #
 W = 40
