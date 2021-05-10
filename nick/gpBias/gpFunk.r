@@ -166,7 +166,7 @@ l2Prior = function(l2, log=T){
 
 
 #
-nua=2; nub=1
+nua=2; nub=3
 nuPrior = function(nu, log=T){
         #
         out = dinvgamma(nu, nua, nub, log=T)

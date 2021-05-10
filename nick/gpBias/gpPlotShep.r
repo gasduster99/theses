@@ -148,10 +148,10 @@ getlFV = function(fit, MM=10^4, samples=F){
 #
 
 #
-dir = "./modsShepTry/"#'./modsFine/' #'./modsHess/'
+dir = "./modsShepFine/" #"./modsShepTry/" #'./modsFine/' #'./modsHess/'
 #
-zetaSims = seq(0.1, 0.8, 0.05) 	#rev(seq(0.1, 0.80, 0.01)) #
-xiSims =   seq(0.5, 3.5, 0.25)		#seq(0.5, 3.5, 0.05)       #
+zetaSims = seq(0.1, 0.8, 0.01) #seq(0.1, 0.8, 0.05) 	#rev(seq(0.1, 0.80, 0.01)) #
+xiSims =   seq(0.5, 3.5, 0.05) #seq(0.5, 3.5, 0.25)		#seq(0.5, 3.5, 0.05)       #
 
 #
 M = 0.2
@@ -163,8 +163,9 @@ png('shepDat.png')
 plot(D[1:2], 
 	ylim=c(min(D[c(2,4)]), max(D[c(2,4)])), 
 	xlim=c(min(D[c(1,3)]), max(D[c(1,3)])),
-	main='Shephard',
-	col=map2color(D$minDist, hcl.colors(60, "Zissou 1", rev=T))
+	main='Shepherd',
+	col=map2color(D$minDist, hcl.colors(60, "Zissou 1", rev=T)),
+	pch=20
 )
 points(D[3:4], col=map2color(D$minDist, hcl.colors(60, "Zissou 1", rev=T)))
 dev.off()
@@ -180,6 +181,7 @@ axes = X[,2:3]
 registerData(D$lF, X, axes, Tg)
 par = c(l1=0.5, l2=0.5, th=eps(), nu=1, s2=0.1)
 gpFit = gpMAP(par, hessian=F, psiSample=F)
+print(gpFit)
 
 #prediction
 zetaStar = seq(0.1, 0.8, 0.001)  #rev(seq(0.1, 0.80, 0.01)) #
@@ -199,34 +201,39 @@ eucBias = mcmapply(function(xiHat, xi, zeta){
 eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
 
 #xi bias
-cut=0.5
+cut=0.8
+png("xBias.png")
 image(xiStar, zetaStar[zetaStar<cut], xBias[, zetaStar<cut],
 	col  = adjustcolor(hcl.colors(41, "RdBu", rev=T), alpha.f=0.6),
         xlab = 'Xi',
-        ylab = 'Zeta'
+        ylab = 'Zeta',
+	main = "Bias in Estimated Optimal Fishing"
 
 )
-curve(1/(x+2), from=0, to=4, col=map2color(0, hcl.colors(41, "RdBu", rev=T)), lwd=3, add=T)
+curve(1/(x+2), from=0, to=4, lwd=3, add=T) #col=map2color(0, hcl.colors(41, "RdBu", rev=T)),
+dev.off()
 
 #zeta bias
-dev.new()
+png("yBias.png")
 image(xiStar, zetaStar, yBias,
 	col  = adjustcolor(hcl.colors(41, "RdBu", rev=T), alpha.f=0.6),
         xlab = 'Xi',
-        ylab = 'Zeta'
+        ylab = 'Zeta',
+	main = "Bias in Estimated Optimal Biomass"
 
 )
-curve(1/(x+2), from=0, to=4, col=map2color(0, hcl.colors(41, "RdBu", rev=T)), lwd=3, add=T)
+curve(1/(x+2), from=0, to=4, lwd=3, add=T) #col=map2color(0, hcl.colors(41, "RdBu", rev=T)), 
+dev.off()
 
 #euc bias
-dev.new()
+png("directionalBias.png")
 image(xiStar, zetaStar, eucBias,
         col  = adjustcolor(hcl.colors(41, "Reds 2", rev=T), alpha.f=0.6),
         xlab = 'Xi',
-        ylab = 'Zeta'
-
+        ylab = 'Zeta',
+	main = "Directional Bias"
 )
-curve(1/(x+2), from=0, to=4, col=map2color(0, hcl.colors(41, "Reds 2", rev=T)), lwd=3, add=T)
+curve(1/(x+2), from=0, to=4, lwd=3, add=T) # col=map2color(0, hcl.colors(41, "Reds 2", rev=T)),
 w = (XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
 thin = c(T,rep(F,length(xiStar)*1.025))
 quiver(
@@ -234,7 +241,7 @@ quiver(
         xBias[w][thin], yBias[w][thin],
         scale=0.05
 )
-
+dev.off()
 
 #residuals
 
