@@ -431,7 +431,7 @@ f = function(x){ michal(x, p=dm) }
 rect = cbind(rep(0, dm), rep(pi, dm))
 zMin = -4.687658 #-1.8013
 xMin = c(2.202905, 1.570796, 1.284991, 1.923058, 1.72047)[1:dm]
-wGrid = seq(50, 100, 5) #seq(20, 40, 2)
+wGrid = seq(100, 500, 35) #seq(50, 100, 5) #seq(20, 40, 2)
 itMax = 200
 #opt = optim(xMin, f)
 gaOut = ga(
@@ -469,7 +469,7 @@ W = 40
 lamGrid = seq(0.1, 0.65, 0.05)	#seq(0.1, 0.9, 0.05)
 #xInitPerVol = 2
 xInitPerD = 10
-thresholdGrid = seq(1e-6, 1e-4, 5e-6) #seq(4e-5, 1e-3, 4e-5) 
+thresholdGrid = seq(1e-8, 1e-6, 5e-8) #seq(1e-6, 1e-4, 5e-6) #seq(4e-5, 1e-3, 4e-5) 
 threshold = 5e-4
 #
 rectVol = prod(rect[,2]-rect[,1])

@@ -192,7 +192,7 @@ P0 = 3000
 place = './modsShepFine/'
 
 #grid for simulation
-zetaSims = rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
+zetaSims = (seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
 xiSims =   rev(seq(0.5, 3.5, 0.05)) #c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
 
 #start the parameters here
@@ -205,7 +205,7 @@ beta  = getBeta(alpha, gamma, M, P0)
 #layout(matrix(1:(length(zetaSims)*length(xiSims)), nrow=length(zetaSims), ncol=length(xiSims), byrow=T))
 
 #
-registerDoParallel(8)
+registerDoParallel(46)
 opts = list(preschedule=F)
 foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 #for(i in 1:length(zetaSims)){
