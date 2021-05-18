@@ -406,8 +406,11 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 		
 		##
 		#datGen$printSelf()
-		#if( isGood(par, extra) ){ datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, xiSims[j], zetaSims[i])) }
-	
+		if( isGood(par, extra) ){ 
+			#datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, xiSims[j], zetaSims[i])) }
+			datGen$printSelf()
+		}
+
 		##
 		#plot(c(0,0), ylim=c(0.25, 2), xlim=c(0, TT), ylab='cpue', main=sprintf("xi: %s,  zeta: %s ", xiSims[j], zetaSims[i]) )
 		#points(1:TT, hake)
