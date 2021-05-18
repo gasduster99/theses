@@ -80,17 +80,26 @@ strongRoot = function(f, par, extra, howGood, lower=c(0, 0), upper=c(2, 2), moni
 }
 
 
-
 #
-dPdt = function(t, P, alpha, beta, gamma, M, catch){
-	#
-	C = catch[t]
-	#
-	R = alpha*P/(1+beta*P^(1/gamma))
-	out = R - M*P - C 
-	#
-	return( list(out) )
+dPdt = function(t, P, lalpha, lbeta, gamma, M, catch){
+        #
+        C = catch[t]
+        #
+        R = exp(lalpha)*P/(1+exp(lbeta)*P^(1/gamma))
+        out = R - M*P - C
+        #
+        return( list(out) )
 }
+##
+#dPdt = function(t, P, alpha, beta, gamma, M, catch){
+#	#
+#	C = catch[t]
+#	#
+#	R = alpha*P/(1+beta*P^(1/gamma))
+#	out = R - M*P - C 
+#	#
+#	return( list(out) )
+#}
 
 #
 shepSRR = function(P, alpha, beta, gamma){ alpha*P/(1+beta*P^(1/gamma)) }
@@ -147,6 +156,7 @@ howGood = function(par, extra){
 	#unpack
         alpha = par[1]
         gamma = par[2]
+	beta = getBeta(alpha, gamma, M, extra$P0)
 	#compute
 	PZero = PBar(0, alpha, beta, gamma, M)
 	fOut = f(par, extra)
@@ -182,8 +192,8 @@ M = 0.2
 P0 = 3000
 
 #               
-xi = 2		#2          #3.4    #1.1
-zeta = 0.25	#0.25     #0.74   #0.6
+xi = 3.4		#2          #3.4    #1.1
+zeta = 0.75	#0.25     #0.74   #0.6
 
 #
 #ROOTS
@@ -228,18 +238,38 @@ beta = getBeta(alpha, gamma, M, P0)
 
 #
 truth = prodModel$new(
-	dNdt=dPdt, N0Funk=function(alpha, beta, gamma, M){PBar(0, alpha, beta, gamma, M)}, #model
+	dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(0, exp(lalpha), exp(lbeta), gamma, M)}, #PBar(0, alpha, beta, gamma, M)}, #model
         time=1:TT, catch=catch, M=M,			#constants
-	alpha=alpha, beta=beta, gamma=gamma,		#parameters
-        lq=0.004, lsdo=log(0.1160256),			#nuisance parameters
+	lalpha=log(alpha), lbeta=log(beta), gamma=gamma,#parameters
+        lq=log(0.004), lsdo=log(0.1160256),			#nuisance parameters
         xi=xi, zeta=zeta				#other incidentals to carry along
 )
 truth$iterate()
 
+#cpue 
+dat = rlnorm(TT, truth$lq+log(truth$N), exp(truth$lsdo))
+
+##
+#layout(matrix(1:2, ncol=2))
+#curve(shepSRR(x, truth$alpha, truth$beta, truth$gamma), 0, 20000)
+#truth$plotMean()
+
 #
-layout(matrix(1:2, ncol=2))
-curve(shepSRR(x, truth$alpha, truth$beta, truth$gamma), 0, 20000)
-truth$plotMean()
+fit = prodModel$new(
+        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(0, exp(lalpha), exp(lbeta), gamma, M)}, #PBar(0, alpha, beta, gamma, M)}, #model
+        time=1:TT, catch=catch, M=M,  			#constants
+        lalpha=log(alpha), lbeta=log(beta), gamma=1,	#parameters
+        lq=log(0.004), lsdo=log(0.1160256),			#nuisance parameters
+        xi=xi, zeta=zeta				#other incidentals to carry along
+)
+#
+optAns = fit$optimize(dat,
+        c('lsdo', 'lalpha', 'lbeta'), #lq is optimized via profile likelihood internally
+        lower   = c(log(0.001), log(M), log(10^-6)),
+        upper   = c(log(1), log(100), log(10)),
+        gaBoost = list(run=10, parallel=FALSE, popSize=10^3),
+	persistFor = 5
+)
 
 
 
