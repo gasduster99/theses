@@ -326,7 +326,7 @@ beta = getBeta(alpha, gamma, M, P0)
 ##layout(matrix(1:(length(zetaSims)*length(xiSims)), nrow=length(zetaSims), ncol=length(xiSims), byrow=T))
 #
 #
-registerDoParallel(8)
+registerDoParallel(48)
 opts = list(preschedule=F)
 foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 #for(i in 1:length(zetaSims)){
