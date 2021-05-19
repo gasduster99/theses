@@ -10,7 +10,9 @@ optimize = function(    data,
                         lower, upper,
                         method=self$OPT_method,
                         cov=F,
-                        gaBoost=F,
+			fitQ=T,
+                        gaBoost=F,	
+			persistFor=50,
                         control = list()
 ){      
         #data     : a vector of data used to fit specified model.
@@ -23,12 +25,16 @@ optimize = function(    data,
         #       handed to optim (default 'L-BFGS-B')
         #cov      : a logical optionally indicating if hessian should be computed and 
         #       inverted in optimization process
+	#fitQ	  : a logical indicating whether to find the MLE of log(q):lq via profile MLE,
+	#	or if False don't change the initialized value of lq.
         #gaBoost  : a logical optionally (default F) indicating if a persistent 
         #       genetic algorithm should be used to assist local optimization.
         #       genetic algoithm repeates until first and second finite difference 
         #       derivatives are successful and hessian is inverted. Optionally 
         #       gaBoost may be given as a list containting names values for list(popSize, maxiter, run).
-        #control  : additional control parameters to be passed to optim
+        #persistFor : a numeric indicating how many iterations of optimization tryCatch to engange in.
+	#	set to Inf
+	#control  : additional control parameters to be passed to optim
         #
         #value    : optimization objects are returned. Parameters values are 
         #       updated inplace. rsCov is defined to self.
@@ -47,10 +53,13 @@ optimize = function(    data,
                 #unpack par
                 private$parToSelf(par)
                 #compute mean function  
-                self$iterate()
+                self$iterate()	
 		#check for pathological series
 		if( any(is.na(self$N)) ){ return(NA) }
 		if( any(!self$N>0) ){ return(NA) }
+		#if( self$N[1]==0 ){ return(NA) }
+		#profile maximization of log(q)
+		if( fitQ ){ self$lq=mean(log(data)-log(self$N)) }
                 #evaluate likelihood
                 like = private$dLikes[[self$model$observation]](self, data) 
                 return( -sum(like) )
@@ -83,7 +92,7 @@ optimize = function(    data,
                 i = 0
                 flag = T       
                 while( flag ){ 
-                        tryCatch({
+                        flag = tryCatch({
                                 #
                                 out[['gaOut']] = ga(
                                         type    = 'real-valued', 
@@ -102,7 +111,12 @@ optimize = function(    data,
                                 #make sure to update with the best solution
                                 private$parToSelf(out[['gaOut']]@solution[1,])
                                 par = out[['gaOut']]@solution
-                                
+				#profile maximization of log(q)
+				if( fitQ ){
+					self$iterate()
+					self$lq=mean(log(data)-log(self$N)) 
+				}
+				                
                                 #optim
                                 out[['optimOut']] = optim(
                                         par[1,],
@@ -118,6 +132,11 @@ optimize = function(    data,
                                 if( out[['gaOut']]@fitnessValue>out[['optimOut']]$value ){
                                         #
                                         private$parToSelf(out[['gaOut']]@solution[1,])
+					#profile maximization of log(q)
+					if( fitQ ){ 
+						self$iterate()
+						self$lq=mean(log(data)-log(self$N)) 
+					}
                                 }
                                 
                                 #?how to handle covariance?
@@ -128,22 +147,26 @@ optimize = function(    data,
 					rownames(self$rsCov) = parNames
 				}
                                 
-                                #
-                                flag = F
+                                #flag = F
+				return( F )
                         }, error=function(err){
                                 #
                                 writeLines( sprintf("\nRound: %s\n", i) )
                                 self$printSelf()
 				print(err)
+				
 				#if(!is.na(self$N[1])){
                                 #	self$plotMean()
                                 #	self$plotBand()
 				#}
                                 #points(data)
                                 #do.call(cat, err)
-                                #
-                                return(T)
-                        }
+                                
+				#be persistent but potentially not infinitely soo
+                                #if(i<=persistFor){ return(T) }else{ return(F) }
+                        	#flag = i<=persistFor
+				return(i<=persistFor)
+			}
                         )
                         # 
                         i = i+1

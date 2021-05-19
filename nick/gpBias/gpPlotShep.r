@@ -12,7 +12,7 @@ library(plot.matrix)
 library(RColorBrewer)
 library(scatterplot3d)
 #
-source("gpClass0.0.1.r")
+source('gpFunk.r')
 
 #
 #FUNCTIONS
@@ -91,10 +91,14 @@ getData = function(dir, xiSims, zetaSims){
 	#dir	: a directory containing data
 	#xiSims	: xis of simulated data
 	#zetaSims: zetas of simulated data
+	#
+	#Seed values are the initiating values to launch the inversion
+	#Inv values are the numerical inversions actually found for the 3 parameter curve at each seed value
+	#BH values are the MLE fits under the BH model.
 	
 	#
 	di = 1
-	D = data.frame(xi=double(), zeta=double(), xiHat=double(), zetaHat=double(), s2=double(), minDist=double(), stringsAsFactors=F)
+	D = data.frame(xiSeed=double(), zetaSeed=double(), xiInv=double(), zetaInv=double(), xiBH=double(), zetaBH=double(), minDist=double(), lF=double(), lFV=double(), stringsAsFactors=F)
 	for(i in 1:length(zetaSims)){
         	for(j in 1:length(xiSims)){
                 	#
@@ -107,15 +111,22 @@ getData = function(dir, xiSims, zetaSims){
 				dat = readRDS(fileDat)
 				fit = readRDS(fileFit)	
 				
-				#
-				xiHat   = FMsy(fit$alpha, fit$gamma, M)/M 
-				zetaHat = PBar(xiHat*M, fit$alpha, fit$beta, fit$gamma, M)/PBar(0, fit$alpha, fit$beta, fit$gamma, M)
+				#the inversion actually found
+				FInv = FMsy(dat$alpha, 1, M)
+				xiInv = FInv/M
+				zetaInv = PBar(FInv, dat$alpha, dat$beta, dat$gamma, M)/PBar(0, dat$alpha, dat$beta, dat$gamma, M)
+				#the bh fit found
+				Fs = FMsy(fit$alpha, 1, M)
+				xiBH   = Fs/M 
+				zetaBH = PBar(Fs, fit$alpha, fit$beta, fit$gamma, M)/PBar(0, fit$alpha, fit$beta, fit$gamma, M)
 				md = optimize(dist, c(0, dat$xi), xi=dat$xi, zeta=dat$zeta)$objective				
 
 				#NOTE: replace with a propper observation uncertainty
-				if(length(fit$rsCov)==0){ v=0 }else{ v=fit$rsCov['lalpha', 'lalpha'] }
-				D[di,]  = c(dat$xi, dat$zeta, xiHat, zetaHat, v, md)
-				di=di+1
+				if(length(fit$rsCov)==0){ v=0 }else{ v=getlFV(fit)$lFV }
+				#print( c(dat$xi, dat$zeta, xiHat, zetaHat, md, log(Fs), v) )
+				D[di,] = c(dat$xi, dat$zeta, xiInv, zetaInv, xiBH, zetaBH, md, log(Fs), v)
+				#print(dim(D))
+				di = di+1
 			}
 		}
 	}
@@ -123,17 +134,21 @@ getData = function(dir, xiSims, zetaSims){
 	return(D)
 }
 
-#X's are 2-vectors; L is 2x2; s2 is scalar
-S2 = function(X0, X1, s2, v0, v1, cr){
-	maxD = dbinorm(X0[,1], X0[,2], X0[,1], X0[,2], v0, v1, sqrt(v0*v1)*cr, log=T)
-	s2*mcmapply(function(x01, x02, m){
-		exp(dbinorm(X1[,1], X1[,2], x01, x02, v0, v1, sqrt(v0*v1)*cr, log=T)-m)
-	}, X0[,1], X0[,2], maxD, mc.cores=detectCores())	
-}
-
 #
-logitM = function(n, mu, sig, K=10^5){
-	mean( inv.logit(qnorm((1:(K-1))/K, mu, sig))^n )
+getlFV = function(fit, MM=10^4, samples=F){
+	#
+	who = c('lalpha')
+	C = fit$rsCov[who, who]
+	m = c(fit$lalpha)
+	sam = rnorm(MM, m, sqrt(C)) #rmvnorm(M, m, C)
+	#
+	als = exp(sam)
+	lFs = sapply(als, function(a){log(FMsy(a, 1, M))})
+	#
+	out = list(lF=mean(lFs, na.rm=T), lFV=var(lFs, na.rm=T))
+	if( samples ){ out$lFSamples=lFs }
+	#
+	return(out)
 }
 
 #
@@ -141,26 +156,152 @@ logitM = function(n, mu, sig, K=10^5){
 #
 
 #
-dir = "./modsShepTry/"#'./modsFine/' #'./modsHess/'
+dir = "./modsShepFineQFix/" #"./modsShepFine/" #"./modsShepTry/" #'./modsFine/' #'./modsHess/'
 #
-zetaSims = seq(0.1, 0.8, 0.05) 	#rev(seq(0.1, 0.80, 0.01)) #
-xiSims =   seq(0.5, 3.5, 0.25)		#seq(0.5, 3.5, 0.05)       #
+zetaSims = seq(0.1, 0.8, 0.01) #seq(0.1, 0.8, 0.05) 	#rev(seq(0.1, 0.80, 0.01)) #
+xiSims =   seq(0.5, 3.5, 0.05) #seq(0.5, 3.5, 0.25)		#seq(0.5, 3.5, 0.05)       #
 
 #
 M = 0.2
 #time: 70
 D = getData(dir, xiSims, zetaSims)
-D = D[D$s2!=0 & D$xiHat<20,]
+#
+bub = 0.2
+D = D[D$xiInv<=max(xiSims)*(1+bub),]
+D = D[D$xiInv>=min(xiSims)*(1-bub),]
+D = D[D$zetaInv<=max(zetaSims)*(1+bub),]
+D = D[D$zetaInv>=min(zetaSims)*(1-bub),]
+D = D[D$lFV!=0 & D$xiBH<20,] #lalpha==0.04280697 is a numerical issue
 #
 png('shepDat.png')
-plot(D[1:2], 
-	ylim=c(min(D[c(2,4)]), max(D[c(2,4)])), 
-	xlim=c(min(D[c(1,3)]), max(D[c(1,3)])),
-	main='Shephard',
-	col=map2color(D$minDist, hcl.colors(60, "Zissou 1", rev=T))
+plot(D[,c("xiInv", "zetaInv")], 
+	ylim=c(min(D[,c("zetaInv", "zetaBH")]), max(D[,c("zetaInv", "zetaBH")])), 
+	xlim=c(min(D[,c("xiInv", "xiBH")]), max(D[, c("xiInv", "xiBH")])),
+	main='Shepherd',
+	col=map2color(D$minDist, hcl.colors(60, "Zissou 1", rev=T)),
+	pch=20
 )
-points(D[3:4], col=map2color(D$minDist, hcl.colors(60, "Zissou 1", rev=T)))
+points(D[,c("xiBH", "zetaBH")], col=map2color(D$minDist, hcl.colors(60, "Zissou 1", rev=T)))
 dev.off()
+
+#
+#
+#
+
+#pick a polynomial mean function
+Tg = diag(D$lFV)
+X = cbind(1, D$xiInv, D$zetaInv)
+axes = X[,2:3]
+registerData(D$lF, X, axes, Tg)
+par = c(l1=0.5, l2=0.5, th=eps(), nu=1, s2=0.1)
+gpFit = gpMAP(par, hessian=F, psiSample=F)
+print(gpFit)
+
+#prediction
+zetaStar = seq(min(D$zetaInv), max(D$zetaInv), 0.001) 	#seq(0.15, 0.35, 0.001)  #rev(seq(0.1, 0.80, 0.01)) #
+xiStar   = seq(min(D$xiInv), max(D$xiInv), 0.005)  	#seq(1, 3.5, 0.005)
+XStar = cbind(1, expand.grid(xiStar, zetaStar))
+gpPred = gpPredict(XStar, XStar[,2:3], gpFit)
+
+#bias
+xiHat = exp(gpPred)/M
+xBias = sweep(xiHat, 1, xiStar)
+yBias = sweep(1/(xiHat+2), 2, zetaStar)
+#
+eucBias = mcmapply(function(xiHat, xi, zeta){
+                dist(xiHat, xi, zeta)
+        }, xiHat, XStar[,2], XStar[,3], mc.cores=detectCores()
+)
+eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
+
+#xi bias
+png("xBias.png")
+#
+maxXBias = abs(max(xBias, na.rm=T))
+minXBias = abs(min(xBias, na.rm=T))
+posCols = hcl.colors(round(100*maxXBias/(maxXBias+minXBias)), "Reds 2", rev=T)
+negCols = hcl.colors(round(100*minXBias/(maxXBias+minXBias)), "Blues 2", rev=F)
+xCols = c(negCols, "#FFFFFF", posCols)
+#
+par(mar=c(5, 4, 4, 5)+0.1)
+image(xiStar, zetaStar, xBias,
+	col  = adjustcolor(xCols, alpha.f=0.6),  #hcl.colors(41, "RdBu", rev=T)
+        xlab = 'Xi',
+        ylab = 'Zeta',
+	main = "Bias in Estimated Optimal Fishing"
+)
+curve(1/(x+2), from=0, to=4, lwd=3, add=T) #col=map2color(0, hcl.colors(41, "RdBu", rev=T)),
+show = seq(1, length(xCols), length.out=20)
+legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+        sprintf("%1.1f", rev(seq(min(xBias, na.rm=T), max(xBias, na.rm=T), length.out=length(show)))),
+        fill = rev(xCols[show]), #colMap[c(1, 10, 20)], 
+        xpd = NA
+)
+dev.off()
+
+#zeta bias
+png("yBias.png")
+#
+maxYBias = abs(max(yBias, na.rm=T))
+minYBias = abs(min(yBias, na.rm=T))
+posCols = hcl.colors(round(100*maxYBias/(maxYBias+minYBias)), "Reds 2", rev=T)
+negCols = hcl.colors(round(100*minYBias/(maxYBias+minYBias)), "Blues 2", rev=F)
+yCols = c(negCols, "#FFFFFF", posCols)
+#
+par(mar=c(5, 4, 4, 5)+0.1)
+image(xiStar, zetaStar, yBias,
+	col  = adjustcolor(yCols, alpha.f=0.6), 
+        xlab = 'Xi',
+        ylab = 'Zeta',
+	main = "Bias in Estimated Optimal Biomass"
+)
+curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+show = seq(1, length(yCols), length.out=20)
+legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+        sprintf("%1.2f", rev(seq(min(yBias, na.rm=T), max(yBias, na.rm=T), length.out=length(show)))),
+        fill = rev(yCols[show]), #colMap[c(1, 10, 20)], 
+        xpd = NA
+) 
+dev.off()
+
+#euc bias
+png("directionalBias.png")
+#
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#
+par(mar=c(5, 4, 4, 5)+0.1)
+image(xiStar, zetaStar, eucBias,
+        col  = adjustcolor(eucCols, alpha.f=0.6),
+        xlab = 'Xi',
+        ylab = 'Zeta',
+	main = "Directional Bias"
+)
+curve(1/(x+2), from=0, to=4, lwd=3, add=T) 
+w = (XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,60))
+quiver(
+        XStar[w,2][thin], XStar[w,3][thin],
+        xBias[w][thin], yBias[w][thin],
+        scale=0.025
+)
+show = seq(1, length(eucCols), length.out=20)
+legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+        sprintf("%1.1f", rev(seq(min(eucBias, na.rm=T), max(eucBias, na.rm=T), length.out=length(show)))),
+        fill = rev(eucCols[show]), #colMap[c(1, 10, 20)], 
+        xpd = NA
+)
+dev.off()
+
+#residuals
+
+
+
+
+
+
+#
+#OLD
+#
 
 #X = cbind(D$xi, D$zeta)
 #
@@ -313,7 +454,23 @@ dev.off()
 #dev.off()
 
 
+##
+#source("gpClass0.0.1.r")
 
+
+
+##X's are 2-vectors; L is 2x2; s2 is scalar
+#S2 = function(X0, X1, s2, v0, v1, cr){
+#	maxD = dbinorm(X0[,1], X0[,2], X0[,1], X0[,2], v0, v1, sqrt(v0*v1)*cr, log=T)
+#	s2*mcmapply(function(x01, x02, m){
+#		exp(dbinorm(X1[,1], X1[,2], x01, x02, v0, v1, sqrt(v0*v1)*cr, log=T)-m)
+#	}, X0[,1], X0[,2], maxD, mc.cores=detectCores())	
+#}
+#
+##
+#logitM = function(n, mu, sig, K=10^5){
+#	mean( inv.logit(qnorm((1:(K-1))/K, mu, sig))^n )
+#}
 
 
 

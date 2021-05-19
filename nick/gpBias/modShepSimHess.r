@@ -73,15 +73,15 @@ strongRoot = function(f, par, extra, howGood, lower=c(0, 0), upper=c(2, 2), moni
 
         #
         l = c(GA=howGAGood, MR=howMRGood)
-        who = which(l==min(l, na.rm=T))
+        who = which(l==max(l, na.rm=T))
 
         #
-        if( isGAGood & isMRGood ){ return(c(GA=parGA, MR=parMR)[who]) }
+        if( isGAGood & isMRGood ){ return(list(GA=parGA, MR=parMR)[[who]]) }
         if( isGAGood & !isMRGood ){ return(c(GA=parGA)) }
         if( !isGAGood & isMRGood ){ return(c(MR=parMR)) }
 
         #both are not good, but return best try anyway
-        return(c(GA=parGA, MR=parMR)[who])
+        return(list(GA=parGA, MR=parMR)[[who]])
 }
 
 
@@ -163,7 +163,7 @@ howGood = function(par, extra){
         propNorm = norm(matrix(refComp, ncol=2))/norm(matrix(c(extra$xi, extra$zeta), ncol=2))
         return( -propNorm )
 }
-isGood = function(par, extra, thresh=0.05){
+isGood = function(par, extra, thresh=0.01){
         #
         out = (-howGood(par, extra))<thresh
         if(is.na(out)){ out=F }
@@ -189,11 +189,11 @@ P0 = 3000
 #
 
 #a place to store data
-place = './modsShepTry/'
+place = './modsShepFineQFix/'
 
 #grid for simulation
-zetaSims = rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
-xiSims =   c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
+zetaSims = rev(seq(0.15, 0.9, 0.1)) #rev(seq(0.15, 0.7, 0.01)) 	#rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
+xiSims =   rev(seq(0.5, 4.5, 0.5))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
 
 #start the parameters here
 alpha = 2
@@ -215,7 +215,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 	        time=1:TT, catch=catch, M=M,                    #constants
 	        alpha=alpha, beta=beta, gamma=gamma,            #parameters
 		lalpha=log(alpha), lbeta=log(beta),		#reparameterize
-	        lq=log(0.00049), lsdo=log(0.1160256)		#nuisance parameters
+	        lq=log(0.00049), lsdo=log(0.01160256) #log(0.1160256)		#nuisance parameters
 	        #xi=xi, zeta=zeta                                #other incidentals to carry along
 	)
 	datGen$iterate()
@@ -309,22 +309,22 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
         		        time=1:TT, catch=catch, M=M,				#constants
         		        alpha=alpha, beta=getBeta(alpha, 1, M, P0), gamma=1,	#parameters
 				lalpha=log(alpha), lbeta=log(getBeta(alpha, 1, M, P0)),	#reparameterize
-        		        lq=log(0.00049), lsdo=log(0.1160256),			#nuisance parameters
+        		        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256),			#nuisance parameters
         		        xi=xiSims[j], zeta=zetaSims[i]				#other incidentals to carry along
         		)
 			#optimization
 			optAns = fit$optimize(cpue,
-			        c('lsdo', 'lalpha', 'lbeta', 'lq'),
-			        lower   = c(log(0.001), log(M), log(10^-6), log(1e-7)),
-			        upper   = c(log(1), log(100), log(10), log(1e-2)),
+			        c('lsdo', 'lalpha', 'lbeta'), #'lq'),
+			        lower   = c(log(0.001), log(M), log(10^-6)), #log(1e-7)),
+			        upper   = c(log(1), log(100), log(10)), #log(1e-2)),
 			        gaBoost = list(run=10, parallel=FALSE, popSize=10^3)
 			)
 			#get hessian if possible
 			tryCatch({
 				optAns = fit$optimize(cpue,
-					c('lsdo', 'lalpha', 'lbeta', 'lq'),
-                                	lower   = c(log(0.001), log(M), log(10^-6), log(1e-7)),
-                                	upper   = c(log(1), log(100), log(10), log(1e-2)),
+					c('lsdo', 'lalpha', 'lbeta'), #'lq'),
+                                	lower   = c(log(0.001), log(M), log(10^-6)), #log(1e-7)),
+                                	upper   = c(log(1), log(100), log(10)), #log(1e-2)),
 					cov     = T
 					#c('lsdo', 'alpha', 'beta', 'lq'),                   				        
                                         #lower   = c(log(0.001), eps(), eps(), log(1e-7)),
@@ -333,9 +333,9 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 			}, error=function(err){
 				writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", xiSims[j], zetaSims[i]) )
 				optAns = fit$optimize(cpue,
-					c('lsdo', 'lalpha', 'lbeta', 'lq'),
-                                        lower   = c(log(0.001), log(M), log(10^-6), log(1e-7)),
-                                        upper   = c(log(1), log(100), log(10), log(1e-2)),
+					c('lsdo', 'lalpha', 'lbeta'), #'lq'),
+                                        lower   = c(log(0.001), log(M), log(10^-6)), #log(1e-7)),
+                                        upper   = c(log(1), log(100), log(10)), #log(1e-2)),
 					cov     = F
 					#c('lsdo', 'alpha', 'beta', 'lq'),                   				        
                                         #lower   = c(log(0.001), eps(), eps(), log(1e-7)),
