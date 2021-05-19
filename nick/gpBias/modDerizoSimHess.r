@@ -279,7 +279,7 @@ place = './modsDerizoFineQFix/'
 
 #grid for simulation
 zetaSims = rev(seq(0.15, 0.9, 0.01)) #rev(seq(0.15, 0.7, 0.01)) 	#rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
-xiSims =   rev(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
+xiSims =   (seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
 
 #start the parmaters here
 gamma = 1
@@ -441,11 +441,12 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
         		        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256),			#nuisance parameters
         		        xi=xiSims[j], zeta=zetaSims[i]				#other incidentals to carry along
         		)
+			fit$iterate()
 			#optimization
 			optAns = fit$optimize(cpue,
 			        c('lsdo', 'lalpha', 'lbeta'), #'lq'),
 			        lower   = c(log(0.001), log(0.01), log(10^-6)), #log(1e-7)),
-			        upper   = c(log(1), log(100), log(10)), #log(1e-2)),
+			        upper   = c(log(1), log(500), log(10)), #log(1e-2)),
 			        gaBoost = list(run=10, parallel=FALSE, popSize=10^3)
 			)
 			#get hessian if possible
