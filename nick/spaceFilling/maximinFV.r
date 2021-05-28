@@ -168,17 +168,17 @@ maximinFV = function(n, m, f, Xrange, Yrange, TT=100000, XStart=NULL, f_se=F) {
 #MAIN
 #
 
-#
-isSE = F
-f = function(x) inv.logit(x) 
-Xlimits = c(-5, 5)
-Ylimits = c(0, 1)
 ##
 #isSE = T
-#f = function(x) sin(x)+ x/2
-#Xlimits = c(-6, 6) #c(-pi/2, pi/2)
-#Ylimits = f(Xlimits)
-##
+#f = function(x) inv.logit(x) #x^3 #
+#Xlimits = c(-5, 5)
+#Ylimits = f(Xlimits) #c(0, 1)
+#
+isSE = F
+f = function(x) sin(x)+ x/2
+Xlimits = c(-6, 6) #c(-pi/2, pi/2)
+Ylimits = f(Xlimits)
+#
 XStar = seq(Xlimits[1], Xlimits[2], length.out=5*(Xlimits[2]-Xlimits[1]))
 
 #f will be made of GP model prediction
@@ -197,7 +197,7 @@ rug(X)
 points(rep(Xlimits[1], length(X)), y, pch='-', cex=2)
 
 #
-M = 100-nStart
+M = 50-nStart
 for(i in 1:M){
 	#FIT and update stat model
 	gpFit = mlegp(Xall, Yall, constantMean=F, verbose=0)
