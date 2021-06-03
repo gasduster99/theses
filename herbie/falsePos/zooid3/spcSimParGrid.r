@@ -525,9 +525,9 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F), .errorhandling="pa
 	#sim init
 	flags = as.data.frame( t(c(T, rep(F, length(thresholdGrid)), rep(F, length(wGrid)), rep(F, length(lamGrid)*length(wGrid)))) )
 	nome = unlist(lapply(lamGrid, function(l) sprintf('ewmaL%.2fW%.2f', l, wGrid)))
-	colnames(flags) = c('inLoop', sprintf('thresh%1.1e', thresholdGrid), sprintf('ewmaAutoW%.2f', wGrid), nome)	
+	colnames(flags) = c('inLoop', sprintf('thresh%1.3e', thresholdGrid), sprintf('ewmaAutoW%.2f', wGrid), nome)	
 	itConv = as.data.frame( t(c(rep(NA, length(thresholdGrid)), rep(NA, length(wGrid)), rep(NA, length(lamGrid)*length(wGrid)))) )
-	colnames(itConv) = c(sprintf('thresh%1.1e', thresholdGrid), sprintf('ewmaAutoW%.2f', wGrid), nome)
+	colnames(itConv) = c(sprintf('thresh%1.3e', thresholdGrid), sprintf('ewmaAutoW%.2f', wGrid), nome)
 	
 	#optimization init
 	xInit = xInitPerD*dm #Vol*rectVol
@@ -665,14 +665,14 @@ out = foreach( m=1:M, .options.multicore=list(preschedule=F), .errorhandling="pa
 
 		#
 		for(threshold in thresholdGrid){
-			nome = sprintf('thresh%1.1e', threshold)
+			nome = sprintf('thresh%1.3e', threshold)
                 	flags[nome] = (min(mm)<threshold) | flags[nome]
                 	if(!flags[nome]){ itConv[nome]=it+1 }
                 	if(flags[nome] & it==1){ itConv[nome]=1 }
                 }
 
 		#
-		monitorLog(makeOut, rank, seed[m], it+1, itConv[sprintf('thresh%1.1e', thresholdGrid)], substr(sprintf('%1.1e', thresholdGrid), 1, 3), 'tMonitor.txt')
+		monitorLog(makeOut, rank, seed[m], it+1, itConv[sprintf('thresh%1.3e', thresholdGrid)], substr(sprintf('%1.3e', thresholdGrid), 1, 3), 'tMonitor.txt')
 
 		#
                 it = it+1

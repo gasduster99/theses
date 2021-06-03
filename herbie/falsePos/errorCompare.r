@@ -57,7 +57,8 @@ unpackAuto = function(out){
 #load('rastriginNoCensorL0.1000.65W20.0080.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 #load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
 #load('rosenbrockNoCensorL0.1000.65W10.0040.00M100.RData')
-load('rosenbrockNoCensorL0.1000.65W5.0045.00M100.RData')
+#load('rosenbrockNoCensorL0.1000.65W5.0045.00M100.RData')
+load('./zooid3/rosenbrock3DL0.1000.65W5.0050.00M100.RData')
 #load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 #load('./zooid1/grlee12L0.1000.65W10.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 #load('./zooid1/grlee12L0.1000.65W5.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
