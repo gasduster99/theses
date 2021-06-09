@@ -467,7 +467,7 @@ f = function(x) rosenbrock(x, p=3)
 rect = cbind(rep(-5, 3), rep(10, 3)) #cbind(c(-2, -3), c(2, 5))
 zMin = 0
 xMin = c(1, 1, 1)
-wGrid = seq(5, 50, 1)
+wGrid = seq(5, 100, 2)
 itMax = 500
 ##
 #threads = 45
@@ -485,7 +485,7 @@ W = 40
 lamGrid = seq(0.1, 0.65, 0.05)	#seq(0.1, 0.9, 0.05)
 #xInitPerVol = 2
 xInitPerD = 10
-thresholdGrid = seq(1e-6, 1e-3, 4e-6) #seq(4e-6, 4e-4, 4e-6) #seq(4e-5, 1e-3, 2*4e-5) 
+thresholdGrid = seq(1e-7, 1e-4, 4e-7) #seq(4e-6, 4e-4, 4e-6) #seq(4e-5, 1e-3, 2*4e-5) 
 #seq(5e-5, 1e-3, 1e-4) #seq(2.75e-05, 7.75e-5, 5e-6)
 threshold = 5e-4
 #
