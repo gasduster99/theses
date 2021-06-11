@@ -90,7 +90,7 @@ dPdt = function(t, P, lalpha, lbeta, gamma, M, catch){
         C = catch[t]
         #
         R = exp(lalpha)*P/(gamma-1)*(1-(P/exp(lbeta)))^(gamma-1)
-        out = R - M*P - C
+        out = R - C
         #
         return( list(out) )
 }
@@ -104,8 +104,8 @@ pellaSRR = function(P, alpha, beta, gamma){ alpha*P/(gamma-1)*(1-(P/beta))^(gamm
 #P0Funk = function(alpha, beta, gamma, M){ (alpha/(M)-1)^gamma * beta^-gamma }
 #exp(gamma*log(alpha/(M+ff)-1) - gamma*log(beta)) }
 #PBar = function(ff, alpha, beta, gamma, M){ (alpha/(M+ff)-1)^gamma * beta^-gamma }
-PBar = function(ff, alpha, beta, gamma, M){ beta*( 1 - ((M+ff)*((gamma-1)/alpha))^(1/(gamma-1)) ) }
-
+#PBar = function(ff, alpha, beta, gamma, M){ beta*( 1 - ((M+ff)*((gamma-1)/alpha))^(1/(gamma-1)) ) }
+PBar = function(ff, alpha, beta, gamma, M){ beta*( 1 - (ff*(gamma-1)/alpha)^(1/(gamma-1)) ) }
 
 ##
 #getBeta = function(alpha, gamma, M, P0){
@@ -114,66 +114,77 @@ PBar = function(ff, alpha, beta, gamma, M){ beta*( 1 - ((M+ff)*((gamma-1)/alpha)
 
 #
 FMsy = function(alpha, gamma, M){
+        ##
+        #FUpper = P0 #alpha-M
+        ##root = uniroot.all(function(ff){  ((gamma-1)/alpha)^(gamma-1) - (M+ff)^(1/(gamma-1)) - (ff/(gamma-1))*(M+ff)^((2-gamma)/(gamma-1)) }, c(0, FUpper)) #1 - exp(log(ff)+log(alpha)+log(ga
+        #root = uniroot.all(function(ff){ 1 - ((M+ff)*((gamma-1)/alpha))^(1/(gamma-1)) - (ff/(gamma-1))*(M+ff)^((2-gamma)/(gamma-1))*((gamma-1)/alpha)^(1/(gamma-1)) }, c(0, FUpper))
+        ##
+        #if(length(root)<1){ return(NA) }
+        #if(length(root)>1){ return(root[1]) }
         #
-        FUpper = P0 #alpha-M
-        #root = uniroot.all(function(ff){  ((gamma-1)/alpha)^(gamma-1) - (M+ff)^(1/(gamma-1)) - (ff/(gamma-1))*(M+ff)^((2-gamma)/(gamma-1)) }, c(0, FUpper)) #1 - exp(log(ff)+log(alpha)+log(ga
-        root = uniroot.all(function(ff){ 1 - ((M+ff)*((gamma-1)/alpha))^(1/(gamma-1)) - (ff/(gamma-1))*(M+ff)^((2-gamma)/(gamma-1))*((gamma-1)/alpha)^(1/(gamma-1)) }, c(0, FUpper))
-        #
-        if(length(root)<1){ return(NA) }
-        if(length(root)>1){ return(root[1]) }
-        #
+	root = alpha/(gamma-1)*((gamma-1)/gamma)^(gamma-1)
         return(root)
 }
 
 #
-f = function(par, extra){
-        #unpack
-        alpha = par[1]
-        gamma = par[2]
-        #extra
-        M = extra$M
-        xi = extra$xi
-        zeta = extra$zeta
-
-        #       
-        beta = extra$P0
-
-        #par values 
-        FStar = FMsy(alpha, gamma, M)
-        PStar = PBar(FStar, alpha, beta, gamma, M)
-        #ref values
-        FSRef = xi*M
-        PSRef = zeta*extra$P0
-
+getPar = function(xi, zeta, M){
         #
-        out = c(FStar-FSRef, PStar-PSRef)
-        return( out )
+        gamma = 1/zeta
+        odd = (1-zeta)/zeta
+        alpha = xi*M*odd*(1-zeta)^(-odd)
+        #
+        return(c(alpha, gamma))
 }
 
+##
+#f = function(par, extra){
+#        #unpack
+#        alpha = par[1]
+#        gamma = par[2]
+#        #extra
+#        M = extra$M
+#        xi = extra$xi
+#        zeta = extra$zeta
 #
-howGood = function(par, extra){
-        #unpack
-        alpha = par[1]
-        gamma = par[2]
-        beta = extra$P0 #getBeta(alpha, gamma, M, extra$P0)
-        #compute
-        PZero = beta #PBar(0, alpha, beta, gamma, M)
-        fOut = f(par, extra)
-        #handel case of some numerical issue in either PBar or FMsy
-        if( length(PZero)<1 ){ return(-Inf) }
-        if( length(fOut)<2 ){ return(-Inf) }
-        #c(FStar/M-xi, PStar/PZero-zeta)
-        refComp = c(fOut[1]/extra$M, (fOut[2]+extra$P0*extra$zeta)/PZero-extra$zeta)
-        propNorm = norm(matrix(refComp, ncol=2))/norm(matrix(c(extra$xi, extra$zeta), ncol=2))
-        return( -propNorm )
-}
-isGood = function(par, extra, thresh=0.01){
-        #
-        out = (-howGood(par, extra))<thresh
-        if(is.na(out)){ out=F }
-        #
-        return( out )
-}
+#        #       
+#        beta = extra$P0
+#
+#        #par values 
+#        FStar = FMsy(alpha, gamma, M)
+#        PStar = PBar(FStar, alpha, beta, gamma, M)
+#        #ref values
+#        FSRef = xi*M
+#        PSRef = zeta*extra$P0
+#
+#        #
+#        out = c(FStar-FSRef, PStar-PSRef)
+#        return( out )
+#}
+#
+##
+#howGood = function(par, extra){
+#        #unpack
+#        alpha = par[1]
+#        gamma = par[2]
+#        beta = extra$P0 #getBeta(alpha, gamma, M, extra$P0)
+#        #compute
+#        PZero = beta #PBar(0, alpha, beta, gamma, M)
+#        fOut = f(par, extra)
+#        #handel case of some numerical issue in either PBar or FMsy
+#        if( length(PZero)<1 ){ return(-Inf) }
+#        if( length(fOut)<2 ){ return(-Inf) }
+#        #c(FStar/M-xi, PStar/PZero-zeta)
+#        refComp = c(fOut[1]/extra$M, (fOut[2]+extra$P0*extra$zeta)/PZero-extra$zeta)
+#        propNorm = norm(matrix(refComp, ncol=2))/norm(matrix(c(extra$xi, extra$zeta), ncol=2))
+#        return( -propNorm )
+#}
+#isGood = function(par, extra, thresh=0.01){
+#        #
+#        out = (-howGood(par, extra))<thresh
+#        if(is.na(out)){ out=F }
+#        #
+#        return( out )
+#}
 
 #
 #INIT
@@ -193,11 +204,11 @@ P0 = 3000
 #
 
 #a place to store data
-place = './modsPellaFineQFix/'
+place = './modsPellaFineQFixRedux/'
 
 #grid for simulation
-zetaSims = (seq(0.1, 0.7, 0.01)) #rev(seq(0.15, 0.7, 0.01)) 	#rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
-xiSims =   rev(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
+zetaSims = (seq(0.1, 0.7, 0.1)) #rev(seq(0.15, 0.7, 0.01)) 	#rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
+xiSims =   rev(seq(0.5, 4.5, 0.5))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
 
 #start the parameters here
 alpha = 1
@@ -209,7 +220,7 @@ beta  = P0
 #layout(matrix(1:(length(zetaSims)*length(xiSims)), nrow=length(zetaSims), ncol=length(xiSims), byrow=T))
 
 #
-registerDoParallel(48)
+registerDoParallel(6)
 opts = list(preschedule=F)
 foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 #for(i in 1:length(zetaSims)){
@@ -245,27 +256,37 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
                 Fs = M*xiSims[j]
                 Ps = P0*zetaSims[i]
 
+		##
+		#par = c(alpha, gamma)
+		#extra = data.frame(xi=xiSims[j], zeta=zetaSims[i], M=M, P0=P0)
+		#capture.output( MR <- multiroot(f, par, parms=extra, maxiter=1e6, positive=T), file="/dev/null" )
+		##
+		#par = MR$root
+		#if( !isGood(par, extra) ){
+		#        par = strongRoot(f, par, extra, howGood, lower=c(0, 1), upper=c(5, 5), monitor=F)
+		#}	
+		##
+		#alpha = par[1]
+		#gamma = par[2]
+		#beta  = P0 #getBeta(alpha, gamma, M, P0)
+		##
+		##par values 
+        	#FStar = FMsy(alpha, gamma, M)
+        	#PStar = PBar(FStar, alpha, beta, gamma, M)
+		#PZero = P0 #PBar(0, alpha, beta, gamma, M)
+		
 		#
-		par = c(alpha, gamma)
-		extra = data.frame(xi=xiSims[j], zeta=zetaSims[i], M=M, P0=P0)
-		capture.output( MR <- multiroot(f, par, parms=extra, maxiter=1e6, positive=T), file="/dev/null" )
-		#
-		par = MR$root
-		if( !isGood(par, extra) ){
-		        par = strongRoot(f, par, extra, howGood, lower=c(0, 1), upper=c(5, 5), monitor=F)
-		}	
+		par = getPar(xiSims[j], zetaSims[i], M)
 		#
 		alpha = par[1]
-		gamma = par[2]
-		beta  = P0 #getBeta(alpha, gamma, M, P0)
+                gamma = par[2]
+                beta  = P0
 		#
-		#par values 
-        	FStar = FMsy(alpha, gamma, M)
-        	PStar = PBar(FStar, alpha, beta, gamma, M)
-		PZero = P0 #PBar(0, alpha, beta, gamma, M)
+		FStar = FMsy(par[1], par[2], M) #uniroot.all
+		PStar = PBar(FStar, par[1], beta, par[2], M)
 
-		#
-		writeLines(sprintf("Xi: %s, Zeta: %s -> (%f, %f, %f) -> (%f, %f) isGood: %d \n", xiSims[j], zetaSims[i], alpha, beta, gamma, FStar/M, PStar/PZero, isGood(par, extra)))
+		##
+		#writeLines(sprintf("Xi: %s, Zeta: %s -> (%f, %f, %f) -> (%f, %f) isGood: %d \n", xiSims[j], zetaSims[i], alpha, beta, gamma, FStar/M, PStar/PZero, isGood(par, extra)))
 
 		#
 		#DATA
@@ -290,7 +311,8 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 		#plot(c(0,0), ylim=c(0.25, 2), xlim=c(0, TT), ylab='cpue', main=sprintf("xi: %s,  zeta: %s ", xiSims[j], zetaSims[i]) )
 		#points(1:TT, hake)
 		#datGen$plotMean(add=T)
-		if(!any(is.na(datGen$N)) & !any(datGen$N<0) & isGood(par, extra)){
+		#if(!any(is.na(datGen$N)) & !any(datGen$N<0) & isGood(par, extra)){
+		if(!any(is.na(datGen$N)) & !any(datGen$N<0)){
 			#make data to fit
 			cpue = rlnorm(TT, datGen$lq+log(datGen$N), exp(datGen$lsdo))
 			#save
@@ -301,7 +323,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 			#datGen$plotBand()
 			
 			#
-			writeLines(sprintf("\nPID: %s, Xi: %s, Zeta: %s -> (%f, %f, %f) isGood: %d\n", Sys.getpid(), xiSims[j], zetaSims[i], alpha, beta, gamma, isGood(par, extra)))
+			writeLines(sprintf("\nPID: %s, Xi: %s, Zeta: %s -> (%f, %f, %f) \n", Sys.getpid(), xiSims[j], zetaSims[i], alpha, beta, gamma))
 
 			#
 			#FIT
@@ -317,14 +339,14 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
         		        xi=xiSims[j], zeta=zetaSims[i]				#other incidentals to carry along
         		)
 			fit$iterate()
-			##optimization
-			#optAns = fit$optimize(cpue,
-			#        c('lsdo', 'lalpha'), #'lq'),
-			#        lower   = c(log(0.001), log(M)), #log(1e-7)),
-			#        upper   = c(log(1), log(100)), #log(1e-2)),
-			#        gaBoost = list(run=10, parallel=FALSE, popSize=10^3),
-			#	persistFor = 5
-			#)
+			#optimization
+			optAns = fit$optimize(cpue,
+			        c('lsdo', 'lalpha'), #'lq'),
+			        lower   = c(log(0.001), log(M)), #log(1e-7)),
+			        upper   = c(log(1), log(100)), #log(1e-2)),
+			        gaBoost = list(run=10, parallel=FALSE, popSize=10^3),
+				persistFor = 5
+			)
 			optAns = fit$optimize(cpue,
 			        c('lsdo', 'lalpha', 'lbeta'), #'lq'),
 			        lower   = c(log(0.001), log(M), log(10^3)), #log(1e-7)),
