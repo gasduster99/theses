@@ -55,15 +55,18 @@ unpackAuto = function(out){
 
 #
 #load('rastriginNoCensorL0.1000.65W20.0080.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
+#load('rastriginNoCensorL0.1000.65W20.00100.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 #load('rosenbrockNoCensorL0.1000.65W20.0040.00M100.RData')
 #load('rosenbrockNoCensorL0.1000.65W10.0040.00M100.RData')
 #load('rosenbrockNoCensorL0.1000.65W5.0045.00M100.RData')
-load('./zooid3/rosenbrock3DL0.1000.65W5.0050.00M100.RData')
+#load('./zooid3/rosenbrock3DL0.1000.65W5.0050.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
+load('./zooid3/rosenbrock3DL0.1000.65W5.0099.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 #load('./zooid1/grlee12L0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 #load('./zooid1/grlee12L0.1000.65W10.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 #load('./zooid1/grlee12L0.1000.65W5.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 #load('./zooid2/michal2DL0.1000.65W20.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})!=0; out=out[isGood]; M=sum(isGood); itMax=500
 #load('./zooid2/michal2DL0.1000.65W10.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})!=0; out=out[isGood]; M=sum(isGood); itMax=500
+#load('./zooid2/michal2DL0.1000.65W10.0040.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
 #load('./zooid2/michal5DL0.1000.65W20.0040.00M100.RData')
 #load('./zooid2/michal5DL0.1000.65W50.00100.00M100.RData')
 #load('./zooid2/michal3DL0.1000.65W100.00200.00M100.RData'); isGood=sapply(out, function(x){length(names(x))})>2; out=out[isGood]; M=sum(isGood); itMax=500
@@ -76,14 +79,14 @@ load('./zooid3/rosenbrock3DL0.1000.65W5.0050.00M100.RData')
 #
 
 #truth threshhold
-zThresh = 1e-4
+zThresh = 1e2#-0
 
 #
 #EI
 #
 
 #
-threshs = sprintf('thresh%1.1e', thresholdGrid)
+threshs = sprintf('thresh%1.3e', thresholdGrid)
 threshZ = t(sapply( out, function(x){ x$Zmax[unlist(x$itConv[threshs])] } ))
 colnames(threshZ) = threshs
 threshFPR = colMeans((threshZ-zMin[1])>zThresh)
