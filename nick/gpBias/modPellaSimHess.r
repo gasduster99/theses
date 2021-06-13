@@ -197,14 +197,14 @@ TT = length(hake)
 #
 M = 0.2
 #
-P0 = 3000
+P0 = 6000 #3000
 
 #
 #SIM
 #
 
 #a place to store data
-place = './modsPellaFineQFixRedux/'
+place = './modsPellaFineQFixReduxP06000/'
 
 #grid for simulation
 zetaSims = (seq(0.1, 0.7, 0.01)) #rev(seq(0.15, 0.7, 0.01)) 	#rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
@@ -348,18 +348,18 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 				persistFor = 5
 			)
 			optAns = fit$optimize(cpue,
-			        c('lsdo', 'lalpha', 'lbeta'), #'lq'),
-			        lower   = c(log(0.001), log(M), log(10^3)), #log(1e-7)),
-			        upper   = c(log(1), log(100), log(10^4)), #log(1e-2)),
+			        c('lsdo', 'lalpha', 'lbeta'), 
+			        lower   = c(log(0.001), log(M), log(P0/2)), 	#log(10^3)), 
+			        upper   = c(log(1), log(100), log(2*P0)),	#log(10^4)),
 			        gaBoost = list(run=100, parallel=FALSE, popSize=10^3),
 				persistFor = 5
 			)
 			#get hessian if possible
 			tryCatch({
 				optAns = fit$optimize(cpue,
-					c('lsdo', 'lalpha', 'lbeta'), #'lq'),
-                                	lower   = c(log(0.001), log(M), log(10^3)), #log(1e-7)),
-                                	upper   = c(log(1), log(100), log(10^4)), #log(1e-2)),
+					c('lsdo', 'lalpha', 'lbeta'), 
+                                	lower   = c(log(0.001), log(M), log(P0/2)), 
+                                	upper   = c(log(1), log(100), log(2*P0)), 
 					cov     = T
 					#c('lsdo', 'alpha', 'beta', 'lq'),                   				        
                                         #lower   = c(log(0.001), eps(), eps(), log(1e-7)),
@@ -368,9 +368,9 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 			}, error=function(err){
 				writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", xiSims[j], zetaSims[i]) )
 				optAns = fit$optimize(cpue,
-					c('lsdo', 'lalpha', 'lbeta'), #'lq'),
-                                        lower   = c(log(0.001), log(M), log(10^3)), #log(1e-7)),
-                                        upper   = c(log(1), log(100), log(10^4)), #log(1e-2)),
+					c('lsdo', 'lalpha', 'lbeta'), 
+                                        lower   = c(log(0.001), log(M), log(P0/2)), 
+                                        upper   = c(log(1), log(100), log(2*P0)), 
 					cov     = F
 					#c('lsdo', 'alpha', 'beta', 'lq'),                   				        
                                         #lower   = c(log(0.001), eps(), eps(), log(1e-7)),
