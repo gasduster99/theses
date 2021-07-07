@@ -87,7 +87,7 @@ logML = function(x, fb){
 #
 funnyBusiness = function(l1, l2, s2){	
 	#
-	SIG = s2*powExpCor(dMat1, l1)*powExpCor(dMat2, l2)		
+	SIG = s2*powExpCor(dMat1, l1)*powExpCor(dMat2, l2)	
 	#
 	L  = t(chol(SIG))
         LIy = forwardsolve(L, y)

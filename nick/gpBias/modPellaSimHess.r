@@ -197,14 +197,14 @@ TT = length(hake)
 #
 M = 0.2
 #
-P0 = 6000 #3000
+P0 = 10000 #3000
 
 #
 #SIM
 #
 
 #a place to store data
-place = './modsPellaFineQFixReduxP06000/'
+place = './modsPellaFineQFixReduxP010000/'
 
 #grid for simulation
 zetaSims = seq(0.1, 0.9, 0.05) #(seq(0.1, 0.9, 0.01)) #rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
@@ -220,7 +220,7 @@ beta  = P0
 #layout(matrix(1:(length(zetaSims)*length(xiSims)), nrow=length(zetaSims), ncol=length(xiSims), byrow=T))
 
 #
-registerDoParallel(20)
+registerDoParallel(48)
 opts = list(preschedule=F)
 foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 #for(i in 1:length(zetaSims)){
