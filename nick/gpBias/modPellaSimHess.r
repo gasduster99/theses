@@ -197,18 +197,20 @@ TT = length(hake)
 #
 M = 0.2
 #
-P0 = 6000 #3000
+P0 = 10000 #3000
 
 #
 #SIM
 #
 
 #a place to store data
-place = './modsPellaFineQFixReduxP06000/'
+place = './modsPellaFineQFixReduxP010000/'
 
 #grid for simulation
-zetaSims = seq(0.1, 0.9, 0.05) #(seq(0.1, 0.9, 0.01)) #rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
-xiSims =   rev(seq(0, 4, 0.5)) #(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
+zetaSims = seq(0.4, 0.5, 0.025) #(seq(0.1, 0.9, 0.01)) #rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
+xiSims =   (seq(3, 4, 0.25)) #(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
+#zetaSims = seq(0.1, 0.9, 0.05) #(seq(0.1, 0.9, 0.01)) #rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
+#xiSims =   (seq(0, 4, 0.5)) #(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
 
 #start the parameters here
 alpha = 1
