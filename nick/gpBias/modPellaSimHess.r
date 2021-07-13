@@ -240,7 +240,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 	        lq=log(0.00049), lsdo=log(0.01160256) #log(0.1160256)		#nuisance parameters
 	        #xi=xi, zeta=zeta                                #other incidentals to carry along
 	)
-	datGen$iterate("ode45")
+	datGen$iterate("vode")
 	
 	#
         for(j in 1:length(xiSims)){
@@ -309,7 +309,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 		datGen$xi	= xiSims[j]
 		datGen$zeta	= zetaSims[i]
 		#iterate
-		datGen$iterate("ode45")	
+		datGen$iterate("vode")	
 		
 		##
 		#datGen$printSelf()
@@ -345,7 +345,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
         		        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256),			#nuisance parameters
         		        xi=xiSims[j], zeta=zetaSims[i]				#other incidentals to carry along
         		)
-			fit$iterate("ode45")
+			fit$iterate("vode")
 			#optimization
 			optAns = fit$optimize(cpue,
 			        c('lsdo', 'lalpha'), #'lq'),
