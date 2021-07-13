@@ -21,9 +21,14 @@ source('prodClass0.1.1.r')
 
 #
 dPdt = function(t, P, lalpha, lbeta, gamma, M, catch){
-        #
-        C = catch[t]
-        #
+        #linearly interpolate catches
+	ft = floor(t)
+	q  = (t-ft) 
+        Cl = catch[ft]
+	Cu = catch[ft+1]
+	C = q*Cu + (1-q)*Cl
+        if(q==0){ C=Cl }
+	#
         R = exp(lalpha)*P/(gamma-1)*(1-(P/exp(lbeta)))^(gamma-1)
         out = R - C
         #
@@ -194,7 +199,7 @@ dist = function(x, xi, zeta){ sqrt((xi-x)^2 + (zeta-0.5)^2) }
 #
 #
 
-##
+#
 #dat = readRDS('modsPellaFineQFixReduxP06000/datGen_xi2.95_zeta0.53.rda')
 #fit = readRDS('modsPellaFineQFixReduxP06000/fit_xi2.95_zeta0.53.rda')
 ##
@@ -208,20 +213,20 @@ catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277,
 TT = length(catch)
 
 #
-ag = getPar(3, 0.52, 0.2)
+ag = getPar(3, 0.55, 0.2)
 alpha = ag[1]
 gamma = ag[2]
-beta = 6000
+beta = 10000
 #
 datGen = prodModel$new(
         dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #model
-        time=1:TT, catch=catch[1:TT], M=M,                    #constants
+        time=c(1:TT), catch=catch[1:TT], M=M,                    #constants
         alpha=alpha, beta=beta, gamma=gamma,            #parameters
         lalpha=log(alpha), lbeta=log(beta),             #reparameterize
         lq=log(0.00049), lsdo=log(0.01160256) #log(0.1160256)           #nuisance paramete
         #xi=xi, zeta=zeta                                #other incidentals to carry along
 )
-datGen$iterate()
+datGen$iterate("ode45")#("euler")
 
 
 ##
