@@ -86,8 +86,13 @@ strongRoot = function(f, par, extra, howGood, lower=c(0, 0), upper=c(2, 2), moni
 
 #
 dPdt = function(t, P, lalpha, lbeta, gamma, M, catch){
-        #
-        C = catch[t]
+	#linearly interpolate catches
+        ft = floor(t)
+        q  = (t-ft)
+        Cl = catch[ft]
+        Cu = catch[ft+1]
+        C = q*Cu + (1-q)*Cl
+        if(q==0){ C=Cl }
         #
         R = exp(lalpha)*P/(gamma-1)*(1-(P/exp(lbeta)))^(gamma-1)
         out = R - C
@@ -235,7 +240,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 	        lq=log(0.00049), lsdo=log(0.01160256) #log(0.1160256)		#nuisance parameters
 	        #xi=xi, zeta=zeta                                #other incidentals to carry along
 	)
-	datGen$iterate()
+	datGen$iterate("ode45")
 	
 	#
         for(j in 1:length(xiSims)){
@@ -304,7 +309,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 		datGen$xi	= xiSims[j]
 		datGen$zeta	= zetaSims[i]
 		#iterate
-		datGen$iterate()	
+		datGen$iterate("ode45")	
 		
 		##
 		#datGen$printSelf()
@@ -340,7 +345,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
         		        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256),			#nuisance parameters
         		        xi=xiSims[j], zeta=zetaSims[i]				#other incidentals to carry along
         		)
-			fit$iterate()
+			fit$iterate("ode45")
 			#optimization
 			optAns = fit$optimize(cpue,
 			        c('lsdo', 'lalpha'), #'lq'),
