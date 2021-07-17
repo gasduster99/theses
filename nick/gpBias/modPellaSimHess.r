@@ -210,6 +210,7 @@ P0 = 10000 #3000
 
 #a place to store data
 place = './modsPellaFineQFixReduxP010000/'
+odeMethod = "lsode"
 
 ##grid for simulation
 #zetaSims = seq(0.4, 0.5, 0.025) #(seq(0.1, 0.9, 0.01)) #rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
@@ -240,7 +241,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 	        lq=log(0.00049), lsdo=log(0.01160256) #log(0.1160256)		#nuisance parameters
 	        #xi=xi, zeta=zeta                                #other incidentals to carry along
 	)
-	datGen$iterate("vode")
+	datGen$iterate(odeMethod)
 	
 	#
         for(j in 1:length(xiSims)){
@@ -309,7 +310,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 		datGen$xi	= xiSims[j]
 		datGen$zeta	= zetaSims[i]
 		#iterate
-		datGen$iterate("vode")	
+		datGen$iterate(odeMethod)	
 		
 		##
 		#datGen$printSelf()
@@ -345,7 +346,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
         		        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256),			#nuisance parameters
         		        xi=xiSims[j], zeta=zetaSims[i]				#other incidentals to carry along
         		)
-			fit$iterate("vode")
+			fit$iterate(odeMethod)
 			#optimization
 			optAns = fit$optimize(cpue,
 			        c('lsdo', 'lalpha'), #'lq'),
