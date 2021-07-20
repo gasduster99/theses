@@ -213,7 +213,7 @@ catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277,
 TT = length(catch)
 
 #
-ag = getPar(3, 0.55, 0.2)
+ag = getPar(4, 0.7, 0.2)
 alpha = ag[1]
 gamma = ag[2]
 beta = 10000
@@ -226,7 +226,7 @@ datGen = prodModel$new(
         lq=log(0.00049), lsdo=log(0.01160256) #log(0.1160256)           #nuisance paramete
         #xi=xi, zeta=zeta                                #other incidentals to carry along
 )
-datGen$iterate("ode45")#("euler")
+datGen$iterate("vode")#("euler")#("daspk")
 
 
 ##
