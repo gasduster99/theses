@@ -65,7 +65,8 @@
 \item Methods
 	\begin{itemize}
 	\item State the Bio Model (Pella v. Schaffer)
-	\item Appendix A: SRR exposition and examples 
+	\item integration details
+	\item Appendix A: SRR exposition and examples (reference to proposal section) 
 		\begin{itemize}
 		\item two v. three parameter
 		\item Pella v. Schaffer
@@ -80,15 +81,18 @@
 \item Results
 	\begin{itemize}
 	\item bias surface
+	\item table of estimated equilibrium values at examples
+	\item yeild/srr curves at example locations
 	\end{itemize}
 \item ?discussion?
-\item Proposal (~1 page)
+\item Proposal (<6 pages)
 	\begin{itemize}
 	\item embedded simulator space filling (output space-filling)
 		\begin{itemize}
 		\item Shepherd-BH, Derizo-BH?
 		\item Age Structured Models and Data Weighting
 		\item ?MSEs?
+		\item timeline (gant chart)
 		\end{itemize}	
 	\end{itemize}
 \item Appedicies
@@ -99,12 +103,54 @@
 
 \end{itemize}
 
+%
+\clearpage
+%
+
+%
+\section{Introduction}
+%
+\section{Methods}
+%
+
+%Pella Tomlinson
+\begin{align}
+R = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}. \label{pellaTomlinson}
+\end{align}
+
+{\color{red}
+Collapse to the case of Schaffer.
+}
+
+%Schaffer
+\begin{align}
+R = rB \left(1-\frac{B}{K}\right). \label{schaffer}
+\end{align}
+
+%
+\begin{equation}
+\frac{dB}{dt} = R - FB.
+\end{equation}
+
+%
+\begin{align}
+	&\xi = \frac{F^*}{M}
+	&\zeta = \frac{B^*}{B_0}
+\end{align}
+
+%
+{\color{red}
+Show math for deriving equilibrium equations for PT. 
+Collapse to the case of Schaffer. 
+}
+
 %principal objectives, 
 %methods employed (with enough detail to enable readers to evaluate the validity of findings),
 %results/outcomes. 
 %Please include information on any helpful discoveries of a practical or theoretical nature
 
 %
+\clearpage
 \section{Objectives}
 
 %
