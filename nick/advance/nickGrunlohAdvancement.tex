@@ -20,7 +20,7 @@
 \usepackage{physics}
 %\usepackage{natbib}
 \usepackage[]{apacite}
-%\usepackage{wrapfig}
+\usepackage{wrapfig}
 %\usepackage{relsize}
 %\usepackage{dsfont}
 
@@ -30,8 +30,10 @@
             linkcolor    = black
 }
 
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+
 %line spacing
-\renewcommand{\baselinestretch}{1}%{2.5}%
+\renewcommand{\baselinestretch}{1.5}%{2.5}%
 
 %title spacing
 \usepackage{titlesec}
@@ -61,10 +63,11 @@
 	\begin{itemize}
 	\item problem statement and motivation
 	\item introduce reference point and management decision making 
+	\item introduce BH \& Derizo
 	\end{itemize}
 \item Methods
 	\begin{itemize}
-	\item State the Bio Model (Pella v. Schaffer)
+	{\color{gray}\item State the Bio Model (Pella v. Schaffer)}
 	\item integration details
 	\item Appendix A: SRR exposition and examples (reference to proposal section) 
 		\begin{itemize}
@@ -87,13 +90,15 @@
 \item ?discussion?
 \item Proposal (<6 pages)
 	\begin{itemize}
+	\item challanges of filling out response space with three parameter SRR (numerical methods)
 	\item embedded simulator space filling (output space-filling)
 		\begin{itemize}
 		\item Shepherd-BH, Derizo-BH?
 		\item Age Structured Models and Data Weighting
-		\item ?MSEs?
-		\item timeline (gant chart)
-		\end{itemize}	
+		\end{itemize}
+	\item Age Structured Model and Data Weighting
+	\item ?MSEs?
+	\item timeline (gant chart	
 	\end{itemize}
 \item Appedicies
 	\begin{itemize}
@@ -107,42 +112,444 @@
 \clearpage
 %
 
-%
-\section{Introduction}
-%
-\section{Methods}
-%
+%%
+%\section{Introduction}
+%%
+%\section{Methods}
+%%
 
+%NOTE: we can nnot observe all fish in the sea, and this rely on an index of abundance 
+%which typically comes from experimental fishing proceedure(for example ccfrp).
+The data for a typical surplus-production model comes in the form of a time 
+series of observations of an index of abundance for some population of interest. 
+The index is often observed alongside a varienty of other known quantities, 
+but at a minimum, each observed index will be observed in the presence of some 
+known catch for the period. The index of abundance is assumed to be proportional 
+to biomass with the proportionality constant being a nuisance parameter that is 
+often referred to as the catchability parameter.
+
+%
+{\color{red}Plot Index Series and Catches}
+
+%
+The observed indicies are assumed to have multiplicative log-normal errors, and thus
+the following observation model arises naturally,
 %Pella Tomlinson
 \begin{align}
-R = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}. \label{pellaTomlinson}
+I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2).
 \end{align}
+%
+Above $q$ is the catchability parameter and $\sigma^2$ models residual variation.
+Biologically speaking these parameters are often treated as nuisance parameters with
+the more biological parameters entering the model thru a process model on biomass.
 
-{\color{red}
-Collapse to the case of Schaffer.
-}
-
-%Schaffer
-\begin{align}
-R = rB \left(1-\frac{B}{K}\right). \label{schaffer}
-\end{align}
-
+% 
+Biomass is assumed to evolve as an ordinary differential equation; in this case 
+I focus on the following form,
 %
 \begin{equation}
-\frac{dB}{dt} = R - FB.
+\frac{dB}{dt} = R(B; \bm{\theta}) - C. \label{ode}
 \end{equation}
+%{\color{red}$C=FB$ to set up yeild calculations later
+Here biomass is assumed to change in time by two processes, net recruitment 
+into the population and catches removing biomass from the population.
+
+%  
+Firstly, the population grows through a stock recruitment relationship (SRR).
+Recruitment in this setting is defined as the net biomass increase due to 
+all birth, maturation, and migration processes after accounting for all 
+other naturally occuring sources of mortality other than the recorded fishing 
+from humans. The recruitment function is assumed to be parametric function that 
+relates the current biomass of the population to an aggregate production of 
+biomass. 
+
+%
+Secondly, the population decreases as biomass is removed due to catch 
+($C$). While catches are observable quantities ({\color{red}cite}), the model 
+assumes that catch is proportional to biomass with the proportionality constant 
+representing the fishing rate ($F$), so that $C=FB$. From a management 
+perspective a major goal of the model is to accuratly infer a quantity known as 
+\emph{maximum sustainable yeild} (MSE). One could maximize simple yeild at a 
+particular moment in time (and only for that moment) by fishing all available 
+biomass in that moment. This strategy is penny-wise but pound-foolish (not to 
+mention ecologically devastating) since it doesn't leave biomass in the 
+population to reproduce for future time periods. We seek to fish in a way that 
+allows (or even encourages) future productivity in the population. This is 
+accomplished by maximimzing the equilibrium level of catch (or yeild) over 
+time. Equilibrium yeild is considered by replacing the steady state biomass 
+($\bar B$) in the assumed form for catch, so that $\bar C = F\bar B(F)$, where 
+$\bar~$ indicates a value at steady state.  Naturally the steady state biomass 
+is a function of $F$; we will see a specific example of this in Section 
+(\ref{ptRef}). MSY is found by optimizaing $\bar C(F)$ with respect to $F$, 
+and $F^*$ is the fishing rate at MSY. Going forward let $^*$ decorate any value 
+derived under the condition of MSY. 
+
+% to continue the species and produce  not only are there  however this has the {\color{red}a description of maximum sustainable yeild}
+
+%
+The canonical production model in fisheries is the Schaeffer model. The 
+Schaeffer model is formed by choosing $R$ to be logistic growth parameterized 
+so that $\bm{\theta} = [r, K]$ and the family takes the following form,  
+%
+\begin{align}
+R(B; [r, K]) = r B \left(1-\frac{B}{K}\right). \label{logistic}
+\end{align}
+$r$ is parameter controlling the average reproducive rate of the population. 
+$K$ is the so called "carrying capacity" of the population. The carrying 
+capacity can be formally stated as steady state biomass in the 
+absence of fishing $\bar B(0)$.
+
+%\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}[h!]
+        \includegraphics[width=0.5\textwidth]{./plots/srrSchaeffer.png}	
+%\end{figure}
+\caption{}
+\label{srrSchaeffer}
+%\end{wrapfigure}
+\end{figure}
+
+%{
+%\color{red} 
+%Concept of Maximum sustainable yeild (MSY)
+%writtting sustainable yeild $\bar Y(F) = F\bar B(F)$.
+%}
+
+%
+Logistics SRR produces idealized parabolic recruitment with equilibrium 
+quantities taking very simple forms that can be easily understood from the 
+graphical construction seen in Figure (\ref{srrSchaeffer}). Positive 
+recruitment is observed when $B\in(0, K)$. Due to the second order parabolic 
+shape of the logistic SRR it is straightforward to see that MSY will be 
+maximized by fishing at the peak productivity of the stock. {\color{orange}By symmetry 
+it is clear that this peak occurs at $B^*=\frac{K}{2}$. The fishing rate required 
+to position the stock at MSY is $F^*=\frac{r}{2}$, which is half of the stock's average 
+reproductive rate at the origin. In the absence of fishing $\frac{dB}{dt}$ woudl be driven entirly by $R$We can also notice that at MSY the $\frac{dB}{dt}$}  
+
+%
+While this idealized form is instructive, and convienient, these simplistic 
+dynamics are also potentially problematic. The symmetry of the logistic 
+functional form is very rigid in that it assumes dynamics in the lower (growth 
+limited) regime of the dynamics ($B\in(0, \frac{K}{2})$) have the same shape 
+as the upper (density limited) regime of the recruitment dynamics 
+($B\in(\frac{K}{2}, K)$). What in nature ties these phenomena together so that 
+this assumption should be true? 
+
+{\color{red}Furthermore, and more practically, the fishery is managed based on
 
 %
 \begin{align}
 	&\xi = \frac{F^*}{M}
-	&\zeta = \frac{B^*}{B_0}
+	&\zeta = \frac{B^*}{B_0} \label{xizetaSimple}
 \end{align}
 
 %
-{\color{red}
-Show math for deriving equilibrium equations for PT. 
-Collapse to the case of Schaffer. 
+\begin{align}
+        &\xi = \frac{r}{2M}
+        &\zeta = \frac{1}{2} \label{xizetaLogistic}
+\end{align}
+
+$(\xi, \zeta)\in \left(\mathbb{R}^+, \frac{1}{2}\right)$
 }
+
+{\color{red}Beverton Holt and Ricker Introduction
+In practice, at this time, the SRR is typically chosen to depend only on 
+two parameters. Which struggle similarly to model the full space of referece points.
+}
+
+Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
+convinient form that includes the logistic SRR as a special case to form the 
+Schaeffer model. The Pella-Tomlinson SRR is parameterized so that 
+$\bm{\theta} = [r, K, \gamma]$ and the family takes the following form, 
+%Pella Tomlinson
+\begin{align}
+R(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}. \label{pellaTomlinson}
+\end{align}
+%
+
+%
+$\gamma$ is a parameter which breaks PT out of the restrictive symmetry of the 
+logistic curve. In Figure (\ref{srrPT}) PT recruitment is shown for a range of 
+parameter values so as to demonstrate the various recruitment shapes that can be 
+achieved by PT recruitment.  
+%{\color{red} And $\gamma$ is a parmeter which adds 
+%flexibility to the fiamily by allowing for compensitory or non-compensitory 
+%growth. (break symetriy... get better description) }
+
+%\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}[h!]
+	\includegraphics[width=0.5\textwidth]{./plots/srr1.1.png}	
+	\includegraphics[width=0.5\textwidth]{./plots/srr2.png}
+	\caption{}
+	\label{srrPT}
+\end{figure}
+%\end{wrapfigure}
+
+%
+While the particular form of how $\gamma$ appears in PT still produces some 
+limitations to the form of the SRR, importantly the introduction of a third 
+parameter allows enough flexibility fully describe the space of reference points 
+used in management $(\xi, \zeta)\in \mathbb{R}^+_2$. To see this, the reference 
+points are analytically derived for the PT model in the following section.
+
+%%
+%\begin{equation}
+%\frac{dB}{dt} = R - FB.
+%\end{equation}
+
+
+%
+\subsection{PT Reference Points}\label{ptRef}
+
+%
+%To derive the reference points, $(\xi, \zeta)$, the equilibrium values of 
+
+%$\zeta=\frac{B^*}{B_0}$ is derived first, followed 
+%by the derivation of $\xi=\frac{F^*}{M}$. This simplifies the calculations since $B^*$ appears in 
+%the derivation of $F^*$. 
+
+%
+Under PT recuitment the process model is defined by the following ODE,
+
+\begin{equation}
+\frac{dB}{dt} = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1} - FB. \label{odePT}
+\end{equation}
+
+An expression for the equilibrium biomass is attained by setting Eq(\ref{odePT}) 
+equal to zero and rearranging the resulting equation to solve for $B$. Thinking of the 
+result as a function of $F$ gives, 
+%When thought of as a 
+%function of $F$ the following expression emerges,
+%{\color{red}Under Pella-Tomlinson SRR the equilibrium biomass can be written,}
+\begin{align}
+\bar B(F) = K\left(1-\left(\frac{F(\gamma-1)}{r}\right)^{\frac{1}{(\gamma-1)}}\right). \label{Beq}
+\end{align}
+
+%
+By definition $B_0=K$. Alternatively, setting $F=0$ in Eq(\ref{Beq}) makes it 
+convienient to notice that $\bar B(0)=K$ to arrive at the same result. The 
+expression for $B^*$ is given by evaluating Eq(\ref{Beq}) at $F^*$.
+
+%
+To get an expression for $F^*$, the equilibrium yeild is maximized with respect to $F$,
+\begin{equation}
+F^* = \argmax_F F\bar B(F).
+\end{equation}
+%
+For PT maximization can be done analytically, however many three parameter SRR's 
+do not result in tractable analytical solutions. For PT proceeds by differentiating 
+the equilibrium yeild with respect to $F$ as follows,
+%{
+%\color{red} 
+%Concept of Maximum sustainable yeild (MSY)
+%writtting sustainable yeild $\bar Y(F) = F\bar B(F)$.
+%}
+%
+\begin{align}
+\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{Fderiv}\\
+%\frac{d \bar B}{dF} &= -\frac{K}{\gamma-1}\left(\frac{\gamma-1}{r}\right)^{\frac{1}{\gamma-1}}F^{\frac{1}{\gamma-1}-1}\\
+\frac{d \bar B}{dF} &= -\frac{K}{F(\gamma-1)}\left(\frac{F(\gamma-1)}{r}\right)^{\frac{1}{\gamma-1}}.
+\end{align}
+%{\color{red}
+Setting Eq(\ref{Fderiv}) equal to 0 and solving for $F$ produces the following 
+expression for the fishing rate required to produce MSY, {\color{red}Below any quantity 
+evaluated at MSY shall be decorated with $~^*$.}
+%
+\begin{align}
+F^* = \frac{r}{\gamma-1} \left(\frac{\gamma-1}{\gamma}\right)^{\gamma-1}. \label{Fmsy}
+\end{align}
+%
+Plugging the above expression for $F^*$ back into Eq(\ref{Beq}) gives the 
+following expression for biomass at maximum sustainable yeild, 
+\begin{align}
+B^* = K\left(1-\left(\frac{(\gamma-1)}{\gamma}\right)\right) \label{Bmsy}.
+\end{align}
+
+%
+By substituting the expressions given above for $B_0$, $B^*$, and $F^*$ into 
+Eq(\ref{xizetaSimple}), $\xi$ and $\zeta$ can take a specific analytical form 
+in terms of the biological model parameters. 
+%given by substituting the expressions given in Eq(\ref{Fmsy}) 
+%and Eq(\ref{Bmsy}) in Eq(\ref{xizetaSimple}).
+%Eq(\ref{xizetaSimple}) can then take a specific analytical form in terms of the 
+  %an expression for $\xi$ and $\zeta$ can be found in terms of model paramters.  
+
+\begin{align}
+&\xi = \frac{r}{M(\gamma-1)} \left(\frac{\gamma-1}{\gamma}\right)^{\gamma-1}
+&\zeta = 1-\left(\frac{(\gamma-1)}{\gamma}\right)
+\end{align}
+
+{\color{red}demonstration of the restricted case with graph over RP space as used.}
+
+\subsection{Simulation Study}
+
+%
+Indices of abundance are simulated from the three parameter PT SRR over an 
+unrestricted grid of $\xi$ and $\zeta$ values. After data are generated, 
+$\gamma$ is then fixed to two so that the PT SRR reduces to the special case 
+of logistic recruitment. The restricted Schaeffer model is then fit to the 
+simulated PT indices. {\color{red}Let $\tilde~$ decorate any quantity that is derived 
+under the restricted two parameter SRR.}
+
+%%
+%{\color{red}
+%Let $\tilde~$ decorate any quantity that is derived under the restricted two 
+%parameter SRR.\\ Collapse to the case of Schaffer. Similarly to Eq(\ref{
+%logisticSRR}) setting $\gamma=2$ results in the equilibrium equaitons for the 
+%restricted schaffere model.  
+%} 
+
+%speaking it is not possible to analytically invert this  
+Generating simulated indicies of abundnance from the PT model requires 
+inverting the relationship between $(\xi, \zeta)$, and $(r, \gamma)$. It is not 
+generally possible to analytically invert this relationship for very many 
+forms of the SRR {(\color{red}cite derizo paper)}. Most SRRs lead to RPs that require 
+expensive numerical methods to invert, more over the numerical inversion 
+proceedure is often extremely unstable. That said, for the case of PT this 
+relationship is analytically invertible, and leads to the following relationship
+
+%
+\begin{align}
+&r = M\xi\left( \frac{1-\zeta}{\zeta} \right) (1-\zeta)^{\left( \frac{\zeta-1}{\zeta} \right)}
+&\gamma = \frac{1}{\zeta}. \label{rg}
+\end{align}
+
+%
+Indicies are generated under the following condistions. A regular grid of 
+biologically important values for $\xi$ and $\zeta$ are considred. For each 
+$(\xi, \zeta)$, the associated pair $(r, \gamma)$ are computed from 
+Eq (\ref{rg}). Since $K$ does not enter the RP calculation its value is fixed 
+at 10000. A relatively large value of $K$ is selected to allow a full range of 
+population dynamics to be defined in this setting. The value of $M$ is fixed 
+at 0.2 to represent {\color{red}species}. The value of $q$ is fixed at the 
+typically small value of 0.0005. $\sigma$ is fixed at the relatively samll 
+value of 0.01 to focus specifically on the behaviour of population parameters.
+These parameters fully specify the PT model and are used to generate index 
+data for each considered $(\xi, \zeta)$ pair.
+
+%
+\subsection{Model Fitting}
+
+{\color{red} $q$ proceedure}
+  
+%
+By working with the resulting models parameterized in terms of 
+$\log(\tilde F^*)$ it tends to improve optimization convergence. Furthermore, 
+the normality this induces on the log scale, via the Laplace approximation, 
+yields Log-Normality on $\tilde F^*$, as seen in Appendix {\ref{appA}}. 
+
+
+%
+{\color{red}
+
+%
+\subsection{Gaussian Process Model}
+%
+
+%
+A GP is a stochastic process generalizing the normal 
+distribution to an infinite dimensional analog. GPs are often specified 
+primarily through the choice of a covariance function which defines the 
+relationship between locations in an index set. Typically the index set is 
+spatial for GPs, and in this setting the model is in reference point space 
+$(\xi, \zeta)$. A GP model implies an $n$ dimensional multivariate normal 
+distribution on the observations of the model and the covariance function 
+fills out the covariance matrix for the observations. 
+
+%
+Each iteration of the simulation produces a single fitted $\hat\mu_i$ at an 
+associate $(\xi_i, \zeta_i)$ location with $i\in\{1,...,n\}$. $\bm{\hat\mu}$ is 
+jointly modeled over the space of reference \mbox{points as the following GP,}
+%Here the following GP model is used,
+\begin{align}	\label{gpModel}	
+	\bm{x} &= (\xi, \zeta) \nonumber\\
+	\bm{\hat\mu} &= \beta_0 + \bm{\beta}'\bm{x} + f(\bm{x}) + \bm{\epsilon} \nonumber \\
+	f(\bm{x}) &\sim \text{GP}(0, \tau^2\bm{\textbf{K}(\bm{x}, \bm{x'})}) \nonumber \\
+	\epsilon_i &\sim \text{N}(0, \hat\sigma^2_i).
+\end{align}
+%
+$\hat\sigma^2_i$ is the observed variance for $\hat\mu_i$ from inference in the 
+simulation step. This model allows for the full propagation of inferred information 
+from the simulation step to be propagated into the reference point metamodel. 
+
+%
+Here $\textbf{K}$ has been extended to account for the possibility of 
+geometric anisotropy as well as to model the smoothness of the relationship.
+%in the relationship between $(\xi, \zeta)$ and 
+%$(\tilde\xi, \tilde\zeta)$ 
+The previously used squared exponential correlation function has been replaced with the 
+Matern correlation function \shortcite{matern_spatial_1960}. The updated correlation structure 
+for filling out $\bm{\textbf{K}}$ can be summarized as follows, %this updated correlation structure fills out $\bm{\textbf{K}}$ as,
+%In summary the correlation structure of this model is, 
+\begin{align}   \label{corModel}
+\bm{\textbf{K}(\bm{x}, \bm{x'})} &= Matern(\norm{\bm{x}-\bm{x'}}_{\bm{R}}; \nu) \\ 
+\norm{\bm{x}-\bm{x'}}_{\bm{R}} &= \sqrt{ (\bm{x}-\bm{x'})^\top \bm{R}^{-1} (\bm{x}-\bm{x'}) } \\ 
+\bm{R} = \bm{P}\bm{\Lambda}\bm{P}^{\top} ~~~ 
+\bm{P} &= 
+	\begin{pmatrix}
+		cos(\theta) & -sin(\theta)\\
+		sin(\theta) & cos(\theta)
+	\end{pmatrix}
+~~~
+\bm{\Lambda} = 
+	\begin{pmatrix}
+                \lambda_1 & 0\\
+                0 & \lambda_2
+        \end{pmatrix}.
+\end{align}
+%
+The full GP model has linear predictor parameters ($\beta_0, \bm{\beta}$), a 
+process variance parameter ($\tau^2$), kernel length scale parameters 
+($\lambda_1$, $\lambda_2$), a kernel rotation parameter ($\theta$), and the Matern 
+smoothness parameter ($\nu$). All of these parameters are estimated by 
+maximization of the posterior (MAP) inference. 
+
+
+
+
+
+
+
+
+
+
+
+
+%
+When $\gamma=2$ Eq(\ref{pellaTomlinson}) becomes the Logistic SRR and Eq(\ref{ode}) 
+produces the Schaffer model {\color{red}(cite)}. 
+
+%Schaffer
+\begin{align}
+R(B; [r, K, 2]) = \tilde R(B; [r, K]) = rB \left(1-\frac{B}{K}\right). \label{logisticSRR} 
+\end{align}
+
+{\color{red} Plot a Representative PT SRR, next to a Schaffer (logistic) SRR}
+
+%
+\begin{align}
+&\tilde F^* = \frac{r}{2} %\label{tilFBmsy}
+&\tilde B^* = \frac{K}{2} \label{tilFBmsy}
+\end{align}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %principal objectives, 
 %methods employed (with enough detail to enable readers to evaluate the validity of findings),
@@ -475,6 +882,7 @@ to be presented across a wide variety of SRRs as well as age structured models.
 %currently being tested, furthermore it remains to be seen how general the patterns 
 %observed here will be across different SRRs. Additionally a comparison with age 
 %structured versions of these models are also forthcoming.
+}
 
 %
 \thispagestyle{next}
@@ -484,49 +892,49 @@ to be presented across a wide variety of SRRs as well as age structured models.
 \thispagestyle{next}
 
 
-%%
-%\clearpage
-%\section*{Appendix A: Distributional results for $\tilde\xi$ and $\tilde\zeta$ \label{appA}}
-%\thispagestyle{next}
 %
-%%
-%Given the Log-Normality of $\tilde F^*$ as seen in Eq. (\ref{FLN}), for fixed 
-%$M$, $\tilde \xi$ is clearly just a scaled Log-Normal distribution (Log-Normal 
-%parameters are given in terms of the mean and variance on the log scale). 
+\clearpage
+\section*{Appendix A: Distributional results for $\tilde\xi$ and $\tilde\zeta$ \label{appA}}
+\thispagestyle{next}
+
 %
-%\begin{align*}
-%\tilde \xi &= \frac{\tilde F^*}{M}\\
-%\tilde \xi ~&\sim~ \text{LN}\left(\frac{1}{M}e^{\mu+\frac{\sigma^2}{2}}, \frac{1}{M^2}(e^{\sigma^2}-1)e^{2\mu+\sigma^2}\right)
-%\end{align*}
+Given the Log-Normality of $\tilde F^*$ as seen in Eq. (\ref{FLN}), for fixed 
+$M$, $\tilde \xi$ is clearly just a scaled Log-Normal distribution (Log-Normal 
+parameters are given in terms of the mean and variance on the log scale). 
+
+\begin{align*}
+\tilde \xi &= \frac{\tilde F^*}{M}\\
+\tilde \xi ~&\sim~ \text{LN}\left(\frac{1}{M}e^{\mu+\frac{\sigma^2}{2}}, \frac{1}{M^2}(e^{\sigma^2}-1)e^{2\mu+\sigma^2}\right)
+\end{align*}
+
 %
-%%
-%Now working with $\tilde\zeta$ in terms given by Eq. (\ref{bhCurve}) and considering
-%the quantity $\text{logit}(2\tilde \zeta)$ provides a simplification in terms of $\log(\tilde F^*)$.
-%
-%\begin{align*}
-%\tilde \zeta &= \frac{1}{\tilde\xi+2}\\
-%\text{logit}(2\tilde \zeta) &= \log\left(\frac{\frac{2}{\tilde \xi+2}}{1-\frac{2}{\tilde \xi+2}}\right)\\
-%&=\log(2/\tilde \xi) = \log(2)-\log(\tilde \xi) = \log(2M)-\log(\tilde F^*)\\
-%\end{align*}
-%
-%The given simplification of $\text{logit}(2\tilde \zeta)$ reveals the 
-%distribution of $\zeta$ as a scaled and shifted Logit-Normal distribution.
-%
-%
-%\begin{align*}
-%\text{logit}(2\tilde \zeta) ~&\sim~ \text{N}\left(\log(2M)-\mu, \sigma^2\right) \\
-% 2\tilde\zeta ~&\sim~ \text{logit-N}\left(\log(2M)-\mu, \sigma^2\right)
-%\end{align*}
-%
-%Notice that due to Eq. (\ref{bhCurve}) these distribution results hold for any 
-%fixed M Beverton Holt model with Log-Normality in $\tilde F^*$. These results 
-%are not specific to the Laplace approximation setting here. For example under 
-%Beverton Holt and fixed M, a Log-Normal prior on $\tilde F^*$ necessarily 
-%implies a scaled Log-Normal prior on $\tilde\xi$ and a scaled Logit-Normal 
-%prior on $\tilde\zeta$. Furthermore if $M$ is not fixed, but instead it also 
-%follows a Log-Normal distribution, this also implies Log-Normality for 
-%$\tilde\xi$ and Logit-Normality on $\tilde\zeta$, albeit with slightly 
-%different parameters.
+Now working with $\tilde\zeta$ in terms given by Eq. (\ref{bhCurve}) and considering
+the quantity $\text{logit}(2\tilde \zeta)$ provides a simplification in terms of $\log(\tilde F^*)$.
+
+\begin{align*}
+\tilde \zeta &= \frac{1}{\tilde\xi+2}\\
+\text{logit}(2\tilde \zeta) &= \log\left(\frac{\frac{2}{\tilde \xi+2}}{1-\frac{2}{\tilde \xi+2}}\right)\\
+&=\log(2/\tilde \xi) = \log(2)-\log(\tilde \xi) = \log(2M)-\log(\tilde F^*)\\
+\end{align*}
+
+The given simplification of $\text{logit}(2\tilde \zeta)$ reveals the 
+distribution of $\zeta$ as a scaled and shifted Logit-Normal distribution.
+
+
+\begin{align*}
+\text{logit}(2\tilde \zeta) ~&\sim~ \text{N}\left(\log(2M)-\mu, \sigma^2\right) \\
+ 2\tilde\zeta ~&\sim~ \text{logit-N}\left(\log(2M)-\mu, \sigma^2\right)
+\end{align*}
+
+Notice that due to Eq. (\ref{bhCurve}) these distribution results hold for any 
+fixed M Beverton Holt model with Log-Normality in $\tilde F^*$. These results 
+are not specific to the Laplace approximation setting here. For example under 
+Beverton Holt and fixed M, a Log-Normal prior on $\tilde F^*$ necessarily 
+implies a scaled Log-Normal prior on $\tilde\xi$ and a scaled Logit-Normal 
+prior on $\tilde\zeta$. Furthermore if $M$ is not fixed, but instead it also 
+follows a Log-Normal distribution, this also implies Log-Normality for 
+$\tilde\xi$ and Logit-Normality on $\tilde\zeta$, albeit with slightly 
+different parameters.
 
 %%
 %\clearpage

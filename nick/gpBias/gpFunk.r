@@ -299,6 +299,22 @@ gpPredict = function(XStar, axeStar, gpFit, asMat=T){
 }
 
 ##
+#gpPredVar = function(axeStar, gpFit, asMat=F){
+#        #
+#        out = maternCor(anisoNorm(axeStar, axeStar, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] -
+#	( maternCor(anisoNorm(axeStar, axes, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] ) %*%
+#        strongInv( maternCor(anisoNorm(axes, axes, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] ) %*%
+#	( maternCor(anisoNorm(axes, axeStar, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] ) + 
+#	Tg
+#	#
+#	if( !asMat ){
+#		out = diag(out)
+#	}
+#	#
+#	return( out )
+#}
+
+##
 ##Test
 ##
 #

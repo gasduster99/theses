@@ -208,6 +208,7 @@ dist = function(x, xi, zeta){ sqrt((xi-x)^2 + (zeta-0.5)^2) }
 
 #
 M = 0.2
+P0 = 10000
 catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277, 
 254, 170, 97, 91, 177, 216, 229, 211, 231, 223)
 TT = length(catch)
@@ -216,7 +217,7 @@ TT = length(catch)
 ag = getPar(4, 0.7, 0.2)
 alpha = ag[1]
 gamma = ag[2]
-beta = 10000
+beta = P0
 #
 datGen = prodModel$new(
         dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #model
@@ -227,6 +228,49 @@ datGen = prodModel$new(
         #xi=xi, zeta=zeta                                #other incidentals to carry along
 )
 datGen$iterate("vode")#("euler")#("daspk")
+
+#
+cpue = rlnorm(TT, datGen$lq+log(datGen$N), exp(datGen$lsdo))
+
+#
+fit = prodModel$new(
+        dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #model
+        time=1:TT, catch=catch, M=M,                            #constants
+        alpha=alpha, beta=P0, gamma=2,  #parameters
+        lalpha=log(alpha), lbeta=log(P0),       #reparameterize
+        lq=log(0.00049), lsdo=log(0.01160256)#, #log(0.1160256),                 #nuisance parameters
+        #xi=xiSims[j], zeta=zetaSims[i]                          #other incidentals to carry along
+)
+fit$iterate("vode")
+
+#
+optAns = fit$optimize(cpue,
+        c('lsdo', 'lalpha'), #'lq'),
+        lower   = c(log(0.001), log(M)), #log(1e-7)),
+        upper   = c(log(1), log(100)), #log(1e-2)),
+        gaBoost = list(run=10, parallel=FALSE, popSize=10^3),
+        persistFor=5
+)
+optAns = fit$optimize(cpue,
+        c('lsdo', 'lalpha', 'lbeta'),
+        lower   = c(log(0.001), log(M), log(P0/2)),     #log(10^3)), 
+        upper   = c(log(1), log(100), log(2*P0)),       #log(10^4)),
+        gaBoost = list(run=100, parallel=FALSE, popSize=10^3),
+        persistFor=5, cov=T
+)
+#optAns = fit$optimize(cpue,
+#        c('lsdo', 'lalpha', 'lbeta'),
+#        lower   = c(log(0.001), log(M), log(P0/2)),
+#        upper   = c(log(1), log(100), log(2*P0)),
+#        cov     = T
+#        #c('lsdo', 'alpha', 'beta', 'lq'),                                                      
+#        #lower   = c(log(0.001), eps(), eps(), log(1e-7)),
+#        #upper   = c(log(1), 10, 2, log(1e-2)),
+#)
+
+
+
+
 
 
 ##
