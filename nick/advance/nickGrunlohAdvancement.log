@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.3.2)  11 AUG 2021 13:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.3.2)  20 SEP 2021 16:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -549,171 +549,199 @@ Non-PDF special ignored!
 <special> header=psfrag.pro
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-] [2] [3
+] [2]
+<./plots/index.jpg, id=49, 481.8pt x 481.8pt>
+File: ./plots/index.jpg Graphic file (type jpg)
+<use ./plots/index.jpg>
+Package pdftex.def Info: ./plots/index.jpg  used on input line 134.
+(pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
+<./plots/catch.jpg, id=50, 481.8pt x 481.8pt>
+File: ./plots/catch.jpg Graphic file (type jpg)
+<use ./plots/catch.jpg>
+Package pdftex.def Info: ./plots/catch.jpg  used on input line 135.
+(pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
 
-]
-<./plots/srrSchaeffer.png, id=66, 481.8pt x 481.8pt>
+Overfull \hbox (2.61047pt too wide) in paragraph at lines 134--139
+[][] [] 
+ []
+
+[3
+
+ <./plots/index.jpg> <./plots/catch.jpg>] [4]
+<./plots/srrSchaeffer.png, id=71, 481.8pt x 481.8pt>
 File: ./plots/srrSchaeffer.png Graphic file (type png)
 <use ./plots/srrSchaeffer.png>
-Package pdftex.def Info: ./plots/srrSchaeffer.png  used on input line 204.
+Package pdftex.def Info: ./plots/srrSchaeffer.png  used on input line 212.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
+ [5 <./plots/srrSchaeffer.png (PNG copy)>] [6]
+<./plots/srr1.1.png, id=88, 481.8pt x 481.8pt>
+File: ./plots/srr1.1.png Graphic file (type png)
+<use ./plots/srr1.1.png>
+Package pdftex.def Info: ./plots/srr1.1.png  used on input line 321.
+(pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
+<./plots/srr2.png, id=89, 481.8pt x 481.8pt>
+File: ./plots/srr2.png Graphic file (type png)
+<use ./plots/srr2.png>
+Package pdftex.def Info: ./plots/srr2.png  used on input line 322.
+(pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
+
+Overfull \hbox (2.61047pt too wide) in paragraph at lines 321--323
+[][] [] 
+ []
+
+[7 <./plots/srr1.1.png (PNG copy)> <./plots/srr2.png (PNG copy)>] [8] [9]
+[10]
+
+LaTeX Warning: Command \l invalid in math mode on input line 561.
+
+Missing character: There is no ª in font cmr12!
+
+LaTeX Warning: Command \l invalid in math mode on input line 561.
+
+Missing character: There is no ª in font cmr12!
+[11] [12] [13]
+Overfull \hbox (2.09239pt too wide) in paragraph at lines 741--745
+\T1/cmr/m/n/12 with $\OML/cmm/m/it/12 i \OMS/cmsy/m/n/12 2 f\OT1/cmr/m/n/12 1\O
+ML/cmm/m/it/12 ; :::; n\OMS/cmsy/m/n/12 g$\T1/cmr/m/n/12 . $[]$ is jointly mod-
+eled over the space of ref-er-ence [] 
+ []
+
+[14]
+
+LaTeX Warning: Citation `matern_spatial_1960' undefined on input line 757.
+
+<./plots/yBiasPellaP010000Matern.png, id=175, 481.8pt x 481.8pt>
+File: ./plots/yBiasPellaP010000Matern.png Graphic file (type png)
+<use ./plots/yBiasPellaP010000Matern.png>
+Package pdftex.def Info: ./plots/yBiasPellaP010000Matern.png  used on input lin
+e 792.
+(pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
+<./plots/directionalBiasPellaP010000Matern.png, id=176, 481.8pt x 481.8pt>
+File: ./plots/directionalBiasPellaP010000Matern.png Graphic file (type png)
+<use ./plots/directionalBiasPellaP010000Matern.png>
+Package pdftex.def Info: ./plots/directionalBiasPellaP010000Matern.png  used on
+ input line 796.
+(pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
+<./plots/xBiasPellaP010000Matern.png, id=177, 481.8pt x 481.8pt>
+File: ./plots/xBiasPellaP010000Matern.png Graphic file (type png)
+<use ./plots/xBiasPellaP010000Matern.png>
+Package pdftex.def Info: ./plots/xBiasPellaP010000Matern.png  used on input lin
+e 797.
+(pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[15]
+<./plots/curveCompareX0.5Z0.5.png, id=185, 481.8pt x 481.8pt>
+File: ./plots/curveCompareX0.5Z0.5.png Graphic file (type png)
+<use ./plots/curveCompareX0.5Z0.5.png>
+Package pdftex.def Info: ./plots/curveCompareX0.5Z0.5.png  used on input line 8
+21.
+(pdftex.def)             Requested size: 469.75502pt x 469.77148pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[4] [5 <./plots/srrSchaeffer.png (PNG copy)>]
-<./plots/srr1.1.png, id=85, 481.8pt x 481.8pt>
-File: ./plots/srr1.1.png Graphic file (type png)
-<use ./plots/srr1.1.png>
-Package pdftex.def Info: ./plots/srr1.1.png  used on input line 280.
-(pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
-<./plots/srr2.png, id=86, 481.8pt x 481.8pt>
-File: ./plots/srr2.png Graphic file (type png)
-<use ./plots/srr2.png>
-Package pdftex.def Info: ./plots/srr2.png  used on input line 281.
-(pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
+<./plots/curveCompareX1Z0.6.png, id=186, 481.8pt x 481.8pt>
+File: ./plots/curveCompareX1Z0.6.png Graphic file (type png)
+<use ./plots/curveCompareX1Z0.6.png>
+Package pdftex.def Info: ./plots/curveCompareX1Z0.6.png  used on input line 827
+.
+(pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
+<./plots/curveCompareX1Z0.2.png, id=187, 481.8pt x 481.8pt>
+File: ./plots/curveCompareX1Z0.2.png Graphic file (type png)
+<use ./plots/curveCompareX1Z0.2.png>
+Package pdftex.def Info: ./plots/curveCompareX1Z0.2.png  used on input line 828
+.
+(pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
+<./plots/curveCompareX3.5Z0.6.png, id=188, 481.8pt x 481.8pt>
+File: ./plots/curveCompareX3.5Z0.6.png Graphic file (type png)
+<use ./plots/curveCompareX3.5Z0.6.png>
+Package pdftex.def Info: ./plots/curveCompareX3.5Z0.6.png  used on input line 8
+31.
+(pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
+<./plots/curveCompareX3.5Z0.2.png, id=189, 481.8pt x 481.8pt>
+File: ./plots/curveCompareX3.5Z0.2.png Graphic file (type png)
+<use ./plots/curveCompareX3.5Z0.2.png>
+Package pdftex.def Info: ./plots/curveCompareX3.5Z0.2.png  used on input line 8
+32.
+(pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
 
-Overfull \hbox (2.61047pt too wide) in paragraph at lines 280--282
-[][] [] 
- []
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[6 <./plots/srr1.1.png (PNG copy)> <./plots/srr2.png (PNG copy)>] [7] [8]
-Overfull \hbox (2.09239pt too wide) in paragraph at lines 459--463
-\T1/cmr/m/n/12 with $\OML/cmm/m/it/12 i \OMS/cmsy/m/n/12 2 f\OT1/cmr/m/n/12 1\O
-ML/cmm/m/it/12 ; :::; n\OMS/cmsy/m/n/12 g$\T1/cmr/m/n/12 . $[]$ is jointly mod-
-eled over the space of ref-er-ence [] 
- []
-
-
-LaTeX Warning: Citation `matern_spatial_1960' undefined on input line 480.
-
-[9] [10]
-
-LaTeX Warning: Citation `mangel_perspective_2013' undefined on input line 598.
-
-
-LaTeX Warning: Citation `maunder_is_2003' undefined on input line 598.
-
-
-LaTeX Warning: Citation `punt_extending_2019' undefined on input line 605.
-
-
-LaTeX Warning: Citation `shepherd_family_1982' undefined on input line 609.
-
-
-LaTeX Warning: Citation `pella_generalized_1969' undefined on input line 609.
-
-
-Overfull \hbox (14.33278pt too wide) in paragraph at lines 626--635
-\T1/cmr/m/n/12 nat-u-ral mor-tal-ity fixed at $\OML/cmm/m/it/12 M \OT1/cmr/m/n/
-12 = 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 2$\T1/cmr/m/n/12 , these pro-duc-tion m
-od-els are [] 
- []
-
-[11
-
-] [12]
-Overfull \hbox (2.09239pt too wide) in paragraph at lines 733--737
-\T1/cmr/m/n/12 with $\OML/cmm/m/it/12 i \OMS/cmsy/m/n/12 2 f\OT1/cmr/m/n/12 1\O
-ML/cmm/m/it/12 ; :::; n\OMS/cmsy/m/n/12 g$\T1/cmr/m/n/12 . $[]$ is jointly mod-
-eled over the space of ref-er-ence [] 
- []
-
-[13]
 No file nickGrunlohAdvancement.bbl.
-[14
+[16 <./plots/yBiasPellaP010000Matern.png (PNG copy)> <./plots/directionalBiasPe
+llaP010000Matern.png (PNG copy)> <./plots/xBiasPellaP010000Matern.png (PNG copy
+)>] [17 <./plots/curveCompareX0.5Z0.5.png (PNG copy)>] [18 <./plots/curveCompar
+eX1Z0.6.png (PNG copy)> <./plots/curveCompareX1Z0.2.png (PNG copy)> <./plots/cu
+rveCompareX3.5Z0.6.png (PNG copy)> <./plots/curveCompareX3.5Z0.2.png (PNG copy)
+>]
+
+LaTeX Warning: Reference `FLN' on page 19 undefined on input line 1258.
+
+
+LaTeX Warning: Reference `bhCurve' on page 19 undefined on input line 1268.
+
+
+LaTeX Warning: Reference `bhCurve' on page 19 undefined on input line 1286.
+
+[19
 
 ]
-
-LaTeX Warning: Reference `FLN' on page 15 undefined on input line 901.
-
-
-LaTeX Warning: Reference `bhCurve' on page 15 undefined on input line 911.
-
-
-LaTeX Warning: Reference `bhCurve' on page 15 undefined on input line 929.
-
-[15
-
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2811.
- [16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2811.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3168.
+ [20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3168.
  (./nickGrunlohAdvancement.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2811.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2811.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3168.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3168.
 
+Package rerunfilecheck Info: File `nickGrunlohAdvancement.out' has not changed.
 
+(rerunfilecheck)             Checksum: 21E2CF1ED107050E1A3C492F51C4124D;553.
 
-Package rerunfilecheck Warning: File `nickGrunlohAdvancement.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `nickGrunlohAdvancement.out':
-(rerunfilecheck)             Before: 9496D7B0268542E453FBB5EC148A97E6;490
-(rerunfilecheck)             After:  9118718D65ABCF5DA317A14703E1C4FA;553.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2811.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3168.
  ) 
 Here is how much of TeX's memory you used:
- 11135 strings out of 481239
- 160600 string characters out of 5920378
- 448043 words of memory out of 5000000
- 26127 multiletter control sequences out of 15000+600000
- 553104 words of font info for 78 fonts, out of 8000000 for 9000
+ 11176 strings out of 481239
+ 162165 string characters out of 5920378
+ 449007 words of memory out of 5000000
+ 26164 multiletter control sequences out of 15000+600000
+ 551547 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,14n,45p,628b,509s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{equation.2.21} has been referenced but does not e
-xist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.pella_generalized_1969} has been referenced bu
-t does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.shepherd_family_1982} has been referenced but 
-does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.punt_extending_2019} has been referenced but d
-oes not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.maunder_is_2003} has been referenced but does 
-not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.mangel_perspective_2013} has been referenced b
-ut does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.matern_spatial_1960} has been referenced but d
-oes not exist, replaced by a fixed one
+ 43i,14n,45p,628b,503s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{cite.matern_spatial_1960} has been referenced but
+ does not exist, replaced by a fixed one
 
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fo
 nts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cmextra/cmbsy8.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx
-1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share
-/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/p
-ublic/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1
-200.pfb>
-Output written on nickGrunlohAdvancement.pdf (16 pages, 382596 bytes).
+lic/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib6.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb><
+/usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fon
+ts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-s
+uper/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on nickGrunlohAdvancement.pdf (20 pages, 659247 bytes).
 PDF statistics:
- 285 PDF objects out of 1000 (max. 8388607)
- 240 compressed objects within 3 object streams
- 65 named destinations out of 1000 (max. 500000)
- 88 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 308 PDF objects out of 1000 (max. 8388607)
+ 246 compressed objects within 3 object streams
+ 61 named destinations out of 1000 (max. 500000)
+ 130 words of extra memory for PDF output out of 10000 (max. 10000000)
 

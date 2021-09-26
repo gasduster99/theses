@@ -214,49 +214,64 @@ catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277,
 TT = length(catch)
 
 #
-ag = getPar(4, 0.7, 0.2)
+xi = 3.5
+zeta = 0.2
+ag = getPar(xi, zeta, M)
 alpha = ag[1]
 gamma = ag[2]
 beta = P0
+##
+#datGen = prodModel$new(
+#        dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #model
+#        time=c(1:TT), catch=catch[1:TT], M=M,                    #constants
+#        alpha=alpha, beta=beta, gamma=gamma,            #parameters
+#        lalpha=log(alpha), lbeta=log(beta),             #reparameterize
+#        lq=log(0.00049), lsdo=log(0.01160256) #log(0.1160256)           #nuisance paramete
+#        #xi=xi, zeta=zeta                                #other incidentals to carry along
+#)
+#datGen$iterate("lsode") #"vode")#("euler")#("daspk")
 #
-datGen = prodModel$new(
-        dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #model
-        time=c(1:TT), catch=catch[1:TT], M=M,                    #constants
-        alpha=alpha, beta=beta, gamma=gamma,            #parameters
-        lalpha=log(alpha), lbeta=log(beta),             #reparameterize
-        lq=log(0.00049), lsdo=log(0.01160256) #log(0.1160256)           #nuisance paramete
-        #xi=xi, zeta=zeta                                #other incidentals to carry along
-)
-datGen$iterate("vode")#("euler")#("daspk")
+##
+#cpue = rlnorm(TT, datGen$lq+log(datGen$N), exp(datGen$lsdo))
+#
+##
+#fit = prodModel$new(
+#        dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #model
+#        time=1:TT, catch=catch, M=M,                            #constants
+#        alpha=alpha, beta=P0, gamma=2,  #parameters
+#        lalpha=log(alpha), lbeta=log(P0),       #reparameterize
+#        lq=log(0.00049), lsdo=log(0.01160256)#, #log(0.1160256),                 #nuisance parameters
+#        #xi=xiSims[j], zeta=zetaSims[i]                          #other incidentals to carry along
+#)
+#fit$iterate("vode")
+
+##
+#optAns = fit$optimize(cpue,
+#        c('lsdo', 'lalpha'), #'lq'),
+#        lower   = c(log(0.001), log(M)), #log(1e-7)),
+#        upper   = c(log(1), log(100)), #log(1e-2)),
+#        gaBoost = list(run=10, parallel=FALSE, popSize=10^3),
+#        persistFor=5
+#)
 
 #
-cpue = rlnorm(TT, datGen$lq+log(datGen$N), exp(datGen$lsdo))
-
+dir = "./modsPellaFineQFixReduxP010000"
+fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xi, zeta)
+fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', dir, xi, zeta)
 #
-fit = prodModel$new(
-        dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #model
-        time=1:TT, catch=catch, M=M,                            #constants
-        alpha=alpha, beta=P0, gamma=2,  #parameters
-        lalpha=log(alpha), lbeta=log(P0),       #reparameterize
-        lq=log(0.00049), lsdo=log(0.01160256)#, #log(0.1160256),                 #nuisance parameters
-        #xi=xiSims[j], zeta=zetaSims[i]                          #other incidentals to carry along
-)
+dat = readRDS(fileDat)
+cpue = rlnorm(TT, dat$lq+log(dat$N), exp(dat$lsdo))
+#
+fit = readRDS(fileFit)
 fit$iterate("vode")
 
 #
 optAns = fit$optimize(cpue,
-        c('lsdo', 'lalpha'), #'lq'),
-        lower   = c(log(0.001), log(M)), #log(1e-7)),
-        upper   = c(log(1), log(100)), #log(1e-2)),
-        gaBoost = list(run=10, parallel=FALSE, popSize=10^3),
-        persistFor=5
-)
-optAns = fit$optimize(cpue,
         c('lsdo', 'lalpha', 'lbeta'),
-        lower   = c(log(0.001), log(M), log(P0/2)),     #log(10^3)), 
+        lower   = c(log(0.001), log(0), log(P0/2)),     #log(10^3)), 
         upper   = c(log(1), log(100), log(2*P0)),       #log(10^4)),
-        gaBoost = list(run=100, parallel=FALSE, popSize=10^3),
-        persistFor=5, cov=T
+        gaBoost = list(run=100, parallel=6, popSize=10^3),
+        persistFor=0, cov=T #persistFor=5, cov=T
 )
 #optAns = fit$optimize(cpue,
 #        c('lsdo', 'lalpha', 'lbeta'),

@@ -209,14 +209,14 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsPellaFineQFixReduxP010000/'
+place = './modsPellaFineQFixRFixP010000/'
 odeMethod = "lsode"
 
 ##grid for simulation
 #zetaSims = seq(0.4, 0.5, 0.025) #(seq(0.1, 0.9, 0.01)) #rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
 #xiSims =   (seq(3, 4, 0.25)) #(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
-zetaSims = 0.65 #seq(0.1, 0.9, 0.05) #(seq(0.1, 0.9, 0.01)) #rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
-xiSims =   rev(seq(0, 4, 0.5)) #(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
+zetaSims = seq(0.15, 0.7, 0.05)    #0.65 #seq(0.1, 0.9, 0.05) #(seq(0.1, 0.9, 0.01)) #rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
+xiSims = rev(seq(0.5, 4.5, 0.05))  #rev(seq(0, 4, 0.5)) #(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
 
 #start the parameters here
 alpha = 1
@@ -357,7 +357,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 			)
 			optAns = fit$optimize(cpue,
 			        c('lsdo', 'lalpha', 'lbeta'), 
-			        lower   = c(log(0.001), log(M), log(P0/2)), 	#log(10^3)), 
+			        lower   = c(log(0.001), log(0), log(P0/2)), 	#log(10^3)), 
 			        upper   = c(log(1), log(100), log(2*P0)),	#log(10^4)),
 			        gaBoost = list(run=100, parallel=FALSE, popSize=10^3),
 				persistFor = 5
@@ -366,7 +366,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 			tryCatch({
 				optAns = fit$optimize(cpue,
 					c('lsdo', 'lalpha', 'lbeta'), 
-                                	lower   = c(log(0.001), log(M), log(P0/2)), 
+                                	lower   = c(log(0.001), log(0), log(P0/2)), 
                                 	upper   = c(log(1), log(100), log(2*P0)), 
 					cov     = T
 					#c('lsdo', 'alpha', 'beta', 'lq'),                   				        
@@ -377,7 +377,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 				writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", xiSims[j], zetaSims[i]) )
 				optAns = fit$optimize(cpue,
 					c('lsdo', 'lalpha', 'lbeta'), 
-                                        lower   = c(log(0.001), log(M), log(P0/2)), 
+                                        lower   = c(log(0.001), log(0), log(P0/2)), 
                                         upper   = c(log(1), log(100), log(2*P0)), 
 					cov     = F
 					#c('lsdo', 'alpha', 'beta', 'lq'),                   				        
