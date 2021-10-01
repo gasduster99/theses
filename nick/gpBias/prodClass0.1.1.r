@@ -83,7 +83,7 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
                         rownames(self$N) = sprintf("TIME %d", self$time)
 			
 			#solve 
-        		self$N = ode(self$N0, self$time, private$dNdt, parms=NULL, method=method)[,2]
+        		capture.output( self$N <- ode(self$N0, self$time, private$dNdt, parms=NULL, method=method)[,2], file="/dev/null" )
 		},
 		
 		#

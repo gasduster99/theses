@@ -195,10 +195,13 @@ getlFV = function(fit, MM=10^4, samples=F){
 ##
 #P0 = 6000
 #dir = "./modsPellaFineQFixReduxP06000" 
+##
+#P0 = 10000
+#dir = "./modsPellaFineQFixReduxP010000" 
 #
 P0 = 10000
-dir = "./modsPellaFineQFixReduxP010000" 
-#
+dir = "./modsPellaFineQFixRFixP010000"
+
 #
 ##"./modsPellaFineQFix/" #"./modsShepFineQFix/" #"./modsShepFine/" #"./modsShepTry/" #'./modsFine/' #'./modsHess/'
 #
@@ -230,7 +233,7 @@ D = D[D$xiInv<cut,]
 D = D[D$zetaInv>0,]
 D = D[!is.na(D$xiInv),]
 ##
-png(sprintf('pellaDatP0%s.png', P0))
+png(sprintf('pellaDatP0%s2.png', P0))
 plot(D[,c("xiInv", "zetaInv")], 
 	ylim=c(min(D[,c("zetaInv", "zetaHat")]), max(zetaTop, max(D[,c("zetaInv", "zetaHat")]))), 
 	xlim=c(min(D[,c("xiInv", "xiHat")]), xiTop), #max(D[, c("xiInv")])), 
@@ -308,7 +311,7 @@ eucBias = mcmapply(function(xiHat, xi, zeta){
 eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
 
 #xi bias
-png(sprintf("xBiasPellaP0%s.png", P0))
+png(sprintf("xBiasPellaP0%s2.png", P0))
 #
 maxXBias = abs(max(xBias, na.rm=T))
 minXBias = abs(min(xBias, na.rm=T))
@@ -337,7 +340,7 @@ legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "de
 dev.off()
 
 #zeta bias
-png(sprintf("yBiasPellaP0%s.png", P0))
+png(sprintf("yBiasPellaP0%s2.png", P0))
 #
 maxYBias = abs(max(yBias, na.rm=T))
 minYBias = abs(min(yBias, na.rm=T))
@@ -365,7 +368,7 @@ legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "de
 dev.off()
 
 #euc bias
-png(sprintf("directionalBiasPellaP0%s.png", P0))
+png(sprintf("directionalBiasPellaP0%s2.png", P0))
 #
 eucCols = hcl.colors(41, "Reds 2", rev=T)
 #
@@ -400,12 +403,12 @@ take = X[,3]!=0.5
 yRes = y[take]
 XRes = X[take,]
 gpPredRes = gpPredict(XRes, XRes[,2:3], gpFit, asMat=F)
-png(sprintf('pellaResidualsP0%s.png', P0))
+png(sprintf('pellaResidualsP0%s2.png', P0))
 plot(XRes[,2], XRes[,3], col=map2color(yRes-gpPredRes, hcl.colors(10, "Blue-Red 3", rev=F)), pch=19)
 dev.off()
 
 #
-png(sprintf("pellaResP0%sHist.png", P0))
+png(sprintf("pellaResP0%sHist2.png", P0))
 hist(yRes-gpPredRes)
 dev.off()
 

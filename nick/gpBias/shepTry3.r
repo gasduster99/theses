@@ -2,6 +2,7 @@ rm(list=ls())
 
 #
 library(GA)
+library(pracma)
 library(rootSolve)
 #
 source('prodClass0.1.1.r')
@@ -11,7 +12,7 @@ source('prodClass0.1.1.r')
 #
 
 #
-strongRoot = function(f, par, extra, howGood, lower=c(0, 0), upper=c(2, 2), monitor=F){
+strongRoot = function(f, par, extra, howGood, lower=c(0, 0), upper=c(2, 2), monitor=F, gaOnly=F, gaOptim=T){
 	#f	: a function computing a system of equations to find a root of
 	#par	: a vactor of starting values for computing the roots
 	#extra	: a data.frame of other incidental values required for f
@@ -49,7 +50,7 @@ strongRoot = function(f, par, extra, howGood, lower=c(0, 0), upper=c(2, 2), moni
 	        popSize = 100*dm,
 	        maxiter = 1e6,
 	        run     = 200*dm,
-		optim   = T,
+		optim   = gaOptim,
 	        monitor = monitor#,suggestions = t(par)
 	)
 	parGA = gaRoot@solution[1,]
@@ -58,32 +59,60 @@ strongRoot = function(f, par, extra, howGood, lower=c(0, 0), upper=c(2, 2), moni
 	#print(isGood(parGA, extra))
 	#print(howGood(parGA, extra))
 	#print(parGA)
-	##
-	parMR = multiroot(f, parGA, parms=extra, maxiter=1e6, positive=T)$root
-	isMRGood = isGood(parMR, extra)
-	howMRGood = howGood(parMR, extra)
+	#
+	
+	#
+	parMR = NA
+	howMRGood = NA
+	isMRGood = F
+	if( !gaOnly ){
+		#
+		parMR = multiroot(f, parGA, parms=extra, maxiter=1e6, positive=T)$root
+		#
+		isMRGood = isGood(parMR, extra)
+		howMRGood = howGood(parMR, extra)
+	}
 	#print( isGood(parMR, extra) )	
 	#print( howGood(parMR, extra) )
 	#print( parMR )
 	
 	#
 	l = c(GA=howGAGood, MR=howMRGood)
-	who = which(l==min(l, na.rm=T))
+	#who = which(l==min(l, na.rm=T))
+	who = which(l==max(l, na.rm=T))	
 	
 	#
-	if( isGAGood & isMRGood ){ return(c(GA=parGA, MR=parMR)[who]) }
-	if( isGAGood & !isMRGood ){ return(c(GA=parGA)) }
-	if( !isGAGood & isMRGood ){ return(c(MR=parMR)) }
+        if( isGAGood & isMRGood ){ return(list(GA=parGA, MR=parMR)[[who]]) }
+        if( isGAGood & !isMRGood ){ return(c(GA=parGA)) }
+        if( !isGAGood & isMRGood ){ return(c(MR=parMR)) }
 
-	#
-	return(c(GA=parGA, MR=parMR)[who])
+        #both are not good, but return best try anyway
+        return(list(GA=parGA, MR=parMR)[[who]])
+
+	#parMR <- tryCatch({
+	#	capture.output( parMR<-multiroot(f, parGA, parms=extra, maxiter=1e6, positive=T)$root, file="/dev/null" )
+	#}, error=function(err){
+
+	##
+	#if( isGAGood & isMRGood ){ return(c(GA=parGA, MR=parMR)[who]) }
+	#if( isGAGood & !isMRGood ){ return(c(GA=parGA)) }
+	#if( !isGAGood & isMRGood ){ return(c(MR=parMR)) }
+
+	##
+	#return(c(GA=parGA, MR=parMR)[who])
 }
 
 
 #
 dPdt = function(t, P, lalpha, lbeta, gamma, M, catch){
-        #
-        C = catch[t]
+        #C = catch[t]
+	#linearly interpolate catches
+        ft = floor(t)
+        q  = (t-ft)
+        Cl = catch[ft]
+        Cu = catch[ft+1]
+        C = q*Cu + (1-q)*Cl
+        if(q==0){ C=Cl }
         #
         R = exp(lalpha)*P/(1+exp(lbeta)*P^(1/gamma))
         out = R - M*P - C
@@ -111,7 +140,22 @@ PBar = function(ff, alpha, beta, gamma, M){ (alpha/(M+ff)-1)^gamma * beta^-gamma
 
 #
 getBeta = function(alpha, gamma, M, P0){
-	optim(0.01, function(x){ (PBar(0, alpha, x, gamma, M)-P0)^2 }, method='Brent', lower=0, upper=10^6)$par
+	#
+	ob = function(x){ log((PBar(0, alpha, x, gamma, M)-P0)^2+1) }
+	#
+	order = golden_ratio(ob, 10^-40, 10^6, tol=10^-40)$xmin
+	#
+	left = order/1e10
+	right = order*10
+	out = optim(right, ob, method='Brent', lower=left, upper=right)$par
+	while((out==right | ob(out/2)<ob(out)) & ob(right/2)<ob(right)){
+		right = right/2
+		out = optim(right, ob, method='Brent', lower=order/1e10, upper=right)$par
+	}
+	#
+	return(out)
+	#optim(0.01, function(x){ (PBar(0, alpha, x, gamma, M)-P0)^2 }, method='Brent', lower=10^-15.5, upper=10^-13.5)$par
+	#optim(0.01, function(x){ (PBar(0, alpha, x, gamma, M)-P0)^2 }, method='Brent', lower=10^-31, upper=10^-25)$par
 }
 
 #
@@ -138,7 +182,7 @@ f = function(par, extra){
 	
 	#	
 	beta = getBeta(alpha, gamma, M, extra$P0) 
-	
+
 	#par values 
 	FStar = FMsy(alpha, gamma, M) 
 	PStar = PBar(FStar, alpha, beta, gamma, M)
@@ -165,7 +209,8 @@ howGood = function(par, extra){
 	if( length(fOut)<2 ){ return(-Inf) }
 	#c(FStar/M-xi, PStar/PZero-zeta)
 	refComp = c(fOut[1]/extra$M, (fOut[2]+extra$P0*extra$zeta)/PZero-extra$zeta)
-	propNorm = norm(matrix(refComp, ncol=2))/norm(matrix(c(extra$xi, extra$zeta), ncol=2))
+	#propNorm = norm(matrix(refComp, ncol=2))/norm(matrix(c(extra$xi, extra$zeta), ncol=2))
+	propNorm = norm(matrix(refComp, ncol=2), '2')
 	return( -propNorm )
 }
 isGood = function(par, extra, thresh=0.05){ 
@@ -192,8 +237,8 @@ M = 0.2
 P0 = 10000
 
 #               
-xi = 3.4		#2          #3.4    #1.1
-zeta = 0.75	#0.25     #0.74   #0.6
+xi = 3.5		#2          #3.4    #1.1
+zeta = 0.45	#0.25     #0.74   #0.6
 
 #
 #ROOTS
@@ -215,17 +260,41 @@ PZero = PBar(0, alpha, beta, gamma, M)
 par = c(alpha, gamma) 
 extra = data.frame(xi=xi, zeta=zeta, M=M, P0=P0)
 
+#par = strongRoot(f, par, extra, howGood, lower=c(0, 0), upper=c(5, 5), monitor=T, gaOnly=T, gaOptim=T)
+par <- tryCatch({
+        #try with multiroot and optimization
+        par = strongRoot(f, par, extra, howGood, lower=c(0, 0), upper=c(5, 5), monitor=T, gaOnly=F, gaOptim=T)
+}, error=function(err){
+        #
+        print(err)
+        #if that fails for some reason do gaOnly and no optimization
+        par = strongRoot(f, par, extra, howGood, lower=c(0, 0), upper=c(5, 5), monitor=T, gaOnly=T, gaOptim=F)
+})
+
+##
+#MR = multiroot(f, par, parms=extra, maxiter=1e6, positive=T)
+#par = MR$root
+##
+#if( !isGood(par, extra) ){
+#	par = strongRoot(f, par, extra, howGood, lower=c(0, 0), upper=c(5, 5), monitor=T)
+#}
 #
-MR = multiroot(f, par, parms=extra, maxiter=1e6, positive=T)
-par = MR$root
+#writeLines('\nRoots')
+#print(isGood(par, extra))
+#print(howGood(par, extra))
 #
-if( !isGood(par, extra) ){
-	par = strongRoot(f, par, extra, howGood, lower=c(0, 0), upper=c(5, 5), monitor=T)
-}
+
 #
-writeLines('\nRoots')
-print(isGood(par, extra))
-print(howGood(par, extra))
+alpha = par[1]
+gamma = par[2]
+beta  = getBeta(alpha, gamma, M, P0)
+#
+FStar = FMsy(alpha, gamma, M) #uniroot.all(function(ff){ 1 - exp(log(ff)+log(alpha)+log(gamma) - (2*log(M+ff)+log(alpha/(M+ff)-1))) }, c(0, FUpper)) 
+PStar = PBar(FStar, alpha, beta, gamma, M)
+PZero = PBar(0, alpha, beta, gamma, M)
+#
+writeLines(sprintf("\nPID: %s, Xi: %s, Zeta: %s -> (%f, %f, %f) -> (%f, %f) isGood: %d \n", Sys.getpid(), xi, zeta, alpha, beta, gamma, FStar/M, PStar/PZero, isGood(par, extra)))
+
 
 #
 #POP DYN
@@ -244,32 +313,33 @@ truth = prodModel$new(
         lq=log(0.004), lsdo=log(0.1160256),			#nuisance parameters
         xi=xi, zeta=zeta				#other incidentals to carry along
 )
-truth$iterate()
+truth$iterate("lsode")
 
-#cpue 
-dat = rlnorm(TT, truth$lq+log(truth$N), exp(truth$lsdo))
-
+##cpue 
+#dat = rlnorm(TT, truth$lq+log(truth$N), exp(truth$lsdo))
+#
+###
+##layout(matrix(1:2, ncol=2))
+##curve(shepSRR(x, truth$alpha, truth$beta, truth$gamma), 0, 20000)
+##truth$plotMean()
+#
 ##
-#layout(matrix(1:2, ncol=2))
-#curve(shepSRR(x, truth$alpha, truth$beta, truth$gamma), 0, 20000)
-#truth$plotMean()
-
-#
-fit = prodModel$new(
-        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(0, exp(lalpha), exp(lbeta), gamma, M)}, #PBar(0, alpha, beta, gamma, M)}, #model
-        time=1:TT, catch=catch, M=M,  			#constants
-        lalpha=log(alpha), lbeta=log(beta), gamma=1,	#parameters
-        lq=log(0.004), lsdo=log(0.1160256),			#nuisance parameters
-        xi=xi, zeta=zeta				#other incidentals to carry along
-)
-#
-optAns = fit$optimize(dat,
-        c('lsdo', 'lalpha', 'lbeta'), #lq is optimized via profile likelihood internally
-        lower   = c(log(0.001), log(M), log(10^-6)),
-        upper   = c(log(1), log(100), log(10)),
-        gaBoost = list(run=10, parallel=FALSE, popSize=10^3),
-	persistFor = 5
-)
+#fit = prodModel$new(
+#        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(0, exp(lalpha), exp(lbeta), gamma, M)}, #PBar(0, alpha, beta, gamma, M)}, #model
+#        time=1:TT, catch=catch, M=M,  			#constants
+#        lalpha=log(alpha), lbeta=log(beta), gamma=1,	#parameters
+#        lq=log(0.004), lsdo=log(0.1160256),			#nuisance parameters
+#        xi=xi, zeta=zeta				#other incidentals to carry along
+#)
+#fit$iterate("lsode")
+##
+#optAns = fit$optimize(dat,
+#        c('lsdo', 'lalpha', 'lbeta'), #lq is optimized via profile likelihood internally
+#        lower   = c(log(0.001), log(M), log(10^-40)),
+#        upper   = c(log(1), log(100), log(10^6)),
+#        gaBoost = list(run=10, parallel=FALSE, popSize=10^3),
+#	persistFor = 5
+#)
 
 
 

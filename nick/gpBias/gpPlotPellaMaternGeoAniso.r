@@ -196,11 +196,14 @@ getlFV = function(fit, MM=10^4, samples=F){
 ##
 #P0 = 6000
 #dir = "./modsPellaFineQFixReduxP06000" 
+##
+#P0 = 10000
+#dir = "./modsPellaFineQFixReduxP010000"
+#set.seed(10)#10
 #
 P0 = 10000
-dir = "./modsPellaFineQFixReduxP010000"
-set.seed(10)#10
-#
+dir = "./modsPellaFineQFixRFixP010000"
+
 #
 ##"./modsPellaFineQFix/" #"./modsShepFineQFix/" #"./modsShepFine/" #"./modsShepTry/" #'./modsFine/' #'./modsHess/'
 #
