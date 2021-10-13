@@ -222,7 +222,7 @@ xiSims =   seq(0, 4.5, 0.5) #0.05 #seq(0.5, 3.5, 0.25)		#seq(0.5, 3.5, 0.05)    
 M = 0.2
 #time: 70
 Dall = getData(dir, xiSims, zetaSims)
-D = Dall[Dall$lF<2,]
+D = Dall[Dall$lF<10,]
 ##
 #bub = 0.2
 #D = Dall[Dall$xiInv<=max(xiSims)*(1+bub),]

@@ -220,7 +220,7 @@ xiSims =   seq(0, 4.5, 0.5) #0.05 #seq(0.5, 3.5, 0.25)		#seq(0.5, 3.5, 0.05)    
 M = 0.2
 #time: 70
 Dall = getData(dir, xiSims, zetaSims)
-D = Dall[Dall$lF<2,]
+D = Dall[Dall$lF<4,]
 ##
 #bub = 0.2
 #D = Dall[Dall$xiInv<=max(xiSims)*(1+bub),]
@@ -228,7 +228,7 @@ D = Dall[Dall$lF<2,]
 #D = D[D$zetaInv<=max(zetaSims)*(1+bub),]
 #D = D[D$zetaInv>=min(zetaSims)*(1-bub),]
 #D = D[D$lFV!=0 & D$xiBH<20,] #lalpha==0.04280697 is a numerical issue
-cut = 10
+cut = 300#10
 D = D[D$xiInv<cut,]
 D = D[D$zetaInv>0,]
 D = D[!is.na(D$xiInv),]
@@ -319,8 +319,11 @@ posCols = hcl.colors(round(100*maxXBias/(maxXBias+minXBias)), "Reds 2", rev=T)
 negCols = hcl.colors(round(100*minXBias/(maxXBias+minXBias)), "Blues 2", rev=F)
 xCols = c(negCols, "#FFFFFF", posCols)
 #
+xiMask = xiStar>xiBot & xiStar<xiTop
+zetaMask = zetaStar>zetaBot & zetaStar<zetaTop
+#
 par(mar=c(5, 4, 4, 5)+0.1)
-image(xiStar, zetaStar, xBias,
+image(xiStar, zetaStar, xBias, #xiStar[xiMask], zetaStar[zetaMask], xBias[xiMask, zetaMask],
 	col  = adjustcolor(xCols, alpha.f=0.6),  #hcl.colors(41, "RdBu", rev=T)
         xlab = 'Xi',
         ylab = 'Zeta',
@@ -333,7 +336,7 @@ image(xiStar, zetaStar, xBias,
 abline(h=0.5, lwd=3)
 show = seq(1, length(xCols), length.out=20)
 legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
-        sprintf("%1.1f", rev(seq(min(xBias, na.rm=T), max(xBias, na.rm=T), length.out=length(show)))),
+        sprintf("%1.1f", rev(seq(min(xBias[xiMask, zetaMask], na.rm=T), max(xBias[xiMask, zetaMask], na.rm=T), length.out=length(show)))),
         fill = rev(xCols[show]), #colMap[c(1, 10, 20)], 
         xpd = NA
 )
@@ -360,11 +363,17 @@ image(xiStar, zetaStar, yBias,
 #curve(0.5, from=0, to=12, lwd=3, add=T)
 abline(h=0.5, lwd=3)
 show = seq(1, length(yCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.2f", rev(seq(min(yBias, na.rm=T), max(yBias, na.rm=T), length.out=length(show)))),
+#        fill = rev(yCols[show]), #colMap[c(1, 10, 20)], 
+#        xpd = NA
+#) 
 legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
-        sprintf("%1.2f", rev(seq(min(yBias, na.rm=T), max(yBias, na.rm=T), length.out=length(show)))),
+        sprintf("%1.2f", rev(seq(min(yBias[xiMask, zetaMask], na.rm=T), max(yBias[xiMask, zetaMask], na.rm=T), length.out=length(show)))),
         fill = rev(yCols[show]), #colMap[c(1, 10, 20)], 
         xpd = NA
-) 
+)
+
 dev.off()
 
 #euc bias
@@ -384,15 +393,20 @@ image(xiStar, zetaStar, eucBias,
 #curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
 abline(h=0.5, lwd=3)
 w = mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
-thin = c(T,rep(F,135))
+thin = c(T,rep(F,125))#135))
 quiver(
         XStar[w,2][thin], XStar[w,3][thin],
         xBias[w][thin], yBias[w][thin],
         scale=0.025
 )
 show = seq(1, length(eucCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.1f", rev(seq(min(eucBias, na.rm=T), max(eucBias, na.rm=T), length.out=length(show)))),
+#        fill = rev(eucCols[show]), #colMap[c(1, 10, 20)], 
+#        xpd = NA
+#)
 legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
-        sprintf("%1.1f", rev(seq(min(eucBias, na.rm=T), max(eucBias, na.rm=T), length.out=length(show)))),
+        sprintf("%1.1f", rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), length.out=length(show)))),
         fill = rev(eucCols[show]), #colMap[c(1, 10, 20)], 
         xpd = NA
 )

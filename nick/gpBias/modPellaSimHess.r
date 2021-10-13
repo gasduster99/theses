@@ -217,7 +217,7 @@ odeMethod = "lsode"
 #xiSims =   (seq(3, 4, 0.25)) #(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
 #zetaSims = rev(seq(0.15, 0.7, 0.05))    #0.65 #seq(0.1, 0.9, 0.05) #(seq(0.1, 0.9, 0.01)) #rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
 #xiSims = rev(seq(0.5, 4.5, 0.05))  #rev(seq(0, 4, 0.5)) #(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
-zetaSims = (seq(0.6, 0.7, 0.05))    	
+zetaSims = (seq(0.45, 0.65, 0.1))    	
 xiSims = rev(seq(0.5, 4.5, 0.05))
 
 
@@ -341,15 +341,16 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 			#FIT
 			#
 		
-			#NOTE: N0Funk does not function correctly with $clone()
-        		fit = prodModel$new(
-        		        dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #model
-        		        time=1:TT, catch=catch, M=M,				#constants
-        		        alpha=alpha, beta=P0, gamma=2,	#parameters
-				lalpha=log(alpha), lbeta=log(P0),	#reparameterize
-        		        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256),			#nuisance parameters
-        		        xi=xiSims[j], zeta=zetaSims[i]				#other incidentals to carry along
-        		)
+			##NOTE: N0Funk does not function correctly with $clone()
+        		#fit = prodModel$new(
+        		#        dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #model
+        		#        time=1:TT, catch=catch, M=M,				#constants
+        		#        alpha=alpha, beta=P0, gamma=2,	#parameters
+			#	lalpha=log(alpha), lbeta=log(P0),	#reparameterize
+        		#        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256),			#nuisance parameters
+        		#        xi=xiSims[j], zeta=zetaSims[i]				#other incidentals to carry along
+        		#)
+			fit = readRDS('modsPellaFineQFixRFixP010000/fit_xi4_zeta0.35.rda')
 			fit$iterate(odeMethod)
 			#optimization
 			optAns = fit$optimize(cpue,
@@ -361,8 +362,8 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 			)
 			optAns = fit$optimize(cpue,
 			        c('lsdo', 'lalpha', 'lbeta'), 
-			        lower   = c(log(0.001), log(0), log(P0/2)), 	#log(10^3)), 
-			        upper   = c(log(1), log(100), log(2*P0)),	#log(10^4)),
+			        lower   = c(log(0.001), log(0), log(P0/10)), 	#log(10^3)), 
+			        upper   = c(log(1), log(100), log(1.5*P0)),	#log(10^4)),
 			        gaBoost = list(run=100, parallel=FALSE, popSize=10^3),
 				persistFor = 5
 			)
@@ -370,8 +371,8 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 			tryCatch({
 				optAns = fit$optimize(cpue,
 					c('lsdo', 'lalpha', 'lbeta'), 
-                                	lower   = c(log(0.001), log(0), log(P0/2)), 
-                                	upper   = c(log(1), log(100), log(2*P0)), 
+                                	lower   = c(log(0.001), log(0), log(P0/10)), 
+                                	upper   = c(log(1), log(100), log(1.5*P0)), 
 					cov     = T
 					#c('lsdo', 'alpha', 'beta', 'lq'),                   				        
                                         #lower   = c(log(0.001), eps(), eps(), log(1e-7)),
@@ -381,8 +382,8 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 				writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", xiSims[j], zetaSims[i]) )
 				optAns = fit$optimize(cpue,
 					c('lsdo', 'lalpha', 'lbeta'), 
-                                        lower   = c(log(0.001), log(0), log(P0/2)), 
-                                        upper   = c(log(1), log(100), log(2*P0)), 
+                                        lower   = c(log(0.001), log(0), log(P0/10)), 
+                                        upper   = c(log(1), log(100), log(1.5*P0)), 
 					cov     = F
 					#c('lsdo', 'alpha', 'beta', 'lq'),                   				        
                                         #lower   = c(log(0.001), eps(), eps(), log(1e-7)),
