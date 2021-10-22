@@ -13,6 +13,7 @@ library(RColorBrewer)
 library(scatterplot3d)
 #
 source('gpFunk.r')
+#source('gpFunkGaussLxLy.r')
 
 #
 #FUNCTIONS
@@ -156,15 +157,18 @@ getlFV = function(fit, MM=10^4, samples=F){
 #
 
 #
-dir = "./modsShepFineQFix/" #"./modsShepFine/" #"./modsShepTry/" #'./modsFine/' #'./modsHess/'
+dir = "./modsShepFineQFixBFix/" #"./modsShepFineQFix/" #"./modsShepFine/" #"./modsShepTry/" #'./modsFine/' #'./modsHess/'
 #
-zetaSims = seq(0.1, 0.8, 0.01) #seq(0.1, 0.8, 0.05) 	#rev(seq(0.1, 0.80, 0.01)) #
-xiSims =   seq(0.5, 3.5, 0.05) #seq(0.5, 3.5, 0.25)		#seq(0.5, 3.5, 0.05)       #
+zetaSims = seq(0.1, 0.65, 0.05) #seq(0.1, 0.8, 0.01) #seq(0.1, 0.8, 0.05) 	#rev(seq(0.1, 0.80, 0.01)) #
+xiSims =   seq(0.5, 3.5, 0.1) #seq(0.5, 3.5, 0.05) #seq(0.5, 3.5, 0.25)		#seq(0.5, 3.5, 0.05)       #
 
 #
 M = 0.2
 #time: 70
 D = getData(dir, xiSims, zetaSims)
+#plot(D$xiInv, D$zetaInv, xlim=c(0.4, 3.5), ylim=c(0.15, 0.65))
+#x = seq(0, 7, 0.1)
+#lines(x, 1/(x+2))
 #
 bub = 0.2
 D = D[D$xiInv<=max(xiSims)*(1+bub),]
@@ -173,7 +177,7 @@ D = D[D$zetaInv<=max(zetaSims)*(1+bub),]
 D = D[D$zetaInv>=min(zetaSims)*(1-bub),]
 D = D[D$lFV!=0 & D$xiBH<20,] #lalpha==0.04280697 is a numerical issue
 #
-png('shepDat.png')
+png('shepDat1.png')
 plot(D[,c("xiInv", "zetaInv")], 
 	ylim=c(min(D[,c("zetaInv", "zetaBH")]), max(D[,c("zetaInv", "zetaBH")])), 
 	xlim=c(min(D[,c("xiInv", "xiBH")]), max(D[, c("xiInv", "xiBH")])),
@@ -215,7 +219,7 @@ eucBias = mcmapply(function(xiHat, xi, zeta){
 eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
 
 #xi bias
-png("xBias.png")
+png("xBias1.png")
 #
 maxXBias = abs(max(xBias, na.rm=T))
 minXBias = abs(min(xBias, na.rm=T))
@@ -238,61 +242,61 @@ legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "de
         xpd = NA
 )
 dev.off()
-
-#zeta bias
-png("yBias.png")
 #
-maxYBias = abs(max(yBias, na.rm=T))
-minYBias = abs(min(yBias, na.rm=T))
-posCols = hcl.colors(round(100*maxYBias/(maxYBias+minYBias)), "Reds 2", rev=T)
-negCols = hcl.colors(round(100*minYBias/(maxYBias+minYBias)), "Blues 2", rev=F)
-yCols = c(negCols, "#FFFFFF", posCols)
+##zeta bias
+#png("yBias.png")
+##
+#maxYBias = abs(max(yBias, na.rm=T))
+#minYBias = abs(min(yBias, na.rm=T))
+#posCols = hcl.colors(round(100*maxYBias/(maxYBias+minYBias)), "Reds 2", rev=T)
+#negCols = hcl.colors(round(100*minYBias/(maxYBias+minYBias)), "Blues 2", rev=F)
+#yCols = c(negCols, "#FFFFFF", posCols)
+##
+#par(mar=c(5, 4, 4, 5)+0.1)
+#image(xiStar, zetaStar, yBias,
+#	col  = adjustcolor(yCols, alpha.f=0.6), 
+#        xlab = 'Xi',
+#        ylab = 'Zeta',
+#	main = "Bias in Estimated Optimal Biomass"
+#)
+#curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+#show = seq(1, length(yCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.2f", rev(seq(min(yBias, na.rm=T), max(yBias, na.rm=T), length.out=length(show)))),
+#        fill = rev(yCols[show]), #colMap[c(1, 10, 20)], 
+#        xpd = NA
+#) 
+#dev.off()
 #
-par(mar=c(5, 4, 4, 5)+0.1)
-image(xiStar, zetaStar, yBias,
-	col  = adjustcolor(yCols, alpha.f=0.6), 
-        xlab = 'Xi',
-        ylab = 'Zeta',
-	main = "Bias in Estimated Optimal Biomass"
-)
-curve(1/(x+2), from=0, to=4, lwd=3, add=T)
-show = seq(1, length(yCols), length.out=20)
-legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
-        sprintf("%1.2f", rev(seq(min(yBias, na.rm=T), max(yBias, na.rm=T), length.out=length(show)))),
-        fill = rev(yCols[show]), #colMap[c(1, 10, 20)], 
-        xpd = NA
-) 
-dev.off()
-
-#euc bias
-png("directionalBias.png")
+##euc bias
+#png("directionalBias.png")
+##
+#eucCols = hcl.colors(41, "Reds 2", rev=T)
+##
+#par(mar=c(5, 4, 4, 5)+0.1)
+#image(xiStar, zetaStar, eucBias,
+#        col  = adjustcolor(eucCols, alpha.f=0.6),
+#        xlab = 'Xi',
+#        ylab = 'Zeta',
+#	main = "Directional Bias"
+#)
+#curve(1/(x+2), from=0, to=4, lwd=3, add=T) 
+#w = (XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+#thin = c(T,rep(F,60))
+#quiver(
+#        XStar[w,2][thin], XStar[w,3][thin],
+#        xBias[w][thin], yBias[w][thin],
+#        scale=0.025
+#)
+#show = seq(1, length(eucCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.1f", rev(seq(min(eucBias, na.rm=T), max(eucBias, na.rm=T), length.out=length(show)))),
+#        fill = rev(eucCols[show]), #colMap[c(1, 10, 20)], 
+#        xpd = NA
+#)
+#dev.off()
 #
-eucCols = hcl.colors(41, "Reds 2", rev=T)
-#
-par(mar=c(5, 4, 4, 5)+0.1)
-image(xiStar, zetaStar, eucBias,
-        col  = adjustcolor(eucCols, alpha.f=0.6),
-        xlab = 'Xi',
-        ylab = 'Zeta',
-	main = "Directional Bias"
-)
-curve(1/(x+2), from=0, to=4, lwd=3, add=T) 
-w = (XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
-thin = c(T,rep(F,60))
-quiver(
-        XStar[w,2][thin], XStar[w,3][thin],
-        xBias[w][thin], yBias[w][thin],
-        scale=0.025
-)
-show = seq(1, length(eucCols), length.out=20)
-legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
-        sprintf("%1.1f", rev(seq(min(eucBias, na.rm=T), max(eucBias, na.rm=T), length.out=length(show)))),
-        fill = rev(eucCols[show]), #colMap[c(1, 10, 20)], 
-        xpd = NA
-)
-dev.off()
-
-#residuals
+##residuals
 
 
 

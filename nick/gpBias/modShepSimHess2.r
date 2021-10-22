@@ -408,6 +408,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 		if(!any(is.na(datGen$N)) & !any(datGen$N<0) & isGood(par, extra)){
 			#make data to fit
 			cpue = rlnorm(TT, datGen$lq+log(datGen$N), exp(datGen$lsdo))
+			dat$cpue = cpue	
 			#save
 			datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, xiSims[j], zetaSims[i]))
 			##plot
