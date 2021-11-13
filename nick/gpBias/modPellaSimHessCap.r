@@ -220,7 +220,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsPellaCap/'
+place = './modsPellaCapNoQ/'
 odeMethod = "lsode"
 
 ##grid for simulation
@@ -369,14 +369,16 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 			        lower   = c(log(0.001), log(M)), #log(1e-7)),
 			        upper   = c(log(1), log(100)), #log(1e-2)),
 			        gaBoost = list(run=10, parallel=FALSE, popSize=10^3),
-				persistFor = 5
+				persistFor = 5,
+				fitQ    = F
 			)
 			optAns = fit$optimize(cpue,
 			        c('lsdo', 'lalpha', 'lbeta'), 
 			        lower   = c(log(0.001), log(0), log(P0/10)), 	#log(10^3)), 
 			        upper   = c(log(1), log(100), log(1.5*P0)),	#log(10^4)),
 			        gaBoost = list(run=100, parallel=FALSE, popSize=10^3),
-				persistFor = 5
+				persistFor = 5,
+				fitQ    = F
 			)
 			#get hessian if possible
 			tryCatch({
@@ -384,7 +386,8 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 					c('lsdo', 'lalpha', 'lbeta'), 
                                 	lower   = c(log(0.001), log(0), log(P0/10)), 
                                 	upper   = c(log(1), log(100), log(1.5*P0)), 
-					cov     = T
+					cov     = T,
+					fitQ    = F
 					#c('lsdo', 'alpha', 'beta', 'lq'),                   				        
                                         #lower   = c(log(0.001), eps(), eps(), log(1e-7)),
                                         #upper   = c(log(1), 10, 2, log(1e-2)),
@@ -395,7 +398,8 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 					c('lsdo', 'lalpha', 'lbeta'), 
                                         lower   = c(log(0.001), log(0), log(P0/10)), 
                                         upper   = c(log(1), log(100), log(1.5*P0)), 
-					cov     = F
+					cov     = F,
+					fitQ    = F
 					#c('lsdo', 'alpha', 'beta', 'lq'),                   				        
                                         #lower   = c(log(0.001), eps(), eps(), log(1e-7)),
                                         #upper   = c(log(1), 10, 2, log(1e-2)), 

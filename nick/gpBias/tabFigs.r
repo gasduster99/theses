@@ -40,16 +40,19 @@ FMsy = function(alpha, gamma, M){
 ##
 #dir = "./modsPellaFineQFixReduxP010000" 
 #M = 0.2
+##
+#dir = "./modsPellaFineQFixRFixP010000" 
+#M = 0.2
 #
-dir = "./modsPellaFineQFixRFixP010000" 
+dir = "./modsPellaFlat0.5"
 M = 0.2
 
-#
-catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277, 254, 170, 97, 91, 177, 216, 229, 211, 231, 223)
+##
+#catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277, 254, 170, 97, 91, 177, 216, 229, 211, 231, 223)
 
 #
-xi = 1
-zeta = 0.2
+xi = 2.3 	#1
+zeta = 0.25 	#0.2
 fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xi, zeta)
 fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', dir, xi, zeta)
 #
@@ -73,7 +76,7 @@ lns = mapply(function(a, b){SRR(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
 qLns = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
 
 #
-png(sprintf("curveCompareX%sZ%s.png", xi, zeta))
+#png(sprintf("curveCompareX%sZ%s.png", xi, zeta))
 cols = brewer.pal(9, "Set1")
 curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, 
 	lwd=3, 
@@ -87,205 +90,206 @@ polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])),
         border=F
 )
 curve(SRR(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, lwd=3, add=T, col=cols[1])
+rug(fit$N)
 legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", cols[1]), lwd=3)
-dev.off()
+#dev.off()
 
 #(1.0, 0.2)       &              &               &               &               &               &
 ff = FMsy(fit$alpha, fit$gamma, M)
 writeLines(sprintf("(%1.1f, %1.1f)\t& %1.2f\t& %1.2f\t& %1.1f\t& %1.2f\t& %1.1e\t& %1.3f\t", dat$xi, dat$zeta, ff/M, PBar(ff, fit$alpha, fit$beta, fit$gamma, M)/fit$N0, fit$N0, fit$alpha, fit$q, fit$sdo))
 
 
+##
+#xi = 1
+#zeta = 0.55
+#fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xi, zeta)
+#fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', dir, xi, zeta)
+##
+#dat = readRDS(fileDat)
+#fit = readRDS(fileFit)
 #
-xi = 1
-zeta = 0.55
-fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xi, zeta)
-fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', dir, xi, zeta)
+##
+#xMax = max(dat$N0, fit$N0)
+#grd = 0:xMax
+#yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), na.rm=T)
 #
-dat = readRDS(fileDat)
-fit = readRDS(fileFit)
-
+##
+#MM = 10^4
+#who = c('lalpha', 'lbeta')
+#C = fit$rsCov[who, who]
+#m = c(fit$lalpha, fit$lbeta)
+#sam = rmvnorm(MM, m, C)
+##
+#grd = 0:10000
+#lns = mapply(function(a, b){SRR(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
+#qLns = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
 #
-xMax = max(dat$N0, fit$N0)
-grd = 0:xMax
-yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), na.rm=T)
-
+##
+#png(sprintf("curveCompareX%sZ%s.png", xi, zeta))
+#cols = brewer.pal(9, "Set1")
+#curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, 
+#	lwd=3, 
+#	ylim=c(0, yMax),
+#	ylab="Recruitment",
+#	xlab="B",
+#	main=TeX(sprintf("$\\xi$=%s  $\\zeta$=%s", xi, zeta))
+#)
+#polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
+#	col=adjustcolor(cols[1], alpha.f=0.2),
+#        border=F
+#)
+#curve(SRR(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, lwd=3, add=T, col=cols[1])
+#legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", cols[1]), lwd=3)
+#dev.off()
 #
-MM = 10^4
-who = c('lalpha', 'lbeta')
-C = fit$rsCov[who, who]
-m = c(fit$lalpha, fit$lbeta)
-sam = rmvnorm(MM, m, C)
+##
+#ff = FMsy(fit$alpha, fit$gamma, M)
+#writeLines(sprintf("(%1.1f, %1.1f)\t& %1.1f\t& %1.1f\t& %1.1f\t& %1.1f\t& %1.1e\t& %1.3f\t", dat$xi, dat$zeta, ff/M, PBar(ff, fit$alpha, fit$beta, fit$gamma, M)/fit$N0, fit$N0, fit$alpha, fit$q, fit$sdo))
 #
-grd = 0:10000
-lns = mapply(function(a, b){SRR(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
-qLns = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
-
 #
-png(sprintf("curveCompareX%sZ%s.png", xi, zeta))
-cols = brewer.pal(9, "Set1")
-curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, 
-	lwd=3, 
-	ylim=c(0, yMax),
-	ylab="Recruitment",
-	xlab="B",
-	main=TeX(sprintf("$\\xi$=%s  $\\zeta$=%s", xi, zeta))
-)
-polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
-	col=adjustcolor(cols[1], alpha.f=0.2),
-        border=F
-)
-curve(SRR(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, lwd=3, add=T, col=cols[1])
-legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", cols[1]), lwd=3)
-dev.off()
-
 #
-ff = FMsy(fit$alpha, fit$gamma, M)
-writeLines(sprintf("(%1.1f, %1.1f)\t& %1.1f\t& %1.1f\t& %1.1f\t& %1.1f\t& %1.1e\t& %1.3f\t", dat$xi, dat$zeta, ff/M, PBar(ff, fit$alpha, fit$beta, fit$gamma, M)/fit$N0, fit$N0, fit$alpha, fit$q, fit$sdo))
-
-
-
+##
+#xi = 3.5
+#zeta = 0.6
+#fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xi, zeta)
+#fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', dir, xi, zeta)
+##
+#dat = readRDS(fileDat)
+#fit = readRDS(fileFit)
 #
-xi = 3.5
-zeta = 0.6
-fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xi, zeta)
-fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', dir, xi, zeta)
+##i
+#xMax = max(dat$N0, fit$N0)
+#grd = 0:xMax
+#yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), na.rm=T)
 #
-dat = readRDS(fileDat)
-fit = readRDS(fileFit)
-
-#i
-xMax = max(dat$N0, fit$N0)
-grd = 0:xMax
-yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), na.rm=T)
-
+##
+#MM = 10^4
+#who = c('lalpha', 'lbeta')
+#C = fit$rsCov[who, who]
+#m = c(fit$lalpha, fit$lbeta)
+#sam = rmvnorm(MM, m, C)
+##
+#grd = 0:10000
+#lns = mapply(function(a, b){SRR(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
+#qLns = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
 #
-MM = 10^4
-who = c('lalpha', 'lbeta')
-C = fit$rsCov[who, who]
-m = c(fit$lalpha, fit$lbeta)
-sam = rmvnorm(MM, m, C)
+##
+#png(sprintf("curveCompareX%sZ%s.png", xi, zeta))
+#cols = brewer.pal(9, "Set1")
+#curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, 
+#	lwd=3, 
+#	ylim=c(0, yMax),
+#	ylab="Recruitment",
+#	xlab="B",
+#	main=TeX(sprintf("$\\xi$=%s  $\\zeta$=%s", xi, zeta))
+#)
+#polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
+#	col=adjustcolor(cols[1], alpha.f=0.2),
+#        border=F
+#)
+#curve(SRR(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, lwd=3, add=T, col=cols[1])
+#legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", cols[1]), lwd=3)
+#dev.off()
 #
-grd = 0:10000
-lns = mapply(function(a, b){SRR(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
-qLns = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
-
+##
+#ff = FMsy(fit$alpha, fit$gamma, M)
+#writeLines(sprintf("(%1.1f, %1.1f)\t& %1.1f\t& %1.1f\t& %1.1f\t& %1.1f\t& %1.1e\t& %1.3f\t", dat$xi, dat$zeta, ff/M, PBar(ff, fit$alpha, fit$beta, fit$gamma, M)/fit$N0, fit$N0, fit$alpha, fit$q, fit$sdo))
 #
-png(sprintf("curveCompareX%sZ%s.png", xi, zeta))
-cols = brewer.pal(9, "Set1")
-curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, 
-	lwd=3, 
-	ylim=c(0, yMax),
-	ylab="Recruitment",
-	xlab="B",
-	main=TeX(sprintf("$\\xi$=%s  $\\zeta$=%s", xi, zeta))
-)
-polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
-	col=adjustcolor(cols[1], alpha.f=0.2),
-        border=F
-)
-curve(SRR(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, lwd=3, add=T, col=cols[1])
-legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", cols[1]), lwd=3)
-dev.off()
-
 #
-ff = FMsy(fit$alpha, fit$gamma, M)
-writeLines(sprintf("(%1.1f, %1.1f)\t& %1.1f\t& %1.1f\t& %1.1f\t& %1.1f\t& %1.1e\t& %1.3f\t", dat$xi, dat$zeta, ff/M, PBar(ff, fit$alpha, fit$beta, fit$gamma, M)/fit$N0, fit$N0, fit$alpha, fit$q, fit$sdo))
-
-
-
 #
-xi = 3.5
-zeta = 0.2
-fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xi, zeta)
-fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', dir, xi, zeta)
+##
+#xi = 3.5
+#zeta = 0.2
+#fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xi, zeta)
+#fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', dir, xi, zeta)
+##
+#dat = readRDS(fileDat)
+#fit = readRDS(fileFit)
 #
-dat = readRDS(fileDat)
-fit = readRDS(fileFit)
-
+##
+#xMax = max(dat$N0, fit$N0)
+#grd = 0:xMax
+#yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), na.rm=T)
 #
-xMax = max(dat$N0, fit$N0)
-grd = 0:xMax
-yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), na.rm=T)
-
+##
+#MM = 10^4
+#who = c('lalpha', 'lbeta')
+#C = fit$rsCov[who, who]
+#m = c(fit$lalpha, fit$lbeta)
+#sam = rmvnorm(MM, m, C)
+##
+#grd = 0:10000
+#lns = mapply(function(a, b){SRR(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
+#qLns = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
 #
-MM = 10^4
-who = c('lalpha', 'lbeta')
-C = fit$rsCov[who, who]
-m = c(fit$lalpha, fit$lbeta)
-sam = rmvnorm(MM, m, C)
+##
+#png(sprintf("curveCompareX%sZ%s.png", xi, zeta))
+#cols = brewer.pal(9, "Set1")
+#curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, 
+#	lwd=3, 
+#	ylim=c(0, yMax),
+#	ylab="Recruitment",
+#	xlab="B",
+#	main=TeX(sprintf("$\\xi$=%s  $\\zeta$=%s", xi, zeta))
+#)
+#polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
+#	col=adjustcolor(cols[1], alpha.f=0.2),
+#        border=F
+#)
+#curve(SRR(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, lwd=3, add=T, col=cols[1])
+#legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", cols[1]), lwd=3)
+#dev.off()
 #
-grd = 0:10000
-lns = mapply(function(a, b){SRR(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
-qLns = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
-
+##
+#ff = FMsy(fit$alpha, fit$gamma, M)
+#writeLines(sprintf("(%1.1f, %1.1f)\t& %1.2f\t& %1.2f\t& %1.1f\t& %1.2f\t& %1.1e\t& %1.3f\t", dat$xi, dat$zeta, ff/M, PBar(ff, fit$alpha, fit$beta, fit$gamma, M)/fit$N0, fit$N0, fit$alpha, fit$q, fit$sdo))
 #
-png(sprintf("curveCompareX%sZ%s.png", xi, zeta))
-cols = brewer.pal(9, "Set1")
-curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, 
-	lwd=3, 
-	ylim=c(0, yMax),
-	ylab="Recruitment",
-	xlab="B",
-	main=TeX(sprintf("$\\xi$=%s  $\\zeta$=%s", xi, zeta))
-)
-polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
-	col=adjustcolor(cols[1], alpha.f=0.2),
-        border=F
-)
-curve(SRR(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, lwd=3, add=T, col=cols[1])
-legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", cols[1]), lwd=3)
-dev.off()
-
 #
-ff = FMsy(fit$alpha, fit$gamma, M)
-writeLines(sprintf("(%1.1f, %1.1f)\t& %1.2f\t& %1.2f\t& %1.1f\t& %1.2f\t& %1.1e\t& %1.3f\t", dat$xi, dat$zeta, ff/M, PBar(ff, fit$alpha, fit$beta, fit$gamma, M)/fit$N0, fit$N0, fit$alpha, fit$q, fit$sdo))
-
-
+##
+#xi = 3
+#zeta = 0.5
+#fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xi, zeta)
+#fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', dir, xi, zeta)
+##
+#dat = readRDS(fileDat)
+#fit = readRDS(fileFit)
 #
-xi = 3
-zeta = 0.5
-fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xi, zeta)
-fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', dir, xi, zeta)
+##
+#xMax = max(dat$N0, fit$N0)
+#grd = 0:xMax
+#yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), na.rm=T)
 #
-dat = readRDS(fileDat)
-fit = readRDS(fileFit)
-
+##
+#MM = 10^4
+#who = c('lalpha', 'lbeta')
+#C = fit$rsCov[who, who]
+#m = c(fit$lalpha, fit$lbeta)
+#sam = rmvnorm(MM, m, C)
+##
+#lns = mapply(function(a, b){SRR(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
+#qLns = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
 #
-xMax = max(dat$N0, fit$N0)
-grd = 0:xMax
-yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), na.rm=T)
-
+##
+#png(sprintf("curveCompareX%sZ%s.png", xi, zeta))
+#cols = brewer.pal(9, "Set1")
+#curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, 
+#	lwd=3, 
+#	ylim=c(0, yMax),
+#	ylab="Recruitment",
+#	xlab="B",
+#	main=TeX(sprintf("$\\xi$=%s  $\\zeta$=%s", xi, zeta))
+#)
+#polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
+#	col=adjustcolor(cols[1], alpha.f=0.2),
+#        border=F
+#)
+#curve(SRR(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, lwd=3, add=T, col=cols[1])
+#legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", cols[1]), lwd=3)
+#dev.off()
 #
-MM = 10^4
-who = c('lalpha', 'lbeta')
-C = fit$rsCov[who, who]
-m = c(fit$lalpha, fit$lbeta)
-sam = rmvnorm(MM, m, C)
-#
-lns = mapply(function(a, b){SRR(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
-qLns = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
-
-#
-png(sprintf("curveCompareX%sZ%s.png", xi, zeta))
-cols = brewer.pal(9, "Set1")
-curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, 
-	lwd=3, 
-	ylim=c(0, yMax),
-	ylab="Recruitment",
-	xlab="B",
-	main=TeX(sprintf("$\\xi$=%s  $\\zeta$=%s", xi, zeta))
-)
-polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
-	col=adjustcolor(cols[1], alpha.f=0.2),
-        border=F
-)
-curve(SRR(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, lwd=3, add=T, col=cols[1])
-legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", cols[1]), lwd=3)
-dev.off()
-
-#
-ff = FMsy(fit$alpha, fit$gamma, M)
-writeLines(sprintf("(%1.1f, %1.1f)\t& %1.2f\t& %1.2f\t& %1.1f\t& %1.2f\t& %1.1e\t& %1.3f\t", dat$xi, dat$zeta, ff/M, PBar(ff, fit$alpha, fit$beta, fit$gamma, M)/fit$N0, fit$N0, fit$alpha, fit$q, fit$sdo))
+##
+#ff = FMsy(fit$alpha, fit$gamma, M)
+#writeLines(sprintf("(%1.1f, %1.1f)\t& %1.2f\t& %1.2f\t& %1.1f\t& %1.2f\t& %1.1e\t& %1.3f\t", dat$xi, dat$zeta, ff/M, PBar(ff, fit$alpha, fit$beta, fit$gamma, M)/fit$N0, fit$N0, fit$alpha, fit$q, fit$sdo))
 
 
 
