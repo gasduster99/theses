@@ -355,16 +355,17 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
 			#FIT
 			#
 		
-			#NOTE: N0Funk does not function correctly with $clone()
-        		fit = prodModel$new(
-        		        dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #model
-        		        time=1:TT, catch=FtFmsy, M=M,				#constants
-        		        alpha=alpha, beta=P0, gamma=2,	#parameters
-				lalpha=log(alpha), lbeta=log(P0),	#reparameterize
-        		        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256),			#nuisance parameters
-        		        xi=xiSims[j], zeta=zetaSims[i]				#other incidentals to carry along
-        		)
+			##NOTE: N0Funk does not function correctly with $clone()
+        		#fit = prodModel$new(
+        		#        dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #model
+        		#        time=1:TT, catch=FtFmsy, M=M,				#constants
+        		#        alpha=alpha, beta=P0, gamma=2,	#parameters
+			#	lalpha=log(alpha), lbeta=log(P0),	#reparameterize
+        		#        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256),			#nuisance parameters
+        		#        xi=xiSims[j], zeta=zetaSims[i]				#other incidentals to carry along
+        		#)
 			#fit = readRDS('modsPellaFineQFixRFixP010000/fit_xi4_zeta0.35.rda')
+			fit = readRDS('modsPellaFlatNoQ/fit_xi1_zeta0.65.rda')
 			fit$iterate(odeMethod)
 			#optimization
 			optAns = fit$optimize(cpue,
