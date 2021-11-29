@@ -136,7 +136,7 @@ getlFV = function(fit, MM=10^4, samples=F){
 
 #
 P0 = 10000
-mod = "Flat1.25NoQ"
+mod = "CupNoQ"
 dir = sprintf("./modsPella%s", mod)
 
 #
@@ -292,6 +292,10 @@ legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "de
 dev.off()
 
 #F* relative bias
+
+#
+chaosThresh = 3.56995
+rSurf = exp(lFPred)*2
 
 #
 png(sprintf("fMSYRelBiasPella%s.png", mod))
@@ -591,12 +595,12 @@ dev.off()
 
 #catch
 
-#
-png(sprintf("catch%s.png", mod))
-fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xiSims[5], zetaSims[5])
-dat = readRDS(fileDat)
-plot(dat$time, dat$catch, xlab="Time", ylab="F(t)/F*", ylim=c(0, 2), main="Catch=F* (F(t)/F*) B(t)", type="l", lwd=3)
-dev.off()
+##
+#png(sprintf("catch%s.png", mod))
+#fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xiSims[5], zetaSims[5])
+#dat = readRDS(fileDat)
+#plot(dat$time, dat$catch, xlab="Time", ylab="F(t)/F*", ylim=c(0, 2), main="Catch=F* (F(t)/F*) B(t)", type="l", lwd=3)
+#dev.off()
 
 
 

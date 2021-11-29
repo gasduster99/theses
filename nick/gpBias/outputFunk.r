@@ -72,7 +72,6 @@ plotBand = function(prob=0.95, col='black', alpha=100){
         left = (1-prob)/2
         right = prob+left
         #
-
         polygon( c(self$time, rev(self$time)),
                 c(
                         private$qLikes[[self$model$observation]](self, left),
