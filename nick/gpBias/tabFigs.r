@@ -75,7 +75,7 @@ dPdt = function(t, P, lalpha, lbeta, gamma, M, catch){
 #dir = "./modsPellaFineQFixRFixP010000" 
 #M = 0.2
 #
-mod = "FlatNoQ"
+mod = "ExpNoQ"
 dir = sprintf("./modsPella%s", mod)
 M = 0.2
 P0 = 10000
@@ -260,7 +260,7 @@ plot(-1, -1,
         main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Depletion",
-        ylim=c(min(0, dat$N/dat$N0), max(fit$N/fit$N0, dat$N/dat$N0, colQuantiles(depSam, probs=0.975))),
+        ylim=c(min(0, dat$N/dat$N0), max(fit$N/fit$N0, dat$N/dat$N0, colQuantiles(dPost, probs=0.975))),
         xlim=c(min(dat$time), max(dat$time))
 )
 lines(dat$time, dat$N/dat$N0, lwd=3)
@@ -269,6 +269,38 @@ polygon( c(fit$time, rev(fit$time)),
                 c(
 			colQuantiles(dPost, probs=0.025),
 			rev(colQuantiles(dPost, probs=0.975))
+		),
+                col = makeTransparent('red', alpha=100),
+                border = NA
+)
+legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", 'red'), lwd=3)
+dev.off()
+
+#
+bPost = t(mapply( function(a, b){
+	#
+	tmp$lalpha = a
+	tmp$lbeta  = b
+	tmp$iterate('lsode')
+	#
+	return( tmp$N )
+}, sam[,1], sam[,2] ))
+
+#
+png(sprintf("bioPostCompare%sX%sZ%s.png", mod, xi, zeta))
+plot(-1, -1,
+        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        xlab="Time",
+        ylab="Biomass",
+        ylim=c(min(0, dat$N), max(fit$N, dat$N, colQuantiles(bPost, probs=0.975))),
+        xlim=c(min(dat$time), max(dat$time))
+)
+lines(dat$time, dat$N, lwd=3)
+lines(fit$time, colMeans(bPost), lwd=3, col='red')
+polygon( c(fit$time, rev(fit$time)),
+                c(
+			colQuantiles(bPost, probs=0.025),
+			rev(colQuantiles(bPost, probs=0.975))
 		),
                 col = makeTransparent('red', alpha=100),
                 border = NA
@@ -496,6 +528,37 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
+#
+bPost = t(mapply( function(a, b){
+	#
+	tmp$lalpha = a
+	tmp$lbeta  = b
+	tmp$iterate('lsode')
+	#
+	return( tmp$N )
+}, sam[,1], sam[,2] ))
+
+#
+png(sprintf("bioPostCompare%sX%sZ%s.png", mod, xi, zeta))
+plot(-1, -1,
+        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        xlab="Time",
+        ylab="Biomass",
+        ylim=c(min(0, dat$N), max(fit$N, dat$N, colQuantiles(bPost, probs=0.975))),
+        xlim=c(min(dat$time), max(dat$time))
+)
+lines(dat$time, dat$N, lwd=3)
+lines(fit$time, colMeans(bPost), lwd=3, col='red')
+polygon( c(fit$time, rev(fit$time)),
+                c(
+			colQuantiles(bPost, probs=0.025),
+			rev(colQuantiles(bPost, probs=0.975))
+		),
+                col = makeTransparent('red', alpha=100),
+                border = NA
+)
+legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", 'red'), lwd=3)
+dev.off()
 
 #
 ff = FMsy(fit$alpha, fit$gamma, M)
@@ -597,9 +660,6 @@ dev.off()
 #	lines(rep(SRR(dat$N[i], dat$lalpha, dat$lbeta, dat$gamma), 2), c(qSrr[i,1], qSrr[i,3]), lwd=3, col=map2color(dat$N[i], bioCol, limits=c(0, 10000)))
 #}
 #lines(c(-10000, 10000), c(-10000, 10000))
-
-
-
 
 #
 png(sprintf("fitCompare%sX%sZ%s.png", mod, xi, zeta))
@@ -715,6 +775,37 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
+#
+bPost = t(mapply( function(a, b){
+	#
+	tmp$lalpha = a
+	tmp$lbeta  = b
+	tmp$iterate('lsode')
+	#
+	return( tmp$N )
+}, sam[,1], sam[,2] ))
+
+#
+png(sprintf("bioPostCompare%sX%sZ%s.png", mod, xi, zeta))
+plot(-1, -1,
+        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        xlab="Time",
+        ylab="Biomass",
+        ylim=c(min(0, dat$N), max(fit$N, dat$N, colQuantiles(bPost, probs=0.975))),
+        xlim=c(min(dat$time), max(dat$time))
+)
+lines(dat$time, dat$N, lwd=3)
+lines(fit$time, colMeans(bPost), lwd=3, col='red')
+polygon( c(fit$time, rev(fit$time)),
+                c(
+			colQuantiles(bPost, probs=0.025),
+			rev(colQuantiles(bPost, probs=0.975))
+		),
+                col = makeTransparent('red', alpha=100),
+                border = NA
+)
+legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", 'red'), lwd=3)
+dev.off()
 
 #
 ff = FMsy(fit$alpha, fit$gamma, M)
@@ -912,6 +1003,37 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
+#
+bPost = t(mapply( function(a, b){
+	#
+	tmp$lalpha = a
+	tmp$lbeta  = b
+	tmp$iterate('lsode')
+	#
+	return( tmp$N )
+}, sam[,1], sam[,2] ))
+
+#
+png(sprintf("bioPostCompare%sX%sZ%s.png", mod, xi, zeta))
+plot(-1, -1,
+        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        xlab="Time",
+        ylab="Biomass",
+        ylim=c(min(0, dat$N), max(fit$N, dat$N, colQuantiles(bPost, probs=0.975))),
+        xlim=c(min(dat$time), max(dat$time))
+)
+lines(dat$time, dat$N, lwd=3)
+lines(fit$time, colMeans(bPost), lwd=3, col='red')
+polygon( c(fit$time, rev(fit$time)),
+                c(
+			colQuantiles(bPost, probs=0.025),
+			rev(colQuantiles(bPost, probs=0.975))
+		),
+                col = makeTransparent('red', alpha=100),
+                border = NA
+)
+legend("topright", legend=c("PT Truth", "Shaefer Fit"), col=c("black", 'red'), lwd=3)
+dev.off()
 
 #
 ff = FMsy(fit$alpha, fit$gamma, M)
