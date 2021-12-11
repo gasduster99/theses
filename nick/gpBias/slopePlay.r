@@ -79,7 +79,7 @@ P0 = 10000
 #zeta = 0.2      #0.25   #
 Fmsy = 0.1
 xi = Fmsy/M
-zeta = 0.6
+zeta = 0.2
 fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xi, zeta)
 fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', dir, xi, zeta)
 #
@@ -118,10 +118,10 @@ diffSam = t(mapply(function(la, lb){ diff(function(x){SRR(x, la, lb, fit$gamma)}
 #
 plot(diffDat[-1], diffFit[-1])
 lines(c(-1000, 1000), c(-1000, 1000))
-
-
-
-
+points(median(diffDat), diffFit[diffDat==median(diffDat)], col='red')
+medSam = diffSam[,diffDat==median(diffDat)]
+medQ = quantile(medSam, probs=c(0.025, 0.975))
+segments(median(diffDat), medQ[1], median(diffDat), medQ[2], col='red')
 
 
 
