@@ -365,7 +365,7 @@ foreach(i=1:length(zetaSims), .options.multicore = opts) %dopar% {
         		#        xi=xiSims[j], zeta=zetaSims[i]				#other incidentals to carry along
         		#)
 			#fit = readRDS('modsPellaFineQFixRFixP010000/fit_xi4_zeta0.35.rda')
-			fit = readRDS('modsPellaFlatNoQ/fit_xi1_zeta0.65.rda')
+			fit = readRDS(sprintf('modsPellaFlatNoQ/fit_xi%s_zeta%s.rda', xiSims[j], zetaSims[i]))
 			fit$iterate(odeMethod)
 			#optimization
 			optAns = fit$optimize(cpue,
