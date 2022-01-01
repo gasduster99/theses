@@ -75,7 +75,7 @@ dPdt = function(t, P, lalpha, lbeta, gamma, M, catch){
 #dir = "./modsPellaFineQFixRFixP010000" 
 #M = 0.2
 #
-mod = "ExpNoQ"
+mod = "FlatT35"
 dir = sprintf("./modsPella%s", mod)
 M = 0.2
 P0 = 10000
