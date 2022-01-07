@@ -1,0 +1,11 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Methods}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{PT Reference Points}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Simulation Study}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Model Fitting}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{integrating ODEs, Stiffness, and Interpolation.}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Uniqueness, Continuity, and Identifiability}{subsection.2.4}% 7
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Integration and Stiffness}{subsection.2.4}% 8
+\BOOKMARK [3][-]{subsubsection.2.4.3}{Integration, Stiffness, and Chaos}{subsection.2.4}% 9
+\BOOKMARK [2][-]{subsection.2.5}{Gaussian Process Model}{section.2}% 10
+\BOOKMARK [1][-]{section.3}{Results}{}% 11
