@@ -64,17 +64,10 @@
 	\item problem statement and motivation
 	\item introduce reference point and management decision making 
 	\item introduce BH \& Derizo
+	{\color{gray}\item State the Bio Model (Pella v. Schaefer)}
 	\end{itemize}
 \item Methods
-	\begin{itemize}
-	{\color{gray}\item State the Bio Model (Pella v. Schaefer)}
-	\item Appendix A: SRR exposition and examples (reference to proposal section) 
-		\begin{itemize}
-		\item two v. three parameter
-		\item Pella v. Schaefer
-		\item ?Derizo Model?
-		\item Shepherd v. BH
-		\end{itemize}
+	\begin{itemize}		
 	{\color{gray}\item Reference Point Derivation}
 	{\color{gray}\item Reference Point Inversion (Math) data generation}
 	{\color{gray}\item Profile likelihood on q and MLE parameterization}	
@@ -103,7 +96,14 @@
 	\end{itemize}
 \item Appendicies
 	\begin{itemize}
-	\item Appendix A: SRR exposition and examples
+	%\item Appendix A: SRR exposition and examples
+	\item Appendix A: SRR exposition and examples (reference to proposal section) 
+		\begin{itemize}
+		\item two v. three parameter
+		\item Pella v. Schaefer
+		\item ?Derizo Model?
+		\item Shepherd v. BH
+		\end{itemize}
 	\item Appendix B: Distributional Results for SRR parameterizations
 	\end{itemize}
 
@@ -236,6 +236,7 @@ $\frac{dB}{dt}$ would be driven entirely by $R$, but at MSY $\frac{dB}{dt}=0$
 since the population equilibrates at $B^*$. 
 
 %
+{\color{red}
 While this idealized form is instructive, and convenient, these simplistic 
 dynamics are also potentially problematic. The symmetry of the logistic 
 functional form is very rigid in that it assumes dynamics in the lower (mate 
@@ -243,6 +244,7 @@ limited) regime of the dynamics ($B\in(0, \frac{K}{2})$) have the same shape
 as the upper (density limited) regime of the recruitment dynamics 
 ($B\in(\frac{K}{2}, K)$). What in nature ties these phenomena together so that 
 this assumption should be true? 
+}
 
 %Furthermore, and more practically, 
 Fisheries are very often managed based upon reference points (RP) which serve as simplified 
@@ -279,12 +281,14 @@ of these two parameter SRRs struggle similarly to model the full space of
 reference points.
 
 %All models are wrong but some are useful {\color{red}(cite or remove)}. 
+{\color{red}
 Nature does not generate data from a simple model. However, what would happen if 
 nature were even just slightly more complex than the most commonly used fisheries 
 models? I consider data simulated from the three parameter Pella-Tomlinson (PT) 
 SRR model, and subsequently fit these data using the two parameter Schaeffer 
 model to observe the consequences of SRR model-misspecification with special 
 interest on RF management quantities.  
+}
 
 %What would happen if 
 %data were to truly be generated from a three parameter SRR model and further 
@@ -466,6 +470,8 @@ typically small value of 0.0005. $\sigma$ is fixed at the relatively small
 value of 0.01 to focus specifically on the behavior of population parameters.
 These parameters fully specify the PT model and are used to generate index 
 data for each considered $(\xi, \zeta)$ pair.
+
+\includegraphics[height=0.5\textheight]{../present/shaeferDat.png}
 
 %
 \subsection{Model Fitting}
@@ -807,19 +813,34 @@ the spatial meta-model in reference point space.
 \includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png}
 \end{minipage}
 
+\begin{itemize}
+\item Biomass story
+\item Fmsy Story
+\item cite lack of contrast
+\item transition to contrast example
+\end{itemize}
+
 %
 \clearpage
 
-%
-{\color{red}
-\begin{tabular}{ r|c|c|c|c|c|c }
-($\xi$, $\zeta$) & $\hat \xi$ 	& $\hat \zeta$ 	& $\hat K$	& $\hat r$ & $\hat q$& $\hat \sigma$\\ \hline
-(1.0, 0.2)      & 0.11  & 0.50  & 8915.7        & 0.04  & 5.5e-04       & 0.011\\
-(1.0, 0.55)     & 1.5   & 0.5   & 9918.2        & 0.6   & 5.0e-04       & 0.014\\
-(3.5, 0.6)      & 11.1  & 0.5   & 9980.0        & 4.5   & 4.9e-04       & 0.010\\
-(3.5, 0.2)      & 0.24  & 0.50  & 8049.8        & 0.09  & 6.1e-04       & 0.011
+\begin{tabular}{ r|c|r|c|c }
+($\xi$, $\zeta$) & ($\hat \xi$, $\hat \zeta$) & $\hat K$ & $\hat r$ & $\hat \sigma$\\ \hline 
+(0.5, 0.6)      & (0.80, 0.5)  & 11982.7 & 0.30  & 0.048\\
+(3.5, 0.6)      & (4.70, 0.5)  & 11934.8 & 1.90  & 0.031\\ 
+(0.5, 0.2)      & (0.43, 0.5)  & 5769.3  & 0.17  & 0.282\\
+(3.5, 0.2)      & (1.52, 0.5)  & 4145.7  & 0.61  & 0.184
 \end{tabular}
-}
+
+%%
+%{\color{red}
+%\begin{tabular}{ r|c|c|c|c|c|c }
+%($\xi$, $\zeta$) & $\hat \xi$ 	& $\hat \zeta$ 	& $\hat K$	& $\hat r$ & $\hat q$& $\hat \sigma$\\ \hline
+%(1.0, 0.2)      & 0.11  & 0.50  & 8915.7        & 0.04  & 5.5e-04       & 0.011\\
+%(1.0, 0.55)     & 1.5   & 0.5   & 9918.2        & 0.6   & 5.0e-04       & 0.014\\
+%(3.5, 0.6)      & 11.1  & 0.5   & 9980.0        & 4.5   & 4.9e-04       & 0.010\\
+%(3.5, 0.2)      & 0.24  & 0.50  & 8049.8        & 0.09  & 6.1e-04       & 0.011
+%\end{tabular}
+%}
 
 %
 \begin{minipage}[h!]{0.25\textwidth}

@@ -1,0 +1,3592 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage[margin=1in, top=1in, footskip=0.2in]{geometry}%big footskip brings number down, small footskip brings number up
+%\usepackage[left=1in, right=1in, top=1in, footskip=0.2in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{bm}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage[usenames]{color}
+\usepackage[utf8]{inputenc}
+\usepackage{psfrag}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{lineno}
+\usepackage{physics}
+%\usepackage{natbib}
+\usepackage[]{apacite}
+\usepackage{wrapfig}
+%\usepackage{relsize}
+%\usepackage{dsfont}
+
+\hypersetup{colorlinks   = true, %Colors links instead of ugly boxes
+            urlcolor     = blue, %Color for external hyperlinks
+            citecolor    = blue,
+            linkcolor    = black
+}
+
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+
+%line spacing
+\renewcommand{\baselinestretch}{1.5}%{2.5}%
+
+%title spacing
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0.25\baselineskip}{0.25\baselineskip}
+\titlespacing*{\subsection}{0pt}{0.25\baselineskip}{0.25\baselineskip}
+\titlespacing*{\subsubsection}{0pt}{0.25\baselineskip}{0.25\baselineskip}
+%\titleformat*{\section}{\LARGE \bfseries}
+%\titleformat*{\section}{\large \bfseries}
+
+%Pg. 1
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{first}{
+\chead{$~$\\\Large \textbf{Narrative}}
+\rfoot{Nicholas R. Grunloh}
+}
+%Pg. (>1)
+\fancypagestyle{next}{
+\rfoot{Nicholas R. Grunloh}
+}
+
+\begin{document}
+\thispagestyle{first}
+%\linenumbers
+
+%\begin{itemize}
+%\item Introduction
+%	\begin{itemize}
+%	\item problem statement and motivation
+%	\item introduce reference point and management decision making 
+%	\item introduce BH \& Derizo
+%	{\color{gray}\item State the Bio Model (Pella v. Schaefer)}
+%	\end{itemize}
+%\item Methods
+%	\begin{itemize}		
+%	{\color{gray}\item Reference Point Derivation}
+%	{\color{gray}\item Reference Point Inversion (Math) data generation}
+%	{\color{gray}\item Profile likelihood on q and MLE parameterization}	
+%	{\color{gray}\item State Stats Model}
+%	\item[+] distributional results (Appendix B) for reference point and biological inference
+%	\end{itemize}
+%\item Results
+%	\begin{itemize}
+%	\item bias surface
+%	\item table of estimated equilibrium values at examples
+%	\item yield/SRR curves at example locations
+%	\item Haddon r>-2.575 chaos, page 33
+%	\end{itemize}
+%\item ?discussion?
+%\item Proposal (<6 pages)
+%	\begin{itemize}
+%	\item challenges of filling out response space with three parameter SRR (numerical methods)
+%	\item embedded simulator space filling (output space-filling)
+%		\begin{itemize}
+%		\item Shepherd-BH, Derizo-BH?
+%		\item Age Structured Models and Data Weighting
+%		\end{itemize}
+%	\item Age Structured Model and Data Weighting
+%	\item ?MSEs?
+%	\item timeline (gant chart	
+%	\end{itemize}
+%\item Appendicies
+%	\begin{itemize}
+%	%\item Appendix A: SRR exposition and examples
+%	\item Appendix A: SRR exposition and examples (reference to proposal section) 
+%		\begin{itemize}
+%		\item two v. three parameter
+%		\item Pella v. Schaefer
+%		\item ?Derizo Model?
+%		\item Shepherd v. BH
+%		\end{itemize}
+%	\item Appendix B: Distributional Results for SRR parameterizations
+%	\end{itemize}
+%
+%\end{itemize}
+%
+%%
+%\clearpage
+%%
+
+%
+\section{Introduction}
+
+%NOTE: we can not observe all fish in the sea, and this rely on an index of abundance 
+%which typically comes from experimental fishing procedure(for example ccfrp).
+The most fundamental model in modern fisheries models is the surplus-production
+model. Data for a typical surplus-production model comes in the form of a time 
+series of observations of an index of abundance for some population of interest. 
+The index is often observed alongside a variety of other known quantities, 
+but at a minimum, each observed index will be observed in the presence of some 
+known catch for the period. The index of abundance is assumed to be proportional 
+to biomass with the proportionality constant being a nuisance parameter that is 
+often referred to as the catchability parameter.
+
+%{\color{red}Plot Index Series and Catches}
+\begin{figure}[h!]
+	\includegraphics[width=0.5\textwidth]{./plots/index.jpg}
+	\includegraphics[width=0.5\textwidth]{./plots/catch.jpg}
+	\caption{
+	\textit{left}: An observed series of index of abundance data for Namibian Hake from {\color{red} year to year}.
+	\textit{right}: Catch data associated the observed Namibian Hake index over the same time period.
+	}
+\label{hakeData}
+\end{figure}
+
+%
+The observed indices are assumed to have multiplicative log-normal errors, and thus
+the following observation model arises naturally,
+%Pella Tomlinson
+\begin{align}
+I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2).
+\end{align}
+%
+Above $q$ is the catchability parameter and $\sigma^2$ models residual variation.
+Biologically speaking these parameters are often treated as nuisance parameters with
+the "biological parameters" entering the model thru a process model on biomass.
+
+% 
+Biomass is assumed to evolve as an ordinary differential equation; in this case 
+I focus on the following form,
+%
+\begin{equation}
+\frac{dB}{dt} = P(B(t); \bm{\theta}) - C(t). \label{ode}
+\end{equation}
+%{\color{red}$C=FB$ to set up yield calculations later
+Here biomass is assumed to change in time by two processes, net production of 
+biomass into the population, and catches removing biomass from the population.
+
+%  %stock recruitment relationship (SRR). Recruitment 
+Firstly, the population grows through a production function, $P(B)$. Production 
+in this setting is defined as the net biomass increase due to all birth, 
+maturation, and migration processes after accounting for all other naturally 
+occurring sources of mortality other than the recorded fishing from humans. 
+The production function is assumed to be parametric function that relates the 
+current biomass of the population to an aggregate production of biomass. 
+
+%
+Secondly, the population decreases as biomass is removed due to catch 
+($C(t)$). While catches are observable quantities ({\color{red}cite}), the model 
+assumes that catch is proportional to biomass with the proportionality constant 
+representing the fishing rate, $F(t)$, so that $C(t)=F(t)B(t)$. From a management 
+perspective a major goal of the model is to accurately infer a quantity known as 
+\emph{maximum sustainable yield} (MSY). One could maximize simple yield at a 
+particular moment in time (and only for that moment) by fishing all available 
+biomass in that moment. This strategy is penny-wise but pound-foolish (not to 
+mention ecologically devastating) since it doesn't leave biomass in the 
+population to reproduce for future time periods. We seek to fish in a way that 
+allows (or even encourages) future productivity in the population. This is 
+accomplished by maximizing the equilibrium level of catch (or yield) over 
+time. Equilibrium yield is considered by replacing the steady state biomass 
+($\bar B$) in the assumed form for catch, so that $\bar C = F\bar B(F)$, where 
+$\bar~$ indicates a value at steady state.  Naturally the steady state biomass 
+is a function of $F$; we will see a specific example of this in Section 
+(\ref{ptRef}). MSY is found by optimizing $\bar C(F)$ with respect to $F$, 
+and $F^*$ is the fishing rate at MSY. Going forward let $^*$ decorate any value 
+derived under the condition of MSY. 
+
+% to continue the species and produce  not only are there  however this has the {\color{red}a description of maximum sustainable yield}
+
+
+%
+The canonical production model in fisheries is the Schaeffer model. The 
+Schaeffer model is formed by choosing $P$ to be logistic growth ({\color{red} cite}) 
+parameterized so that $\bm{\theta} = [r, K]$ so that the family of production 
+functions takes the following form,  
+%
+\begin{align}
+P(B; [r, K]) = r B \left(1-\frac{B}{K}\right). \label{logistic}
+\end{align}
+$r$ is parameter controlling the maximum reproductive rate of the population 
+in the absence of competition for resources (i.e. the slope of SRR at the 
+origin).  $K$ is the so called "carrying capacity" of the population. The 
+carrying capacity can be formally stated as steady state biomass in the 
+absence of fishing (i.e. $\bar B(0)=K$).  
+%\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.6\textwidth}
+        \includegraphics[width=\textwidth]{./plots/srrSchaeffer.png}	
+\end{minipage}
+\begin{minipage}[h!]{0.37\textwidth}
+\caption{
+	\\The logistic production function in black plotted next to depictions of the key biological parmaeters and reference points.
+	The slope at the origin (and thus $r$) is shown in blue, catch at MSY in red, biomass at MSY in green, and $K$ in purple at the right x-intercept.	
+	MSY is seen at the peak of the parabola, and is attained with a fishing rate of $\frac{r}{2}$ and biomass equilibrating to $\frac{K}{2}$.
+}
+\end{minipage}
+\label{srrSchaeffer}
+%\end{wrapfigure}
+\end{figure}
+
+%{
+%\color{red} 
+%Concept of Maximum sustainable yield (MSY)
+%writtting sustainable yield $\bar Y(F) = F\bar B(F)$.
+%}
+
+
+%
+The logistic production function produces idealized parabolic recruitment with 
+equilibrium quantities taking very simple forms that can be easily understood from the 
+graphical construction seen in Figure (\ref{srrSchaeffer}). Positive 
+recruitment is observed when $B\in(0, K)$. Due to the parabolic shape of the 
+logistic production function it is straightforward to see that yeild is maximized 
+by fishing the stock down to $B^*$, where the stock attains its peak productivity. 
+By symmetry it is clear that this peak occurs at $B^*=\frac{K}{2}$. The fishing 
+rate required to hold the stock at MSY is $F^*=\frac{r}{2}$, which is half of the 
+stock's maximum reproductive rate at the origin. 
+%In the absence of fishing $\frac{dB}{dt}$ would be driven entirely by $P$, but at MSY $\frac{dB}{dt}=0$ since the population equilibrates at $B^*$. 
+
+%%
+%{\color{red}
+%While this idealized form is instructive, and convenient, these simplistic 
+%dynamics are also potentially problematic. The symmetry of the logistic 
+%functional form is very rigid in that it assumes dynamics in the lower (mate 
+%limited) regime of the dynamics ($B\in(0, \frac{K}{2})$) have the same shape 
+%as the upper (density limited) regime of the recruitment dynamics 
+%($B\in(\frac{K}{2}, K)$). What in nature ties these phenomena together so that 
+%this assumption should be true? 
+%}
+
+%Furthermore, and more practically, 
+While this idealized form of the logisitc production function is instructive, and 
+convenient, the simplistic dynamics it implies are also potentially problematic.
+
+%
+Fisheries are very often managed based upon reference points (RP) which serve as 
+simplified heuristic measures of population behavior. The mathematical form of 
+RPs depends upon the model assumptions primarily through the production function 
+({\color{red} cite}). Here the focus is primarily on the RPs $F^*$ and 
+$\frac{B^*}{\bar B(0)}$. 
+
+%%
+%Here the focus is on two RPs that will be denoted by $\xi$ and $\zeta$ going forward.  
+%% these behaviors that are highly %dependent on the form of the SRR.
+%\begin{align}
+%	&\xi = \frac{F^*}{M}
+%	&\zeta = \frac{B^*}{B_0} \label{xizetaSimple}
+%\end{align}
+
+%
+$F^*$ is the afore mentioned fishing rate at MSY. $\frac{B^*}{\bar B(0)}$ is the 
+depletion of the stock at MSY. That is to say $\frac{B^*}{\bar B(0)}$ describes 
+the fraction of the population to fish (or rather not to fish) to result in MSY.  
+%based upon$\xi$ is the optimal (in the MSY sense) fishing rate rescaled so that it is in 
+%terms relative to natural mortality. $\zeta$ is the biomass at MSY relative 
+%to the unfished virgin biomass of the population. 
+In general $F^*\in\mathbb{R}^+$ and $\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$, 
+however under the under the assumption of logistic production these 
+quantities take the following form,  
+
+%
+\begin{align}
+        &F^* = \frac{r}{2}
+        &\frac{B^*}{\bar B(0)} = \frac{1}{2} \label{fbLogistic}
+\end{align}
+so that $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}{2}\right)$.
+
+%
+In practice, at this time, the production function is typically chosen to depend 
+only on two parameters. The Schaeffer model as presented depends only on 
+the biological parameters $r$ and $K$, but other common two parameter choices 
+of the production function are the Beverton-Holt (BH) and Ricker curves. All
+of these two parameter production functions struggle similarly to model the full 
+theoretical space of RPs ({\color{red}cite Mangle paper}).
+
+%
+In this study I consider the behavior of inference when using the Schaeffer model 
+to fit data that are generated from only a slightly more complex production 
+function which can full accomodate RP space. Namely data are simulated from the %can full accomidate the full space of RPs. I consider data simulated from the 
+three parameter Pella-Tomlinson (PT) production model. Since the Schaeffer model 
+is more restrictive than the PT model, estimates of RPs arrived at from the Schaeffer 
+model must neccessarily be biased realative to the true PT RPs. Given the ubiquity 
+of two parameter productions functions in management it is of paramount 
+imporantance to understand the biasing lens through which we've come to understand 
+our fisheries.
+
+%and subsequently fit these 
+%data using the two parameter Schaeffer model to observe the consequences of 
+%SRR model-misspecification with special interest on RF management quantities.  
+
+%%than the most commonly used in practice but
+%{\color{gray}
+%%All models are wrong but some are useful {\color{red}(cite or remove)}. 
+%{\color{red}
+%Nature does not generate data from a simple model. However, what would happen if 
+%nature were even just slightly more complex than the most commonly used fisheries 
+%models? I consider data simulated from the three parameter Pella-Tomlinson (PT) 
+%SRR model, and subsequently fit these data using the two parameter Schaeffer 
+%model to observe the consequences of SRR model-misspecification with special 
+%interest on RF management quantities.  
+%}
+
+%What would happen if 
+%data were to truly be generated from a three parameter SRR model and further 
+%what would be the consequence of misspecifying a two parameter model only as a 
+%special case of the true three parameter model? 
+%
+%%
+%Data are simulated from the three parameter Pella-Tomlinson SRR model, and 
+%subsequently fit using the two parameter Schaeffer model. RP 
+%%
+%{\color{red} Outline simulation goal, end introduction, and start methods.}
+
+{\color{gray}
+%Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
+The three parameter PT family has a convenient form that includes the logistic 
+SRR as a special case to form the Schaeffer model. The Pella-Tomlinson SRR is 
+parameterized so that $\bm{\theta} = [r, K, \gamma]$ and the family takes the 
+following form, %Pella Tomlinson
+\begin{align}
+P(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}. \label{pellaTomlinson}
+\end{align}
+%
+
+%
+$\gamma$ is a parameter which breaks PT out of the restrictive symmetry of the 
+logistic curve. In Figure (\ref{srrPT}) PT recruitment is shown for a range of 
+parameter values so as to demonstrate the various recruitment shapes that can be 
+achieved by PT recruitment.  
+%{\color{red} And $\gamma$ is a parameter which adds 
+%flexibility to the family by allowing for compensatory or non-compensatory 
+%growth. (break symmetry... get better description) }
+
+%\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}[h!]
+	\includegraphics[width=0.5\textwidth]{./plots/srr1.1.png}	
+	\includegraphics[width=0.5\textwidth]{./plots/srr2.png}
+	\caption{}
+	\label{srrPT}
+\end{figure}
+%\end{wrapfigure}
+
+%
+While the particular form of how $\gamma$ appears in PT still produces some 
+limitations to the form of the SRR, importantly the introduction of a third 
+parameter allows enough flexibility to fully describe the space of reference 
+points used in management. To see this, the reference points are analytically 
+derived for the PT model in the following section.
+
+%%
+%\begin{equation}
+%\frac{dB}{dt} = P - FB.
+%\end{equation}
+
+}
+
+\begin{itemize}
+\item[\checkmark] introduce fisheries type data
+\item[\checkmark] ODE modeling formulation
+\item[\checkmark] Schaeffer Model (Logistic production function)
+\item[\checkmark] Reference Points
+{\color{gray}\item Pella-Tomlinson production function}
+\item[\checkmark] general simulation idea
+\end{itemize}
+
+
+%
+\section{Methods}
+
+%Construct RP under PT production
+
+%
+\subsection{PT Reference Points}\label{ptRef}
+
+%
+With $B(t)$ representing biomass at time $t$, under PT production, the 
+dynamics of biomass are defined by the following ODE,
+ 
+\begin{equation}
+\frac{dB}{dt} = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1} - FB. \label{odePT}
+\end{equation}
+
+An expression for the equilibrium biomass is attained by setting Eq(\ref{odePT}) 
+equal to zero, and rearranging the resulting equation to solve for $B$. 
+Thinking of the result as a function of $F$ gives, 
+
+%When thought of as a 
+%function of $F$ the following expression emerges,
+%{\color{red}Under Pella-Tomlinson SRR the equilibrium biomass can be written,}
+\begin{align}
+\bar B(F) = K\left(1-\left(\frac{F(\gamma-1)}{r}\right)^{\frac{1}{(\gamma-1)}}\right). \label{Beq}
+\end{align}
+
+%By definition $B_0=K$. Alternatively, Setting $F=0$ in Eq(\ref{Beq}) makes it convenient to notice that $\bar B(0)=K$ to arrive at the same result
+At this point it is convenient to notice that $\bar B(0)=K$. The expression for $B^*$ is given by evaluating Eq(\ref{Beq}) at $F^*$.
+
+%
+To get an expression for $F^*$, the equilibrium yield is maximized with respect to $F$,
+\begin{equation}
+F^* = \argmax_F F\bar B(F).
+\end{equation}
+%
+In the case of PT production this maximization can be done analytically (however 
+many three parameter production functions do not result in tractable analytical 
+solutions). In this case maximization can proceed by differentiating the 
+equilibrium yield with respect to $F$ as follows,
+
+%
+\begin{align}
+\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{Fderiv}\\
+%\frac{d \bar B}{dF} &= -\frac{K}{\gamma-1}\left(\frac{\gamma-1}{r}\right)^{\frac{1}{\gamma-1}}F^{\frac{1}{\gamma-1}-1}\\
+\frac{d \bar B}{dF} &= -\frac{K}{F(\gamma-1)}\left(\frac{F(\gamma-1)}{r}\right)^{\frac{1}{\gamma-1}}\label{dBdF}.
+\end{align}
+%{\color{red}
+Setting Eq(\ref{Fderiv}) equal to 0, substituting $\bar B(F)$ and 
+$\frac{d \bar B}{dF}$ by Equations (\ref{Beq}) and (\ref{dBdF}) respectively, 
+and then solving for $F$ produces the following expression for the fishing 
+rate required to produce MSY, %{\color{red}Below any quantity evaluated at MSY shall be decorated with $~^*$.}
+%
+\begin{align}
+F^* = \frac{r}{\gamma-1} \left(\frac{\gamma-1}{\gamma}\right)^{\gamma-1}. \label{Fmsy}
+\end{align}
+%
+Plugging the above expression for $F^*$ back into Eq(\ref{Beq}) gives the 
+following expression for biomass at MSY, 
+\begin{align}
+B^* = \frac{K}{\gamma} \label{Bmsy}. %\left(1-\left(\frac{\gamma-1}{\gamma}\right)\right) \label{Bmsy}.
+\end{align}
+
+%
+The above derived expressions for $\bar B(0)$, $B^*$, and $F^*$ can then be used to 
+build a specific analytical form for the biological reference points in terms of only 
+biological model parameters.
+
+%%
+%By substituting the expressions given above for $B_0$, $B^*$, and $F^*$ into 
+%Eq(\ref{xizetaSimple}), $\xi$ and $\zeta$ can take a specific analytical form 
+%in terms of the biological model parameters. 
+%%given by substituting the expressions given in Eq(\ref{Fmsy}) 
+%%and Eq(\ref{Bmsy}) in Eq(\ref{xizetaSimple}).
+%%Eq(\ref{xizetaSimple}) can then take a specific analytical form in terms of the 
+%  %an expression for $\xi$ and $\zeta$ can be found in terms of model parameters.  
+
+\begin{align}
+&F^* = \frac{r}{(\gamma-1)} \left(\frac{\gamma-1}{\gamma}\right)^{\gamma-1}
+&\frac{B^*}{\bar B(0)} = \frac{1}{\gamma} %1-\left(\frac{\gamma-1}{\gamma}\right)
+\end{align}
+
+%{\color{red}demonstration of the restricted case with graph over RP space as used.}
+
+\subsection{Simulation Study}
+
+%
+Indices of abundance are simulated from the three parameter PT production model 
+over a grid of $F^*$ and $\frac{B^*}{\bar B(0)}$ values. These PT data are then 
+fit with a two parameter Schaefer model. 
+%$\gamma$ is then fixed to two so that the PT SRR reduces to the special case of logistic recruitment. 
+%The restricted Schaefer model is then fit to the 
+%simulated PT indices. 
+
+%%
+%{\color{red}
+%Let $\tilde~$ decorate any quantity that is derived under the restricted two 
+%parameter SRR.\\ Collapse to the case of Schaefer. Similarly to Eq(\ref{
+%logisticSRR}) setting $\gamma=2$ results in the equilibrium equations for the 
+%restricted schaefer model.  
+%} 
+
+%speaking it is not possible to analytically invert this  
+Generating simulated indices of abundance from the PT model requires 
+inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and 
+$(r, \gamma)$. It is not generally possible to analytically invert this 
+relationship for many three parameter production functions{(\color{red}cite Derizo paper)}. 
+Most three parameter production functions lead to RPs that require expensive 
+numerical methods to invert; more over the numerical inversion procedure is 
+often extremely unstable. That said, for the case of PT this relationship is 
+analytically invertible, and leads to the following relationship
+
+%
+\begin{align}
+&r = F^*\left( \frac{1-\frac{B^*}{\bar B(0)}}{\frac{B^*}{\bar B(0)}} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{\frac{B^*}{\bar B(0)}-1}{\frac{B^*}{\bar B(0)}} \right)}
+&\gamma = \frac{1}{\frac{B^*}{\bar B(0)}}. \label{rg}
+\end{align}
+%{\color{red}
+%\begin{align}
+%&r = F^*\left( \frac{\bar B(0)-B^*}{B^*} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{B^*-\bar B(0)}{B^*} \right)}
+%&\gamma = \frac{\bar B(0)}{B^*}.
+%\end{align}
+%}
+
+%
+Indices are generated under the following conditions. Data are simulated at
+each point on the grid $\mathcal{F}\times\mathcal{B}$, with $F^*\in\mathcal{F}$ 
+and $\frac{B^*}{\bar B(0)}\in\mathcal{B}$, where $\mathcal{F}=\{0.1, 0.2, ..., 0.7\}$ 
+and $\mathcal{B}=\{0.2, 0.3, ..., 0.6\}$ as seen in Figure (\ref{rpGrid}).  
+These ranges of values for $F^*$ and $\frac{B^*}{\bar B(0)}$ are selected to 
+include the majority of most commonly assesed fish species {\color{red}cite}. 
+The red X's in Figure (\ref{rpGrid}) show four 4 simulation locations where the 
+Schaeffer model is misspecified to a large degree and will be considered in more 
+detail in {\color{red}Section()}. For each $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, 
+the associated pair $(r, \gamma)$ are computed from Eq (\ref{rg}). Since $K$ 
+does not enter the RP calculation its value is fixed arbitrarily at 10000.  %A relatively large value of $K$ is selected to allow a full range of population dynamics to be defined in this setting. The value of $M$ is fixed at 0.2 to represent {\color{red}species}. 
+The value of $q$ is fixed at a typically small value of 0.0005. $\sigma$ is 
+fixed at the relatively small value of 0.01 to focus specifically on the 
+behavior of population parameters. These parameters fully specify the PT 
+model for the purposes of generating index data for each $\left(F^*, \frac{B^*}{\bar B(0)}\right)$ pair.
+
+%
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.53\textwidth}
+\includegraphics[height=0.37\textheight]{../present/shaeferDat.png}
+\end{minipage}
+\begin{minipage}[h!]{0.48\textwidth}
+\caption{
+Open circles show the location of the simulation grid $\mathcal{F}\times\mathcal{B}$.
+The horizontal line shows the constrained space of RPs for the Schaeffer model.
+The red X's indicated 4 simulation locations where the Schaeffer model is a particularly 
+misspecified.
+}
+\end{minipage}
+\label{rpGrid}
+\end{figure}
+
+%
+\clearpage
+\subsection{Catch}
+
+%%
+%For the sake of simulation, catch is parameterized so that $F_t$ can be 
+%controlled with respect to $F^*$. 
+
+%
+It is known that the behavior of catch can effect inference on the biological 
+parameters ({\color{red} cite hilborn, cite walters}). In particular it is 
+understood that catch data must induce "contrast" in {\color{orange} index data
+} so as to well inform $r$. It is not well understood how contrast may factor 
+into biases induced by model misspecification. To investigate the role that 
+catch plays in understanding model misspecification errors a variety of 
+catches are investigated.  
+
+%
+Catch is parameterized so that $F(t)$ can be controlled with respect to $F^*$. 
+Recall that catch is assumed to be proportional to biomass with the 
+proportionality constant amounting to the fishing rate, so that $C(t)=F(t)B(t)$. 
+To control $F(t)$ with respect to $F^*$, $C(t)$ is specified by a defining the 
+quantity $\frac{F(t)}{F^*}$ as the realative fishing rate. $B(t)$ is defined 
+by the solution of the ODE, and $F^*$ is defined by the biological parameters 
+of the model, see Eq({\color{red}PT, Schaeffer}).  Thus by defining 
+$\frac{F(t)}{F^*}$, catch can then be written as $C(t)=F^*\left(\frac{F(t)}{F^*}\right)B(t)$.  
+
+%
+Intuitively $\frac{F(t)}{F^*}$ describes the fraction of $F^*$ that $F(t)$ is  
+specified to for the current $B(t)$. When $\frac{F(t)}{F^*}=1$, $F(t)$ will be 
+held at $F^*$, and the solution of the ODE brings $B(t)$ into equilibrium at 
+$B^*$. For constant $\frac{F(t)}{F^*}$ the Schaeffer model has an anylitical 
+solution, via integrating factors, so that $B(t)$ comes to equilibrium 
+exponenitally. The relative fishing rate is defined on $[0, \infty)$; when 
+$\frac{F(t)}{F^*}<1$, $F(t)$ is lower than $F^*$ and $B(t)$ is pushed toward 
+$\bar B>B^*$. Contrarily, when $\frac{F(t)}{F^*}>1$, $F(t)$ is higher than 
+$F^*$ and $B(t)$ is pushed toward $\bar B<B^*$; the precise values of $\bar B$
+can be calculated from Eq(\ref{Beq}).
+
+%
+In practice, catch is determined by a series of observed, assumed known, catches. 
+Catch observations are typically observed on a quarterly (or yearly) basis, so 
+that the ODE may be discretized via Euler’s method with integration step sizes 
+to match the observation frequency of the modeled data. In this case, catch is sampled 
+as would be done in practice however, the simulation can encounter a variaty of issues 
+working with the naively discretized ODE. As a result the ODE is integrated implicatly 
+via the Livermore Solver (lsode), and catch is linearly interpolated between sampled 
+epocs. More detail about issues of continuity and ODE integration are described in 
+Appendix (\ref{appODE}).
+
+%\begin{itemize}
+%	%\item how its parameterized
+%	%\item different behaviours
+%	%\item contrast
+%	\item Forcing function
+%	\item continuity and the solution of ODEs
+%\end{itemize}
+
+%
+\subsection{Model Fitting}
+
+%
+The goal of model fitting is to assess how the biological parameters of the 
+two parameter Schaeffer model behave under MLE inference when fit to PT data. 
+Thus, let $I_t$ be an observation of PT index data at time $t$. The observation 
+model is log-normal such that,
+
+%
+\begin{align}
+I_t| q, \sigma^2, \bm{\theta} \sim LN(qB_t(\bm{\theta}), \sigma^2).
+\end{align}
+
+For the Schaeffer model $\bm{\theta}=[r, K]$, and $B_t(\bm{\theta})$ is defined 
+by the solution of the following ODE
+
+%
+\begin{align}
+\frac{dB}{dt} = r B \left(1-\frac{B}{K}\right) - FB. \label{odeS}
+\end{align}
+
+The $I_t$ are assumed independent conditional on $q$, $\sigma^2$, $r$, $K$ 
+and the ODE model for biomass. Thus the log likelihood can be written as 
+
+\begin{align}
+\log\mathcal{L}(q, \sigma^2, \bm{\theta}; I) = - \frac{T}{2}\log(\sigma^2) - \frac{1}{2\sigma^2}\sum_t \log\left(\frac{I_t}{qB_t(\bm{\theta})}\right)^2. \label{logLike}
+\end{align}
+
+%
+In this setting, $q$ is fixed at the true value of 0.0005 to focus on the 
+inferential effects of model misspecification on biological parameters. 
+$\sigma^2$, $r$, and $K$ are reparameterized into the log scale as 
+$log(\sigma^2)$, $log(r)$, and $log(K)$ and fit via MLE. $\sigma^2$ is
+allowed to be fit to assess overall model fit. Reparameterization 
+of the parameters into the log scale improves the relability of optimization
+in addition to facilitating the use of hessian information for parameter 
+estimate standard errors.
+%$r$ and $K$ are reparameterized as $log(r)$ and $log(K)$ to improve the regularity of 
+
+%
+Given that the biological parameters enter the likelihood via a nonlinear ODE, 
+and further the parameters themselves are related to each other nonlinearly, 
+the likelihood function can often be difficult to optimize. A hybrid optimization 
+scheme is used to maximize the log likelihood to ensure that a global MLE solution 
+is found. The R package GA ({\color{red} cite GA}) is used to run a genetic 
+algorithm to explore parameter space globally. Optimization occasional jumps into 
+the L-BFGS-B local optimizater to refine optima within a local mode. The scheme 
+functions by searching globally to iteratively improving hot starts for the local 
+optimizer. 
+
+%
+In Appendix (\ref{appMLE}) a profile likelihood method for estimating all of the 
+parameters of the model is derived. The profile likelihood technique greatly 
+improves the reliability of local optimizers when fitting the biological parameters 
+alongside additional nuisance parameters. The catchability parameter $q$ has the 
+effect of rescaling biomass which can often function similarly the role of the 
+carrying capacity parameter $K$. Thus, the structure of the likelihood may 
+confound $q$ and $K$, and for some data these parameters may only be weakly 
+identifiable. Posing the model in a Bayesian context provides a convienient 
+mechanism for managing these weak identifiability issues. In a tactful Bayesian 
+formulation $q$ and $\sigma^2$ may then be marginalized out of the joint posterior 
+to yeild fast and reliable inference ({\color{red} Cite Maria DeYorio pdf}).
+
+
+%{\color{red} $q$ procedure}
+%  
+%%
+%By working with the resulting models parameterized in terms of 
+%$\log(\tilde F^*)$ it tends to improve optimization convergence. Furthermore, 
+%the normality this induces on the log scale, via the Laplace approximation, 
+%yields Log-Normality on $\tilde F^*$, as seen in Appendix {\ref{appA}}. 
+
+%
+\subsection{Gaussian Process Metamodel}
+%
+
+%
+For assessing biological parameters over the simulated grid, as seen in 
+Figure(\ref{rpGrid}), a Gaussian Process (GP) model is used as a flexible, 
+stochastic interpolator over RP space. As previously estabilised, in 
+Section (\ref{}), the biological parameters of interest are the Shaeffer model's 
+$log(r)$ and $log(K)$ parameters. Since the estimates of these parameters are 
+random variables, with variances given by the inverse of the observed fisher 
+information, interpolation of MLEs requires paying additional attention to 
+propogating estimates of uncertainty into the metamodel. 
+
+{\color{red} Motivate gaussianity}
+
+%
+A GP is a stochastic process generalizing the normal distribution to an
+infinite dimensional analog. GPs are often specified primarily through the
+choice of a covariance function which defines the relationship between
+locations in an index set. Typically the index set is spatial for GPs, and in
+this setting the model is across the reference point space, 
+$\left(F^*, \frac{B^*}{\bar B(0)}\right)$, of the three parameter
+PT data generating model. A GP model implies an $n$ dimensional multivariate 
+normal distribution on the observations of the model and the covariance function 
+fills out the covariance matrix for the observations.
+
+%Since covariance between $log(r)$ and $log(K)$ are often indistinguishable 
+%form 0 the interpolator treats
+Modeling the estimates of $log(r)$ and $log(K)$ with independent GP models is 
+used to extend analysis of all major biological RP over the simluated grid. 
+Let $\hat\mu$ be the maximum likelihood estimate (MLE) of either $log(r)$ or 
+$log(K)$. Additionally let $\hat\omega$ be the inverted Hessian information of 
+the log likelihood evaluated at $\hat\mu$. 
+
+%
+Each grid location of the simulation produces a single fitted $\hat\mu_i$ at an
+associate $\left(F^*, \frac{B^*}{\bar B(0)}\right)$ location with 
+$i\in\{1,...,n\}$. $\bm{\hat\mu}$ is jointly modeled over the space of 
+reference points as the following GP,
+%Here the following GP model is used,
+\begin{align}   \label{gpModel}
+        \bm{x} &= \left(F^*, \frac{B^*}{\bar B(0)}\right) \nonumber\\
+        \hat\mu &= \beta_0 + \bm{\beta}'\bm{x} + f(\bm{x}) + \bm{\epsilon} \nonumber \\
+        f(\bm{x}) &\sim \text{GP}(0, \tau^2 R(\bm{x}, \bm{x'})) \nonumber \\
+        \epsilon_i &\sim \text{N}(0, \hat\omega_i).
+\end{align}
+%
+The GP residual variation provides an ideal mechanism for propogating uncertainty 
+from inference in the simulation step into the metamodel. $\hat\omega_i$ is the 
+observed residual variation for the inferred value, $\hat\mu_i$. This mechanism 
+down weights the influence of each $\hat\mu_i$ in proportion to the inferred 
+sampling distribuition uncertainty. This has the effect of smoothing the GP 
+model in a way similar to the knugget effect. ({\color{red} cite knugget paper})
+% from inference in thesimulation step. 
+%This allows for the full propagation of inferred information 
+%from the simulation step to be propagated into the reference point meta-model.
+
+%The GP residual 
+%variation provides an ideal mechanism for propogating this uncertainty while 
+%allowing for a wide class of flexible interpolating functions.
+
+%
+Here $R$ is the squared exponential correlation function.
+\begin{align}   \label{corModel}
+R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \right) %\bm{\Lambda}^{-1} (\bm{x}-\bm{x'}) \right) \nonumber\\ %\norm{\bm{x}-\bm{x'}}_{\bm{\Lambda}}; \nu) \nonumber\\
+%%\norm{\bm{x}-\bm{x'}}_{\bm{\Lambda}} &= \sqrt{ (\bm{x}-\bm{x'})^\top \bm{\Lambda}^{-1} (\bm{x}-\bm{x'}) } \nonumber\\
+%\bm{\Lambda} &=
+%        \begin{pmatrix}
+%                \lambda_\xi & 0\\
+%                0 & \lambda_\zeta
+%        \end{pmatrix}.
+\end{align}
+$R$ has an anisotropic separable form to allow for differing length scales in 
+the $F^*$ and $\frac{B^*}{\bar B(0)}$ axes. The flexibility to model 
+correlations separately in the different RP axes is key due to the 
+differences in the extent of the RP domains marginally. $\ell_1$ and 
+$\ell_2$ model the length scales for $F^*$ and $\frac{B^*}{\bar B(0)}$ 
+respectively. The metamodel parameters $\beta_0$, $\bm{\beta}$, $\tau^2$, 
+$\ell_1$ and $\ell_2$ are fit via MLE against the observations of $\hat\mu$ 
+and $\hat\omega$ from  simulation fits. 
+
+%
+Predictive estimates of modeled quantities are obtained via kriging over 
+intermediate values over RP space. Let $\check~$ decorate any quantity that is 
+derived for metamodel interpolation.
+%{\color{red}Let $\tilde~$ decorate any quantity that is derived 
+%under the metamodel prediction.}
+
+\begin{equation}
+	\check \mu(\check s) = \beta_0 + \bm{x}(\check s)\bm{\beta} + {R}_{\bm{\ell}}(\check s, s) {R}^{-1}_{\bm{\ell}}(s, s)\Big({\hat\mu}(s)-\big(\beta_0+\bm{x}(s)\bm{\beta}\big)\Big)
+\end{equation}
+
+%%
+%{\color{orange}
+%\begin{itemize}
+%\item GP serves as a flexible, stochastic interpolator for understanding the basic behavior of 
+%biases induced my limiting the SRR model.  
+%\item This model allows for the full propagation of inferred information from the simulation step to be propagated into
+%the spatial meta-model in reference point space. 
+%\item Motivate gaussianity 
+%\end{itemize}
+%}
+%}
+
+%
+\section{Results}
+
+%
+\begin{align}
+        \check F^* = \frac{\check r}{2} ~~~~~~~~
+        \check B^* = \frac{\check K}{2} ~~~~~~~~
+        \check{MSY} = \frac{\check r \check K}{4} %\check r \check B^* \left(1-\frac{\check B^*}{\check K}\right)
+\end{align}
+
+%
+\begin{align}
+\text{Relative Bias} = \frac{\check{RP}-RP}{RP}
+\end{align}
+
+
+
+%\vspace{-1cm}
+\begin{minipage}[h!]{0.33\textwidth}
+\hspace*{0.25cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}\\
+\hspace*{0.25cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png}
+\end{minipage}
+\begin{minipage}[h!]{0.33\textwidth}
+\hspace*{0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaFlatNoQ.png}\\
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchFlat.png}\\
+\hspace*{0.75cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaFlatNoQ.png}
+\end{minipage}
+\begin{minipage}[h!]{0.33\textwidth}
+\hspace*{1cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png}\\
+\hspace*{1cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png}
+\end{minipage}
+
+\begin{itemize}
+\item Biomass story
+\item Fmsy Story
+\item cite lack of contrast
+\item transition to contrast example
+\end{itemize}
+
+%
+\clearpage
+
+\begin{tabular}{ r|c|r|c|c }
+($\xi$, $\zeta$) & ($\hat \xi$, $\hat \zeta$) & $\hat K$ & $\hat r$ & $\hat \sigma$\\ \hline 
+(0.5, 0.6)      & (0.80, 0.5)  & 11982.7 & 0.30  & 0.048\\
+(3.5, 0.6)      & (4.70, 0.5)  & 11934.8 & 1.90  & 0.031\\ 
+(0.5, 0.2)      & (0.43, 0.5)  & 5769.3  & 0.17  & 0.282\\
+(3.5, 0.2)      & (1.52, 0.5)  & 4145.7  & 0.61  & 0.184
+\end{tabular}
+
+%%
+%{\color{red}
+%\begin{tabular}{ r|c|c|c|c|c|c }
+%($\xi$, $\zeta$) & $\hat \xi$ 	& $\hat \zeta$ 	& $\hat K$	& $\hat r$ & $\hat q$& $\hat \sigma$\\ \hline
+%(1.0, 0.2)      & 0.11  & 0.50  & 8915.7        & 0.04  & 5.5e-04       & 0.011\\
+%(1.0, 0.55)     & 1.5   & 0.5   & 9918.2        & 0.6   & 5.0e-04       & 0.014\\
+%(3.5, 0.6)      & 11.1  & 0.5   & 9980.0        & 4.5   & 4.9e-04       & 0.010\\
+%(3.5, 0.2)      & 0.24  & 0.50  & 8049.8        & 0.09  & 6.1e-04       & 0.011
+%\end{tabular}
+%}
+
+%
+\begin{minipage}[h!]{0.25\textwidth}
+\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png}\\
+\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png}
+\end{minipage}
+\begin{minipage}[h!]{0.25\textwidth}
+\hspace*{0.45cm}
+\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png}\\
+\hspace*{0.45cm}
+\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png}
+\end{minipage}
+\begin{minipage}[h!]{0.25\textwidth}
+\vspace*{-0.1cm}
+\hspace*{1.5cm}
+\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.6.png}\\
+\hspace*{1.5cm}
+\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.6.png}\\
+\hspace*{1.5cm}
+\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.2.png}\\
+\hspace*{1.5cm}
+\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.2.png}
+\end{minipage}
+\begin{minipage}[h!]{0.25\textwidth}
+\vspace*{-0.1cm}
+\hspace*{1.5cm}
+\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.6.png}\\
+\hspace*{1.5cm}
+\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.6.png}\\
+\hspace*{1.5cm}
+\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.2.png}\\
+\hspace*{1.5cm}
+\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.2.png}
+\end{minipage}
+
+%
+\clearpage
+\begin{minipage}[h!]{0.33\textwidth}
+\hspace*{0.25cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpNoQ.png}\\
+\hspace*{0.25cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaExpNoQ.png}
+\end{minipage}
+\begin{minipage}[h!]{0.33\textwidth}
+\hspace*{0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaExpNoQ.png}\\
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchExp.png}\\
+\hspace*{0.75cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaExpNoQ.png}
+\end{minipage}
+\begin{minipage}[h!]{0.33\textwidth}
+\hspace*{1cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaExpNoQ.png}\\
+\hspace*{1cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpNoQ.png}
+\end{minipage}
+
+\begin{minipage}[h!]{0.33\textwidth}
+\hspace*{0.25cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png}\\
+\hspace*{0.25cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaExpT45.png}
+\end{minipage}
+\begin{minipage}[h!]{0.33\textwidth}
+\hspace*{0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaExpT45.png}\\
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchExpT45.png}\\
+\hspace*{0.75cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaExpT45.png}
+\end{minipage}
+\begin{minipage}[h!]{0.33\textwidth}
+\hspace*{1cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaExpT45.png}\\
+\hspace*{1cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png}
+\end{minipage}
+
+
+
+%
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{./plots/yBiasPellaP0100002.png}
+	\caption{This is a caption}	
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+	\includegraphics[width=\textwidth]{./plots/directionalBiasPellaP0100002.png}
+	\includegraphics[width=\textwidth]{./plots/xBiasPellaP0100002.png}
+\end{minipage}
+\end{figure}
+
+
+%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=\textwidth]{../gpBias/directionalBiasPellaP0100002.png}
+%\includegraphics[width=\textwidth]{../gpBias/xBiasPellaP0100002.png}
+%\includegraphics[width=\textwidth]{../gpBias/yBiasPellaP0100002.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=\textwidth]{../gpBias/directionalBiasPellaP010000Matern.png}
+%\includegraphics[width=\textwidth]{../gpBias/xBiasPellaP010000Matern.png}
+%\includegraphics[width=\textwidth]{../gpBias/yBiasPellaP010000Matern.png}
+%\end{minipage}
+%\begin{itemize}
+%	\item[(1.0, 0.2)] r hits lower bound (aka alpha lower the bound)
+%	\item[(1.0, 0.2)] K hits lower bound (aka beta lower the bound)
+%\end{itemize}
+
+%
+\begin{figure}[h!]
+        \includegraphics[width=\textwidth]{./plots/curveCompareX1Z0.5.png}
+\end{figure}
+
+%
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.49\textwidth}
+	\includegraphics[width=\textwidth]{./plots/curveCompareX1Z0.55.png}\\
+	\includegraphics[width=\textwidth]{./plots/curveCompareX1Z0.2.png}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+	\includegraphics[width=\textwidth]{./plots/curveCompareX3.5Z0.6.png}\\
+	\includegraphics[width=\textwidth]{./plots/curveCompareX3.5Z0.2.png}
+\end{minipage}
+\end{figure}
+
+
+
+%%
+%\clearpage
+%\vspace{-1cm}
+%\section{Results}
+%
+%%
+%Let $\check~$ decorate values which are predictions from the GP metamodel as 
+%opposed to predictions from the base-level model. In the posterior, the GP 
+%metamodel produces a predictive surface for the estimated $\check\mu$ values 
+%across the reference point domain. This $\check\mu$ surface is used to back 
+%out a predictive surface for $\check F^*$ under each reduced model. The bias in 
+%estimating $F^*$ across the reference point domain is the predicted 
+%$\check F^*$ minus the true $F^*$ at a given spatial location. Similarly the 
+%bias in estimating $\xi$ is given by $\frac{\check F^*}{M}-\xi$; using 
+%Eq. (\ref{twoCurves}) the bias in estimating $\zeta$ is given by 
+%$\tilde \zeta(\check F^*)-\zeta$. Individually these bias measures indicate a magnitude of 
+%bias in each of the reference point directions; together they form a 
+%vector field of biases.
+%
+%%%
+%%\thispagestyle{next}
+%%%
+%%\begin{figure}[h!]
+%%	%
+%%	\includegraphics[width=0.32\textwidth]{xBias.png}
+%%	\includegraphics[width=0.32\textwidth]{yBias.png}
+%%	\includegraphics[width=0.32\textwidth]{directionalBias.png}\\
+%%	\vspace{-1cm}
+%%	\caption{Bias surfaces for Shepherd data fit with a Beverton-Holt model.}
+%%\end{figure}
+%%\vspace{-0.5cm}
+%%\begin{figure}[h!]
+%%	%
+%%	\includegraphics[width=0.32\textwidth]{xBiasPella.png}
+%%	\includegraphics[width=0.32\textwidth]{yBiasPella.png}
+%%	\includegraphics[width=0.32\textwidth]{directionalBiasPella.png}\\
+%%	\vspace{-1cm}
+%%	\caption{Bias surfaces for Pella-Tomlinson data fit with a Schaefer model.}
+%%\end{figure}
+%%	\begin{minipage}[h!]{0.45\textwidth}
+%%	\vspace{-1cm}
+%%      	\includegraphics[width=\textwidth]{gpZetaBiasFineR.png}
+%%	\caption{ 
+%%	An preliminary example output for the set of bias surfaces as well as the 
+%%	directional bias field which is accessible by the meta-model. $top~left$: 
+%%	Bias in estimating $\zeta$. $top~right$: Total bias vector field across the spatial 
+%%	domain. $bottom~right$: Bias in estimating $\xi$. The solid black curve is $\frac{1}{\tilde\xi+2}$. 
+%%	Notice that bias is patchy in reference point space, with pockets of more or 
+%%	less bias and with spatially dependent magnitude and direction.		
+%%	}
+%%	\end{minipage}
+%%	\begin{minipage}[h!]{0.45\textwidth}
+%%	$~$\hspace*{1cm}
+%%	\includegraphics[width=\textwidth]{gpBiasArrow.png}
+%%	\hspace*{1cm}
+%%	\includegraphics[width=\textwidth]{gpXiBiasFineR.png}
+%%	\end{minipage}
+%%       \label{gpSurface}
+%%\end{figure}
+%
+%%
+%The above figures show the bias surfaces for the Beverton-Holt and Schaefer models respectively. 
+%Red colors indicate over estimation of the reference points and blue colors indicate 
+%underestimation of the reference points respectively. The black curves plotted 
+%above show the restricted reference point space as defined by Eq. (\ref{twoCurves}) in each case.
+%  
+%%%
+%%{\color{red}
+%%Figure 1 demonstrates a tentative early result from the described
+%%Figure 1 demonstrates a tentative early result from the described 
+%%meta-modeling procedure for the SRR given in Eq. (\ref{schnute}). Reference point 
+%%bias is clearly spatial in nature with the predominant source of bias clearly 
+%%being lead by $\xi$. The domain of $\xi$ is much larger than that of $\zeta$. 
+%%$\xi\in\mathbb{R}^+$ as opposed to $\zeta\in(0, 1)$, and thus it should be 
+%%expected that biases in $\xi$ may be allowed to grow larger. That said the spatial 
+%%behavior of these biases is potentially alarming. 
+%
+%%%
+%%Appendices A and B below demonstrate the level of code abstraction available for 
+%%building and fitting the components of production and GP modeling components. 
+%%These packages are now operational and necessary for scaling the construction of 
+%%these types of simulations. An age-structured modeling class is also mostly 
+%%operational.  
+%
+%%
+%\subsection{Future Results}
+%
+%%
+%The results presented above are generated with limited simulation runs due to 
+%issues introduced by the mapping of reference point values to SRR parameters. 
+%We are currently developing novel adaptive sampling space-filling methods which are 
+%capable of avoiding these issues and will allow for a broader and more stable result 
+%to be presented across a wide variety of SRRs as well as age structured models.  
+%
+%%%
+%%Further vetting and testing with this procedure continue. Additional SRRs are 
+%%currently being tested, furthermore it remains to be seen how general the patterns 
+%%observed here will be across different SRRs. Additionally a comparison with age 
+%%structured versions of these models are also forthcoming.
+%}
+
+%
+\thispagestyle{next}
+\bibliographystyle{apacite}
+%\bibliography{./schnuteGPBias.bib}
+\bibliography{./gpBias.bib}
+\thispagestyle{next}
+
+
+%%
+%\clearpage
+%\section*{Appendix A: Distributional results for $\tilde\xi$ and $\tilde\zeta$ \label{appA}}
+%\thispagestyle{next}
+%
+%%
+%Given the Log-Normality of $\tilde F^*$ as seen in Eq. (\ref{FLN}), for fixed 
+%$M$, $\tilde \xi$ is clearly just a scaled Log-Normal distribution (Log-Normal 
+%parameters are given in terms of the mean and variance on the log scale). 
+%
+%\begin{align*}
+%\tilde \xi &= \frac{\tilde F^*}{M}\\
+%\tilde \xi ~&\sim~ \text{LN}\left(\frac{1}{M}e^{\mu+\frac{\sigma^2}{2}}, \frac{1}{M^2}(e^{\sigma^2}-1)e^{2\mu+\sigma^2}\right)
+%\end{align*}
+%
+%%
+%Now working with $\tilde\zeta$ in terms given by Eq. (\ref{bhCurve}) and considering
+%the quantity $\text{logit}(2\tilde \zeta)$ provides a simplification in terms of $\log(\tilde F^*)$.
+%
+%\begin{align*}
+%\tilde \zeta &= \frac{1}{\tilde\xi+2}\\
+%\text{logit}(2\tilde \zeta) &= \log\left(\frac{\frac{2}{\tilde \xi+2}}{1-\frac{2}{\tilde \xi+2}}\right)\\
+%&=\log(2/\tilde \xi) = \log(2)-\log(\tilde \xi) = \log(2M)-\log(\tilde F^*)\\
+%\end{align*}
+%
+%The given simplification of $\text{logit}(2\tilde \zeta)$ reveals the 
+%distribution of $\zeta$ as a scaled and shifted Logit-Normal distribution.
+%
+%
+%\begin{align*}
+%\text{logit}(2\tilde \zeta) ~&\sim~ \text{N}\left(\log(2M)-\mu, \sigma^2\right) \\
+% 2\tilde\zeta ~&\sim~ \text{logit-N}\left(\log(2M)-\mu, \sigma^2\right)
+%\end{align*}
+%
+%Notice that due to Eq. (\ref{bhCurve}) these distribution results hold for any 
+%fixed M Beverton Holt model with Log-Normality in $\tilde F^*$. These results 
+%are not specific to the Laplace approximation setting here. For example under 
+%Beverton Holt and fixed M, a Log-Normal prior on $\tilde F^*$ necessarily 
+%implies a scaled Log-Normal prior on $\tilde\xi$ and a scaled Logit-Normal 
+%prior on $\tilde\zeta$. Furthermore if $M$ is not fixed, but instead it also 
+%follows a Log-Normal distribution, this also implies Log-Normality for 
+%$\tilde\xi$ and Logit-Normality on $\tilde\zeta$, albeit with slightly 
+%different parameters.
+
+\clearpage
+\section*{Appendix A: Profile Likelihood MLE \label{appMLE}}
+Given that $q$ has the effect of rescaling the mean function, a 
+naive handling of $q$ has the potential to interfere with the inference on 
+$\bm{\theta}$. While the parameter $q$ is typically identifiable, it can 
+introduce lesser modes which complicate naive inference.
+
+%
+Below I outline a profile likelihood method for MLE inference on $q$ and 
+$\sigma^2$. However if posed in a tactful Bayesian context, $q$ and 
+$\sigma^2$ may be marginalized out of the joint posterior to yield a direct 
+sampling scheme for $q$ and $\sigma^2$ which factors the posterior into the 
+form $p(q, \sigma^2, \bm{\theta}|I) = N(\log(q)| \sigma^2, \bm{\theta}, I) IG(\sigma^2|\bm{\theta}, I) p(\bm{\theta}|I)$ ({\color{red} Cite Maria DeYorio pdf??}).
+
+%
+The joint likelihood on the log scale can be written as, 
+\begin{align}
+\log\mathcal{L}(q, \sigma^2, \bm{\theta}; I) = - \frac{T}{2}\log(\sigma^2) - \frac{1}{2\sigma^2}\sum_t \log\left(\frac{I_t}{qB_t(\bm{\theta})}\right)^2. \label{logLike} 
+\end{align}
+%
+First Eq(\ref{logLike}) is maximized with respect to $q$ by partial 
+differentiation of Eq(\ref{logLike}) with respect to $q$, 
+%
+\begin{align}
+\frac{\partial \log\mathcal{L}}{\partial q} = -\frac{1}{q\sigma^2}\left(\sum_t \log\left(\frac{I_t}{B_t(\bm{\theta})}\right) - T\log(q)\right)
+\end{align}
+%
+The maximum of the likelihood in the $q$ direction is attained when 
+$\frac{\partial \log\mathcal{L}}{\partial q}=0$. By setting 
+$\frac{\partial \log\mathcal{L}}{\partial q}$ to 0 and solving for 
+$q$, the MLE of $q$ in terms of $\bm{\theta}$ can be written as
+%
+\begin{align}
+q(\bm{\theta}) = e^{ \frac{1}{T}\sum_t \log\left(\frac{I_t}{B_t(\bm{\theta})}\right) } = \left(\prod_t\frac{I_t}{B_t(\bm{\theta})}\right)^{\frac{1}{T}}. \label{qHat}
+\end{align}
+%
+Notice that $\hat q(\bm{\theta})$ is the geometric mean of the empirical 
+scaling factors between the observed index and modeled biomass at each time. 
+This form is emblematic of the interpretation of the $q$ parameter as the 
+proportionality constant between the observed index and the modeled biomass. 
+Additionally notice that $\hat q$ is a function of $\bm\theta$, so that 
+achieving the global maximum of the likelihood function still requires 
+maximization over $\bm\theta$. Furthermore, $\hat q(\bm{\theta})$ is only a 
+function of $\bm{\theta}$ and that $\sigma^2$ does not enter the expression.  
+This will be helpful in further maximization of the likelihood with respect to 
+$\sigma^2$.  
+
+%
+Now to maximize in the $\sigma^2$ direction Eq(\ref{logLike}) is 
+differentiated with respect to $\sigma^2$,
+%
+\begin{align}
+\frac{\partial \log\mathcal{L}}{\partial \sigma^2} = -\frac{T}{2\sigma^2} + \frac{1}{2(\sigma^2)^2}\sum_t \log\left(\frac{I_t}{qB_t(\bm{\theta})}\right)^2.
+\end{align}
+%
+The maximum of the likelihood in the $\sigma^2$ direction is attained when 
+$\frac{\partial \log\mathcal{L}}{\partial \sigma^2}=0$. Setting 
+$\frac{\partial \log\mathcal{L}}{\partial \sigma^2}$ to 0 and solving for
+$\sigma^2$ produces the following MLE as a function of $\bm{\theta}$,
+%
+\begin{align}
+\sigma^2(\bm{\theta}) = \frac{1}{T}\sum_t \log\left(\frac{I_t}{q(\bm{\theta})B_t(\bm{\theta})}\right)^2 \label{s2Hat}
+\end{align}
+%
+Notice that the conditionally MLE of $\sigma^2$ is not only a function of 
+$\bm{\theta}$ but also a function of $q$. As previously noted, $q(\bm{\theta})$ 
+is only a function of $\bm{\theta}$, and so to achieve a global maximum of the 
+joint likelihood, $\sigma^2(\bm \theta)$ is written entirely in terms of 
+$\bm \theta$ by replacing $q$ by $q(\bm{\theta})$ as seen above.
+
+%
+By combining Eq(\ref{qHat}) and Eq(\ref{s2Hat}) the MLEs of $q$ and $\sigma^2$ 
+can be written entirely in terms of $\bm{\theta}$. Furthermore, this 
+realization allows the joint maximization of the likelihood to be reduced to the 
+following profile log-likelihood,
+\begin{align}
+\log\mathcal{L}(\bm{\theta}; I) = - \frac{T}{2}\log( \sigma^2(\bm{\theta})) - \frac{1}{2 \sigma^2(\bm{\theta})}\sum_t \log\left(\frac{I_t}{q(\bm{\theta})B_t(\bm{\theta})}\right)^2. \l
+\end{align}
+%
+This profile log-likelihood is maximized numerically over $\bm{\theta}$, and the 
+estimates for $q$ and $\sigma^2$ are given by evaluating Equations (\ref{qHat}) 
+and (\ref{s2Hat}) at $\bm{\hat\theta}$. 
+\begin{align}
+\bm{\hat \theta} &= \argmax_{\bm{\theta}} \log\mathcal{L}(\bm{\theta}; I)\\
+\hat \sigma^2 &= \sigma^2(\bm{\hat\theta})\\
+\hat q &= q(\bm{\hat\theta})
+\end{align}
+%
+This profile formulation via $\hat q(\bm{\theta})$ and 
+$\hat \sigma^2(\bm{\theta})$ reduces the computational complexity of this
+numerical optimization, while also avoiding the multimodality issues induced 
+by $q$. 
+
+%
+{\color{gray}
+\section*{Appendix B: Integrating ODEs, Stiffness, Interpolation, and Chaos. \label{appODE}}
+
+%
+{\color{red}
+a preface to regularity issues: identifiability, stiffness, and continuity.
+}
+
+%
+\subsubsection{Uniqueness, Continuity, and Identifiability}
+
+%
+An important (and often overlooked) implementation detail is the solution to the 
+ODE which defines the progression of biomass through time (See Eq(\ref{ode})). As 
+a statistical model it is of paramount importance that this ODE not only have a 
+solution, but also that the solution be unique. Of primary concern, uniqueness 
+of the ODE solution is necessary for the identifiability of the statistical model.
+
+%
+If the form of $\frac{dB}{dt}$ is at least Lipschitz continuous, then the 
+Cauchy-Lipschitz-Picard theorem provides local existence and uniqueness of 
+$B(t)$.%, on the condition that the form of $\frac{dB}{dt}$ is at least Lipschitz continuous. 
+Recall from Eq(\ref{ode}) that $\frac{dB}{dt}$ is separated into 
+a term for population production, $P(B)$, and a term for removals via catch, $FB$. 
+For determining Lipschitz continuity of $\frac{dB}{dt}$, the smallest 
+Lipschitz constant of $\frac{dB}{dt}$ will be the sum of the constants for 
+each of the terms $P(B)$ and $FB$ separately. Typically any choice of $P(B)$ 
+will be continuously differentiable, which implies Lipschitz continuity (since 
+the set of continuous differentiable functions is a subset of the set of 
+Lipschitz continuous functions).  
+%(by more strict definition of continuity than Lipschitz continuity, and furthermore continuous differentiability)
+Thus, the assumed form of $P(B)$ does not typically introduce continuity concerns, 
+unlike some potential assumptions for catch.
+
+%
+In practice catch is determined by a series of observed, assumed 
+known, catches. Catch observations are typically observed on a quarterly basis, but 
+in practice may not be complete for every quarter of the modeled period. It is 
+overwhelmingly common to discretize the ODE via Euler's method with integration 
+step sizes to match the observation frequency of the modeled data. This is often 
+convenient but can present several issues. This strategy often pushes the 
+assumption of catch continuity under the rug, but for identifiability of the 
+statistical model an implicit assumption of continuity of the catches is 
+required. While mechanistically at the finest scale fishers must only catch 
+discrete packets of biomass (i.e. individual fish), it is sensible to consider 
+aggregate catches at the quarterly (or yearly) scale as accruing in a continuous 
+way. Furthermore any assumption of continuity will be required to be at least 
+Lipschitz continuous for the required regularity of the model.
+
+%
+Here I assume catches accrue linearly between observed catches. This assumption 
+defines the catch function as a piecewise linear function of time, with the 
+smallest Lipschitz constant for the catch term defined by the steepest segment 
+of the catch function. This assumption represents one of the simplest ways of 
+handling catch, while retaining Lipschitz continuity overall. Furthermore linearly 
+interpolated catch is adequately parsimonious for the typical handling of catches. 
+
+%
+{\color{red}
+\subsubsection{Integration and Stiffness}
+\subsubsection{Integration, Stiffness, and Chaos}
+
+%
+As previously mentioned, the overwhelming majority of implementations of 
+population dynamics models discretize the ODE using Euler's method with the 
+integration step sized fixed so as to match the observation frequency. In this 
+setting we explore model parameterizations that explore the full extent of 
+biologically relevant reference points. This exercise produces some 
+combinations of parameters that result in numerically stiff ODEs. 
+
+%
+The concept of stiffness in ODEs is hard to precisely characterize 
+({\color{red}cite}). Hairer and Wanner [5, p. 2] describe stiffness in the 
+following pragmatic sense, "Stiff equations are problems for which explicit 
+methods don't work". It is hard to make this definition more mathematically 
+precise, but this 
+%is without a doubt a consistent issue for models parameterized 
+%so that $\frac{B^*}{\bar B(0)}$ is greater than $\frac{1}{2}$. Euler's method, as often 
+%implemented, is particularly poorly suited for these stiff regions of parameter
+%space. In these stiff regions it is necessary to integrate the ODE with an 
+%implicate integration method. 
+
+%
+Several of the most common implicate methods were tried including the 
+Livermore Solver for ODEs (lsode), and the Variable Coefficient ODE Solver 
+(vode) as implemented in the deSolve package of R ({\color{red}cite}). The 
+difference between implicate solvers is negligible, while most explicate 
+methods result in wildly varying solutions to the ODE, and in still regions of 
+parameter space explicate methods completely fail to represent the model as 
+stated in the stiff regions of parameter space. Results shown here are computed 
+using the lsode integration method since it runs relatively quickly and has a 
+relatively smaller footprint in system memory.  
+}
+
+}
+
+%Too stiff for Euler,
+%avoid chaos, and
+%implicit methods
+%} 
+
+%%
+%quickly address uniqueness conditions.\\ 
+%%
+%interpolation and the regularity of solutions.\\
+%
+%https://tutorial.math.lamar.edu/Classes/DE/IoV.aspx
+%
+%https://tutorial.math.lamar.edu/Classes/CalcI/Continuity.aspx
+%
+%http://mathonline.wikidot.com/continuity-of-functions-defined-by-lebesgue-integrals
+
+%Additionally this profile likelihood approach 
+%alleviates the aforementioned numerical difficulties brought about by the lesser modes induced by $q$multimodality issues described around the when maximizing the joint likelihood.  
+
+
+%Since both \hat q(\bm{\theta}) and \hat \sigma^2(\bm{\theta}) 
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%
+%
+%%has been extended to account for the possibility of 
+%%geometric anisotropy as well as to model the smoothness of the relationship.
+%%in the relationship between $(\xi, \zeta)$ and 
+%%$(\tilde\xi, \tilde\zeta)$ 
+%The previously used squared exponential correlation function has been replaced with the 
+%Matern correlation function \shortcite{matern_spatial_1960}. The updated correlation structure 
+%for filling out $\bm{\textbf{K}}$ can be summarized as follows, %this updated correlation structure fills out $\bm{\textbf{K}}$ as,
+%%In summary the correlation structure of this model is, 
+%\begin{align}   \label{corModel}
+%R(\bm{x}, \bm{x'}) &= Matern(\norm{\bm{x}-\bm{x'}}_{\bm{\Lambda}}; \nu) \\ 
+%\norm{\bm{x}-\bm{x'}}_{\bm{\Lambda}} &= \sqrt{ (\bm{x}-\bm{x'})^\top \bm{\Lambda}^{-1} (\bm{x}-\bm{x'}) } \\ 
+%\bm{\Lambda} &= 
+%	\begin{pmatrix}
+%                \lambda_1 & 0\\
+%                0 & \lambda_2
+%        \end{pmatrix}.
+%\end{align}
+%%
+%The full GP model has linear predictor parameters ($\beta_0, \bm{\beta}$), a 
+%process variance parameter ($\tau^2$), kernel length scale parameters 
+%($\lambda_1$, $\lambda_2$), a kernel rotation parameter ($\theta$), and the Matern 
+%smoothness parameter ($\nu$). All of these parameters are estimated by 
+%maximization of the posterior (MAP) inference. 
+
+
+
+
+
+
+
+
+%%principal objectives, 
+%%methods employed (with enough detail to enable readers to evaluate the validity of findings),
+%%results/outcomes. 
+%%Please include information on any helpful discoveries of a practical or theoretical nature
+%
+%%
+%{\color{red}
+%\clearpage
+%\section{Objectives}
+%
+%%
+%Over the reporting period the primary objective has been to further apply and 
+%extend our code base for working with production and Gaussian process (GP) models.
+%The focus is to further explore how model misspecification in a variety of 
+%commonly used forms of the stock recruitment relationship (SRR) can affect 
+%inference on key reference points. In particular, if data are generated under 
+%a three parameter true SRR but fit using a two parameter analog how does 
+%this affect inference on $\frac{F^*}{M}$ and $\frac{B^*}{B_0}$. What bias is 
+%induced by the choice of SRR? 
+%%how is any bias induced by the SRR. % produce reference point bias. 
+%%Furthermore, what are the key features of the SRR which may produce reference point bias.
+%
+%%%
+%%Over the reporting period the primary objective has been to establish a solid 
+%%code base for working with production, age-structured, and Gaussian process 
+%%models. The goal is to build abstracted modeling classes for these models 
+%%while exploring the use of surrogate modeling techniques to analyze the 
+%%statistical properties of integrated assessment methods. Establishing a solid 
+%%code base early in this project is necessary for producing a strong 
+%%abstraction barrier between the many different modeling components.
+%% 
+%%%
+%%The surrogate modeling focus is to explore how model misspecification in the 
+%%stock recruitment relationship (SRR) can affect inference on key reference 
+%%points. In particular, if data are generated under a three parameter true SRR, 
+%%but fit using a two parameter SRR how does this affect inference on major
+%%reference points, such as $\frac{F^*}{M}$ and $\frac{B^*}{B_0}$.
+%
+%%
+%\section{Methods}
+%%
+%
+%%
+%Under both the Beverton-Holt and Schaefer production models, 
+%$\frac{F^*}{M}$ and $\frac{B^*}{B_0}$ are known to be fixed when steepness and natural 
+%mortality are a'priori fixed constants \shortcite{mangel_perspective_2013, maunder_is_2003}. 
+%%Similarly, the Schaefer model 
+%%is widely know to feature the two parameter logistic SRR {\color{red} (CITE)}.
+%An additional degree of freedom can be added to these models by adding a third 
+%parameter ($\gamma$) to the SRR of these models respectively.  
+%% Beverton-Holt model by adding a third parameter ($\gamma$) to the SRR. 
+%Several formulations of these expanded three parameter SRR have 
+%been studied \shortcite{punt_extending_2019}. 
+%
+%%
+%The focus here is on three parameter SRRs which have the Beverton-Holt or 
+%Schaefer models as a special case \shortcite{shepherd_family_1982, pella_generalized_1969}.
+%%\shortcite{deriso_harvesting_1980, schnute_general_1985, shepherd_family_1982}. 
+%%At this stage of research the particular choice of SRR 
+%%is still flexible, with some experimentation across several formulations. 
+%%Although some preliminary figures have been generated under,
+%Exploration continues across many different choices of three parameter SRRs, 
+%although the new results presented here focus on the Shepherd and Pella-Tomlinson SRRs  
+%% since they are the most commonly used
+%%the most commonly used SRRs. In particular 
+%%new results are Shepherd and Pella-Tomlinson SRRs 
+%%
+%\vspace{-0.25cm}
+%\begin{align}
+%R_{1} = \frac{\alpha B}{1+\beta B^{\frac{1}{\gamma}}} ~~~ ~~~ R_{2} = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}. \label{SRRs}
+%\end{align}
+%
+%%
+%$R_{1}$ is equivalent to the Beverton-Holt SRR when $\gamma=1$, and $R_{2}$ is 
+%equivalent to the Schaefer model's logistic SRR when $\gamma=2$.  
+%%%
+%%\begin{equation}
+%%R = \alpha B (1-\beta\gamma B)^{\frac{1}{\gamma}}.\label{schnute}
+%%\end{equation} 
+%%This SRR is equivalent to Beverton-Holt when $\gamma=-1$. 
+%Given an informative series of observed catches, and natural mortality fixed at $M=0.2$, these 
+%production models are \mbox{integrated forward based upon,} 
+%\begin{equation}
+%\frac{dB}{dt} = R - (M+F)B.
+%\end{equation}
+%
+%%
+%Above $R$ is recruitment, $F$ is fishing mortality, and $B$ represents biomass. 
+%The decorator $~^*$ is added to indicate values at maximum sustainable yield (MSY) and $B_0$ is virgin biomass.
+%Biomass and mortality reference point inference is monitored by a GP metamodel.
+%The following variables are defined for ease of use working with these metamodels. 
+%%A primary focus of research has been on the construction of a surrogate model 
+%%around biomass and mortality reference points.
+%%%define \xi, \zeta
+%\vspace{-0.25cm}
+%\begin{align}
+%	&\xi = \frac{F^*}{M}
+%	&\zeta = \frac{B^*}{B_0}
+%\end{align}
+%%
+%\begin{samepage}
+%Let $\tilde~$ decorate any quantity that is derived under the restricted two 
+%parameter case, so that $\tilde \xi$ and $\tilde \zeta$ represent the above
+%reference points under the assumption of a Beverton-Holt or Schaefer model. 
+%The construction of a metamodel around these reference points is based upon the 
+%restricted relationship in ($\tilde \xi$, $\tilde \zeta$) for the two 
+%parameters models.  First under the Beverton-Holt, and subsequently under the 
+%Schaefer model, these structured relationships can be used to show that 
+%the reference points are restricted to the following curves respectively, 
+%\vspace{-0.25cm}
+%\begin{equation}
+%\tilde\zeta_{1}=\frac{1}{\tilde\xi+2} ~~~ ~~~  \tilde\zeta_{2}=\frac{\tilde\xi}{2\tilde\xi+1}.  \label{twoCurves}
+%\end{equation}
+%\end{samepage}
+%
+%%Under Beverton-Holt this structured 
+%%relationship, provides the following parametric relationship between 
+%%$\tilde\xi$ and $\tilde\zeta$ directly.
+%%%Introduce tilde notation
+%%%Under BH:
+%%\begin{align}
+%%	&\tilde \xi = \sqrt{\frac{4h}{1-h}}-1  
+%%	&\tilde \zeta = \frac{\sqrt{\frac{4h}{1-h}}-1}{\frac{4h}{1-h}-1} \nonumber\\
+%%	&(\tilde \xi+1)^2 = \frac{4h}{1-h}
+%%	&~~~~~~~= \frac{\tilde \xi}{(\tilde \xi+1)^2-1} \nonumber\\ 
+%%	&~&= \frac{1}{\tilde\xi+2}~~~~~~~~~ \label{bhCurve}
+%%\end{align}
+%%%
+%%This directly shows that under Beverton-Holt these reference points are 
+%%restricted to the curve $\left(\tilde\xi, \frac{1}{\tilde\xi+2}\right)$.
+%
+%\subsection{Simulation}
+%
+%%For each data set
+%Indices of abundance are simulated from each three parameter SRR over an 
+%unrestricted grid of $\xi$ and $\zeta$ values. After data are 
+%generated, $\gamma$ is then fixed so that the SRR reduces to the special cases 
+%previously described under each model, and the restricted model is subsequently 
+%fit to the simulated indices.
+%
+%%
+%By working with the resulting models parameterized in terms of 
+%$\log(\tilde F^*)$ it tends to improve optimization convergence. Furthermore, 
+%the normality this induces on the log scale, via the Laplace approximation, 
+%yields Log-Normality on $\tilde F^*$. 
+%%This work has shown that Log-Normality in 
+%%$\tilde F^*$ leads to additional, and extremely useful, distributional 
+%%relationships for $\tilde\xi$ and $\tilde\zeta$ under each restricted model.
+%%%These results lead to additional useful
+%%%distributional relationships for $\tilde\xi$ and $\tilde\zeta$ as seen in 
+%%%Appendix A. 
+%%\begin{align}
+%%\log(\tilde F^*) ~&\substack{.\\\sim}~ \text{N}(\hat\mu,  \hat\sigma^2)\nonumber\\
+%%\tilde F^* ~&\sim~ \text{LN}(e^{\hat\mu+\frac{\hat\sigma^2}{2}}, (e^{\hat\sigma^2}-1)e^{2\hat\mu+\hat\sigma^2}) \label{FLN}
+%%\end{align}
+%%%
+%Let $\hat\mu$ be the maximum likelihood estimate (MLE) of $\log(\tilde F^*)$. Additionally 
+%let $\hat\sigma^2$ be the inverted Hessian information of the log likelihood 
+%evaluated at $\hat\mu$. 
+%%The distribution of $\tilde F^*$ follows from the definition of 
+%%the Log-Normal distribution. Here the parameters of the Log-Normal are given 
+%%as the mean and variance of the Log-Normal distribution directly.
+%
+%%
+%\thispagestyle{next}
+%%
+%\subsection{Gaussian Process Model}
+%%
+%
+%%
+%A GP is a stochastic process generalizing the normal 
+%distribution to an infinite dimensional analog. GPs are often specified 
+%primarily through the choice of a covariance function which defines the 
+%relationship between locations in an index set. Typically the index set is 
+%spatial for GPs, and in this setting the model is in reference point space 
+%$(\xi, \zeta)$. A GP model implies an $n$ dimensional multivariate normal 
+%distribution on the observations of the model and the covariance function 
+%fills out the covariance matrix for the observations. 
+%
+%%
+%Each iteration of the simulation produces a single fitted $\hat\mu_i$ at an 
+%associate $(\xi_i, \zeta_i)$ location with $i\in\{1,...,n\}$. $\bm{\hat\mu}$ is 
+%jointly modeled over the space of reference \mbox{points as the following GP,}
+%%Here the following GP model is used,
+%\begin{align}	\label{gpModel}	
+%	\bm{x} &= (\xi, \zeta) \nonumber\\
+%	\bm{\hat\mu} &= \beta_0 + \bm{\beta}'\bm{x} + f(\bm{x}) + \bm{\epsilon} \nonumber \\
+%	f(\bm{x}) &\sim \text{GP}(0, \tau^2\bm{\textbf{K}(\bm{x}, \bm{x'})}) \nonumber \\
+%	\epsilon_i &\sim \text{N}(0, \hat\sigma^2_i).
+%\end{align}
+%%
+%$\hat\sigma^2_i$ is the observed variance for $\hat\mu_i$ from inference in the 
+%simulation step. This model allows for the full propagation of inferred information 
+%from the simulation step to be propagated into the reference point metamodel. 
+%
+%%
+%Here $\textbf{K}$ has been extended to account for the possibility of 
+%geometric anisotropy as well as to model the smoothness of the relationship.
+%%in the relationship between $(\xi, \zeta)$ and 
+%%$(\tilde\xi, \tilde\zeta)$ 
+%The previously used squared exponential correlation function has been replaced with the 
+%Matern correlation function \shortcite{matern_spatial_1960}. The updated correlation structure 
+%for filling out $\bm{\textbf{K}}$ can be summarized as follows, %this updated correlation structure fills out $\bm{\textbf{K}}$ as,
+%%In summary the correlation structure of this model is, 
+%\begin{align}   \label{corModel}
+%\bm{\textbf{K}(\bm{x}, \bm{x'})} &= Matern(\norm{\bm{x}-\bm{x'}}_{\bm{R}}; \nu) \\ 
+%\norm{\bm{x}-\bm{x'}}_{\bm{R}} &= \sqrt{ (\bm{x}-\bm{x'})^\top \bm{R}^{-1} (\bm{x}-\bm{x'}) } \\ 
+%\bm{R} = \bm{P}\bm{\Lambda}\bm{P}^{\top} ~~~ 
+%\bm{P} &= 
+%	\begin{pmatrix}
+%		cos(\theta) & -sin(\theta)\\
+%		sin(\theta) & cos(\theta)
+%	\end{pmatrix}
+%~~~
+%\bm{\Lambda} = 
+%	\begin{pmatrix}
+%                \lambda_1 & 0\\
+%                0 & \lambda_2
+%        \end{pmatrix}.
+%\end{align}
+%%
+%The full GP model has linear predictor parameters ($\beta_0, \bm{\beta}$), a 
+%process variance parameter ($\tau^2$), kernel length scale parameters 
+%($\lambda_1$, $\lambda_2$), a kernel rotation parameter ($\theta$), and the Matern 
+%smoothness parameter ($\nu$). All of these parameters are estimated by 
+%maximization of the posterior (MAP) inference. 
+%%
+%%of this model by the edition of the smoothness parameter $\nu$.
+%%%is taken to be the squared exponential kernel. 
+%%The linear predictor parameters ($\beta_0, \bm{\beta}$) along with $\tau^2$, 
+%%the kernel length scale parameters, and the smoothness parameter are estimated via MAP 
+%%inference.
+%
+
+
+
+
+
+
+
+
+%%
+%\clearpage
+%\thispagestyle{next}
+%%
+%\section*{Appendix A: Example production model class usage}
+%	
+%%
+%The structure of a production model is encoded as an R6 class of my creation. 
+%The primary way of specifying a model is through a function for evaluating 
+%the instantaneous change in biomass through time. Here a Shepherd SRR is 
+%implemented. Additionally, a function returning the virgin biomass associated 
+%with a given parameter configuration is provided.  
+%
+%\begin{verbatim}
+%#import my production model class
+%source('prodClass0.1.1.r')
+%
+%#a function to iterate biomass forward
+%dPdt = function(t, y, alpha, beta, gamma, M, C){  
+%    list( (alpha*y)/(1+beta*y^gamma) - C[t] - M*y )
+%}
+%
+%#a function for computing virgin biomass
+%P0 = function(alpha, beta, gamma, M){ 
+%    ((alpha/M-1)/beta)^gamma
+%}
+%\end{verbatim}
+%
+%%
+%Data is read in from file, and initial values specifying the Shepherd 
+%production model are initialized into the model object. Once the model is 
+%initialized, the optimize method is called to fit the initialized parameters
+%to the given cpue data. The resulting object is saved to disk.
+%
+%\begin{verbatim}
+%#time, catch, cpue data
+%D = read.csv('data.csv')
+%
+%#initialize production model
+%pm = prodModel$new( dNdt=dPdt, N0=P0, time=D$time, C=D$catch, M=0.2,
+%    lq=-8, lsdo=-2, alpha=10^3, beta=1.5, gamma=1 
+%)
+%
+%#optimize likelihood
+%opt = pm$optimize(D$cpue,
+%        c('lq', 'lsdo', 'alpha', 'beta', 'gamma'),
+%        lower   = c(-Inf, -Inf, 10^-6, 10^-6, -2),
+%        upper   = c( Inf,  Inf,   Inf,   Inf,  2),
+%        cov     = T
+%)
+%
+%#save fit model to disk
+%pm$save('shepOpt.rds')
+%\end{verbatim}
+%
+%%
+%\clearpage
+%In an R shell the fit Shepherd model is read into memory and the printing 
+%method displays the model attributes. 
+%
+%\begin{verbatim}
+%> readRDS('shepOpt.rds')$printSelf()
+%C       : 94 212 195 383 320 ...
+%M       : 0.2 
+%N       : 3937.862 3601.449 3242.73 2931.396 2549.425 ...
+%lq      : -7.9098 
+%N0      : 3937.862 
+%beta    : 1.541724 
+%lsdo    : -2.153907 
+%time    : 1 2 3 4 5 ...
+%rsCov   : 0.02086627 -0.0001218574 -792.9754 -1.200681 -0.0006139623 ...
+%gamma   : 1.026034 
+%alpha   : 1000.006 
+%OPT_method      : L-BFGS-B 
+%ODE_method      : rk4
+%\end{verbatim}
+%
+%%
+%Additional methods are available, but this summarizes the basic components of 
+%this class. 
+%
+%\thispagestyle{next}
+%\section{Appendix B: Example GP class usage}
+%
+%%
+%The structure of the GP model class is similar in organization to that of the 
+%production model. The primary modeling feature of GP models tends to be the 
+%structure of the covariance function. Here I provide an example function for 
+%implementing a squared exponential correlation function.
+%
+%\begin{verbatim}
+%#import my gaussina process class
+%source('gpClass0.0.1.r')
+%
+%#a function for exaluating the gp kernal
+%S2 = function(X0, X1, v){
+%        maxD = dnorm(X0, X0, sqrt(v), log=T)
+%        mapply(function(x0, m){
+%                exp(dnorm(X1, x0, sqrt(v), log=T)-m)
+%        }, X0, maxD)
+%}
+%\end{verbatim}
+%
+%%
+%\clearpage
+%Some simulated data are generated and, the GP model is initialized. The length 
+%scale of the GP and the linear predictors are fit my maximizing the implied 
+%likelihood of the specified model.
+%
+%\begin{verbatim}
+%#some fake data
+%X = -10:10
+%Y = X^3
+%
+%#init GP model
+%gp = gpModel$new( X=X, Y=Y, S2=S2,
+%        v = 1,
+%        B = as.vector(lm(Y~X)$coef)
+%)
+%
+%#fit MAPs
+%gp$fit(c('v', 'B'),
+%    lower = c(eps(), rep(-Inf, 2)),
+%    upper = c(Inf, rep(Inf, 2)),
+%    cov   = T
+%)
+%\end{verbatim}
+%	
+%%
+%The gp object automatically updates it parameter slots with the fitted values. 
+%The print method is called to show the fit model object.
+%
+%\begin{verbatim}
+%> gp$printSelf()
+%B       : 9.313295e-11 74.36218 
+%v       : 1.142883 
+%g       : 0 
+%Y       : -1000 -729 -512 -343 -216 ...
+%X       : -10 -9 -8 -7 -6 ...
+%aic     : 385741.1 
+%KInv    : 1.826102 -1.618892 1.070118 -0.6508835 0.3853917 ...
+%obsV    : 0 0 0 0 0 ...
+%rsCov   : 1.502124e-05 0 0.0001206213 0 0.1187509 ...
+%OPT_method      : L-BFGS-B	
+%\end{verbatim}
+%\thispagestyle{next}
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\section{Questions}
+%\begin{itemize}
+%	\item Changes in approach and reasons for change *
+%		
+%		Not a substantial change. I've started developing intuition about integrated stock assessment 
+%		models by using simulation and calibration methods to evaluate parametric assumptions of SRR 
+%		rather than diving directly into the MSE based simulation.  
+%		
+%	\item What were the outcomes of the award? *
+%		
+%		Thus far I have built the beginnings of a coding infrastructure for working with integrated 
+%		assessment models in R. This infrastructure includes production model and age-structured model 
+%		R6 classes. I have built a suit of model fitting tools to work with these classes. Additionally 
+%		I have built an R6 class for fitting and managing data associated with Gaussian Process models.
+%		
+%	\item What was the impact on the development on fisheries? %of the principal discipline(fisheries) of the project? *
+%		As of yet we have not published results and so the present impact is relatively small. Once 
+%		these results (and tools) are complete, the impact of this project is likely to be substantial.
+%		The introduction of new methods (along with tools to implement them) can make it very easy to 
+%		run calibration procedures on stock assessment models.  
+%		
+%	\item What was the impact on other disciplines? *
+%		
+%		This project represents a novel application of surrogate modeling techniques in a fisheries 
+%		setting. 
+%	
+%	\item[??] What was the impact on physical, institutional, and information resources that form infrastructure? *
+%		none.
+%		
+%	\item What was the impact on technology transfer? *
+%		
+%		Technology transfer is an important aspect of this project. The Statistics department at UCSC 
+%		has institutional expertise in Bayesian Nonparametric methods. Furthermore these techniques 
+%		are becoming increasingly popular in fisheries management {\color{red}(cite VAST)}. Additionally 
+%		this project is bringing fisheries models in an around a variety of applied mathmeticians and 
+%		statisticians at UCSC. 
+%		
+%	\item What were the major goals and objectives of this project? *
+%		
+%		Over this reporting period the goal was to develop the fundamental code base for working 
+%		with integrated stock assessment models in the context of a surrogate model setting. 
+%		Additionally, it was planned to provide an application of some of the developed 
+%		methods in an analysis of various parameterizations of stock recruitment relationships.
+%	
+%	\item What was accomplished under these goals? *
+%
+%		Presently I have completed an operational code base for production and age-structured models 
+%		as a set of R6 classes. Further, I have a completed a class for fitting, and efficiently 
+%		managing, a large class of Gaussian Process models. In future work, these classes will serve 
+%		as the basis of the entire line of research. We have begun substantial analysis of two verse 
+%		three parameter stock recruitment relationships, although results are too preliminary to 
+%		release substantial findings.
+%
+%	\item What opportunities for training and professional development has the project provided? *
+%		
+%		Working closely with fisheries reaserchers has taught me a lot about the structure, and function, 
+%		of integrated stock assessment models in a practice. As part of the statistics department at UCSC 
+%		I have developed skills in Bayesian nonparametric modeling that will be foundational moving 
+%		forward.
+%		
+%	\item How were the results disseminated to communities of interest? *
+%		
+%		Mostly via NOAA advisor meetings.
+%		
+%	\item What do you plan to do during the next reporting period to accomplish the goals and objectives? *
+%		
+%		I plane to produce contrete calibration results with respect to SRR choice. I would like to 
+%		extend our simulation driven approach for the analysis of SRRs into a comparison of reference 
+%		point behavior between production and age structured models. Additionally I would like to 
+%		begin building an MSE code base in preparation for the next phase of research.
+%		
+%	\item Technologies or techniques *
+%		
+%		I have developed a set of R6 classes for managing the primary modeling components of this project.
+%			production models class
+%			age structured class
+%			Gaussian process class
+%			complete with methods for local and global optimization of internal parameters
+%		Such classes could for the foundation of an R package for handling these models.
+%\end{itemize}
+
+%\begin{itemize}
+%	\item simulation idea
+%	\item build code infrastructure for simulation experiments
+%	\item distributional results harvest rate <=> Reference point relationship
+%	\item develop surrogate modeling methodology
+%	\item integrated stock assessment fundamentals
+%	\item goals for comparison between production model and age structure comparison
+%	\item parlay into MSE based simulation.	
+%	\item additional math from recent work.
+%\end{itemize}
+
+
+
+%%
+%%SUMMARY
+%%
+%
+%%(1/10)
+%\section*{Summary}
+%The question of how to weight multiple sources of information in the 
+%integrated analysis of stock assessments remains an active area of research 
+%without a clear, and computationally extensible, theoretical basis. I aim to 
+%build upon the most well justified methods of data weighting available today, 
+%by framing simulation-based methods of model evaluation, in the context %framing an analysis of Management Strategy Evaluation (MSE) in the context 
+%of Bayesian optimization, and the calibration of computer experiments. Using 
+%these tools I can provide a computationally efficient, and theoretically 
+%justifiable, quantitative framework to approach data integration in stock 
+%assessment.
+%
+%%
+%%RATIONAL
+%%
+%
+%%(1/2)
+%\section*{Rationale}
+%%a short essay explaining how my references imply the objectives/hypotheses below.
+%%
+%
+%%MORE EMPHASIS ON FRANCIS GUIDING PRINCIPLES
+%
+%%
+%Modern stock assessments tie many different sources of data together into a 
+%single integrated stock assessment model. When different data sources bring 
+%conflicting information into the model, the weighting of each 
+%\mbox{source may greatly influence stock status \shortcite{fr2011}.} 
+%%Furthermore, consistent management of as well as our management of the system at large. 
+%
+%%
+%Often the dynamics of stock assessment models make use of data describing the 
+%catch of groupings of fish by age, sex, length, etc. Models of this 
+%type integrate multiple data sources by describing the distribution of the 
+%stock, over the various categories of a grouping, as a probability simplex of 
+%age, sex, or length compositions. Among the most straight forward, and common, 
+%models for bringing data of this type into the integrated assessment is the 
+%multinomial model on composition sampling counts. As discussed in 
+%\shortciteA{fr2014, tj2017} the multinomial integrating model is often poorly 
+%suited for modeling fisheries composition data, due to the lack of independence 
+%among samples and the overdispersion this induces with respect to the 
+%multinomial distribution.
+%%The most straight forward model for including these data in an integrated 
+%%assessment model is a multinomial model of composition sampling counts. 
+%
+%%%
+%%By framing an analysis of Management Strategy Evaluation (MSE) 
+%%in the context of Bayesian calibration of computer experiments I aim 
+%%to provide a computationally efficient, and theoretically justifiable, 
+%%quantitative framework to approach this problem.
+%
+%%
+%Recently we have seen modeling approaches for compositional data that alleviate 
+%some of the overdispersion issues seen in the multinomial integrating model. 
+%Namely \shortciteA{fr2014} proposes replacing the multinomial distribution with the 
+%more flexible logit-normal \mbox{distribution and \shortciteA{tj2017} proposes the 
+%Dirichlet-multinomial distribution (D-M)}
+%%a short description of the setting for DM likelihood
+%\begin{equation}
+%\text{D-M}(\bm{\hat y}|\bm{\alpha}) = \frac{n! \Gamma(\sum_j \bm{\alpha}_j)}{\Gamma(n+\sum_j \bm{\alpha}_j)} \prod_j \frac{\Gamma(\bm{\hat y}_j+\bm{\alpha}_j)}{\bm{\hat y}_j! \Gamma(\bm{\alpha}_j)}.
+%\end{equation}
+%%
+%Although neither model may fully describe the exact distribution of 
+%compositional data, both models show promise as useful tools for weighting the 
+%information content contained in composition data. Both campaigns advocate 
+%hierarchical extensions of their models as limited by computational 
+%constraints.
+%
+%%describe issue in optimization (convergence and the desire for efficient global optimization)
+%The practical issues of computation time and computational stability are an 
+%ever present issue in data weighting. Since models often need to be fit 
+%repeatedly during development, long running codes can dramatically increase 
+%development time. As a result, most inference methods used in stock assessment 
+%(even in relatively simple cases) rely on local numerical optimization of 
+%non-convex likelihoods. Local optimizers aim to be fast, but make only 
+%futile attempts at achieving a global solution. As a result, development time 
+%is further exacerbated by optimizer tuning. Moreover, integrated 
+%assessments that bring conflicting information into the model, often further 
+%exacerbate optimizer tuning, and introduce considerable uncertainty about 
+%the scope of attained solutions. Global optimizers, such as genetic algorithms or 
+%simulated annealing, show promise in application to these problems, but they 
+%are typically slower than local optimizers \shortcite{mp2013}.
+%
+%%Bayesian optimization of computer simulation/computer experiment calibration
+%Bayesian optimization is a computationally efficient global optimization 
+%technique \shortcite{gl2015} that has seen a wide variety of applications, but
+%of notable success in the realm of computer simulation experiments 
+%\shortcite{jo1998, gr2016}. Bayesian optimization gets its name from the 
+%Bayesian Gaussian Process (GP) meta-model at its core. The primary motivation 
+%is to manage a computationally challenging function with a fast, and relatively 
+%simple, functional working model of the function to be optimized (the objective 
+%function). A relatively small amount of time is spent building and updating 
+%the meta-model, and in return the meta-model guides a global, and efficient, 
+%search of parameter space. Bayesian optimization has been used to calibrate 
+%models while accounting for model uncertainty \shortcite{oh1998} as well as to
+%correct model inadequacy problems \shortcite{ko2001}.
+%% “even though it may be highly computer intensive and expensive to run, it is still
+%%much cheaper to compute η(x) than to ‘compute’ α(x).”
+%
+%%
+%Management Strategy Evaluation (MSE) is a simulation method for evaluating
+%a set of management objectives (or utilities) about a given management 
+%procedure (MP). MSEs test the MP by using operating models (OM) 
+%to simulate our uncertainty about reality across a broad distribution of 
+%states-of-nature.
+%Under repeated sampling from the OM, the MP is applied, and its performance 
+%is evaluated across the management objectives. 
+%The MP is often solely thought of in terms of the harvest control rule 
+%(HC), but the management procedure is also largely a function of 
+%the stock assessment model (SA). In fact, most decisions about the 
+%science-management process can, and should, be tested against uncertainty by 
+%MSE \shortcite{ly2018}. MSEs balance trade-offs across multiple management 
+%objectives, and they can be used to define optimal sets of `decisions' (called 
+%the Pareto Set) among uncertain values. MSEs have been used extensively to 
+%evaluate model effectiveness of management strategies across a wide range 
+%different stocks \shortcite{pu2014}, and they are widely acknowledged to be the 
+%most appropriate way to determine the `best' MP among a set. 
+%
+%
+%
+%%Essentially, any decision point in the science-management process can be evaluated using MSE 
+%
+%
+%%under repeated simulation from the OM. to establish the utility of a MP.
+%%well the MP functions 
+%%in the face of a broad, but realistic, range of uncertain situations. 
+%
+%%drawing simulations from distributions of 
+%%the possible, and largely uncertain, states of reality based upon some 
+%%operating model (OM). 
+%%These simulations are tested against the MP to see how 
+%%stock assessment models and harvest control rules (jointly referred 
+%%to as management strategies)
+%
+%%%a short description of MSEs for defining model utility
+%%Management Strategy Evaluation (MSE) is a simulation method for evaluating the 
+%%utility of stock assessment models and harvest control rules (jointly referred 
+%%to as management strategies) in the face of model uncertainty. Furthermore MSEs 
+%%can balance trade-offs across multiple management objectives as well as 
+%%identify optimal sets of `decisions' (called the Pareto Set) among 
+%%uncertain values. MSEs have been used extensively to evaluate model 
+%%effectiveness of management strategies across a wide range different stocks 
+%%\shortcite{pu2014}, and are widely acknowledged to be the most appropriate way to 
+%%compare management strategies to determine the `best' among a set. 
+%
+%\thispagestyle{next}
+%%
+%%OBJECTIVES
+%%
+%
+%%(1/10)
+%\section*{Objectives/Hypotheses}
+%The objective at large is to develop methods for the Bayesian calibration of 
+%data integration methods via an automated analysis of MSE simulations. In doing 
+%so I will further develop methods of data weighting for integrated models by 
+%providing theoretically justifiable priors for weighting parameters. I propose 
+%the following three tiered approach to advancing this research, based upon the 
+%efficient Bayesian optimization of data integration parameters with respect to 
+%joint measures of MSE defined utility and uncertainty.
+%% with respect to data weighting parameters.
+%
+%%
+%\subsubsection*{Optimization}
+%Firstly, I will develop global Bayesian optimization methods of data 
+%integration parameters with respect to joint measures of MSE defined utilities. 
+%I will test and develop the efficient methods necessary to achieve a timely 
+%analysis of MSE simulations.
+%%john email for wording.
+%
+%%
+%\subsubsection*{Prior Calibration}
+%Secondly, I will develop methods of extending the optimal data weighting result 
+%into a theoretically sound informative prior for weighting parameters. The 
+%hypothesis is that the globally optimum weighting parameters, among simulations, 
+%will contain valuable information for guiding local optimization methods to 
+%global solutions for real data sets. Furthermore, these methods provide
+%appropriate prior information to weighting parameters so as to regularize, and 
+%expedite, existing optimization methods.
+%
+%\subsubsection*{Multi-objective Generalizations}
+%Thirdly I hope to generalize the optimization procedure into the case of a 
+%multi-objective analysis of MSE. Optimal data weighting schemes are likely to 
+%be a function of subjective value systems \shortcite{fr2011}. Without fully 
+%specifying a value system for jointly measuring MSE defined utilities, this 
+%multivariate extension will allow us to find Pareto efficient solutions using 
+%objective methodology.
+%
+%%Bayesian/subjective probability
+%%the Pareto frontier is a prescription about prior beliefs as a function a well 
+%%defined utility function
+%
+%%
+%%METHODOLOGY
+%%
+%
+%%(1/5)
+%\section*{Methodology}
+%\subsection*{Optimization}
+%
+%%
+%Although analogies of the following methods are extensible to any 
+%compositional model, we consider the D-M model here for its well 
+%defined analytical properties \shortcite{gc2013}.
+%%  for the integration of compositional data in to	Stock assessment models.
+%	%
+%	\begin{equation}
+%	\bm{\hat y}|\bm{\alpha} \sim \text{D-M}(\bm{\alpha})
+%	\end{equation}
+%%Management procedure = Stock assessment + HC
+%Consider a conditional analysis of the D-M model given the rest of the MP. The 
+%MP is itself a function of the HC and SA. In turn, the SA is a function of the 
+%D-M model. By simulating from an appropriate OM, a well constructed MSE 
+%\shortcite{dlm2018, ch2018} defines a set of utilities ($\bm{\Omega}$) associated 
+%with the MP. By considering a linear combination of the elements in $\bm{\Omega}$ 
+%we can define a joint measure of model utility ($\omega$) with respect to OM 
+%uncertainties. Expressing this idea as a composition of functions results in 
+%the following functional relationship between $\omega$ and the parameters of 
+%the D-M model. 
+%\thispagestyle{next}
+%	%
+%	\begin{equation}
+%	\label{omega}
+%	\omega = \text{MSE}\Bigg(\text{OM, MP}\bigg(\text{HC, SA}\big(\text{D-M}(\bm{\alpha})\big)\bigg)\Bigg)
+%	\end{equation}
+%%
+%Aside from calibration of the D-M model, if one holds all aspects (i.e. dynamics, 
+%methods of inference, etc.) of the OM and MP consistent, then we have a well 
+%defined optimization problem of $\omega$ as a function of $\bm{\alpha}$, thus 
+%Eq.(\ref{omega}) can be reduce to $\omega(\bm{\alpha})$.
+%
+%%
+%The Bayesian optimization procedure aims to maximize $\omega(\bm{\alpha})$ 
+%with the help of a quick and flexible meta-model to guide the calibration of 
+%$\bm{\alpha}$. A variety of models may be used for this task, although 
+%variations of Gaussian process (GP) models are by far the most common. One 
+%common choice of the meta-model may be the following. 
+%	%
+%	\begin{align}
+%	\label{scalarModel}
+%	\omega(\bm{\alpha}) &= \beta_0 + \bm{\alpha^{\intercal}\beta} + f(\bm{\alpha}) + \epsilon \nonumber\\
+%	f(\bm{\alpha}) &\sim \text{GP}(0, \bm{\textbf{K}(\bm{\alpha}, \bm{\alpha'})})\\
+%	\epsilon &\sim N(0, \sigma^2_\epsilon) \nonumber
+%	\end{align}
+%
+%%
+%As a result of estimating a model like Eq.(\ref{scalarModel}), 
+%$\hat\omega(\bm{\alpha})$ is used to inform our search of the parameter space 
+%of $\bm{\alpha}$. Specifically we jointly consider the largest utility 
+%observed so far, $\omega^*$, alongside our estimated model, 
+%$\hat\omega(\bm{\alpha})$, in a function that is coined the improvement 
+%function \shortcite{sh1997, jo1998}. \mbox{For maximization the improvement function 
+%is written as,} 
+%	%
+%	\begin{equation}
+%	\text{I}(\bm{\alpha}) = \text{min}\{(\omega^*-\hat\omega(\bm{\alpha})), 0\}.
+%	\end{equation}
+%
+%The goal is to select new observations of $\bm{\alpha}$ so as to maximize 
+%$\omega(\bm{\alpha})$. $\text{I}(\bm{\alpha})$ informs that choice by 
+%selecting new $\bm{\alpha}$ so as to maximize the expectation of 
+%$\text{I}(\bm{\alpha})$, as follows
+%	%
+%	\begin{equation}
+%	\substack{\text{argmax}\\{\bm{\tilde\alpha}\in\tilde A}}\mathbb{E}[\text{I}(\bm{\tilde\alpha})].
+%	\end{equation}
+%	%
+%
+%%
+%Based on a newly selected $\bm{\alpha}$, the utility function, 
+%$\omega(\bm{\alpha})$, is computed and Model (\ref{scalarModel}) is updated 
+%with this new information. Bayesian optimization iterates this procedure, as 
+%outlined in Figure (\ref{procedure}), until convergence. In the following 
+%discussion I refer to the entire procedure of Bayesian optimization by using 
+%the following notation,
+%	%
+%	\begin{equation}
+%	\bm{\hat\alpha} = \text{BayesOpt}(\omega(\bm{\alpha})).
+%	\end{equation}
+%	%
+%
+%\subsection*{Prior Calibration}	
+%\thispagestyle{next}
+%%
+%Again consider the D-M compositional model, $\bm{\hat y}|\bm{\alpha} \sim \text{D-M}(\bm{\alpha})$. 
+%%	%
+%%	\begin{equation}
+%%	\bm{\hat y}|\bm{\alpha} \sim \text{D-M}(\bm{\alpha}).
+%%	\end{equation}
+%%
+%We wish to bring information from the Bayesian calibration of this model, as 
+%outlined above, back into the integrated stock assessment via a prior on 
+%$\bm{\alpha}$. Since $\bm{\alpha}>0$, a reasonable form for the prior could be,
+%$\text{log}(\bm{\alpha}) \sim N(\bm{\mu_\alpha}, \bm{\Sigma_\alpha})$.
+%%%	%
+%%	\begin{equation}
+%%	\text{log}(\bm{\alpha}) \sim N(\bm{\mu_\alpha}, \bm{\Sigma_\alpha}).
+%%	\end{equation}	
+%%
+%The parameters $\bm{\mu_\alpha}$ and $\bm{\Sigma_\alpha}$ may be chosen in a way 
+%that is reminiscent to the Laplace approximation. Firstly, set
+%	%
+%	\begin{equation}
+%        \bm{\hat\mu_\alpha} = \text{BayesOpt}\Big(\omega\big(\text{log}(\bm{\alpha})\big)\Big).
+%        \end{equation}
+%%
+%Using data from the OM and inverting the SA Hessian at $\bm{\hat\mu_\alpha}$ 
+%could provide a fast and accurate calibration of $\bm{\Sigma_\alpha}$.
+%
+%%
+%So as to encode useful information within the resulting priors, the particular 
+%details of how the MSE is constructed should match our best beliefs about the 
+%behavior of the system to be managed. For the purposes of this proposal these 
+%methods are adequately general to be applied in any specific system. As 
+%appropriate with my collaboration with the SWFSC groundfish team, I will 
+%be testing these methods in the setting of the slow-growing, late-maturing, 
+%and long-lived rockfish populations along the California coast.
+%
+%% application although I will develop these methods 
+%%In this setting the particular details of how the MSE is specified is important 
+%%in so much the constructed simulation is designed to represent to the system to be
+%%managed. 
+%%previously mentioned MSE 
+%%ingredients are specified are not important. The proposed methods 
+%%are adequetly general so at to apply to across any reasonably
+%
+%\subsection*{Multi-objective Generalizations}
+%%
+%The previous sections reduce the MSE's measure of utility down into a 
+%univariate joint measure of all relevant management objectives. The process of 
+%reducing $\bm{\Omega}$ into $\omega$ amounts to specifying a value system across 
+%MSE defined utilities. 
+%% of  of this kind typically amounts to taking a linear combination 
+%%of the relevant management objectives. 
+%When the relative weighting of each management objective is not entirely known, 
+%the required linear combination is not well defined, and the previously 
+%described methods for optimization fall in the setting of multi-objective 
+%optimization, as exemplified in Figure (\ref{objectiveExample}). 
+%%An example of this idea can be seen in Figure (\ref{objectiveExample}).
+%
+%%
+%In this setting we must directly consider $\bm{\Omega}$ as a function of 
+%$\bm{\alpha}$. Thus Eq.(\ref{omega}) becomes,
+%	%
+%	\begin{equation}
+%	\label{Omega}
+%	\bm{\Omega} = \text{MSE}\Bigg(\text{OM, MP}\bigg(\text{HC, SA}\big(\text{D-M}(\bm{\alpha})\big)\bigg)\Bigg).
+%	\end{equation}
+%
+%%
+%The Bayesian optimization procedure as described before modeled a univariate 
+%response, $\omega(\bm{\alpha})$, and produced a univariate meta-model. In this 
+%setting, a multivariate response, $\bm{\Omega}\bm{(\alpha)}$, is modeled 
+%requiring a multivariate meta-model. 
+%%The meta-model may treat each dimension 
+%%of utility independently or it may model the responses jointly to explicitly 
+%%model the case of important structural correlations between each dimension of 
+%%$\bm{\Omega}$. 
+%
+%%
+%Jointly modeling $\bm{\Omega}\bm{(\alpha)}$ is typically done using 
+%multivariate Gaussian processes. \shortciteA{ss2016} describe the case of 
+%multi-objective Bayesian optimization using jointly modeled multivariate GPs 
+%in the meta-model. For the purpose of guiding efficient and global exploration, 
+%they describe the generalized notion of the improvement function, furthermore 
+%they describe algorithms for computing the Pareto front and set.
+%
+%%
+%In this setting the prior calibration problem generalizes to finding a set of 
+%Pareto efficient priors on $\bm{\alpha}$. Each member of the Pareto efficient 
+%set of priors is equally optimal with respect to $\bm{\Omega(\alpha)}$. By 
+%specifying a specific value system with respect to $\bm{\Omega}$ a specific 
+%prior for $\bm{\alpha}$ may be selected. When economic interests conflict with 
+%cultural, or conservation interests it is not simple to specify a specific 
+%value system. The multivariate extension proposed here allows us to specify 
+%prior information that is sensitive to all value systems. 
+%
+%%that is sensitive to all relevant management objectives.
+%%However when economic interests 
+%%conflict with cultural, or conservation interests it may not be an easy task to
+%%specify a specific value system. The multivariate extension proposed here 
+%%allows us to specify prior information that is sensitive to all relevant 
+%%management objectives.
+%
+%%	%
+%%	\begin{align}
+%%	\bm{\Omega}_j\bm{(\alpha)} &= {\beta_0}_j + \bm{\alpha^{\intercal}\beta_j} + f_j(\bm{\alpha}) + \epsilon_j \nonumber\\
+%%	f_j(\bm{\alpha}) &\sim \text{GP}(0, \textbf{K}_j\bm{(\alpha, \alpha')})\\
+%%	\epsilon_j &\sim N(0, {\sigma^2_\epsilon}_j) \nonumber
+%%	\end{align}
+%%	%
+%%	\begin{equation}
+%%	\textbf{I}_j(\bm{\alpha}) = \text{min}\{(\bm{\Omega^*}_{j}-\bm{\hat\Omega}_j(\bm{\alpha})), 0\}
+%%	\end{equation}
+%%	%
+%%	\begin{equation}
+%%	\substack{\text{argmax}\\ \bm{\tilde \alpha}\in\tilde A} \mathbb{E}[\textbf{I}(\bm{\tilde \alpha})]
+%%	\end{equation}
+%%	%
+%%Above defines the typical case of independent GP Meta-models, although 
+%%multivariate Gaussian processes may be used here to explicitly model the case 
+%%of important structural correlations between the $\bm{\Omega}_j$.
+%
+%%
+%%RELEVANCE
+%%
+%
+%%(1/10)
+%\section*{Relevance}
+%\thispagestyle{next}
+%
+%%
+%I outline general methods for approaching the specific issues of data 
+%weighting in integrated stock assessment models. Given the context for the 
+%specific issues of data weighting \shortcite{fr2017, tj2017, mp2013}
+%and management strategy evaluation \shortcite{pu2014}, I believe these 
+%methods could represent a significant advancement in the quality of stock 
+%assessments.  Furthermore, the methods described are adequately general for 
+%solving a huge variety of problems spanning the entirety of NOAA's domain of 
+%research. Advancements in global optimization are widely applicable across 
+%fisheries, weather, economics, as well as engineering and beyond. Moreover, 
+%prior calibration via computer simulation is a novel approach, with 
+%significant potential to improve data 
+%weighting.
+%
+%%% (the parameters of interest are $\bm{\alpha}$ in this case).
+%Since MSEs encode information on an intuitive scale \shortcite{bu2008} they 
+%offer an ideal setting for specifying prior information about the entire stock 
+%assessment endeavor. The proposed methods offer a way to encode information 
+%that is specified in the MSE as a neat quantitative package via a prior used 
+%in the stock assessment model. Recent advancements in data weighting 
+%\shortcite{fr2017, tj2017} recommend exploring informative hierarchical 
+%priors on such parameters. Although the information contained in our priors 
+%may be slightly different to that of a hierarchical model, our priors would 
+%likely serve the same inferential goal (i.e. regularization), while at the 
+%same time accounting for correlations among compositional data. A notable, 
+%and practical, difference between the hierarchical approach and the 
+%approach specified here is that since hierarchical parameters must be inferred 
+%at the time of fitting the stock assessment, the hierarchical approach 
+%introduces substantial potential for computational instability and expense. In 
+%contrast, the Bayesian optimization is run only once and thus it adds almost 
+%no computational expense to the stock assessment model. Furthermore, prior 
+%information of this type is likely to ease computational instability of existing 
+%local optimizers.
+%
+%%this approach would 
+%%likely ease computational instability and it adds 
+%
+%%
+%The global nature of Bayesian optimization essentially automates the process 
+%of local optimizer tuning. By providing an informative prior that is based on 
+%the global scope of model performance, local optimization can achieve more 
+%reliable convergence and free up development time for stock assessment 
+%scientists to explore more fruitful avenues of research. Furthermore, the 
+%multivariate generalizations of these methods offer policy makers a more 
+%flexible solution set. The generalized methods allow a mechanism by which 
+%stock assessment methods can quickly, and optimally, react to changing policies 
+%rather than entirely rebuilding under new value systems.
+%
+%%
+%The methods proposed here build upon the most well justified methods in data 
+%integration. We propose computationally efficient, and theoretically justifiable, 
+%quantitative \mbox{methods to improve the state of stock assessment by optimally 
+%managing usable information.}
+%
+%
+%% via . the management of populations at risk.
+%%devlopes the methods of data integration as well as MSE analysis
+%
+%%%        \item Decrease Development time for stock assessment and generally improve
+%%%the lives of stock assessment scientists.
+%%%        \item Regularize/automate local optimizer tuning
+%%%        \item In terms of relevance, you can sell the first two parts as providing
+%%%improved solutions, first by more reliably and efficiently solving the
+%%%global optimization problem, and the second by providing a better
+%%%prior.
+%%        \item The third part you can sell as providing a more flexible and responsive
+%%solution set for policy makers, so that they can find optimal solutions under
+%%a variety of different policy choices; this allows much better what-if
+%%scenario analysis, and also allows for changes in policy decisions, rather
+%%than having to start over from the beginning if a political (or scientific)
+%%consideration changes.
+%
+%
+%%\begin{itemize}	
+%%{\color{purple}
+%%	\item I consider the specific case of data weighting here, but these are 
+%%general methods with broad applications to prior selection in general.
+%%	\item General methodology for Fast Global Optimization
+%%}
+%
+%%{\color{olive}
+%%	\item MSE provides an intuitive scale for specifying prior information. [\ref{bu2008}] This 
+%%method essentially encodes that prior information into a neat quantitative package.
+%%	\item Formulate Objective analysis of Subjective value judgments [\ref{fr2011}]
+%%	\item hierarchical model (optimizer issues) v. fixed objectively determined 
+%%informative prior (fast/and potentially similar results).
+%%}
+%
+%%%my process will produce results similar to that of a hierarchical model, 
+%%%although it liable to less computational pitfalls, and does not need to be 
+%%%fit repeatedly. It is stable, computationally efficient, and produces 
+%%%regularizing priors that make existing posteriors more amenable. The priors 
+%%%contain extremely valuable (value of prior information citation) information 
+%%%that starts fast local optimizers in the neighborhood of global solutions. 
+%%%(computation is almost always more cost effective than collecting better data 
+%%%[\ref{oh1998}])
+%
+%
+%%{\color{red}
+%%	\item Decrease Development time for stock assessment and generally improve 
+%%the lives of stock assessment scientists.
+%%	\item Regularize/automate local optimizer tuning
+%%	\item In terms of relevance, you can sell the first two parts as providing 
+%%improved solutions, first by more reliably and efficiently solving the 
+%%global optimization problem, and the second by providing a better 
+%%prior.
+%%	\item The third part you can sell as providing a more flexible and responsive 
+%%solution set for policy makers, so that they can find optimal solutions under 
+%%a variety of different policy choices; this allows much better what-if 
+%%scenario analysis, and also allows for changes in policy decisions, rather 
+%%than having to start over from the beginning if a political (or scientific) 
+%%consideration changes.
+%%}
+%%
+%%{\color{blue}
+%%        \item Thesis (What I provide. NOAA's benefit. I can do it.)
+%%        \item Impactful statement of how NOAA needs this.
+%%}
+%%\end{itemize}
+%
+%
+%
+%
+%
+%%
+%%
+%%
+%
+%%
+%\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+%\newcommand{\E}[1]{
+%        \mathbb{E}\left[~#1~\right]
+%}
+%
+%\clearpage
+%%
+%\section{Figures}
+%
+%        %
+%        %\begin{wrapfigure}{r}{0.5\textwidth}
+%        \begin{figure}[h!]
+%	\vspace{-1cm}       
+%        \singlespacing 
+%	\begin{centering}
+% 	\begin{itemize}
+%	\item[]$\bm{\hat x} =$ BayesOpt$\big(~f(\bm{X})~\big)$
+%	\item[]$\{$ $~$\\
+%	\begin{itemize}
+%        \item[1)] Collect an initial set, $\bm{X}$.
+%        \item[2)] Compute $f(\bm{X})$.
+%        \item[3)] Fit GP model based on evaluations of $f$.
+%        \item[4)] Collect a candidate set, $\tilde{\bm{X}}$.
+%        %\item[5)] Compute $\Eix$ among $\tilde{\bm{X}}$.$\E{\text{I}(\tilde{\bm{x}_i}})$
+%        \item[5)] Compute EI among $\tilde{\bm{X}}$
+%        %\item[6)] Add $\tilde{\bm{x}_i}$ yielding largest $\Eix$ to $\bm{X}$.
+%        \item[6)] Add $\argmax_{\tilde{\bm{x}}} \E{\text{I}(\tilde{\bm{x}})}$ to $\bm{X}$.
+%        \item[7)] Check convergence.
+%        \item[8)] If converged, return $\argmax_{\bm{x}} f(\bm{X})$ and exit. Otherwise go to 2).
+%        \end{itemize}
+%	\item[]$\}$
+%	\end{itemize}
+%	\end{centering}
+%	\caption{
+%	Bayesian optimization procedure for optimizing $f(\bm{X})$. In the case proposed the 
+%	function to be optimized is $\omega(\bm{\alpha})$.
+%	}
+%        \doublespacing
+%        %\vspace{-0.85cm}
+%        \label{procedure}
+%        \end{figure}
+%	%\end{wrapfigure}
+%        %
+%\thispagestyle{next}
+%
+%%\clearpage
+%%%https://www.r-graph-gallery.com/142-basic-radar-chart/
+%%\begin{figure}[h!]
+%%	\begin{minipage}[h!]{0.49\textwidth}
+%%	\hspace*{-2cm}
+%%	\vspace{-2cm}
+%%        \includegraphics[width=1.5\textwidth]{radar.pdf}
+%%	\end{minipage}
+%%	\begin{minipage}[h!]{0.49\textwidth}
+%%	\hspace*{1.5cm}
+%%	\includegraphics[width=0.94\textwidth]{bar.pdf}
+%%	\end{minipage}
+%%	\caption{
+%%		$left$: a radar plot showing the performance of four 
+%%hypothetical MPs plotted against three management objectives. MP1 provides %performs well in Sustainability
+%%excellent Catch stability, MP2 excels at Long-term catch, MP3 allows 
+%%substantial Short-term catch, and MP4 is inferior across all management 
+%%objectives, and thus is not admissible with respect the other models. 
+%%		$right$: a bar plot indicating the scalar utility of each 
+%%MP under four differing value systems. v1 equally values all management 
+%%objectives, v2 prefers Long-term catch, v3 heavily values Catch stability, and 
+%%v4 desires Short-term catch. The utility of each admissible MP is clearly a 
+%%function of the end users value system. 
+%%		When a value system is well defined (as in the v vectors) model 
+%%utility is a scalar represented by the height of each bar on the $right$. When 
+%%a value system is not well defined this system provides an example of a three 
+%%dimensional utility function consisting of u1, u2, and u3 (as seen on the $left$).
+%%	}
+%%	\label{objectiveExample}
+%%\end{figure}
+%%\thispagestyle{next}
+%
+%\clearpage
+%%
+%%REFERENCES
+%%
+
+%\thispagestyle{next}
+%\bibliographystyle{apacite}
+%\bibliography{./3_Grunloh_Proposal}
+%\thispagestyle{next}
+
+
+%All MSE calculations were conducted using the R packages DLMtool (Carruthers and Hordyk 2018a) and
+%MSEtool (Carruthers et al. 2018), the latter containing open-source functions for the indicator approach of
+%this paper. The operating models applied in this research are fully documented and available online at
+%(DLMtool 2018). For each MSE, 200 simulations were conducted to characterize the multivariate
+%posterior predicted data for the various operating models. 
+
+%%
+%\begin{thebibliography}{1}
+%%
+%\bibitem{bu2008} \label{bu2008} Butterworth, D. S. (2008). Some Lessons from 
+%Implementing Management Procedures. Fisheries for Global Welfare and 
+%Environment, 5th World Fisheries Congress 2008, edited by K. Tsukamoto, T. 
+%Kawamura, T. Takeuchi, T. D. Beard, Jr. M. J. Kaiser, 381–97. Toyko: 
+%TERRAPUB.
+%%{\color{blue}
+%%\begin{itemize}
+%%	\item A principal benefit of MSE is that MPs are generally easier to 
+%%understand for a wider range of stakeholders and the rationale for their 
+%%selection is transparent and defensible 
+%%\end{itemize}}
+%
+%%
+%\bibitem{ch2018} \label{ch2018} Carruthers, T. R., Huynh, Q., \& Hordyk, A. H. (2019). 
+%Management Strategy Evaluation toolkit (MSEtool): an R package for rapid MSE 
+%testing of data-rich management procedures. R. Retrieved from 
+%https://github.com/tcarruth/MSEtool (Original work published 2018)
+%
+%%
+%\bibitem{dlm2018} \label{dlm2018} DLMtool. (2018). Fishery library of documented 
+%operating models. Retrieved January 24, 2019, from 
+%https://www.datalimitedtoolkit.org/fishery\_library/
+%
+%%
+%\bibitem{fr2011} \label{fr2011} Francis, R. I. C. C. (2011). Data weighting in 
+%statistical fisheries stock assessment models. Canadian Journal of Fisheries 
+%and Aquatic Sciences, 68(6), 1124–1138. https://doi.org/10.1139/f2011-025
+%%{\color{blue}
+%%\begin{itemize}
+%%	\item ``some decisions are inevitably subjective'' 
+%%	\item[=>] Priors and utility functions.	
+%%\end{itemize}}
+%
+%%
+%\thispagestyle{next}
+%
+%%
+%\bibitem{fr2014} \label{fr2014} Francis, R. I. C. C. (2014). Replacing the 
+%multinomial in stock assessment models: A first step. Fisheries Research, 151, 
+%70–84. https://doi.org/10.1016/j.fishres.2013.12.015
+%%{\color{blue}
+%%\begin{itemize}
+%%	\item ``not self-weighting (i.e., the parameters that weight the composition 
+%%data can not be estimated inside the model)''
+%%\end{itemize}}
+%
+%%
+%\bibitem{fr2017} \label{fr2017} Francis, R. I. C. C. (2017). Revisiting data 
+%weighting in fisheries stock assessment models. Fisheries Research, 192, 5–15. 
+%https://doi.org/10.1016/j.fishres.2016.06.006
+%%{\color{blue}
+%%\begin{itemize}
+%%	\item Right weighting, data weighting is commensurate with
+%%model selection.
+%%	\item Proponent of Random effects
+%%\end{itemize}}
+%
+%%
+%\thispagestyle{next}
+%
+%%
+%\bibitem{gc2013} \label{gc2013} Gelman, A., Carlin, J. B., Stern, H. S., Dunson
+%, D. B., Vehtari, A., \& Rubin, D. B. (2013). Bayesian Data Analysis. Chapman 
+%and Hall/CRC. https://doi.org/10.1201/b16018
+%
+%%
+%\bibitem{gr2016} \label{gr2016} Gramacy, R. B., Gray, G. A., Digabel, S. L., 
+%Lee, H. K. H., Ranjan, P., Wells, G., \& Wild, S. M. (2016). Modeling an 
+%Augmented Lagrangian for Blackbox Constrained Optimization. Technometrics, 
+%58(1), 1–11. https://doi.org/10.1080/00401706.2015.1014065
+%
+%%
+%\bibitem{gl2015} \label{gl2015} Grunloh, Nicholas, \& Lee, H. K. H. Determining Convergence in Gaussian Process Surrogate Model Optimization. Retrieved January 21, 2019, from https://www.soe.ucsc.edu/research/technical-reports/UCSC-SOE-15-05
+%%{\color{blue}
+%%\begin{itemize}
+%%	\item Black-box derivative-free optimization has a wide variety of applications, especially in the
+%%realm of computer simulations (Kolda et al., 2003; Gramacy et al., 2015)
+%%	\item Because each function evaluation is expensive, one wants to terminate
+%%the optimization as early as possible.
+%%	\item Typically a Gaussian process surrogate model is chon for its robustness
+%%, relative ease of computation, and its predictive framework. Arising naturally 
+%%from the GP predictive distribution (Schonlau et al., 1998), the maximum 
+%%Expectation of the Improvement distribution (EI) has shown to be a valuable 
+%%criterion forguiding the exploration of the objective function and shows 
+%%promise for use as a convergence2criterion (Jones et al., 1998; Taddy et al., 
+%%2009).
+%%\end{itemize}}
+%
+%%
+%\bibitem{jo1998} \label{jo1998} Jones, D. R., Schonlau, M., \& Welch, W. J. 
+%(1998). Efficient Global Optimization of Expensive Black-Box Functions. 
+%Journal of Global Optimization, 13(4), 455–492. 
+%https://doi.org/10.1023/A:1008306431147
+%
+%%
+%\thispagestyle{next}
+%
+%%
+%\bibitem{ko2001} \label{ko2001} Kennedy, M. C., \& O’Hagan, A. (2001). Bayesian calibration of computer models. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 63(3), 425–464. https://doi.org/10.1111/1467-9868.00294
+%%{\color{blue}
+%%\begin{itemize}
+%%	\item prediction and uncertainty analysis for systems which are approximated
+%%using complex mathematical models. (MSE)
+%%	\item ``predictions allow for all sources of uncertainty, including the 
+%%remaining uncertainty over the fitted parameters.''
+%%	\item ``attempt to correct for any inadequacy of the model which is revealed by a
+%%discrepancy between the observed data and the model predictions from even the best-®tting
+%%parameter values.''
+%%\end{itemize}}
+%
+%%%
+%%\bibitem{ko2003} \label{ko2003} Kolda, T., Lewis, R., \& Torczon, V. (2003). 
+%%Optimization by Direct Search: New Perspectives on Some Classical and Modern 
+%%Methods. SIAM Review, 45(3), 385–482. 
+%%https://doi.org/10.1137/S003614450242889
+%
+%%
+%\bibitem{mp2013} \label{mp2013} Maunder, M. N., \& Punt, A. E. (2013). A 
+%review of integrated analysis in fisheries stock assessment. Fisheries Research
+%, 142, 61-74.
+%%{\color{blue}
+%%\begin{itemize}
+%%	\item convergence issues
+%%	\item global optimization
+%%	\item global search of weighting parameters is desired. Other 
+%%global ``methods such as genetic algotithms or simmulated annealing could be 
+%%used, but are slow.'' 
+%%	\item[=>] Surrogate model (bayesian) optimization is designed 
+%%specifically for a careful global exploration in computationally demanding 
+%%settings. 
+%%\end{itemize}}
+%
+%%
+%\bibitem{oh1998} \label{oh1998} O’Hagan, A., Kennedy, M. C., \& Oakley, J. E. 
+%(1998). Uncertainty Analysis and other Inference Tools for Complex Computer 
+%Codes. Bayesian Statistics, 6.
+%%{\color{blue}
+%%\begin{itemize}
+%%	\item Surrogate modeling
+%%	\item global optimization
+%%	\item derivative free optimization
+%%	\item efficient search
+%%	\item simulation calibration
+%%	\item simulation is almost always cheaper than getting new data
+%%	\item ``even though it may be highly computer intensive and
+%%expensive to run, it is still much cheaper to compute  $\eta(x)$ than to 
+%%`compute' $\alpha(x)$.''
+%%\end{itemize}}
+%
+%%
+%\thispagestyle{next}
+%
+%%
+%\bibitem{pu2014} \label{pu2014} Punt, A. E., Butterworth, D. S., Moor, C. L. de
+%, Oliveira, J. A. A. D., \& Haddon, M. (2016). Management strategy evaluation: 
+%best practices. Fish and Fisheries, 17(2), 303–334. https://doi.org/10.1111/faf.12104
+%%{\color{blue}
+%%\begin{itemize}
+%%	\item MSE is widely acknoledged to be the most appropriate way to
+%%compare management strategies.
+%%	\item MSE defines effectiveness of data collection schemes, methods
+%%of analysis, and subsequent processes leading to management actions.
+%%\end{itemize}}
+%
+%%
+%\bibitem{sh1997} \label{sh1997} Schonlau, M. (1997). Computer experiments and 
+%global optimization (Ph.D. Thesis). University of Waterloo.
+%
+%%
+%\bibitem{ss2016} \label{ss2016} Svenson, J., \& Santner, T. (2016). 
+%Multiobjective optimization of expensive-to-evaluate deterministic computer 
+%simulator models. Computational Statistics \& Data Analysis, 94, 250–264. 
+%https://doi.org/10.1016/j.csda.2015.08.011
+%
+%
+%%
+%\bibitem{tj2017} \label{tj2017} Thorson, J. T., Johnson, K. F., Methot, R. D., \& Taylor, I. G. (2017). Model-based estimates of effective sample size in stock assessment models using the Dirichlet-multinomial distribution. Fisheries Research, 192, 84–93. https://doi.org/10.1016/j.fishres.2016.06.005
+%
+%%
+%\thispagestyle{next}
+%%{\color{blue}
+%%\begin{itemize}
+%%	\item $\pi$ Model form
+%%	\item proponent of adding random effects 
+%%	\item ``encourage simulation testing using a variety of operating models''
+%%	\item generalized likelihood form (he's thinking non-parameteric)
+%%	\item[=>] adding an informative prior will accomplish a cheaper alternative 
+%%in the posterior predictive
+%%	\item recommending further research to develop computationally effi-
+%%cient estimators
+%%	\item ``Mixed-effects estimation is useful to elicit the correlation 
+%%among data that is induced by unobserved processes (Thorson and Minto, 2015); 
+%%therefore, mixed effects are a natural tool for modeling correlations in 
+%%compositional data that are caused by model mis-specification.''... 
+%%``increasingly feasible for age-structured population models using maximum 
+%%likelihood or Bayesian estimation methods (Kristensen et al., 2014; 
+%%Mantyniemiet al., 2013; Nielsen and Berg, 2014; Thorson et al., 2015). We 
+%%therefore recommend future research to explore whether accounting for these 
+%%processes can adequately approximate the correlationsin model residuals for 
+%%compositional data.''
+%%\end{itemize}}
+%%
+%\end{thebibliography}
+
+
+
+
+
+
+
+%
+%OUTLINE
+%
+
+%{\color{red}
+%\section*{Stream of Conciousness}
+%\begin{itemize}
+%	\item MSE
+%	\item Bayesian Optimization
+%	\item Bayesian calibration of computer models
+%	\item Surrogate modeling of computationally expensive simulation experiments
+%	\item Gaussian Process Meta-Modeling
+%	\item Computer experiments were often based on a computationally expensive 
+%simulation and running that code for all points of interest was considered too 
+%expensive. Instead, the data collected through the computer experiment was 
+%used to build a computationally less expensive approximating function (
+%sometimes referred to as a meta-model) that can predict the relationships at 
+%points of interest.
+%\end{itemize}
+%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+%JUNK YARD
+%
+
+
+
+
+
+
+
+
+
+%\begin{itemize}
+%	\item NOAA needs a thing. Nick provides solutions to thing. 
+%	\item Issues
+%	\item Solutions
+%\end{itemize}
+
+
+%Data integrate offers an ideal case for 
+%Optimizing model calibration via Bayesian Meta-modeling of Computer Simulation Experiments (MSE) 
+%\begin{itemize}
+%	\item Optimization \textit{[Single Objective]}
+%	\item Prior Calibration \textit{[Single Objective]}
+%	\item Multi-objective Generalization
+%\end{itemize}
+
+
+
+
+%of the 
+%stock in the various categories of a given grouping as a probability simplex 
+%. Multinomial models 
+%
+%nt of 
+%The integrate analysis of stock assessment models 
+%
+%Common categories include the proportion of survey or fishery catch that is
+%associated with different ages, lengths, and/or sexes
+%%
+
+
+
+
+%\begin{itemize}
+%	\item[punt2014] MSE is widely acknoledged to be the most appropriate way to compare management strategies.
+%	\item[francis2017] Right weighting, data weighting is commensurate with to model selection.
+%	\item simulation experiments	
+%	\item simulation is almost always cheaper than 
+%\end{itemize}
+
+%%
+%%OUTLINE
+%%
+%
+%%research benfits NOAA, framework that I will use, and ability to accomplish (coursework, publications, NOAA/Committee advisors)
+%\begin{itemize}
+%\item Introduction (Summary)
+%	\begin{itemize}
+%	\item Issues
+%	\item Solutions
+%	\end{itemize}
+%\item Develop Issues (Rational)
+%\item Objectives
+%\item Develop Solutions (Methodology)
+%\item Conclusion (Revevance)
+%	\begin{itemize}
+%	\item Thesis (What I provide. NOAA's benefit. I can do it.)
+%	\item Impactful statement of how NOAA needs this. 
+%	\end{itemize}
+%\end{itemize}
+
+%%
+%%\section{Statement of Purpose:}
+%%(2-4 Pages; <2.5MB) Please describe your plans for graduate study or research and for 
+%%your future occupation or profession. Include any information that may aid the 
+%%selection committee in evaluating your preparation and qualifications for 
+%%graduate study at the University of California, Santa Cruz. Include your name 
+%%in the footer of each page.
+%%\begin{itemize}
+%%	\item Herbie meeting
+%%	\item Funding??
+%%\end{itemize}
+%%%
+%
+%%
+%%INTRO (1)
+%%
+%
+%%
+%\thispagestyle{first}
+%
+%%
+%The University of California, Santa Cruz (UCSC) is positioned directly at the 
+%intersection of my research interests. With the expertise of the statistics 
+%faculty at UCSC in Bayesian statistics, situated right next to California's 
+%most impactful National Oceanic and Atmospheric Administration (NOAA) lab in 
+%quantitative fisheries management, there are tremendous opportunities for 
+%collaborations between the two organizations. Among fisheries scientists, 
+%Bayesian statistics is an immensely useful, and well appreciated, tool for 
+%representing a complete summary of science's information on management metrics. 
+%Often the quantitative skills required to implement Bayesian models make 
+%Bayesian methods inaccessible to fisheries researchers, however Bayesian 
+%modeling skills are highly coveted in the field. From my time, both as a 
+%statistics and applied mathematics M.S. student, and as a statistical 
+%fisheries researcher at NOAA, I have developed substantial experience 
+%working with a variety of research questions right at the intersection of 
+%Bayesian statistics and quantitative fisheries management. As a Ph.D. student in 
+%statistics and applied mathematics at UCSC, I would be ideally positioned to do 
+%groundbreaking research in both Bayesian statistics, as well as quantitative 
+%fisheries management.
+%
+%% that is 
+%%available to science. % about  information on these complex scientific story about management metrics. 
+%
+%%
+%%M.S.
+%%
+%
+%%\begin{itemize}
+%%	\item[\checkmark] MS
+%%	\item[\checkmark] What is a surrogate model?
+%%	\item[\checkmark] Achievement
+%%	\item[\checkmark] tie back to thread
+%%\end{itemize}
+%
+%%
+%As a M.S. student I was advised by Dr. Herbert Lee, where my \href{https://www.soe.ucsc.edu/research/technical-reports/UCSC-SOE-15-05}{masters project}\footnote{\href{https://www.soe.ucsc.edu/research/technical-reports/UCSC-SOE-15-05}{Grunloh, N., \& Lee, H. K. H. (2015) Determining Convergence in Gaussian Process Surrogate Model Optimization.}},  
+%explored methods for determining convergence in Gaussian Process (GP) 
+%surrogate model optimization. Surrogate model optimization is a technique for 
+%optimizing computationally expensive and/or numerically challenging functions.
+%Surrogate modeling optimization approaches have a growing popularity among the 
+%data science and deep learning communities where they are often referred to as 
+%\href{http://papers.nips.cc/paper/4522-practical-bayesian-optimization-of-machine-learning-algorithms.pdf}{``Bayesian optimization''}\footnote{ \href{http://papers.nips.cc/paper/4522-practical-bayesian-optimization-of-machine-learning-algorithms.pdf}{Snoek, J., Larochelle, H., \& Adams, R. P. (2012). Practical bayesian optimization of machine learning algorithms. In Advances in neural information processing systems (pp. 2951-2959).} }. %as well as data science at large with applications of GP surrogate modeling often being referred to as "Bayesian optimization" among deep learning community.
+%In practice, one constructs a fast, and relatively simple, working model (i.e. a surrogate 
+%model $\left[\text{usually a GP}\right]$) of the onerous function. Using the 
+%GP's predictive framework one can design algorithms to efficiently explore the 
+%objective function's domain. Each passing objective function evaluation is used 
+%to update the surrogate model's fit; the improved model fit is used in turn to 
+%better the search of the domain so as to arrive at a global optimum using as 
+%few function evaluations as possible. Given that this type of optimization 
+%prioritizes a stochastic global search of the objective function, the typical 
+%vanishing step-size convergence metrics are not available. In my work as a 
+%M.S. student I demonstrate that commonly used surrogate model convergence 
+%metrics are themselves random variables. Additionally, I introduce a novel 
+%approach, inspired by signal processing and statistical process control, for 
+%properly handling the stochasticity of available convergence metrics. As a 
+%Ph.D. student I would like to %publish my work on identifying convergence in %surrogate model optimization, as well as 
+%continue research with Dr. Herbert Lee in surrogate modeling methods, as 
+%they may be applied in quantitative fisheries management.
+%
+%%more efficiently
+%%ses less resources to arrive at a robust global optimum.  
+%%objective function using all minimizing  to minimize the number of function evaluations 
+%%necessary for optimization. 
+%
+%%
+%%NOAA
+%%
+%
+%%\begin{itemize}
+%%	\item[\checkmark] NOAA NMFS
+%%	\item[\checkmark] comX
+%%	\item[\checkmark] management
+%%	\item[\checkmark] stock assessment
+%%	\item pragmatic management means smart efficient math 	
+%%	\item HPC
+%%\end{itemize}
+%
+%%
+%Moving on from my M.S. in statistics and applied mathematics, I took a 
+%research position working on quantitative fisheries management %scientists 
+%with the National Marine Fisheries Service (NMFS) at NOAA. At NOAA, I am 
+%working with the groundfish analysis team in Santa Cruz (lead by Dr. John 
+%Field and working closely with Dr. E.J. Dick), where I have primarily been 
+%working on operationalizing Bayesian hierarchical model-based \href{http://www.pcouncil.org/wp-content/uploads/2017/08/E3_Att1_ImprovingCatchEst_SEPT2017BB.pdf}{methods}\footnote{ \href{http://www.pcouncil.org/wp-content/uploads/2017/08/E3_Att1_ImprovingCatchEst_SEPT2017BB.pdf}{The SSC identified this work as the highest priority for implementation and review in 2018.}}
+%for estimating catch in mixed-stock commercial fisheries. Along with the 
+%theoretical concerns of scaling Bayesian methods up to a working scale, this 
+%work has given me very pragmatic experience working within the quantitative 
+%fisheries management community. As my work has taken traction within the 
+%fisheries community, I have been increasingly exposed to some of the 
+%community's scientific review processes, including the Pacific Fisheries 
+%Management Council (PFMC), the Science and Statistical Committee (SSC), as 
+%well as the Stock Assessment Review (STAR) panel. In my time at NOAA I have also 
+%been involved with two \href{http://users.soe.ucsc.edu/~grunloh/blueDeaconAssessment2017.pdf}{stock assessment} %\footnote{ \href{http://users.soe.ucsc.edu/~grunloh/blueDeaconAssessment2017.pdf}{} }  
+%cycles. In each assessment I have worked with stock assessment scientists to
+%learn about the statistical population dynamics models used to manage 
+%fish populations. Additionally, I have provided further statistical support for 
+%stock assessments by developing statistical indices of fish abundance. In doing 
+%so I have become familiar with some of the pressing statistical issues in the 
+%field.
+%
+%%
+%%New Research (2)
+%%
+%
+%%
+%\thispagestyle{next}
+%
+%%
+%Recently, at NOAA, I have lead an effort to develop the computational resources 
+%of the lab. This past summer I won a \href{http://users.soe.ucsc.edu/~grunloh/hpcProp.pdf}{grant} 
+%to design, and build, a computational cluster for the lab. Using these newly 
+%available computational resources of the lab, I would like to address 
+%fundamental questions of how statistical inference is done on the parameters 
+%of population dynamics models used in management. The models used for managing 
+%fish populations tie several sources of data together into a single analysis 
+%based on complicated dynamics exploiting differences in the reproductive 
+%potentials of various age and/or size classes of fish in the population. 
+%These ``integrated analysis'' methods used in fisheries (sometimes called, 
+%data assimilation methods in ocean science, or ensemble estimation in computer 
+%science) tie data sources together by introducing biologically uninterpretable 
+%nuisance parameters into the model. Presently, nuisance parameters are tuned 
+%via local optimization methods (i.e. gradient descent or ad-hoc tuning), yet it 
+%is known that the introduction of these parameters may lead to biologically 
+%strange localities. % that often lead %improper handling of these parameters often leads to biologically strange model behavior. 
+%Much of the process of doing a stock assessment is spent tuning optimizers to 
+%avoid biologically irrelevant local modes. I believe that I could greatly 
+%improve the stock assessment process % NOTE: more aspirational process, allowing biologists to do better biology and statisticians to do better statistics, 
+%by framing this problem in a computer simulation setting, with nuisance 
+%parameters tuned via surrogate model optimization. Other global search 
+%\href{http://sedarweb.org/docs/wsupp/S39_RD_06_Maunder_Punt_2013_Fish_Res_142_61-74.pdf}{strategies}\footnote{ \href{http://sedarweb.org/docs/wsupp/S39_RD_06_Maunder_Punt_2013_Fish_Res_142_61-74.pdf}{Maunder, M. N., \& Punt, A. E. (2013). A review of integrated analysis in fisheries stock assessment. Fisheries Research, 142, 61-74.} }
+%(e.g. genetic algorithms or simulated annealing) have shown promise on these 
+%problems, but are too slow to be practical. Surrogate model optimization is 
+%designed specifically for this setting and could greatly expand the scope of 
+%stock assessment models that are practically useful to quantitative fisheries 
+%management. %keep general/aspirational/data science/neural networks.
+%
+%%
+%%Conclusion
+%%
+%
+%%
+%As a Ph.D. student in statistics and applied mathematics working with 
+%Dr. Herbert Lee, and continuing my collaboration with the groundfish analysis 
+%team at NOAA, I would be able to capitalize on my experiences doing research 
+%with both parties to prepare for a career working as a top statistician and 
+%quantitative stock assessment researcher. Given my background %as well as data science at large with applications of GP surrogate modeling often being referred to as "Bayesian optimization" among deep learning community.
+%working in both settings, I would be able to quickly move into this research 
+%as a Ph.D. student. NOAA fisheries allocates a considerable amount of its 
+%funding toward novel quantitative work in fisheries research, and my current 
+%team is willing to help fund my endeavors to pursue a Ph.D. with the statistics %very supportive of my endeavors to pursure a Ph.D. with the statistics 
+%and applied mathematics department at UCSC. My experience working with 
+%surrogate model optimization directly ties into present stock assessment 
+%research, and more generally, this research furthers the feild of data 
+%science and Bayesian statistics at large. 
+%
+%
+%% NOAA fisheries allocates a considerable amount of its 
+%%funding toward novel quantitative work in fisheries research, and my current 
+%%team is very supportive of my endeavors to pursue a Ph.D. with the Statistics 
+%%and Applied Mathematics department at UCSC. %Furthermore, working at the 
+%%interface of these two organizations would open many opportunities for my 
+%%career as a top statistician in quantitative stock assessment research. %NOTE: 
+%%reframe more aspirational
+%
+%
+%%Reagen, B., Hernández-Lobato, J. M., Adolf, R., Gelbart, M., Whatmough, P., Wei, G. Y., & Brooks, D. (2017, July). A case for efficient accelerator design space exploration via Bayesian optimization. In Low Power Electronics and Design (ISLPED, 2017 IEEE/ACM International Symposium on (pp. 1-6). IEEE.
+%
+%
+%%%offers ample funding opportunities for
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%% with the Statistics and Applied Mathematics department. NOAA
+%%, working on fisheries questions.
+%%, with UCSC's expertise in Bayesian Statistics,
+%% many funding opportunities in quantitative fisheries research, 
+%%%
+%%As a Ph.D. student in Statistics and Applied Mathematics working with NOAA 
+%%fisheries, my research, and funding, opportunities would $blaaaank$. I am 
+%%excited to better pragmentic fisheries management through novel statistical 
+%%methods and a practice application of engineering principles. Working at the 
+%%interface of these two programs %UCSCNOAA during my Ph.D. 
+%%would open opportunities for my career as a top statistician in quantitative 
+%%stock assessment research. 
+%
+%
+%%\begin{itemize}
+%%\item pragmatism through smart math.
+%%\item stock assessment job
+%%\item these restate
+%%\end{itemize}
+%
+%%
+%%Project (2)
+%%
+%
+%%
+%\thispagestyle{next}
+
+
+
+%\begin{itemize}
+%\item Past UCSC: Herbie Work (Surrogate Model Optimization)
+%	\begin{itemize}
+%	\item Masters Project
+%	\item Continue work (publish)
+%	\item surrogate modeling
+%	\end{itemize}
+%\end{itemize}
+
+
+
+%, as well as finish  to publish 
+%my M.S. project on identifying convergence.
+
+% Working with Dr. Herbert Lee I would like to 
+%publish my M.S. work on convergence, as well as apply the robust optimization 
+%techniques in the context of quantitative fisheries management.
+
+%Our work in identifying convergence of (where to bring the research in conclusion)
+
+%Dr. Herbert Lee advised my \href{https://www.soe.ucsc.edu/research/technical-reports/UCSC-SOE-15-05}{masters project}\footnote{\href{https://www.soe.ucsc.edu/research/technical-reports/UCSC-SOE-15-05}{Grunloh, N., \& Lee, H. K. H. (2015) Determining Convergence in Gaussian Process Surrogate Model Optimization.}}, in which I explored methods for determining convergence in derivative-free 
+%Gaussian process (GP) surrogate model optimization. Surrogate model 
+%optimization is a technique for optimizing a computationally expensive and/or 
+%numerically challenging objective function. One constructs a fast, and 
+%relatively simple, working model (i.e. the surrogate model $\left[\text{
+%usually a GP}\right]$) of the objective function.  Using the GP's predictive 
+%framework one can design algorithms to efficiently explore the objective 
+%function's domain and minimize the number of function evaluations necessary 
+%to optimize onerous functions. Given that this type of optimization 
+%prioritizes a stochastic global search of the objective function, the typical 
+%vanishing step-size convergence metrics are not available. We demonstrate 
+%that commonly used surrogate model convergence metrics are themselves random 
+%variables. Additionally, we introduce a novel approach, inspired by signal 
+%processing and statistical process control, for properly handling the 
+%stochasticity of available convergence metrics.
+
+%a Ph.D. in the AMS
+%
+%and management (with the) in California at National Oceanic and Atmospheric Administration (NOAA) in Santa Cruz is the most 
+%impactful lab for quantitative fisheries stock assessment in California. Furthermore the 
+%statistics and applied mathematics program at UCSC is among the best schools in t  
+%
+%
+% With the largest stock assessment  National 
+%, situatNMy background as 
+%a biologist Herbie Lee as a M.S. student, to the 
+%experiences that I have had working as a statistician at the National Oceanic 
+%and Atmospheric Administration (NOAA), 
+
+
+%Thesis:
+%Biology Undergrad, 
+
+%M.S. Statistical Surrogate Model Computer Simulation, 
+%NOAA Statistics Stock Assessment, 
+%research and management in quantitative Fisheries (Fisheries is a statistical science) 
+
+%%Science Riff Biology/Math
+%From my time as a Statistics and Applied Mathematics M.S. student, to my 
+%current quantitative research role at the National Oceanic and Atmospheric 
+%Administration (NOAA), I have developed substantial research experience 
+%working with a variety of data. I have seen how a foundational knowledge of 
+%statistical concepts is an essential tool to the functioning of all variety of 
+%uncertain quantitative systems. , and I have identified several research 
+%directions for guiding a Statistics Ph.D. at UCSC.
+%The unique positioning (researchwise and physically) at the intersection of top statistical research and top research in quantitative fisheries management...
+
+%%in an assortment of quantitative 
+%%environments with a variety of data. 
+%These experiences, along with my interest in pursuing a career in quantitative 
+%fisheries management, have guided my pursuit of further research as part of a 
+%Statistics Ph.D.
+
+%Thread:
+%\begin{itemize}
+%	\item Surrogate modeling
+%	\item Pragmatic fish
+%	\item Integrated analysis made efficient with surrogate modeling
+%\end{itemize}
+
+
+%%
+%model-data melding
+%inverse modeling
+%automatic calibration
+%multivariate nonlinear regression
+%
+%Data assimilation(Ocean Science)
+%ensemble estimation (Computer Science)
+%Integrated analysis (Fisheries Science): 
+%	join several sources of data (science uses all available data) into a common joint likelihood through Population dynamics models
+%	as first formulated by Fournier (1982).
+% 
+%Local v. global search
+%	AD model builder is local
+%	genetic algorithms/simulated annealing
+%	
+%computer simulation efficient global search
+
+%The population dynamics models that they use to assess fish populations 
+%consist of a lot of different sources of data and a lot of different 
+%deterministic equations to bring those different data sources together. Not 
+%all of the data sources contribute an equal amount of information to the 
+%overall model, but it is all useful, and necessary, information. (e.g. 
+%age/size structure of the population, commercial and or recreational catch 
+%rates etc.) They have formulated the population dynamics models so that the 
+%models have a bunch of biologically relevant parameters, as well as a set of 
+%nuisance parameters to appropriately weight the information content from of 
+%each data source (among other nuisance tasks). Presently they bring all of 
+%these data together to estimate everything as a giant least squares problem 
+%(biology parameters estimated jointly with nuisance parameters) in a big run 
+%of gradient descent. For certain classes of these models there is a known 
+%problem with multimodality where the models are not able to identify the 
+%difference between certain combinations of biological parameters from nuisance 
+%parameters 😓.  
+%
+%In other (more ideal) situations they actually estimate certain 
+%classes of the population dynamics models in a Bayesian setting and have 
+%samplers for the joint set of parameters (although the nuisance parameters 
+%really are just a total nuisance). There is a desire in the field to expand 
+%the class of population dynamics models for which Bayesian inference is 
+%accessible, as these samplers can take a long time to converge (I've heard 
+%stories of these samplers that take from days to months to converge). Also if 
+%there were any samplers that we could get down to the time scale of hours that 
+%would open up huge doors; just in terms of practically using these models in 
+%the stock assessment process. It would just be a big practical step forward if 
+%the Bayesian models were fast enough to actually be discussed and acted upon 
+%in a time frame that was consistent with the time frame of the scientific 
+%panels for evaluating the models. I can imagine a number of ways to use the 
+%surrogate model to potentially expedite things once you make the nuisance 
+%parameter separation.  A nice idea could be to reformulate things so as to 
+%keep the nuisance parameters away from the biology parameters. The idea would 
+%be to estimate the nuisance parameters via surrogate model optimization and 
+%the biology parameters as their own model. We could either work toward 
+%formulating this parameter separation so as to better the identifiability 
+%issues, or to expand the set of Bayesian models that have working samplers. 
+%The biology parameters are what is really important for managing the fishery, 
+%and the full posterior of the biology parameters is a hugely useful tool for 
+%exploring the relationship between these parameters as well as easily getting 
+%at uncertainty and correlation questions for these parameters. My plan is to 
+%continue reading about these things and write up my statement of purpose 
+%around these kind of issues.    
+
+%Jobs 
+%As I pursue a career in quantitative fisheries management, I believe that the 
+%BERM program best suits my background both as a biologist and as a statistician. 
+
+
+
+
+
+
+%different  population dy several sources of data through fairly 
+%complicated ecological dynamics
+%
+%
+%
+%Something something, 
+%I have lead an effort at the Santa Cruz NMFS lab to develop further computational resources.
+%My high performance comuting proposal was funded to start a computational cluster 
+%
+%availiable for computational scientists at NOAA 
+%Leaning 
+%on my experience at iUC  
+%
+%Interface of pragmatic and theoretical fisheries management
+
+%Many of the 
+%statistical problems facing this feild fall comfortably in the context of model 
+%selection and model uncertainty. As such, Bayesian nonparameterics are becoming 
+%more common place, but presently few fisheries biologists have the quantitative 
+%skills to work comfortably with these models. Recognizing this fact, I have 
+%lead an effort to build the coomputational resources o 
+
+%\href{http://users.soe.ucsc.edu/~grunloh/hpcProp.pdf}{HPC}
+
+%model selection via HPC
+%cluster grant/cluster design
+
+
+
+%Due to sparsity of data in this setting, as well as substantial model 
+%uncertainty between market categories, I have developed a \href{http://www.pcouncil.org/wp-content/uploads/2017/08/E3_Att1_ImprovingCatchEst_SEPT2017BB.pdf}{program}\footnote{ \href{http://www.pcouncil.org/wp-content/uploads/2017/08/E3_Att1_ImprovingCatchEst_SEPT2017BB.pdf}{The Pacific Fishery Management Council’s scientific and statistical committee identified this proposal as the highest priority for review in 2018.}} 
+%which not only implements an operationalized Bayesian hierarchical model to 
+%estimate species compositions, but I have also developed an automated model 
+%selection algorithm to integrate across model uncertainty within a 
+%market category. In my time at NOAA I have also been involved with two 
+%assessment cycles. In each assessment I have worked with stock assessment 
+%scientists to develop indices of abundance as well as to gain experience 
+%working with stock synthesis.
+
+
+
+%Conclusion
+
+%\begin{itemize}
+%	\item Thesis:
+%	Biology Undergrad, 
+%	M.S. Statistical Surrogate Model Computer Simulation, 
+%	NOAA Statistics Stock Assessment, 
+%	research and manangement in quantitative Fisheries (Fisheries is a statistical science) 
+%	%M.S.
+%	%
+%	
+%	%Dr. Herbert Lee advised my \href{https://www.soe.ucsc.edu/research/technical-reports/UCSC-SOE-15-05}{masters project}\footnote{\href{https://www.soe.ucsc.edu/research/technical-reports/UCSC-SOE-15-05}{Grunloh, N., \& Lee, H. K. H. (2015) Determining Convergence in Gaussian Process Surrogate Model Optimization.}}, in which I explored methods for determining convergence in derivative-free 
+%	%Gaussian process (GP) surrogate model optimization. Surrogate model 
+%	%optimization is a technique for optimizing a computationally expensive and/or 
+%	%numerically challenging objective function. One constructs a fast, and 
+%	%relatively simple, working model (i.e. the surrogate model $\left[\text{
+%	%usually a GP}\right]$) of the objective function.  Using the GP's predictive 
+%	%framework one can design algorithms to efficiently explore the objective 
+%	%function's domain and minimize the number of function evaluations necessary 
+%	%to optimize onerous functions. Given that this type of optimization 
+%	%prioritizes a stochastic global search of the objective function, the typical 
+%	%vanishing step-size convergence metrics are not available. We demonstrate 
+%	%that commonly used surrogate model convergence metrics are themselves random 
+%	%variables. Additionally, we introduce a novel approach, inspired by signal 
+%	%processing and statistical process control, for properly handling the 
+%	%stochasticity of available convergence metrics.
+%	\item Past UCSC: Herbie Work (Surrogate Model Optimization)
+%		\begin{itemize}
+%		\item Masters Project
+%		\item Continue work (publish)
+%		\item surrogate modeling
+%		\end{itemize}
+%	
+%	\item NOAA experience transition to NOAA Future: %Future Work: Surrogate Model Stock assessment
+%		\begin{itemize}
+%		\item NOAA Contact
+%		\item Stat experience
+%			\begin{itemize}
+%			\item Index of Abundance(zero inflation, heirarchical models)
+%			\item comX (overdispersion, heirarchical models)
+%			\item Bayesian Trend/Usfulness (internally consistent methods)
+%			\end{itemize}
+%		\item Statisitcal Stock assessment
+%			\begin{itemize}
+%			\item Population dynamics model (productivity workshop)
+%			\end{itemize}
+%		\end{itemize}
+%	
+%	\item NOAA AMS Future:
+%		\begin{itemize}
+%		\item Biology and statistics
+%		\item Surrogate Modeling in Stock assessment (computer simulation experiment, smart sensativity analysis)
+%		\item NOAA Funding
+%		\item NOAA Job (Stock assessment)
+%		\end{itemize}
+%
+%	\item Extra
+%		\begin{itemize}
+%		\item HPC
+%		\item Marine Biology
+%		\item Job (Stock assessment)
+%		\end{itemize}
+%
+%	%\begin{itemize}
+%	%	\item Bayesian Nonparametrics
+%	%	\begin{itemize}
+%	%		\item[\checkmark] Spatial GPs (Dr. Paul Sampson)
+%	%		\item[\checkmark] Heirarchical Models
+%	%		\begin{itemize}
+%	%			\item[\checkmark] Ray Hilborn
+%	%			\item[\checkmark] Model uncertainty
+%	%			\item Shrinkage/Regularization => Infer Model Selection
+%	%			\item More flexible DP priors for shrinkage and inferring model structure
+%	%		\end{itemize} 
+%	%	\end{itemize}
+%	%	\item[\checkmark] Population Dynamics Models
+%	%	\begin{itemize}
+%	%		\item[\checkmark] Ray Hilborn
+%	%	\end{itemize}
+%	%	\item[\checkmark] Jobs Stock Assessment
+%	%\end{itemize}	
+%\end{itemize}
+
+
+
+
+%%
+%%PAGE TWO
+%%
+%
+%%
+%\thispagestyle{next}
+%
+%%
+%
+%%
+%%PAGE THREE
+%%
+%
+%%
+%\thispagestyle{next}
+%
+
+
+
+%
+%From my time as a statistics master student, to my current quantitative 
+%research role at the National Oceanic and Atmospheric Administration (NOAA), I 
+%have developed substantial experience working in an assortment of quantitative 
+%environments with a variety of data. These experiences, along with my interest 
+%in pursuing a career in quantitative fisheries management, have guide my 
+%pursuit of further research as part of a QERM Ph.D. 
+%
+%%
+%%
+%
+%In the statistics and applied mathematics graduate program at UCSC there is a 
+%clear emphasis of study in Bayesian statistics; thus I have become extremely 
+%comfortable working at a research level in Bayesian statistics. Dr. Herbert 
+%Lee advised my \href{https://www.soe.ucsc.edu/research/technical-reports/UCSC-SOE-15-05}{masters project}\footnote{\href{https://www.soe.ucsc.edu/research/technical-reports/UCSC-SOE-15-05}{Grunloh, N., \& Lee, H. K. H. (2015) Determining Convergence in Gaussian Process Surrogate Model Optimization.}}, in which I explored methods for determining convergence in derivative-free 
+%Gaussian process (GP) surrogate model optimization. Surrogate model 
+%optimization is a technique for optimizing a computationally expensive and/or 
+%numerically challenging objective function. One constructs a fast, and 
+%relatively simple, working model (i.e. the surrogate model $\left[\text{
+%usually a GP}\right]$) of the objective function.  Using the GP's predictive 
+%framework one can design algorithms to efficiently explore the objective 
+%function's domain and minimize the number of function evaluations necessary 
+%to optimize onerous functions. Given that this type of optimization 
+%prioritizes a stochastic global search of the objective function, the typical 
+%vanishing step-size convergence metrics are not available. We demonstrate 
+%that commonly used surrogate model convergence metrics are themselves random 
+%variables. Additionally, we introduce a novel approach, inspired by signal 
+%processing and statistical process control, for properly handling the 
+%stochasticity of available convergence metrics. Due to the basic research 
+%nature of my M.S. I not only worked closely with Bayesian statistics, but I 
+%also have expertise in optimization and more broadly as an engineer.
+%
+%%Masters students work on the same track as Ph.D. students until of study, but the nature of my mas I also 
+%%worked within many
+%
+%%using these stochastic 
+%%convergence metrics to determine convergence. 
+%
+%Moving on from my M.S. in statistics and applied mathematics, I took a 
+%quantitative research position with the National Marine Fisheries 
+%Service (NMFS) at NOAA. At NOAA, I am working with the groundfish analysis team 
+%in Santa Cruz (lead by Dr. John Field and working closely with Dr. E.J. Dick), 
+%where I have primarily been working on operationalizing Bayesian hierarchical 
+%model-based methods for estimating catch in mixed-stock commercial fisheries. 
+%Due to sparsity of data in this setting, as well as substantial model 
+%uncertainty between market categories, I have developed a \href{http://www.pcouncil.org/wp-content/uploads/2017/08/E3_Att1_ImprovingCatchEst_SEPT2017BB.pdf}{program}\footnote{ \href{http://www.pcouncil.org/wp-content/uploads/2017/08/E3_Att1_ImprovingCatchEst_SEPT2017BB.pdf}{The Pacific Fishery Management Council’s scientific and statistical committee identified this proposal as the highest priority for review in 2018.}} 
+%which not only implements an operationalized Bayesian hierarchical model to 
+%estimate species compositions, but I have also developed an automated model 
+%selection algorithm to integrate across model uncertainty within a 
+%market category. In my time at NOAA I have also been involved with two 
+%assessment cycles. In each assessment I have worked with stock assessment 
+%scientists to develop indices of abundance as well as to gain experience 
+%working with stock synthesis. 
+%
+%%
+%%PAGE TWO
+%%
+%
+%%
+%\thispagestyle{next}
+%
+%
+%
+%%%Furthermore, in my time at NOAA I have also had the opportunity to gain experience 
+%%
+%
+%Looking forward to potential research directions within the QERM Ph.D. 
+%program, I would like to continue work in, and around, quantitative 
+%population dynamics models. In particular, I would like to capitalize on 
+%my knowledge of computational methods and Bayesian statistics to pursue 
+%applications of Bayesian nonparametrics in fisheries. I have experience 
+%working with GPs and I would be interested in broadening my spatial 
+%modeling abilities in work with Dr. Paul Sampson and/or Dr. Peter Guttorp at 
+%QERM. Furthermore, I have a growing interest in evaluating model uncertainty 
+%in Bayesian models via Dirichlet processes. There are straight-forward 
+%reformulations of my species composition model (linked above), using 
+%Dirichlet process priors, which would result in %among the port parameters
+%models that explore a larger degree of model uncertainty, in a more 
+%efficient way, than the current system. Finally, in my time at QERM I would 
+%like to further my education of stock assessment models. I would hope to meet 
+%scientists working with the School of Aquatic and Fisheries Sciences (Dr. Ray 
+%Hilborn's lab is particularly exciting to me) and help better the computational 
+%lives of people working with the Northwest Fisheries Science Center (NWFSC) at 
+%NOAA. 
+%
+%%%sample a greater degree of model uncertainty while likely computing more quickly than the current system.
+%%
+%
+%As I pursue a career in quantitative fisheries management, I believe that the 
+%QERM program best suits my background both as a biologist and as a statistician. 
+%The unique interdisciplinary positioning of the QERM program provides an 
+%ideal opportunity for me to hone my biological intuitions while holding those 
+%intuitions to a high empirical standard. As a statistician I offer strong 
+%quantitative skills and I aspire to use those skills to move fisheries management 
+%forward.
+
+%can contribute strong skills
+%test those 
+%intuitions against  into my 
+%strong quantitative skills to move the field of fisheries forward into a more 
+ 
+
+
+
+
+%\begin{itemize}
+%	\item[\checkmark] Thesis:
+%	
+%	\item[\checkmark] Past UCSC: Surrogate Model Optimization	
+%	
+%	\item[\checkmark] Past NOAA: CALCOM
+%
+%	\item[\checkmark] Future Grad research
+%	\begin{itemize}
+%		\item[\checkmark] Bayesian Nonparametrics
+%		\begin{itemize}
+%			\item[\checkmark] Spatial GPs (Dr. Paul Sampson)
+%			\item[\checkmark] Heirarchical Models
+%			\begin{itemize}
+%				\item[\checkmark] Ray Hilborn
+%				\item[\checkmark] Model uncertainty
+%				\item Shrinkage/Regularization => Infer Model Selection
+%				\item More flexible DP priors for shrinkage and inferring model structure
+%			\end{itemize} 
+%		\end{itemize}
+%		\item[\checkmark] Population Dynamics Models
+%		\begin{itemize}
+%			\item[\checkmark] Ray Hilborn
+%		\end{itemize}
+%		\item[\checkmark] Jobs Stock Assessment
+%	\end{itemize}	
+%\end{itemize}
+
+
+
+
+
+%surrogate modeling in optimization is to manage a computationally challenging 
+%objective function with the use of a fast and relatively simple working model 
+%(i.e. the surrogate model) 
+%
+%infer the expected behavior of the objective function
+%
+%Finding the global constrained minimum is a difficult problem where it is easy 
+%for optimization routines to temporarily get stuck in a local minimum. (
+%Gaussian process surrogate model optimization should eventually escape local 
+%minima if run long enough.) Without knowing the answer in advance, how do we 
+%know when to terminate the optimization routine?
+%
+%We point out the relevant questions in answering this question and suggest a 
+%method for better handling the .
+
+
+%
+%at NOAA I have also worked with developing indices for use in stock assessment 
+%as well as I have worked directly on Bayesian methods for probing stock assessment population dynamics models. 
+%
+%working with the groundfish analysis team
+%
+%At NOAA I am working with the
+%groundfish analysis team in Santa Cruz (lead by Dr. John Field and working
+%closely with Dr. E.J. Dick) to help improve the technologies used for
+%quantitative fisheries management and stock assessment. Specifically I have
+%formulated Bayesian hierarchical models for estimating commercial catch in
+%a very data-sparse setting, as well as applications of spatial models for
+%deriving indices of abundance.
+%{\color{red}
+%Additionally I did work on $blaaank$ models which EJ and I presented the 
+%productivity workshop. 
+%}
+%
+%{\color{red}get grant to find how EJ phrases ssc reference.}
+
+
+%on the groundlevel for  learn from the c. I am interested have  I would be Ray Hilborn 
+%
+%Learn more about fisheries
+%
+%I would like to move toward a career within Fisheries in an around stock 
+%assessment 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

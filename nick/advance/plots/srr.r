@@ -18,7 +18,7 @@ cols = brewer.pal(9,'Set1')
 #
 png("srr1.png")
 gamma = 2
-curve(SRR(x, r, K, gamma)/SRR(K/gamma, r, K, gamma), from=0, to=K, lwd=3, col="black", main=TeX("R(B; r, 10000, $\\gamma$)"), ylab="Recruitment", xlab="B")
+curve(SRR(x, r, K, gamma)/SRR(K/gamma, r, K, gamma), from=0, to=K, lwd=3, col="black", main=TeX("R(B; r, 10000, $\\gamma$)"), ylab="Production", xlab="B")
 rug(K/gamma, lwd=3)
 gamma = 4/3 #3/2
 curve(SRR(x, r, K, gamma)/SRR(K/gamma, r, K, gamma), lwd=3, col=cols[1], add=T)
@@ -32,7 +32,7 @@ dev.off()
 png("srr1.1.png")
 R = 2500
 beta = K/2
-curve(SRR(x, rGivenRandBeta(K, beta, R), K, K/beta), from=0, to=K, lwd=3, col="black", ylim=c(0, 1.25*R), main=TeX("R(B; r, 10000, $\\gamma$)"), ylab="Recruitment", xlab="B")
+curve(SRR(x, rGivenRandBeta(K, beta, R), K, K/beta), from=0, to=K, lwd=3, col="black", ylim=c(0, 1.25*R), main=TeX("R(B; r, 10000, $\\gamma$)"), ylab="Production", xlab="B")
 rug(beta, lwd=3)
 rs = rGivenRandBeta(K, beta, R)
 gams = K/beta
@@ -69,7 +69,7 @@ cols[6] = 'black'
 lo = 1.5
 #
 png("srr2.png")
-curve(SRR(x, r, K, lo), from=0, to=K, lwd=3, col=cols[i], ylim=c(0, SRR(K/lo, r, K, lo)), main=TeX("R(B; 1, 10000, $\\gamma$)"), xlab="B", ylab="Recruitment")
+curve(SRR(x, r, K, lo), from=0, to=K, lwd=3, col=cols[i], ylim=c(0, SRR(K/lo, r, K, lo)), main=TeX("R(B; 1, 10000, $\\gamma$)"), xlab="B", ylab="Production")
 gams = seq(lo, 2.5, length.out=n)
 for(gamma in gams){
 	curve(SRR(x, r, K, gamma), lwd=3, add=T, col=cols[i])
@@ -88,12 +88,13 @@ cols = brewer.pal(9,'Set1')
 
 #
 png("srrSchaeffer.png")
-curve(SRR(x, r, K, 2), from=0, to=K, lwd=3, ylab="Biomass", xlab="B", main="Relationship between Catch, Logistic SRR, and dB/dt")
-curve(Fr*x, lwd=3, col=cols[1], add=T)
-curve(SRR(x, r, K, 2)-Fr*x, from=0, to=K, lwd=3, col=cols[2], add=T)
-curve(r*x, lwd=3, col=cols[3], lty=2, add=T)
-segments(K/2, SRR(K/2, r, K, 2), K/2, 0, col=cols[4], lty=2, lwd=3)
-legend("topleft", legend=c("Logistic SRR", TeX("$C=F_{MSY}B$"), "dB/dt", "rB", TeX("$B_{MSY}=K/2$")), col=c("black", cols[1:4]), lwd=3, lty=c(1, 1, 1, 2, 2))
+curve(SRR(x, r, K, 2), from=0, to=K, lwd=3, ylab="Production", xlab="B", main="Logistic SRR and Related Quantities")
+curve(Fr*x, lwd=3, col=cols[1], add=T, lty=2)
+#curve(SRR(x, r, K, 2)-Fr*x, from=0, to=K, lwd=3, col=cols[2], add=T)
+curve(r*x, lwd=3, col=cols[2], lty=2, add=T)
+segments(K/2, SRR(K/2, r, K, 2), K/2, 0, col=cols[3], lty=3, lwd=3)
+segments(K, SRR(K/2, r, K, 2), K, 0, col=cols[4], lty=3, lwd=3)
+legend("topleft", legend=c("Logistic SRR", TeX("$F_{MSY}B=rB/2$"), "rB", TeX("$B_{MSY}=K/2$"), "K"), col=c("black", cols[1:4]), lwd=3, lty=c(1, 2, 2, 3, 3))
 dev.off()
 
 #
