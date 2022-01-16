@@ -125,15 +125,15 @@ The index is often observed alongside a variety of other known quantities,
 but at a minimum, each observed index will be observed in the presence of some 
 known catch for the period. The index of abundance is assumed to be proportional 
 to biomass with the proportionality constant being a nuisance parameter that is 
-often referred to as the catchability parameter.
+often referred to as the catchability parameter. 
 
 %{\color{red}Plot Index Series and Catches}
 \begin{figure}[h!]
 	\includegraphics[width=0.5\textwidth]{./plots/index.jpg}
 	\includegraphics[width=0.5\textwidth]{./plots/catch.jpg}
 	\caption{
-	\textit{left}: An observed series of index of abundance data for Namibian Hake from {\color{red} year to year}.
-	\textit{right}: Catch data associated the observed Namibian Hake index over the same time period.
+	\textit{left}: An observed series of index of abundance data for Namibian Hake from 1965 to 1987 \protect\shortcite{hilborn_ecological_1997}.
+	\textit{right}: The associated catch data for Namibian Hake over the same time period.
 	}
 \label{hakeData}
 \end{figure}
@@ -171,22 +171,22 @@ current biomass of the population to an aggregate production of biomass.
 
 %
 Secondly, the population decreases as biomass is removed due to catch 
-($C(t)$). While catches are observable quantities ({\color{red}cite}), the model 
-assumes that catch is proportional to biomass with the proportionality constant 
-representing the fishing rate, $F(t)$, so that $C(t)=F(t)B(t)$. From a management 
-perspective a major goal of the model is to accurately infer a quantity known as 
-\emph{maximum sustainable yield} (MSY). One could maximize simple yield at a 
-particular moment in time (and only for that moment) by fishing all available 
-biomass in that moment. This strategy is penny-wise but pound-foolish (not to 
-mention ecologically devastating) since it doesn't leave biomass in the 
-population to reproduce for future time periods. We seek to fish in a way that 
-allows (or even encourages) future productivity in the population. This is 
-accomplished by maximizing the equilibrium level of catch (or yield) over 
-time. Equilibrium yield is considered by replacing the steady state biomass 
-($\bar B$) in the assumed form for catch, so that $\bar C = F\bar B(F)$, where 
-$\bar~$ indicates a value at steady state.  Naturally the steady state biomass 
-is a function of $F$; we will see a specific example of this in Section 
-(\ref{ptRef}). MSY is found by optimizing $\bar C(F)$ with respect to $F$, 
+($C(t)$). While catches are observable quantities \shortcite{sen_sampling_1984, pearson_documentation_1997}, 
+the model assumes that catch is proportional to biomass with the 
+proportionality constant representing the fishing rate, $F(t)$, so that $C(t)=F(t)B(t)$. 
+From a management perspective a major goal of the model is to accurately infer 
+a quantity known as \emph{maximum sustainable yield} (MSY). One could maximize 
+simple yield at a particular moment in time (and only for that moment) by 
+fishing all available biomass in that moment. This strategy is penny-wise but 
+pound-foolish (not to mention ecologically devastating) since it doesn't leave 
+biomass in the population to reproduce for future time periods. We seek to 
+fish in a way that allows (or even encourages) future productivity in the 
+population. This is accomplished by maximizing the equilibrium level of catch (
+or yield) over time. Equilibrium yield is considered by replacing the steady 
+state biomass ($\bar B$) in the assumed form for catch, so that $\bar C = F\bar B(F)$, 
+where $\bar~$ indicates a value at steady state.  Naturally the steady state 
+biomass is a function of $F$; we will see a specific example of this in 
+Section (\ref{ptRef}). MSY is found by optimizing $\bar C(F)$ with respect to $F$, 
 and $F^*$ is the fishing rate at MSY. Going forward let $^*$ decorate any value 
 derived under the condition of MSY. 
 
@@ -195,7 +195,7 @@ derived under the condition of MSY.
 
 %
 The canonical production model in fisheries is the Schaeffer model. The 
-Schaeffer model is formed by choosing $P$ to be logistic growth ({\color{red} cite}) 
+Schaeffer model is formed by choosing $P$ to be logistic growth \shortcite{mangel_theoretical_2006} %({\color{red} cite}) 
 parameterized so that $\bm{\theta} = [r, K]$ so that the family of production 
 functions takes the following form,  
 %
@@ -260,9 +260,8 @@ convenient, the simplistic dynamics it implies are also potentially problematic.
 %
 Fisheries are very often managed based upon reference points (RP) which serve as 
 simplified heuristic measures of population behavior. The mathematical form of 
-RPs depends upon the model assumptions primarily through the production function 
-({\color{red} cite}). Here the focus is primarily on the RPs $F^*$ and 
-$\frac{B^*}{\bar B(0)}$. 
+RPs depends upon the model assumptions primarily through the production function %({\color{red} cite}). 
+Here the focus is primarily on the RPs $F^*$ and $\frac{B^*}{\bar B(0)}$. 
 
 %%
 %Here the focus is on two RPs that will be denoted by $\xi$ and $\zeta$ going forward.  
@@ -296,7 +295,7 @@ only on two parameters. The Schaeffer model as presented depends only on
 the biological parameters $r$ and $K$, but other common two parameter choices 
 of the production function are the Beverton-Holt (BH) and Ricker curves. All
 of these two parameter production functions struggle similarly to model the full 
-theoretical space of RPs ({\color{red}cite Mangle paper}).
+theoretical space of RPs \shortcite{mangel_perspective_2013}.
 
 %
 In this study I consider the behavior of inference when using the Schaeffer model 
@@ -336,7 +335,25 @@ our fisheries.
 %%
 %{\color{red} Outline simulation goal, end introduction, and start methods.}
 
-{\color{gray}
+%\begin{itemize}
+%\item[\checkmark] introduce fisheries type data
+%\item[\checkmark] ODE modeling formulation
+%\item[\checkmark] Schaeffer Model (Logistic production function)
+%\item[\checkmark] Reference Points
+%{\color{gray}\item Pella-Tomlinson production function}
+%\item[\checkmark] general simulation idea
+%\end{itemize}
+
+
+%
+\section{Methods}
+
+%Construct RP under PT production
+
+%
+\subsection{PT Model}
+
+%{\color{gray}
 %Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
 The three parameter PT family has a convenient form that includes the logistic 
 SRR as a special case to form the Schaeffer model. The Pella-Tomlinson SRR is 
@@ -349,9 +366,10 @@ P(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1
 
 %
 $\gamma$ is a parameter which breaks PT out of the restrictive symmetry of the 
-logistic curve. In Figure (\ref{srrPT}) PT recruitment is shown for a range of 
-parameter values so as to demonstrate the various recruitment shapes that can be 
-achieved by PT recruitment.  
+logistic curve. The parameters $r$ and $K$ maintain the same interpretation as 
+they do in the logistic production function. In Figure (\ref{srrPT}) PT recruitment 
+is shown for a range of parameter values so as to demonstrate the various 
+recruitment shapes that can be achieved by PT recruitment.  
 %{\color{red} And $\gamma$ is a parameter which adds 
 %flexibility to the family by allowing for compensatory or non-compensatory 
 %growth. (break symmetry... get better description) }
@@ -360,7 +378,10 @@ achieved by PT recruitment.
 \begin{figure}[h!]
 	\includegraphics[width=0.5\textwidth]{./plots/srr1.1.png}	
 	\includegraphics[width=0.5\textwidth]{./plots/srr2.png}
-	\caption{}
+	\caption{
+	(\emph{left}) PT production functions with parameters chosen so that MSY is consistent, but $\frac{B^*}{\bar B(0)}$ is less than $\frac{1}{2}$ (in red), greater than $\frac{1}{2}$ (in blue), or equal to $\frac{1}{2}$ (in black; logistic production function).
+	(\emph{right}) 
+	}
 	\label{srrPT}
 \end{figure}
 %\end{wrapfigure}
@@ -370,29 +391,14 @@ While the particular form of how $\gamma$ appears in PT still produces some
 limitations to the form of the SRR, importantly the introduction of a third 
 parameter allows enough flexibility to fully describe the space of reference 
 points used in management. To see this, the reference points are analytically 
-derived for the PT model in the following section.
+derived for the PT model below. % in the following section.
 
 %%
 %\begin{equation}
 %\frac{dB}{dt} = P - FB.
 %\end{equation}
 
-}
-
-\begin{itemize}
-\item[\checkmark] introduce fisheries type data
-\item[\checkmark] ODE modeling formulation
-\item[\checkmark] Schaeffer Model (Logistic production function)
-\item[\checkmark] Reference Points
-{\color{gray}\item Pella-Tomlinson production function}
-\item[\checkmark] general simulation idea
-\end{itemize}
-
-
-%
-\section{Methods}
-
-%Construct RP under PT production
+%}
 
 %
 \subsection{PT Reference Points}\label{ptRef}

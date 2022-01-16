@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.3.2)  6 JAN 2022 11:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.3.2)  14 JAN 2022 11:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -993,12 +993,12 @@ ut line 37.
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
 )
-<noaaText.png, id=65, 628.43478pt x 471.32608pt>
+<noaaText.png, id=67, 628.43478pt x 471.32608pt>
 File: noaaText.png Graphic file (type png)
 <use noaaText.png>
 Package pdftex.def Info: noaaText.png  used on input line 49.
 (pdftex.def)             Requested size: 90.34514pt x 67.7544pt.
-<slug.jpg, id=67, 301.125pt x 254.9525pt>
+<slug.jpg, id=69, 301.125pt x 254.9525pt>
 File: slug.jpg Graphic file (type jpg)
 <use slug.jpg>
 Package pdftex.def Info: slug.jpg  used on input line 49.
@@ -1011,7 +1011,7 @@ Overfull \hbox (16.4493pt too wide) detected at line 98
 []
  []
 
-<cjasFig.png, id=133, 433.1382pt x 434.5836pt>
+<cjasFig.png, id=139, 433.1382pt x 434.5836pt>
 File: cjasFig.png Graphic file (type png)
 <use cjasFig.png>
 Package pdftex.def Info: cjasFig.png  used on input line 98.
@@ -1049,7 +1049,7 @@ Overfull \hbox (6.70099pt too wide) detected at line 117
 []
  []
 
-<bhConst.png, id=235, 481.8pt x 481.8pt>
+<bhConst.png, id=245, 481.8pt x 481.8pt>
 File: bhConst.png Graphic file (type png)
 <use bhConst.png>
 Package pdftex.def Info: bhConst.png  used on input line 117.
@@ -1062,7 +1062,7 @@ Overfull \hbox (30.72852pt too wide) in paragraph at lines 117--117
 [4
 
  <./bhConst.png>]
-<srrSchaeffer.png, id=283, 481.8pt x 481.8pt>
+<srrSchaeffer.png, id=296, 481.8pt x 481.8pt>
 File: srrSchaeffer.png Graphic file (type png)
 <use srrSchaeffer.png>
 Package pdftex.def Info: srrSchaeffer.png  used on input line 163.
@@ -1075,7 +1075,7 @@ Overfull \hbox (27.65547pt too wide) in paragraph at lines 163--163
 [5
 
  <./srrSchaeffer.png>]
-<shaeferConst.png, id=335, 481.8pt x 481.8pt>
+<shaeferConst.png, id=349, 481.8pt x 481.8pt>
 File: shaeferConst.png Graphic file (type png)
 <use shaeferConst.png>
 Package pdftex.def Info: shaeferConst.png  used on input line 163.
@@ -1088,12 +1088,12 @@ Overfull \hbox (27.65547pt too wide) in paragraph at lines 163--163
 [6
 
  <./shaeferConst.png>]
-<srr1.1.png, id=382, 481.8pt x 481.8pt>
+<srr1.1.png, id=399, 481.8pt x 481.8pt>
 File: srr1.1.png Graphic file (type png)
 <use srr1.1.png>
 Package pdftex.def Info: srr1.1.png  used on input line 179.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
-<srr2.png, id=383, 481.8pt x 481.8pt>
+<srr2.png, id=400, 481.8pt x 481.8pt>
 File: srr2.png Graphic file (type png)
 <use srr2.png>
 Package pdftex.def Info: srr2.png  used on input line 179.
@@ -1101,7 +1101,7 @@ Package pdftex.def Info: srr2.png  used on input line 179.
  [7
 
  <./srr1.1.png> <./srr2.png>]
-<shaeferDat.png, id=433, 481.8pt x 481.8pt>
+<shaeferDat.png, id=451, 481.8pt x 481.8pt>
 File: shaeferDat.png Graphic file (type png)
 <use shaeferDat.png>
 Package pdftex.def Info: shaeferDat.png  used on input line 186.
@@ -1113,7 +1113,7 @@ Overfull \vbox (9.0pt too high) detected at line 186
 [8
 
  <./shaeferDat.png (PNG copy)>]
-<../gpBias/catchFlat.png, id=479, 481.8pt x 481.8pt>
+<../gpBias/catchFlat.png, id=499, 481.8pt x 481.8pt>
 File: ../gpBias/catchFlat.png Graphic file (type png)
 <use ../gpBias/catchFlat.png>
 Package pdftex.def Info: ../gpBias/catchFlat.png  used on input line 282.
@@ -1123,7 +1123,7 @@ Overfull \hbox (14.67477pt too wide) in paragraph at lines 282--282
 [][] 
  []
 
-<../../../theses/nick/gpBias/catchCap.png, id=480, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/catchCap.png, id=500, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/catchCap.png Graphic file (type png)
 <use ../../../theses/nick/gpBias/catchCap.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/catchCap.png  used on inpu
@@ -1134,7 +1134,7 @@ Overfull \hbox (26.49756pt too wide) in paragraph at lines 282--282
 |  [] 
  []
 
-<../../../theses/nick/gpBias/catchCupNoQ.png, id=481, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/catchCupNoQ.png, id=501, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/catchCupNoQ.png Graphic file (type png)
 <use ../../../theses/nick/gpBias/catchCupNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/catchCupNoQ.png  used on i
@@ -1145,7 +1145,7 @@ Overfull \hbox (35.88702pt too wide) in paragraph at lines 282--282
 |  [] 
  []
 
-<../../../theses/nick/gpBias/catchExp.png, id=482, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/catchExp.png, id=502, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/catchExp.png Graphic file (type png)
 <use ../../../theses/nick/gpBias/catchExp.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/catchExp.png  used on inpu
@@ -1161,7 +1161,7 @@ Overfull \hbox (45.56085pt too wide) in paragraph at lines 282--282
  <../gpBias/catchFlat.png> <../../../theses/nick/gpBias/catchCap.png> <../../..
 /theses/nick/gpBias/catchCupNoQ.png> <../../../theses/nick/gpBias/catchExp.png>
 ]
-<../../../theses/nick/gpBias/catchFlat.png, id=533, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/catchFlat.png, id=555, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/catchFlat.png Graphic file (type png)
 <use ../../../theses/nick/gpBias/catchFlat.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/catchFlat.png  used on inp
@@ -1205,7 +1205,7 @@ Overfull \hbox (45.56085pt too wide) in paragraph at lines 282--282
 [10
 
  <../../../theses/nick/gpBias/catchFlat.png>]
-<../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png, id=580, 481.8pt x 481
+<../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png, id=604, 481.8pt x 481
 .8pt>
 File: ../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png Graphic file (typ
 e png)
@@ -1213,7 +1213,7 @@ e png)
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.pn
 g  used on input line 344.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png, id=581, 481.8pt x 481.8p
+<../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png, id=605, 481.8pt x 481.8p
 t>
 File: ../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png Graphic file (type p
 ng)
@@ -1236,7 +1236,7 @@ File: ../../../theses/nick/gpBias/catchFlat.png Graphic file (type png)
 Package pdftex.def Info: ../../../theses/nick/gpBias/catchFlat.png  used on inp
 ut line 344.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/msyRelBiasPellaFlatNoQ.png, id=582, 481.8pt x 481.
+<../../../theses/nick/gpBias/msyRelBiasPellaFlatNoQ.png, id=606, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/msyRelBiasPellaFlatNoQ.png Graphic file (type
  png)
@@ -1254,7 +1254,7 @@ Overfull \hbox (33.91412pt too wide) in paragraph at lines 344--344
 |  [] 
  []
 
-<../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png, id=583, 481.8pt x
+<../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png, id=607, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png Graphic file 
 (type png)
@@ -1262,7 +1262,7 @@ File: ../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png Graphic file
 Package pdftex.def Info: ../../../theses/nick/gpBias/directionalBiasPellaFlatNo
 Q.png  used on input line 344.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png, id=584, 481.8pt x 481
+<../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png, id=608, 481.8pt x 481
 .8pt>
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png Graphic file (typ
 e png)
@@ -1287,7 +1287,7 @@ Overfull \hbox (41.02731pt too wide) in paragraph at lines 344--344
 gpBias/msyRelBiasPellaFlatNoQ.png (PNG copy)> <../../../theses/nick/gpBias/dire
 ctionalBiasPellaFlatNoQ.png (PNG copy)> <../../../theses/nick/gpBias/fMSYRelBia
 sPellaFlatNoQ.png (PNG copy)>]
-<../../../theses/nick/gpBias/bMSYRelBiasPellaExpNoQ.png, id=631, 481.8pt x 481.
+<../../../theses/nick/gpBias/bMSYRelBiasPellaExpNoQ.png, id=657, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpNoQ.png Graphic file (type
  png)
@@ -1295,7 +1295,7 @@ File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpNoQ.png Graphic file (type
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpNoQ.png
   used on input line 404.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/kRelBiasPellaExpNoQ.png, id=632, 481.8pt x 481.8pt
+<../../../theses/nick/gpBias/kRelBiasPellaExpNoQ.png, id=658, 481.8pt x 481.8pt
 >
 File: ../../../theses/nick/gpBias/kRelBiasPellaExpNoQ.png Graphic file (type pn
 g)
@@ -1318,7 +1318,7 @@ File: ../../../theses/nick/gpBias/catchExp.png Graphic file (type png)
 Package pdftex.def Info: ../../../theses/nick/gpBias/catchExp.png  used on inpu
 t line 404.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/msyRelBiasPellaExpNoQ.png, id=633, 481.8pt x 481.8
+<../../../theses/nick/gpBias/msyRelBiasPellaExpNoQ.png, id=659, 481.8pt x 481.8
 pt>
 File: ../../../theses/nick/gpBias/msyRelBiasPellaExpNoQ.png Graphic file (type 
 png)
@@ -1336,7 +1336,7 @@ Overfull \hbox (33.91412pt too wide) in paragraph at lines 404--404
 |  [] 
  []
 
-<../../../theses/nick/gpBias/directionalBiasPellaExpNoQ.png, id=634, 481.8pt x 
+<../../../theses/nick/gpBias/directionalBiasPellaExpNoQ.png, id=660, 481.8pt x 
 481.8pt>
 File: ../../../theses/nick/gpBias/directionalBiasPellaExpNoQ.png Graphic file (
 type png)
@@ -1344,7 +1344,7 @@ type png)
 Package pdftex.def Info: ../../../theses/nick/gpBias/directionalBiasPellaExpNoQ
 .png  used on input line 404.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/fMSYRelBiasPellaExpNoQ.png, id=635, 481.8pt x 481.
+<../../../theses/nick/gpBias/fMSYRelBiasPellaExpNoQ.png, id=661, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpNoQ.png Graphic file (type
  png)
@@ -1373,7 +1373,7 @@ theses/nick/gpBias/kRelBiasPellaExpNoQ.png (PNG copy)> <../../../theses/nick/gp
 Bias/msyRelBiasPellaExpNoQ.png (PNG copy)> <../../../theses/nick/gpBias/directi
 onalBiasPellaExpNoQ.png (PNG copy)> <../../../theses/nick/gpBias/fMSYRelBiasPel
 laExpNoQ.png (PNG copy)>]
-<../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png, id=681, 481.8pt x 481.
+<../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png, id=709, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png Graphic file (type
  png)
@@ -1381,7 +1381,7 @@ File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png Graphic file (type
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png
   used on input line 434.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/kRelBiasPellaExpT45.png, id=682, 481.8pt x 481.8pt
+<../../../theses/nick/gpBias/kRelBiasPellaExpT45.png, id=710, 481.8pt x 481.8pt
 >
 File: ../../../theses/nick/gpBias/kRelBiasPellaExpT45.png Graphic file (type pn
 g)
@@ -1399,13 +1399,13 @@ Overfull \hbox (19.68774pt too wide) in paragraph at lines 434--434
 |  [] 
  []
 
-<../../../theses/nick/gpBias/catchExpT45.png, id=683, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/catchExpT45.png, id=711, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/catchExpT45.png Graphic file (type png)
 <use ../../../theses/nick/gpBias/catchExpT45.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/catchExpT45.png  used on i
 nput line 434.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/msyRelBiasPellaExpT45.png, id=684, 481.8pt x 481.8
+<../../../theses/nick/gpBias/msyRelBiasPellaExpT45.png, id=712, 481.8pt x 481.8
 pt>
 File: ../../../theses/nick/gpBias/msyRelBiasPellaExpT45.png Graphic file (type 
 png)
@@ -1423,7 +1423,7 @@ Overfull \hbox (33.91412pt too wide) in paragraph at lines 434--434
 |  [] 
  []
 
-<../../../theses/nick/gpBias/directionalBiasPellaExpT45.png, id=685, 481.8pt x 
+<../../../theses/nick/gpBias/directionalBiasPellaExpT45.png, id=713, 481.8pt x 
 481.8pt>
 File: ../../../theses/nick/gpBias/directionalBiasPellaExpT45.png Graphic file (
 type png)
@@ -1431,7 +1431,7 @@ type png)
 Package pdftex.def Info: ../../../theses/nick/gpBias/directionalBiasPellaExpT45
 .png  used on input line 434.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png, id=686, 481.8pt x 481.
+<../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png, id=714, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png Graphic file (type
  png)
@@ -1460,7 +1460,7 @@ theses/nick/gpBias/kRelBiasPellaExpT45.png (PNG copy)> <../../../theses/nick/gp
 Bias/catchExpT45.png> <../../../theses/nick/gpBias/msyRelBiasPellaExpT45.png (P
 NG copy)> <../../../theses/nick/gpBias/directionalBiasPellaExpT45.png (PNG copy
 )> <../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png (PNG copy)>]
-<../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png, id=735, 481.8pt x 481.
+<../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png, id=765, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png Graphic file (type
  png)
@@ -1468,7 +1468,7 @@ File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png Graphic file (type
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png
   used on input line 465.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/kRelBiasPellaExpT60.png, id=736, 481.8pt x 481.8pt
+<../../../theses/nick/gpBias/kRelBiasPellaExpT60.png, id=766, 481.8pt x 481.8pt
 >
 File: ../../../theses/nick/gpBias/kRelBiasPellaExpT60.png Graphic file (type pn
 g)
@@ -1486,13 +1486,13 @@ Overfull \hbox (19.68774pt too wide) in paragraph at lines 465--465
 |  [] 
  []
 
-<../../../theses/nick/gpBias/catchExpT60.png, id=737, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/catchExpT60.png, id=767, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/catchExpT60.png Graphic file (type png)
 <use ../../../theses/nick/gpBias/catchExpT60.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/catchExpT60.png  used on i
 nput line 465.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/msyRelBiasPellaExpT60.png, id=738, 481.8pt x 481.8
+<../../../theses/nick/gpBias/msyRelBiasPellaExpT60.png, id=768, 481.8pt x 481.8
 pt>
 File: ../../../theses/nick/gpBias/msyRelBiasPellaExpT60.png Graphic file (type 
 png)
@@ -1510,7 +1510,7 @@ Overfull \hbox (33.91412pt too wide) in paragraph at lines 465--465
 |  [] 
  []
 
-<../../../theses/nick/gpBias/directionalBiasPellaExpT60.png, id=739, 481.8pt x 
+<../../../theses/nick/gpBias/directionalBiasPellaExpT60.png, id=769, 481.8pt x 
 481.8pt>
 File: ../../../theses/nick/gpBias/directionalBiasPellaExpT60.png Graphic file (
 type png)
@@ -1518,7 +1518,7 @@ type png)
 Package pdftex.def Info: ../../../theses/nick/gpBias/directionalBiasPellaExpT60
 .png  used on input line 465.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png, id=740, 481.8pt x 481.
+<../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png, id=770, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png Graphic file (type
  png)
@@ -1547,7 +1547,7 @@ theses/nick/gpBias/kRelBiasPellaExpT60.png (PNG copy)> <../../../theses/nick/gp
 Bias/catchExpT60.png> <../../../theses/nick/gpBias/msyRelBiasPellaExpT60.png (P
 NG copy)> <../../../theses/nick/gpBias/directionalBiasPellaExpT60.png (PNG copy
 )> <../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png (PNG copy)>]
-<../../../theses/nick/gpBias/bMSYRelBiasPellaExpK.png, id=787, 481.8pt x 481.8p
+<../../../theses/nick/gpBias/bMSYRelBiasPellaExpK.png, id=819, 481.8pt x 481.8p
 t>
 File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpK.png Graphic file (type p
 ng)
@@ -1555,7 +1555,7 @@ ng)
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpK.png  
 used on input line 496.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/kRelBiasPellaExpK.png, id=788, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/kRelBiasPellaExpK.png, id=820, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/kRelBiasPellaExpK.png Graphic file (type png)
 
 <use ../../../theses/nick/gpBias/kRelBiasPellaExpK.png>
@@ -1572,13 +1572,13 @@ Overfull \hbox (19.68774pt too wide) in paragraph at lines 496--496
 |  [] 
  []
 
-<../../../theses/nick/gpBias/catchExpK.png, id=789, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/catchExpK.png, id=821, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/catchExpK.png Graphic file (type png)
 <use ../../../theses/nick/gpBias/catchExpK.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/catchExpK.png  used on inp
 ut line 496.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/msyRelBiasPellaExpK.png, id=790, 481.8pt x 481.8pt
+<../../../theses/nick/gpBias/msyRelBiasPellaExpK.png, id=822, 481.8pt x 481.8pt
 >
 File: ../../../theses/nick/gpBias/msyRelBiasPellaExpK.png Graphic file (type pn
 g)
@@ -1596,7 +1596,7 @@ Overfull \hbox (33.91412pt too wide) in paragraph at lines 496--496
 |  [] 
  []
 
-<../../../theses/nick/gpBias/directionalBiasPellaExpK.png, id=791, 481.8pt x 48
+<../../../theses/nick/gpBias/directionalBiasPellaExpK.png, id=823, 481.8pt x 48
 1.8pt>
 File: ../../../theses/nick/gpBias/directionalBiasPellaExpK.png Graphic file (ty
 pe png)
@@ -1604,7 +1604,7 @@ pe png)
 Package pdftex.def Info: ../../../theses/nick/gpBias/directionalBiasPellaExpK.p
 ng  used on input line 496.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/fMSYRelBiasPellaExpK.png, id=792, 481.8pt x 481.8p
+<../../../theses/nick/gpBias/fMSYRelBiasPellaExpK.png, id=824, 481.8pt x 481.8p
 t>
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpK.png Graphic file (type p
 ng)
@@ -1633,7 +1633,7 @@ eses/nick/gpBias/kRelBiasPellaExpK.png (PNG copy)> <../../../theses/nick/gpBias
 /catchExpK.png> <../../../theses/nick/gpBias/msyRelBiasPellaExpK.png (PNG copy)
 > <../../../theses/nick/gpBias/directionalBiasPellaExpK.png (PNG copy)> <../../
 ../theses/nick/gpBias/fMSYRelBiasPellaExpK.png (PNG copy)>]
-<../../../theses/nick/gpBias/bMSYRelBiasPellaExpKT45.png, id=839, 481.8pt x 481
+<../../../theses/nick/gpBias/bMSYRelBiasPellaExpKT45.png, id=874, 481.8pt x 481
 .8pt>
 File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpKT45.png Graphic file (typ
 e png)
@@ -1641,7 +1641,7 @@ e png)
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpKT45.pn
 g  used on input line 527.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/kRelBiasPellaExpKT45.png, id=840, 481.8pt x 481.8p
+<../../../theses/nick/gpBias/kRelBiasPellaExpKT45.png, id=875, 481.8pt x 481.8p
 t>
 File: ../../../theses/nick/gpBias/kRelBiasPellaExpKT45.png Graphic file (type p
 ng)
@@ -1659,13 +1659,13 @@ Overfull \hbox (19.68774pt too wide) in paragraph at lines 527--527
 |  [] 
  []
 
-<../../../theses/nick/gpBias/catchExpKT45.png, id=841, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/catchExpKT45.png, id=876, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/catchExpKT45.png Graphic file (type png)
 <use ../../../theses/nick/gpBias/catchExpKT45.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/catchExpKT45.png  used on 
 input line 527.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/msyRelBiasPellaExpKT45.png, id=842, 481.8pt x 481.
+<../../../theses/nick/gpBias/msyRelBiasPellaExpKT45.png, id=877, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/msyRelBiasPellaExpKT45.png Graphic file (type
  png)
@@ -1683,7 +1683,7 @@ Overfull \hbox (33.91412pt too wide) in paragraph at lines 527--527
 |  [] 
  []
 
-<../../../theses/nick/gpBias/directionalBiasPellaExpKT45.png, id=843, 481.8pt x
+<../../../theses/nick/gpBias/directionalBiasPellaExpKT45.png, id=878, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/directionalBiasPellaExpKT45.png Graphic file 
 (type png)
@@ -1691,7 +1691,7 @@ File: ../../../theses/nick/gpBias/directionalBiasPellaExpKT45.png Graphic file
 Package pdftex.def Info: ../../../theses/nick/gpBias/directionalBiasPellaExpKT4
 5.png  used on input line 527.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/fMSYRelBiasPellaExpKT45.png, id=844, 481.8pt x 481
+<../../../theses/nick/gpBias/fMSYRelBiasPellaExpKT45.png, id=879, 481.8pt x 481
 .8pt>
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpKT45.png Graphic file (typ
 e png)
@@ -1720,7 +1720,7 @@ Overfull \vbox (2.20654pt too high) detected at line 527
 gpBias/catchExpKT45.png> <../../../theses/nick/gpBias/msyRelBiasPellaExpKT45.pn
 g (PNG copy)> <../../../theses/nick/gpBias/directionalBiasPellaExpKT45.png (PNG
  copy)> <../../../theses/nick/gpBias/fMSYRelBiasPellaExpKT45.png (PNG copy)>]
-<../../../theses/nick/gpBias/bMSYRelBiasPellaExp1KT60.png, id=892, 481.8pt x 48
+<../../../theses/nick/gpBias/bMSYRelBiasPellaExp1KT60.png, id=928, 481.8pt x 48
 1.8pt>
 File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExp1KT60.png Graphic file (ty
 pe png)
@@ -1728,7 +1728,7 @@ pe png)
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaExp1KT60.p
 ng  used on input line 558.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/kRelBiasPellaExp1KT60.png, id=893, 481.8pt x 481.8
+<../../../theses/nick/gpBias/kRelBiasPellaExp1KT60.png, id=929, 481.8pt x 481.8
 pt>
 File: ../../../theses/nick/gpBias/kRelBiasPellaExp1KT60.png Graphic file (type 
 png)
@@ -1746,13 +1746,13 @@ Overfull \hbox (19.68774pt too wide) in paragraph at lines 558--558
 |  [] 
  []
 
-<../../../theses/nick/gpBias/catchExp1KT60.png, id=894, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/catchExp1KT60.png, id=930, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/catchExp1KT60.png Graphic file (type png)
 <use ../../../theses/nick/gpBias/catchExp1KT60.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/catchExp1KT60.png  used on
  input line 558.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/msyRelBiasPellaExp1KT60.png, id=895, 481.8pt x 481
+<../../../theses/nick/gpBias/msyRelBiasPellaExp1KT60.png, id=931, 481.8pt x 481
 .8pt>
 File: ../../../theses/nick/gpBias/msyRelBiasPellaExp1KT60.png Graphic file (typ
 e png)
@@ -1770,7 +1770,7 @@ Overfull \hbox (33.91412pt too wide) in paragraph at lines 558--558
 |  [] 
  []
 
-<../../../theses/nick/gpBias/directionalBiasPellaExp1KT60.png, id=896, 481.8pt 
+<../../../theses/nick/gpBias/directionalBiasPellaExp1KT60.png, id=932, 481.8pt 
 x 481.8pt>
 File: ../../../theses/nick/gpBias/directionalBiasPellaExp1KT60.png Graphic file
  (type png)
@@ -1778,7 +1778,7 @@ File: ../../../theses/nick/gpBias/directionalBiasPellaExp1KT60.png Graphic file
 Package pdftex.def Info: ../../../theses/nick/gpBias/directionalBiasPellaExp1KT
 60.png  used on input line 558.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/fMSYRelBiasPellaExp1KT60.png, id=897, 481.8pt x 48
+<../../../theses/nick/gpBias/fMSYRelBiasPellaExp1KT60.png, id=933, 481.8pt x 48
 1.8pt>
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaExp1KT60.png Graphic file (ty
 pe png)
@@ -1808,167 +1808,255 @@ k/gpBias/catchExp1KT60.png> <../../../theses/nick/gpBias/msyRelBiasPellaExp1KT6
 0.png (PNG copy)> <../../../theses/nick/gpBias/directionalBiasPellaExp1KT60.png
  (PNG copy)> <../../../theses/nick/gpBias/fMSYRelBiasPellaExp1KT60.png (PNG cop
 y)>]
-<../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png, id=944, 481.8pt x
- 481.8pt>
+<../../../theses/nick/gpBias/bMSYRelBiasPellaExpK1T60.png, id=983, 481.8pt x 48
+1.8pt>
+File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpK1T60.png Graphic file (ty
+pe png)
+<use ../../../theses/nick/gpBias/bMSYRelBiasPellaExpK1T60.png>
+Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpK1T60.p
+ng  used on input line 589.
+(pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
+<../../../theses/nick/gpBias/kRelBiasPellaExpK1T60.png, id=984, 481.8pt x 481.8
+pt>
+File: ../../../theses/nick/gpBias/kRelBiasPellaExpK1T60.png Graphic file (type 
+png)
+<use ../../../theses/nick/gpBias/kRelBiasPellaExpK1T60.png>
+Package pdftex.def Info: ../../../theses/nick/gpBias/kRelBiasPellaExpK1T60.png 
+ used on input line 589.
+(pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
+
+Overfull \hbox (19.68774pt too wide) in paragraph at lines 589--589
+[]|  [] 
+ []
+
+
+Overfull \hbox (19.68774pt too wide) in paragraph at lines 589--589
+|  [] 
+ []
+
+<../../../theses/nick/gpBias/catchExpK1T60.png, id=985, 481.8pt x 481.8pt>
+File: ../../../theses/nick/gpBias/catchExpK1T60.png Graphic file (type png)
+<use ../../../theses/nick/gpBias/catchExpK1T60.png>
+Package pdftex.def Info: ../../../theses/nick/gpBias/catchExpK1T60.png  used on
+ input line 589.
+(pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
+<../../../theses/nick/gpBias/msyRelBiasPellaExpK1T60.png, id=986, 481.8pt x 481
+.8pt>
+File: ../../../theses/nick/gpBias/msyRelBiasPellaExpK1T60.png Graphic file (typ
+e png)
+<use ../../../theses/nick/gpBias/msyRelBiasPellaExpK1T60.png>
+Package pdftex.def Info: ../../../theses/nick/gpBias/msyRelBiasPellaExpK1T60.pn
+g  used on input line 589.
+(pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
+
+Overfull \hbox (33.91412pt too wide) in paragraph at lines 589--589
+[]|  [] 
+ []
+
+
+Overfull \hbox (33.91412pt too wide) in paragraph at lines 589--589
+|  [] 
+ []
+
+<../../../theses/nick/gpBias/directionalBiasPellaExpK1T60.png, id=987, 481.8pt 
+x 481.8pt>
+File: ../../../theses/nick/gpBias/directionalBiasPellaExpK1T60.png Graphic file
+ (type png)
+<use ../../../theses/nick/gpBias/directionalBiasPellaExpK1T60.png>
+Package pdftex.def Info: ../../../theses/nick/gpBias/directionalBiasPellaExpK1T
+60.png  used on input line 589.
+(pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
+<../../../theses/nick/gpBias/fMSYRelBiasPellaExpK1T60.png, id=988, 481.8pt x 48
+1.8pt>
+File: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpK1T60.png Graphic file (ty
+pe png)
+<use ../../../theses/nick/gpBias/fMSYRelBiasPellaExpK1T60.png>
+Package pdftex.def Info: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpK1T60.p
+ng  used on input line 589.
+(pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
+
+Overfull \hbox (41.02731pt too wide) in paragraph at lines 589--589
+[]|  [] 
+ []
+
+
+Overfull \hbox (41.02731pt too wide) in paragraph at lines 589--589
+|  [] 
+ []
+
+
+Overfull \vbox (2.20654pt too high) detected at line 589
+ []
+
+[18
+
+ <../../../theses/nick/gpBias/bMSYRelBiasPellaExpK1T60.png (PNG copy)> <../../.
+./theses/nick/gpBias/kRelBiasPellaExpK1T60.png (PNG copy)> <../../../theses/nic
+k/gpBias/catchExpK1T60.png> <../../../theses/nick/gpBias/msyRelBiasPellaExpK1T6
+0.png (PNG copy)> <../../../theses/nick/gpBias/directionalBiasPellaExpK1T60.png
+ (PNG copy)> <../../../theses/nick/gpBias/fMSYRelBiasPellaExpK1T60.png (PNG cop
+y)>]
+<../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png, id=1037, 481.8pt 
+x 481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.
-6.png  used on input line 602.
+6.png  used on input line 633.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
-<../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png, id=945, 481.8pt x
- 481.8pt>
+<../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png, id=1038, 481.8pt 
+x 481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.
-2.png  used on input line 602.
+2.png  used on input line 633.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
 
-Overfull \hbox (23.04697pt too wide) in paragraph at lines 602--602
+Overfull \hbox (23.04697pt too wide) in paragraph at lines 633--633
 [][] 
  []
 
 
-Overfull \hbox (23.04697pt too wide) in paragraph at lines 602--602
+Overfull \hbox (23.04697pt too wide) in paragraph at lines 633--633
 [] 
  []
 
-<../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png, id=946, 481.8pt x
- 481.8pt>
+<../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png, id=1039, 481.8pt 
+x 481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.
-6.png  used on input line 602.
+6.png  used on input line 633.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
-<../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png, id=947, 481.8pt x
- 481.8pt>
+<../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png, id=1040, 481.8pt 
+x 481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.
-2.png  used on input line 602.
+2.png  used on input line 633.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
 
-Overfull \hbox (38.28395pt too wide) in paragraph at lines 602--602
+Overfull \hbox (38.28395pt too wide) in paragraph at lines 633--633
 []|  [] 
  []
 
 
-Overfull \hbox (38.28395pt too wide) in paragraph at lines 602--602
+Overfull \hbox (38.28395pt too wide) in paragraph at lines 633--633
 |  [] 
  []
 
-<../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.6.png, id=948, 481.8pt
- x 481.8pt>
+<../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.6.png, id=1041, 481.8p
+t x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.6.png Graphic fil
 e (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z
-0.6.png  used on input line 602.
+0.6.png  used on input line 633.
 (pdftex.def)             Requested size: 46.09393pt x 46.08759pt.
-<../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.6.png, id=949, 481.8pt
- x 481.8pt>
+<../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.6.png, id=1042, 481.8p
+t x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.6.png Graphic fil
 e (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z
-0.6.png  used on input line 602.
+0.6.png  used on input line 633.
 (pdftex.def)             Requested size: 46.09393pt x 46.08759pt.
-<../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.2.png, id=950, 481.8pt
- x 481.8pt>
+<../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.2.png, id=1043, 481.8p
+t x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.2.png Graphic fil
 e (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z
-0.2.png  used on input line 602.
+0.2.png  used on input line 633.
 (pdftex.def)             Requested size: 46.09393pt x 46.08759pt.
-<../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.2.png, id=951, 481.8pt
- x 481.8pt>
+<../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.2.png, id=1044, 481.8p
+t x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.2.png Graphic fil
 e (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z
-0.2.png  used on input line 602.
+0.2.png  used on input line 633.
 (pdftex.def)             Requested size: 46.09393pt x 46.08759pt.
 
-Overfull \hbox (14.38393pt too wide) in paragraph at lines 602--602
+Overfull \hbox (14.38393pt too wide) in paragraph at lines 633--633
 []|  [] 
  []
 
 
-Overfull \hbox (14.38393pt too wide) in paragraph at lines 602--602
+Overfull \hbox (14.38393pt too wide) in paragraph at lines 633--633
 |  [] 
  []
 
 
-Overfull \hbox (14.38393pt too wide) in paragraph at lines 602--602
+Overfull \hbox (14.38393pt too wide) in paragraph at lines 633--633
 |  [] 
  []
 
 
-Overfull \hbox (14.38393pt too wide) in paragraph at lines 602--602
+Overfull \hbox (14.38393pt too wide) in paragraph at lines 633--633
 |  [] 
  []
 
-<../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.6.png, id=952, 481.8pt
- x 481.8pt>
+<../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.6.png, id=1045, 481.8p
+t x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.6.png Graphic fil
 e (type png)
 <use ../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z
-0.6.png  used on input line 602.
+0.6.png  used on input line 633.
 (pdftex.def)             Requested size: 46.09393pt x 46.08759pt.
-<../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.6.png, id=953, 481.8pt
- x 481.8pt>
+<../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.6.png, id=1046, 481.8p
+t x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.6.png Graphic fil
 e (type png)
 <use ../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z
-0.6.png  used on input line 602.
+0.6.png  used on input line 633.
 (pdftex.def)             Requested size: 46.09393pt x 46.08759pt.
-<../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.2.png, id=954, 481.8pt
- x 481.8pt>
+<../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.2.png, id=1047, 481.8p
+t x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.2.png Graphic fil
 e (type png)
 <use ../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z
-0.2.png  used on input line 602.
+0.2.png  used on input line 633.
 (pdftex.def)             Requested size: 46.09393pt x 46.08759pt.
-<../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.2.png, id=955, 481.8pt
- x 481.8pt>
+<../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.2.png, id=1048, 481.8p
+t x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.2.png Graphic fil
 e (type png)
 <use ../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z
-0.2.png  used on input line 602.
+0.2.png  used on input line 633.
 (pdftex.def)             Requested size: 46.09393pt x 46.08759pt.
 
-Overfull \hbox (14.38393pt too wide) in paragraph at lines 602--602
+Overfull \hbox (14.38393pt too wide) in paragraph at lines 633--633
 []|  [] 
  []
 
 
-Overfull \hbox (14.38393pt too wide) in paragraph at lines 602--602
+Overfull \hbox (14.38393pt too wide) in paragraph at lines 633--633
 |  [] 
  []
 
 
-Overfull \hbox (14.38393pt too wide) in paragraph at lines 602--602
+Overfull \hbox (14.38393pt too wide) in paragraph at lines 633--633
 |  [] 
  []
 
 
-Overfull \hbox (14.38393pt too wide) in paragraph at lines 602--602
+Overfull \hbox (14.38393pt too wide) in paragraph at lines 633--633
 |  [] 
  []
 
 
-Overfull \vbox (9.25237pt too high) detected at line 602
+Overfull \vbox (9.25237pt too high) detected at line 633
  []
 
-[18
+[19
 
  <../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png (PNG copy)> <../.
 ./../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png (PNG copy)> <../../../t
@@ -1982,167 +2070,167 @@ pareFlatNoQX0.5Z0.6.png (PNG copy)> <../../../theses/nick/gpBias/depPostCompare
 FlatNoQX3.5Z0.6.png (PNG copy)> <../../../theses/nick/gpBias/depPostCompareFlat
 NoQX0.5Z0.2.png (PNG copy)> <../../../theses/nick/gpBias/depPostCompareFlatNoQX
 3.5Z0.2.png (PNG copy)>]
-<../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.6.png, id=1003, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.6.png, id=1099, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.6.png Graphic file (
 type png)
 <use ../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.6
-.png  used on input line 641.
+.png  used on input line 672.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
-<../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.2.png, id=1004, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.2.png, id=1100, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.2.png Graphic file (
 type png)
 <use ../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.2
-.png  used on input line 641.
+.png  used on input line 672.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
 
-Overfull \hbox (23.04697pt too wide) in paragraph at lines 641--641
+Overfull \hbox (23.04697pt too wide) in paragraph at lines 672--672
 [][] 
  []
 
 
-Overfull \hbox (23.04697pt too wide) in paragraph at lines 641--641
+Overfull \hbox (23.04697pt too wide) in paragraph at lines 672--672
 [] 
  []
 
-<../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.6.png, id=1005, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.6.png, id=1101, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.6.png Graphic file (
 type png)
 <use ../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.6
-.png  used on input line 641.
+.png  used on input line 672.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
-<../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.2.png, id=1006, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.2.png, id=1102, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.2.png Graphic file (
 type png)
 <use ../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.2
-.png  used on input line 641.
+.png  used on input line 672.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
 
-Overfull \hbox (38.28395pt too wide) in paragraph at lines 641--641
+Overfull \hbox (38.28395pt too wide) in paragraph at lines 672--672
 []|  [] 
  []
 
 
-Overfull \hbox (38.28395pt too wide) in paragraph at lines 641--641
+Overfull \hbox (38.28395pt too wide) in paragraph at lines 672--672
 |  [] 
  []
 
-<../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0.6.png, id=1007, 481.8pt
+<../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0.6.png, id=1103, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0.6.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0
-.6.png  used on input line 641.
+.6.png  used on input line 672.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0.6.png, id=1008, 481.8pt
+<../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0.6.png, id=1104, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0.6.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0
-.6.png  used on input line 641.
+.6.png  used on input line 672.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0.2.png, id=1009, 481.8pt
+<../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0.2.png, id=1105, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0.2.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0
-.2.png  used on input line 641.
+.2.png  used on input line 672.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0.2.png, id=1010, 481.8pt
+<../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0.2.png, id=1106, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0.2.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0
-.2.png  used on input line 641.
+.2.png  used on input line 672.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 641--641
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 672--672
 []|  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 641--641
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 672--672
 |  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 641--641
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 672--672
 |  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 641--641
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 672--672
 |  [] 
  []
 
-<../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.6.png, id=1011, 481.8pt
+<../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.6.png, id=1107, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.6.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0
-.6.png  used on input line 641.
+.6.png  used on input line 672.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.6.png, id=1012, 481.8pt
+<../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.6.png, id=1108, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.6.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0
-.6.png  used on input line 641.
+.6.png  used on input line 672.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.2.png, id=1013, 481.8pt
+<../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.2.png, id=1109, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.2.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0
-.2.png  used on input line 641.
+.2.png  used on input line 672.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.2.png, id=1014, 481.8pt
+<../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.2.png, id=1110, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.2.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0
-.2.png  used on input line 641.
+.2.png  used on input line 672.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 641--641
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 672--672
 []|  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 641--641
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 672--672
 |  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 641--641
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 672--672
 |  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 641--641
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 672--672
 |  [] 
  []
 
 
-Overfull \vbox (9.25237pt too high) detected at line 641
+Overfull \vbox (9.25237pt too high) detected at line 672
  []
 
-[19
+[20
 
  <../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.6.png (PNG copy)> <../..
 /../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.2.png (PNG copy)> <../../../the
@@ -2156,167 +2244,167 @@ oQX0.5Z0.6.png (PNG copy)> <../../../theses/nick/gpBias/depPostCompareExpNoQX3.
 5Z0.6.png (PNG copy)> <../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.2
 .png (PNG copy)> <../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.2.png 
 (PNG copy)>]
-<../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.6.png, id=1061, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.6.png, id=1158, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.6.png Graphic file (
 type png)
 <use ../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.6
-.png  used on input line 680.
+.png  used on input line 711.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
-<../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.2.png, id=1062, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.2.png, id=1159, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.2.png Graphic file (
 type png)
 <use ../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.2
-.png  used on input line 680.
+.png  used on input line 711.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
 
-Overfull \hbox (23.04697pt too wide) in paragraph at lines 680--680
+Overfull \hbox (23.04697pt too wide) in paragraph at lines 711--711
 [][] 
  []
 
 
-Overfull \hbox (23.04697pt too wide) in paragraph at lines 680--680
+Overfull \hbox (23.04697pt too wide) in paragraph at lines 711--711
 [] 
  []
 
-<../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.6.png, id=1063, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.6.png, id=1160, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.6.png Graphic file (
 type png)
 <use ../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.6
-.png  used on input line 680.
+.png  used on input line 711.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
-<../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.2.png, id=1064, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.2.png, id=1161, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.2.png Graphic file (
 type png)
 <use ../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.2
-.png  used on input line 680.
+.png  used on input line 711.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
 
-Overfull \hbox (38.28395pt too wide) in paragraph at lines 680--680
+Overfull \hbox (38.28395pt too wide) in paragraph at lines 711--711
 []|  [] 
  []
 
 
-Overfull \hbox (38.28395pt too wide) in paragraph at lines 680--680
+Overfull \hbox (38.28395pt too wide) in paragraph at lines 711--711
 |  [] 
  []
 
-<../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png, id=1065, 481.8pt
+<../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png, id=1162, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0
-.6.png  used on input line 680.
+.6.png  used on input line 711.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0.6.png, id=1066, 481.8pt
+<../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0.6.png, id=1163, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0.6.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0
-.6.png  used on input line 680.
+.6.png  used on input line 711.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.2.png, id=1067, 481.8pt
+<../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.2.png, id=1164, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.2.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0
-.2.png  used on input line 680.
+.2.png  used on input line 711.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0.2.png, id=1068, 481.8pt
+<../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0.2.png, id=1165, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0.2.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0
-.2.png  used on input line 680.
+.2.png  used on input line 711.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 680--680
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 711--711
 []|  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 680--680
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 711--711
 |  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 680--680
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 711--711
 |  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 680--680
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 711--711
 |  [] 
  []
 
-<../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.6.png, id=1069, 481.8pt
+<../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.6.png, id=1166, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.6.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0
-.6.png  used on input line 680.
+.6.png  used on input line 711.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.6.png, id=1070, 481.8pt
+<../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.6.png, id=1167, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.6.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0
-.6.png  used on input line 680.
+.6.png  used on input line 711.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.2.png, id=1071, 481.8pt
+<../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.2.png, id=1168, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.2.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0
-.2.png  used on input line 680.
+.2.png  used on input line 711.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.2.png, id=1072, 481.8pt
+<../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.2.png, id=1169, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.2.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0
-.2.png  used on input line 680.
+.2.png  used on input line 711.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 680--680
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 711--711
 []|  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 680--680
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 711--711
 |  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 680--680
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 711--711
 |  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 680--680
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 711--711
 |  [] 
  []
 
 
-Overfull \vbox (9.25237pt too high) detected at line 680
+Overfull \vbox (9.25237pt too high) detected at line 711
  []
 
-[20
+[21
 
  <../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.6.png (PNG copy)> <../..
 /../theses/nick/gpBias/curveCompareExpT45X0.5Z0.2.png (PNG copy)> <../../../the
@@ -2330,167 +2418,167 @@ eExpT45X3.5Z0.2.png (PNG copy)> <../../../theses/nick/gpBias/depPostCompareExpT
 5Z0.6.png (PNG copy)> <../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.2
 .png (PNG copy)> <../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.2.png 
 (PNG copy)>]
-<../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.6.png, id=1120, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.6.png, id=1218, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.6.png Graphic file (
 type png)
 <use ../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.6
-.png  used on input line 719.
+.png  used on input line 750.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
-<../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.2.png, id=1121, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.2.png, id=1219, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.2.png Graphic file (
 type png)
 <use ../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.2
-.png  used on input line 719.
+.png  used on input line 750.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
 
-Overfull \hbox (23.04697pt too wide) in paragraph at lines 719--719
+Overfull \hbox (23.04697pt too wide) in paragraph at lines 750--750
 [][] 
  []
 
 
-Overfull \hbox (23.04697pt too wide) in paragraph at lines 719--719
+Overfull \hbox (23.04697pt too wide) in paragraph at lines 750--750
 [] 
  []
 
-<../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.6.png, id=1122, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.6.png, id=1220, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.6.png Graphic file (
 type png)
 <use ../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.6
-.png  used on input line 719.
+.png  used on input line 750.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
-<../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.2.png, id=1123, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.2.png, id=1221, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.2.png Graphic file (
 type png)
 <use ../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.2
-.png  used on input line 719.
+.png  used on input line 750.
 (pdftex.def)             Requested size: 99.86943pt x 99.86504pt.
 
-Overfull \hbox (38.28395pt too wide) in paragraph at lines 719--719
+Overfull \hbox (38.28395pt too wide) in paragraph at lines 750--750
 []|  [] 
  []
 
 
-Overfull \hbox (38.28395pt too wide) in paragraph at lines 719--719
+Overfull \hbox (38.28395pt too wide) in paragraph at lines 750--750
 |  [] 
  []
 
-<../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0.6.png, id=1124, 481.8pt
+<../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0.6.png, id=1222, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0.6.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0
-.6.png  used on input line 719.
+.6.png  used on input line 750.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0.6.png, id=1125, 481.8pt
+<../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0.6.png, id=1223, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0.6.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0
-.6.png  used on input line 719.
+.6.png  used on input line 750.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0.2.png, id=1126, 481.8pt
+<../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0.2.png, id=1224, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0.2.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0
-.2.png  used on input line 719.
+.2.png  used on input line 750.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0.2.png, id=1127, 481.8pt
+<../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0.2.png, id=1225, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0.2.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0
-.2.png  used on input line 719.
+.2.png  used on input line 750.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 719--719
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 750--750
 []|  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 719--719
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 750--750
 |  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 719--719
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 750--750
 |  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 719--719
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 750--750
 |  [] 
  []
 
-<../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0.6.png, id=1128, 481.8pt
+<../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0.6.png, id=1226, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0.6.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0
-.6.png  used on input line 719.
+.6.png  used on input line 750.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0.6.png, id=1129, 481.8pt
+<../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0.6.png, id=1227, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0.6.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0
-.6.png  used on input line 719.
+.6.png  used on input line 750.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0.2.png, id=1130, 481.8pt
+<../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0.2.png, id=1228, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0.2.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0
-.2.png  used on input line 719.
+.2.png  used on input line 750.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
-<../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0.2.png, id=1131, 481.8pt
+<../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0.2.png, id=1229, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0.2.png Graphic file
  (type png)
 <use ../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0
-.2.png  used on input line 719.
+.2.png  used on input line 750.
 (pdftex.def)             Requested size: 49.93413pt x 49.93251pt.
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 719--719
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 750--750
 []|  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 719--719
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 750--750
 |  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 719--719
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 750--750
 |  [] 
  []
 
 
-Overfull \hbox (18.22412pt too wide) in paragraph at lines 719--719
+Overfull \hbox (18.22412pt too wide) in paragraph at lines 750--750
 |  [] 
  []
 
 
-Overfull \vbox (9.25237pt too high) detected at line 719
+Overfull \vbox (9.25237pt too high) detected at line 750
  []
 
-[21
+[22
 
  <../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.6.png (PNG copy)> <../..
 /../theses/nick/gpBias/curveCompareExpT60X0.5Z0.2.png (PNG copy)> <../../../the
@@ -2513,11 +2601,11 @@ eExpT60X3.5Z0.2.png (PNG copy)> <../../../theses/nick/gpBias/depPostCompareExpT
 \tf@snm=\write8
 \openout8 = `biasFigs.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1477.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1477.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1508.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1508.
  (./biasFigs.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1477.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1477.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1508.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1508.
 
 
 
@@ -2526,18 +2614,18 @@ Package rerunfilecheck Warning: File `biasFigs.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `biasFigs.out':
-(rerunfilecheck)             Before: ADDBB7E1A976AEE3ACFC8E398682D000;372
-(rerunfilecheck)             After:  0198B81B6EEAEC2031C16564066FE317;372.
+(rerunfilecheck)             Before: 0198B81B6EEAEC2031C16564066FE317;372
+(rerunfilecheck)             After:  F30514CD5545DF574AD62C1830383BAC;372.
  ) 
 Here is how much of TeX's memory you used:
- 22003 strings out of 481239
- 452274 string characters out of 5920378
- 693517 words of memory out of 5000000
- 36579 multiletter control sequences out of 15000+600000
+ 22045 strings out of 481239
+ 454221 string characters out of 5920378
+ 695147 words of memory out of 5000000
+ 36613 multiletter control sequences out of 15000+600000
  556030 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,19n,67p,775b,769s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Outline0.4.1.16} has been referenced but does not
+pdfTeX warning (dest): name{Outline0.4.1.18} has been referenced but does not
  exist, replaced by a fixed one
 
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/
@@ -2553,10 +2641,10 @@ msfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on biasFigs.pdf (21 pages, 2383078 bytes).
+Output written on biasFigs.pdf (22 pages, 2504959 bytes).
 PDF statistics:
- 1238 PDF objects out of 1440 (max. 8388607)
- 1045 compressed objects within 11 object streams
- 52 named destinations out of 1000 (max. 500000)
- 617 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1338 PDF objects out of 1440 (max. 8388607)
+ 1134 compressed objects within 12 object streams
+ 54 named destinations out of 1000 (max. 500000)
+ 647 words of extra memory for PDF output out of 10000 (max. 10000000)
 

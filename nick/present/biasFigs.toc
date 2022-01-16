@@ -1,4 +1,4 @@
 \beamer@sectionintoc {1}{Introduction}{2}{0}{1}
 \beamer@sectionintoc {2}{Simulation}{5}{0}{2}
 \beamer@sectionintoc {3}{Bias}{11}{0}{3}
-\beamer@sectionintoc {4}{Examples}{18}{0}{4}
+\beamer@sectionintoc {4}{Examples}{19}{0}{4}
