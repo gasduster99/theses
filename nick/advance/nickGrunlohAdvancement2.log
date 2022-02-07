@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.3.2)  30 JAN 2022 17:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.3.2)  6 FEB 2022 18:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -401,6 +401,9 @@ Package: apacite 2013/07/21 v6.03 APA citation
 \WF@everypar=\toks25
 Package: wrapfig 2003/01/31  v 3.6
 )
+(/usr/share/texlive/texmf-dist/tex/latex/doublestroke/dsfont.sty
+Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
+)
 Package hyperref Info: Option `colorlinks' set `true' on input line 31.
 
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
@@ -539,63 +542,64 @@ Non-PDF special ignored!
 <special> header=psfrag.pro
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<./plots/index.jpg, id=83, 481.8pt x 481.8pt>
+<./plots/index.jpg, id=94, 481.8pt x 481.8pt>
 File: ./plots/index.jpg Graphic file (type jpg)
 <use ./plots/index.jpg>
-Package pdftex.def Info: ./plots/index.jpg  used on input line 169.
+Package pdftex.def Info: ./plots/index.jpg  used on input line 190.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
-<./plots/catch.jpg, id=84, 481.8pt x 481.8pt>
+<./plots/catch.jpg, id=95, 481.8pt x 481.8pt>
 File: ./plots/catch.jpg Graphic file (type jpg)
 <use ./plots/catch.jpg>
-Package pdftex.def Info: ./plots/catch.jpg  used on input line 170.
+Package pdftex.def Info: ./plots/catch.jpg  used on input line 191.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
 
-Overfull \hbox (2.61047pt too wide) in paragraph at lines 169--174
+Overfull \hbox (2.61047pt too wide) in paragraph at lines 190--195
 [][] [] 
  []
 
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 [2
 
- <./plots/index.jpg> <./plots/catch.jpg>] [3]
-<./plots/srrSchaeffer.png, id=118, 481.8pt x 481.8pt>
+] [3 <./plots/index.jpg> <./plots/catch.jpg>]
+<./plots/srrSchaeffer.png, id=125, 481.8pt x 481.8pt>
 File: ./plots/srrSchaeffer.png Graphic file (type png)
 <use ./plots/srrSchaeffer.png>
-Package pdftex.def Info: ./plots/srrSchaeffer.png  used on input line 254.
+Package pdftex.def Info: ./plots/srrSchaeffer.png  used on input line 275.
 (pdftex.def)             Requested size: 281.85587pt x 281.86288pt.
 
-Overfull \hbox (16.95988pt too wide) in paragraph at lines 274--284
+Overfull \hbox (16.95988pt too wide) in paragraph at lines 297--307
 \T1/cmr/m/n/10.95 graph-i-cal con-struc-tion seen in Fig-ure ([][]2[][]). Pos-i
 -tive re-cruit-ment is ob-served when []
  []
 
-[4
-
- <./plots/srrSchaeffer.png>] [5] [6]
-<./plots/srr1.1.png, id=166, 481.8pt x 481.8pt>
+[4 <./plots/srrSchaeffer.png>] [5] [6]
+<./plots/srr1.1.png, id=181, 481.8pt x 481.8pt>
 File: ./plots/srr1.1.png Graphic file (type png)
 <use ./plots/srr1.1.png>
-Package pdftex.def Info: ./plots/srr1.1.png  used on input line 543.
+Package pdftex.def Info: ./plots/srr1.1.png  used on input line 606.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
-<./plots/srr2.png, id=167, 481.8pt x 481.8pt>
+<./plots/srr2.png, id=182, 481.8pt x 481.8pt>
 File: ./plots/srr2.png Graphic file (type png)
 <use ./plots/srr2.png>
-Package pdftex.def Info: ./plots/srr2.png  used on input line 544.
+Package pdftex.def Info: ./plots/srr2.png  used on input line 607.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
 
-Overfull \hbox (2.61047pt too wide) in paragraph at lines 543--548
+Overfull \hbox (2.61047pt too wide) in paragraph at lines 606--611
 [][] [] 
  []
 
 [7
 
  <./plots/srr1.1.png (PNG copy)> <./plots/srr2.png (PNG copy)>] [8] [9]
-<../present/shaeferDat.png, id=213, 481.8pt x 481.8pt>
+<../present/shaeferDat.png, id=228, 481.8pt x 481.8pt>
 File: ../present/shaeferDat.png Graphic file (type png)
 <use ../present/shaeferDat.png>
-Package pdftex.def Info: ../present/shaeferDat.png  used on input line 711.
+Package pdftex.def Info: ../present/shaeferDat.png  used on input line 774.
 (pdftex.def)             Requested size: 240.6568pt x 240.65591pt.
 
-Overfull \hbox (7.30544pt too wide) in paragraph at lines 710--721
+Overfull \hbox (7.30544pt too wide) in paragraph at lines 773--784
 []$[]$ $[]$ 
  []
 
@@ -606,99 +610,99 @@ Overfull \hbox (7.30544pt too wide) in paragraph at lines 710--721
 ] [12] [13] [14]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 988.
+(hyperref)                removing `math shift' on input line 1053.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 988.
+(hyperref)                removing `math shift' on input line 1053.
 
 [15]
-<../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.png, id=278, 481.8pt x 481
+<../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.png, id=293, 481.8pt x 481
 .8pt>
 File: ../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.png Graphic file (typ
 e png)
 <use ../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.pn
-g  used on input line 1029.
+g  used on input line 1094.
 (pdftex.def)             Requested size: 253.20218pt x 253.19873pt.
 
-Overfull \hbox (11.40378pt too wide) in paragraph at lines 1028--1040
+Overfull \hbox (11.40378pt too wide) in paragraph at lines 1093--1105
 []|  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1028--1040
+Underfull \hbox (badness 10000) in paragraph at lines 1093--1105
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1041--1042
+Underfull \hbox (badness 10000) in paragraph at lines 1106--1107
 
  []
 
-<../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png, id=279, 481.8pt x
+<../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png, id=294, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/directionalBiasPellaFlatNo
-Q.png  used on input line 1045.
+Q.png  used on input line 1110.
 (pdftex.def)             Requested size: 253.20218pt x 253.19873pt.
-<../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png, id=280, 481.8pt x 481
+<../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png, id=295, 481.8pt x 481
 .8pt>
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png Graphic file (typ
 e png)
 <use ../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.pn
-g  used on input line 1047.
+g  used on input line 1112.
 (pdftex.def)             Requested size: 253.20218pt x 253.19873pt.
 
-Overfull \hbox (54.08289pt too wide) in paragraph at lines 1044--1048
+Overfull \hbox (54.08289pt too wide) in paragraph at lines 1109--1113
 []|  [] 
  []
 
 
-Overfull \hbox (54.08289pt too wide) in paragraph at lines 1044--1048
+Overfull \hbox (54.08289pt too wide) in paragraph at lines 1109--1113
 |  [] 
  []
 
 [16 <../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.png (PNG copy)> <../..
 /../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png (PNG copy)> <../../../th
 eses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png (PNG copy)>]
-<../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png, id=286, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png, id=301, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.
-6.png  used on input line 1088.
+6.png  used on input line 1153.
 (pdftex.def)             Requested size: 172.14172pt x 172.13927pt.
-<../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png, id=287, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png, id=302, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.
-2.png  used on input line 1090.
+2.png  used on input line 1155.
 (pdftex.def)             Requested size: 172.14172pt x 172.13927pt.
-<../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png, id=288, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png, id=303, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.
-6.png  used on input line 1094.
+6.png  used on input line 1159.
 (pdftex.def)             Requested size: 172.14172pt x 172.13927pt.
-<../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png, id=289, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png, id=304, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.
-2.png  used on input line 1096.
+2.png  used on input line 1161.
 (pdftex.def)             Requested size: 172.14172pt x 172.13927pt.
 
-Underfull \hbox (badness 4291) in paragraph at lines 1104--1104
+Underfull \hbox (badness 4291) in paragraph at lines 1169--1169
 \T1/cmr/m/n/12 re-sent the four cor-ners
  []
 
@@ -708,185 +712,201 @@ Underfull \hbox (badness 4291) in paragraph at lines 1104--1104
 ./../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png (PNG copy)> <../../../t
 heses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png (PNG copy)> <../../../theses/
 nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png (PNG copy)>]
-<../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png, id=296, 481.8pt x 481
+<../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png, id=311, 481.8pt x 481
 .8pt>
 File: ../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png Graphic file (typ
 e png)
 <use ../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.pn
-g  used on input line 1128.
+g  used on input line 1193.
 (pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
-<../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png, id=297, 481.8pt x 481.8p
+<../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png, id=312, 481.8pt x 481.8p
 t>
 File: ../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png Graphic file (type p
 ng)
 <use ../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png  
-used on input line 1130.
+used on input line 1195.
 (pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
  [18
 
  <../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png (PNG copy)> <../../..
 /theses/nick/gpBias/kRelBiasPellaFlatNoQ.png (PNG copy)>]
-<../../../theses/nick/gpBias/rfExpT45X2Z0.6.png, id=307, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/rfExpT45X2Z0.6.png, id=323, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/rfExpT45X2Z0.6.png Graphic file (type png)
 <use ../../../theses/nick/gpBias/rfExpT45X2Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/rfExpT45X2Z0.6.png  used o
-n input line 1180.
+n input line 1245.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
-<../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png, id=308, 481.8pt x 481.8p
+<../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png, id=324, 481.8pt x 481.8p
 t>
 File: ../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png Graphic file (type p
 ng)
 <use ../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png  
-used on input line 1181.
+used on input line 1246.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
 
-Overfull \hbox (2.61047pt too wide) in paragraph at lines 1180--1186
+Overfull \hbox (2.61047pt too wide) in paragraph at lines 1245--1251
 [][] [] 
  []
 
-<../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png, id=310, 481.8pt x 481.
+<../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png, id=326, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png Graphic file (type
  png)
 <use ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png
-  used on input line 1206.
+  used on input line 1272.
 (pdftex.def)             Requested size: 195.65654pt x 195.65724pt.
-<../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png, id=311, 481.8pt x 481.
+<../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png, id=327, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png Graphic file (type
  png)
 <use ../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png
-  used on input line 1209.
+  used on input line 1275.
 (pdftex.def)             Requested size: 195.65654pt x 195.65724pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: Reference `expT45BmFm' on page 19 undefined on input line 1217.
 
 [19
 
  <../../../theses/nick/gpBias/rfExpT45X2Z0.6.png> <../../../theses/nick/gpBias/
 bioCatchExpT45X2Z0.6.png (PNG copy)>]
-<../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png, id=324, 481.8pt x 481.
+<../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png, id=341, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png Graphic file (type
  png)
 <use ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png
-  used on input line 1247.
+  used on input line 1313.
 (pdftex.def)             Requested size: 195.65654pt x 195.65724pt.
-<../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png, id=325, 481.8pt x 481.
+<../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png, id=342, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png Graphic file (type
  png)
 <use ../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png
-  used on input line 1255.
+  used on input line 1321.
 (pdftex.def)             Requested size: 195.65654pt x 195.65724pt.
  [20 <../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png (PNG copy)> <../..
 /../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png (PNG copy)> <../../../theses/
 nick/gpBias/bMSYRelBiasPellaExpT60.png (PNG copy)> <../../../theses/nick/gpBias
 /fMSYRelBiasPellaExpT60.png (PNG copy)>] [21
 
-] (./nickGrunlohAdvancement2.bbl
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-63.
+] [22] [23
+
+]
+<../../../theses/nick/spline/dataPlots505.png, id=373, 481.8pt x 481.8pt>
+File: ../../../theses/nick/spline/dataPlots505.png Graphic file (type png)
+<use ../../../theses/nick/spline/dataPlots505.png>
+Package pdftex.def Info: ../../../theses/nick/spline/dataPlots505.png  used on 
+input line 1606.
+(pdftex.def)             Requested size: 195.65654pt x 195.65724pt.
+<../../../theses/nick/spline/intCurves505.png, id=374, 481.8pt x 481.8pt>
+File: ../../../theses/nick/spline/intCurves505.png Graphic file (type png)
+<use ../../../theses/nick/spline/intCurves505.png>
+Package pdftex.def Info: ../../../theses/nick/spline/intCurves505.png  used on 
+input line 1614.
+(pdftex.def)             Requested size: 195.65654pt x 195.65724pt.
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 1
+627.
+
+(/usr/share/texlive/texmf-dist/tex/latex/doublestroke/Udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+) [24
+
+ <../../../theses/nick/spline/dataPlots505.png (PNG copy)> <../../../theses/nic
+k/spline/intCurves505.png (PNG copy)>] (./nickGrunlohAdvancement2.bbl
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
+18.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [22
+) [25
 
 ]
-Underfull \hbox (badness 3271) in paragraph at lines 350--370
+Underfull \hbox (badness 3271) in paragraph at lines 433--453
 \T1/cmr/m/n/12 2019-07-19, from [][]$\T1/cmtt/m/n/12 http :// www [] .sciencedi
 rect [] .com / science / article /
  []
 
-) [23] [24
+[26]) [27] [28
 
 ]
 
-LaTeX Warning: Command \l invalid in math mode on input line 1870.
+LaTeX Warning: Command \l invalid in math mode on input line 1765.
 
 Missing character: There is no ª in font cmr10!
 
-LaTeX Warning: Command \l invalid in math mode on input line 1870.
+LaTeX Warning: Command \l invalid in math mode on input line 1765.
 
 Missing character: There is no ª in font cmr10!
-[25]
+[29]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 1897.
+(hyperref)                than one, level fixed on input line 1792.
 
-[26
+[30
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2007.
- [27]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2007.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1902.
+ [31]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1902.
  (./nickGrunlohAdvancement2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2007.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2007.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1902.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1902.
 
 Package rerunfilecheck Info: File `nickGrunlohAdvancement2.out' has not changed
 .
-(rerunfilecheck)             Checksum: C7109FAF4BE61C6FB64B49EE8E1AB047;1047.
-
-
-LaTeX Warning: There were undefined references.
+(rerunfilecheck)             Checksum: 6F4F01AADEF898E3CFF3172A2B321A14;1191.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2007.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1902.
  ) 
 Here is how much of TeX's memory you used:
- 11380 strings out of 481239
- 168580 string characters out of 5920378
- 453437 words of memory out of 5000000
- 26306 multiletter control sequences out of 15000+600000
- 558090 words of font info for 95 fonts, out of 8000000 for 9000
+ 11445 strings out of 481239
+ 170046 string characters out of 5920378
+ 453945 words of memory out of 5000000
+ 26344 multiletter control sequences out of 15000+600000
+ 558133 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,13n,45p,731b,459s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/
-fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cmextra/cmbsy8.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib6.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1095.pfb
-></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/f
-onts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm
--super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb>
-</usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fo
-nts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-
-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb><
-/usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fon
-ts/type1/public/cm-super/sftt1200.pfb>
-Output written on nickGrunlohAdvancement2.pdf (27 pages, 949468 bytes).
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmext
+ra/cmmib6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextr
+a/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/doublestroke/dsrom10.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-su
+per/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></u
+sr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts
+/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-sup
+er/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></us
+r/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/
+type1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-supe
+r/sfti1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr
+/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on nickGrunlohAdvancement2.pdf (31 pages, 1019223 bytes).
 PDF statistics:
- 520 PDF objects out of 1000 (max. 8388607)
- 429 compressed objects within 5 object streams
- 102 named destinations out of 1000 (max. 500000)
- 234 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 576 PDF objects out of 1000 (max. 8388607)
+ 479 compressed objects within 5 object streams
+ 116 named destinations out of 1000 (max. 500000)
+ 260 words of extra memory for PDF output out of 10000 (max. 10000000)
 

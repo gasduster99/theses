@@ -8,9 +8,11 @@
 \BOOKMARK [2][-]{subsection.2.6}{Gaussian Process Metamodel}{section.2}% 8
 \BOOKMARK [1][-]{section.3}{Results}{}% 9
 \BOOKMARK [2][-]{subsection.3.1}{An MSY-Optimal Catch History }{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.2}{More Typical Catch Histories}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.2}{More Informative Catch Histories}{section.3}% 11
 \BOOKMARK [1][-]{section.4}{Discussion}{}% 12
-\BOOKMARK [1][-]{section.4}{References}{}% 13
-\BOOKMARK [2][-]{subsubsection.4.0.1}{Uniqueness, Continuity, and Identifiability}{section.4}% 14
-\BOOKMARK [3][-]{subsubsection.4.0.2}{Integration and Stiffness}{subsubsection.4.0.1}% 15
-\BOOKMARK [3][-]{subsubsection.4.0.3}{Integration, Stiffness, and Chaos}{subsubsection.4.0.1}% 16
+\BOOKMARK [1][-]{section.5}{Extensions to other productions functions}{}% 13
+\BOOKMARK [1][-]{section.6}{Catch Interpolation}{}% 14
+\BOOKMARK [1][-]{equation.6.26}{References}{}% 15
+\BOOKMARK [2][-]{subsubsection.6.0.1}{Uniqueness, Continuity, and Identifiability}{equation.6.26}% 16
+\BOOKMARK [3][-]{subsubsection.6.0.2}{Integration and Stiffness}{subsubsection.6.0.1}% 17
+\BOOKMARK [3][-]{subsubsection.6.0.3}{Integration, Stiffness, and Chaos}{subsubsection.6.0.1}% 18

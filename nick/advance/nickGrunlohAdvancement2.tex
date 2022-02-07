@@ -22,7 +22,7 @@
 \usepackage[]{apacite}
 \usepackage{wrapfig}
 %\usepackage{relsize}
-%\usepackage{dsfont}
+\usepackage{dsfont}
 
 \hypersetup{colorlinks   = true, %Colors links instead of ugly boxes
             urlcolor     = blue, %Color for external hyperlinks
@@ -129,15 +129,15 @@ and others have shown that biological reference points such as $\frac{F^*}{M}$
 and $\frac{B^*}{\bar{B}(0)}$ are largely determined by a single parameter 
 (steepness) when using two-parameter relationships. These functions introduce 
 strong correlations between reference points (RP) that are pre-determined by 
-the functional form, rather than a biological characteristic of the stock. Mangel et al. 
-note that use of a three-parameter stock-recruitment relationship allows for 
-independent estimation of these reference points. This research seeks to 
-understand the nature of biases in reference points resulting from fitting a 
-two-parameter logistic functional form when the true relationship follows a 
-three-parameter stock-recruitment relationship. This study's findings suggest 
-the useful limits of the misspecified Schaeffer model, and mechanisms of model 
-failure which arise from mapping a three-dimensional parameter space into two 
-dimensions.
+the functional form, rather than a biological characteristic of the stock. 
+Mangel et al. note that use of a three-parameter stock-recruitment 
+relationship allows for independent estimation of these reference points. This 
+research seeks to understand the nature of biases in reference points 
+resulting from fitting a two-parameter logistic functional form when the true 
+relationship follows a three-parameter stock-recruitment relationship. This  %study's findings suggest the  
+work demonstrates the useful limits of the misspecified Schaefer model, and 
+the mechanisms of model failure which arise from mapping a three-dimensional 
+parameter space into two dimensions.
 %ecification of this type 
 %that biases are catch dependent the reduced
 %Index data are generated using production 
@@ -151,10 +151,31 @@ dimensions.
 \clearpage
 \section{Introduction}
 
+%
+The most fundamental model in modern fisheries management is the surplus-production
+model. These models focus on modeling population growth via nonlinear parametric 
+ordinary differential equations (ODE). Key management quantities called reference 
+points (RP) are derived from the ODE equilibrium equations and depend upon the 
+parameterization of biomass production. Two-parameter parameterizations of the 
+production function have been shown to limit the theoretical domain of RPs 
+\shortcite{mangel_perspective_2013}. The limited RP-space of two parameter models
+are a major source of model misspecification for RPs and thus induce bias in 
+RP estimation. The behavior of RP estimation bias is not well understood and
+as a result often underappreciated. A meta-modeling approach is developed here 
+to describe RP biases and explore mechanisms of model failure. 
+
+%The ODE equilibrium equations Reference points (RP) are key mangeare derived quantities The equilibrium equation the ODE   
+%
+%%
+%Outline of surplus-production model setting
+%RPs
+%restricted parameter space therefore bias
+%demonstrating and utilizing bias
+%exploring bias 
+
 %NOTE: we can not observe all fish in the sea, and this rely on an index of abundance 
 %which typically comes from experimental fishing procedure(for example ccfrp).
-The most fundamental model in modern fisheries models is the surplus-production
-model. Data for a typical surplus-production model comes in the form of an index 
+Data for a typical surplus-production model comes in the form of an index 
 of abundance through time which is assumed to be proportional to the reproducing 
 biomass for the population of interest. The index is often observed alongside 
 a variety of other known quantities, but at a minimum, each observed index 
@@ -184,13 +205,13 @@ I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2).
 %
 Above $q$ is often referred to as the ``catchability parameter''; it serves as the %represents the %$ is often refered to as the catchability parameter and the catchability parameter and 
 proportionality constant mapping between the observed index of abundance and biomass. 
-$\sigma^2$ models residual variation.  Biologically speaking $q$ and $\sigma^2$ 
+$\sigma^2$ models residual variation. Biologically speaking $q$ and $\sigma^2$ 
 are often treated as nuisance parameters with the ``biological parameters'' 
 entering the model through a process model on biomass.
 
 % 
-Biomass is assumed to evolve as an ordinary differential equation; in this case 
-I focus on the following form,
+Biomass is assumed to evolve as an ODE; in this case I focus on the following 
+form,
 %
 \begin{equation}
 \frac{dB}{dt} = P(B(t); \bm{\theta}) - C(t). \label{ode}
@@ -209,7 +230,7 @@ current biomass of the population to an aggregate production of biomass.
 
 %
 Secondly, the population decreases as biomass is removed due to catch, $C(t)$. 
-While catches (aka yields) are observable quantities \shortcite{sen_sampling_1984, pearson_documentation_1997}, 
+While catches (aka yields) are observable quantities \shortcite{pearson_documentation_1997}, %sen_sampling_1984,  
 the model assumes that catch is proportional to biomass with the 
 proportionality constant representing the fishing rate, $F(t)$, so that $C(t)=F(t)B(t)$. 
 From a management perspective a major goal of the model is to accurately infer 
@@ -231,12 +252,12 @@ value derived under the condition of MSY.
 % to continue the species and produce  not only are there  however this has the {\color{red}a description of maximum sustainable yield}
 
 %
-\clearpage
+%\clearpage
 
 %
 The canonical production model in fisheries is the Schaefer model. The 
 Schaefer model is formed by choosing $P$ to be logistic growth \shortcite{mangel_theoretical_2006} %({\color{red} cite}) 
-parameterized so that $\bm{\theta} = [r, K]$ so that the family of production 
+parameterized by $\bm{\theta} = [r, K]$ so that the family of production 
 functions takes the following form,  
 %
 \begin{align}
@@ -269,6 +290,8 @@ in the absence of fishing (i.e. $\bar B(0)=K$).
 %writtting sustainable yield $\bar Y(F) = F\bar B(F)$.
 %}
 
+%%
+%\clearpage
 
 %
 The logistic production function produces idealized parabolic recruitment with 
@@ -297,9 +320,9 @@ stock's maximum reproductive rate at the origin.
 %Furthermore, and more practically, 
 %While this idealized form of the logistic production function is instructive, and 
 %convenient, the simplistic dynamics it implies are also potentially problematic.
-Fisheries are very often managed based upon reference points (RP) which serve as 
+Fisheries are very often managed based upon reference points which serve as 
 simplified heuristic measures of population behavior. The mathematical form of 
-RPs depends upon the model assumptions primarily through the production function. %({\color{red} cite}). 
+RPs depends upon the model assumptions through the production function. %({\color{red} cite}). 
 Here the focus is primarily on the RPs $F^*$ and $\frac{B^*}{\bar B(0)}$. 
 
 %%
@@ -314,7 +337,7 @@ Here the focus is primarily on the RPs $F^*$ and $\frac{B^*}{\bar B(0)}$.
 $F^*$ is the afore mentioned fishing rate which results in MSY. $\frac{B^*}{\bar B(0)}$ 
 is the depletion of the stock at MSY. That is to say $\frac{B^*}{\bar B(0)}$ describes 
 the fraction of the unfished population biomass that will remain in the equilibrium 
-at MSY. In general $F^*\in\mathbb{R}^+$ and $\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$, 
+at MSY. In general $F^*\in\mathbb{R}^+$ and \mbox{$\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$,} 
 however under the under the assumption of logistic production these 
 quantities take the following form,  
 %to fish (or rather not to fish) to result in MSY.  
@@ -333,12 +356,13 @@ so that $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}
 In current practice, production functions are typically chosen to depend only 
 on two parameters. The Schaefer model as presented depends only on
 the biological parameters $r$ and $K$, but other common two parameter choices
-of the production function are the Beverton-Holt (BH) and Ricker curves. All
-of these two parameter production functions struggle similarly to model the full
-theoretical space of RPs \shortcite{mangel_perspective_2013}.
+of the production function are the Beverton-Holt \shortcite[BH]{beverton_dynamics_1957} 
+and Ricker \shortcite{ricker_stock_1954} curves. All of these two parameter 
+production functions struggle similarly to model the full theoretical space of 
+RPs \shortcite{mangel_perspective_2013}.
 
-%The schaefer model is a much loved and argued over model
-The basis of the Schaeffer model is ripe with debate \shortcite{kingsland_refractory_1982},
+%The Schaefer model is a much loved and argued over model
+The basis of the Schaefer model is ripe with debate \shortcite{kingsland_refractory_1982},
 and the debate continues within modern fisheries modeling \shortcite{prager_comparison_2002}. 
 On the one hand, \shortciteA{maunder_is_2003} argues that the Schaefer model is 
 insufficient in large part due to the restriction it places on $\frac{B^*}{\bar B(0)}$, 
@@ -349,47 +373,86 @@ the limitations of the Schaefer model, he argues its usefulness as a well
 understood and simple model that has the ability to reasonably 
 approximate dynamics in many data poor stocks. %productivity shapes. 
 
+%%
+%{\color{red} add to into}
+%bias-variance tradeoff schaefer high bias, low variance setting. Bias 
+%is the dominant source of estimation error. Variance estimates will be 
+%unrealistically low due to the limited parameter space.
 %
-The bias-variance tradeoff \shortcite{ramasubramanian_machine_2017} makes it 
+%%and conversly a two parameter production function will have estimation errrosd. 
+%The argument of \shortciteA{maunder_is_2003} suggests that the two parameter 
+%Schaefer model overly restricts parameter space so that estimation error is unduly 
+%dominated by bias.
+%
+%as to overly limit estimate varianceso that estimation error is unduly dominated by bias.
+%
+%estimation errors of the two parameter Schaeffer model are unduly dominated by bias
+%
+% sincethe limited parameter 
+%space of the Schaefer model 
+
+%
+The bias-variance trade-off \shortcite{ramasubramanian_machine_2017} makes it 
 clear that the addition of a third parameter in the production function will 
-neccessarily reduce estimation bias. However the utility of this bias reduction 
-is still under debate because the particular mechanisms and behavior (direction and magnitude) %and mechanisms %behavior 
-of these biases for key managment quantities %(and the mechanisms of inducing these biases) 
-are not fully understood or described. \shortciteA{lee_can_2012} 
-provides some evidence that steepness estimation, and thus RPs via \shortcite{mangel_perspective_2013}, 
-is dependent on model misspecification as well as data lacking contrast in 
-biomass. However the particular behaviors of these biases are not fully described.
+necessarily reduce estimation bias. However the utility of this bias reduction 
+is still under debate because the particular mechanisms and behavior (direction and magnitude) %over relevant RPs %and mechanisms %behavior 
+of these biases for key management quantities %(and the mechanisms of inducing these biases) 
+are not fully understood or described. \shortciteA{lee_can_2012} provides some 
+evidence that steepness estimation, and thus RPs via \shortcite{mangel_perspective_2013}, 
+is dependent on biomass contrast as well as model specification. % as well as contrast in data %lacking contrast in biomass. 
+\shortciteA{conn_when_2010} comes to similar conclusions about steepness estimation
+via calibration modeling techniques. Despite this understanding of steepness estimation
+the implications have not been extended to a joint description of biases on the scale of 
+management RPs. % biases jointly.
+
+%The particular behaviors of thesie RP biases, 
+%and their relationship to each other, are not fully described.  
 
 %Add GOAL of understanding directionality and mechanism of bias.
-%Add claim of novilty by reconizing that bias is a function of RP, a flexible method of propogating estimation uncertainty and accounting for nonlinear bias patterns.
+%Add claim of novelty by recognizing that bias is a function of RP, a flexible method of propagating estimation uncertainty and accounting for nonlinear bias patterns.
 Together the general behavior of the PT model and the pragmatic understandable 
-simplicty of the Schaefer model make the PT/Schaefer pair an ideal setting for 
+simplicity of the Schaefer model make the PT/Schaefer pair an ideal setting for 
 beginning to understand the consequences of model misspecification on the 
 production function. In this study I consider the behavior of inference when 
-data are simulated from the three parameter PT production model but fit with the  
+data are simulated from the three parameter PT production model but fit with 
 the two parameter Schaefer model. 
 
 %
-A key insight of this work is that bias is considered broadly across RP-space to 
-uncover patterns of bias magnitude and direction. A flexible Gaussian Process (GP) 
-meta-modeling approach is used to model bias patterns across RP-space. This 
-technique not only informs the utility of reducing bias, but also suggest mechanisms 
-for understanding what causes bias. Further, the effect of contrast on estimation 
-is considered alongside the effect of model misspecification.  
+The work begins with a derivation of RPs under the three parameter PT model. 
+The parametric forms of RPs under the PT model are then inverted to develop a 
+simulation setting for analyzing inference under the two parameter Schaefer 
+model. Finally a Gaussian Process (GP) meta-model is constructed for exploration 
+and analysis of RP biases. 
 
 %
-{\color{gray}
-\begin{itemize}
-\item[\checkmark] Lead into this reaserch with other studies (Lit review)
-\item Enphasize a clear statement of the study goal
-\item a statement of novilty
-	\begin{itemize}
-	\item[\checkmark] model misspecification leads to bias
-	\item[Sorta] nonconstant bias of RP-space (a wholistic summary of model performance.)
-	\item[Sorta] methodology to account for bias in the presence of uncertainty
-	\end{itemize}
-\end{itemize}
-}
+A key insight of this approach is that bias is considered broadly across RP-space to 
+uncover patterns and correlations between RPs. %f bias magnitude and direction. 
+%A flexible Gaussian Process (GP) meta-modeling approach is used to model bias 
+%patterns across RP-space. 
+GP meta-model is explicate about trade-offs between RPs %to the surface bias tradeoffs to the surface to 
+so as to inform the full utility of reducing bias, as well suggest mechanisms for 
+understanding what causes bias. Further, the effect of contrast on estimation 
+is considered together with model misspecification. %alongside the effect of model misspecification.  
+
+
+
+
+%Inverting the RP parametric forms is used to develop a simulation setting for 
+%controlling the degree and nature of model misspecification 
+
+%%
+%{\color{gray}
+%\begin{itemize}
+%\item[\checkmark] Lead into this reaserch with other studies (Lit review)
+%\item Emphasize a clear statement of the study goal
+%\item a statement of novelty
+%	\begin{itemize}
+%	\item[\checkmark] model misspecification leads to bias
+%	\item[Sorta] non-constant bias of RP-space (a wholistic summary of model performance.)
+%	\item[Sorta] methodology to account for bias in the presence of uncertainty
+%	\end{itemize}
+%\end{itemize}
+%}
 
 %using the two parameter Schaefer model to fit data that are generated from 
 
@@ -422,7 +485,7 @@ is considered alongside the effect of model misspecification.
 
 %{\color{gray}
 %%
-%Scaeffer model clearly insufficient but can be made to estimate some parameters correctly Prager 2002, Prager 2003.
+%Schaeffer model clearly insufficient but can be made to estimate some parameters correctly Prager 2002, Prager 2003.
 %Francis 2012/Lee 2011
 %        assessment model correctly specified
 %Lee 2012
@@ -430,13 +493,13 @@ is considered alongside the effect of model misspecification.
 %Instructive in its simplicity Prager 2003.
 %
 %%
-%PT generalizes schaeffer Maunder 2003
+%PT generalizes Schaefer Maunder 2003
 %Three parameter PT should supplant Schaefer
 %
 %%
 %Other functions recommended in practice BH Punt 2005 or Ricker. 
-%Although statistcally differenctiating the models is difficult Dorn 2002, Brodziak 2002 
-%BH and Ricker suffer from the similare model deficiencies Mangle 2013 as the Scaeffer does for the PT relating the reduced decrees of freedom in the parameter space.
+%Although statistically differentiating the models is difficult Dorn 2002, Brodziak 2002 
+%BH and Ricker suffer from the similar model deficiencies Mangle 2013 as the Schaeffer does for the PT relating the reduced decrees of freedom in the parameter space.
 %
 %%
 %Punt 2019 move toward 3 parameter models
@@ -447,7 +510,7 @@ is considered alongside the effect of model misspecification.
 %Maunder 2003
 %	PT generalizes and should supplant Schaeffer
 %	"shape" parameter B*/B0
-%	Bias vairance trade off between PT3 Vup/Bdown and Logistic Vdown/Bup
+%	Bias variance trade off between PT3 Vup/Bdown and Logistic Vdown/Bup
 %Francis 2012/Lee 2011
 %	assessment model correctly specified
 %Lee 2011
@@ -458,11 +521,11 @@ is considered alongside the effect of model misspecification.
 %%
 %\begin{itemize}
 %\item[\checkmark] Lead into this reaserch with other studies (Lit review)
-%\item Enphasize a clear statement of the study goal
-%\item a statement of novilty
+%\item Emphasize a clear statement of the study goal
+%\item a statement of novelty
 %	\begin{itemize}
 %	\item[\checkmark] model misspecification leads to bias
-%	\item[Sorta] nonconstant bias of RP-space (a wholistic summary of model performance.)
+%	\item[Sorta] non-constant bias of RP-space (a wholistic summary of model performance.)
 %	\item[Sorta] methodology to account for bias in the presence of uncertainty
 %	\end{itemize}
 %\end{itemize}
@@ -473,7 +536,7 @@ is considered alongside the effect of model misspecification.
 
 %and subsequently fit these 
 %data using the two parameter Schaefer model to observe the consequences of 
-%SRR model-misspecification with special interest on RF management quantities.  
+%SRR model-misspecification with special interest on RP management quantities.  
 
 %%than the most commonly used in practice but
 %{\color{gray}
@@ -484,7 +547,7 @@ is considered alongside the effect of model misspecification.
 %models? I consider data simulated from the three parameter Pella-Tomlinson (PT) 
 %SRR model, and subsequently fit these data using the two parameter Schaefer 
 %model to observe the consequences of SRR model-misspecification with special 
-%interest on RF management quantities.  
+%interest on RP management quantities.  
 %}
 
 %What would happen if 
@@ -730,12 +793,14 @@ misspecified.
 
 %
 It is known that the behavior of catch can effect inference on the biological 
-parameters \shortcite{hilborn_quantitative_1992} {\color{red} cite walters}). In particular it is 
-understood that catch data must induce "contrast" in {\color{orange} index data
-} so as to well inform $r$. It is not well understood how contrast may factor 
-into biases induced by model misspecification. To investigate the role that 
-catch plays in understanding model misspecification errors a variety of 
-catches are investigated.  
+parameters \shortcite{hilborn_quantitative_1992}. % {\color{red} cite walters}). 
+In particular it is thought that catch data can induce "contrast" in index data
+so as to better inform $r$. It is not well understood how contrast may factor 
+into biases induced by model misspecification. To investigate this a variety of
+catches are investigated.
+%the role that 
+%catch plays in understanding model misspecification errors a variety of 
+%catches are investigated.  
 
 %
 Catch is parameterized so that $F(t)$ can be controlled with respect to $F^*$. 
@@ -834,13 +899,13 @@ In Appendix (\ref{appMLE}) a profile likelihood method for estimating all of the
 parameters of the model is derived. The profile likelihood technique greatly 
 improves the reliability of local optimizers when fitting the biological parameters 
 alongside additional nuisance parameters. The catchability parameter $q$ has the 
-effect of rescaling biomass which can often function similarly the role of the 
+effect of rescaling biomass which can often function similarly to the role of the 
 carrying capacity parameter $K$. Thus, the structure of the likelihood may 
 confound $q$ and $K$, and for some data these parameters may only be weakly 
 identifiable. Posing the model in a Bayesian context provides a convenient 
 mechanism for managing these weak identifiability issues. In a tactful Bayesian 
 formulation $q$ and $\sigma^2$ may then be marginalized out of the joint posterior 
-to yield fast and reliable inference \shortcite{deyoreo_integrating_nodate}. %({\color{red} Cite Maria DeYorio pdf}).
+to yield fast and reliable inference \shortcite{deyoreo_integrating_2012}. %deyoreo_integrating_nodate}. %({\color{red} Cite Maria DeYorio pdf}).
 
 
 %{\color{red} $q$ procedure}
@@ -857,13 +922,13 @@ to yield fast and reliable inference \shortcite{deyoreo_integrating_nodate}. %({
 
 %
 For assessing biological parameters over the simulated grid, as seen in 
-Figure(\ref{rpGrid}), a Gaussian Process (GP) model is used as a flexible, 
-stochastic interpolator over RP space. As previously established, in 
-Section (\ref{modelFit}), the biological parameters of interest are the Schaefer model's 
-$log(r)$ and $log(K)$ parameters. Since the estimates of these parameters are 
-random variables, with variances given by the inverse of the observed fisher 
-information, interpolation of MLEs requires paying additional attention to 
-propagating estimates of uncertainty into the metamodel. 
+Figure(\ref{rpGrid}), a GP model is used as a flexible, stochastic interpolator 
+over RP space. As previously established, in Section (\ref{modelFit}), the 
+biological parameters of interest are the Schaefer model's $log(r)$ and $log(K)$ 
+parameters. Since the estimates of these parameters are random variables, with 
+variances given by the inverse of the observed fisher information, 
+interpolation of MLEs requires paying additional attention to propagating 
+estimates of uncertainty into the metamodel. 
 
 %{\color{red} Motivate gaussianity?}
 
@@ -1173,7 +1238,7 @@ cost of $K$.
 
 %
 \clearpage
-\subsection{More Typical Catch Histories}
+\subsection{More Informative Catch Histories}
 
 %
 \begin{figure}[h!]
@@ -1189,16 +1254,17 @@ cost of $K$.
 %
 The setting of constant relative fishing rate is a useful simplification for 
 building understanding of the dynamics that induce bias, but in practice constant 
-fishing rate is a somewhat oversimplified setting. It is far more 
-common to observe fishing increase rapidly as technology and fishing techniques 
-improved around the turn of the century, followed by a rapid drop in fishing 
-as management proceedures are applied ({\color{red}cite}). Figure(\ref{expCatchT45}) 
-demonstrates a more realistic, while still simplified, fishing behavior that 
-exposes the population to a variety of fishing rates, which induce contrast in 
-the generated indicies and allow the fitting model to observe the population 
-decrease in size and subsequently rebuild. This represents a "high contrast" 
-setting that is known to better inform growth rate parameters, such as $r$.
- 
+fishing rate is a somewhat oversimplified setting. %It is not uncommon to It is more common to observe 
+Consider a hypothetical stock where fishing rate accelerates as technology 
+and fishing techniques improve rapidly until management practices are applied. %   around the turn of the century, followed by a rapid drop in fishing as management 
+%proceedures are applied ({\color{red}cite}). 
+Figure(\ref{expCatchT45}) demonstrates this more realistic, while still somewhat idealic, %an idealised and realistic, while still simplified, 
+fishing behavior. This population is exposed to a variety of fishing rates, 
+which induce contrast in the generated indices and allow the fitting model to 
+observe the population decrease in size and subsequently rebuild. This represents 
+a "high contrast" setting that is widely thought to better inform growth rate 
+parameters, such as $r$.  
+
 %\clearpage
 \begin{figure}[h!]
 \vspace{-1cm}
@@ -1208,7 +1274,7 @@ setting that is known to better inform growth rate parameters, such as $r$.
 \begin{minipage}[h!]{0.49\textwidth}
 \includegraphics[width=.85\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png}
 \end{minipage}
-\caption{ \label{expT45BF} 
+\caption{ \label{expT45BmFm} 
 MLE Bias surfaces for $B^*$ (\emph{left}) and $F^*$ (\emph{right}) with relative fishing rate as specified in Figure({\ref{expCatchT45}})
 }
 \end{figure}
@@ -1219,7 +1285,7 @@ under the high contrast setting. On the one hand, notice the relative lack of
 bias in $F^*$ over a large swath of RPs far from the Schaefer line. On the 
 other hand, notice that bias in $B^*$ increases here relative to the low contrast 
 setting. The pattern of bias in $B^*$ %over the space of misspecified RPs in $B^*$ 
-maintians a similar pattern, and overall scale, as the low contrast setting 
+maintains a similar pattern, and overall scale, as the low contrast setting 
 seen in Figure(\ref{flatRat}), however a smaller region of RP-space enjoys low 
 bias here. Due to the similar, albeit expanded, pattern of $B^*$ bias here, as 
 compared with the low contrast setting, and the constrained relationship with 
@@ -1228,7 +1294,7 @@ $\frac{B^*}{\bar B(0)}$, the bias surface for $K$ maintains the same general
 
 %
 If the data is augmented so that the fishing rate is held at $F^*$ for an 
-additional 15 time epocs, so that slower growing stocks may observe more data 
+additional 15 time epochs, so that slower growing stocks may observe more data 
 near $B^*$, Figure(\ref{expT60BmFm}) shows the updated bias surfaces. The scale
 of bias in $B^*$ is reduced, but the scope and general pattern of bias remains 
 similar. While the bias behavior of $B^*$ estimates are somewhat diminished, 
@@ -1382,30 +1448,489 @@ MLE Bias surfaces for $B^*$ (\emph{left}) and $F^*$ (\emph{right}) with relative
 \clearpage
 \section{Discussion}
 
-• The statistician George Box famously said “All model are wrong, but some
-models are useful”
-• My question is how useful are our models?, and if our models are useful. How
-useful are they? and when are they useful?
+%
+Results presented here generally agree with what is known about estimating 
+growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}, 
+in this case $r$, and thus $F^*$.  
+%These studys appreciate that role of contrast for estimating growth rates, 
+%however do not explicately control the degree of model misspecification 
+%relative to RPs.  %present over as wide a range of RPs and how bias 
+In the presence of contrast $F^*$ estimation can enjoy very low bias even 
+for a wide range of poorly specified models; conversely in the absence of 
+contrast $F^*$ estimation can suffer very large bias even for slightly 
+misspecified models. In all cases when model misspecification is removed, even 
+with weakly informative data, $F^*$ estimation is unbiased.  Model 
+misspecification is thus a necessary but not sufficient condition for inducing 
+bias. 
+
+%{\color{red} 
+%Claim novelty. meta modeling to integrate factors of bias location, direction, magnitude considered along catch.  
+%}
+
+%%
+%The meta-modeling approach presented here indicates that the Schaefer model 
+%underestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}<\frac{1}{2}$, %originate below the Schaefer line 
+%and overestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}>\frac{1}{2}$. % true RPs originate below the Schaefer line. 
+%This is of particular note since these outcomes carry such varied real would 
+%implications. Overestimation of $F^*$ carries the severe implication of 
+%management recommedations potentially leading to overfishing, while 
+%underestimation of $F^*$ leads to overly conservative management.   
+
+%considered jointly
+While it is established that growth rate parameters require contrast to estimate, 
+the implications of these biases jointly across a variety of RPs have not 
+received as much attention. 
+%In particular the joint analysis of RP estimation that this 
+%metamodeling approach allows 
+%has not been studied. 
+When considering $B^*$ alongside $F^*$ in varying contrast environments, it 
+becomes clear that different data informs different parts of the production 
+function differently. In low contrast environments $B^*$ is estimation is 
+remarkably unbiased across all but the most challenging instances of model 
+misspecification. However in the presence of contrast, while $F^*$ enjoys 
+better estimation, $B^*$ estimation experiences substantial bias for only 
+modestly misspecified models. Further, by augmenting contrasting data with an 
+additional period of low contrast data this pattern begins to reverses with $B^*$ 
+bias receding toward more poorly specified models and $F^*$ bias encroaching 
+toward only modestly misspecified models as seen in Figure (\ref{expT60BmFm}).   
+
+%
+The behavior of bias in estimating $B^*$ and $F^*$ suggests that the limited 
+parameter space of the Schaefer model induces a trade off in estimating these 
+parameters. In practice, when the true model is not known and the Schaefer 
+model is unlikely to be correctly specified, one should at best expect to only 
+estimate either $B^*$ or $F^*$ correctly depending on the particular degree of 
+model misspecification. The observed contrast then serves to distribute the 
+available information among $B^*$ and $F^*$. Increasing the flexibility of the 
+production function by moving toward curves with additional parameters could 
+release these structural limitations \shortcite{mangel_perspective_2013}. 
+\shortciteA{punt_extending_2019} considers a suite of possible three parameter
+curves which could be use instead of current two parameter curves.
+
+%
+This study only explores the compatibility of the possible productivity shapes 
+exhibited by the PT and Schaefer models. While the PT and Schaefer models are 
+instructive for a variety of non-compensatory production behaviors, it is possible 
+that under different modeling assumptions, for example compensatory BH production 
+or age structured models, different bias patterns will emerge. Extending this work 
+to be able to make claims in those settings is necessary for developing more 
+generally extensible claims. % and my proposal for this extension can be seen in Section(\ref{})
+
+%
+Given the role that catch plays in understanding where the production function 
+is informed, it is clear that good estimates of catch are important for 
+contextualizing modeling inferences. While the production model treats catches 
+as known without uncertainty, upon inspection of Figure (\ref{hakeData}, \emph{right})
+this assumption is clearly suspect. Results presented here only consider very 
+deterministic catch histories. More work is needed to understand how jittery catch may 
+affect RP estimation. A smoothing model of catch may be preferable for estimation, 
+but results of this study suggest that even improvements to the contextual understanding of 
+catch will be important for interpreting model inferences correctly.
+
+%%
+%Bias in $K$ is consistently awful.
 
 
-In the high contrast setting, $F^*$ estimation is largely conserved, 
-especially when compared to the dramatic $F^*$ biases observed in Figure(\ref{flatTrio}), 
-however this 
+%Bias is clearly more present when model misspecification is very large, 
+%however even quite
+%%
+%By explicatly controlling model misspecification, realative to the Schaefer 
+%line, and considering a wide region of RPs in aggregate it becomes clear that 
+%
+%the directly on the scale of RPs
+%and simulating widely relavetive to $F^*$the constrained Schaefer line
+%
+%\begin{itemize}
+%%\item Misspecification Causes bias.
+%%\begin{itemize}
+%%	\item when the model is specified correctly even very uninformative data provide good inference.
+%%	\item the more misspecified the model the worse the bias
+%%	\item for very misspecified settings contrast helps you estimate growth metrics $F^*$, $r$, steepness 
+%%	\item (cite lee papers)
+%%\end{itemize}
+%%\item different data informs the production function differently
+%%\begin{itemize}
+%%	\item Estimating steepness type parameters in the presence of severe model misspecification comes at the cost of other parameters/RPs.
+%%\end{itemize}
+%\item Even a misspecified model can be made to estimate one RP with the correct data, but depending on the nature of model misspecification we are unlikely to conserve two RPs.
+%\begin{itemize}
+%	\item Three parameter curves should add flexibility to increase the number of RPs we can estimate and thus the usefulness of integrated assessment models
+%	\item punt 2019 
+%\end{itemize}
+%\item yet to be able to make claims about the very common BH production function and age structured models
+%\item the clear dependence of model performance on catch suggests that better models are needed for describing catch.
+%	\begin{itemize}
+%	\item A better understanding of catch allows stock assessors to better theorize about which types of quantities are well informed by models. 
+%	\end{itemize}
+%\end{itemize}
 
-Although the shape of the SRR is important, it is often ambiguous what the 
-appropriate SSR is given the available stock assess- ment information. For 
-example, Dorn (2002) concluded in a meta-analysis of rockfish (Sebastes spp.) 
-stock and recruitment data that neither the R-SRR nor the BH-SRR can be 
-distinguished as a preferred model on the basis of statistical goodness of fit
-.  Brodziak (2002) reached a similar conclusion in an analysis of USA west 
-coast groundfish stock–recruitment data. Alternatively, in a meta-analysis of 
-128 diverse fish stocks, Punt et al. (2005) con- cluded that as a general model
-, the BH-SRR is strongly preferred over the R-SRR, but that “there are also 
-indications that other (more complicated) forms may provide better 
-representations of the existing data” (p. 76). This conclusion is not 
-unexpected because models with more parameters can approximate 
-variability in the observations used to estimate the SRR more accurately than 
-models with fewer parameters.  
+%
+%• The statistician George Box famously said “All model are wrong, but some
+%models are useful”
+%• My question is how useful are our models?, and if our models are useful. How
+%useful are they? and when are they useful?
+%
+%
+%In the high contrast setting, $F^*$ estimation is largely conserved, 
+%especially when compared to the dramatic $F^*$ biases observed in Figure(\ref{flatTrio}), 
+%however this 
+%
+%Although the shape of the SRR is important, it is often ambiguous what the 
+%appropriate SSR is given the available stock assess- ment information. For 
+%example, Dorn (2002) concluded in a meta-analysis of rockfish (Sebastes spp.) 
+%stock and recruitment data that neither the R-SRR nor the BH-SRR can be 
+%distinguished as a preferred model on the basis of statistical goodness of fit
+%.  Brodziak (2002) reached a similar conclusion in an analysis of USA west 
+%coast groundfish stock–recruitment data. Alternatively, in a meta-analysis of 
+%128 diverse fish stocks, Punt et al. (2005) con- cluded that as a general model
+%, the BH-SRR is strongly preferred over the R-SRR, but that “there are also 
+%indications that other (more complicated) forms may provide better 
+%representations of the existing data” (p. 76). This conclusion is not 
+%unexpected because models with more parameters can approximate 
+%variability in the observations used to estimate the SRR more accurately than 
+%models with fewer parameters.  
+
+%
+\clearpage
+\section{Extensions to other productions functions}
+
+%
+\clearpage
+\section{Catch Interpolation}
+
+%
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.49\textwidth}
+%
+%\begin{figure}[h!]
+\includegraphics[width=.85\textwidth]{../../../theses/nick/spline/dataPlots505.png}
+%\caption{ \label{expCatchT45Fmsy}
+%}
+%\end{figure}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+%%
+%\begin{figure}[h!]
+\includegraphics[width=.85\textwidth]{../../../theses/nick/spline/intCurves505.png}
+%\caption{ \label{expCatchT45Bmsy}
+%}
+\end{minipage}
+\caption{\label{splines}
+(\emph{left}) and (\emph{right})
+}
+\end{figure}
+
+\begin{align}
+y(t^*) &= k(t^*)-k(\tau^*) ~~~ \tau^*=\lceil t^* \rceil-1 \\
+k(t^*) &= \int_0^{t^*} x(t) dt\\
+x(t) &= \beta_0 + \sum_{j=1}^{T-1} \beta_j (t-\tau_j) \mathds{1}(t>\tau_j)
+\end{align}
+
+\begin{align}
+y(\tau_i) &= \beta_0(\tau_i-\tau_{i-1}) + \sum_{j=1}^{i-1} \beta_j \left[ \left(\frac{\tau_i^2}{2}-\tau_j\tau_i\right) - \left(\frac{\tau_{i-1}^2}{2}-\tau_j\tau_{i-1}\right)\right] + \epsilon_i \\
+\beta_j &\sim N(0, \phi) ~~~~ \phi \sim \text{Half-Cauchy}(0, 1) ~~~~ \epsilon_i \sim N(0, \sigma^2_i) \nonumber
+\end{align}
+
+
+%
+%\thispagestyle{next}
+\clearpage
+\bibliographystyle{apacite}
+%\bibliography{./schnuteGPBias.bib}
+\bibliography{./gpBias.bib}
+%\thispagestyle{next}
+
+
+%%
+%\clearpage
+%\section*{Appendix A: Distributional results for $\tilde\xi$ and $\tilde\zeta$ \label{appA}}
+%\thispagestyle{next}
+%
+%%
+%Given the Log-Normality of $\tilde F^*$ as seen in Eq. (\ref{FLN}), for fixed 
+%$M$, $\tilde \xi$ is clearly just a scaled Log-Normal distribution (Log-Normal 
+%parameters are given in terms of the mean and variance on the log scale). 
+%
+%\begin{align*}
+%\tilde \xi &= \frac{\tilde F^*}{M}\\
+%\tilde \xi ~&\sim~ \text{LN}\left(\frac{1}{M}e^{\mu+\frac{\sigma^2}{2}}, \frac{1}{M^2}(e^{\sigma^2}-1)e^{2\mu+\sigma^2}\right)
+%\end{align*}
+%
+%%
+%Now working with $\tilde\zeta$ in terms given by Eq. (\ref{bhCurve}) and considering
+%the quantity $\text{logit}(2\tilde \zeta)$ provides a simplification in terms of $\log(\tilde F^*)$.
+%
+%\begin{align*}
+%\tilde \zeta &= \frac{1}{\tilde\xi+2}\\
+%\text{logit}(2\tilde \zeta) &= \log\left(\frac{\frac{2}{\tilde \xi+2}}{1-\frac{2}{\tilde \xi+2}}\right)\\
+%&=\log(2/\tilde \xi) = \log(2)-\log(\tilde \xi) = \log(2M)-\log(\tilde F^*)\\
+%\end{align*}
+%
+%The given simplification of $\text{logit}(2\tilde \zeta)$ reveals the 
+%distribution of $\zeta$ as a scaled and shifted Logit-Normal distribution.
+%
+%
+%\begin{align*}
+%\text{logit}(2\tilde \zeta) ~&\sim~ \text{N}\left(\log(2M)-\mu, \sigma^2\right) \\
+% 2\tilde\zeta ~&\sim~ \text{logit-N}\left(\log(2M)-\mu, \sigma^2\right)
+%\end{align*}
+%
+%Notice that due to Eq. (\ref{bhCurve}) these distribution results hold for any 
+%fixed M Beverton Holt model with Log-Normality in $\tilde F^*$. These results 
+%are not specific to the Laplace approximation setting here. For example under 
+%Beverton Holt and fixed M, a Log-Normal prior on $\tilde F^*$ necessarily 
+%implies a scaled Log-Normal prior on $\tilde\xi$ and a scaled Logit-Normal 
+%prior on $\tilde\zeta$. Furthermore if $M$ is not fixed, but instead it also 
+%follows a Log-Normal distribution, this also implies Log-Normality for 
+%$\tilde\xi$ and Logit-Normality on $\tilde\zeta$, albeit with slightly 
+%different parameters.
+
+\clearpage
+\section*{Appendix A: Profile Likelihood MLE \label{appMLE}}
+Given that $q$ has the effect of rescaling the mean function, a 
+naive handling of $q$ has the potential to interfere with the inference on 
+$\bm{\theta}$. While the parameter $q$ is typically identifiable, it can 
+introduce lesser modes which complicate naive inference.
+
+%
+Below I outline a profile likelihood method for MLE inference on $q$ and 
+$\sigma^2$. However if posed in a tactful Bayesian context, $q$ and 
+$\sigma^2$ may be marginalized out of the joint posterior to yield a direct 
+sampling scheme for $q$ and $\sigma^2$ which factors the posterior into the 
+form $p(q, \sigma^2, \bm{\theta}|I) = N(\log(q)| \sigma^2, \bm{\theta}, I) IG(\sigma^2|\bm{\theta}, I) p(\bm{\theta}|I)$ \shortcite{deyoreo_integrating_2012} %({\color{red} Cite Maria DeYorio pdf??}).
+
+%
+The joint likelihood on the log scale can be written as, 
+\begin{align}
+\log\mathcal{L}(q, \sigma^2, \bm{\theta}; I) = - \frac{T}{2}\log(\sigma^2) - \frac{1}{2\sigma^2}\sum_t \log\left(\frac{I_t}{qB_t(\bm{\theta})}\right)^2. \label{logLike} 
+\end{align}
+%
+First Eq(\ref{logLike}) is maximized with respect to $q$ by partial 
+differentiation of Eq(\ref{logLike}) with respect to $q$, 
+%
+\begin{align}
+\frac{\partial \log\mathcal{L}}{\partial q} = -\frac{1}{q\sigma^2}\left(\sum_t \log\left(\frac{I_t}{B_t(\bm{\theta})}\right) - T\log(q)\right)
+\end{align}
+%
+The maximum of the likelihood in the $q$ direction is attained when 
+$\frac{\partial \log\mathcal{L}}{\partial q}=0$. By setting 
+$\frac{\partial \log\mathcal{L}}{\partial q}$ to 0 and solving for 
+$q$, the MLE of $q$ in terms of $\bm{\theta}$ can be written as
+%
+\begin{align}
+q(\bm{\theta}) = e^{ \frac{1}{T}\sum_t \log\left(\frac{I_t}{B_t(\bm{\theta})}\right) } = \left(\prod_t\frac{I_t}{B_t(\bm{\theta})}\right)^{\frac{1}{T}}. \label{qHat}
+\end{align}
+%
+Notice that $\hat q(\bm{\theta})$ is the geometric mean of the empirical 
+scaling factors between the observed index and modeled biomass at each time. 
+This form is emblematic of the interpretation of the $q$ parameter as the 
+proportionality constant between the observed index and the modeled biomass. 
+Additionally notice that $\hat q$ is a function of $\bm\theta$, so that 
+achieving the global maximum of the likelihood function still requires 
+maximization over $\bm\theta$. Furthermore, $\hat q(\bm{\theta})$ is only a 
+function of $\bm{\theta}$ and that $\sigma^2$ does not enter the expression.  
+This will be helpful in further maximization of the likelihood with respect to 
+$\sigma^2$.  
+
+%
+Now to maximize in the $\sigma^2$ direction Eq(\ref{logLike}) is 
+differentiated with respect to $\sigma^2$,
+%
+\begin{align}
+\frac{\partial \log\mathcal{L}}{\partial \sigma^2} = -\frac{T}{2\sigma^2} + \frac{1}{2(\sigma^2)^2}\sum_t \log\left(\frac{I_t}{qB_t(\bm{\theta})}\right)^2.
+\end{align}
+%
+The maximum of the likelihood in the $\sigma^2$ direction is attained when 
+$\frac{\partial \log\mathcal{L}}{\partial \sigma^2}=0$. Setting 
+$\frac{\partial \log\mathcal{L}}{\partial \sigma^2}$ to 0 and solving for
+$\sigma^2$ produces the following MLE as a function of $\bm{\theta}$,
+%
+\begin{align}
+\sigma^2(\bm{\theta}) = \frac{1}{T}\sum_t \log\left(\frac{I_t}{q(\bm{\theta})B_t(\bm{\theta})}\right)^2 \label{s2Hat}
+\end{align}
+%
+Notice that the conditionally MLE of $\sigma^2$ is not only a function of 
+$\bm{\theta}$ but also a function of $q$. As previously noted, $q(\bm{\theta})$ 
+is only a function of $\bm{\theta}$, and so to achieve a global maximum of the 
+joint likelihood, $\sigma^2(\bm \theta)$ is written entirely in terms of 
+$\bm \theta$ by replacing $q$ by $q(\bm{\theta})$ as seen above.
+
+%
+By combining Eq(\ref{qHat}) and Eq(\ref{s2Hat}) the MLEs of $q$ and $\sigma^2$ 
+can be written entirely in terms of $\bm{\theta}$. Furthermore, this 
+realization allows the joint maximization of the likelihood to be reduced to the 
+following profile log-likelihood,
+\begin{align}
+\log\mathcal{L}(\bm{\theta}; I) = - \frac{T}{2}\log( \sigma^2(\bm{\theta})) - \frac{1}{2 \sigma^2(\bm{\theta})}\sum_t \log\left(\frac{I_t}{q(\bm{\theta})B_t(\bm{\theta})}\right)^2. \l
+\end{align}
+%
+This profile log-likelihood is maximized numerically over $\bm{\theta}$, and the 
+estimates for $q$ and $\sigma^2$ are given by evaluating Equations (\ref{qHat}) 
+and (\ref{s2Hat}) at $\bm{\hat\theta}$. 
+\begin{align}
+\bm{\hat \theta} &= \argmax_{\bm{\theta}} \log\mathcal{L}(\bm{\theta}; I)\\
+\hat \sigma^2 &= \sigma^2(\bm{\hat\theta})\\
+\hat q &= q(\bm{\hat\theta})
+\end{align}
+%
+This profile formulation via $\hat q(\bm{\theta})$ and 
+$\hat \sigma^2(\bm{\theta})$ reduces the computational complexity of this
+numerical optimization, while also avoiding the multimodality issues induced 
+by $q$. 
+
+%
+\clearpage
+{\color{gray}
+\section*{Appendix B: Integrating ODEs, Stiffness, Interpolation, and Chaos. \label{appODE}}
+
+%
+{\color{red}
+a preface to regularity issues: identifiability, stiffness, and continuity.
+}
+
+%
+\subsubsection{Uniqueness, Continuity, and Identifiability}
+
+%
+An important (and often overlooked) implementation detail is the solution to the 
+ODE which defines the progression of biomass through time (See Eq(\ref{ode})). As 
+a statistical model it is of paramount importance that this ODE not only have a 
+solution, but also that the solution be unique. Of primary concern, uniqueness 
+of the ODE solution is necessary for the identifiability of the statistical model.
+
+%
+If the form of $\frac{dB}{dt}$ is at least Lipschitz continuous, then the 
+Cauchy-Lipschitz-Picard theorem provides local existence and uniqueness of 
+$B(t)$.%, on the condition that the form of $\frac{dB}{dt}$ is at least Lipschitz continuous. 
+Recall from Eq(\ref{ode}) that $\frac{dB}{dt}$ is separated into 
+a term for population production, $P(B)$, and a term for removals via catch, $FB$. 
+For determining Lipschitz continuity of $\frac{dB}{dt}$, the smallest 
+Lipschitz constant of $\frac{dB}{dt}$ will be the sum of the constants for 
+each of the terms $P(B)$ and $FB$ separately. Typically any choice of $P(B)$ 
+will be continuously differentiable, which implies Lipschitz continuity (since 
+the set of continuous differentiable functions is a subset of the set of 
+Lipschitz continuous functions).  
+%(by more strict definition of continuity than Lipschitz continuity, and furthermore continuous differentiability)
+Thus, the assumed form of $P(B)$ does not typically introduce continuity concerns, 
+unlike some potential assumptions for catch.
+
+%
+In practice catch is determined by a series of observed, assumed 
+known, catches. Catch observations are typically observed on a quarterly basis, but 
+in practice may not be complete for every quarter of the modeled period. It is 
+overwhelmingly common to discretize the ODE via Euler's method with integration 
+step sizes to match the observation frequency of the modeled data. This is often 
+convenient but can present several issues. This strategy often pushes the 
+assumption of catch continuity under the rug, but for identifiability of the 
+statistical model an implicit assumption of continuity of the catches is 
+required. While mechanistically at the finest scale fishers must only catch 
+discrete packets of biomass (i.e. individual fish), it is sensible to consider 
+aggregate catches at the quarterly (or yearly) scale as accruing in a continuous 
+way. Furthermore any assumption of continuity will be required to be at least 
+Lipschitz continuous for the required regularity of the model.
+
+%
+Here I assume catches accrue linearly between observed catches. This assumption 
+defines the catch function as a piecewise linear function of time, with the 
+smallest Lipschitz constant for the catch term defined by the steepest segment 
+of the catch function. This assumption represents one of the simplest ways of 
+handling catch, while retaining Lipschitz continuity overall. Furthermore linearly 
+interpolated catch is adequately parsimonious for the typical handling of catches. 
+
+%
+{\color{red}
+\subsubsection{Integration and Stiffness}
+\subsubsection{Integration, Stiffness, and Chaos}
+
+%
+As previously mentioned, the overwhelming majority of implementations of 
+population dynamics models discretize the ODE using Euler's method with the 
+integration step sized fixed so as to match the observation frequency. In this 
+setting we explore model parameterizations that explore the full extent of 
+biologically relevant reference points. This exercise produces some 
+combinations of parameters that result in numerically stiff ODEs. 
+
+%
+The concept of stiffness in ODEs is hard to precisely characterize 
+({\color{red}cite}). Hairer and Wanner [5, p. 2] describe stiffness in the 
+following pragmatic sense, "Stiff equations are problems for which explicit 
+methods don't work". It is hard to make this definition more mathematically 
+precise, but this 
+%is without a doubt a consistent issue for models parameterized 
+%so that $\frac{B^*}{\bar B(0)}$ is greater than $\frac{1}{2}$. Euler's method, as often 
+%implemented, is particularly poorly suited for these stiff regions of parameter
+%space. In these stiff regions it is necessary to integrate the ODE with an 
+%implicate integration method. 
+
+%
+Several of the most common implicate methods were tried including the 
+Livermore Solver for ODEs (lsode), and the Variable Coefficient ODE Solver 
+(vode) as implemented in the deSolve package of R ({\color{red}cite}). The 
+difference between implicate solvers is negligible, while most explicate 
+methods result in wildly varying solutions to the ODE, and in still regions of 
+parameter space explicate methods completely fail to represent the model as 
+stated in the stiff regions of parameter space. Results shown here are computed 
+using the lsode integration method since it runs relatively quickly and has a 
+relatively smaller footprint in system memory.  
+}
+
+}
+
+%Too stiff for Euler,
+%avoid chaos, and
+%implicit methods
+%} 
+
+%%
+%quickly address uniqueness conditions.\\ 
+%%
+%interpolation and the regularity of solutions.\\
+%
+%https://tutorial.math.lamar.edu/Classes/DE/IoV.aspx
+%
+%https://tutorial.math.lamar.edu/Classes/CalcI/Continuity.aspx
+%
+%http://mathonline.wikidot.com/continuity-of-functions-defined-by-lebesgue-integrals
+
+%Additionally this profile likelihood approach 
+%alleviates the aforementioned numerical difficulties brought about by the lesser modes induced by $q$multimodality issues described around the when maximizing the joint likelihood.  
+
+
+%Since both \hat q(\bm{\theta}) and \hat \sigma^2(\bm{\theta}) 
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 %%
@@ -1736,308 +2261,6 @@ models with fewer parameters.
 %%observed here will be across different SRRs. Additionally a comparison with age 
 %%structured versions of these models are also forthcoming.
 %}
-
-%
-%\thispagestyle{next}
-\clearpage
-\bibliographystyle{apacite}
-%\bibliography{./schnuteGPBias.bib}
-\bibliography{./gpBias.bib}
-%\thispagestyle{next}
-
-
-%%
-%\clearpage
-%\section*{Appendix A: Distributional results for $\tilde\xi$ and $\tilde\zeta$ \label{appA}}
-%\thispagestyle{next}
-%
-%%
-%Given the Log-Normality of $\tilde F^*$ as seen in Eq. (\ref{FLN}), for fixed 
-%$M$, $\tilde \xi$ is clearly just a scaled Log-Normal distribution (Log-Normal 
-%parameters are given in terms of the mean and variance on the log scale). 
-%
-%\begin{align*}
-%\tilde \xi &= \frac{\tilde F^*}{M}\\
-%\tilde \xi ~&\sim~ \text{LN}\left(\frac{1}{M}e^{\mu+\frac{\sigma^2}{2}}, \frac{1}{M^2}(e^{\sigma^2}-1)e^{2\mu+\sigma^2}\right)
-%\end{align*}
-%
-%%
-%Now working with $\tilde\zeta$ in terms given by Eq. (\ref{bhCurve}) and considering
-%the quantity $\text{logit}(2\tilde \zeta)$ provides a simplification in terms of $\log(\tilde F^*)$.
-%
-%\begin{align*}
-%\tilde \zeta &= \frac{1}{\tilde\xi+2}\\
-%\text{logit}(2\tilde \zeta) &= \log\left(\frac{\frac{2}{\tilde \xi+2}}{1-\frac{2}{\tilde \xi+2}}\right)\\
-%&=\log(2/\tilde \xi) = \log(2)-\log(\tilde \xi) = \log(2M)-\log(\tilde F^*)\\
-%\end{align*}
-%
-%The given simplification of $\text{logit}(2\tilde \zeta)$ reveals the 
-%distribution of $\zeta$ as a scaled and shifted Logit-Normal distribution.
-%
-%
-%\begin{align*}
-%\text{logit}(2\tilde \zeta) ~&\sim~ \text{N}\left(\log(2M)-\mu, \sigma^2\right) \\
-% 2\tilde\zeta ~&\sim~ \text{logit-N}\left(\log(2M)-\mu, \sigma^2\right)
-%\end{align*}
-%
-%Notice that due to Eq. (\ref{bhCurve}) these distribution results hold for any 
-%fixed M Beverton Holt model with Log-Normality in $\tilde F^*$. These results 
-%are not specific to the Laplace approximation setting here. For example under 
-%Beverton Holt and fixed M, a Log-Normal prior on $\tilde F^*$ necessarily 
-%implies a scaled Log-Normal prior on $\tilde\xi$ and a scaled Logit-Normal 
-%prior on $\tilde\zeta$. Furthermore if $M$ is not fixed, but instead it also 
-%follows a Log-Normal distribution, this also implies Log-Normality for 
-%$\tilde\xi$ and Logit-Normality on $\tilde\zeta$, albeit with slightly 
-%different parameters.
-
-\clearpage
-\section*{Appendix A: Profile Likelihood MLE \label{appMLE}}
-Given that $q$ has the effect of rescaling the mean function, a 
-naive handling of $q$ has the potential to interfere with the inference on 
-$\bm{\theta}$. While the parameter $q$ is typically identifiable, it can 
-introduce lesser modes which complicate naive inference.
-
-%
-Below I outline a profile likelihood method for MLE inference on $q$ and 
-$\sigma^2$. However if posed in a tactful Bayesian context, $q$ and 
-$\sigma^2$ may be marginalized out of the joint posterior to yield a direct 
-sampling scheme for $q$ and $\sigma^2$ which factors the posterior into the 
-form $p(q, \sigma^2, \bm{\theta}|I) = N(\log(q)| \sigma^2, \bm{\theta}, I) IG(\sigma^2|\bm{\theta}, I) p(\bm{\theta}|I)$ ({\color{red} Cite Maria DeYorio pdf??}).
-
-%
-The joint likelihood on the log scale can be written as, 
-\begin{align}
-\log\mathcal{L}(q, \sigma^2, \bm{\theta}; I) = - \frac{T}{2}\log(\sigma^2) - \frac{1}{2\sigma^2}\sum_t \log\left(\frac{I_t}{qB_t(\bm{\theta})}\right)^2. \label{logLike} 
-\end{align}
-%
-First Eq(\ref{logLike}) is maximized with respect to $q$ by partial 
-differentiation of Eq(\ref{logLike}) with respect to $q$, 
-%
-\begin{align}
-\frac{\partial \log\mathcal{L}}{\partial q} = -\frac{1}{q\sigma^2}\left(\sum_t \log\left(\frac{I_t}{B_t(\bm{\theta})}\right) - T\log(q)\right)
-\end{align}
-%
-The maximum of the likelihood in the $q$ direction is attained when 
-$\frac{\partial \log\mathcal{L}}{\partial q}=0$. By setting 
-$\frac{\partial \log\mathcal{L}}{\partial q}$ to 0 and solving for 
-$q$, the MLE of $q$ in terms of $\bm{\theta}$ can be written as
-%
-\begin{align}
-q(\bm{\theta}) = e^{ \frac{1}{T}\sum_t \log\left(\frac{I_t}{B_t(\bm{\theta})}\right) } = \left(\prod_t\frac{I_t}{B_t(\bm{\theta})}\right)^{\frac{1}{T}}. \label{qHat}
-\end{align}
-%
-Notice that $\hat q(\bm{\theta})$ is the geometric mean of the empirical 
-scaling factors between the observed index and modeled biomass at each time. 
-This form is emblematic of the interpretation of the $q$ parameter as the 
-proportionality constant between the observed index and the modeled biomass. 
-Additionally notice that $\hat q$ is a function of $\bm\theta$, so that 
-achieving the global maximum of the likelihood function still requires 
-maximization over $\bm\theta$. Furthermore, $\hat q(\bm{\theta})$ is only a 
-function of $\bm{\theta}$ and that $\sigma^2$ does not enter the expression.  
-This will be helpful in further maximization of the likelihood with respect to 
-$\sigma^2$.  
-
-%
-Now to maximize in the $\sigma^2$ direction Eq(\ref{logLike}) is 
-differentiated with respect to $\sigma^2$,
-%
-\begin{align}
-\frac{\partial \log\mathcal{L}}{\partial \sigma^2} = -\frac{T}{2\sigma^2} + \frac{1}{2(\sigma^2)^2}\sum_t \log\left(\frac{I_t}{qB_t(\bm{\theta})}\right)^2.
-\end{align}
-%
-The maximum of the likelihood in the $\sigma^2$ direction is attained when 
-$\frac{\partial \log\mathcal{L}}{\partial \sigma^2}=0$. Setting 
-$\frac{\partial \log\mathcal{L}}{\partial \sigma^2}$ to 0 and solving for
-$\sigma^2$ produces the following MLE as a function of $\bm{\theta}$,
-%
-\begin{align}
-\sigma^2(\bm{\theta}) = \frac{1}{T}\sum_t \log\left(\frac{I_t}{q(\bm{\theta})B_t(\bm{\theta})}\right)^2 \label{s2Hat}
-\end{align}
-%
-Notice that the conditionally MLE of $\sigma^2$ is not only a function of 
-$\bm{\theta}$ but also a function of $q$. As previously noted, $q(\bm{\theta})$ 
-is only a function of $\bm{\theta}$, and so to achieve a global maximum of the 
-joint likelihood, $\sigma^2(\bm \theta)$ is written entirely in terms of 
-$\bm \theta$ by replacing $q$ by $q(\bm{\theta})$ as seen above.
-
-%
-By combining Eq(\ref{qHat}) and Eq(\ref{s2Hat}) the MLEs of $q$ and $\sigma^2$ 
-can be written entirely in terms of $\bm{\theta}$. Furthermore, this 
-realization allows the joint maximization of the likelihood to be reduced to the 
-following profile log-likelihood,
-\begin{align}
-\log\mathcal{L}(\bm{\theta}; I) = - \frac{T}{2}\log( \sigma^2(\bm{\theta})) - \frac{1}{2 \sigma^2(\bm{\theta})}\sum_t \log\left(\frac{I_t}{q(\bm{\theta})B_t(\bm{\theta})}\right)^2. \l
-\end{align}
-%
-This profile log-likelihood is maximized numerically over $\bm{\theta}$, and the 
-estimates for $q$ and $\sigma^2$ are given by evaluating Equations (\ref{qHat}) 
-and (\ref{s2Hat}) at $\bm{\hat\theta}$. 
-\begin{align}
-\bm{\hat \theta} &= \argmax_{\bm{\theta}} \log\mathcal{L}(\bm{\theta}; I)\\
-\hat \sigma^2 &= \sigma^2(\bm{\hat\theta})\\
-\hat q &= q(\bm{\hat\theta})
-\end{align}
-%
-This profile formulation via $\hat q(\bm{\theta})$ and 
-$\hat \sigma^2(\bm{\theta})$ reduces the computational complexity of this
-numerical optimization, while also avoiding the multimodality issues induced 
-by $q$. 
-
-%
-\clearpage
-{\color{gray}
-\section*{Appendix B: Integrating ODEs, Stiffness, Interpolation, and Chaos. \label{appODE}}
-
-%
-{\color{red}
-a preface to regularity issues: identifiability, stiffness, and continuity.
-}
-
-%
-\subsubsection{Uniqueness, Continuity, and Identifiability}
-
-%
-An important (and often overlooked) implementation detail is the solution to the 
-ODE which defines the progression of biomass through time (See Eq(\ref{ode})). As 
-a statistical model it is of paramount importance that this ODE not only have a 
-solution, but also that the solution be unique. Of primary concern, uniqueness 
-of the ODE solution is necessary for the identifiability of the statistical model.
-
-%
-If the form of $\frac{dB}{dt}$ is at least Lipschitz continuous, then the 
-Cauchy-Lipschitz-Picard theorem provides local existence and uniqueness of 
-$B(t)$.%, on the condition that the form of $\frac{dB}{dt}$ is at least Lipschitz continuous. 
-Recall from Eq(\ref{ode}) that $\frac{dB}{dt}$ is separated into 
-a term for population production, $P(B)$, and a term for removals via catch, $FB$. 
-For determining Lipschitz continuity of $\frac{dB}{dt}$, the smallest 
-Lipschitz constant of $\frac{dB}{dt}$ will be the sum of the constants for 
-each of the terms $P(B)$ and $FB$ separately. Typically any choice of $P(B)$ 
-will be continuously differentiable, which implies Lipschitz continuity (since 
-the set of continuous differentiable functions is a subset of the set of 
-Lipschitz continuous functions).  
-%(by more strict definition of continuity than Lipschitz continuity, and furthermore continuous differentiability)
-Thus, the assumed form of $P(B)$ does not typically introduce continuity concerns, 
-unlike some potential assumptions for catch.
-
-%
-In practice catch is determined by a series of observed, assumed 
-known, catches. Catch observations are typically observed on a quarterly basis, but 
-in practice may not be complete for every quarter of the modeled period. It is 
-overwhelmingly common to discretize the ODE via Euler's method with integration 
-step sizes to match the observation frequency of the modeled data. This is often 
-convenient but can present several issues. This strategy often pushes the 
-assumption of catch continuity under the rug, but for identifiability of the 
-statistical model an implicit assumption of continuity of the catches is 
-required. While mechanistically at the finest scale fishers must only catch 
-discrete packets of biomass (i.e. individual fish), it is sensible to consider 
-aggregate catches at the quarterly (or yearly) scale as accruing in a continuous 
-way. Furthermore any assumption of continuity will be required to be at least 
-Lipschitz continuous for the required regularity of the model.
-
-%
-Here I assume catches accrue linearly between observed catches. This assumption 
-defines the catch function as a piecewise linear function of time, with the 
-smallest Lipschitz constant for the catch term defined by the steepest segment 
-of the catch function. This assumption represents one of the simplest ways of 
-handling catch, while retaining Lipschitz continuity overall. Furthermore linearly 
-interpolated catch is adequately parsimonious for the typical handling of catches. 
-
-%
-{\color{red}
-\subsubsection{Integration and Stiffness}
-\subsubsection{Integration, Stiffness, and Chaos}
-
-%
-As previously mentioned, the overwhelming majority of implementations of 
-population dynamics models discretize the ODE using Euler's method with the 
-integration step sized fixed so as to match the observation frequency. In this 
-setting we explore model parameterizations that explore the full extent of 
-biologically relevant reference points. This exercise produces some 
-combinations of parameters that result in numerically stiff ODEs. 
-
-%
-The concept of stiffness in ODEs is hard to precisely characterize 
-({\color{red}cite}). Hairer and Wanner [5, p. 2] describe stiffness in the 
-following pragmatic sense, "Stiff equations are problems for which explicit 
-methods don't work". It is hard to make this definition more mathematically 
-precise, but this 
-%is without a doubt a consistent issue for models parameterized 
-%so that $\frac{B^*}{\bar B(0)}$ is greater than $\frac{1}{2}$. Euler's method, as often 
-%implemented, is particularly poorly suited for these stiff regions of parameter
-%space. In these stiff regions it is necessary to integrate the ODE with an 
-%implicate integration method. 
-
-%
-Several of the most common implicate methods were tried including the 
-Livermore Solver for ODEs (lsode), and the Variable Coefficient ODE Solver 
-(vode) as implemented in the deSolve package of R ({\color{red}cite}). The 
-difference between implicate solvers is negligible, while most explicate 
-methods result in wildly varying solutions to the ODE, and in still regions of 
-parameter space explicate methods completely fail to represent the model as 
-stated in the stiff regions of parameter space. Results shown here are computed 
-using the lsode integration method since it runs relatively quickly and has a 
-relatively smaller footprint in system memory.  
-}
-
-}
-
-%Too stiff for Euler,
-%avoid chaos, and
-%implicit methods
-%} 
-
-%%
-%quickly address uniqueness conditions.\\ 
-%%
-%interpolation and the regularity of solutions.\\
-%
-%https://tutorial.math.lamar.edu/Classes/DE/IoV.aspx
-%
-%https://tutorial.math.lamar.edu/Classes/CalcI/Continuity.aspx
-%
-%http://mathonline.wikidot.com/continuity-of-functions-defined-by-lebesgue-integrals
-
-%Additionally this profile likelihood approach 
-%alleviates the aforementioned numerical difficulties brought about by the lesser modes induced by $q$multimodality issues described around the when maximizing the joint likelihood.  
-
-
-%Since both \hat q(\bm{\theta}) and \hat \sigma^2(\bm{\theta}) 
-
-
-\end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
