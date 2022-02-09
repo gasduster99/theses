@@ -211,7 +211,7 @@ a = exp(log(cMax)-b*mid)
 rSlope = (cMax-1)/(mid-1)
 rb = 2*rSlope*mid + cMax-rSlope*mid
 FtFmsy = a*exp(b*time[time<=mid])
-FtFmsy = c( FtFmsy, approx(c(mid, TT), c(cMax, 0), time[time>mid])$y )
+FtFmsy = c( FtFmsy, approx(c(mid, TT), c(cMax, 1), time[time>mid])$y )
 #FtFmsy = (a*exp(b*time))*(time<=mid) + (-rSlope*time+rb)*(time>mid)
 #
 FtFmsy = c(FtFmsy, rep(1, 60))

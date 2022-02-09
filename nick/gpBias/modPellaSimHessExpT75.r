@@ -211,7 +211,7 @@ a = exp(log(cMax)-b*mid)
 rSlope = (cMax-1)/(mid-1)
 rb = 2*rSlope*mid + cMax-rSlope*mid
 FtFmsy = a*exp(b*time[time<=mid])
-FtFmsy = c( FtFmsy, approx(c(mid, TT), c(cMax, 0), time[time>mid])$y )
+FtFmsy = c( FtFmsy, approx(c(mid, TT), c(cMax, 1), time[time>mid])$y )
 #FtFmsy = (a*exp(b*time))*(time<=mid) + (-rSlope*time+rb)*(time>mid)
 #
 FtFmsy = c(FtFmsy, rep(1, 45))
@@ -234,7 +234,7 @@ odeMethod = "lsode"
 #zetaSims = seq(0.4, 0.5, 0.025) #(seq(0.1, 0.9, 0.01)) #rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
 #xiSims =   (seq(3, 4, 0.25)) #(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
 zetaSims = (seq(0.15, 0.7, 0.05))    #0.65 #seq(0.1, 0.9, 0.05) #(seq(0.1, 0.9, 0.01)) #rev(seq(0.15, 0.7, 0.01)) #rev(seq(0.1, 0.8, 0.05)) #rev(seq(0.1, 0.8, 0.01)) 	
-xiSims = rev(seq(0.5, 3.5, 0.05))  #rev(seq(0, 4, 0.5)) #(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
+xiSims = (seq(0.5, 3.5, 0.05))  #rev(seq(0, 4, 0.5)) #(seq(0.5, 4.5, 0.05))  #rev(seq(0.5, 3.5, 0.05)) 		#c(seq(0.5, 3.5, 0.25)) #rev(seq(0.5, 3.5, 0.05))	
 #zetaSims = (seq(0.45, 0.65, 0.1))    	
 #xiSims = rev(seq(0.5, 4.5, 0.05))
 
