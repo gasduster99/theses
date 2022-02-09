@@ -22,7 +22,7 @@
 \usepackage[]{apacite}
 \usepackage{wrapfig}
 %\usepackage{relsize}
-%\usepackage{dsfont}
+\usepackage{dsfont}
 
 \hypersetup{colorlinks   = true, %Colors links instead of ugly boxes
             urlcolor     = blue, %Color for external hyperlinks
@@ -55,7 +55,11 @@
 }
 
 \begin{document}
-\thispagestyle{first}
+
+
+
+
+%\thispagestyle{first}
 %\linenumbers
 
 %\begin{itemize}
@@ -94,7 +98,7 @@
 %	\item ?MSEs?
 %	\item timeline (gant chart	
 %	\end{itemize}
-%\item Appendicies
+%\item Appendices
 %	\begin{itemize}
 %	%\item Appendix A: SRR exposition and examples
 %	\item Appendix A: SRR exposition and examples (reference to proposal section) 
@@ -113,29 +117,82 @@
 %\clearpage
 %%
 
+\title{Meta-Modeling for Bias Estimation of Biological Reference Points Under the Schaefer Model}
+\author{Nicholas Grunloh}
+\maketitle
+
+\abstract{
+Stock assessments often assume a two-parameter functional form 
+(e.g., Beverton-Holt or Ricker) for the expected recruitment produced by a 
+given level of spawning output. \shortciteA{mangel_perspective_2013} %Mangel et al. (2013) 
+and others have shown that biological reference points such as $\frac{F^*}{M}$ 
+and $\frac{B^*}{\bar{B}(0)}$ are largely determined by a single parameter 
+(steepness) when using two-parameter relationships. These functions introduce 
+strong correlations between reference points (RP) that are pre-determined by 
+the functional form, rather than a biological characteristic of the stock. 
+Mangel et al. note that use of a three-parameter stock-recruitment 
+relationship allows for independent estimation of these reference points. This 
+research seeks to understand the nature of biases in reference points 
+resulting from fitting a two-parameter logistic functional form when the true 
+relationship follows a three-parameter stock-recruitment relationship. This  %study's findings suggest the  
+work demonstrates the useful limits of the misspecified Schaefer model, and 
+the mechanisms of model failure which arise from mapping a three-dimensional 
+parameter space into two dimensions.
+%ecification of this type 
+%that biases are catch dependent the reduced
+%Index data are generated using production 
+%models with three parameter production functions and  subsequently fit using 
+%two-parameter relationships.  %My findings suggest that even modest model misspecification can induce large 
+%RP bias and can easily place naive model discretizations into regimes of 
+%chaotic dynamics.
+}
+
 %
+\clearpage
 \section{Introduction}
+
+%
+The most fundamental model in modern fisheries management is the surplus-production
+model. These models focus on modeling population growth via nonlinear parametric 
+ordinary differential equations (ODE). Key management quantities called reference 
+points (RP) are derived from the ODE equilibrium equations and depend upon the 
+parameterization of biomass production. Two-parameter parameterizations of the 
+production function have been shown to limit the theoretical domain of RPs 
+\shortcite{mangel_perspective_2013}. The limited RP-space of two parameter models
+are a major source of model misspecification for RPs and thus induce bias in 
+RP estimation. The behavior of RP estimation bias is not well understood and
+as a result often underappreciated. A meta-modeling approach is developed here 
+to describe RP biases and explore mechanisms of model failure. 
+
+%The ODE equilibrium equations Reference points (RP) are key mangeare derived quantities The equilibrium equation the ODE   
+%
+%%
+%Outline of surplus-production model setting
+%RPs
+%restricted parameter space therefore bias
+%demonstrating and utilizing bias
+%exploring bias 
 
 %NOTE: we can not observe all fish in the sea, and this rely on an index of abundance 
 %which typically comes from experimental fishing procedure(for example ccfrp).
-The most fundamental model in modern fisheries models is the surplus-production
-model. Data for a typical surplus-production model comes in the form of a time 
-series of observations of an index of abundance for some population of interest. 
-The index is often observed alongside a variety of other known quantities, 
-but at a minimum, each observed index will be observed in the presence of some 
-known catch for the period. The index of abundance is assumed to be proportional 
-to biomass with the proportionality constant being a nuisance parameter that is 
-often referred to as the catchability parameter. 
+Data for a typical surplus-production model comes in the form of an index 
+of abundance through time which is assumed to be proportional to the reproducing 
+biomass for the population of interest. The index is often observed alongside 
+a variety of other known quantities, but at a minimum, each observed index 
+will be observed in the presence of some known catch for the period. 
+%The index %of abundance is assumed to be proportional to biomass with the 
+%proportionality %constant being a nuisance parameter that is often referred to 
+%as the %catchability parameter
+%the stock. %a time %%series of observations of an index of abundance for some population of interest. 
 
 %{\color{red}Plot Index Series and Catches}
 \begin{figure}[h!]
 	\includegraphics[width=0.5\textwidth]{./plots/index.jpg}
 	\includegraphics[width=0.5\textwidth]{./plots/catch.jpg}
-	\caption{
+	\caption{\label{hakeData}
 	\textit{left}: An observed series of index of abundance data for Namibian Hake from 1965 to 1987 \protect\shortcite{hilborn_ecological_1997}.
 	\textit{right}: The associated catch data for Namibian Hake over the same time period.
 	}
-\label{hakeData}
 \end{figure}
 
 %
@@ -146,13 +203,15 @@ the following observation model arises naturally,
 I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2).
 \end{align}
 %
-Above $q$ is the catchability parameter and $\sigma^2$ models residual variation.
-Biologically speaking these parameters are often treated as nuisance parameters with
-the "biological parameters" entering the model thru a process model on biomass.
+Above $q$ is often referred to as the ``catchability parameter''; it serves as the %represents the %$ is often refered to as the catchability parameter and the catchability parameter and 
+proportionality constant mapping between the observed index of abundance and biomass. 
+$\sigma^2$ models residual variation. Biologically speaking $q$ and $\sigma^2$ 
+are often treated as nuisance parameters with the ``biological parameters'' 
+entering the model through a process model on biomass.
 
 % 
-Biomass is assumed to evolve as an ordinary differential equation; in this case 
-I focus on the following form,
+Biomass is assumed to evolve as an ODE; in this case I focus on the following 
+form,
 %
 \begin{equation}
 \frac{dB}{dt} = P(B(t); \bm{\theta}) - C(t). \label{ode}
@@ -164,14 +223,14 @@ biomass into the population, and catches removing biomass from the population.
 %  %stock recruitment relationship (SRR). Recruitment 
 Firstly, the population grows through a production function, $P(B)$. Production 
 in this setting is defined as the net biomass increase due to all birth, 
-maturation, and migration processes after accounting for all other naturally 
-occurring sources of mortality other than the recorded fishing from humans. 
-The production function is assumed to be parametric function that relates the 
+maturation, and migration processes accounting for all naturally occurring 
+sources of mortality other than the recorded fishing from humans. The 
+production function is assumed to be a parametric function that relates the 
 current biomass of the population to an aggregate production of biomass. 
 
 %
-Secondly, the population decreases as biomass is removed due to catch 
-($C(t)$). While catches are observable quantities \shortcite{sen_sampling_1984, pearson_documentation_1997}, 
+Secondly, the population decreases as biomass is removed due to catch, $C(t)$. 
+While catches (aka yields) are observable quantities \shortcite{pearson_documentation_1997}, %sen_sampling_1984,  
 the model assumes that catch is proportional to biomass with the 
 proportionality constant representing the fishing rate, $F(t)$, so that $C(t)=F(t)B(t)$. 
 From a management perspective a major goal of the model is to accurately infer 
@@ -181,45 +240,47 @@ fishing all available biomass in that moment. This strategy is penny-wise but
 pound-foolish (not to mention ecologically devastating) since it doesn't leave 
 biomass in the population to reproduce for future time periods. We seek to 
 fish in a way that allows (or even encourages) future productivity in the 
-population. This is accomplished by maximizing the equilibrium level of catch (
-or yield) over time. Equilibrium yield is considered by replacing the steady 
-state biomass ($\bar B$) in the assumed form for catch, so that $\bar C = F\bar B(F)$, 
+population. This is accomplished by maximizing the equilibrium level of catch 
+over time. Equilibrium yield is considered by replacing the steady state 
+biomass ($\bar B$) in the assumed form for catch, so that $\bar C = F\bar B(F)$, 
 where $\bar~$ indicates a value at steady state.  Naturally the steady state 
 biomass is a function of $F$; we will see a specific example of this in 
-Section (\ref{ptRef}). MSY is found by optimizing $\bar C(F)$ with respect to $F$, 
-and $F^*$ is the fishing rate at MSY. Going forward let $^*$ decorate any value 
-derived under the condition of MSY. 
+Section (\ref{ptRef}). MSY is found by optimizing $\bar C(F)$ with respect to 
+$F$, and $F^*$ is the fishing rate at MSY. Going forward let $^*$ decorate any 
+value derived under the condition of MSY.  
 
 % to continue the species and produce  not only are there  however this has the {\color{red}a description of maximum sustainable yield}
 
+%
+%\clearpage
 
 %
-The canonical production model in fisheries is the Schaeffer model. The 
-Schaeffer model is formed by choosing $P$ to be logistic growth \shortcite{mangel_theoretical_2006} %({\color{red} cite}) 
-parameterized so that $\bm{\theta} = [r, K]$ so that the family of production 
+The canonical production model in fisheries is the Schaefer model. The 
+Schaefer model is formed by choosing $P$ to be logistic growth \shortcite{mangel_theoretical_2006} %({\color{red} cite}) 
+parameterized by $\bm{\theta} = [r, K]$ so that the family of production 
 functions takes the following form,  
 %
 \begin{align}
 P(B; [r, K]) = r B \left(1-\frac{B}{K}\right). \label{logistic}
 \end{align}
-$r$ is parameter controlling the maximum reproductive rate of the population 
+$r$ is a parameter controlling the maximum reproductive rate of the population 
 in the absence of competition for resources (i.e. the slope of SRR at the 
-origin).  $K$ is the so called "carrying capacity" of the population. The 
-carrying capacity can be formally stated as steady state biomass in the 
-absence of fishing (i.e. $\bar B(0)=K$).  
+origin). $K$ is the so called "carrying capacity" of the population. In this 
+context the carrying capacity can be formally stated as steady state biomass 
+in the absence of fishing (i.e. $\bar B(0)=K$).  
+
 %\begin{wrapfigure}{r}{0.5\textwidth}
 \begin{figure}[h!]
 \begin{minipage}[h!]{0.6\textwidth}
         \includegraphics[width=\textwidth]{./plots/srrSchaeffer.png}	
 \end{minipage}
 \begin{minipage}[h!]{0.37\textwidth}
-\caption{
-	\\The logistic production function in black plotted next to depictions of the key biological parmaeters and reference points.
-	The slope at the origin (and thus $r$) is shown in blue, catch at MSY in red, biomass at MSY in green, and $K$ in purple at the right x-intercept.	
+\caption{\label{srrSchaefer}
+	\\The logistic production function in black plotted next to depictions of the key biological parameters and reference points.
+	The slope at the origin (and thus $r$) is shown in blue, catch resulting in MSY in red, biomass at MSY in green, and $K$ in purple at the right x-intercept.	
 	MSY is seen at the peak of the parabola, and is attained with a fishing rate of $\frac{r}{2}$ and biomass equilibrating to $\frac{K}{2}$.
 }
 \end{minipage}
-\label{srrSchaeffer}
 %\end{wrapfigure}
 \end{figure}
 
@@ -229,13 +290,15 @@ absence of fishing (i.e. $\bar B(0)=K$).
 %writtting sustainable yield $\bar Y(F) = F\bar B(F)$.
 %}
 
+%%
+%\clearpage
 
 %
 The logistic production function produces idealized parabolic recruitment with 
 equilibrium quantities taking very simple forms that can be easily understood from the 
-graphical construction seen in Figure (\ref{srrSchaeffer}). Positive 
-recruitment is observed when $B\in(0, K)$. Due to the parabolic shape of the 
-logistic production function it is straightforward to see that yeild is maximized 
+graphical construction seen in Figure (\ref{srrSchaefer}). Positive 
+recruitment is observed when \mbox{$B\in(0, K)$.} Due to the parabolic shape of the 
+logistic production function it is straightforward to see that yield is maximized 
 by fishing the stock down to $B^*$, where the stock attains its peak productivity. 
 By symmetry it is clear that this peak occurs at $B^*=\frac{K}{2}$. The fishing 
 rate required to hold the stock at MSY is $F^*=\frac{r}{2}$, which is half of the 
@@ -253,14 +316,13 @@ stock's maximum reproductive rate at the origin.
 %this assumption should be true? 
 %}
 
+%\clearpage
 %Furthermore, and more practically, 
-While this idealized form of the logisitc production function is instructive, and 
-convenient, the simplistic dynamics it implies are also potentially problematic.
-
-%
-Fisheries are very often managed based upon reference points (RP) which serve as 
+%While this idealized form of the logistic production function is instructive, and 
+%convenient, the simplistic dynamics it implies are also potentially problematic.
+Fisheries are very often managed based upon reference points which serve as 
 simplified heuristic measures of population behavior. The mathematical form of 
-RPs depends upon the model assumptions primarily through the production function %({\color{red} cite}). 
+RPs depends upon the model assumptions through the production function. %({\color{red} cite}). 
 Here the focus is primarily on the RPs $F^*$ and $\frac{B^*}{\bar B(0)}$. 
 
 %%
@@ -272,15 +334,16 @@ Here the focus is primarily on the RPs $F^*$ and $\frac{B^*}{\bar B(0)}$.
 %\end{align}
 
 %
-$F^*$ is the afore mentioned fishing rate at MSY. $\frac{B^*}{\bar B(0)}$ is the 
-depletion of the stock at MSY. That is to say $\frac{B^*}{\bar B(0)}$ describes 
-the fraction of the population to fish (or rather not to fish) to result in MSY.  
+$F^*$ is the afore mentioned fishing rate which results in MSY. $\frac{B^*}{\bar B(0)}$ 
+is the depletion of the stock at MSY. That is to say $\frac{B^*}{\bar B(0)}$ describes 
+the fraction of the unfished population biomass that will remain in the equilibrium 
+at MSY. In general $F^*\in\mathbb{R}^+$ and \mbox{$\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$,} 
+however under the under the assumption of logistic production these 
+quantities take the following form,  
+%to fish (or rather not to fish) to result in MSY.  
 %based upon$\xi$ is the optimal (in the MSY sense) fishing rate rescaled so that it is in 
 %terms relative to natural mortality. $\zeta$ is the biomass at MSY relative 
 %to the unfished virgin biomass of the population. 
-In general $F^*\in\mathbb{R}^+$ and $\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$, 
-however under the under the assumption of logistic production these 
-quantities take the following form,  
 
 %
 \begin{align}
@@ -290,27 +353,190 @@ quantities take the following form,
 so that $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}{2}\right)$.
 
 %
-In practice, at this time, the production function is typically chosen to depend 
-only on two parameters. The Schaeffer model as presented depends only on 
-the biological parameters $r$ and $K$, but other common two parameter choices 
-of the production function are the Beverton-Holt (BH) and Ricker curves. All
-of these two parameter production functions struggle similarly to model the full 
-theoretical space of RPs \shortcite{mangel_perspective_2013}.
+In current practice, production functions are typically chosen to depend only 
+on two parameters. The Schaefer model as presented depends only on
+the biological parameters $r$ and $K$, but other common two parameter choices
+of the production function are the Beverton-Holt \shortcite[BH]{beverton_dynamics_1957} 
+and Ricker \shortcite{ricker_stock_1954} curves. All of these two parameter 
+production functions struggle similarly to model the full theoretical space of 
+RPs \shortcite{mangel_perspective_2013}.
+
+%The Schaefer model is a much loved and argued over model
+The basis of the Schaefer model is ripe with debate \shortcite{kingsland_refractory_1982},
+and the debate continues within modern fisheries modeling \shortcite{prager_comparison_2002}. 
+On the one hand, \shortciteA{maunder_is_2003} argues that the Schaefer model is 
+insufficient in large part due to the restriction it places on $\frac{B^*}{\bar B(0)}$, 
+at $\frac{1}{2}$, and further argues that the three parameter Pella-Tomlinson 
+(PT) model should replace the Schaefer model to avoid biased parameter 
+estimates. On the other hand, while \shortciteA{prager_reply_2003} appreciates 
+the limitations of the Schaefer model, he argues its usefulness as a well 
+understood and simple model that has the ability to reasonably 
+approximate dynamics in many data poor stocks. %productivity shapes. 
+
+%%
+%{\color{red} add to into}
+%bias-variance tradeoff schaefer high bias, low variance setting. Bias 
+%is the dominant source of estimation error. Variance estimates will be 
+%unrealistically low due to the limited parameter space.
+%
+%%and conversly a two parameter production function will have estimation errrosd. 
+%The argument of \shortciteA{maunder_is_2003} suggests that the two parameter 
+%Schaefer model overly restricts parameter space so that estimation error is unduly 
+%dominated by bias.
+%
+%as to overly limit estimate varianceso that estimation error is unduly dominated by bias.
+%
+%estimation errors of the two parameter Schaeffer model are unduly dominated by bias
+%
+% sincethe limited parameter 
+%space of the Schaefer model 
 
 %
-In this study I consider the behavior of inference when using the Schaeffer model 
-to fit data that are generated from only a slightly more complex production 
-function which can full accomodate RP space. Namely data are simulated from the %can full accomidate the full space of RPs. I consider data simulated from the 
-three parameter Pella-Tomlinson (PT) production model. Since the Schaeffer model 
-is more restrictive than the PT model, estimates of RPs arrived at from the Schaeffer 
-model must neccessarily be biased realative to the true PT RPs. Given the ubiquity 
-of two parameter productions functions in management it is of paramount 
-imporantance to understand the biasing lens through which we've come to understand 
-our fisheries.
+The bias-variance trade-off \shortcite{ramasubramanian_machine_2017} makes it 
+clear that the addition of a third parameter in the production function will 
+necessarily reduce estimation bias. However the utility of this bias reduction 
+is still under debate because the particular mechanisms and behavior (direction and magnitude) %over relevant RPs %and mechanisms %behavior 
+of these biases for key management quantities %(and the mechanisms of inducing these biases) 
+are not fully understood or described. \shortciteA{lee_can_2012} provides some 
+evidence that steepness estimation, and thus RPs via \shortcite{mangel_perspective_2013}, 
+is dependent on biomass contrast as well as model specification. % as well as contrast in data %lacking contrast in biomass. 
+\shortciteA{conn_when_2010} comes to similar conclusions about steepness estimation
+via calibration modeling techniques. Despite this understanding of steepness estimation
+the implications have not been extended to a joint description of biases on the scale of 
+management RPs. % biases jointly.
+
+%The particular behaviors of thesie RP biases, 
+%and their relationship to each other, are not fully described.  
+
+%Add GOAL of understanding directionality and mechanism of bias.
+%Add claim of novelty by recognizing that bias is a function of RP, a flexible method of propagating estimation uncertainty and accounting for nonlinear bias patterns.
+Together the general behavior of the PT model and the pragmatic understandable 
+simplicity of the Schaefer model make the PT/Schaefer pair an ideal setting for 
+beginning to understand the consequences of model misspecification on the 
+production function. In this study I consider the behavior of inference when 
+data are simulated from the three parameter PT production model but fit with 
+the two parameter Schaefer model. 
+
+%
+The work begins with a derivation of RPs under the three parameter PT model. 
+The parametric forms of RPs under the PT model are then inverted to develop a 
+simulation setting for analyzing inference under the two parameter Schaefer 
+model. Finally a Gaussian Process (GP) meta-model is constructed for exploration 
+and analysis of RP biases. 
+
+%
+A key insight of this approach is that bias is considered broadly across RP-space to 
+uncover patterns and correlations between RPs. %f bias magnitude and direction. 
+%A flexible Gaussian Process (GP) meta-modeling approach is used to model bias 
+%patterns across RP-space. 
+GP meta-model is explicate about trade-offs between RPs %to the surface bias tradeoffs to the surface to 
+so as to inform the full utility of reducing bias, as well suggest mechanisms for 
+understanding what causes bias. Further, the effect of contrast on estimation 
+is considered together with model misspecification. %alongside the effect of model misspecification.  
+
+
+
+
+%Inverting the RP parametric forms is used to develop a simulation setting for 
+%controlling the degree and nature of model misspecification 
+
+%%
+%{\color{gray}
+%\begin{itemize}
+%\item[\checkmark] Lead into this reaserch with other studies (Lit review)
+%\item Emphasize a clear statement of the study goal
+%\item a statement of novelty
+%	\begin{itemize}
+%	\item[\checkmark] model misspecification leads to bias
+%	\item[Sorta] non-constant bias of RP-space (a wholistic summary of model performance.)
+%	\item[Sorta] methodology to account for bias in the presence of uncertainty
+%	\end{itemize}
+%\end{itemize}
+%}
+
+%using the two parameter Schaefer model to fit data that are generated from 
+
+
+
+%Since the Schaefer model is more restrictive than the PT model, estimates of RPs 
+%arrived at from the Schaefer model must necessarily be biased relative to the 
+%true PT RPs. Given the ubiquity of two parameter productions functions in 
+%management it is of paramount importance to understand the biasing lens 
+%through which we've come to understand our fisheries.
+
+
+
+%only a slightly more complex production function which can full accommodate RP space. 
+%Namely data are simulated from the %can full  the full space of RPs. I consider data 
+%simulated from the 
+%three parameter Pella-Tomlinson (PT) production model. 
+
+
+
+%%
+%In practice, at this time, the production function is typically chosen to depend 
+%only on two parameters. The Schaefer model as presented depends only on 
+%the biological parameters $r$ and $K$, but other common two parameter choices 
+%of the production function are the Beverton-Holt (BH) and Ricker curves. All
+%of these two parameter production functions struggle similarly to model the full 
+%theoretical space of RPs \shortcite{mangel_perspective_2013}.
+
+
+
+%{\color{gray}
+%%
+%Schaeffer model clearly insufficient but can be made to estimate some parameters correctly Prager 2002, Prager 2003.
+%Francis 2012/Lee 2011
+%        assessment model correctly specified
+%Lee 2012
+%        contrast estimate steepness
+%Instructive in its simplicity Prager 2003.
+%
+%%
+%PT generalizes Schaefer Maunder 2003
+%Three parameter PT should supplant Schaefer
+%
+%%
+%Other functions recommended in practice BH Punt 2005 or Ricker. 
+%Although statistically differentiating the models is difficult Dorn 2002, Brodziak 2002 
+%BH and Ricker suffer from the similar model deficiencies Mangle 2013 as the Schaeffer does for the PT relating the reduced decrees of freedom in the parameter space.
+%
+%%
+%Punt 2019 move toward 3 parameter models
+%
+%%
+%Punt 2019 move toward 3 parameter models
+%Punt 2005 recommends BH and expansion into 3 parameters
+%Maunder 2003
+%	PT generalizes and should supplant Schaeffer
+%	"shape" parameter B*/B0
+%	Bias variance trade off between PT3 Vup/Bdown and Logistic Vdown/Bup
+%Francis 2012/Lee 2011
+%	assessment model correctly specified
+%Lee 2011
+%	contrast estimate steepness
+%Field 2009 Bacaccio BH v. Stanly 2009 Ricker 
+%zeta=0.39		  zeta=0.5
+%
+%%
+%\begin{itemize}
+%\item[\checkmark] Lead into this reaserch with other studies (Lit review)
+%\item Emphasize a clear statement of the study goal
+%\item a statement of novelty
+%	\begin{itemize}
+%	\item[\checkmark] model misspecification leads to bias
+%	\item[Sorta] non-constant bias of RP-space (a wholistic summary of model performance.)
+%	\item[Sorta] methodology to account for bias in the presence of uncertainty
+%	\end{itemize}
+%\end{itemize}
+%}
+
+
+
 
 %and subsequently fit these 
-%data using the two parameter Schaeffer model to observe the consequences of 
-%SRR model-misspecification with special interest on RF management quantities.  
+%data using the two parameter Schaefer model to observe the consequences of 
+%SRR model-misspecification with special interest on RP management quantities.  
 
 %%than the most commonly used in practice but
 %{\color{gray}
@@ -319,9 +545,9 @@ our fisheries.
 %Nature does not generate data from a simple model. However, what would happen if 
 %nature were even just slightly more complex than the most commonly used fisheries 
 %models? I consider data simulated from the three parameter Pella-Tomlinson (PT) 
-%SRR model, and subsequently fit these data using the two parameter Schaeffer 
+%SRR model, and subsequently fit these data using the two parameter Schaefer 
 %model to observe the consequences of SRR model-misspecification with special 
-%interest on RF management quantities.  
+%interest on RP management quantities.  
 %}
 
 %What would happen if 
@@ -331,14 +557,14 @@ our fisheries.
 %
 %%
 %Data are simulated from the three parameter Pella-Tomlinson SRR model, and 
-%subsequently fit using the two parameter Schaeffer model. RP 
+%subsequently fit using the two parameter Schaefer model. RP 
 %%
 %{\color{red} Outline simulation goal, end introduction, and start methods.}
 
 %\begin{itemize}
 %\item[\checkmark] introduce fisheries type data
 %\item[\checkmark] ODE modeling formulation
-%\item[\checkmark] Schaeffer Model (Logistic production function)
+%\item[\checkmark] Schaefer Model (Logistic production function)
 %\item[\checkmark] Reference Points
 %{\color{gray}\item Pella-Tomlinson production function}
 %\item[\checkmark] general simulation idea
@@ -346,6 +572,7 @@ our fisheries.
 
 
 %
+\clearpage
 \section{Methods}
 
 %Construct RP under PT production
@@ -356,7 +583,7 @@ our fisheries.
 %{\color{gray}
 %Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
 The three parameter PT family has a convenient form that includes the logistic 
-SRR as a special case to form the Schaeffer model. The Pella-Tomlinson SRR is 
+SRR as a special case to form the Schaefer model. The Pella-Tomlinson SRR is 
 parameterized so that $\bm{\theta} = [r, K, \gamma]$ and the family takes the 
 following form, %Pella Tomlinson
 \begin{align}
@@ -378,13 +605,15 @@ recruitment shapes that can be achieved by PT recruitment.
 \begin{figure}[h!]
 	\includegraphics[width=0.5\textwidth]{./plots/srr1.1.png}	
 	\includegraphics[width=0.5\textwidth]{./plots/srr2.png}
-	\caption{
+	\caption{\label{srrPT}
 	(\emph{left}) PT production functions with parameters chosen so that MSY is consistent, but $\frac{B^*}{\bar B(0)}$ is less than $\frac{1}{2}$ (in red), greater than $\frac{1}{2}$ (in blue), or equal to $\frac{1}{2}$ (in black; logistic production function).
 	(\emph{right}) 
-	}
-	\label{srrPT}
+	}	
 \end{figure}
 %\end{wrapfigure}
+
+%
+%\clearpage
 
 %
 While the particular form of how $\gamma$ appears in PT still produces some 
@@ -494,14 +723,14 @@ fit with a two parameter Schaefer model.
 %Let $\tilde~$ decorate any quantity that is derived under the restricted two 
 %parameter SRR.\\ Collapse to the case of Schaefer. Similarly to Eq(\ref{
 %logisticSRR}) setting $\gamma=2$ results in the equilibrium equations for the 
-%restricted schaefer model.  
+%restricted Schaefer model.  
 %} 
 
 %speaking it is not possible to analytically invert this  
 Generating simulated indices of abundance from the PT model requires 
 inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and 
 $(r, \gamma)$. It is not generally possible to analytically invert this 
-relationship for many three parameter production functions{(\color{red}cite Derizo paper)}. 
+relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
 Most three parameter production functions lead to RPs that require expensive 
 numerical methods to invert; more over the numerical inversion procedure is 
 often extremely unstable. That said, for the case of PT this relationship is 
@@ -520,15 +749,18 @@ analytically invertible, and leads to the following relationship
 %}
 
 %
+\clearpage
+
+%
 Indices are generated under the following conditions. Data are simulated at
 each point on the grid $\mathcal{F}\times\mathcal{B}$, with $F^*\in\mathcal{F}$ 
 and $\frac{B^*}{\bar B(0)}\in\mathcal{B}$, where $\mathcal{F}=\{0.1, 0.2, ..., 0.7\}$ 
 and $\mathcal{B}=\{0.2, 0.3, ..., 0.6\}$ as seen in Figure (\ref{rpGrid}).  
 These ranges of values for $F^*$ and $\frac{B^*}{\bar B(0)}$ are selected to 
-include the majority of most commonly assesed fish species {\color{red}cite}. 
-The red X's in Figure (\ref{rpGrid}) show four 4 simulation locations where the 
-Schaeffer model is misspecified to a large degree and will be considered in more 
-detail in {\color{red}Section()}. For each $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, 
+include the majority of most commonly assessed fish species {\color{red}cite}. 
+The red X's in Figure (\ref{rpGrid}) show four simulation locations where the 
+Schaefer model is misspecified to a large degree and will be considered in more 
+detail in Section(\ref{flat}). For each $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, 
 the associated pair $(r, \gamma)$ are computed from Eq (\ref{rg}). Since $K$ 
 does not enter the RP calculation its value is fixed arbitrarily at 10000.  %A relatively large value of $K$ is selected to allow a full range of population dynamics to be defined in this setting. The value of $M$ is fixed at 0.2 to represent {\color{red}species}. 
 The value of $q$ is fixed at a typically small value of 0.0005. $\sigma$ is 
@@ -542,14 +774,13 @@ model for the purposes of generating index data for each $\left(F^*, \frac{B^*}{
 \includegraphics[height=0.37\textheight]{../present/shaeferDat.png}
 \end{minipage}
 \begin{minipage}[h!]{0.48\textwidth}
-\caption{
+\caption{\label{rpGrid}
 Open circles show the location of the simulation grid $\mathcal{F}\times\mathcal{B}$.
-The horizontal line shows the constrained space of RPs for the Schaeffer model.
-The red X's indicated 4 simulation locations where the Schaeffer model is a particularly 
+The horizontal line shows the constrained space of RPs for the Schaefer model.
+The red X's indicated 4 simulation locations where the Schaefer model is a particularly 
 misspecified.
 }
 \end{minipage}
-\label{rpGrid}
 \end{figure}
 
 %
@@ -562,30 +793,32 @@ misspecified.
 
 %
 It is known that the behavior of catch can effect inference on the biological 
-parameters ({\color{red} cite hilborn, cite walters}). In particular it is 
-understood that catch data must induce "contrast" in {\color{orange} index data
-} so as to well inform $r$. It is not well understood how contrast may factor 
-into biases induced by model misspecification. To investigate the role that 
-catch plays in understanding model misspecification errors a variety of 
-catches are investigated.  
+parameters \shortcite{hilborn_quantitative_1992}. % {\color{red} cite walters}). 
+In particular it is thought that catch data can induce "contrast" in index data
+so as to better inform $r$. It is not well understood how contrast may factor 
+into biases induced by model misspecification. To investigate this a variety of
+catches are investigated.
+%the role that 
+%catch plays in understanding model misspecification errors a variety of 
+%catches are investigated.  
 
 %
 Catch is parameterized so that $F(t)$ can be controlled with respect to $F^*$. 
 Recall that catch is assumed to be proportional to biomass with the 
 proportionality constant amounting to the fishing rate, so that $C(t)=F(t)B(t)$. 
-To control $F(t)$ with respect to $F^*$, $C(t)$ is specified by a defining the 
-quantity $\frac{F(t)}{F^*}$ as the realative fishing rate. $B(t)$ is defined 
+To control $F(t)$ with respect to $F^*$, $C(t)$ is specified by defining the 
+quantity $\frac{F(t)}{F^*}$ as the relative fishing rate. $B(t)$ is defined 
 by the solution of the ODE, and $F^*$ is defined by the biological parameters 
-of the model, see Eq({\color{red}PT, Schaeffer}).  Thus by defining 
+of the model, see Eq(\ref{Fmsy}).  Thus by defining 
 $\frac{F(t)}{F^*}$, catch can then be written as $C(t)=F^*\left(\frac{F(t)}{F^*}\right)B(t)$.  
 
 %
 Intuitively $\frac{F(t)}{F^*}$ describes the fraction of $F^*$ that $F(t)$ is  
 specified to for the current $B(t)$. When $\frac{F(t)}{F^*}=1$, $F(t)$ will be 
 held at $F^*$, and the solution of the ODE brings $B(t)$ into equilibrium at 
-$B^*$. For constant $\frac{F(t)}{F^*}$ the Schaeffer model has an anylitical 
+$B^*$. For constant $\frac{F(t)}{F^*}$ the Schaefer model has an analytical 
 solution, via integrating factors, so that $B(t)$ comes to equilibrium 
-exponenitally. The relative fishing rate is defined on $[0, \infty)$; when 
+exponentially. The relative fishing rate is defined on $[0, \infty)$; when 
 $\frac{F(t)}{F^*}<1$, $F(t)$ is lower than $F^*$ and $B(t)$ is pushed toward 
 $\bar B>B^*$. Contrarily, when $\frac{F(t)}{F^*}>1$, $F(t)$ is higher than 
 $F^*$ and $B(t)$ is pushed toward $\bar B<B^*$; the precise values of $\bar B$
@@ -596,26 +829,26 @@ In practice, catch is determined by a series of observed, assumed known, catches
 Catch observations are typically observed on a quarterly (or yearly) basis, so 
 that the ODE may be discretized via Euler’s method with integration step sizes 
 to match the observation frequency of the modeled data. In this case, catch is sampled 
-as would be done in practice however, the simulation can encounter a variaty of issues 
-working with the naively discretized ODE. As a result the ODE is integrated implicatly 
+as would be done in practice however, the simulation can encounter a variate of issues 
+working with the naively discretized ODE. As a result the ODE is integrated implicitly 
 via the Livermore Solver (lsode), and catch is linearly interpolated between sampled 
-epocs. More detail about issues of continuity and ODE integration are described in 
+epochs. More detail about issues of continuity and ODE integration are described in 
 Appendix (\ref{appODE}).
 
 %\begin{itemize}
 %	%\item how its parameterized
-%	%\item different behaviours
+%	%\item different behaviors
 %	%\item contrast
 %	\item Forcing function
 %	\item continuity and the solution of ODEs
 %\end{itemize}
 
 %
-\subsection{Model Fitting}
+\subsection{Model Fitting\label{modelFit}}
 
 %
 The goal of model fitting is to assess how the biological parameters of the 
-two parameter Schaeffer model behave under MLE inference when fit to PT data. 
+two parameter Schaefer model behave under MLE inference when fit to PT data. 
 Thus, let $I_t$ be an observation of PT index data at time $t$. The observation 
 model is log-normal such that,
 
@@ -624,7 +857,7 @@ model is log-normal such that,
 I_t| q, \sigma^2, \bm{\theta} \sim LN(qB_t(\bm{\theta}), \sigma^2).
 \end{align}
 
-For the Schaeffer model $\bm{\theta}=[r, K]$, and $B_t(\bm{\theta})$ is defined 
+For the Schaefer model $\bm{\theta}=[r, K]$, and $B_t(\bm{\theta})$ is defined 
 by the solution of the following ODE
 
 %
@@ -645,8 +878,8 @@ inferential effects of model misspecification on biological parameters.
 $\sigma^2$, $r$, and $K$ are reparameterized into the log scale as 
 $log(\sigma^2)$, $log(r)$, and $log(K)$ and fit via MLE. $\sigma^2$ is
 allowed to be fit to assess overall model fit. Reparameterization 
-of the parameters into the log scale improves the relability of optimization
-in addition to facilitating the use of hessian information for parameter 
+of the parameters into the log scale improves the reliability of optimization
+in addition to facilitating the use of Hessian information for parameter 
 estimate standard errors.
 %$r$ and $K$ are reparameterized as $log(r)$ and $log(K)$ to improve the regularity of 
 
@@ -655,24 +888,24 @@ Given that the biological parameters enter the likelihood via a nonlinear ODE,
 and further the parameters themselves are related to each other nonlinearly, 
 the likelihood function can often be difficult to optimize. A hybrid optimization 
 scheme is used to maximize the log likelihood to ensure that a global MLE solution 
-is found. The R package GA ({\color{red} cite GA}) is used to run a genetic 
-algorithm to explore parameter space globally. Optimization occasional jumps into 
-the L-BFGS-B local optimizater to refine optima within a local mode. The scheme 
-functions by searching globally to iteratively improving hot starts for the local 
-optimizer. 
+is found. The R package GA \shortcite{scrucca_ga_2013, scrucca_extensions_2017} is 
+used to run a genetic algorithm to explore parameter space globally. 
+Optimization occasional jumps into the L-BFGS-B local optimizer to refine 
+optima within a local mode. The scheme functions by searching globally to 
+iteratively improving hot starts for the local optimizer. 
 
 %
 In Appendix (\ref{appMLE}) a profile likelihood method for estimating all of the 
 parameters of the model is derived. The profile likelihood technique greatly 
 improves the reliability of local optimizers when fitting the biological parameters 
 alongside additional nuisance parameters. The catchability parameter $q$ has the 
-effect of rescaling biomass which can often function similarly the role of the 
+effect of rescaling biomass which can often function similarly to the role of the 
 carrying capacity parameter $K$. Thus, the structure of the likelihood may 
 confound $q$ and $K$, and for some data these parameters may only be weakly 
-identifiable. Posing the model in a Bayesian context provides a convienient 
+identifiable. Posing the model in a Bayesian context provides a convenient 
 mechanism for managing these weak identifiability issues. In a tactful Bayesian 
 formulation $q$ and $\sigma^2$ may then be marginalized out of the joint posterior 
-to yeild fast and reliable inference ({\color{red} Cite Maria DeYorio pdf}).
+to yield fast and reliable inference \shortcite{deyoreo_integrating_2012}. %deyoreo_integrating_nodate}. %({\color{red} Cite Maria DeYorio pdf}).
 
 
 %{\color{red} $q$ procedure}
@@ -689,15 +922,15 @@ to yeild fast and reliable inference ({\color{red} Cite Maria DeYorio pdf}).
 
 %
 For assessing biological parameters over the simulated grid, as seen in 
-Figure(\ref{rpGrid}), a Gaussian Process (GP) model is used as a flexible, 
-stochastic interpolator over RP space. As previously estabilised, in 
-Section (\ref{}), the biological parameters of interest are the Shaeffer model's 
-$log(r)$ and $log(K)$ parameters. Since the estimates of these parameters are 
-random variables, with variances given by the inverse of the observed fisher 
-information, interpolation of MLEs requires paying additional attention to 
-propogating estimates of uncertainty into the metamodel. 
+Figure(\ref{rpGrid}), a GP model is used as a flexible, stochastic interpolator 
+over RP space. As previously established, in Section (\ref{modelFit}), the 
+biological parameters of interest are the Schaefer model's $log(r)$ and $log(K)$ 
+parameters. Since the estimates of these parameters are random variables, with 
+variances given by the inverse of the observed fisher information, 
+interpolation of MLEs requires paying additional attention to propagating 
+estimates of uncertainty into the metamodel. 
 
-{\color{red} Motivate gaussianity}
+%{\color{red} Motivate gaussianity?}
 
 %
 A GP is a stochastic process generalizing the normal distribution to an
@@ -713,7 +946,7 @@ fills out the covariance matrix for the observations.
 %Since covariance between $log(r)$ and $log(K)$ are often indistinguishable 
 %form 0 the interpolator treats
 Modeling the estimates of $log(r)$ and $log(K)$ with independent GP models is 
-used to extend analysis of all major biological RP over the simluated grid. 
+used to extend analysis of all major biological RP over the simulated grid. 
 Let $\hat\mu$ be the maximum likelihood estimate (MLE) of either $log(r)$ or 
 $log(K)$. Additionally let $\hat\omega$ be the inverted Hessian information of 
 the log likelihood evaluated at $\hat\mu$. 
@@ -731,18 +964,18 @@ reference points as the following GP,
         \epsilon_i &\sim \text{N}(0, \hat\omega_i).
 \end{align}
 %
-The GP residual variation provides an ideal mechanism for propogating uncertainty 
+The GP residual variation provides an ideal mechanism for propagating uncertainty 
 from inference in the simulation step into the metamodel. $\hat\omega_i$ is the 
 observed residual variation for the inferred value, $\hat\mu_i$. This mechanism 
 down weights the influence of each $\hat\mu_i$ in proportion to the inferred 
-sampling distribuition uncertainty. This has the effect of smoothing the GP 
-model in a way similar to the knugget effect. ({\color{red} cite knugget paper})
-% from inference in thesimulation step. 
+sampling distribution uncertainty. This has the effect of smoothing the GP 
+model in a way similar to the nugget effect \shortcite{gramacy_cases_2012}. %({\color{red} cite nugget paper})
+% from inference in the simulation step. 
 %This allows for the full propagation of inferred information 
 %from the simulation step to be propagated into the reference point meta-model.
 
 %The GP residual 
-%variation provides an ideal mechanism for propogating this uncertainty while 
+%variation provides an ideal mechanism for propagating this uncertainty while 
 %allowing for a wide class of flexible interpolating functions.
 
 %
@@ -792,301 +1025,620 @@ derived for metamodel interpolation.
 \section{Results}
 
 %
-\begin{align}
-        \check F^* = \frac{\check r}{2} ~~~~~~~~
+While interpolation occurs in the space of either $\log(r)$ or $\log(K)$, these 
+interpolated values are used to build interpolated estimates of major biological 
+reference points. Using the interpolated values $\check{\log(r)}$ and $\check{\log(K)}$
+the following transformation are applied to interpolate RP quantities under the Schaefer 
+model,
+%
+\begin{align}~
         \check B^* = \frac{\check K}{2} ~~~~~~~~
-        \check{MSY} = \frac{\check r \check K}{4} %\check r \check B^* \left(1-\frac{\check B^*}{\check K}\right)
+        %\check{MSY} = \frac{\check K \check r}{4} ~~~~~~~
+	\check F^* = \frac{\check r}{2}.  %\check r \check B^* \left(1-\frac{\check B^*}{\check K}\right)
 \end{align}
 
+%
+Using these interpolated RP quantities the bias induced by model misspecification is 
+quantified by the following relative measure of bias, similar to a percent error calculation.
 %
 \begin{align}
 \text{Relative Bias} = \frac{\check{RP}-RP}{RP}
 \end{align}
 
+%
+Above $RP$ is a stand in for the the true value of any of the biological 
+reference points under PT data generation, and $\check{RP}$ refers to the 
+interpolated estimated RP quantity under the Schaefer model.
 
+\subsection{An $MSY$-Optimal Catch History \label{flat}}
 
-%\vspace{-1cm}
-\begin{minipage}[h!]{0.33\textwidth}
-\hspace*{0.25cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}\\
-\hspace*{0.25cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png}
-\end{minipage}
-\begin{minipage}[h!]{0.33\textwidth}
-\hspace*{0.75cm}
-%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaFlatNoQ.png}\\
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchFlat.png}\\
-\hspace*{0.75cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaFlatNoQ.png}
-\end{minipage}
-\begin{minipage}[h!]{0.33\textwidth}
+%
+When $F(t)$ is held constant at $F^*$, $B(t)$ comes to equilibrium as an 
+exponential decay from $K$ to $B^*$. Understanding model misspecification bias 
+is simplified in this setting due to the relative simplicity of $B(t)$. 
+However this simplicity is known to poorly inform estimates of $r$, and thus $F^*$, 
+due to the limited range of the production function that is observed \shortcite{hilborn_quantitative_1992}. 
+This example is a "low contrast" setting.
+
+%
+Figure(\ref{flatTrio}) shows the biases in $F^*$ and $\frac{B^*}{\bar B(0)}$ 
+over the space of simulated RPs. The (\emph{top-right}) panel shows how data 
+generated across the broader space of RPs are mapped onto the limited space of 
+the Schaefer line. Below the Schaefer line, RP estimates are biased by 
+over-estimating $\frac{B^*}{\bar B(0)}$ and under-estimating $F^*$. Above the 
+Schaefer line the vice-versa is true; $\frac{B^*}{\bar B(0)}$ is under-estimated 
+and $F^*$ is over-estimated. In the (\emph{left}) and (\emph{bottom}) panels the bias 
+in $\frac{B^*}{\bar B(0)}$ and $F^*$ are shown component-wise; each panel showing 
+the same patterns, but focusing on only one component of the bias at a time. In 
+these panels red coloring indicates over-estimation of the RP and blue indicates 
+under-estimation. Notice that the region of RPs near the Schaefer line enjoy 
+relatively low bias since model misspecification is minor in this region.  
+
+%
+Notice that under the Schaefer model, Eq(\ref{Bmsy}) with $\gamma=2$, 
+%{\color{red} Mention biomass law of nature under Schaefer model. 
+$B^*$ is necessarily half of $K$. Since $\frac{B^*}{\bar B(0)}$ is always 
+$\frac{1}{2}$ under the Schaefer model, the bias in $\frac{B^*}{\bar B(0)}$ 
+(as seen in Figure(\ref{flatTrio})) simply measures the distance 
+from the data generating location vertically to the Schaefer line.  
+
+%makes
+%inference more difficult due to the lack of contrast ({\color{red}cite}). In particular, 
+%$r$, and thus $F^*$, are known to be poorly informed when a limited range of biomass is 
+%observed.
+
+%
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.49\textwidth}
+\hspace*{-0.5cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.png}\\
+%\hspace*{1cm}
+\caption{\label{flatTrio}
+Heatplots showing the bias in RP estimation induced by model misspecification. 
+In all cases the restricted RP-space of the Schaefer model is 
+shown as a horizontal black line at $\frac{B^*}{\bar B(0)}=0.5$.  
+(\emph{left}) Relative bias in $\frac{B^*}{\bar B(0)}$.  (\emph{top-right}) 
+Bias in RP-space shown directionally. Arrows point from the location where 
+data is generated, toward the location in on the Schaefer line where MLE 
+projects. The intensity of color shows the absolute error as a distance in 
+RP-space. (\emph{ bottom}) Relative bias in $F^*$.  
+}
+$~$\\$~$\\
+\end{minipage} 
+\begin{minipage}[h!]{0.49\textwidth} 
 \hspace*{1cm}
 \includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png}\\
 \hspace*{1cm}
 \includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png}
 \end{minipage}
-
-\begin{itemize}
-\item Biomass story
-\item Fmsy Story
-\item cite lack of contrast
-\item transition to contrast example
-\end{itemize}
-
-%
-\clearpage
-
-\begin{tabular}{ r|c|r|c|c }
-($\xi$, $\zeta$) & ($\hat \xi$, $\hat \zeta$) & $\hat K$ & $\hat r$ & $\hat \sigma$\\ \hline 
-(0.5, 0.6)      & (0.80, 0.5)  & 11982.7 & 0.30  & 0.048\\
-(3.5, 0.6)      & (4.70, 0.5)  & 11934.8 & 1.90  & 0.031\\ 
-(0.5, 0.2)      & (0.43, 0.5)  & 5769.3  & 0.17  & 0.282\\
-(3.5, 0.2)      & (1.52, 0.5)  & 4145.7  & 0.61  & 0.184
-\end{tabular}
-
-%%
-%{\color{red}
-%\begin{tabular}{ r|c|c|c|c|c|c }
-%($\xi$, $\zeta$) & $\hat \xi$ 	& $\hat \zeta$ 	& $\hat K$	& $\hat r$ & $\hat q$& $\hat \sigma$\\ \hline
-%(1.0, 0.2)      & 0.11  & 0.50  & 8915.7        & 0.04  & 5.5e-04       & 0.011\\
-%(1.0, 0.55)     & 1.5   & 0.5   & 9918.2        & 0.6   & 5.0e-04       & 0.014\\
-%(3.5, 0.6)      & 11.1  & 0.5   & 9980.0        & 4.5   & 4.9e-04       & 0.010\\
-%(3.5, 0.2)      & 0.24  & 0.50  & 8049.8        & 0.09  & 6.1e-04       & 0.011
-%\end{tabular}
-%}
-
-%
-\begin{minipage}[h!]{0.25\textwidth}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png}\\
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png}\\
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace*{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.2.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace*{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.2.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.2.png}
-\end{minipage}
-
-%
-\clearpage
-\begin{minipage}[h!]{0.33\textwidth}
-\hspace*{0.25cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpNoQ.png}\\
-\hspace*{0.25cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaExpNoQ.png}
-\end{minipage}
-\begin{minipage}[h!]{0.33\textwidth}
-\hspace*{0.75cm}
-%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaExpNoQ.png}\\
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchExp.png}\\
-\hspace*{0.75cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaExpNoQ.png}
-\end{minipage}
-\begin{minipage}[h!]{0.33\textwidth}
-\hspace*{1cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaExpNoQ.png}\\
-\hspace*{1cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpNoQ.png}
-\end{minipage}
-
-\begin{minipage}[h!]{0.33\textwidth}
-\hspace*{0.25cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png}\\
-\hspace*{0.25cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaExpT45.png}
-\end{minipage}
-\begin{minipage}[h!]{0.33\textwidth}
-\hspace*{0.75cm}
-%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaExpT45.png}\\
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchExpT45.png}\\
-\hspace*{0.75cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaExpT45.png}
-\end{minipage}
-\begin{minipage}[h!]{0.33\textwidth}
-\hspace*{1cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaExpT45.png}\\
-\hspace*{1cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png}
-\end{minipage}
-
-
-
-%
-\begin{figure}[h!]
-\begin{minipage}[h!]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{./plots/yBiasPellaP0100002.png}
-	\caption{This is a caption}	
-\end{minipage}
-\begin{minipage}[h!]{0.49\textwidth}
-	\includegraphics[width=\textwidth]{./plots/directionalBiasPellaP0100002.png}
-	\includegraphics[width=\textwidth]{./plots/xBiasPellaP0100002.png}
-\end{minipage}
 \end{figure}
-
-
-%\begin{minipage}[h!]{0.49\textwidth}
-%\includegraphics[width=\textwidth]{../gpBias/directionalBiasPellaP0100002.png}
-%\includegraphics[width=\textwidth]{../gpBias/xBiasPellaP0100002.png}
-%\includegraphics[width=\textwidth]{../gpBias/yBiasPellaP0100002.png}
-%\end{minipage}
-%\begin{minipage}[h!]{0.49\textwidth}
-%\includegraphics[width=\textwidth]{../gpBias/directionalBiasPellaP010000Matern.png}
-%\includegraphics[width=\textwidth]{../gpBias/xBiasPellaP010000Matern.png}
-%\includegraphics[width=\textwidth]{../gpBias/yBiasPellaP010000Matern.png}
-%\end{minipage}
-%\begin{itemize}
-%	\item[(1.0, 0.2)] r hits lower bound (aka alpha lower the bound)
-%	\item[(1.0, 0.2)] K hits lower bound (aka beta lower the bound)
-%\end{itemize}
-
-%
-\begin{figure}[h!]
-        \includegraphics[width=\textwidth]{./plots/curveCompareX1Z0.5.png}
-\end{figure}
-
-%
-\begin{figure}[h!]
-\begin{minipage}[h!]{0.49\textwidth}
-	\includegraphics[width=\textwidth]{./plots/curveCompareX1Z0.55.png}\\
-	\includegraphics[width=\textwidth]{./plots/curveCompareX1Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.49\textwidth}
-	\includegraphics[width=\textwidth]{./plots/curveCompareX3.5Z0.6.png}\\
-	\includegraphics[width=\textwidth]{./plots/curveCompareX3.5Z0.2.png}
-\end{minipage}
-\end{figure}
-
-
 
 %%
 %\clearpage
-%\vspace{-1cm}
-%\section{Results}
+%{\color{red}
+%\begin{equation}
+%	Z_{\theta} = \frac{\hat{log(\theta)}-log(\theta)}{\hat{SE}_{log(\theta)}}
+%\end{equation}
 %
-%%
-%Let $\check~$ decorate values which are predictions from the GP metamodel as 
-%opposed to predictions from the base-level model. In the posterior, the GP 
-%metamodel produces a predictive surface for the estimated $\check\mu$ values 
-%across the reference point domain. This $\check\mu$ surface is used to back 
-%out a predictive surface for $\check F^*$ under each reduced model. The bias in 
-%estimating $F^*$ across the reference point domain is the predicted 
-%$\check F^*$ minus the true $F^*$ at a given spatial location. Similarly the 
-%bias in estimating $\xi$ is given by $\frac{\check F^*}{M}-\xi$; using 
-%Eq. (\ref{twoCurves}) the bias in estimating $\zeta$ is given by 
-%$\tilde \zeta(\check F^*)-\zeta$. Individually these bias measures indicate a magnitude of 
-%bias in each of the reference point directions; together they form a 
-%vector field of biases.
-%
-%%%
-%%\thispagestyle{next}
-%%%
-%%\begin{figure}[h!]
-%%	%
-%%	\includegraphics[width=0.32\textwidth]{xBias.png}
-%%	\includegraphics[width=0.32\textwidth]{yBias.png}
-%%	\includegraphics[width=0.32\textwidth]{directionalBias.png}\\
-%%	\vspace{-1cm}
-%%	\caption{Bias surfaces for Shepherd data fit with a Beverton-Holt model.}
-%%\end{figure}
-%%\vspace{-0.5cm}
-%%\begin{figure}[h!]
-%%	%
-%%	\includegraphics[width=0.32\textwidth]{xBiasPella.png}
-%%	\includegraphics[width=0.32\textwidth]{yBiasPella.png}
-%%	\includegraphics[width=0.32\textwidth]{directionalBiasPella.png}\\
-%%	\vspace{-1cm}
-%%	\caption{Bias surfaces for Pella-Tomlinson data fit with a Schaefer model.}
-%%\end{figure}
-%%	\begin{minipage}[h!]{0.45\textwidth}
-%%	\vspace{-1cm}
-%%      	\includegraphics[width=\textwidth]{gpZetaBiasFineR.png}
-%%	\caption{ 
-%%	An preliminary example output for the set of bias surfaces as well as the 
-%%	directional bias field which is accessible by the meta-model. $top~left$: 
-%%	Bias in estimating $\zeta$. $top~right$: Total bias vector field across the spatial 
-%%	domain. $bottom~right$: Bias in estimating $\xi$. The solid black curve is $\frac{1}{\tilde\xi+2}$. 
-%%	Notice that bias is patchy in reference point space, with pockets of more or 
-%%	less bias and with spatially dependent magnitude and direction.		
-%%	}
-%%	\end{minipage}
-%%	\begin{minipage}[h!]{0.45\textwidth}
-%%	$~$\hspace*{1cm}
-%%	\includegraphics[width=\textwidth]{gpBiasArrow.png}
-%%	\hspace*{1cm}
-%%	\includegraphics[width=\textwidth]{gpXiBiasFineR.png}
-%%	\end{minipage}
-%%       \label{gpSurface}
-%%\end{figure}
-%
-%%
-%The above figures show the bias surfaces for the Beverton-Holt and Schaefer models respectively. 
-%Red colors indicate over estimation of the reference points and blue colors indicate 
-%underestimation of the reference points respectively. The black curves plotted 
-%above show the restricted reference point space as defined by Eq. (\ref{twoCurves}) in each case.
-%  
-%%%
-%%{\color{red}
-%%Figure 1 demonstrates a tentative early result from the described
-%%Figure 1 demonstrates a tentative early result from the described 
-%%meta-modeling procedure for the SRR given in Eq. (\ref{schnute}). Reference point 
-%%bias is clearly spatial in nature with the predominant source of bias clearly 
-%%being lead by $\xi$. The domain of $\xi$ is much larger than that of $\zeta$. 
-%%$\xi\in\mathbb{R}^+$ as opposed to $\zeta\in(0, 1)$, and thus it should be 
-%%expected that biases in $\xi$ may be allowed to grow larger. That said the spatial 
-%%behavior of these biases is potentially alarming. 
-%
-%%%
-%%Appendices A and B below demonstrate the level of code abstraction available for 
-%%building and fitting the components of production and GP modeling components. 
-%%These packages are now operational and necessary for scaling the construction of 
-%%these types of simulations. An age-structured modeling class is also mostly 
-%%operational.  
-%
-%%
-%\subsection{Future Results}
-%
-%%
-%The results presented above are generated with limited simulation runs due to 
-%issues introduced by the mapping of reference point values to SRR parameters. 
-%We are currently developing novel adaptive sampling space-filling methods which are 
-%capable of avoiding these issues and will allow for a broader and more stable result 
-%to be presented across a wide variety of SRRs as well as age structured models.  
-%
-%%%
-%%Further vetting and testing with this procedure continue. Additional SRRs are 
-%%currently being tested, furthermore it remains to be seen how general the patterns 
-%%observed here will be across different SRRs. Additionally a comparison with age 
-%%structured versions of these models are also forthcoming.
+%\begin{table}[h!]
+%\begin{tabular}{ r|c|c|c }
+%        $\left(F^*, \frac{B^*}{\bar B(0)}\right)$ & $~~~~(r$, $~~~\hat r$, $~Z_r$) & $~~~~~(K$, $~~~~\hat K$, $~Z_K)$ & $\hat\sigma$ \\\hline	
+%(0.1, 0.6)      & (0.12, 0.30, 4.9)     & (10000, 11983,~ 7.7)   & 0.048\\ 
+%(0.7, 0.6)      & (0.86, 1.88, 6.7)     & (10000, 11935, 29.6)  & 0.031\\
+%(0.1, 0.2)      & (0.98, 0.17, -5.8)    & (10000, ~5769, -7.7)   & 0.282\\
+%(0.7, 0.2)      & (6.84, 0.61, -7.9)    & (10000, ~4146, -23.2)  & 0.184\\ \hline
+%(0.1, 0.5)      & (0.20, 0.21, 0.9)     & (10000, 10014,~ 0.2)   & 0.012\\
+%(0.4, 0.5)      & (0.80, 0.83, 1.2)     & (10000, ~9975, -1.1)   & 0.011\\
+%(0.7, 0.5)      & (1.40, 1.38, -0.5)    & (10000, ~9986, -0.6)   & 0.011
+%\end{tabular}
+%\caption{\color{red}I'm fighting with the best information to display in this table.}
+%\end{table}
+
+%\begin{tabular}{ r|c|c|c }
+%        $\left(F^*, \frac{B^*}{\bar B(0)}\right)$ & $Z_r$ & $Z_K$ & $\hat\sigma$ \\\hline	
+%	(0.1, 0.6)      & 4.9   & 7.7   & 0.048 \\
+%	(0.7, 0.6)      & 6.7   & 29.6  & 0.031 \\
+%	(0.1, 0.2)      & -5.8  & -7.7  & 0.282 \\
+%	(0.7, 0.2)      & -7.9  & -23.2 & 0.184 \\\hline
+%	(0.2, 0.5)      & -1.5  & -1.9  & 0.008 \\	
+%	(0.4, 0.5)      & 1.2   & -1.1  & 0.011 \\
+%	(0.7, 0.5)      & -0.5  & -0.6  & 0.011 	
+%\end{tabular}
 %}
 
+\clearpage
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.349\textwidth}
+\hspace*{-1cm}
+\includegraphics[width=1.05\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png}\\
+\hspace*{-1cm}
+\includegraphics[width=1.05\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png}
+\end{minipage}
+\begin{minipage}[h!]{0.349\textwidth}
+\hspace*{-1cm}
+\includegraphics[width=1.05\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png}\\
+\hspace*{-1cm}
+\includegraphics[width=1.05\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png}
+\end{minipage}
+\begin{minipage}[h!]{0.29\textwidth}
+\hspace*{-0.5cm}
+\caption{\label{flatCurves}
+A comparison of the true PT production function (in black) and the estimated logistic curve (in red) 
+with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification 
+in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves.
+}
+\end{minipage}
+\end{figure}
+
 %
-\thispagestyle{next}
+Figure(\ref{flatCurves}) shows four of the most misspecified example 
+production function fits as compared to the true data generating PT production 
+functions. In the rug plots below each set of curves the observed biomasses 
+demonstrate the exponential decay from $K$ to $B^*$ in each case. In particular, 
+notice how only biomasses greater than the PT $B^*$ are observed. Due to the 
+leaning of the true PT curves, and the symmetry of the logistic parabola, the 
+logistic curve only observes information about its slope at the origin from 
+data observed on the right portion of the PT curves. Above the Schaefer line 
+PT is steeper on the right of $B^*$ than it is on the left, and so the the 
+logistic curve over-estimates $r$, and thus $F^*$, for data generated above 
+the Schaefer line. Below the Schaefer line the vice versa phenomena occurs.
+Below the Schaefer line PT is shallower to the right of $B^*$ than it is on the 
+left and so the logistic parabola estimate tends to under estimate $F^*$.
+
+%
+\clearpage
+\begin{figure}[h!]
+%\begin{wrapfigure}{r}{0.5\textwidth}
+%\hspace*{0.25cm}
+\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}
+%\hspace*{0.25cm
+\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png}
+\caption{\label{flatRat}
+MLE Bias surfaces for $B^*$ (\emph{left}) and $K$ (\emph{right}) individually.
+}
+\end{figure}
+
+% the parabolic structures ties their ratio to $\frac{1}{2}$.  
+Figure(\ref{flatCurves}) also gives some examples of the relative behavior of 
+$B^*$ and $K$. In Figure(\ref{flatTrio}) it is clear that the bias behavior of 
+$\frac{B^*}{\bar B(0)}$ is locked in a fixed pattern under the Schaefer model. 
+Figure(\ref{flatCurves}) indicates that the individual biases of $B^*$ and $K$ 
+may behave quite differently. $B^*$ appears to be estimated fairly accurately 
+while $K$ does not.
+
+%
+Figure(\ref{flatRat}) teases apart $\frac{B^*}{\bar B(0)}$ into individual bias 
+surfaces for $B^*$ and $K$ respectively. Interestingly $B^*$ enjoys a large region 
+of RP-space with relatively low bias. Given that $B^*$ has relatively consistently
+low bias $K$ maintains the expected inverse relationship with $\frac{B^*}{\bar B(0)}$ 
+bias. Since the parabolic structure of the logistic function ties the ratio of 
+$B^*$ and $\bar B(0)$ to $\frac{1}{2}$, their is only one degree of freedom 
+shared between $B^*$ and $\bar B(0)$ so that their ratio is maintained at $\frac{1}{2}$. 
+In this setting it appears that $B^*$ estimation is largely conserved at the 
+cost of $K$.
+
+%\begin{wrapfigure}{r}{0.5\textwidth}
+%\hspace*{0.25cm}
+%\includegraphics[width=0.5\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}\\
+%\hspace*{0.25cm}
+%\includegraphics[width=0.5\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png}
+%\caption{Bias surfaces for $B^*$ ((\emph{top})) and $K$ (\emph{bottom}) individually.}
+%\label{flatRat}
+%\end{wrapfigure}
+
+%%
+%\begin{figure}[h!]
+%\hspace*{0.25cm}
+%\includegraphics[width=0.5\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}\\
+%\hspace*{0.25cm}
+%\includegraphics[width=0.5\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png}
+%\caption{Bias surfaces for $B^*$ ((\emph{top})) and $K$ (\emph{bottom}) individually.}
+%\label{flatRat}
+%\end{figure}
+
+%
+\clearpage
+\subsection{More Informative Catch Histories}
+
+%
+\begin{figure}[h!]
+\includegraphics[width=.5\textwidth]{../../../theses/nick/gpBias/rfExpT45X2Z0.6.png}
+\includegraphics[width=0.5\textwidth]{../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png}
+%\includegraphics[width=0.5\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png}
+\caption{ \label{expCatchT45}
+($left$) Relative fishing specified so as to induce contrast.
+($right$) Population biomass and catch demonstrating contrast in a PT population with $F^*=0.4$ and $\frac{B^*}{\bar B(0)}=0.6$.
+}
+\end{figure}
+
+%
+The setting of constant relative fishing rate is a useful simplification for 
+building understanding of the dynamics that induce bias, but in practice constant 
+fishing rate is a somewhat oversimplified setting. %It is not uncommon to It is more common to observe 
+Consider a hypothetical stock where fishing rate accelerates as technology 
+and fishing techniques improve rapidly until management practices are applied. %   around the turn of the century, followed by a rapid drop in fishing as management 
+%proceedures are applied ({\color{red}cite}). 
+Figure(\ref{expCatchT45}) demonstrates this more realistic, while still somewhat idealic, %an idealised and realistic, while still simplified, 
+fishing behavior. This population is exposed to a variety of fishing rates, 
+which induce contrast in the generated indices and allow the fitting model to 
+observe the population decrease in size and subsequently rebuild. This represents 
+a "high contrast" setting that is widely thought to better inform growth rate 
+parameters, such as $r$.  
+
+%\clearpage
+\begin{figure}[h!]
+\vspace{-1cm}
+\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=.85\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=.85\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png}
+\end{minipage}
+\caption{ \label{expT45BmFm} 
+MLE Bias surfaces for $B^*$ (\emph{left}) and $F^*$ (\emph{right}) with relative fishing rate as specified in Figure({\ref{expCatchT45}})
+}
+\end{figure}
+
+%
+Figure(\ref{expT45BmFm}) shows the relative bias surfaces for $B^*$ and $F^*$ 
+under the high contrast setting. On the one hand, notice the relative lack of 
+bias in $F^*$ over a large swath of RPs far from the Schaefer line. On the 
+other hand, notice that bias in $B^*$ increases here relative to the low contrast 
+setting. The pattern of bias in $B^*$ %over the space of misspecified RPs in $B^*$ 
+maintains a similar pattern, and overall scale, as the low contrast setting 
+seen in Figure(\ref{flatRat}), however a smaller region of RP-space enjoys low 
+bias here. Due to the similar, albeit expanded, pattern of $B^*$ bias here, as 
+compared with the low contrast setting, and the constrained relationship with 
+$\frac{B^*}{\bar B(0)}$, the bias surface for $K$ maintains the same general 
+\mbox{inverse relationship with $\frac{B^*}{\bar B(0)}$.}
+
+%
+If the data is augmented so that the fishing rate is held at $F^*$ for an 
+additional 15 time epochs, so that slower growing stocks may observe more data 
+near $B^*$, Figure(\ref{expT60BmFm}) shows the updated bias surfaces. The scale
+of bias in $B^*$ is reduced, but the scope and general pattern of bias remains 
+similar. While the bias behavior of $B^*$ estimates are somewhat diminished, 
+$F^*$ biases are generally magnified.  
+
+%%
+%Figure(\ref{expT60BmFm}) shows the relative bias surfaces for $B^*$ and $F^*$ if 
+%
+%Bias in $B^*$ can be lessened by letting 
+
+%
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.49\textwidth}
+%
+%\begin{figure}[h!]
+\includegraphics[width=.85\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png}
+%\caption{ \label{expCatchT45Fmsy}
+%}
+%\end{figure}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+%%
+%\begin{figure}[h!]
+\includegraphics[width=.85\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png}
+%\caption{ \label{expCatchT45Bmsy}
+%}
+\end{minipage}
+\caption{\label{expT60BmFm}
+MLE Bias surfaces for $B^*$ (\emph{left}) and $F^*$ (\emph{right}) with relative fishing rate augmented with additional observations near equilibrium.
+}
+\end{figure}
+
+%
+
+
+
+
+%%
+%\subsection{Dominant Factors of Bias and }
+%
+%%
+%As a measure of overall inferential bias the quantity $MSY$ is considered since 
+%under the Schaefer model it is proportional to both $r$ and $K$. Since yeild is 
+%the most directly measureable quantity for management, accuracy in estimates of
+%$MSY$ is highly desired. That said, since $MSY$ is highly dependent on all of the
+%biological parameteric assumptions it is often difficult to accuratly estimate, in 
+%this setting the fickle nature of $MSY$ is a useful indicator for the determining 
+%the major factors of bias. 
+
+
+
+
+
+
+%%
+%\begin{figure}[h!]
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png}
+%\caption{ \label{expCatchT45}
+%}
+%\end{figure}
+%
+%%
+%\begin{figure}[h!]
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png}
+%\caption{ \label{expCatchT45}
+%}
+%\end{figure}
+%
+%
+%
+%\begin{figure}[h!]
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png}\\
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaExpT45.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.75cm}
+%%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaExpT45.png}\\
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchExpT45.png}\\
+%\hspace*{0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaExpT45.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaExpT45.png}\\
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png}
+%\end{minipage}
+%\end{figure}
+%
+%\begin{figure}[h!]
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png}\\
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaExpT60.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.75cm}
+%%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaExpT45.png}\\
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchExpT60.png}\\
+%\hspace*{0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaExpT60.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaExpT60.png}\\
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png}
+%\end{minipage}
+%\end{figure}
+
+
+%\begin{figure}[h!]
+%\begin{minipage}[h!]{0.24\textwidth}
+%\includegraphics[width=1.\textwidth]{../../../theses/nick/gpBias/catchFlat.png}\\
+%\includegraphics[width=1.\textwidth]{../../../theses/nick/gpBias/catchExpT45.png}
+%%\hspace*{0.25cm}
+%%\includegraphics[width=1.\textwidth]{../../../theses/nick/gpBias/catchExpT60.png}\\
+%\end{minipage}
+%\begin{minipage}[h!]{0.24\textwidth}
+%\includegraphics[width=1.\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}\\
+%\includegraphics[width=1.\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png}
+%%\hspace*{0.75cm}
+%%\includegraphics[width=1.\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png}\\
+%\end{minipage}
+%\begin{minipage}[h!]{0.24\textwidth}
+%\includegraphics[width=1.\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaFlatNoQ.png}\\
+%\includegraphics[width=1.\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaExpT45.png}
+%%\hspace*{1cm}
+%%\includegraphics[width=1.\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaExpT60.png}\\
+%\end{minipage}
+%\begin{minipage}[h!]{0.24\textwidth}
+%\includegraphics[width=1.\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png}\\
+%\includegraphics[width=1.\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png}
+%%\hspace*{1cm}
+%%\includegraphics[width=1.\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png}\\
+%\end{minipage}
+%\caption{\label{msyGrid}
+%}
+%\end{figure}
+%
+%%
+%Figure(\ref{msyGrid}) compares the most highly impacted RP
+%That said, since $MSY$ is highly dependent on all of the 
+%biological parameteric assumptions $MSY$ tends to demonstrate bias behaviour 
+%emblematic of the union of biases seen in either $F^*$ or $B^*$.  to the union 
+
+\clearpage
+\section{Discussion}
+
+%
+Results presented here generally agree with what is known about estimating 
+growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}, 
+in this case $r$, and thus $F^*$.  
+%These studys appreciate that role of contrast for estimating growth rates, 
+%however do not explicately control the degree of model misspecification 
+%relative to RPs.  %present over as wide a range of RPs and how bias 
+In the presence of contrast $F^*$ estimation can enjoy very low bias even 
+for a wide range of poorly specified models; conversely in the absence of 
+contrast $F^*$ estimation can suffer very large bias even for slightly 
+misspecified models. In all cases when model misspecification is removed, even 
+with weakly informative data, $F^*$ estimation is unbiased.  Model 
+misspecification is thus a necessary but not sufficient condition for inducing 
+bias. 
+
+%{\color{red} 
+%Claim novelty. meta modeling to integrate factors of bias location, direction, magnitude considered along catch.  
+%}
+
+%%
+%The meta-modeling approach presented here indicates that the Schaefer model 
+%underestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}<\frac{1}{2}$, %originate below the Schaefer line 
+%and overestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}>\frac{1}{2}$. % true RPs originate below the Schaefer line. 
+%This is of particular note since these outcomes carry such varied real would 
+%implications. Overestimation of $F^*$ carries the severe implication of 
+%management recommedations potentially leading to overfishing, while 
+%underestimation of $F^*$ leads to overly conservative management.   
+
+%considered jointly
+While it is established that growth rate parameters require contrast to estimate, 
+the implications of these biases jointly across a variety of RPs have not 
+received as much attention. 
+%In particular the joint analysis of RP estimation that this 
+%metamodeling approach allows 
+%has not been studied. 
+When considering $B^*$ alongside $F^*$ in varying contrast environments, it 
+becomes clear that different data informs different parts of the production 
+function differently. In low contrast environments $B^*$ is estimation is 
+remarkably unbiased across all but the most challenging instances of model 
+misspecification. However in the presence of contrast, while $F^*$ enjoys 
+better estimation, $B^*$ estimation experiences substantial bias for only 
+modestly misspecified models. Further, by augmenting contrasting data with an 
+additional period of low contrast data this pattern begins to reverses with $B^*$ 
+bias receding toward more poorly specified models and $F^*$ bias encroaching 
+toward only modestly misspecified models as seen in Figure (\ref{expT60BmFm}).   
+
+%
+The behavior of bias in estimating $B^*$ and $F^*$ suggests that the limited 
+parameter space of the Schaefer model induces a trade off in estimating these 
+parameters. In practice, when the true model is not known and the Schaefer 
+model is unlikely to be correctly specified, one should at best expect to only 
+estimate either $B^*$ or $F^*$ correctly depending on the particular degree of 
+model misspecification. The observed contrast then serves to distribute the 
+available information among $B^*$ and $F^*$. Increasing the flexibility of the 
+production function by moving toward curves with additional parameters could 
+release these structural limitations \shortcite{mangel_perspective_2013}. 
+\shortciteA{punt_extending_2019} considers a suite of possible three parameter
+curves which could be use instead of current two parameter curves.
+
+%
+This study only explores the compatibility of the possible productivity shapes 
+exhibited by the PT and Schaefer models. While the PT and Schaefer models are 
+instructive for a variety of non-compensatory production behaviors, it is possible 
+that under different modeling assumptions, for example compensatory BH production 
+or age structured models, different bias patterns will emerge. Extending this work 
+to be able to make claims in those settings is necessary for developing more 
+generally extensible claims. % and my proposal for this extension can be seen in Section(\ref{})
+
+%
+Given the role that catch plays in understanding where the production function 
+is informed, it is clear that good estimates of catch are important for 
+contextualizing modeling inferences. While the production model treats catches 
+as known without uncertainty, upon inspection of Figure (\ref{hakeData}, \emph{right})
+this assumption is clearly suspect. Results presented here only consider very 
+deterministic catch histories. More work is needed to understand how jittery catch may 
+affect RP estimation. A smoothing model of catch may be preferable for estimation, 
+but results of this study suggest that even improvements to the contextual understanding of 
+catch will be important for interpreting model inferences correctly.
+
+%%
+%Bias in $K$ is consistently awful.
+
+
+%Bias is clearly more present when model misspecification is very large, 
+%however even quite
+%%
+%By explicatly controlling model misspecification, realative to the Schaefer 
+%line, and considering a wide region of RPs in aggregate it becomes clear that 
+%
+%the directly on the scale of RPs
+%and simulating widely relavetive to $F^*$the constrained Schaefer line
+%
+%\begin{itemize}
+%%\item Misspecification Causes bias.
+%%\begin{itemize}
+%%	\item when the model is specified correctly even very uninformative data provide good inference.
+%%	\item the more misspecified the model the worse the bias
+%%	\item for very misspecified settings contrast helps you estimate growth metrics $F^*$, $r$, steepness 
+%%	\item (cite lee papers)
+%%\end{itemize}
+%%\item different data informs the production function differently
+%%\begin{itemize}
+%%	\item Estimating steepness type parameters in the presence of severe model misspecification comes at the cost of other parameters/RPs.
+%%\end{itemize}
+%\item Even a misspecified model can be made to estimate one RP with the correct data, but depending on the nature of model misspecification we are unlikely to conserve two RPs.
+%\begin{itemize}
+%	\item Three parameter curves should add flexibility to increase the number of RPs we can estimate and thus the usefulness of integrated assessment models
+%	\item punt 2019 
+%\end{itemize}
+%\item yet to be able to make claims about the very common BH production function and age structured models
+%\item the clear dependence of model performance on catch suggests that better models are needed for describing catch.
+%	\begin{itemize}
+%	\item A better understanding of catch allows stock assessors to better theorize about which types of quantities are well informed by models. 
+%	\end{itemize}
+%\end{itemize}
+
+%
+%• The statistician George Box famously said “All model are wrong, but some
+%models are useful”
+%• My question is how useful are our models?, and if our models are useful. How
+%useful are they? and when are they useful?
+%
+%
+%In the high contrast setting, $F^*$ estimation is largely conserved, 
+%especially when compared to the dramatic $F^*$ biases observed in Figure(\ref{flatTrio}), 
+%however this 
+%
+%Although the shape of the SRR is important, it is often ambiguous what the 
+%appropriate SSR is given the available stock assess- ment information. For 
+%example, Dorn (2002) concluded in a meta-analysis of rockfish (Sebastes spp.) 
+%stock and recruitment data that neither the R-SRR nor the BH-SRR can be 
+%distinguished as a preferred model on the basis of statistical goodness of fit
+%.  Brodziak (2002) reached a similar conclusion in an analysis of USA west 
+%coast groundfish stock–recruitment data. Alternatively, in a meta-analysis of 
+%128 diverse fish stocks, Punt et al. (2005) con- cluded that as a general model
+%, the BH-SRR is strongly preferred over the R-SRR, but that “there are also 
+%indications that other (more complicated) forms may provide better 
+%representations of the existing data” (p. 76). This conclusion is not 
+%unexpected because models with more parameters can approximate 
+%variability in the observations used to estimate the SRR more accurately than 
+%models with fewer parameters.  
+
+%
+\clearpage
+\section{Extensions to other productions functions}
+
+%
+\clearpage
+\section{Catch Interpolation}
+
+%
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.49\textwidth}
+%
+%\begin{figure}[h!]
+\includegraphics[width=.85\textwidth]{../../../theses/nick/spline/dataPlots505.png}
+%\caption{ \label{expCatchT45Fmsy}
+%}
+%\end{figure}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+%%
+%\begin{figure}[h!]
+\includegraphics[width=.85\textwidth]{../../../theses/nick/spline/intCurves505.png}
+%\caption{ \label{expCatchT45Bmsy}
+%}
+\end{minipage}
+\caption{\label{splines}
+(\emph{left}) and (\emph{right})
+}
+\end{figure}
+
+\begin{align}
+y(t^*) &= k(t^*)-k(\tau^*) ~~~ \tau^*=\lceil t^* \rceil-1 \\
+k(t^*) &= \int_0^{t^*} x(t) dt\\
+x(t) &= \beta_0 + \sum_{j=1}^{T-1} \beta_j (t-\tau_j) \mathds{1}(t>\tau_j)
+\end{align}
+
+\begin{align}
+y(\tau_i) &= \beta_0(\tau_i-\tau_{i-1}) + \sum_{j=1}^{i-1} \beta_j \left[ \left(\frac{\tau_i^2}{2}-\tau_j\tau_i\right) - \left(\frac{\tau_{i-1}^2}{2}-\tau_j\tau_{i-1}\right)\right] + \epsilon_i \\
+\beta_j &\sim N(0, \phi) ~~~~ \phi \sim \text{Half-Cauchy}(0, 1) ~~~~ \epsilon_i \sim N(0, \sigma^2_i) \nonumber
+\end{align}
+
+
+%
+%\thispagestyle{next}
+\clearpage
 \bibliographystyle{apacite}
 %\bibliography{./schnuteGPBias.bib}
 \bibliography{./gpBias.bib}
-\thispagestyle{next}
+%\thispagestyle{next}
 
 
 %%
@@ -1145,7 +1697,7 @@ Below I outline a profile likelihood method for MLE inference on $q$ and
 $\sigma^2$. However if posed in a tactful Bayesian context, $q$ and 
 $\sigma^2$ may be marginalized out of the joint posterior to yield a direct 
 sampling scheme for $q$ and $\sigma^2$ which factors the posterior into the 
-form $p(q, \sigma^2, \bm{\theta}|I) = N(\log(q)| \sigma^2, \bm{\theta}, I) IG(\sigma^2|\bm{\theta}, I) p(\bm{\theta}|I)$ ({\color{red} Cite Maria DeYorio pdf??}).
+form $p(q, \sigma^2, \bm{\theta}|I) = N(\log(q)| \sigma^2, \bm{\theta}, I) IG(\sigma^2|\bm{\theta}, I) p(\bm{\theta}|I)$ \shortcite{deyoreo_integrating_2012} %({\color{red} Cite Maria DeYorio pdf??}).
 
 %
 The joint likelihood on the log scale can be written as, 
@@ -1227,6 +1779,7 @@ numerical optimization, while also avoiding the multimodality issues induced
 by $q$. 
 
 %
+\clearpage
 {\color{gray}
 \section*{Appendix B: Integrating ODEs, Stiffness, Interpolation, and Chaos. \label{appODE}}
 
@@ -1380,11 +1933,356 @@ relatively smaller footprint in system memory.
 
 
 
+%%
+%\clearpage
+%
+%%\vspace{-1cm}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}\\
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.75cm}
+%%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaFlatNoQ.png}\\
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchFlat.png}\\
+%\hspace*{0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaFlatNoQ.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png}\\
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png}
+%\end{minipage}
+%
+%\begin{itemize}
+%\item Biomass story
+%\item Fmsy Story
+%\item cite lack of contrast
+%\item transition to contrast example
+%\end{itemize}
+%
+%%
+%\clearpage
+%
+%\begin{tabular}{ r|c|r|c|c }
+%($\xi$, $\zeta$) & ($\hat \xi$, $\hat \zeta$) & $\hat K$ & $\hat r$ & $\hat \sigma$\\ \hline 
+%(0.5, 0.6)      & (0.80, 0.5)  & 11982.7 & 0.30  & 0.048\\
+%(3.5, 0.6)      & (4.70, 0.5)  & 11934.8 & 1.90  & 0.031\\ 
+%(0.5, 0.2)      & (0.43, 0.5)  & 5769.3  & 0.17  & 0.282\\
+%(3.5, 0.2)      & (1.52, 0.5)  & 4145.7  & 0.61  & 0.184
+%\end{tabular}
+%
+%\begin{tabular}{ r|c|c|c }
+%	($F^*$, $\frac{B^*}{\bar B(0)}$) & $(r, \hat{r})$ & $(K, \hat K)$ & $\hat \sigma$\\ \hline
+%\end{tabular}
+%
+%\begin{tabular}{ r|c|c|c }
+%	($F^*$, $\frac{B^*}{\bar B(0)}$) & $\frac{\hat{r}-r}{\hat{SE_r}}$ & $\frac{\hat{K}-K}{\hat{SE_K}}$ & $\hat \sigma$\\ \hline
+%\end{tabular}
+%
+%
+%
+%
+%%%
+%%{\color{red}
+%%\begin{tabular}{ r|c|c|c|c|c|c }
+%%($\xi$, $\zeta$) & $\hat \xi$ 	& $\hat \zeta$ 	& $\hat K$	& $\hat r$ & $\hat q$& $\hat \sigma$\\ \hline
+%%(1.0, 0.2)      & 0.11  & 0.50  & 8915.7        & 0.04  & 5.5e-04       & 0.011\\
+%%(1.0, 0.55)     & 1.5   & 0.5   & 9918.2        & 0.6   & 5.0e-04       & 0.014\\
+%%(3.5, 0.6)      & 11.1  & 0.5   & 9980.0        & 4.5   & 4.9e-04       & 0.010\\
+%%(3.5, 0.2)      & 0.24  & 0.50  & 8049.8        & 0.09  & 6.1e-04       & 0.011
+%%\end{tabular}
+%%}
+%
+%%
+%\begin{minipage}[h!]{0.25\textwidth}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png}\\
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png}\\
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace*{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.2.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace*{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.2.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.2.png}
+%\end{minipage}
+%
+%%
+%\clearpage
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpNoQ.png}\\
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaExpNoQ.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.75cm}
+%%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaExpNoQ.png}\\
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchExp.png}\\
+%\hspace*{0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaExpNoQ.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaExpNoQ.png}\\
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpNoQ.png}
+%\end{minipage}
+%
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT45.png}\\
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaExpT45.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.75cm}
+%%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaExpT45.png}\\
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchExpT45.png}\\
+%\hspace*{0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaExpT45.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaExpT45.png}\\
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT45.png}
+%\end{minipage}
+%
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png}\\
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaExpT60.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.75cm}
+%%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaExpT45.png}\\
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchExpT60.png}\\
+%\hspace*{0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaExpT60.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaExpT60.png}\\
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png}
+%\end{minipage}
+%
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExp1KT60.png}\\
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaExp1KT60.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.75cm}
+%%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaExpT45.png}\\
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchExp1KT60.png}\\
+%\hspace*{0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/msyRelBiasPellaExp1KT60.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasPellaExp1KT60.png}\\
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExp1KT60.png}
+%\end{minipage}
+%
+%
+%%
+%\begin{figure}[h!]
+%\begin{minipage}[h!]{0.49\textwidth}
+%        \includegraphics[width=\textwidth]{./plots/yBiasPellaP0100002.png}
+%	\caption{This is a caption}	
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%	\includegraphics[width=\textwidth]{./plots/directionalBiasPellaP0100002.png}
+%	\includegraphics[width=\textwidth]{./plots/xBiasPellaP0100002.png}
+%\end{minipage}
+%\end{figure}
+%
+%
+%%\begin{minipage}[h!]{0.49\textwidth}
+%%\includegraphics[width=\textwidth]{../gpBias/directionalBiasPellaP0100002.png}
+%%\includegraphics[width=\textwidth]{../gpBias/xBiasPellaP0100002.png}
+%%\includegraphics[width=\textwidth]{../gpBias/yBiasPellaP0100002.png}
+%%\end{minipage}
+%%\begin{minipage}[h!]{0.49\textwidth}
+%%\includegraphics[width=\textwidth]{../gpBias/directionalBiasPellaP010000Matern.png}
+%%\includegraphics[width=\textwidth]{../gpBias/xBiasPellaP010000Matern.png}
+%%\includegraphics[width=\textwidth]{../gpBias/yBiasPellaP010000Matern.png}
+%%\end{minipage}
+%%\begin{itemize}
+%%	\item[(1.0, 0.2)] r hits lower bound (aka alpha lower the bound)
+%%	\item[(1.0, 0.2)] K hits lower bound (aka beta lower the bound)
+%%\end{itemize}
+%
+%%
+%\begin{figure}[h!]
+%        \includegraphics[width=\textwidth]{./plots/curveCompareX1Z0.5.png}
+%\end{figure}
+%
+%%
+%\begin{figure}[h!]
+%\begin{minipage}[h!]{0.49\textwidth}
+%	\includegraphics[width=\textwidth]{./plots/curveCompareX1Z0.55.png}\\
+%	\includegraphics[width=\textwidth]{./plots/curveCompareX1Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%	\includegraphics[width=\textwidth]{./plots/curveCompareX3.5Z0.6.png}\\
+%	\includegraphics[width=\textwidth]{./plots/curveCompareX3.5Z0.2.png}
+%\end{minipage}
+%\end{figure}
+
+
+
+%%
+%\clearpage
+%\vspace{-1cm}
+%\section{Results}
+%
+%%
+%Let $\check~$ decorate values which are predictions from the GP metamodel as 
+%opposed to predictions from the base-level model. In the posterior, the GP 
+%metamodel produces a predictive surface for the estimated $\check\mu$ values 
+%across the reference point domain. This $\check\mu$ surface is used to back 
+%out a predictive surface for $\check F^*$ under each reduced model. The bias in 
+%estimating $F^*$ across the reference point domain is the predicted 
+%$\check F^*$ minus the true $F^*$ at a given spatial location. Similarly the 
+%bias in estimating $\xi$ is given by $\frac{\check F^*}{M}-\xi$; using 
+%Eq. (\ref{twoCurves}) the bias in estimating $\zeta$ is given by 
+%$\tilde \zeta(\check F^*)-\zeta$. Individually these bias measures indicate a magnitude of 
+%bias in each of the reference point directions; together they form a 
+%vector field of biases.
+%
+%%%
+%%\thispagestyle{next}
+%%%
+%%\begin{figure}[h!]
+%%	%
+%%	\includegraphics[width=0.32\textwidth]{xBias.png}
+%%	\includegraphics[width=0.32\textwidth]{yBias.png}
+%%	\includegraphics[width=0.32\textwidth]{directionalBias.png}\\
+%%	\vspace{-1cm}
+%%	\caption{Bias surfaces for Shepherd data fit with a Beverton-Holt model.}
+%%\end{figure}
+%%\vspace{-0.5cm}
+%%\begin{figure}[h!]
+%%	%
+%%	\includegraphics[width=0.32\textwidth]{xBiasPella.png}
+%%	\includegraphics[width=0.32\textwidth]{yBiasPella.png}
+%%	\includegraphics[width=0.32\textwidth]{directionalBiasPella.png}\\
+%%	\vspace{-1cm}
+%%	\caption{Bias surfaces for Pella-Tomlinson data fit with a Schaefer model.}
+%%\end{figure}
+%%	\begin{minipage}[h!]{0.45\textwidth}
+%%	\vspace{-1cm}
+%%      	\includegraphics[width=\textwidth]{gpZetaBiasFineR.png}
+%%	\caption{ 
+%%	An preliminary example output for the set of bias surfaces as well as the 
+%%	directional bias field which is accessible by the meta-model. $top~left$: 
+%%	Bias in estimating $\zeta$. $top~right$: Total bias vector field across the spatial 
+%%	domain. $bottom~right$: Bias in estimating $\xi$. The solid black curve is $\frac{1}{\tilde\xi+2}$. 
+%%	Notice that bias is patchy in reference point space, with pockets of more or 
+%%	less bias and with spatially dependent magnitude and direction.		
+%%	}
+%%	\end{minipage}
+%%	\begin{minipage}[h!]{0.45\textwidth}
+%%	$~$\hspace*{1cm}
+%%	\includegraphics[width=\textwidth]{gpBiasArrow.png}
+%%	\hspace*{1cm}
+%%	\includegraphics[width=\textwidth]{gpXiBiasFineR.png}
+%%	\end{minipage}
+%%       \label{gpSurface}
+%%\end{figure}
+%
+%%
+%The above figures show the bias surfaces for the Beverton-Holt and Schaefer models respectively. 
+%Red colors indicate over estimation of the reference points and blue colors indicate 
+%underestimation of the reference points respectively. The black curves plotted 
+%above show the restricted reference point space as defined by Eq. (\ref{twoCurves}) in each case.
+%  
+%%%
+%%{\color{red}
+%%Figure 1 demonstrates a tentative early result from the described
+%%Figure 1 demonstrates a tentative early result from the described 
+%%meta-modeling procedure for the SRR given in Eq. (\ref{schnute}). Reference point 
+%%bias is clearly spatial in nature with the predominant source of bias clearly 
+%%being lead by $\xi$. The domain of $\xi$ is much larger than that of $\zeta$. 
+%%$\xi\in\mathbb{R}^+$ as opposed to $\zeta\in(0, 1)$, and thus it should be 
+%%expected that biases in $\xi$ may be allowed to grow larger. That said the spatial 
+%%behavior of these biases is potentially alarming. 
+%
+%%%
+%%Appendices A and B below demonstrate the level of code abstraction available for 
+%%building and fitting the components of production and GP modeling components. 
+%%These packages are now operational and necessary for scaling the construction of 
+%%these types of simulations. An age-structured modeling class is also mostly 
+%%operational.  
+%
+%%
+%\subsection{Future Results}
+%
+%%
+%The results presented above are generated with limited simulation runs due to 
+%issues introduced by the mapping of reference point values to SRR parameters. 
+%We are currently developing novel adaptive sampling space-filling methods which are 
+%capable of avoiding these issues and will allow for a broader and more stable result 
+%to be presented across a wide variety of SRRs as well as age structured models.  
+%
+%%%
+%%Further vetting and testing with this procedure continue. Additional SRRs are 
+%%currently being tested, furthermore it remains to be seen how general the patterns 
+%%observed here will be across different SRRs. Additionally a comparison with age 
+%%structured versions of these models are also forthcoming.
+%}
 
 
 
 
-
+%%
+% and above the
+%schaefer line PT is steeper that on the right half than it is on the
+%left, and so we over estimate $F^*$ for data generated above the line.
+%
+%%
+%\begin{itemize}
+%\item The model only observes the right half of the true SRR
+%\item Due to the leaning of the true PT curves, and the symmetry of the
+%logistic parabola, the logistic curve is learning about its slope at
+%the origin entirely from data where depletion>0.5 , and above the
+%schaefer line PT is steeper that on the right half than it is on the
+%left, and so we over estimate $F^*$ for data generated above the line.
+%\item The vice versa phenomena occurs below the schaffer line.
+%\item Data is only obsevered on the right half of the production function
+%-> PT is shallower on the right than on the left -> and so the
+%logistic parabola estimate tends to under estimate $F^*$ .
+%\end{itemize}
 
 
 %%
