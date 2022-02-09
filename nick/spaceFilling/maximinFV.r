@@ -168,16 +168,16 @@ maximinFV = function(n, m, f, Xrange, Yrange, TT=100000, XStart=NULL, f_se=F) {
 #MAIN
 #
 
-##
-#isSE = T
-#f = function(x) inv.logit(x) #x^3 #
-#Xlimits = c(-5, 5)
-#Ylimits = f(Xlimits) #c(0, 1)
 #
-isSE = F
-f = function(x) sin(x)+ x/2
-Xlimits = c(-6, 6) #c(-pi/2, pi/2)
-Ylimits = f(Xlimits)
+isSE = T
+f = function(x) inv.logit(x) #x^3 #
+Xlimits = c(-5, 5)
+Ylimits = f(Xlimits) #c(0, 1)
+##
+#isSE = F
+#f = function(x) sin(x)+ x/2
+#Xlimits = c(-6, 6) #c(-pi/2, pi/2)
+#Ylimits = f(Xlimits)
 #
 XStar = seq(Xlimits[1], Xlimits[2], length.out=5*(Xlimits[2]-Xlimits[1]))
 

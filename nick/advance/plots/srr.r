@@ -32,7 +32,7 @@ dev.off()
 png("srr1.1.png")
 R = 2500
 beta = K/2
-curve(SRR(x, rGivenRandBeta(K, beta, R), K, K/beta), from=0, to=K, lwd=3, col="black", ylim=c(0, 1.25*R), main=TeX("R(B; r, 10000, $\\gamma$)"), ylab="Production", xlab="B")
+curve(SRR(x, rGivenRandBeta(K, beta, R), K, K/beta), from=0, to=K, lwd=3, col="black", ylim=c(0, 1.25*R), main=TeX("P(B; r, 10000, $\\gamma$)"), ylab="Production", xlab="B")
 rug(beta, lwd=3)
 rs = rGivenRandBeta(K, beta, R)
 gams = K/beta
@@ -69,14 +69,14 @@ cols[6] = 'black'
 lo = 1.5
 #
 png("srr2.png")
-curve(SRR(x, r, K, lo), from=0, to=K, lwd=3, col=cols[i], ylim=c(0, SRR(K/lo, r, K, lo)), main=TeX("R(B; 1, 10000, $\\gamma$)"), xlab="B", ylab="Production")
+curve(SRR(x, r, K, lo), from=0, to=K, lwd=3, col=cols[i], ylim=c(0, SRR(K/lo, r, K, lo)), main=TeX("P(B; 1, 10000, $\\gamma$)"), xlab="B", ylab="Production")
 gams = seq(lo, 2.5, length.out=n)
 for(gamma in gams){
-	curve(SRR(x, r, K, gamma), lwd=3, add=T, col=cols[i])
-	rug(K/gamma, col=cols[i], lwd=3)
+	curve(SRR(x, r, K, gamma), lwd=3, add=T, col=rev(cols)[i])
+	rug(K/gamma, col=rev(cols)[i], lwd=3)
 	i = i+1
 }
-legend("topleft", legend=TeX(sprintf("$\\gamma$=%1.1f", gams)), col=cols, lwd=3, lty=1)
+legend("topleft", legend=TeX(sprintf("$\\gamma$=%1.1f", gams)), col=rev(cols), lwd=3, lty=1)
 dev.off()
 #gamma = 2.1
 #curve(SRR(x, r, K, gamma), lwd=3, col=cols[2], add=T)

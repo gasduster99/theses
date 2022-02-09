@@ -157,9 +157,13 @@ getlFV = function(fit, MM=10^4, samples=F){
 
 #
 dir = "./modsDerizoFineQFix/" #"./modsShepFineQFix/" #"./modsShepFine/" #"./modsShepTry/" #'./modsFine/' #'./modsHess/'
+##
+#zetaSims = seq(0.1, 0.8, 0.01) #seq(0.1, 0.8, 0.05) 	#rev(seq(0.1, 0.80, 0.01)) #
+#xiSims =   seq(0.5, 3.5, 0.05) #seq(0.5, 3.5, 0.25)		#seq(0.5, 3.5, 0.05)       #
 #
-zetaSims = seq(0.1, 0.8, 0.01) #seq(0.1, 0.8, 0.05) 	#rev(seq(0.1, 0.80, 0.01)) #
-xiSims =   seq(0.5, 3.5, 0.05) #seq(0.5, 3.5, 0.25)		#seq(0.5, 3.5, 0.05)       #
+zetaSims = seq(0.15, 0.7, 0.1) #0.01 #seq(0.1, 0.8, 0.05)       #rev(seq(0.1, 0.80, 0.01)) #
+xiSims =   seq(0, 4.5, 0.5)
+
 
 #
 M = 0.2
@@ -185,115 +189,115 @@ plot(D[,c("xiInv", "zetaInv")],
 points(D[,c("xiBH", "zetaBH")], col=map2color(D$minDist, hcl.colors(60, "Zissou 1", rev=T)))
 dev.off()
 
+##
+##
+##
 #
+##pick a polynomial mean function
+#Tg = diag(D$lFV)
+#X = cbind(1, D$xiInv, D$zetaInv)
+#axes = X[,2:3]
+#registerData(D$lF, X, axes, Tg)
+#par = c(l1=0.5, l2=0.5, th=eps(), nu=1, s2=0.1)
+#gpFit = gpMAP(par, hessian=F, psiSample=F)
+#print(gpFit)
 #
+##prediction
+#zetaStar = seq(min(D$zetaInv), max(D$zetaInv), 0.001) 	#seq(0.15, 0.35, 0.001)  #rev(seq(0.1, 0.80, 0.01)) #
+#xiStar   = seq(min(D$xiInv), max(D$xiInv), 0.005)  	#seq(1, 3.5, 0.005)
+#XStar = cbind(1, expand.grid(xiStar, zetaStar))
+#gpPred = gpPredict(XStar, XStar[,2:3], gpFit)
 #
-
-#pick a polynomial mean function
-Tg = diag(D$lFV)
-X = cbind(1, D$xiInv, D$zetaInv)
-axes = X[,2:3]
-registerData(D$lF, X, axes, Tg)
-par = c(l1=0.5, l2=0.5, th=eps(), nu=1, s2=0.1)
-gpFit = gpMAP(par, hessian=F, psiSample=F)
-print(gpFit)
-
-#prediction
-zetaStar = seq(min(D$zetaInv), max(D$zetaInv), 0.001) 	#seq(0.15, 0.35, 0.001)  #rev(seq(0.1, 0.80, 0.01)) #
-xiStar   = seq(min(D$xiInv), max(D$xiInv), 0.005)  	#seq(1, 3.5, 0.005)
-XStar = cbind(1, expand.grid(xiStar, zetaStar))
-gpPred = gpPredict(XStar, XStar[,2:3], gpFit)
-
-#bias
-xiHat = exp(gpPred)/M
-xBias = sweep(xiHat, 1, xiStar)
-yBias = sweep(1/(xiHat+2), 2, zetaStar)
+##bias
+#xiHat = exp(gpPred)/M
+#xBias = sweep(xiHat, 1, xiStar)
+#yBias = sweep(1/(xiHat+2), 2, zetaStar)
+##
+#eucBias = mcmapply(function(xiHat, xi, zeta){
+#                dist(xiHat, xi, zeta)
+#        }, xiHat, XStar[,2], XStar[,3], mc.cores=detectCores()
+#)
+#eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
 #
-eucBias = mcmapply(function(xiHat, xi, zeta){
-                dist(xiHat, xi, zeta)
-        }, xiHat, XStar[,2], XStar[,3], mc.cores=detectCores()
-)
-eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
-
-#xi bias
-png("xBiasDerizo.png")
+##xi bias
+#png("xBiasDerizo.png")
+##
+#maxXBias = abs(max(xBias, na.rm=T))
+#minXBias = abs(min(xBias, na.rm=T))
+#posCols = hcl.colors(round(100*maxXBias/(maxXBias+minXBias)), "Reds 2", rev=T)
+#negCols = hcl.colors(round(100*minXBias/(maxXBias+minXBias)), "Blues 2", rev=F)
+#xCols = c(negCols, "#FFFFFF", posCols)
+##
+#par(mar=c(5, 4, 4, 5)+0.1)
+#image(xiStar, zetaStar, xBias,
+#	col  = adjustcolor(xCols, alpha.f=0.6),  #hcl.colors(41, "RdBu", rev=T)
+#        xlab = 'Xi',
+#        ylab = 'Zeta',
+#	main = "Bias in Estimated Optimal Fishing"
+#)
+#curve(1/(x+2), from=0, to=8, lwd=3, add=T) #col=map2color(0, hcl.colors(41, "RdBu", rev=T)),
+#show = seq(1, length(xCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.1f", rev(seq(min(xBias, na.rm=T), max(xBias, na.rm=T), length.out=length(show)))),
+#        fill = rev(xCols[show]), #colMap[c(1, 10, 20)], 
+#        xpd = NA
+#)
+#dev.off()
 #
-maxXBias = abs(max(xBias, na.rm=T))
-minXBias = abs(min(xBias, na.rm=T))
-posCols = hcl.colors(round(100*maxXBias/(maxXBias+minXBias)), "Reds 2", rev=T)
-negCols = hcl.colors(round(100*minXBias/(maxXBias+minXBias)), "Blues 2", rev=F)
-xCols = c(negCols, "#FFFFFF", posCols)
+##zeta bias
+#png("yBiasDerizo.png")
+##
+#maxYBias = abs(max(yBias, na.rm=T))
+#minYBias = abs(min(yBias, na.rm=T))
+#posCols = hcl.colors(round(100*maxYBias/(maxYBias+minYBias)), "Reds 2", rev=T)
+#negCols = hcl.colors(round(100*minYBias/(maxYBias+minYBias)), "Blues 2", rev=F)
+#yCols = c(negCols, "#FFFFFF", posCols)
+##
+#par(mar=c(5, 4, 4, 5)+0.1)
+#image(xiStar, zetaStar, yBias,
+#	col  = adjustcolor(yCols, alpha.f=0.6), 
+#        xlab = 'Xi',
+#        ylab = 'Zeta',
+#	main = "Bias in Estimated Optimal Biomass"
+#)
+#curve(1/(x+2), from=0, to=8, lwd=3, add=T)
+#show = seq(1, length(yCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.2f", rev(seq(min(yBias, na.rm=T), max(yBias, na.rm=T), length.out=length(show)))),
+#        fill = rev(yCols[show]), #colMap[c(1, 10, 20)], 
+#        xpd = NA
+#) 
+#dev.off()
 #
-par(mar=c(5, 4, 4, 5)+0.1)
-image(xiStar, zetaStar, xBias,
-	col  = adjustcolor(xCols, alpha.f=0.6),  #hcl.colors(41, "RdBu", rev=T)
-        xlab = 'Xi',
-        ylab = 'Zeta',
-	main = "Bias in Estimated Optimal Fishing"
-)
-curve(1/(x+2), from=0, to=8, lwd=3, add=T) #col=map2color(0, hcl.colors(41, "RdBu", rev=T)),
-show = seq(1, length(xCols), length.out=20)
-legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
-        sprintf("%1.1f", rev(seq(min(xBias, na.rm=T), max(xBias, na.rm=T), length.out=length(show)))),
-        fill = rev(xCols[show]), #colMap[c(1, 10, 20)], 
-        xpd = NA
-)
-dev.off()
-
-#zeta bias
-png("yBiasDerizo.png")
+##euc bias
+#png("directionalBiasDerizo.png")
+##
+#eucCols = hcl.colors(41, "Reds 2", rev=T)
+##
+#par(mar=c(5, 4, 4, 5)+0.1)
+#image(xiStar, zetaStar, eucBias,
+#        col  = adjustcolor(eucCols, alpha.f=0.6),
+#        xlab = 'Xi',
+#        ylab = 'Zeta',
+#	main = "Directional Bias"
+#)
+#curve(1/(x+2), from=0, to=8, lwd=3, add=T)
+#w = (XStar[,2]>min(D$xiInv) & XStar[,2]<max(D$xiInv) & XStar[,3]>min(D$zetaInv) & XStar[,3]<max(D$zetaInv)) 
+#thin = c(T,rep(F,60))
+#quiver(
+#        XStar[w,2][thin], XStar[w,3][thin],
+#        xBias[w][thin], yBias[w][thin],
+#        scale=0.025
+#)
+#show = seq(1, length(eucCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.1f", rev(seq(min(eucBias, na.rm=T), max(eucBias, na.rm=T), length.out=length(show)))),
+#        fill = rev(eucCols[show]), #colMap[c(1, 10, 20)], 
+#        xpd = NA
+#)
+#dev.off()
 #
-maxYBias = abs(max(yBias, na.rm=T))
-minYBias = abs(min(yBias, na.rm=T))
-posCols = hcl.colors(round(100*maxYBias/(maxYBias+minYBias)), "Reds 2", rev=T)
-negCols = hcl.colors(round(100*minYBias/(maxYBias+minYBias)), "Blues 2", rev=F)
-yCols = c(negCols, "#FFFFFF", posCols)
-#
-par(mar=c(5, 4, 4, 5)+0.1)
-image(xiStar, zetaStar, yBias,
-	col  = adjustcolor(yCols, alpha.f=0.6), 
-        xlab = 'Xi',
-        ylab = 'Zeta',
-	main = "Bias in Estimated Optimal Biomass"
-)
-curve(1/(x+2), from=0, to=8, lwd=3, add=T)
-show = seq(1, length(yCols), length.out=20)
-legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
-        sprintf("%1.2f", rev(seq(min(yBias, na.rm=T), max(yBias, na.rm=T), length.out=length(show)))),
-        fill = rev(yCols[show]), #colMap[c(1, 10, 20)], 
-        xpd = NA
-) 
-dev.off()
-
-#euc bias
-png("directionalBiasDerizo.png")
-#
-eucCols = hcl.colors(41, "Reds 2", rev=T)
-#
-par(mar=c(5, 4, 4, 5)+0.1)
-image(xiStar, zetaStar, eucBias,
-        col  = adjustcolor(eucCols, alpha.f=0.6),
-        xlab = 'Xi',
-        ylab = 'Zeta',
-	main = "Directional Bias"
-)
-curve(1/(x+2), from=0, to=8, lwd=3, add=T)
-w = (XStar[,2]>min(D$xiInv) & XStar[,2]<max(D$xiInv) & XStar[,3]>min(D$zetaInv) & XStar[,3]<max(D$zetaInv)) 
-thin = c(T,rep(F,60))
-quiver(
-        XStar[w,2][thin], XStar[w,3][thin],
-        xBias[w][thin], yBias[w][thin],
-        scale=0.025
-)
-show = seq(1, length(eucCols), length.out=20)
-legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
-        sprintf("%1.1f", rev(seq(min(eucBias, na.rm=T), max(eucBias, na.rm=T), length.out=length(show)))),
-        fill = rev(eucCols[show]), #colMap[c(1, 10, 20)], 
-        xpd = NA
-)
-dev.off()
-
-#residuals
+##residuals
 
 
 
