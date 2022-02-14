@@ -23,6 +23,7 @@
 \usepackage{wrapfig}
 %\usepackage{relsize}
 \usepackage{dsfont}
+\usepackage{pgfgantt}
 
 \hypersetup{colorlinks   = true, %Colors links instead of ugly boxes
             urlcolor     = blue, %Color for external hyperlinks
@@ -787,7 +788,7 @@ misspecified.
 
 %
 \clearpage
-\subsection{Catch}
+\subsection{Catch \label{catch}}
 
 %%
 %For the sake of simulation, catch is parameterized so that $F_t$ can be 
@@ -1285,10 +1286,10 @@ MLE Bias surfaces for $B^*$ (\emph{left}) and $F^*$ (\emph{right}) with relative
 
 %
 Figure(\ref{expT45BmFm}) shows the relative bias surfaces for $B^*$ and $F^*$ 
-under the high contrast setting. On the one hand, notice the relative lack of 
-bias in $F^*$ over a large swath of RPs far from the Schaefer line. On the 
-other hand, notice that bias in $B^*$ increases here relative to the low contrast 
-setting. The pattern of bias in $B^*$ %over the space of misspecified RPs in $B^*$ 
+under 45 epochs of data in the high contrast setting. On the one hand, notice 
+the relative lack of bias in $F^*$ over a large swath of RPs far from the 
+Schaefer line. On the other hand, notice that bias in $B^*$ increases here 
+relative to the low contrast setting. The pattern of bias in $B^*$ %over the space of misspecified RPs in $B^*$ 
 maintains a similar pattern, and overall scale, as the low contrast setting 
 seen in Figure(\ref{flatRat}), however a smaller region of RP-space enjoys low 
 bias here. Due to the similar, albeit expanded, pattern of $B^*$ bias here, as 
@@ -1297,11 +1298,11 @@ $\frac{B^*}{\bar B(0)}$, the bias surface for $K$ maintains the same general
 \mbox{inverse relationship with $\frac{B^*}{\bar B(0)}$.}
 
 %
-If the data is augmented so that the fishing rate is held at $F^*$ for an 
-additional 15 time epochs, so that slower growing stocks may observe more data 
-near $B^*$, Figure(\ref{expT60BmFm}) shows the updated bias surfaces. The scale
-of bias in $B^*$ is reduced, but the scope and general pattern of bias remains 
-similar. While the bias behavior of $B^*$ estimates are somewhat diminished, 
+If the data are augmented so that the fishing rate is held at $F^*$ for an 
+additional 45 time epochs, so that slower growing stocks may observe more data 
+near $B^*$, Figure(\ref{expT90BmFm}) shows the updated bias surfaces. The scale
+of bias in $B^*$ is reduced, but the general patterns of bias remains 
+similar for both RPs. While the bias behavior of $B^*$ estimates are diminished, 
 $F^*$ biases are generally magnified.  
 
 %%
@@ -1314,7 +1315,7 @@ $F^*$ biases are generally magnified.
 \begin{minipage}[h!]{0.49\textwidth}
 %
 %\begin{figure}[h!]
-\includegraphics[width=.85\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT60.png}
+\includegraphics[width=.85\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaExpT90.png}
 %\caption{ \label{expCatchT45Fmsy}
 %}
 %\end{figure}
@@ -1322,11 +1323,11 @@ $F^*$ biases are generally magnified.
 \begin{minipage}[h!]{0.49\textwidth}
 %%
 %\begin{figure}[h!]
-\includegraphics[width=.85\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT60.png}
+\includegraphics[width=.85\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasPellaExpT90.png}
 %\caption{ \label{expCatchT45Bmsy}
 %}
 \end{minipage}
-\caption{\label{expT60BmFm}
+\caption{\label{expT90BmFm}
 MLE Bias surfaces for $B^*$ (\emph{left}) and $F^*$ (\emph{right}) with relative fishing rate augmented with additional observations near equilibrium.
 }
 \end{figure}
@@ -1441,7 +1442,7 @@ available information among $B^*$ and $F^*$. Increasing the flexibility of the
 production function by moving toward curves with additional parameters could 
 release these structural limitations \shortcite{mangel_perspective_2013}. 
 \shortciteA{punt_extending_2019} considers a suite of possible three parameter
-curves which could be use instead of current two parameter curves.
+curves which could be used instead of current two parameter curves.
 
 %
 This study only explores the compatibility of the possible productivity shapes 
@@ -1543,22 +1544,102 @@ the BH production model.
 
 %
 \begin{align}
-\bar B (F) &= \frac{1}{\beta}\left(\left( \frac{\alpha}{M+F} \right)^\frac{1}{\gamma}-1 \right) 
+\frac{dB}{dt} = \frac{\alpha B}{(1+\beta B)} - (M+F)B \label{bh}
 \end{align}
 
 %
 \begin{align}
-\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{FDderiv}\\
-%\frac{d \bar B}{dF} &= -\frac{K}{\gamma-1}\left(\frac{\gamma-1}{r}\right)^{\frac{1}{\gamma-1}}F^{\frac{1}{\gamma-1}-1}\\
-\frac{d \bar B}{dF} &= -\frac{1}{\beta\gamma} \left(\frac{1}{M+F}\right) \left(\frac{ \alpha }{ M+F }\right)^{\frac{1}{\gamma} } \nonumber
+\frac{B^*}{\bar B(0)} = \frac{1}{\frac{F^*}{M}+2}
 \end{align}
 
 %
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.53\textwidth}
+\includegraphics[height=0.37\textheight]{plots/bhRP.png}
+\end{minipage}
+\begin{minipage}[h!]{0.48\textwidth}
+\caption{\label{bhRP}
+%Open circles show the location of the simulation grid $\mathcal{F}\times\mathcal{B
+%The horizontal line shows the constrained space of RPs for the Schaefer model.
+%The red X's indicated 4 simulation locations where the Schaefer model is particula
+%misspecified.
+}
+\end{minipage}
+\end{figure}
+
+Assumptions:
+\begin{itemize}
+	\item Von Bertalanfft Growth at age
+	\item Recruitment and Maturity occur at age $k$ (knifedge)
+	\item No fishing or natural mortality below $k$, but above everyone is the same
+\end{itemize}
+
+%
 \begin{align}
-\frac{B^*}{\bar B(0)} &= \frac{ \left(\frac{\alpha}{M+F^*}\right)^\frac{1}{\gamma}-1 }{ \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 } \nonumber\\
-\alpha &= (M+F^*)\left[ 1-\frac{1}{\gamma}\left(\frac{F^*}{M+F^*}\right) \right]^{-\gamma}\\
-\beta  &= \frac{1}{\bar B(0)}\left( \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 \right)  \nonumber
+%B(a, t) &= w(a, t)N(a, t)\\ 
+\frac{dB}{dt} &= \overbrace{w(k)R(B(t-k))}^\text{Recruitment Biomass} + \overbrace{\mu w_\infty N(t)}^\text{Growth} - \overbrace{(M+F(t)+\mu)B(t)}^\text{Biomass Loss}\\
+\frac{dB}{dt} &= \overbrace{w(k)R(B(t-k))}^\text{Recruitment Biomass} + \overbrace{\mu \left[w_\infty N(t)-B(t)\right]}^\text{Net Growth} - \overbrace{(M+F(t))B(t)}^\text{Mortality}\\
+\frac{dN}{dt} &= R(B(t-k)) - (M+F(t))N(t)\\
+R(B) &= \frac{\alpha B}{(1+\beta B)^\gamma}
 \end{align}
+
+\noindent
+Nuisance Parameters: $q$, $\sigma^2$\\
+Recruitment Parameters: $\alpha$, $\beta$, $\gamma$\\
+Growth Parameters: $\mu$, $w_\infty$\\
+$\mu$: Metabolism, $w_\infty$: Maximum weight?\\
+
+\noindent
+how to choose $k$?$w(k)$?
+
+%
+%\begin{align}
+%
+%\end{align}
+
+%
+\begin{align}
+B_t = \underbrace{w_k R_t}_\text{Biomass of New Recruits} + \underbrace{\rho s_{t-1}B_{t-1} - \rho s_{t-1}s_{t-2}B_{t-2} - \rho w_{t-1} s_{t-1} R_{t-1}}_\text{Growth of Surviving Biomass} + \underbrace{s_{t-1}B_{t-1}}_\text{Surviving Biomass}
+\end{align}
+
+\noindent
+Difference between $\mu$($\kappa$) and $\rho$?\\
+??$s_t = (1-e^{-M})(1-e^{-F_t})$??
+units of $M$ and $F(t)$ when applied to both biomass and numbers
+
+Advantages:
+\begin{itemize}
+	\item Generalization of surplus produciton model to include individual growth
+	\item Equiavlent to the full age structured model with knife edge recruitment and constant mortality,  
+	\item The delay differential setting is fast an efficient compared to the full
+		age structured model. Self accounting. learns similar (if not the same) 
+		infmornation about the stock as the full age structed model 
+	\item Equilibrium calcutions are avilable \shortcite{schnute_analytical_1998}
+\end{itemize}
+
+\shortcite{deriso_harvesting_1980}
+\shortcite{schnute_general_1985, schnute_general_1987}
+\shortcite{walters_continuous_2020}
+
+
+%%
+%\begin{align}
+%\bar B (F) &= \frac{1}{\beta}\left(\left( \frac{\alpha}{M+F} \right)^\frac{1}{\gamma}-1 \right) 
+%\end{align}
+%
+%%
+%\begin{align}
+%\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{FDderiv}\\
+%%\frac{d \bar B}{dF} &= -\frac{K}{\gamma-1}\left(\frac{\gamma-1}{r}\right)^{\frac{1}{\gamma-1}}F^{\frac{1}{\gamma-1}-1}\\
+%\frac{d \bar B}{dF} &= -\frac{1}{\beta\gamma} \left(\frac{1}{M+F}\right) \left(\frac{ \alpha }{ M+F }\right)^{\frac{1}{\gamma} } \nonumber
+%\end{align}
+%
+%%
+%\begin{align}
+%\frac{B^*}{\bar B(0)} &= \frac{ \left(\frac{\alpha}{M+F^*}\right)^\frac{1}{\gamma}-1 }{ \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 } \nonumber\\
+%\alpha &= (M+F^*)\left[ 1-\frac{1}{\gamma}\left(\frac{F^*}{M+F^*}\right) \right]^{-\gamma}\\
+%\beta  &= \frac{1}{\bar B(0)}\left( \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 \right)  \nonumber
+%\end{align}
 
 
 %
@@ -1566,45 +1647,221 @@ the BH production model.
 \section{Catch Interpolation}
 
 %
+The assumption of known catch without uncertainty is suspect, see Figure (\ref{hakeData}, \emph{right}).  
+While methods for quantifying catch uncertainty have been developed \shortcite{shelton_estimating_2012}, 
+the effect of uncertainty in catch has not been incorperated in stock assessment models \shortcite{methot_stock_2013}.    
+
+%
+The theoretical use of splines for smoothly and accruately approximating the 
+solution of initial value problems has been well established \shortcite{ahlberg_theory_1967}. %\shortcite{ahlberg_convergence_1963, ahlberg_cubic_1968, ahlberg_collocation_1975}.  
+As a statistical model splines are also well established as a nonparametric 
+(or semiparametric) regression technique \shortcite{green_nonparametric_1993, hastie_elements_2009}. %\shortcite{de_boor_practical_1978, wahba_spline_1990, green_nonparametric_1993, hastie_elements_2009}.
+The use of splines in these two settings, along with the advent of estimates of 
+uncertainty in catch, suggests splines as a useful modeling paradigm for 
+incorperating elements of catch uncertainty into single species stock 
+assessment models. 
+
+%{\color{red}
+%\begin{itemize}
+%\item instantaneous catch v. observed catch
+%\item plee for continuity
+%\end{itemize}
+%}
+
+%(with less that 3 dimensions)
+%https://mat will not exhibit chaos, can adaptively refine step sizes to keep numerical errors to a minimum, and when
+As previously described in Section (\ref{catch}), catch estimates are 
+typically attained on a discrete basis which is matched by the fixed step size 
+discretization of the motivating ODE. Despite a host of numerical issues that
+naive discretizations can cause, forward Eurler discreteization of dynamics is 
+largly implemented for convience for use with discretely sampled data such as 
+catch. For inference (when parameters are not known in advanced) a continuous 
+handling of biomass dynamics largly avoids the numerous numerical issues 
+brought about by naive time stepping. However, a continuous approach requires 
+tactful methodology for moving catch estimates from the current yearly 
+estimates to the interpolated instantaneous quantities needed for a continuous 
+handling of biomass dynamics. Below I propose such a method for interpolating 
+and smoothing catch.
+
+
+%%using impliciate methods of time stepping, largely avoid issues common issue 
+%with the common forward 
+%of chaotic dynamics regimns, systematic bias due to large numerical 
+%errors, and stiffness of the of well engineered to handle stiff systems if 
+%they arrise (which I will be less common by a smoothing approach for catch).
+
+%%instantaneous catch v. observed catch
+%As previously described in Section (\ref{catch}), catch estimates are 
+%typically attained on a discrete quarterly (or yearly) basis which is matched by 
+%the fixed step size discretization of the motivating ODE. When the Euler forward 
+%method is an advisable discreteization, current discrete catch estimates are 
+%convienient, however naive ODE discretizations can suffer a host of issues. When 
+%catch estimates are jittery, and assumed known, poorly behaved catch series can make 
+%otherwise well behaved biomass dynamics exhibit "stiff" behavior \cite{wanner_solving_1996}, 
+%thus invalidating the explicate forward Euler discreteization. Furthermore, 
+%forward Euler can easily be subject to large numerical errors in the solution 
+%to the underlying dynamics of the governing biomass dynamics, which 
+%can lead to additional systematic sources of parameter estimation bias. Additionally, 
+%when the population growth rate is fast, discrete model formulations exhibit 
+%chaotic regims {\color{red} cite logistic map} that are not predictively or 
+%inferentially useful. A continuous handling of biomass dynamics (with less that 3 dimensions) %https://math.libretexts.org/Bookshelves/Scientific_Computing_Simulations_and_Modeling/Book%3A_Introduction_to_the_Modeling_and_Analysis_of_Complex_Systems_(Sayama)/09%3A_Chaos/9.04%3A_Chaos_in_Continuous-Time_Model%
+%will not exhibit chaos, can adaptively refine step sizes to keep numerical errors to a minimum, and when 
+%used in concert with impliciate methods of time stepping are well engineered to 
+%handle stiff systems if they arrise (which I will be less common by a smoothing 
+%approach for catch).
+%
+%%https://physics.stackexchange.com/questions/6104/chaos-and-continuous-flow
+%%In order for continuous-time dynamical systems to be chaotic, the dimensions of the system's phase space must be at least 3-D. In contrast, discrete-time dynamical systems can be chaotic regardless of their dimensions The Lorenz equations involved three variables, so it was an example of continuous-time chaotic systems with minimal dimensionality.
+%
+%% 
+%A primary interest is estimating the instantaneous catch rate as a continuous function of time. 
+%
+%%
+%All that is needed is a method of converting discrete catch estimates to instantaneous
+%catches. That is to say any reasonable catch estimate should respect 
+%
+%
+% with a tactful 
+%handling of catch data can offer a useful mechanism for incorperating some effects of 
+%catch uncertainty in catch in stock assessment models.
+%
+%%%
+%%ODE may be discretized via Euler’s method with integration step sizes to match the
+%%In practice, catch is determined by a series of observed, assumed known, catches.
+%%Catch observations are typically observed on a quarterly (or yearly) basis, so that the
+%%ODE may be discretized via Euler’s method with integration step sizes to match the
+%%observation frequency of the modeled data. In this case, catch is sampled as would
+%%be done in practice however, the simulation can encounter a variety of issues working
+%%with the naively discretized ODE. As a result the ODE is integrated implicitly via
+%%the Livermore Solver (Radhakrishnan, 1993, lsode), and catch is linearly interpolated
+%%between sampled epochs.
+%
+%
+%\begin{itemize}
+%\item catch observations are random
+%\item compatibility layer with ODE formulation
+%\item instantaneous catch v. observed catch
+%\end{itemize}
+
+%
+Let $\tau_j$ represent the starting point of the $j^{th}$ epoch and let $t$ 
+represent continuous times falling between the $\tau$s. The observed catch 
+at $\tau_i$ is then $y(\tau_i)$ and the $y$ values at epoch boundaries represent 
+the integral of landed biomass from $\tau_{i-1}$ to $\tau_i$. The instaneous 
+landings, $x(t)$, are then modeled as a spline between the epochs as follows, % to produce the following model structure,
+%
+\begin{align}
+\mathds{E}[y(t)] &= \int_\tau^{t} x(t^*) dt^* ~~~ \tau=\lceil t \rceil-1 \\
+%k(t)-k(\tau) ~~~ \tau=\lceil t \rceil-1 \\
+%k(t) &= \int_0^{t} x(t^*) dt^*\\
+x(t) &= \beta_0 + \sum_{j=1}^{T-1} \beta_j (t-\tau_j) \mathds{1}_{t>\tau_j}.
+\end{align}
+%
+$x(t)$ is a latent model of instantaneous catches. The time integral represents 
+a change of basis of the $x(t)$ spline model. When the $y(\tau_i)$ arrive
+on regular unit epoch intervals, and the change of basis time integrals are 
+collapsed, the following observation model for $y(\tau_i)$ arrives naturally. 
+%\vspace*{-1cm}
+\begin{align} %\beta_0(\tau_i-\tau_{i-1})
+y(\tau_i) &= \beta_0 + \sum_{j=1}^{i-1} \beta_j \left[ \left(\frac{\tau_i^2}{2}-\tau_j\tau_i\right)\mathds{1}_{\tau_i>\tau_j} - \left(\frac{\tau_{i-1}^2}{2}-\tau_j\tau_{i-1}\right)\mathds{1}_{\tau_{i-1}>\tau_j}\right] + \epsilon_i \\
+\beta_j &\sim N(0, \phi) ~~~~ ~~~~ \phi \sim \text{Half-Cauchy}(0, 1) ~~~~ ~~~~ \epsilon_i \sim N(0, \sigma^2_i) \nonumber
+\end{align}
+%
+This representation is nice for several reasons. Firstly, since the accruals 
+of catch are represented as a time integral the resulting model on $y$ remains 
+linear in $\beta$; infact this approach results in another spline model on $y$, 
+albeit represented in a different basis. Secondly, by explicatly modeling $x(t)$ 
+with a spline it gives direct interpretibility of the $\beta$s as slopes of 
+the instantaneous catch.  
+
+%{\color{red}
+%%
+%It is worth noting that smoothing in this setting 
+
+%
+It is worth noting that smoothing in this setting is accomplished by utilizing
+the observation uncertainty in catch and pooling that information among the $\beta$.
+%smoothing from $\sigma_i$ and pooling between $\beta$.}
+If all of the $\sigma_i$ are assumed to be $0$ (as would be implied by assuming 
+perfectly known catch) the linear spline becomes fully determined and there is 
+no room for any smoothing. Figure (\ref{splines}) demonstrates model fit with 
+and without uncertainty assumed in catch. Notice that in the absence of catch 
+uncertainty (the blue fit), the $x(t)$ model must steeply oscillate 
+inorder to model jittery observations, while the black model fit, which assumes 
+observation uncertainty, filter out jitters and smoothly explain the data. 
+
+%
 \begin{figure}[h!]
-\begin{minipage}[h!]{0.49\textwidth}
+\begin{minipage}[h!]{0.36\textwidth}
 %
 %\begin{figure}[h!]
-\includegraphics[width=.85\textwidth]{../../../theses/nick/spline/dataPlots505.png}
+\hspace{-1cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/spline/dataPlots.png}%505.png}
 %\caption{ \label{expCatchT45Fmsy}
 %}
 %\end{figure}
 \end{minipage}
-\begin{minipage}[h!]{0.49\textwidth}
+\begin{minipage}[h!]{0.36\textwidth}
 %%
 %\begin{figure}[h!]
-\includegraphics[width=.85\textwidth]{../../../theses/nick/spline/intCurves505.png}
+\hspace{-0.5cm}
+\includegraphics[width=1.1\textwidth]{../../../theses/nick/spline/intCurves.png}%505.png}
 %\caption{ \label{expCatchT45Bmsy}
 %}
 \end{minipage}
+\begin{minipage}[h!]{0.24\textwidth}
+%\hspace*{0.5cm}
 \caption{\label{splines}
-(\emph{left}) Namibian Hake yearly catch observations. (\emph{right}) Posterior Estimates of instantaious catch with and without assumed uncertatinty in observed catch. 
+\\(\emph{left})\\ Namibian Hake yearly catch \mbox{observations} plotted along with \mbox{predictive model fits.} (\emph{right}) \mbox{Posterior estimates} of instantanious catch with and without assumed \mbox{uncertatinty} in observed catch. 
 }
+\end{minipage}
 \end{figure}
 
-\begin{align}
-\mathds{E}[y(t)] &= k(t)-k(\tau) ~~~ \tau=\lceil t \rceil-1 \\
-k(t) &= \int_0^{t} x(t^*) dt^*\\
-x(t) &= \beta_0 + \sum_{j=1}^{T-1} \beta_j (t-\tau_j) \mathds{1}(t>\tau_j)
-\end{align}
+%
+The model fit attained under the assumtion of complete certainty in catch 
+clearly leads to defective instantaneous catch behavior. However when 
+uncertainty is added to catch a very sensible catch pattern is reconstructed. 
+Given the parsamonious bottom-up derivation of this model, these observations 
+suggests that the assumption of certainty among catches is poor.
+% the source of the observed defective.
 
-\begin{align}
-y(\tau_i) &= \beta_0(\tau_i-\tau_{i-1}) + \sum_{j=1}^{i-1} \beta_j \left[ \left(\frac{\tau_i^2}{2}-\tau_j\tau_i\right) - \left(\frac{\tau_{i-1}^2}{2}-\tau_j\tau_{i-1}\right)\right] + \epsilon_i \\
-\beta_j &\sim N(0, \phi) ~~~~ \phi \sim \text{Half-Cauchy}(0, 1) ~~~~ \epsilon_i \sim N(0, \sigma^2_i) \nonumber
-\end{align}
 
+%
+I propose that this modeling paradigm presents a useful tool for propogating 
+catch uncertainty into the dynamics of stock assessment models. Firstly this 
+method provides a flexible, and interpretible, method for smoothing catch 
+jitters. Secondly this modeling paradigm allows for use with the robust 
+continuous representation of biomass dynamics. A further exploration of 
+smoothing splines, beyond linear basis functions (for example cubic), will be 
+explored. Additionally, the effect of accounting for catch uncertainty with this 
+approach will be evaluated in the context of inference on biomass dynamics 
+parameters.   
+
+%
+\section{Timeline}
+
+\begin{center}
+\begin{ganttchart}[today=3]{1}{16}
+\gantttitlelist{2022,2023}{8} \\
+\gantttitle{F}{2}
+\gantttitle{W}{2}
+\gantttitle{S}{2}
+\gantttitle{S}{2}
+\gantttitle{F}{2}
+\gantttitle{W}{2}
+\gantttitle{S}{2}
+\gantttitle{S}{2}\\
+\ganttgroup{Project 2}{5}{10} \\
+\ganttgroup{Project 3}{9}{14} 
+\end{ganttchart}
+\end{center}
 
 %
 %\thispagestyle{next}
 \clearpage
 \bibliographystyle{apacite}
 %\bibliography{./schnuteGPBias.bib}
-\bibliography{./gpBias.bib}
+\bibliography{./gpBias.bib,./spline.bib}
 %\thispagestyle{next}
 
 

@@ -86,7 +86,7 @@ vPrior = function(v, log=F){
 #
 
 #                                           606
-catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277, 254, 170, 97, 91, 177, 216, 229, 211, 231, 223)
+catch = c(94, 212, 195, 383, 320, 402, 366, 505, 378, 319, 309, 389, 277, 254, 170, 97, 91, 177, 216, 229, 211, 231, 223)
 TT = length(catch)
 time = 1:TT
 
@@ -274,7 +274,7 @@ coef = sp4$coef
 #
 png('intCurves.png')
 #
-plot(time, cbind(1, X2)%*%sp4$coefficients, type='l', lwd=2, xlab="Time", ylab="Catch", ylim=c(0, 1300), col='blue', main="Interpolated Catch")
+plot(time, cbind(1, X2)%*%sp4$coefficients, type='l', lwd=2, xlab="Time", ylab="Catch", ylim=c(0, 1300), col='blue', main="Interpolated Instantaneous Catch")
 #boxplot(intPred, outline=F, border='red')
 #points(time, catch, pch=20)
 #i = 1
@@ -295,7 +295,7 @@ dev.off()
 #
 png('dataPlots.png')
 #
-plot(time, X4%*%coef, 'l', col='blue', ylim=c(0, 700), lwd=2, ylab="Catch", xlab="Time", main="Yearly Catch Observations") #, ylim=c(0, 1500))
+plot(time, X4%*%coef, 'l', col='blue', ylim=c(0, 700), lwd=2, ylab="Catch", xlab="Time", main="Observed Catch with Predictive Interpolations") #, ylim=c(0, 1500))
 points(time, catch, pch='-', cex=1.75)#20)
 
 #
