@@ -95,9 +95,6 @@ X = makeXY(time, time[-TT])
 XX = makeXX()
 
 #
-vScale = 1
-
-#
 #OPTIMIZE
 #
 
@@ -105,7 +102,7 @@ vScale = 1
 #pCov = summary(lmFit)$cov.scaled
 
 #snr=1/cv=m/sd
-snr = 2 #3 #(0.1, 100000)
+snr = 100000 #2 #3 #(0.1, 100000)
 sig = diag(catch)/snr #100000
 ISig = solve(sig)
 coefCov = solve(t(X)%*%ISig%*%X)
@@ -113,6 +110,9 @@ coefWLS = coefCov %*% t(X)%*%ISig%*%catch
 #
 lvSD = 1
 covP = 0.8 #1.5
+
+#
+vScale = 1#snr
 
 #
 #SAMPLE
@@ -272,7 +272,7 @@ coef = sp4$coef
 #
 
 #
-png('intCurves.png')
+png('intCurvesSmallCV.png')
 #
 plot(time, cbind(1, X2)%*%sp4$coefficients, type='l', lwd=2, xlab="Time", ylab="Catch", ylim=c(0, 1300), col='blue', main="Interpolated Instantaneous Catch")
 #boxplot(intPred, outline=F, border='red')
@@ -293,7 +293,7 @@ dev.off()
 #
 
 #
-png('dataPlots.png')
+png('dataPlotsSmallCV.png')
 #
 plot(time, X4%*%coef, 'l', col='blue', ylim=c(0, 700), lwd=2, ylab="Catch", xlab="Time", main="Observed Catch with Predictive Interpolations") #, ylim=c(0, 1500))
 points(time, catch, pch='-', cex=1.75)#20)

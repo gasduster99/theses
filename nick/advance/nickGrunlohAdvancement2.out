@@ -2,7 +2,7 @@
 \BOOKMARK [1][-]{section.2}{Methods}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{PT Model}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{PT Reference Points}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Simulation Study}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.3}{Simulation Study }{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.4}{Catch }{section.2}% 6
 \BOOKMARK [2][-]{subsection.2.5}{Model Fitting}{section.2}% 7
 \BOOKMARK [2][-]{subsection.2.6}{Gaussian Process Metamodel}{section.2}% 8
@@ -10,7 +10,8 @@
 \BOOKMARK [2][-]{subsection.3.1}{An MSY-Optimal Catch History }{section.3}% 10
 \BOOKMARK [2][-]{subsection.3.2}{More Informative Catch Histories}{section.3}% 11
 \BOOKMARK [1][-]{section.4}{Discussion}{}% 12
-\BOOKMARK [1][-]{section.5}{Extensions to other productions functions}{}% 13
-\BOOKMARK [1][-]{section.6}{Catch Interpolation}{}% 14
-\BOOKMARK [1][-]{section.7}{Timeline}{}% 15
-\BOOKMARK [1][-]{section.7}{References}{}% 16
+\BOOKMARK [1][-]{section.5}{Productivity and Growth Extensions}{}% 13
+\BOOKMARK [2][-]{subsection.5.1}{Individual Growth}{section.5}% 14
+\BOOKMARK [1][-]{section.6}{Catch Interpolation}{}% 15
+\BOOKMARK [1][-]{section.7}{Timeline}{}% 16
+\BOOKMARK [1][-]{section.7}{References}{}% 17

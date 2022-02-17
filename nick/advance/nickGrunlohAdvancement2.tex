@@ -364,7 +364,7 @@ production functions struggle similarly to model the full theoretical space of
 RPs \shortcite{mangel_perspective_2013}.
 
 %The Schaefer model is a much loved and argued over model
-The basis of the Schaefer model is ripe with debate \shortcite{kingsland_refractory_1982},
+The basis of the Schaefer model is ripe with debate \shortcite{kingsland_refractory_1982}, 
 and the debate continues within modern fisheries modeling \shortcite{prager_comparison_2002}. 
 On the one hand, \shortciteA{maunder_is_2003} argues that the Schaefer model is 
 insufficient in large part due to the restriction it places on $\frac{B^*}{\bar B(0)}$, 
@@ -584,9 +584,10 @@ is considered together with model misspecification. %alongside the effect of mod
 
 %{\color{gray}
 %Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
-The three parameter PT family has a convenient form that includes the logistic 
-production function as a special case to form the Schaefer model. The Pella-Tomlinson 
-production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$ 
+The three parameter PT family has a convenient form that includes, among 
+others \shortcite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
+logistic production function as a special case to form the Schaefer model. The 
+Pella-Tomlinson production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$ 
 and the family takes the following form, 
 %Pella Tomlinson
 \begin{align}
@@ -710,7 +711,7 @@ biological model parameters.
 
 %{\color{red}demonstration of the restricted case with graph over RP space as used.}
 
-\subsection{Simulation Study}
+\subsection{Simulation Study \label{sim}}
 
 %
 Indices of abundance are simulated from the three parameter PT production model 
@@ -734,7 +735,7 @@ inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, an
 $(r, \gamma)$. It is not generally possible to analytically invert this 
 relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
 Most three parameter production functions lead to RPs that require expensive 
-numerical methods to invert; more over the numerical inversion procedure can%is 
+numerical methods to invert; more over the numerical inversion procedure can %is 
 often be unstable. That said, for the case of PT this relationship is 
 analytically invertible, and leads to the following relationship
 
@@ -821,9 +822,10 @@ $\frac{F(t)}{F^*}$, catch can then be written as \mbox{$C(t)=F^*\left(\frac{F(t)
 Intuitively $\frac{F(t)}{F^*}$ describes the fraction of $F^*$ that $F(t)$ is  
 specified to for the current $B(t)$. When $\frac{F(t)}{F^*}=1$, $F(t)$ will be 
 held at $F^*$, and the solution of the ODE brings $B(t)$ into equilibrium at 
-$B^*$. For constant $\frac{F(t)}{F^*}$ the Schaefer model has an analytical 
-solution, via integrating factors, so that $B(t)$ comes to equilibrium 
-exponentially. The relative fishing rate is defined on $[0, \infty)$; when 
+$B^*$. For constant $\frac{F(t)}{F^*}$ the Schaefer model 
+%has an analytical 
+%solution, via integrating factors, so that $B(t)$ 
+comes to equilibrium as an exponential decay from $K$ approaching $B^*$. The relative fishing rate is defined on $[0, \infty)$; when 
 $\frac{F(t)}{F^*}<1$, $F(t)$ is lower than $F^*$ and $B(t)$ is pushed toward 
 $\bar B>B^*$. Contrarily, when $\frac{F(t)}{F^*}>1$, $F(t)$ is higher than 
 $F^*$ and $B(t)$ is pushed toward $\bar B<B^*$; the precise values of $\bar B$
@@ -1027,6 +1029,7 @@ derived for metamodel interpolation.
 %}
 
 %
+\clearpage
 \section{Results}
 
 %
@@ -1429,7 +1432,7 @@ better estimation, $B^*$ estimation experiences substantial bias for only
 modestly misspecified models. Further, by augmenting contrasting data with an 
 additional period of low contrast data this pattern begins to reverses with $B^*$ 
 bias receding toward more poorly specified models and $F^*$ bias encroaching 
-toward only modestly misspecified models as seen in Figure (\ref{expT60BmFm}).   
+toward only modestly misspecified models as seen in Figure (\ref{expT90BmFm}).   
 
 %
 The behavior of bias in estimating $B^*$ and $F^*$ suggests that the limited 
@@ -1529,136 +1532,300 @@ catch will be important for interpreting model inferences correctly.
 
 %
 \clearpage
-\section{Extensions to other productions functions}
-
-\begin{align}
-\frac{dB}{dt} = \frac{\alpha B}{(1+\beta B)^\gamma} - (M+F)B \label{schunte}
-\end{align}
+\section{Productivity and Growth Extensions}
 
 %
-\shortciteA{punt_extending_2019} formulated this way; mathematically equivalent 
-to formulations in \shortcite{schnute_general_1985, schnute_analytical_1998} which 
-has Schaefer, Ricker, and BH models as special cases. %when $gamma$ takes the values
-In particular I focus on the case when $gamma=1$, when Eq (\ref{schunte}) reduces to
-the BH production model. 
+The Deriso production function presents a convenient three parameter form 
+that is capable of representing many of the most common two parameter production 
+functions as special cases \shortcite{deriso_harvesting_1980}. The BH and 
+Logistic production functions arise when $\gamma$ is fixed to -1 or 1 
+respectively, and the Ricker model is a \mbox{limiting case as $\gamma\rightarrow0$ \shortcite{schnute_general_1985}.}
 
 %
-\begin{align}
-\frac{dB}{dt} = \frac{\alpha B}{(1+\beta B)} - (M+F)B \label{bh}
-\end{align}
-
-%
-\begin{align}
-\frac{B^*}{\bar B(0)} = \frac{1}{\frac{F^*}{M}+2}
-\end{align}
-
-%
+\vspace{-0.5cm}
 \begin{figure}[h!]
-\begin{minipage}[h!]{0.53\textwidth}
-\includegraphics[height=0.37\textheight]{plots/bhRP.png}
-\end{minipage}
-\begin{minipage}[h!]{0.48\textwidth}
-\caption{\label{bhRP}
-%Open circles show the location of the simulation grid $\mathcal{F}\times\mathcal{B
-%The horizontal line shows the constrained space of RPs for the Schaefer model.
-%The red X's indicated 4 simulation locations where the Schaefer model is particula
-%misspecified.
-}
+\begin{minipage}[h!]{0.49\textwidth}
+\begin{align}
+&\frac{dB}{dt} = P(B;\theta) - (M+F)B \nonumber%\label{schunte}%
+\end{align}
+\begin{align}
+&P(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}} \nonumber
+\end{align}
+\caption{
+The Deriso production function plotted across a variety of parameter 
+values. The special cases of BH, Ricker, and Logistic production are shown in 
+green, blue, and red respectively.
+} 
+\end{minipage} 
+\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=0.9\textwidth]{plots/derisoSrr.png}
 \end{minipage}
 \end{figure}
 
-Assumptions:
-\begin{itemize}
-	\item Von Bertalanfft Growth at age
-	\item Recruitment and Maturity occur at age $k$ (knifedge)
-	\item No fishing or natural mortality below $k$, but above everyone is the same
-\end{itemize}
-
 %
+\vspace{-0.5cm}
+Using the Deriso model as a data generating model across a wide range 
+of RP-space, similarly as described in Section (\ref{sim}), %, and fitting those data under a BH model, 
+presents an ideal setting for extending the above study of RP biases across a 
+broad range of productivity assumptions. Under the Deriso model inverting the 
+relationship between RPs and model parameters is not fully analytically possible 
+\shortcite{schnute_analytical_1998}. Numerical inversion of the nonlinear system 
+seen in Eq (\ref{system}) is required for determining parameter values for data 
+generation. Notice for a given value of $\gamma$, $\alpha$ and $\beta$ can 
+be solved analytically.
+
 \begin{align}
-%B(a, t) &= w(a, t)N(a, t)\\ 
-\frac{dB}{dt} &= \overbrace{w(k)R(B(t-k))}^\text{Recruitment Biomass} + \overbrace{\mu w_\infty N(t)}^\text{Growth} - \overbrace{(M+F(t)+\mu)B(t)}^\text{Biomass Loss}\\
-\frac{dB}{dt} &= \overbrace{w(k)R(B(t-k))}^\text{Recruitment Biomass} + \overbrace{\mu \left[w_\infty N(t)-B(t)\right]}^\text{Net Growth} - \overbrace{(M+F(t))B(t)}^\text{Mortality}\\
-\frac{dN}{dt} &= R(B(t-k)) - (M+F(t))N(t)\\
-R(B) &= \frac{\alpha B}{(1+\beta B)^\gamma}
+\frac{B^*}{\bar B(0)} &= \frac{ \left(\frac{\alpha}{M+F^*}\right)^\frac{1}{\gamma}-1 }{ \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 } \nonumber\\
+\alpha &= (M+F^*)\left[ 1-\frac{1}{\gamma}\left(\frac{F^*}{M+F^*}\right) \right]^{-\gamma} \label{system}\\
+\beta  &= \frac{1}{\bar B(0)}\left( \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 \right)  \nonumber
 \end{align}
-
-\noindent
-Nuisance Parameters: $q$, $\sigma^2$\\
-Recruitment Parameters: $\alpha$, $\beta$, $\gamma$\\
-Growth Parameters: $\mu$, $w_\infty$\\
-$\mu$: Metabolism, $w_\infty$: Maximum weight?\\
-
-\noindent
-how to choose $k$?$w(k)$?
-
-%
-%\begin{align}
-%
-%\end{align}
-
-%
-\begin{align}
-B_t = \underbrace{w_k R_t}_\text{Biomass of New Recruits} + \underbrace{\rho s_{t-1}B_{t-1} - \rho s_{t-1}s_{t-2}B_{t-2} - \rho w_{t-1} s_{t-1} R_{t-1}}_\text{Growth of Surviving Biomass} + \underbrace{s_{t-1}B_{t-1}}_\text{Surviving Biomass}
-\end{align}
-
-\noindent
-Difference between $\mu$($\kappa$) and $\rho$?\\
-??$s_t = (1-e^{-M})(1-e^{-F_t})$??
-units of $M$ and $F(t)$ when applied to both biomass and numbers
-
-Advantages:
-\begin{itemize}
-	\item Generalization of surplus produciton model to include individual growth
-	\item Equiavlent to the full age structured model with knife edge recruitment and constant mortality,  
-	\item The delay differential setting is fast an efficient compared to the full
-		age structured model. Self accounting. learns similar (if not the same) 
-		infmornation about the stock as the full age structed model 
-	\item Equilibrium calcutions are avilable \shortcite{schnute_analytical_1998}
-\end{itemize}
-
-\shortcite{deriso_harvesting_1980}
-\shortcite{schnute_general_1985, schnute_general_1987}
-\shortcite{walters_continuous_2020}
-
-
-%%
-%\begin{align}
-%\bar B (F) &= \frac{1}{\beta}\left(\left( \frac{\alpha}{M+F} \right)^\frac{1}{\gamma}-1 \right) 
-%\end{align}
-%
-%%
-%\begin{align}
-%\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{FDderiv}\\
-%%\frac{d \bar B}{dF} &= -\frac{K}{\gamma-1}\left(\frac{\gamma-1}{r}\right)^{\frac{1}{\gamma-1}}F^{\frac{1}{\gamma-1}-1}\\
-%\frac{d \bar B}{dF} &= -\frac{1}{\beta\gamma} \left(\frac{1}{M+F}\right) \left(\frac{ \alpha }{ M+F }\right)^{\frac{1}{\gamma} } \nonumber
-%\end{align}
-%
-%%
-%\begin{align}
-%\frac{B^*}{\bar B(0)} &= \frac{ \left(\frac{\alpha}{M+F^*}\right)^\frac{1}{\gamma}-1 }{ \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 } \nonumber\\
-%\alpha &= (M+F^*)\left[ 1-\frac{1}{\gamma}\left(\frac{F^*}{M+F^*}\right) \right]^{-\gamma}\\
-%\beta  &= \frac{1}{\bar B(0)}\left( \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 \right)  \nonumber
-%\end{align}
-
 
 %
 \clearpage
+
+%%
+%$~$
+%\hspace*{-1.25cm}
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.54\textwidth}
+\begin{align}
+P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
+\end{align}
+\begin{align}
+\frac{B^*}{\bar B(0)} = \frac{1}{\frac{F^*}{M}+2} \nonumber
+\end{align}
+\caption{\label{bhRP} The restricted RP-space under the BH production function.}
+\end{minipage}
+\begin{minipage}[h!]{0.44\textwidth}
+\includegraphics[width=0.8\textwidth]{plots/bhRP.png}
+\end{minipage}
+\end{figure}
+
+%While the Deriso model generalizes many common models, inference under 
+Inference under the BH model is of particular interest due to its overwhelming 
+popularity. Similar to the limited RP-space of the Schaefer model the two 
+parameter BH model also has a limited RP-space as shown in Figure (\ref{bhRP}).
+While the BH constrained RP space is now more complicated that the Schaefer model, 
+analogy to the results obtained under the PT-Schaefer simulation setting, and the 
+flexible GP metamodel, should expedite the analysis of BH inference.
+
+\subsection{Individual Growth}
+
+%Additionally 
+It is also necessary to study RP bias in the context of
+%An additional extension is to study of RP bias in the context of
+individual growth and age-structure. %d models.
+%A further important modeling extension is to include the dynamics of 
+%age-structure in the population. 
+The Deriso-Schnute delay-difference (DD) model provides a compact 
+representation of simple age-structured dynamics \shortcite{deriso_harvesting_1980, schnute_general_1985, schnute_general_1987}. %\color{red} cite equivalnece}. 
+While various modeling strategies may be considered for including effects of 
+age-structure in the population, the Deriso-Schnute DD model presents an ideal 
+model for the simulation setting presented here. The compact representation of 
+the Deriso-Schnute DD model via delay-differential equations accounts for the 
+effects of individual growth and maturity while maintaining relatively fast 
+computation.  %while accounting for the effects of individual growth and maturity.  %and parsimonious parameterization of growth   for the simulation setting presented here.
+
+%
+The DD model is derived directly from an assumption of Von Bertalanffy growth \shortcite{von_bertalanffy_quantitative_1938} %{\color{red} cite } 
+in weight, Eq(\ref{vbGrowth}). In this setting Von Bertalanffy 
+growth relates individual age to individual weight by assuming linear 
+instantaneous growth (as parameterized by the growth parameters $\kappa$ and 
+$w_\infty$). The DD model expands the idea of biomass production into the 
+processes of recruitment, individual growth, and maturity. This formulation 
+separates the number of individuals in the population ($N$) from the biomass 
+of the population ($B$). The dynamics of $N$, as seen in Eq (\ref{nEq}), are 
+very similar to that of the Deriso production model presented above, however 
+the role of the production function is now filled by a "recruitment" function 
+which describes how new individuals are added to the numbers equation. The $B$ dynamics, 
+%of accounting for $B$, as seen in Eq(\ref{bEq}), %, described from left to right), 
+can then be seen to describe biomass by an account of 1) biomass of new 
+recruits, 2) the growth of existing biomass, and 3) biomass lost due to 
+mortality. The model accounts for maturity as knife-edge maturity at the 
+instant an individual reaches age $a_0$.  
+%
+\begin{align}
+%B(a, t) &= w(a, t)N(a, t)\\ 
+%\frac{dB}{dt} &= \overbrace{w(k)R(B(t-k))}^\text{Recruitment Biomass} + \overbrace{\mu w_\infty N(t)}^\text{Growth} - \overbrace{(M+F(t)+\mu)B(t)}^\text{Biomass Loss}\\
+&\frac{dB}{dt} = \overbrace{w(a_0)R(B;\theta)}^\text{Recruitment Biomass} + \overbrace{\kappa \left[w_\infty N-B\right]}^\text{Net Growth} - \overbrace{(M+F)B}^\text{Mortality} \label{bEq}\\
+&\frac{dN}{dt} = R(B;\theta) - (M+F)N \label{nEq}\\
+&R(B;[\alpha, \beta, \gamma]) = \alpha B(t-a_0)(1-\beta\gamma B(t-a_0))^{\frac{1}{\gamma}} \label{srr}\\
+&w(a) = w_\infty(1-e^{-\kappa a}) \label{vbGrowth}
+\end{align}
+%
+\indent
+For the purpose of inference the parameters $\kappa, w_\infty, a_0 \text{ and } M$ are 
+typically fixed at values determined by the population of study. Thus the 
+primary inferential goal of the DD model is again focused on learning the 
+recruitment parameters. Using the Deriso-Schnute DD model as a data generating 
+model across a wide range of RP-space, and fitting those data under a BH 
+restriction of the DD model, further extends the simulation study of RP bias 
+to include the effects of individual growth.
+
+
+%\clearpage
+%\begin{itemize}
+%\item ?numerical issues?
+%\item {\color{red} natural mortality}
+%\item age of recruitment.
+%\item a bit of a sell
+%\end{itemize}
+%
+%\begin{itemize}
+%\item introduce growth model
+%\end{itemize}
+%
+%
+%
+%{\color{gray}
+%Assumptions:
+%\begin{itemize}
+%	\item Von Bertalanfft Growth at age
+%	\item Recruitment and Maturity occur at age $a_0$ (knifedge)
+%	\item No fishing or natural mortality below $a_0$, but above everyone is the same
+%\end{itemize}
+%
+%\noindent
+%Nuisance Parameters: $q$, $\sigma^2$\\
+%Recruitment Parameters: $\alpha$, $\beta$, $\gamma$\\
+%Growth Parameters: $\kappa$, $w_\infty$\\
+%$\kappa$: Metabolism, $w_\infty$: Maximum weight?\\
+%
+%\noindent
+%how to choose $a_0$? $w(a_0)$?
+%$a_0$ chosen by species and $w(a_0)$ implied by $\kappa$ and $w_\infty$. 
+%
+%
+%Advantages:
+%\begin{itemize}
+%	\item Generalization of surplus produciton model to include individual growth
+%	\item Equiavlent to the full age structured model with knife edge recruitment and constant mortality,  
+%	\item The delay differential setting is fast an efficient compared to the full
+%		age structured model. Self accounting. learns similar (if not the same) 
+%		infmornation about the stock as the full age structed model 
+%	\item Equilibrium calcutions are avilable \shortcite{schnute_analytical_1998}
+%\end{itemize}
+%
+%
+%then 
+%  very similary to the 
+%
+%the form of the model can be 
+%easily seen as a production model that includes the effect of individual growth
+%
+% individual growth 
+%}
+%
+%\shortcite{deriso_harvesting_1980}
+%\shortcite{schnute_general_1985, schnute_general_1987}
+%\shortcite{walters_continuous_2020}
+%
+%
+%
+%
+%
+%%across a wide range of l setting for extending the above 
+%%study of RP biases when data are generated under the 
+%%Deriso-Schnute model widely across RP-space and fitting data with a BH model 
+%
+%
+%
+%
+%%\shortciteA{punt_extending_2019} formulated this way; mathematically equivalent 
+%%to formulations in \shortcite{schnute_general_1985, schnute_analytical_1998} which 
+%%has Schaefer, Ricker, and BH models as special cases. %when $gamma$ takes the values
+%%In particular I focus on the case when $gamma=1$, when Eq (\ref{schunte}) reduces to
+%%the BH production model. 
+%
+%%%
+%%\begin{align}
+%%P(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)}
+%%\end{align}
+%%
+%%%
+%%\begin{align}
+%%\frac{B^*}{\bar B(0)} = \frac{1}{\frac{F^*}{M}+2}
+%%\end{align}
+%
+%%\begin{minipage}[h!]{0.49\textwidth}
+%%\begin{align}
+%%P(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}}
+%%\end{align}
+%%\end{minipage}
+%%\begin{minipage}[h!]{0.49\textwidth}
+%%\includegraphics[width=\textwidth]{plots/derisoSrr.png}
+%%\end{minipage}
+%
+%%%
+%%\begin{figure}[h!]
+%%\begin{minipage}[h!]{0.53\textwidth}
+%%\includegraphics[height=0.37\textheight]{plots/bhRP.png}
+%%\end{minipage}
+%%\begin{minipage}[h!]{0.48\textwidth}
+%%\includegraphics[height=0.37\textheight]{plots/derisoSrr.png}
+%%\end{minipage}
+%%\caption{\label{bhRP}
+%%%Open circles show the location of the simulation grid $\mathcal{F}\times\mathcal{B
+%%%The horizontal line shows the constrained space of RPs for the Schaefer model.
+%%%The red X's indicated 4 simulation locations where the Schaefer model is particula
+%%%misspecified.
+%%}
+%%\end{figure}
+%
+%
+%%
+%%\begin{align}
+%%
+%%\end{align}
+%
+%%%
+%%\begin{align}
+%%B_t = \underbrace{w_k R_t}_\text{Biomass of New Recruits} + \underbrace{\rho s_{t-1}B_{t-1} - \rho s_{t-1}s_{t-2}B_{t-2} - \rho w_{t-1} s_{t-1} R_{t-1}}_\text{Growth of Surviving Biomass} + \underbrace{s_{t-1}B_{t-1}}_\text{Surviving Biomass}
+%%\end{align}
+%
+%%\noindent
+%%Difference between $\mu$($\kappa$) and $\rho$?\\
+%%??$s_t = (1-e^{-M})(1-e^{-F_t})$??
+%%units of $M$ and $F(t)$ when applied to both biomass and numbers
+%
+%
+%%%
+%%\begin{align}
+%%\bar B (F) &= \frac{1}{\beta}\left(\left( \frac{\alpha}{M+F} \right)^\frac{1}{\gamma}-1 \right) 
+%%\end{align}
+%%
+%%%
+%%\begin{align}
+%%\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{FDderiv}\\
+%%%\frac{d \bar B}{dF} &= -\frac{K}{\gamma-1}\left(\frac{\gamma-1}{r}\right)^{\frac{1}{\gamma-1}}F^{\frac{1}{\gamma-1}-1}\\
+%%\frac{d \bar B}{dF} &= -\frac{1}{\beta\gamma} \left(\frac{1}{M+F}\right) \left(\frac{ \alpha }{ M+F }\right)^{\frac{1}{\gamma} } \nonumber
+%%\end{align}
+%%
+%%%
+%%\begin{align}
+%%\frac{B^*}{\bar B(0)} &= \frac{ \left(\frac{\alpha}{M+F^*}\right)^\frac{1}{\gamma}-1 }{ \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 } \nonumber\\
+%%\alpha &= (M+F^*)\left[ 1-\frac{1}{\gamma}\left(\frac{F^*}{M+F^*}\right) \right]^{-\gamma}\\
+%%\beta  &= \frac{1}{\bar B(0)}\left( \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 \right)  \nonumber
+%%\end{align}
+%
+%
+%%
+%\clearpage
 \section{Catch Interpolation}
 
 %
 The assumption of known catch without uncertainty is suspect, see Figure (\ref{hakeData}, \emph{right}).  
 While methods for quantifying catch uncertainty have been developed \shortcite{shelton_estimating_2012}, 
-the effect of uncertainty in catch has not been incorperated in stock assessment models \shortcite{methot_stock_2013}.    
+the effect of uncertainty in catch has not been incorporated in stock assessment models \shortcite{methot_stock_2013}.    
 
 %
-The theoretical use of splines for smoothly and accruately approximating the 
+The theoretical use of splines for smoothly and accurately approximating the 
 solution of initial value problems has been well established \shortcite{ahlberg_theory_1967}. %\shortcite{ahlberg_convergence_1963, ahlberg_cubic_1968, ahlberg_collocation_1975}.  
 As a statistical model splines are also well established as a nonparametric 
 (or semiparametric) regression technique \shortcite{green_nonparametric_1993, hastie_elements_2009}. %\shortcite{de_boor_practical_1978, wahba_spline_1990, green_nonparametric_1993, hastie_elements_2009}.
 The use of splines in these two settings, along with the advent of estimates of 
 uncertainty in catch, suggests splines as a useful modeling paradigm for 
-incorperating elements of catch uncertainty into single species stock 
+incorporating elements of catch uncertainty into single species stock 
 assessment models. 
 
 %{\color{red}
@@ -1673,13 +1840,12 @@ assessment models.
 As previously described in Section (\ref{catch}), catch estimates are 
 typically attained on a discrete basis which is matched by the fixed step size 
 discretization of the motivating ODE. Despite a host of numerical issues that
-naive discretizations can cause, forward Eurler discreteization of dynamics is 
-largly implemented for convience for use with discretely sampled data such as 
+naive discretizations can cause, forward Euler discretization of dynamics is 
+largely implemented for convenience for use with discretely sampled data such as 
 catch. For inference (when parameters are not known in advanced) a continuous 
-handling of biomass dynamics largly avoids the numerous numerical issues 
+handling of biomass dynamics largely avoids the numerous numerical issues 
 brought about by naive time stepping. However, a continuous approach requires 
-tactful methodology for moving catch estimates from the current yearly 
-estimates to the interpolated instantaneous quantities needed for a continuous 
+tactful methodology for moving catch \mbox{estimates from the current yearly estimates} to the interpolated instantaneous quantities needed \mbox{for a continuous} 
 handling of biomass dynamics. Below I propose such a method for interpolating 
 and smoothing catch.
 
@@ -1747,7 +1913,7 @@ and smoothing catch.
 Let $\tau_j$ represent the starting point of the $j^{th}$ epoch and let $t$ 
 represent continuous times falling between the $\tau$s. The observed catch 
 at $\tau_i$ is then $y(\tau_i)$ and the $y$ values at epoch boundaries represent 
-the integral of landed biomass from $\tau_{i-1}$ to $\tau_i$. The instaneous 
+the integral of landed biomass from $\tau_{i-1}$ to $\tau_i$. The instantaneous 
 landings, $x(t)$, are then modeled as a spline between the epochs as follows, % to produce the following model structure,
 %
 \begin{align}
@@ -1759,8 +1925,8 @@ x(t) &= \beta_0 + \sum_{j=1}^{T-1} \beta_j (t-\tau_j) \mathds{1}_{t>\tau_j}.
 %
 $x(t)$ is a latent model of instantaneous catches. The time integral represents 
 a change of basis of the $x(t)$ spline model. When the $y(\tau_i)$ arrive
-on regular unit epoch intervals, and the change of basis time integrals are 
-collapsed, the following observation model for $y(\tau_i)$ arrives naturally. 
+on regular unit epoch intervals, and the time integrals are collapsed, the 
+following observation model for $y(\tau_i)$ arrives naturally. 
 %\vspace*{-1cm}
 \begin{align} %\beta_0(\tau_i-\tau_{i-1})
 y(\tau_i) &= \beta_0 + \sum_{j=1}^{i-1} \beta_j \left[ \left(\frac{\tau_i^2}{2}-\tau_j\tau_i\right)\mathds{1}_{\tau_i>\tau_j} - \left(\frac{\tau_{i-1}^2}{2}-\tau_j\tau_{i-1}\right)\mathds{1}_{\tau_{i-1}>\tau_j}\right] + \epsilon_i \\
@@ -1769,10 +1935,10 @@ y(\tau_i) &= \beta_0 + \sum_{j=1}^{i-1} \beta_j \left[ \left(\frac{\tau_i^2}{2}-
 %
 This representation is nice for several reasons. Firstly, since the accruals 
 of catch are represented as a time integral the resulting model on $y$ remains 
-linear in $\beta$; infact this approach results in another spline model on $y$, 
-albeit represented in a different basis. Secondly, by explicatly modeling $x(t)$ 
-with a spline it gives direct interpretibility of the $\beta$s as slopes of 
-the instantaneous catch.  
+linear in $\beta$; in fact this approach results in another spline model on $y$, 
+albeit represented in a different basis. Secondly, by explicitly modeling $x(t)$ 
+with a spline it gives direct interpretability of the $\beta$s as slopes of 
+instantaneous catch.  
 
 %{\color{red}
 %%
@@ -1787,10 +1953,11 @@ perfectly known catch) the linear spline becomes fully determined and there is
 no room for any smoothing. Figure (\ref{splines}) demonstrates model fit with 
 and without uncertainty assumed in catch. Notice that in the absence of catch 
 uncertainty (the blue fit), the $x(t)$ model must steeply oscillate 
-inorder to model jittery observations, while the black model fit, which assumes 
+in order to model jittery observations, while the black model fit, which assumes 
 observation uncertainty, filter out jitters and smoothly explain the data. 
 
 %
+\vspace{-0.4cm}
 \begin{figure}[h!]
 \begin{minipage}[h!]{0.36\textwidth}
 %
@@ -1812,35 +1979,41 @@ observation uncertainty, filter out jitters and smoothly explain the data.
 \begin{minipage}[h!]{0.24\textwidth}
 %\hspace*{0.5cm}
 \caption{\label{splines}
-\\(\emph{left})\\ Namibian Hake yearly catch \mbox{observations} plotted along with \mbox{predictive model fits.} (\emph{right}) \mbox{Posterior estimates} of instantanious catch with and without assumed \mbox{uncertatinty} in observed catch. 
+\\(\emph{left})\\ Namibian Hake yearly catch \mbox{observations} plotted along with \mbox{predictive model fits.} (\emph{right}) \mbox{Posterior estimates} of instantaneous catch with and without assumed \mbox{uncertainty} in observed catch. 
 }
 \end{minipage}
 \end{figure}
 
 %
-The model fit attained under the assumtion of complete certainty in catch 
+\vspace{-0.5cm}
+The model fit attained under the assumption of complete certainty in catch 
 clearly leads to defective instantaneous catch behavior. However when 
-uncertainty is added to catch a very sensible catch pattern is reconstructed. 
-Given the parsamonious bottom-up derivation of this model, these observations 
-suggests that the assumption of certainty among catches is poor.
+uncertainty is added to catch a very sensible catch pattern is reconstructed.
+Comparison of catch estimates seen directly above in Figure (\ref{splines}) 
+with the catches simulated in Figure (\ref{expCatchT45}), from the synthetic 
+high-contrast example, show that this this spline method clearly reconstructs
+a high contrast signal from Namibian hake catches. Given the parsimonious 
+process oriented derivation of this model, these observations suggests that the 
+assumption of certainty among catches is poor.
 % the source of the observed defective.
 
 
 %
-I propose that this modeling paradigm presents a useful tool for propogating 
+I propose that this modeling paradigm presents a useful tool for propagating 
 catch uncertainty into the dynamics of stock assessment models. Firstly this 
-method provides a flexible, and interpretible, method for smoothing catch 
+method provides a flexible, and interpretable, method for smoothing catch 
 jitters. Secondly this modeling paradigm allows for use with the robust 
 continuous representation of biomass dynamics. A further exploration of 
 smoothing splines, beyond linear basis functions (for example cubic), will be 
-explored. Additionally, the effect of accounting for catch uncertainty with this 
+explored. Additionally, the effect of accounting for \mbox{catch uncertainty with this}
 approach will be evaluated in the context of inference on biomass dynamics 
 parameters.   
 
 %
 \section{Timeline}
 
-\begin{center}
+%
+\hspace{-0.5cm}
 \begin{ganttchart}[today=3]{1}{16}
 \gantttitlelist{2022,2023}{8} \\
 \gantttitle{F}{2}
@@ -1851,17 +2024,18 @@ parameters.
 \gantttitle{W}{2}
 \gantttitle{S}{2}
 \gantttitle{S}{2}\\
-\ganttgroup{Project 2}{5}{10} \\
-\ganttgroup{Project 3}{9}{14} 
+\ganttgroup{Submit Project 1}{5}{6} \\
+\ganttgroup{Productivity and Growth}{5}{10} \\
+\ganttgroup{Catch Interpolation}{9}{12} \\ 
+\ganttgroup{Write Thesis}{13}{14}
 \end{ganttchart}
-\end{center}
 
 %
 %\thispagestyle{next}
 \clearpage
 \bibliographystyle{apacite}
 %\bibliography{./schnuteGPBias.bib}
-\bibliography{./gpBias.bib,./spline.bib}
+\bibliography{./gpBias.bib,./spline.bib,./ageStructure.bib}
 %\thispagestyle{next}
 
 

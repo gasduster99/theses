@@ -103,3 +103,49 @@ curve(SRR(x, r, K, 2)-Fr*x, from=0, to=K, lwd=3)
 #curve(Fr*x, lwd=3, col=cols[1], add=T)
 dev.off()
 
+#
+sm = K/2
+rm = K/4
+#SSRDeriso = function(B, a, b, g){ (a*B)/((1-b*g*B)^(1/g)) }
+bGiven = function(sm, g){ 1/(sm*(1+g)) }
+aGiven = function(sm, rm, g){ bGiven(sm, g)*rm*(1+g)^((1+g)/g) }
+SSRDeriso = function(B, sm, rm, g){ (aGiven(sm, rm, g)*B)*((1-bGiven(sm, g)*g*B)^(1/g)) }
+#SSRBH = function(B, sm, rm, g){ (aGiven(sm, rm, g)*B)*((1-bGiven(sm, g)*B) }
+#BH
+#curve(SSRDeriso(x, r, K, 0.01), from=0, to=K)
+cols = brewer.pal(9,'Set1')
+png("derisoSrr.png")
+curve(SSRDeriso(x, sm, rm, 3), from=0, to=K*1.5, add=F, n=10000000, lwd=3, col="grey30", ylim=c(0, 3000), main=TeX("P(B; $\\theta$=$\\[\\alpha$, $1/\\beta$, $\\gamma\\]$)"), ylab="Production", xlab="B")
+curve(SSRDeriso(x, sm, rm, 1), from=0, to=K, add=T, lwd=3, col=cols[1])
+curve(SSRDeriso(x, sm, rm, 0.5), from=0, to=K*1.5, add=T, lwd=3, col="grey60")
+curve(SSRDeriso(x, sm, rm, 0.01), from=0, to=K*1.5, add=T, lwd=3, col=cols[2])
+curve(SSRDeriso(x, sm, rm, -0.5), from=0, to=K*1.5, add=T, lwd=3, col="grey85")
+curve(SSRDeriso(x, sm, rm, -0.99), from=0, to=K*1.5, add=T, n=100, lwd=3, col=cols[3])
+leg = c(
+	TeX(sprintf("$\\theta_{B}$=( %d, %s, %s)", 50, 1/bGiven(sm, -0.99), -1)),
+	TeX(sprintf("$\\theta$=(%1.1f, %1.1f, %1.1f)", aGiven(sm, rm, -0.5), 1/bGiven(sm, -0.5), -0.5)),
+	TeX(sprintf("$\\theta_{R}$=(%s, %s, %s)", aGiven(sm, rm, 0), 1/bGiven(sm, 0), 0)),
+	TeX(sprintf("$\\theta$=(%1.1f, %1.1f, %1.1f)", aGiven(sm, rm, 0.5), 1/bGiven(sm, 0.5), 0.5)),
+	TeX(sprintf("$\\theta_{L}$=(%s, %s, %s)", aGiven(sm, rm, 1), 1/bGiven(sm, 1), 1)),
+	TeX(sprintf("$\\theta$=(%1.1f, %1.1f, %1.1f)", aGiven(sm, rm, 3), 1/bGiven(sm, 3), 3))
+)
+legM = matrix(leg, nrow=2, ncol=3)
+cc = c(cols[3], "grey85", cols[2], "grey60", cols[1], "grey30")
+ccM = matrix(cc, nrow=2, ncol=3)
+legend("topleft", legend=legM[1,], horiz=F, col=ccM[1,], lwd=3)
+legend("topright", legend=legM[2,], horiz=F, col=ccM[2,], lwd=3)
+dev.off()
+
+#curve(SSRDeriso(x, sm, rm, -15), from=0, to=K*1.5, add=T, n=100, lwd=3, col="grey")
+#curve(SSRDeriso(x, aGiven(sm, rm, 1), bGiven(sm, 1), 1), from=0, to=K, add=F)
+#curve(SSRDeriso(x, aGiven(sm, rm, -0.8), bGiven(sm, -1), -1), from=0, to=K, add=T)
+#curve(SSRDeriso(x, r, K, -3), from=0, to=K, add=T)
+#curve(SSRDeriso(x, r, K, -1), from=0, to=K, add=T)
+
+##BH
+#curve(SSRDeriso(x, r/10000, K, 1), from=0, to=K)
+##Schaefer
+#curve(SSRDeriso(x, r, 1/-K, -1), from=0, to=K, add=T)
+
+
+
