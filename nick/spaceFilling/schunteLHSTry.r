@@ -149,13 +149,14 @@ B0 = 10000
 M  = 0.2
 
 #number of samples in design
-n = 10 #500 maxed out method
+n = 100 #500 maxed out method
 
 #LHS boundaries
-xiMin = 1.5
-xiMax = 2.8 #2 #3.5
-zetaMin = 0.35 #0.1
-zetaMax = 0.41 #0.3 #0.7 #1
+xiMin = 0
+xiMax = 4 #2 #3.5
+zetaMin = 0 #0.1
+zetaMax = 1 #0.3 #0.7 #1
+#zeta range should not be too small
 
 #xi and zeta Bins (bin defined by left edge right egde not used) [n+1 used to give n left edges]
 xiL = seq(xiMin, xiMax, length.out=n+1)
@@ -181,7 +182,7 @@ dfFactor = 1 #dfFactor, dfStart, and fudgeFactor are balanced to first decrease 
 #
 xii = 1
 xiShuffle = sample(xiL[-(n+1)])
-while(any(Llist)){
+while( any(Llist) ){
 	#for each xi column (n of them)
 	xi = runif(1, xiShuffle[xii], xiL[which(xiL==xiShuffle[xii])+1])
 	ff = xi*M 
@@ -214,7 +215,7 @@ while(any(Llist)){
 	if( Llist[bin] ){
 		#record values
 		xiList[bin] = xi 
-		zetaList[bin] = z
+		zetaList[bin] = zs
 		#
 		#NOTE: generate data and catelogue design elements in a model object in the design directory
 		#NOTE: catelogue by bin lables (left edges of xiL, zetaL)s

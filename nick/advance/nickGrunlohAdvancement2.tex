@@ -55,6 +55,37 @@
 \rfoot{Nicholas R. Grunloh}
 }
 
+\newcounter{alphasect}
+\def\alphainsection{0}
+
+\let\oldsection=\section
+\def\section{%
+  \ifnum\alphainsection=1%
+    \addtocounter{alphasect}{1}
+  \fi%
+\oldsection}%
+
+\renewcommand\thesection{%
+  \ifnum\alphainsection=1% 
+    \Alph{alphasect}
+  \else%
+    \arabic{section}
+  \fi%
+}%
+
+\newenvironment{alphasection}{%
+  \ifnum\alphainsection=1%
+    \errhelp={Let other blocks end at the beginning of the next block.}
+    \errmessage{Nested Alpha section not allowed}
+  \fi%
+  \setcounter{alphasect}{0}
+  \def\alphainsection{1}
+}{%
+  \setcounter{alphasect}{0}
+  \def\alphainsection{0}
+}%
+
+
 \begin{document}
 
 
@@ -118,8 +149,9 @@
 %\clearpage
 %%
 
-\title{Meta-Modeling for Bias Estimation of Biological Reference Points Under the Schaefer Model}
+\title{\vspace*{-2.25cm}Metamodeling for Bias Estimation of Biological Reference Points Under the Schaefer Model}
 \author{Nicholas Grunloh}
+%$~$\vspace*{-1cm}
 \maketitle
 
 \abstract{
@@ -149,21 +181,46 @@ parameter space into two dimensions.
 }
 
 %
-\clearpage
-\section{Introduction}
+\vspace*{0.5cm}
+\section*{Preface}
+Sections (\ref{int}- \ref{dis}\hspace*{-0.1cm}) discuss completed work on the Schaefer Model.
+Additionally, \\\mbox{Sections (\ref{growth}$\&$ \ref{propCatch}\hspace*{-0.1cm})} outline additional 
+projects which will be included in the final dissertation; Section (\ref{time}\hspace*{-0.1cm}) proposes a 
+timeline for completetion of projects. \mbox{Section (\ref{growth}\hspace*{-0.1cm}})
+\mbox{proposes} extensions that generalize results from the completed work
+to a broader set of dynamics. %production functions, as well as proposes an analyze mechanisms of 
+%model failure in the 
+%context of simple age structured dynamics. 
+Section (\ref{propCatch}\hspace*{-0.1cm}) proposes a model for incorporating uncertainty in 
+estimates of catch to better infer biological parameters of the production model.  
+
+
 
 %
-The most fundamental model in modern fisheries management is the surplus-production
-model. These models focus on modeling population growth via nonlinear parametric 
-ordinary differential equations (ODE). Key management quantities called reference 
-points (RP) are derived from the ODE equilibrium equations and depend upon the 
-parameterization of biomass production. Two-parameter parameterizations of the 
-production function have been shown to limit the theoretical domain of RPs 
-\shortcite{mangel_perspective_2013}. The limited RP-space of two parameter models
-are a major source of model misspecification for RPs and thus induce bias in 
-RP estimation. The behavior of RP estimation bias is not well understood and
-as a result often underappreciated. A meta-modeling approach is developed here 
-to describe RP biases and explore mechanisms of model failure. 
+\clearpage
+\section{Introduction\label{int}}
+
+%
+The most fundamental model in modern fisheries management is the surplus-production 
+model. These models focus on modeling population growth via nonlinear 
+parametric ordinary differential equations (ODE). Key management quantities 
+called reference points (RP) are commonly derived from the ODE equilibrium 
+equations and depend upon the parameterization of biomass production. 
+Two-parameter parameterizations of the production function have been shown to 
+limit the theoretical domain of RPs \shortcite{mangel_perspective_2013}. The 
+limited RP-space of two parameter models are a major source of model 
+misspecification for RPs and thus induce bias in RP estimation. The behavior 
+of RP estimation bias is not well understood and as a result often 
+underappreciated. A metamodeling approach is developed here to describe RP 
+biases and explore mechanisms of model failure in the Schaefer model. 
+%Additionally Sections (\ref{growth} $\&$ \ref{propCatch}) outline additional 
+%projects which will be included in my dissertation. Section (\ref{growth}) 
+%proposes extensions to the immediatly following work which generalize results 
+%to a broader set of dynamics. %production functions, as well as proposes an analyze mechanisms of 
+%%model failure in the 
+%%context of simple age structured dynamics. 
+%Section (\ref{propCatch}) proposes a model for incorporating uncertainty in 
+%estimates of catch to better infer biological parameters of the production model.  
 
 %The ODE equilibrium equations Reference points (RP) are key mangeare derived quantities The equilibrium equation the ODE   
 %
@@ -303,8 +360,8 @@ logistic production function it is straightforward to see that yield is maximize
 by fishing the stock down to $B^*$, where the stock attains its peak productivity. 
 By symmetry it is clear that this peak occurs at $B^*=\frac{K}{2}$. The fishing 
 rate required to hold the stock at MSY is $F^*=\frac{r}{2}$, which is half of the 
-stock's maximum reproductive rate at the origin. MSY is then the product of $F^*$ 
-and $B^*$ so that $MSY=\frac{rK}{4}$.
+stock's maximum reproductive rate. \mbox{MSY is then the product of $F^*$ and $B^*$ 
+so that $MSY=\frac{rK}{4}$.}
 %In the absence of fishing $\frac{dB}{dt}$ would be driven entirely by $P$, but at MSY $\frac{dB}{dt}=0$ since the population equilibrates at $B^*$. 
 
 %%
@@ -325,7 +382,11 @@ and $B^*$ so that $MSY=\frac{rK}{4}$.
 Fisheries are very often managed based upon reference points which serve as 
 simplified heuristic measures of population behavior. The mathematical form of 
 RPs depends upon the model assumptions through the production function. %({\color{red} cite}). 
-Here the focus is primarily on the RPs $F^*$ and $\frac{B^*}{\bar B(0)}$. 
+While a number of different RPs exist which describe the population in different 
+(but related) ways, most common RPs revolve around the concept of MSY, or robust 
+ways of measuring MSY \shortcite{hilborn_pretty_2010,punt_management_2016}.
+Here the focus is primarily on the RPs $F^*$ and $\frac{B^*}{\bar B(0)}$ for their 
+common usage in modern fisheries \shortcite{mangel_perspective_2013,punt_extending_2019}.
 
 %%
 %Here the focus is on two RPs that will be denoted by $\xi$ and $\zeta$ going forward.  
@@ -346,7 +407,6 @@ quantities take the following form,
 %based upon$\xi$ is the optimal (in the MSY sense) fishing rate rescaled so that it is in 
 %terms relative to natural mortality. $\zeta$ is the biomass at MSY relative 
 %to the unfished virgin biomass of the population. 
-
 %
 \begin{align}
         &F^* = \frac{r}{2}
@@ -423,7 +483,7 @@ the two parameter Schaefer model.
 The work begins with a derivation of RPs under the three parameter PT model. 
 The parametric forms of RPs under the PT model are then inverted to develop a 
 simulation setting for analyzing inference under the two parameter Schaefer 
-model. Finally a Gaussian Process (GP) meta-model is constructed for exploration 
+model. Finally a Gaussian Process (GP) metamodel \shortcite{gramacy_surrogates_2020} is constructed for exploration 
 and analysis of RP biases. 
 
 %
@@ -431,8 +491,8 @@ A key insight of this approach is that bias is considered broadly across RP-spac
 uncover patterns and correlations between RPs. %f bias magnitude and direction. 
 %A flexible Gaussian Process (GP) meta-modeling approach is used to model bias 
 %patterns across RP-space. 
-The GP meta-model is explicate about trade-offs between RPs %to the surface bias tradeoffs to the surface to 
-so as to inform the full utility of reducing bias, as well suggest mechanisms for 
+The GP metamodel is explicit about trade-offs between RPs %to the surface bias tradeoffs to the surface to 
+so as to inform the full utility of reducing bias, as well as to suggest mechanisms for 
 understanding what causes bias. Further, the effect of contrast on estimation 
 is considered together with model misspecification. %alongside the effect of model misspecification.  
 
@@ -574,7 +634,7 @@ is considered together with model misspecification. %alongside the effect of mod
 
 
 %
-\clearpage
+%\clearpage
 \section{Methods}
 
 %Construct RP under PT production
@@ -607,19 +667,40 @@ recruitment shapes that can be achieved by PT recruitment.
 %flexibility to the family by allowing for compensatory or non-compensatory 
 %growth. (break symmetry... get better description) }
 
-%\begin{wrapfigure}{r}{0.5\textwidth}
+%%\begin{wrapfigure}{r}{0.5\textwidth}
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=0.4\textwidth]{./plots/srr1.1.png}	
+%	\includegraphics[width=0.4\textwidth]{./plots/srr2.png}
+%	\caption{\label{srrPT}
+%	(\emph{left}) PT production functions with parameters chosen so that MSY is consistent, but $\frac{B^*}{\bar B(0)}$ is less than $\frac{1}{2}$ (in red), greater than $\frac{1}{2}$ (in blue), or equal to $\frac{1}{2}$ (in black; logistic production function).
+%	(\emph{right}) PT production functions over a range of $\gamma$ values with the values of $r$ and $K$ fixed at 1 and 10,000 respectively.  
+%	}
+%\end{figure}
+%%\end{wrapfigure}
+
 \begin{figure}[h!]
-	\includegraphics[width=0.5\textwidth]{./plots/srr1.1.png}	
-	\includegraphics[width=0.5\textwidth]{./plots/srr2.png}
-	\caption{\label{srrPT}
-	(\emph{left}) PT production functions with parameters chosen so that MSY is consistent, but $\frac{B^*}{\bar B(0)}$ is less than $\frac{1}{2}$ (in red), greater than $\frac{1}{2}$ (in blue), or equal to $\frac{1}{2}$ (in black; logistic production function).
+\begin{minipage}[h!]{0.349\textwidth}
+\hspace*{-1cm}
+\includegraphics[width=1.05\textwidth]{./plots/srr1.1.png}
+\end{minipage}
+\begin{minipage}[h!]{0.349\textwidth}
+\hspace*{-1cm}
+\includegraphics[width=1.05\textwidth]{./plots/srr2.png}
+\end{minipage}
+\begin{minipage}[h!]{0.29\textwidth}
+\hspace*{-0.5cm}
+\vspace*{-0.75cm}
+\caption{\label{srrPT}\\
+	(\emph{left}) PT production functions with parameters chosen so that MSY is consistent, but $\frac{B^*}{\bar B(0)}$ is less than $\frac{1}{2}$, greater than $\frac{1}{2}$, or equal to $\frac{1}{2}$.
 	(\emph{right}) PT production functions over a range of $\gamma$ values with the values of $r$ and $K$ fixed at 1 and 10,000 respectively.  
-	}
+}
+\end{minipage}
 \end{figure}
-%\end{wrapfigure}
+
 
 %
-%\clearpage
+\clearpage
 
 %
 While the particular form of how $\gamma$ appears in PT still produces some 
@@ -764,7 +845,7 @@ include a wide range of values thought to reflect many commonly assessed fisheri
 %commonly  of most commonly assessed fish species {\color{red}cite}. 
 The red X's in Figure (\ref{rpGrid}) show four simulation locations where the 
 Schaefer model is misspecified to a large degree and will be considered in more 
-detail in Section(\ref{flat}). For each $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, 
+detail in \mbox{Section(\ref{flat}).} For each $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, 
 the associated pair $(r, \gamma)$ are computed from \mbox{Eq (\ref{rg}).} Since $K$ 
 does not enter the RP calculation its value is fixed arbitrarily at 10000.  %A relatively large value of $K$ is selected to allow a full range of population dynamics to be defined in this setting. The value of $M$ is fixed at 0.2 to represent {\color{red}species}. 
 The value of $q$ is fixed at a typically small value of 0.0005. $\sigma$ is 
@@ -897,12 +978,12 @@ the likelihood function can often be difficult to optimize. A hybrid optimizatio
 scheme is used to maximize the log likelihood to ensure that a global MLE solution 
 is found. The R package GA \shortcite{scrucca_ga_2013, scrucca_extensions_2017} is 
 used to run a genetic algorithm to explore parameter space globally. 
-Optimization occasional jumps into the L-BFGS-B local optimizer to refine 
+Optimization occasionally jumps into the L-BFGS-B local optimizer to refine 
 optima within a local mode. The scheme functions by searching globally to 
-iteratively improving hot starts for the local optimizer. 
+iteratively improve hot starts for the local optimizer. 
 
-%
-In Appendix (\ref{appMLE}) a profile likelihood method for estimating all of the 
+%\ref{appMLE}
+In Appendix A a profile likelihood method for estimating all of the 
 parameters of the model is derived. The profile likelihood technique greatly 
 improves the reliability of local optimizers when fitting the biological parameters 
 alongside additional nuisance parameters. The catchability parameter $q$ has the 
@@ -1022,7 +1103,7 @@ derived for metamodel interpolation.
 %\item GP serves as a flexible, stochastic interpolator for understanding the basic behavior of 
 %biases induced my limiting the SRR model.  
 %\item This model allows for the full propagation of inferred information from the simulation step to be propagated into
-%the spatial meta-model in reference point space. 
+%the spatial metamodel in reference point space. 
 %\item Motivate gaussianity 
 %\end{itemize}
 %}
@@ -1386,7 +1467,7 @@ MLE Bias surfaces for $B^*$ (\emph{left}) and $F^*$ (\emph{right}) with relative
 %emblematic of the union of biases seen in either $F^*$ or $B^*$.  to the union 
 
 \clearpage
-\section{Discussion}
+\section{Discussion\label{dis}}
 
 %
 Results presented here generally agree with what is known about estimating 
@@ -1408,7 +1489,7 @@ bias.
 %}
 
 %%
-%The meta-modeling approach presented here indicates that the Schaefer model 
+%The metamodeling approach presented here indicates that the Schaefer model 
 %underestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}<\frac{1}{2}$, %originate below the Schaefer line 
 %and overestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}>\frac{1}{2}$. % true RPs originate below the Schaefer line. 
 %This is of particular note since these outcomes carry such varied real would 
@@ -1532,7 +1613,8 @@ catch will be important for interpreting model inferences correctly.
 
 %
 \clearpage
-\section*{Proposal \#1: Productivity and Growth Extensions}
+\begin{alphasection}
+\section{Proposal: Productivity $\&$ Growth Extensions \label{growth}}
 
 %
 The Deriso production function presents a convenient three parameter form 
@@ -1571,8 +1653,8 @@ broad range of productivity assumptions. Under the Deriso model inverting the
 relationship between RPs and model parameters is not fully analytically possible 
 \shortcite{schnute_analytical_1998}. Numerical inversion of the nonlinear system 
 seen in Eq (\ref{system}) is required for determining parameter values for data 
-generation. Notice for a given value of $\gamma$, $\alpha$ and $\beta$ can 
-be solved analytically.
+generation. Notice for a given $\gamma$ value, $\alpha$ and $\beta$ can be 
+solved analytically.
 
 \begin{align}
 \frac{B^*}{\bar B(0)} &= \frac{ \left(\frac{\alpha}{M+F^*}\right)^\frac{1}{\gamma}-1 }{ \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 } \nonumber\\
@@ -1603,20 +1685,30 @@ P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
 
 %While the Deriso model generalizes many common models, inference under 
 Inference under the BH model is of particular interest due to its overwhelming 
-popularity. Similar to the limited RP-space of the Schaefer model the two 
-parameter BH model also has a limited RP-space as shown in Figure (\ref{bhRP}).
-While the BH constrained RP space is now more complicated that the Schaefer model, 
-analogy to the results obtained under the PT-Schaefer simulation setting, and the 
-flexible GP metamodel, should expedite the analysis of BH inference.
+popularity in stock assessment. Similar to the limited RP-space of the 
+Schaefer model the two parameter BH model also has a limited RP-space as shown 
+in Figure (\ref{bhRP}).  While the BH constrained RP space is more complicated 
+than the Schaefer model, analogy to the results obtained under the 
+PT-Schaefer simulation setting, and the flexible GP metamodel, should expedite 
+the analysis of BH inference.  
+
+%I propose an analysis of the BH model in my dissertation.
 
 \subsection*{Individual Growth}
 
-%Additionally 
-It is also necessary to study RP bias in the context of
-%An additional extension is to study of RP bias in the context of
-individual growth and age-structure. %d models.
-%A further important modeling extension is to include the dynamics of 
-%age-structure in the population. 
+%Additionally
+Models that include individual growth and maturity dynamics %which account for individual growth and age-structure
+are another important practical setting for extending the understanding of how 
+productivity model misspecification can bias RPs estimation.
+% in stock 
+%assessment models is the context of dynamics which account for individual 
+%growth and age-structure.
+%which include individual growth in the population dynamics. 
+%It is also necessary to study RP bias in the context of
+%%An additional extension is to study of RP bias in the context of
+%individual growth and age-structure. %d models.
+%%A further important modeling extension is to include the dynamics of 
+%%age-structure in the population. 
 The Deriso-Schnute delay-difference (DD) model provides a compact 
 representation of simple age-structured dynamics \shortcite{deriso_harvesting_1980, schnute_general_1985, schnute_general_1987}. %\color{red} cite equivalnece}. 
 While various modeling strategies may be considered for including effects of 
@@ -1628,7 +1720,7 @@ computation.  %while accounting for the effects of individual growth and maturit
 
 %
 The DD model is derived directly from an assumption of Von Bertalanffy growth \shortcite{von_bertalanffy_quantitative_1938} %{\color{red} cite } 
-in weight, Eq(\ref{vbGrowth}). In this setting Von Bertalanffy 
+in weight, as seen in Eq(\ref{vbGrowth}). In this setting Von Bertalanffy 
 growth relates individual age to individual weight by assuming linear 
 instantaneous growth (as parameterized by the growth parameters $\kappa$ and 
 $w_\infty$). The DD model expands the idea of biomass production into the 
@@ -1644,7 +1736,7 @@ recruits, 2) the growth of existing biomass, and 3) biomass lost due to
 mortality. The model accounts for maturity as knife-edge maturity at the 
 instant an individual reaches age $a_0$.  
 %
-\begin{align}
+\begin{align}%\kappa->0 slower that than a0->\infty
 %B(a, t) &= w(a, t)N(a, t)\\ 
 %\frac{dB}{dt} &= \overbrace{w(k)R(B(t-k))}^\text{Recruitment Biomass} + \overbrace{\mu w_\infty N(t)}^\text{Growth} - \overbrace{(M+F(t)+\mu)B(t)}^\text{Biomass Loss}\\
 &\frac{dB}{dt} = \overbrace{w(a_0)R(B;\theta)}^\text{Recruitment Biomass} + \overbrace{\kappa \left[w_\infty N-B\right]}^\text{Net Growth} - \overbrace{(M+F)B}^\text{Mortality} \label{bEq}\\
@@ -1661,6 +1753,41 @@ recruitment parameters. Using the Deriso-Schnute DD model as a data generating
 model across a wide range of RP-space, and fitting those data under a BH 
 restriction of the DD model, further extends the simulation study of RP bias 
 to include the effects of individual growth.
+
+%
+\subsection*{Summary}
+
+%
+My dissertation will include extensions of the metamodeling analysis of RP bias, 
+as presented in Sections (\ref{int}- \ref{dis}\hspace*{-0.1cm}), in the context of the 
+Deriso-BH simulation setting. Additionally my dissertation will include further 
+extensions into the analysis of RP bias under model misspecification of the DD model's 
+recruitment function. %which allows for an extension of results across individual growth 
+%parameters. % modify RP estimation. 
+The Deriso production/recruitment function presents numerical challanges 
+that require careful numerics and a different handling of the similation design, but 
+allows for extensions into all of the most widely used models of productivity. 
+Furthermore, the DD model allows for an efficient extension of results into to context 
+of maturity and growth dynamics. 
+ 
+%Differences between the Deriso-BH production 
+%model setting and the DD model can be attributed to the effect of effect of growth 
+%and maturity since the DD model contains the Deriso production model as a special 
+%case. 
+
+%biases  understand the effect of maturity 
+%and growth. This progression of analysis is sensible due to the increasing 
+%complexity of the simulation setting and 
+%complexity of the simulatimodels of the metamodeling analyses will 
+
+
+%%
+%\begin{itemize}
+%	\item propose extending the RP bias study in the context of deriso production and recruitment
+%	\item Deriso is numerically more challenging, but provides a great study area of the most popular models of productivey 
+%	\item the DD setting extends the analysis into the context of simple age structure and individual growth
+%	\item how will the added dynamics of growth effect bias? if not a lot  
+%\end{itemize}
 
 
 %\clearpage
@@ -1809,14 +1936,42 @@ to include the effects of individual growth.
 %%\end{align}
 %
 %
-%%
-%\clearpage
-\section*{Proposal \#2: Catch Interpolation}
 
 %
-The assumption of known catch without uncertainty is suspect, see Figure (\ref{hakeData}, \emph{right}).  
-While methods for quantifying catch uncertainty have been developed \shortcite{shelton_estimating_2012}, 
-the effect of uncertainty in catch has not been incorporated in stock assessment models \shortcite{methot_stock_2013}.    
+\clearpage
+\section{Proposal: Catch Interpolation\label{propCatch}}
+
+%estimates of catch%associated with estimates#speciated
+%Historical 
+Current, and historical, databases of commercial landings have not reported 
+(or calculated) uncertainty associated with the estimation of catch in the 
+northeastern pacific \shortcite{narita_pacfin_1988,calcom_california_2006}. 
+Often stock assessments assume that landings taken from these databases are 
+known without uncertainty, and regulatory agencies seldom consider catch as a 
+sorce of uncertainty. However, uncertainty in catch estimation is present, and 
+methods for quantifying catch uncertainty have been developed \shortcite{shelton_estimating_2012}. 
+Figure (\ref{hakeData}, \emph{right}) demonstrates a classic fisheries example 
+in which catch is almost always assumed known. While there may be a biological 
+explaination for year to year jitters in catch, a statistical explaination 
+which accounts for uncertainty may perform at least as well in the estimation 
+of biological parameters. Furthermore a smoothing approach will improve 
+the numerical stability of solutions to the underlying ODEs which define the 
+primary modeling objectives of stock assessment. % in process dynamics.   
+
+%should at the very least be bu. While 
+%methods for quantifying catch uncertainty have been developed \shortcite{shelton_estimating_2012}, 
+%the effect of uncertainty in catch has not been yet been incorporated in stock 
+%assessment models \shortcite{methot_stock_2013}.
+
+%Improved methods of quantfying catch uncertainty exists \shortcite{shelton_estimating_2012}, 
+%but stock assessments se.
+% Given the availability of assessment 
+%models do not account for uncertainty in catch estimates.  The assumption of 
+%known catch without uncertainty is suspect, see Figure 
+%(\ref{hakeData}, \emph{right}).  While methods for quantifying catch 
+%uncertainty have been developed \shortcite{shelton_estimating_2012}, the 
+%effect of uncertainty in catch has not been incorporated in stock assessment 
+%models \shortcite{methot_stock_2013}.    
 
 %
 The theoretical use of splines for smoothly and accurately approximating the 
@@ -1933,10 +2088,10 @@ y(\tau_i) &= \beta_0 + \sum_{j=1}^{i-1} \beta_j \left[ \left(\frac{\tau_i^2}{2}-
 \beta_j &\sim N(0, \phi) ~~~~ ~~~~ \phi \sim \text{Half-Cauchy}(0, 1) ~~~~ ~~~~ \epsilon_i \sim N(0, \sigma^2_i) \nonumber
 \end{align}
 %
-This representation is nice for several reasons. Firstly, since the accruals 
+This representation is nice for several reasons. First, since the accruals 
 of catch are represented as a time integral the resulting model on $y$ remains 
 linear in $\beta$; in fact this approach results in another spline model on $y$, 
-albeit represented in a different basis. Secondly, by explicitly modeling $x(t)$ 
+albeit represented in a different basis. Second, by explicitly modeling $x(t)$ 
 with a spline it gives direct interpretability of the $\beta$s as slopes of 
 instantaneous catch.  
 
@@ -1954,10 +2109,11 @@ no room for any smoothing. Figure (\ref{splines}) demonstrates model fit with
 and without uncertainty assumed in catch. Notice that in the absence of catch 
 uncertainty (the blue fit), the $x(t)$ model must steeply oscillate 
 in order to model jittery observations, while the black model fit, which assumes 
-observation uncertainty, filter out jitters and smoothly explain the data. 
+observation uncertainty, filters out jitters and smoothly explains the data. 
 
 %
-\vspace{-0.4cm}
+%\vspace{-0.35cm}
+\clearpage
 \begin{figure}[h!]
 \begin{minipage}[h!]{0.36\textwidth}
 %
@@ -1985,7 +2141,7 @@ observation uncertainty, filter out jitters and smoothly explain the data.
 \end{figure}
 
 %
-\vspace{-0.5cm}
+%\vspace{-0.5cm}
 The model fit attained under the assumption of complete certainty in catch 
 clearly leads to defective instantaneous catch behavior. However when 
 uncertainty is added to catch a very sensible catch pattern is reconstructed.
@@ -2000,17 +2156,18 @@ assumption of certainty among catches is poor.
 
 %
 I propose that this modeling paradigm presents a useful tool for propagating 
-catch uncertainty into the dynamics of stock assessment models. Firstly this 
+catch uncertainty into the dynamics of stock assessment models. First this 
 method provides a flexible, and interpretable, method for smoothing catch 
-jitters. Secondly this modeling paradigm allows for use with the robust 
-continuous representation of biomass dynamics. A further exploration of 
-smoothing splines, beyond linear basis functions (for example cubic), will be 
-explored. Additionally, the effect of accounting for \mbox{catch uncertainty with this}
-approach will be evaluated in the context of inference on biomass dynamics 
-parameters.   
+jitters. Second this modeling paradigm allows for use with the robust 
+continuous representation of biomass dynamics. A chapter of my dissertation 
+will expand upon this work by exploring additional basis functions (e.g. cubic) 
+for use in this setting.
+%, as well  beyond linear basis functions (e.g. cubic), 
+Additionally, the effect of accounting for catch uncertainty with this approach 
+will be evaluated in the context of inference on biomass dynamics parameters.   
 
 %
-\section{Timeline}
+\section{Timeline\label{time}}
 
 %
 \hspace{-0.5cm}
@@ -2025,7 +2182,7 @@ parameters.
 \gantttitle{S}{2}
 \gantttitle{S}{2}\\
 \ganttgroup{Submit Project 1}{5}{6} \\
-\ganttgroup{Productivity and Growth}{5}{10} \\
+\ganttgroup{Productivity $\&$ Growth}{5}{10} \\
 \ganttgroup{Catch Interpolation}{9}{12} \\ 
 \ganttgroup{Write Thesis}{13}{14}
 \end{ganttchart}
@@ -2038,6 +2195,7 @@ parameters.
 \bibliography{./gpBias.bib,./spline.bib,./ageStructure.bib}
 %\thispagestyle{next}
 
+\end{alphasection}
 
 %%
 %\clearpage
