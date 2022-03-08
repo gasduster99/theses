@@ -4,93 +4,191 @@ author: Nick Grunloh
 documentclass: extarticle
 geometry: margin=2cm
 fontsize: 14pt
+header-includes:
+    - \usepackage{setspace}
+    - \doublespacing
 ---
 
 # Introduction
 
 * Hello. My name is Nick Grunloh. 
-* Thanks to everyone in attendance and thanks to my committee for coming together on $\pi$ day 2022 to listen to my talk today.
-* I'll be talking to you today about a Metamodeling approach for assessing estimation bias in important population dynamics models (the Schaeffer model), but also some extensions to this work as I finish up my PhD.
+* Thanks to everyone in attendance, and thanks to my committee for coming together today on $\pi$ day 2022 to listen to my advancement to candidacy talk.
+* I'll be talking to you today about a Metamodeling approach for assessing estimation bias in population dynamics models, but also some extensions to this work as I finish up my PhD.
 * This is work in collaboration with NOAA NMFS, and largely funded by NOAA Sea Grant, and I'd like to thank my collaborators with NOAA.
-
-# Data and Basic Modeling Structure
-
-* The modeling context here is that of population dynamics model as they might be used for stock assessment.
-* I'll be focusing on the 
-
-
-# (Mangel et.al., 2013) Canadian Journal of Fisheries and Aquatic Science
-
-* I'll drop us into that work in the setting of a BH-SRR production model  
-	
-	* The primary insight of Mangel et.al. that I want to focus on is that while the space of $\frac{B^*}{B_0}$ and $\frac{F^*}{M}$ RPs is an entire 2D space, we quickly limit ourselves as we model.
-	* With a 2 parameter production function, such as BH, if M is fixed this RP space is limited to a 1D curve.
-	* Further if steepness ($h$) is specificed the space is further reduced to a 0D point along that curve, and we may have unintentionally selected our RPs before model even meets data.
 
 \clearpage
 
-* **Right Panel:** On the right I show an emperical way of noticing this 
-<!--
-, by fitting a model using a 2 parameter SRR and a model using a 3 parametes SRR on Cowcod Rockfish data.
--->	
-	* The black are posterior samples of the RPs for a 3 parameter Shepherd-like model fit to cowcod rockfish data
-	* The red are posterior samples of the RPs for a BH model with fixed M
+# Data and Basic Modeling Structure
 
+* The modeling context here are single species population dynamics models as they might be used for managing fisheries.
+* The simplest of these models (which really captures the essence of the managing objectives) is the surplus-production model.
+
+* **Left Panel:** Data for a typical surplus-production model comes in the form of an index of abundance through time.
+* **Right Panel:** The index is often observed alongside a variety of other known quantities, but at a minimum, each observed index will be observed in the presence of some known catch for the period.
+
+* We can't observe all of the fish in the sea, but we can measure indicators of population biomass up to a proportionality constant, $q$.
+* $q$ is the proportionality nuisance parameter (often called catchability) which relates our index of abundance to actual biomass in the population.
+* And naturally the nonnegative index of abundance is observed with some uncertainty, which is typically assumed to have lognormal errors.
+
+* Most of the action in these models comes in through a process model on Biomass.
+* Biomass is modeled as a nonlinear ODE.
+	* the population grows through a (typically non-linear) production function, P(B), and decreases as biomass is removed due to catch, C(t). 
+	* Production in this setting is defined as the net change in biomass due to basically all reproduction, maturation, and mortality processes other than the recorded fishing from humans.
+	* Map the current biomass to some change (growth) in biomass 
+
+# Schaefer Model
+
+* One classic choice of the production function is the logistic growth curve.
+* Choosing $P$ to be Logistic production function in the fisheries setting creates the Schaefer model. 
+* In ecology logistic growth is very commonly parameterized in terms of the parameters $(r, K)$
+* $r$ controls the maximum reproductive rate of the population in the absence of competition for resources (i.e. the slope at the origin). 
+* $K$ is the so called "carrying capacity" of the population. 
+* The quadratic shape of the logistic growth curve encodes density dependence
+	* when the population biomass is low there is little competition for resources and growth is maximized (thus $r$).
+	* when the population biomass is high there is competition for resources and growth declines until growth completely stops when the population reaches $K$.
+	* In the absense of fishing $K$ is a stable equilibrium point, above $K$ production is negative to bring the population down, and below $K$ production is positive to bring the populaiton up to $K$.    
+
+# Biological Reference points
+
+* Reference points are simplified heuristic measures of population behavior, that are used to make decisions about how to manage the fishery.
+* We want to mangage fisheries to allow (and promote) future productivity. 
+* The key idea is that we want to fish in a way to move the stable equilibrium of the population to a place along this curve that maximizes productivity in the steady state over time. 
+* Ex) Maximize simple yield at a particular moment V. Maximize sustainable yeild.
+* The most common RPs are different ways of noticing that the population is at MSY.
+* Any quantity decorated with a star reresent that quantity at MSY.
+* Here I focus on the reference points Fmsy (fishing rate to result in  MSY) and Bmsy (biomass of the populaiton at MSY) (Or rather Bmsy as a fraction of K aka. Depletion at MSY)
+<!--
+in time (and only for that moment) by fishing all available biomass in that moment. 
+This strategy is penny-wise but pound-foolish (not to mention ecologically devastating) since it doesn’t leave biomass in the population to reproduce for future time periods. 
+We seek to fish in a way that allows (or even encourages) future productivity in the population. 
+This is accomplished by maximizing the equilibrium level of catch over time.
+* Further if steepness ($h$) is specificed the space is further reduced to a 0D point along that curve, and we may have unintentionally selected our RPs before model even meets data.
+, by fitting a model using a 2 parameter SRR and a model using a 3 parametes SRR on Cowcod Rockfish data.
 * **Next:**
 	
 	* Notice how the posterior has been squashed into the red curve $\left(\frac{1}{\frac{F^*}{M} +2}\right)$
 	* Mangel et. al. suggests looking into 3-parameter curves to avoid back ourselves into a corner and unintentionally overspecifying our models in the prior.
+-->
+
+# RP Constraints 
+
+* Conceptually $\frac{B^*}{B_0}$ and $\frac{F^*}{M}$ is an entire 2D space
+* (Mangel et.al., 2013) Canadian Journal of Fisheries and Aquatic Science
+* The primary insight of Mangel et.al. that I'd like to focus on is that, if we are not careful, we quickly limit ourselves as we model.
+* With a 2 parameter production function, such as BH, if M is fixed this RP space is limited to a 1D curve.
+* **Right Panel:** On the right I show an emperical way of noticing this 
+	
+	* The black are posterior samples of the RPs for a 3 parameter Shepherd-like model fit to cowcod rockfish data
+	* The red are posterior samples of the RPs for a BH model with fixed M
+	* Notice how the posterior has been squashed into the red curve $\left(\frac{1}{\frac{Fmsy}{M} +2}\right)$
+	* Mangel et. al. suggests looking into 3-parameter curves to avoid unintentionally overspecifying our models in the prior.
+
+* **Next:** The Schaefer Model is a two parameter curve that suffers similarly from a constrained RP-Space.
+
 
 # Pella-Tomlinson Production Model
 
-* Here I formulate a slightly simpler setting for investigating how models in the 2 parameter limited setting might be biased when fit to data from a 3 parameter production function.
+* Here I formulate a setting for investigating how models in the 2 parameter limited setting might be biased when fit to data from a 3 parameter production function.
 * In particular I have a PT Production Model
 * The model starts with a nuisance observation layer
 * Biomass is driven by the given ODE.
-* Production is given by R; That's the PT 3 parameter production function.
+* Production is given by P; That's the PT 3 parameter production function.
 
 * **Right Panel:** On the right you can see the PT production function and how it uses its third $\gamma$ parameter to lean the production function to the left or right.
 
-	* When $\gamma=2$; PT=Logistic Prodcution function and the curve is symmetric about $B^*$.
-	
-* **Next:** Recall the logistic production function is paramterized in terms of:
+	* When $\gamma=2$; PT=Logistic Prodcution function and the curve is symmetric about $Bmsy$.
 
-	* the slope at the origin ($r$) as seen in the slope of the blue line
-	* and the right-hand x-intercept (K) as seen with the purple vertical line
+* Simulate data under PT and fit those data under the Schaefer Model.
+* Every point in RP-space corresponds to a set of parameters of the PT model.
+ 
 
 <!--
 * RP can easily be seen as a function of these parameters
 
 	* $F^*=\frac{r}{2}$: slope of the red line
 	* $B^*=\frac{K}{2}$: as seen in the vertical green line
--->
+
 
 * **Next:** Due to the symmetry of the shaefer model, the RP space is limited to the horizontal line 1/2 @ all $F^*$
 	
 	* For brevity, later I'll refer to this line in this space as the shaefer line.
 	* PT can get off of this line by changing the $\gamma$ parameter to lean left or right.
 
-# Simulation
-
-* The goal is to investigate bias induced my fitting PT data with the restricted shaefer model.
-* I simulate data off of this shaefer line and subsequently fit those data with a limited 2 paramter model <!--production function; that limited model is the shaefer model.-->
-* Here I show a grid of location in RP space where I will simulate data and once the shaefer model is fit, that estimate will neccessarily have to fit on that $\frac{1}{2}$ line.
-* In particular I'll point out these 4 red X's in the 4 corners, Since I will refer back to these examples in about 2 slides.
-* these are examples of large model misspecification.
-
-# Catch
-
-* I've looked at this basic setup across a range of different fishing behaviors.
+ at this basic setup across a range of different fishing behaviors.
 
 	* Here I show 3 different fishing patterns
 	* I've parameterized fishing relative to $F^*$ so that this first constant line at 1 on the left represents constant fishing at $F^*$.
-	* The second curve represents a more typical ramp up of fishing and subsequent backing off toward $F^*$.
+	* The second curve represents a more typical ramp up of fishing and subsequent backing off toward $Fmsy$.
 	* And the third curve is probably a completely uncommon fishing behavior just to see.
 
 * **Next** For Brevity here we will only look at results of the constant fishing case.
 * We will see that the detail you can get out of this simulation setting is plenty rich and the simplicty of this constant catch is helpful for understanding the mechanisms by which bias is induced when fitting a two parameter production function to even slightly more complicated data.
 
-# Curves
+
+-->
+
+# Catch
+
+* To complete the model specification, I assume a synthetic catch series.
+* The information content of a given data series in this setting is known to be heavily dependent on catch and "contrast" in the time seeries.
+* To control contrast I have catch parameterized in terms of a series of fishing rates relative to $Fmsy$.
+* by varying $F/Fmsy$ you can get more or less contrast in the data.
+
+* **Next:**
+
+	* **Left:** By specifying $F/Fmsy=1$ it represents a low contrast, relatively low information, setting.
+	* Below I show the catch in red and the biomass this induces in black.
+	* We might call this a "one way trip"
+
+	* **Right:** On the right $F/Fmsy$ is varied to induce a high contrast, relatively high information, setting.
+	* This of the right panel as hypothetical stock where fishing rate accelerates as technology and fishing techniques improve rapidly until management practices are applied to bring the stock into equilibrium at MSY.
+	* Below again you can see that this population is exposed to a varied catch history, which induce contrast in the generated indices and allows the fitting model to observe a decrease in the population followed by a rebuild of the stock
+	* a so called "two-way trip" 
+
+* I've looked other catch histories, but we'll focus on these tow extremes
+
+# Simulation
+
+* The goal is to investigate bias induced my fitting PT data with the restricted shaefer model.
+* For the PT model the relationship between the parameters and the RPs can be inverted so that I can directly write $\theta$ in terms of the RPs
+* I simulate data off of this Shaefer line and subsequently fit those data with a limited 2 parameter model <!--production function; that limited model is the shaefer model.-->
+* The initial population size is assumed to be at carrying capacity, and then dropped into a catch history.
+* Here I show a grid of locations in RP space where I will simulate data and once the shaefer model is fit, that estimate will neccessarily have to fit on that $\frac{1}{2}$ line.
+
+* **Next** 
+
+* In particular I'll point out these 4 red X's in the 4 corners. <!--Since I will refer back to these examples in about 2 slides.-->
+* These are examples of large model misspecification relative to the scheafer model.
+* I show an example biomass series of in the high contrast setting in each corner.
+* $Bmsy/B0$: describes where the biomass comes to equilibrium
+* $Fmsy$: describes how quickly the stock responds to fishing and how fast it rebuilds. 
+
+# Metamodel
+
+# Directionally
+
+# Components
+
+# Heat Map
+
+* The particular model fits from tyhe last slide are only as helpful as their standard errors allow, but when you observe trends on repeated sampling you can start to gain confidence.
+* With my grid of locations in RP space I am able to get a grid of fits, and across that grid I am able to establish bias tends in all of the major latent model quanities, and thats what I show on this slide.
+* **Top Right:** In the top right I'm showing the entire space of PT data and when those data are fit with a Scheafer model how do RP map onto the schaeffer line.
+* For all other plots Red indicates over estimation of the modeled quanity and blue indicates underestimates of the modeled quantity.
+* **Bottom Right** In the bottom right you can see the generalized version of the our $F^*$ story
+	* Below the line we underestimate $F^*$
+	* Above the line we overestimate $F^*$
+* **Bottom Middle** Next to that we see a very similar pattern, but this time the quantity being graphed is $MSY$
+\clearpage
+* **Top Middle** I show the bias in $\frac{B^*}{B_0}$
+	* this picture is a law of nature for this simulation setting (estimate must land on the line)
+* Whats more interesting is whats is the behavior of bias in the numerator ($B^*$) and the demoniator ($K$) not divided but independently
+* Whatever the individual patterns are they need to divide back up to give this top middle picture.
+* **Left:** On the left I show those quantities, the bias in the quantity $B^*$ is shown *top left*, and the bias in $K$ is shown on the *bottom left*.
+* Interestingly, $B^*$ shows large swaths of relatively little bias, and most of the pattern in the top middle panel comes from bias in $K$.
+* The world did not have to be this way, but this says that $B^*$ is often a robustly estimated quantity, but due to restrictive model misspecification, its a zero sum game and accuray in $B^*$ often come at the cost of estimates of $K$. 
+
+# $Fmsy$ Curves
 
 * This slide visualizes the posterior fit of those data in the 4 large model misspecification corners of RP space
 * In all cases the red lines represent the posterior fit of the Scheafer model, and the black is the truth of each of quantity.
@@ -116,24 +214,7 @@ fontsize: 14pt
 * **Depletion:** But when you rescale things to consider depletion, we can see that the posterior estimate of ratio of biomass realtive to $K$, is ending up completely wrong for the highly misspecified cases.
 * So that can be a small lesson that even if our models manage to predict faily well, model misspecification can completely lead us to incorrect inferences for some quantites. 
 
-# Heat Map
-
-* The particular model fits from tyhe last slide are only as helpful as their standard errors allow, but when you observe trends on repeated sampling you can start to gain confidence.
-* With my grid of locations in RP space I am able to get a grid of fits, and across that grid I am able to establish bias tends in all of the major latent model quanities, and thats what I show on this slide.
-* **Top Right:** In the top right I'm showing the entire space of PT data and when those data are fit with a Scheafer model how do RP map onto the schaeffer line.
-* For all other plots Red indicates over estimation of the modeled quanity and blue indicates underestimates of the modeled quantity.
-* **Bottom Right** In the bottom right you can see the generalized version of the our $F^*$ story
-	* Below the line we underestimate $F^*$
-	* Above the line we overestimate $F^*$
-* **Bottom Middle** Next to that we see a very similar pattern, but this time the quantity being graphed is $MSY$
-\clearpage
-* **Top Middle** I show the bias in $\frac{B^*}{B_0}$
-	* this picture is a law of nature for this simulation setting (estimate must land on the line)
-* Whats more interesting is whats is the behavior of bias in the numerator ($B^*$) and the demoniator ($K$) not divided but independently
-* Whatever the individual patterns are they need to divide back up to give this top middle picture.
-* **Left:** On the left I show those quantities, the bias in the quantity $B^*$ is shown *top left*, and the bias in $K$ is shown on the *bottom left*.
-* Interestingly, $B^*$ shows large swaths of relatively little bias, and most of the pattern in the top middle panel comes from bias in $K$.
-* The world did not have to be this way, but this says that $B^*$ is often a robustly estimated quantity, but due to restrictive model misspecification, its a zero sum game and accuray in $B^*$ often come at the cost of estimates of $K$. 
+# Ratio
 
 # Summary
 

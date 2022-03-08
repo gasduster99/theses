@@ -138,7 +138,7 @@ I_t &= q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2) \\
 \end{align*}
 %\color{red}Maybe add one with only RPs
 %\color{red}Add Mangle Citation
-{\color{red} Some words on RPs,  aybe some citations}
+%{\color{red} Some words on RPs,  aybe some citations}
 \end{minipage}
 \begin{minipage}[h!]{0.54\textwidth}
 %\includegraphics[width=\textwidth]{~../../.././nick/gpBias/srrSchaeffer.png}
@@ -226,13 +226,119 @@ I_t &= q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2) \\
 %\end{frame}
 
 %
-\begin{frame}{}
-\color{red}
-Something about Model misspecification of RPs\\
-Three parameter SRR\\
-functional form with oprthogonal RPs
-\includegraphics[width=0.45\textwidth]{shaeferConst.png}
+\begin{frame}
+\only<1>{
+\hspace*{-0.5cm}
+\begin{minipage}[h!]{0.59\textwidth}
+Conceptually:
+\begin{align*}
+F^*\in\mathbb{R}^+ ~~~ \frac{B^*}{\bar B(0)}\in\left(0, 1\right)
+\end{align*}
+$~$\\
+Mangel et al. 2013, CJFAS:
+\begin{itemize}
+	\item BH Model: $~ F^*\in\mathbb{R}^+ ~~~ \frac{B^*}{\bar B(0)}=\frac{1}{F^*/M+2}$
+	\item Similar Constraint for Ricker and other 2 Parameter Curves
+\end{itemize}
+%\item A three-parameter relationship allows for independent estimation of these reference points
+$~$\\
+$~$\\
+$~$\\
+%Schaefer Model:
+%\begin{align*}
+%F^*\in\mathbb{R}^+ ~~~ \frac{B^*}{\bar B(0)}=\frac{1}{2}
+%\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.39\textwidth}
+$~$\\
+\hspace*{-0.5cm}
+\includegraphics[width=1.4\textwidth]{cjasFig.png}
+\end{minipage}
+}
+\only<2>{
+\hspace*{-0.5cm}
+\begin{minipage}[h!]{0.59\textwidth}
+Conceptually:
+\begin{align*}
+F^*\in\mathbb{R}^+ ~~~ \frac{B^*}{\bar B(0)}\in\left(0, 1\right)
+\end{align*}
+$~$\\
+Mangel et al. 2013, CJFAS:
+\begin{itemize}
+	\item BH Model: $~ F^*\in\mathbb{R}^+ ~~~ \frac{B^*}{\bar B(0)}=\frac{1}{F^*/M+2}$
+	\item Similar Constraint for Ricker and other 2 Parameter Curves
+\end{itemize}
+%\item A three-parameter relationship allows for independent estimation of these reference points
+$~$\\
+Schaefer Model:
+\begin{align*}
+F^*\in\mathbb{R}^+ ~~~ \frac{B^*}{\bar B(0)}=\frac{1}{2}
+\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.39\textwidth}
+$~$\\
+\hspace*{-0.5cm}
+\includegraphics[width=1.4\textwidth]{shaeferConst.png}
+\end{minipage}
+}
 \end{frame}
+
+%\begin{align*}
+%\frac{dB(t)}{dt} &= \frac{\alpha B(t)}{1+\beta B(t)} - (M+F(t))B(t)~\\
+%~&~\\
+%h &= \frac{\frac{\alpha}{M}}{4+\frac{\alpha}{M}}\\
+%~&~\\
+%\frac{F^*}{M} &= \sqrt{\frac{4h}{1-h}} - 1\\
+%\frac{B^*}{B_0} &= \frac{\sqrt{\frac{4h}{1-h}} - 1}{\frac{4h}{1-h} - 1 }
+%\end{align*}
+%%
+%\begin{frame}{Mangel et al. 2013, CJFAS}
+%\hspace*{-1cm}
+%\begin{minipage}[h!]{0.4\textwidth}
+%\begin{align*}
+%\frac{dB(t)}{dt} &= \frac{\alpha B(t)}{1+\beta B(t)} - (M+F(t))B(t)~\\
+%~&~\\
+%h &= \frac{\frac{\alpha}{M}}{4+\frac{\alpha}{M}}\\
+%~&~\\
+%\frac{F^*}{M} &= \sqrt{\frac{4h}{1-h}} - 1\\
+%\frac{B^*}{B_0} &= \frac{\sqrt{\frac{4h}{1-h}} - 1}{\frac{4h}{1-h} - 1 }
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.45\textwidth}
+%$~$\\
+%%\hspace*{0.05cm}
+%\includegraphics[width=1.2\textwidth]{cjasFig.png}
+%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}{Back to Schaefer}
+%\hspace*{-1cm}
+%\begin{minipage}[h!]{0.55\textwidth}
+%\begin{align*}
+%\frac{dB(t)}{dt} &= r B(t)\left(1-\frac{B(t)}{K}\right) - F(t)B(t)\\
+%~\\
+%&F^* = \frac{r}{2}\\
+%~\\
+%&\frac{B^*}{B_0} = \frac{1}{2}
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.45\textwidth}
+%$~$\\
+%%\hspace*{0.05cm}
+%\includegraphics[width=1.2\textwidth]{shaeferConst.png}
+%\end{minipage}
+%\end{frame}
+
+%Something about Model misspecification of RPs\\
+%Three parameter SRR\\
+%functional form with orthogonal RPs
+%\begin{minipage}[h!]{0.44\textwidth}
+%\end{minipage}
+%\begin{minipage}[h!]{0.44\textwidth}
+%\includegraphics[width=\textwidth]{shaeferConst.png}
+%\end{minipage}
+%\end{frame}
 
 %
 \section{Simulation}
@@ -268,8 +374,8 @@ functional form with oprthogonal RPs
 %\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT90X2Z0.6.png}
 \end{center}
 \begin{align*}
-\\
-C(t) = F^*\left(\frac{F(t)}{F^*}\right)B(t)\\
+C(t) &= F(t)B(t)\\
+&= F^*\left(\frac{F(t)}{F^*}\right)B(t)\\
 \end{align*}
 }
 \only<2>{
@@ -538,28 +644,53 @@ $~$\\
 %%\section{Methods}
 %%\subsection{}
 
+%%
+%\begin{frame}{Metamodel}
+%\begin{align*}  
+%        \bm{x} &= \left(F^*, \frac{B^*}{\bar B(0)}\right) \nonumber\\
+%	~\\
+%        \hat\mu &= \beta_0 + \bm{\beta}'\bm{x} + f(\bm{x}) + {\epsilon} \nonumber \\
+%        f(\bm{x}) &\sim \text{GP}(0, \tau^2 R(\bm{x}, \bm{x'})) \nonumber \\
+%        \epsilon_i &\sim \text{N}(0, \hat\omega_i).
+%\end{align*}
+%\begin{align*}   
+%R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \right)
+%\end{align*}
+%{\color{red} define $\mu$}
+%\end{frame}
 %
+%%
+%\begin{frame}
+%
+%%
+%\begin{equation*}
+%        \check \mu(\check s) = \beta_0 + \bm{x}(\check s)\bm{\beta} + {R}_{\bm{\ell}}(\check s, s) {R}^{-1}_{\bm{\ell}}(s, s)\Big({\hat\mu}(s)-\big(\beta_0+\bm{x}(s)\bm{\beta}\big)\Big)
+%\end{equation*}
+%
+%%
+%\begin{align*}
+%        \check B^* = \frac{\check K}{2} ~~~~~~~~
+%        %\check{MSY} = \frac{\check K \check r}{4} ~~~~~~~
+%        \check F^* = \frac{\check r}{2}.  %\check r \check B^* \left(1-\frac{\check B^*}{\check K}\right)
+%\end{align*}
+%
+%
+%\begin{align*}
+%\text{Relative Bias} = \frac{\check{RP}-RP}{RP}
+%\end{align*}
+%
+%\end{frame}
+
 \begin{frame}{Metamodel}
-\begin{align*}  
-        \bm{x} &= \left(F^*, \frac{B^*}{\bar B(0)}\right) \nonumber\\
-	~\\
-        \hat\mu &= \beta_0 + \bm{\beta}'\bm{x} + f(\bm{x}) + {\epsilon} \nonumber \\
-        f(\bm{x}) &\sim \text{GP}(0, \tau^2 R(\bm{x}, \bm{x'})) \nonumber \\
-        \epsilon_i &\sim \text{N}(0, \hat\omega_i).
-\end{align*}
-\begin{align*}   
-R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \right)
-\end{align*}
-{\color{red} define $\mu$}
-\end{frame}
 
 %
-\begin{frame}
+Squared Exponential Kernal to extend estimates across RP space
 
 %
-\begin{equation*}
-        \check \mu(\check s) = \beta_0 + \bm{x}(\check s)\bm{\beta} + {R}_{\bm{\ell}}(\check s, s) {R}^{-1}_{\bm{\ell}}(s, s)\Big({\hat\mu}(s)-\big(\beta_0+\bm{x}(s)\bm{\beta}\big)\Big)
-\end{equation*}
+Let $\check.$ decorate the extended estimates.
+
+%
+The true RPs are known and the metamodel extends simulation grid estimates across the RP-Space.  
 
 %
 \begin{align*}
@@ -568,15 +699,16 @@ R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \r
         \check F^* = \frac{\check r}{2}.  %\check r \check B^* \left(1-\frac{\check B^*}{\check K}\right)
 \end{align*}
 
+%
+Well look at bias results in the terms of percent error. 
 
 \begin{align*}
 \text{Relative Bias} = \frac{\check{RP}-RP}{RP}
 \end{align*}
-
 \end{frame}
 
 %
-\section{Bias}
+\section{Results}
 \subsection{}
 
 %
@@ -878,6 +1010,35 @@ P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
 %
 \subsection{}
 %
+\begin{frame}{Common Discretization}
+\hspace*{-1cm}
+\begin{minipage}[h!]{0.64\textwidth}
+\begin{align*}
+\frac{dB}{dt} &= P_\theta(B(t)) - C(t)
+\end{align*}
+
+\begin{align*}
+%\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
+B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - C(\tau)
+\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.24\textwidth}
+\includegraphics[width=1.9\textwidth]{../plots/eulerTry.png}
+\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\begin{align*}
+%&t\in\mathbb{R}^+ ~~~ ~~~ \tau=\lceil t \rceil-1\\
+%~\\
+%&\mathds{E}[y(t)] = \int_\tau^{t} x(t^*) dt^* \\%~~~ \tau=\lceil t \rceil-1 \\
+%&x(t) = \beta_0 + \sum_{j=1}^{T-1} \beta_j (t-\tau_j) \mathds{1}_{t>\tau_j}
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=1.1\textwidth]{../plots/hakeCatch.png}
+%\end{minipage}
+\end{frame}
+
+%
 \begin{frame}{Catch Interpolation}
 \begin{minipage}[h!]{0.49\textwidth}
 \begin{align*}
@@ -909,8 +1070,9 @@ P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
 \end{frame}
 
 %
+\section{End}
 \subsection{}
-\begin{frame}
+\begin{frame}{Timeline}
 \hspace*{-0.5cm}
 \scalebox{0.8}{
 \begin{ganttchart}[today=3]{1}{16}
@@ -932,7 +1094,7 @@ P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
 \end{frame}
 
 %
-\section{End}
+%\section{End}
 
 \begin{frame}
 \only<1>{
