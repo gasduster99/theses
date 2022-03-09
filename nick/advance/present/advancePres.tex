@@ -501,21 +501,26 @@ $~$\\
 \subsection{}
 %
 \begin{frame}{Summary}
+\linespread{1.25}
 %
+$~$\\
+\vspace*{-1.5cm}
+\hspace*{-1cm}
 \begin{itemize}	
 	%\item Model misspecification is a necessary but not sufficient condition for inducing bias.
-	%\item Different data informs different parts of the production function differently
+	%\item Different data informs different parts of the production function differently.
 	%\item When Schaefer model is unlikely to be correctly specified, one should at best expect to only estimate either $B^*$ or $F^*$ correctly. % depending on the particular degree of model misspecification. 
-	\item In practice the Schaefer model is at best only likely to estimate one of either $B^*$ or $F^*$ reasonably.
-	\item The observed contrast serves to distribute the available information among $B^*$ and $F^*$. 
-	\begin{itemize}
-		\item[$\Rightarrow$] Improved models of catch could contextulize interpretation of RP estimation.  
-	\end{itemize}
 	\item A rich simulation-based method for describing global RP bias and a stepping stone for understanding other models	
 	\begin{itemize}
                 \item[$\Rightarrow$] Productivity Extensions
                 \item[$\Rightarrow$] Individual growth and maturity dynamics
         \end{itemize}
+	\item In this severly constrained settings we pay for our modeling mistakes primarily in estimate bias.
+	\item In practice the Schaefer model is at best only likely to reasonably estimate one of either $B^*$ or $F^*$.
+	\item The observed contrast serves to distribute the available information among $B^*$ and $F^*$. 
+	\begin{itemize}
+		\item[$\Rightarrow$] Models of catch contextulize interpretation of RP estimation.
+	\end{itemize}
 	%
 	%\item $F^*$ bias is strongly contrast dependent
 	%\begin{itemize}
@@ -590,23 +595,80 @@ P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
 \begin{frame}{Outline}
     \tableofcontents[currentsection, currentsubsection]
 \end{frame}
-%%
-%\begin{frame}{Common Discretization}
-%\hspace*{-1cm}
-%\begin{minipage}[h!]{0.64\textwidth}
-%\begin{align*}
-%\frac{dB}{dt} &= P_\theta(B(t)) - C(t)
-%\end{align*}
 %
-%\begin{align*}
-%%\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
-%B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - C(\tau)
-%\end{align*}
-%\end{minipage}
-%\begin{minipage}[h!]{0.24\textwidth}
+\begin{frame}{Common Discretization}
+\only<1>{
+\vspace*{0.25cm}
+\hspace*{-1cm}
+\begin{minipage}[h!]{0.64\textwidth}
+\begin{align*}
+\frac{dB}{dt} &= P_\theta(B(t)) - C(t)
+\end{align*}
+
+\begin{align*}
+%\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
+B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - c(\tau)
+\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.24\textwidth}
+%\begin{center}
+%Instantaneous
+%\end{center}
+\vspace{0.25cm} 
+\begin{align*}
+c(\tau) &= \int_\tau^{\tau+1} C(t)dt
+\end{align*}
+%$~$\\
+%\begin{center}
+%Yearly
+%\end{center}
+%\vspace*{-5cm}
+%\hspace*{-2cm}
+%\begin{tikzpicture}
+%\draw [latex-](-8,-1) -- (-6,0);
+%\draw [latex-](-3.5,-1.75) -- (-4,-0.25);
+%\draw [latex-](-6.5,-3.25) -- (-5.5,-4);
+%\draw [latex-](-5.75,-2.6) -- (-5.25,-4);
+%\end{tikzpicture}
+%%\includegraphics[width=1.9\textwidth]{../plots/eulerTry.png}
+\end{minipage}
+}
+\only<2>{
+\hspace*{-1cm}
+\begin{minipage}[h!]{0.64\textwidth}
+\begin{align*}
+\frac{dB}{dt} &= P_\theta(B(t)) - C(t)
+\end{align*}
+
+\begin{align*}
+%\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
+B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - c(\tau)
+\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.24\textwidth}
+\begin{center}
+Instantaneous
+\end{center}
+$~$\\ 
+\begin{align*}
+c(\tau) &= \int_\tau^{\tau+1} C(t)dt
+\end{align*}
+$~$\\
+\begin{center}
+Yearly
+\end{center}
+\vspace*{-5cm}
+\hspace*{-2cm}
+\begin{tikzpicture}
+\draw [latex-](-8,-1) -- (-6,0);
+\draw [latex-](-3.5,-1.75) -- (-4,-0.25);
+\draw [latex-](-6.5,-3.25) -- (-5.5,-4);
+\draw [latex-](-5.75,-2.6) -- (-5.25,-4);
+\end{tikzpicture}
 %\includegraphics[width=1.9\textwidth]{../plots/eulerTry.png}
-%\end{minipage}
-%\end{frame}
+\end{minipage}
+}
+\end{frame}
 
 %
 \begin{frame}{Catch Interpolation}
@@ -614,8 +676,10 @@ P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
 \begin{align*}
 &t\in\mathbb{R}^+ ~~~ ~~~ \tau=\lceil t \rceil-1\\
 ~\\
-&\mathds{E}[y(t)] = \int_\tau^{t} x(t^*) dt^* \\%~~~ \tau=\lceil t \rceil-1 \\
-&x(t) = \beta_0 + \sum_{j=1}^{T-1} \beta_j (t-\tau_j) \mathds{1}_{t>\tau_j}
+%&\mathds{E}[y(t)] = \int_\tau^{t} x(t^*) dt^* \\%~~~ \tau=\lceil t \rceil-1 \\
+%&x(t) = \beta_0 + \sum_{j=1}^{T-1} \beta_j (t-\tau_j) \mathds{1}_{t>\tau_j}
+&\mathds{E}[c(t)] = \int_\tau^{t} C(t^*) dt^* \\%~~~ \tau=\lceil t \rceil-1 \\
+&C(t) = \beta_0 + \sum_{j=1}^{T-1} \beta_j (t-\tau_j) \mathds{1}_{t>\tau_j}
 \end{align*}
 \end{minipage}
 \begin{minipage}[h!]{0.49\textwidth}
@@ -627,7 +691,7 @@ P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
 \begin{frame}
 \only<1>{
 \begin{align*} %\beta_0(\tau_i-\tau_{i-1})
-\hspace*{-1cm} y(\tau_i) &= \beta_0 + \sum_{j=1}^{i-1} \beta_j \left[ \left(\frac{\tau_i^2}{2}-\tau_j\tau_i\right)\mathds{1}_{\tau_i>\tau_j} - \left(\frac{\tau_{i-1}^2}{2}-\tau_j\tau_{i-1}\right)\mathds{1}_{\tau_{i-1}>\tau_j}\right] + \epsilon_i \\
+\hspace*{-1cm} c(\tau_i) &= \beta_0 + \sum_{j=1}^{i-1} \beta_j \left[ \left(\frac{\tau_i^2}{2}-\tau_j\tau_i\right)\mathds{1}_{\tau_i>\tau_j} - \left(\frac{\tau_{i-1}^2}{2}-\tau_j\tau_{i-1}\right)\mathds{1}_{\tau_{i-1}>\tau_j}\right] + \epsilon_i \\
 &\beta_j \sim N(0, \phi) ~~~~ ~~~~ \phi \sim \text{Half-Cauchy}(0, 1) ~~~~ ~~~~ \epsilon_i \sim N(0, \sigma^2_i) \nonumber
 \end{align*}
 %
@@ -643,8 +707,9 @@ P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
 \begin{align*}
 \frac{dB}{dt} &= P_\theta(B(t)) - C(t)\\
 %\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
-B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - C(\tau)
+B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - c(\tau)
 \end{align*}
+$~$\\
 %
 \begin{minipage}[h!]{0.49\textwidth}
 %\hspace{-1cm}
@@ -685,8 +750,27 @@ B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - C(\tau)
 %
 \begin{frame}
 \only<1>{
-Thanks and Acknowldgements
-NOAA, Sea Grant Ecetra
+$~$\\$~$\\
+\begin{minipage}[h!]{0.54\textwidth}
+Many Thanks:\\
+\begin{itemize}
+\item Dr. Marc Mangel
+\item Collaborators at NOAA
+\item NMFS Sea Grant
+\item Members of my Committee
+\end{itemize}
+\end{minipage}
+\begin{minipage}[h!]{0.44\textwidth}
+\includegraphics[width=0.9\textwidth]{rockFish.png}
+\end{minipage}
+
+\vspace*{-0.5cm}
+\begin{minipage}[h!]{0.59\textwidth}
+\includegraphics[width=\textwidth]{seaGrant-logo.png}
+\end{minipage}
+\begin{minipage}[h!]{0.39\textwidth}
+\includegraphics[width=\textwidth]{dssc.jpg}
+\end{minipage}
 }
 \only<2>{
 \frametitle{Metamodel Details}
@@ -717,6 +801,7 @@ R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \r
 \end{center}
 }
 \only<5>{
+\frametitle{Deriso RP-Parameter System}
 \begin{align*}
 \frac{B^*}{\bar B(0)} &= \frac{ \left(\frac{\alpha}{M+F^*}\right)^\frac{1}{\gamma}-1 }{ \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 } \nonumber\\
 \alpha &= (M+F^*)\left[ 1-\frac{1}{\gamma}\left(\frac{F^*}{M+F^*}\right) \right]^{-\gamma} \label{system}\\
@@ -733,7 +818,7 @@ R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \r
 
 \begin{align*}
 %\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
-B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - C(\tau)
+B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - c(\tau)
 \end{align*}
 \end{minipage}
 \begin{minipage}[h!]{0.24\textwidth}

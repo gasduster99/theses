@@ -161,8 +161,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 
 * **Next** 
 
-* In particular I'll point out these 4 red X's in the 4 corners. <!--Since I will refer back to these examples in about 2 slides.-->
-* These are examples of large model misspecification relative to the scheafer model.
+* In particular I'll point out these 4 red X's in the 4 corners as examples of large model misspecification relative to the scheafer model.
 * I show an example biomass series of in the high contrast setting in each corner.
 * $Bmsy/B0$: describes where the biomass comes to equilibrium
 * $Fmsy$: describes how quickly the stock responds to fishing and how fast it rebuilds. 
@@ -194,7 +193,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 * Below the Shaefer line we underestimate $Fmsy$ and above the line we overestimate $Fmsy$. 
 
 
-# \color{red}Components
+# \color{blue}Components
 
 * For all other plots Red indicates over estimation of the modeled quanity and blue indicates underestimates of the modeled quantity.
 * **Left** In the bottom right you can see the generalized version of the our $F^*$ story
@@ -204,7 +203,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 	* this picture is a law of nature for this simulation setting (estimate must land on the line)
 
 
-# \color{red}$Fmsy$ Curves
+# \color{blue}$Fmsy$ Curves
 
 * This slide visualizes the posterior fit of those data in the 4 large model misspecification corners of RP space
 * In all cases the red lines represent the posterior fit of the Scheafer model, and the black is the truth of each of quantity.
@@ -220,7 +219,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 	* The vice versa phenomena occurs below the schaffer line.
 	* Data is only obsevered on the right half of the production function $\Rightarrow$ PT is shallower on the right than on the left $\Rightarrow$ and so the logistic parabola estimate tends to under estimate $F^*$.
 
-# \color{red}Ratio
+# \color{blue}Ratio
 
 * What's more interesting is what is the behavior of bias in the numerator ($B^*$) and the demoniator ($K$) not divided but independently
 * Whatever the individual patterns are they need to divide back up to give this top middle picture.
@@ -228,6 +227,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 * Interestingly, $B^*$ shows large swaths of relatively little bias, and most of the pattern in the top middle panel comes from bias in $K$.
 * The world did not have to be this way, but this says that $Bmsy$ is often a robustly estimated quantity, but due to restrictive model misspecification, its a zero sum game and accuray in $B^*$ often come at the cost of estimates of $K$. 
 
+\clearpage
 # \color{red} Contrast
 
 <!--
@@ -253,9 +253,21 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 
 # Summary
 
-* The statistician George Box famously said "All model are wrong, but some models are useful"
-* My question is how useful are our models?, and if our models are useful. How useful are they? and when are they useful?
-* This is a simulation based method for starting to understand that those questions.
+* "All model are wrong, but some models are useful"
+* How useful is the Schaefer model?, and if useful, how useful? and when?
+* This is a rich simulation based method understand that those questions at a deeper level.
+	
+	* This setting is simple setting to build the base knolwedge
+	* I plan an extensions into a more broad class of production functions
+	* also extensions across models that include individul growth and maturity.
+
+* In this severly overconstrained settings we pay for our modeling mistakes primarily in estimate bias.
+* In practice, when Schaefer model is unlikely to be correctly specified, one should at best expect to only reasonably estimate either $B^*$ or $F^*$ correctly depending on the particular degree of model misspecification.
+* The observed contrast serves to distribute the available information among $B^*$ and $F^*$
+
+	* So good models of catch are important to contextulize the interpretation of RP estimation.
+
+<!--
 * We want to expand these methods to more commonly used production functions
 	* BH and Ricker
 * and we want to try to get a similar analysis of these assumptiomtions when embeded inside of an age structured or delay difference model.
@@ -264,8 +276,10 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 	* as model misspecification increases biases in some quantities can become very large
 	* estimates in $B^*$ are tending to be less sensative to model misspecification than $K$
 	* and $F^*$ bias is going to tend to be strongly catch dependent
+-->
 
-# Productivity Extension
+\clearpage
+# \color{red}Productivity Extension
 
 # Growth Extension
 
@@ -286,11 +300,53 @@ individual growth, and maturity
 	* the net growth of existing biomass 
 	* biomass lost due to mortality
 
+# Common Discretization
+
+* Biomass dynamics models are commonly discretized, for ease of implementation and data handling
+* The top is the motivating continuous formulation of dynamics
+* The bottom is a common discretization
+* The discrete version is susceptible to all sorts of numerical problems, but it can be convient
+* **Next**
+
+	* The top requires instaneous catch
+	* The bottom only requires the aggregate catch over the year.
+	
 # Catch Interpolation
 
+* **Right** I show the Namibian Hake catch again.
+	
+	* Catch is commonly assumed known without uncertainty, and there are biological hypotheses for this
+	* but the statisticians eye can't resist focusing on the uncertainty.
 
+* **Left** So construct a linear interpolator for instantaneous catch
 
+	* Model the instantaneous catch function as a linear spline.
+	* and then what becomes of the uncertainty assumption?
 
+# **Next**
+
+* Working the linear spline assumption forward, you can integrate over time to give another spline model in terms of the observed quanties
+* We are capable of estimating variance for catch in each year so, I've shown an option for how to handle uncertainty, and the plots below show this model fit w/ and w/o assumpted uncertainty
+
+* **Figures**
+
+	* **Left** shows the model on the observation level
+	* **Right** shows the implied latent instantaneous catchs 
+
+* The blue is the model fit with-out assumed uncertainty
+* The black is the model fit with assumed uncertainty
+* On the observation scale the blue simply connects the dots, but the implied instantaneous catch oscillated wildly
+* Assuming catch uncertaitny smooths the observed jitters and implies a much more sensible instantaneous catch.
+
+* **Next**
+
+* Backing up to the motivating modelws again, this exposing worrying assumptions.
+* If we think that our discretizations bare any resemblance to the continuous motivating dynamics, then the assumption of catch known without uncertainty is also assuming that instantaneous catch can be negative (not an admissible assumption).  
+
+* I'll investigate:
+
+	* Other models of various smoothness on instantaneous catch  
+	* and further explore how assuming catch uncertainty affects the biomass dynamics model 
 
 
 <!--
