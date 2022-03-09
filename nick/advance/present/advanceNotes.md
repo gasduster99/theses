@@ -265,10 +265,26 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 	* estimates in $B^*$ are tending to be less sensative to model misspecification than $K$
 	* and $F^*$ bias is going to tend to be strongly catch dependent
 
-
 # Productivity Extension
 
 # Growth Extension
+
+* Model individual growth and maturity via a compact delay differential model.
+* The Deriso-Schnute DD model accounts for the effects of individual growth 
+and maturity while maintaining relatively fast computation for the simulation 
+setting outlined here.  
+* Expands the idea of biomass production into the processes of recruitment, 
+individual growth, and maturity
+<!--* Derived directly from an assumption of Von Bertalanffy growth in weight-->
+* Dynamics of numbers are very similar to that of the Deriso production model 
+* Define recruitment: 
+* Individuals simultaneously sexually mature, and start dieing and being fished at age $a_0$
+* Individuals grow via von bertilanfy growth.
+* Biomass dynamics, can then be seen to describe biomass by an account 
+	
+	* biomass of new recruits
+	* the net growth of existing biomass 
+	* biomass lost due to mortality
 
 # Catch Interpolation
 

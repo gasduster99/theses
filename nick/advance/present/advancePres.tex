@@ -78,8 +78,7 @@ Nick Grunloh
 %
 \section{Introduction}
 \subsection{}
-\begin{frame}{}
-    \frametitle{Table of Contents}
+\begin{frame}{Outline} 
     \tableofcontents[currentsection, currentsubsection]
 \end{frame}
 
@@ -206,8 +205,7 @@ $~$\\
 %
 \section{Simulation}
 \subsection{}
-\begin{frame}{}
-    \frametitle{Table of Contents}
+\begin{frame}{Outline}
     \tableofcontents[currentsection, currentsubsection]
 \end{frame}
 
@@ -505,20 +503,27 @@ $~$\\
 \begin{frame}{Summary}
 %
 \begin{itemize}	
-	\item Given unbias estimation (i.e. MLE), model misspecification is a necessary but not sufficient condition for inducing bias.
-	\item Different data informs different parts of the production function differently
-	\item In the overconstrained setting we pay for our modeling mistakes in bias
-	In practice, when the true model is not known and the Schaefer model is unlikely to be correctly specified, one should at best expect to only estimate either $B^*$ or $F^*$ correctly depending on the particular degree of model misspecification. The observed contrast then serves to distribute the available information among $B^*$ and $F^*$. 
-	\item $F^*$ bias is strongly contrast dependent
+	%\item Model misspecification is a necessary but not sufficient condition for inducing bias.
+	%\item Different data informs different parts of the production function differently
+	%\item When Schaefer model is unlikely to be correctly specified, one should at best expect to only estimate either $B^*$ or $F^*$ correctly. % depending on the particular degree of model misspecification. 
+	\item In practice the Schaefer model is at best only likely to estimate one of either $B^*$ or $F^*$ reasonably.
+	\item The observed contrast serves to distribute the available information among $B^*$ and $F^*$. 
 	\begin{itemize}
-                \item[$\Rightarrow$] Bias depends on how similar the modeled and true production functions can be at the observed biomasses % of the true production function observed
-		%\item[$\Rightarrow$] Contrast is key
-        \end{itemize}
+		\item[$\Rightarrow$] Improved models of catch could contextulize interpretation of RP estimation.  
+	\end{itemize}
 	\item A rich simulation-based method for describing global RP bias and a stepping stone for understanding other models	
 	\begin{itemize}
                 \item[$\Rightarrow$] Productivity Extensions
                 \item[$\Rightarrow$] Individual growth and maturity dynamics
         \end{itemize}
+	%
+	%\item $F^*$ bias is strongly contrast dependent
+	%\begin{itemize}
+        %        \item[$\Rightarrow$] Bias depends on how similar the modeled and true production functions can be at the observed biomasses % of the true production function observed
+	%	%\item[$\Rightarrow$] Contrast is key
+        %\end{itemize}
+	%\item In the overconstrained setting we pay for our modeling mistakes in bias
+	%In practice, when the true model is not known and the Schaefer model is unlikely to be correctly specified, one should at best expect to only estimate either $B^*$ or $F^*$ correctly depending on the particular degree of model misspecification. The observed contrast then serves to distribute the available information among $B^*$ and $F^*$. 
 \end{itemize}
 \end{frame}
 
@@ -573,9 +578,11 @@ P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
 &\frac{dN}{dt} = R(B;\theta) - (M+F)N \\%\label{nEq}\\
 &~\\
 &R(B;[\alpha, \beta, \gamma]) = \alpha B(t-a_0)(1-\beta\gamma B(t-a_0))^{\frac{1}{\gamma}} \\%\label{srr}\\
-&w(a) = w_\infty(1-e^{-\kappa a}) %\label{vbGrowth}
+&w(a) = w_\infty(1-e^{-\kappa a})\\ %\label{vbGrowth}
+&~\\
+&\theta' = [\alpha, \beta, \gamma] ~~~ ~~~ \text{Species Properties: } a_0,~\kappa,~w_\infty,~M
 \end{align*}
-{\color{red} bullets of primary points of individual growth and maturity}
+%{\color{red} bullets of primary points of individual growth and maturity}
 \end{frame}
 
 %
@@ -682,6 +689,8 @@ Thanks and Acknowldgements
 NOAA, Sea Grant Ecetra
 }
 \only<2>{
+\frametitle{Metamodel Details}
+\vspace*{-0.5cm}
 \begin{align*}
 	\hat\mu &= \widehat{log(r)} ~~ -or- ~~ \hat\mu = \widehat{log(K)}\\
 	~\\  
@@ -696,7 +705,9 @@ R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \r
 \end{align*}
 }
 \only<3>{
-{\color{red}Cross-Covariogram}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{../../.././nick/gpBias/crossCovExpT45.png}
+\end{center}
 }
 \only<4>{
 \begin{center}
@@ -713,6 +724,7 @@ R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \r
 \end{align*}
 }
 \only<6>{
+\frametitle{Common Discretization}
 \hspace*{-1cm}
 \begin{minipage}[h!]{0.64\textwidth}
 \begin{align*}
