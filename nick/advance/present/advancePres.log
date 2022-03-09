@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.21)  7 MAR 2022 17:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.21)  8 MAR 2022 16:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -999,24 +999,24 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 (./advancePres.aux)
 \openout1 = `advancePres.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1074,7 +1074,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 40.
+Package hyperref Info: Link coloring OFF on input line 57.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -1088,67 +1088,67 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count371
 )
-LaTeX Info: Redefining \ref on input line 40.
-LaTeX Info: Redefining \pageref on input line 40.
-LaTeX Info: Redefining \nameref on input line 40.
+LaTeX Info: Redefining \ref on input line 57.
+LaTeX Info: Redefining \pageref on input line 57.
+LaTeX Info: Redefining \nameref on input line 57.
  (./advancePres.out) (./advancePres.out)
 \@outlinefile=\write5
 \openout5 = `advancePres.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 40.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 57.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 40.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 57.
 \symnumbers=\mathgroup11
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 40.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 57.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  OT1/mathkerncmss/m/sl --> OT1/cmss/m/it on input line 4
-0.
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/cmss/m/it on input line 5
+7.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/bx/sl --> OT1/cmss/m/it on input line 
-40.
+57.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 40.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 40.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 57.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 57.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 57.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 40.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 57.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 40.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 40.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 57.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 57.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 40.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 57.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 40.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 40.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 57.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 57.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 40.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 57.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 40.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 57.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 40.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 57.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 40.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 57.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 40.
+(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 57.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 40.
+(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 57.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 40.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 57.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 40.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 57.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 40.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 40.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 57.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 57.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 4
-0.
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 5
+7.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 4
-0.
+(Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 5
+7.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 40.
+ut line 57.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/translator/translator-basic-dicti
 onary-English.dict
@@ -1174,330 +1174,351 @@ Dictionary: translator-numbers-dictionary, Language: English
 tionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 ) (./advancePres.nav)
-<noaaText.png, id=58, 628.43478pt x 471.32608pt>
+<noaaText.png, id=98, 628.43478pt x 471.32608pt>
 File: noaaText.png Graphic file (type png)
 <use noaaText.png>
-Package pdftex.def Info: noaaText.png  used on input line 52.
+Package pdftex.def Info: noaaText.png  used on input line 71.
 (pdftex.def)             Requested size: 90.34514pt x 67.7544pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 71.
 
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 71.
 
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 52.
+ut line 71.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
 )
-<slug.jpg, id=60, 301.125pt x 254.9525pt>
+<slug.jpg, id=100, 301.125pt x 254.9525pt>
 File: slug.jpg Graphic file (type jpg)
 <use slug.jpg>
-Package pdftex.def Info: slug.jpg  used on input line 52.
+Package pdftex.def Info: slug.jpg  used on input line 71.
 (pdftex.def)             Requested size: 82.816pt x 70.11798pt.
  [1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
- <./noaaText.png> <./slug.jpg>]
-<../plots/hakeIndex.png, id=144, 481.8pt x 481.8pt>
+ <./noaaText.png> <./slug.jpg>] (./advancePres.toc) [2
+
+] (./advancePres.toc) [3
+
+]
+<../plots/hakeIndex.png, id=329, 481.8pt x 481.8pt>
 File: ../plots/hakeIndex.png Graphic file (type png)
 <use ../plots/hakeIndex.png>
-Package pdftex.def Info: ../plots/hakeIndex.png  used on input line 96.
+Package pdftex.def Info: ../plots/hakeIndex.png  used on input line 95.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
-<../plots/hakeCatch.png, id=145, 481.8pt x 481.8pt>
+<../plots/hakeCatch.png, id=330, 481.8pt x 481.8pt>
 File: ../plots/hakeCatch.png Graphic file (type png)
 <use ../plots/hakeCatch.png>
-Package pdftex.def Info: ../plots/hakeCatch.png  used on input line 96.
+Package pdftex.def Info: ../plots/hakeCatch.png  used on input line 95.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
- [2
+
+[4
 
  <../plots/hakeIndex.png> <../plots/hakeCatch.png>]
-<../plots/srrSchaefferPar.png, id=210, 481.8pt x 481.8pt>
+<../plots/srrSchaefferPar.png, id=397, 481.8pt x 481.8pt>
 File: ../plots/srrSchaefferPar.png Graphic file (type png)
 <use ../plots/srrSchaefferPar.png>
-Package pdftex.def Info: ../plots/srrSchaefferPar.png  used on input line 114.
+Package pdftex.def Info: ../plots/srrSchaefferPar.png  used on input line 113.
 (pdftex.def)             Requested size: 165.93446pt x 165.93446pt.
- [3
+ [5
 
  <../plots/srrSchaefferPar.png (PNG copy)>]
-<../plots/srrSchaefferRPplus.png, id=267, 481.8pt x 481.8pt>
+<../plots/srrSchaefferRPplus.png, id=459, 481.8pt x 481.8pt>
 File: ../plots/srrSchaefferRPplus.png Graphic file (type png)
 <use ../plots/srrSchaefferRPplus.png>
 Package pdftex.def Info: ../plots/srrSchaefferRPplus.png  used on input line 14
-7.
+6.
 (pdftex.def)             Requested size: 165.93446pt x 165.93446pt.
- [4
+ [6
 
  <../plots/srrSchaefferRPplus.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 284--284
+Underfull \hbox (badness 10000) in paragraph at lines 204--204
 
  []
 
-<cjasFig.png, id=324, 433.1382pt x 434.5836pt>
+<cjasFig.png, id=519, 433.1382pt x 434.5836pt>
 File: cjasFig.png Graphic file (type png)
 <use cjasFig.png>
-Package pdftex.def Info: cjasFig.png  used on input line 284.
+Package pdftex.def Info: cjasFig.png  used on input line 204.
 (pdftex.def)             Requested size: 167.77925pt x 168.33972pt.
 
-Overfull \hbox (36.14337pt too wide) in paragraph at lines 284--284
+Overfull \hbox (36.14337pt too wide) in paragraph at lines 204--204
 |  [] 
- []
-
-[5
-
- <./cjasFig.png>]
-<shaeferConst.png, id=382, 481.8pt x 481.8pt>
-File: shaeferConst.png Graphic file (type png)
-<use shaeferConst.png>
-Package pdftex.def Info: shaeferConst.png  used on input line 284.
-(pdftex.def)             Requested size: 167.77925pt x 167.77972pt.
-
-Overfull \hbox (36.14337pt too wide) in paragraph at lines 284--284
-|  [] 
- []
-
-[6
-
- <./shaeferConst.png>]
-<../plots/srr1.1.png, id=439, 481.8pt x 481.8pt>
-File: ../plots/srr1.1.png Graphic file (type png)
-<use ../plots/srr1.1.png>
-Package pdftex.def Info: ../plots/srr1.1.png  used on input line 364.
-(pdftex.def)             Requested size: 155.4887pt x 155.48773pt.
-
-Overfull \hbox (20.28041pt too wide) in paragraph at lines 364--364
-[][] 
  []
 
 [7
 
- <../plots/srr1.1.png (PNG copy)>]
-<../../.././nick/gpBias/rfFlatNoQX2Z0.6.png, id=495, 481.8pt x 481.8pt>
-File: ../../.././nick/gpBias/rfFlatNoQX2Z0.6.png Graphic file (type png)
-<use ../../.././nick/gpBias/rfFlatNoQX2Z0.6.png>
-Package pdftex.def Info: ../../.././nick/gpBias/rfFlatNoQX2Z0.6.png  used on in
-put line 395.
-(pdftex.def)             Requested size: 98.335pt x 98.32854pt.
-<../../.././nick/gpBias/rfExpT45X2Z0.6.png, id=496, 481.8pt x 481.8pt>
-File: ../../.././nick/gpBias/rfExpT45X2Z0.6.png Graphic file (type png)
-<use ../../.././nick/gpBias/rfExpT45X2Z0.6.png>
-Package pdftex.def Info: ../../.././nick/gpBias/rfExpT45X2Z0.6.png  used on inp
-ut line 395.
-(pdftex.def)             Requested size: 98.335pt x 98.32854pt.
+ <./cjasFig.png>]
+<shaeferConst.png, id=583, 481.8pt x 481.8pt>
+File: shaeferConst.png Graphic file (type png)
+<use shaeferConst.png>
+Package pdftex.def Info: shaeferConst.png  used on input line 204.
+(pdftex.def)             Requested size: 167.77925pt x 167.77972pt.
 
-Overfull \vbox (4.31308pt too high) detected at line 395
+Overfull \hbox (36.14337pt too wide) in paragraph at lines 204--204
+|  [] 
  []
 
 [8
+
+ <./shaeferConst.png>] (./advancePres.toc) [9
+
+]
+<../plots/srr1.1.png, id=711, 481.8pt x 481.8pt>
+File: ../plots/srr1.1.png Graphic file (type png)
+<use ../plots/srr1.1.png>
+Package pdftex.def Info: ../plots/srr1.1.png  used on input line 231.
+(pdftex.def)             Requested size: 155.4887pt x 155.48773pt.
+
+Overfull \hbox (20.28041pt too wide) in paragraph at lines 231--231
+[][] 
+ []
+
+[10
+
+ <../plots/srr1.1.png (PNG copy)>]
+<../../.././nick/gpBias/rfFlatNoQX2Z0.6.png, id=771, 481.8pt x 481.8pt>
+File: ../../.././nick/gpBias/rfFlatNoQX2Z0.6.png Graphic file (type png)
+<use ../../.././nick/gpBias/rfFlatNoQX2Z0.6.png>
+Package pdftex.def Info: ../../.././nick/gpBias/rfFlatNoQX2Z0.6.png  used on in
+put line 262.
+(pdftex.def)             Requested size: 98.335pt x 98.32854pt.
+<../../.././nick/gpBias/rfExpT45X2Z0.6.png, id=772, 481.8pt x 481.8pt>
+File: ../../.././nick/gpBias/rfExpT45X2Z0.6.png Graphic file (type png)
+<use ../../.././nick/gpBias/rfExpT45X2Z0.6.png>
+Package pdftex.def Info: ../../.././nick/gpBias/rfExpT45X2Z0.6.png  used on inp
+ut line 262.
+(pdftex.def)             Requested size: 98.335pt x 98.32854pt.
+
+Overfull \vbox (4.31308pt too high) detected at line 262
+ []
+
+[11
 
  <../../.././nick/gpBias/rfFlatNoQX2Z0.6.png> <../../.././nick/gpBias/rfExpT45X
 2Z0.6.png>]
 File: ../../.././nick/gpBias/rfFlatNoQX2Z0.6.png Graphic file (type png)
 <use ../../.././nick/gpBias/rfFlatNoQX2Z0.6.png>
 Package pdftex.def Info: ../../.././nick/gpBias/rfFlatNoQX2Z0.6.png  used on in
-put line 395.
+put line 262.
 (pdftex.def)             Requested size: 98.335pt x 98.32854pt.
 File: ../../.././nick/gpBias/rfExpT45X2Z0.6.png Graphic file (type png)
 <use ../../.././nick/gpBias/rfExpT45X2Z0.6.png>
 Package pdftex.def Info: ../../.././nick/gpBias/rfExpT45X2Z0.6.png  used on inp
-ut line 395.
+ut line 262.
 (pdftex.def)             Requested size: 98.335pt x 98.32854pt.
-<../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png, id=555, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png, id=834, 481.8pt x 481.8pt>
 File: ../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png Graphic file (type png)
 <use ../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png>
 Package pdftex.def Info: ../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png  used
- on input line 395.
+ on input line 262.
 (pdftex.def)             Requested size: 98.335pt x 98.32854pt.
-<../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png, id=556, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png, id=835, 481.8pt x 481.8pt>
 File: ../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png Graphic file (type png)
 <use ../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png>
 Package pdftex.def Info: ../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png  used 
-on input line 395.
+on input line 262.
 (pdftex.def)             Requested size: 98.335pt x 98.32854pt.
 
-Overfull \vbox (8.48848pt too high) detected at line 395
- []
-
-[9
-
- <../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png (PNG copy)> <../../.././nick
-/gpBias/bioCatchExpT45X2Z0.6.png (PNG copy)>]
-Overfull \hbox (24.01787pt too wide) detected at line 461
-[]
- []
-
-<shaeferDat.png, id=611, 481.8pt x 481.8pt>
-File: shaeferDat.png Graphic file (type png)
-<use shaeferDat.png>
-Package pdftex.def Info: shaeferDat.png  used on input line 461.
-(pdftex.def)             Requested size: 178.30731pt x 178.31036pt.
-
-Overfull \vbox (10.12369pt too high) detected at line 461
- []
-
-[10
-
- <./shaeferDat.png (PNG copy)>]
-Overfull \hbox (24.01787pt too wide) detected at line 461
-[]
- []
-
-File: shaeferDat.png Graphic file (type png)
-<use shaeferDat.png>
-Package pdftex.def Info: shaeferDat.png  used on input line 461.
-(pdftex.def)             Requested size: 178.30731pt x 178.31036pt.
-<../../.././nick/gpBias/bioExpT45X0.5Z0.6.png, id=669, 481.8pt x 481.8pt>
-File: ../../.././nick/gpBias/bioExpT45X0.5Z0.6.png Graphic file (type png)
-<use ../../.././nick/gpBias/bioExpT45X0.5Z0.6.png>
-Package pdftex.def Info: ../../.././nick/gpBias/bioExpT45X0.5Z0.6.png  used on 
-input line 461.
-(pdftex.def)             Requested size: 55.71828pt x 55.72177pt.
-<../../.././nick/gpBias/bioExpT45X3.5Z0.6.png, id=670, 481.8pt x 481.8pt>
-File: ../../.././nick/gpBias/bioExpT45X3.5Z0.6.png Graphic file (type png)
-<use ../../.././nick/gpBias/bioExpT45X3.5Z0.6.png>
-Package pdftex.def Info: ../../.././nick/gpBias/bioExpT45X3.5Z0.6.png  used on 
-input line 461.
-(pdftex.def)             Requested size: 55.71828pt x 55.72177pt.
-<../../.././nick/gpBias/bioExpT45X3.5Z0.2.png, id=671, 481.8pt x 481.8pt>
-File: ../../.././nick/gpBias/bioExpT45X3.5Z0.2.png Graphic file (type png)
-<use ../../.././nick/gpBias/bioExpT45X3.5Z0.2.png>
-Package pdftex.def Info: ../../.././nick/gpBias/bioExpT45X3.5Z0.2.png  used on 
-input line 461.
-(pdftex.def)             Requested size: 55.71828pt x 55.72177pt.
-<../../.././nick/gpBias/bioExpT45X0.5Z0.2.png, id=672, 481.8pt x 481.8pt>
-File: ../../.././nick/gpBias/bioExpT45X0.5Z0.2.png Graphic file (type png)
-<use ../../.././nick/gpBias/bioExpT45X0.5Z0.2.png>
-Package pdftex.def Info: ../../.././nick/gpBias/bioExpT45X0.5Z0.2.png  used on 
-input line 461.
-(pdftex.def)             Requested size: 55.71828pt x 55.72177pt.
-
-Overfull \vbox (10.12369pt too high) detected at line 461
- []
-
-[11
-
- <../../.././nick/gpBias/bioExpT45X0.5Z0.6.png> <../../.././nick/gpBias/bioExpT
-45X3.5Z0.6.png> <../../.././nick/gpBias/bioExpT45X3.5Z0.2.png> <../../.././nick
-/gpBias/bioExpT45X0.5Z0.2.png>]
-Overfull \vbox (5.01602pt too high) detected at line 708
+Overfull \vbox (8.48848pt too high) detected at line 262
  []
 
 [12
 
-]
-<../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png, id=786, 481.8pt x 481.
-8pt>
-File: ../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png Graphic file (type
- png)
-<use ../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png>
-Package pdftex.def Info: ../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png
-  used on input line 733.
-(pdftex.def)             Requested size: 222.88782pt x 222.88712pt.
+ <../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png (PNG copy)> <../../.././nick
+/gpBias/bioCatchExpT45X2Z0.6.png (PNG copy)>]
+Overfull \hbox (24.01787pt too wide) detected at line 311
+[]
+ []
 
-Overfull \vbox (9.0pt too high) detected at line 733
+<shaeferDat.png, id=895, 481.8pt x 481.8pt>
+File: shaeferDat.png Graphic file (type png)
+<use shaeferDat.png>
+Package pdftex.def Info: shaeferDat.png  used on input line 311.
+(pdftex.def)             Requested size: 178.30731pt x 178.31036pt.
+
+Overfull \vbox (10.12369pt too high) detected at line 311
  []
 
 [13
 
- <../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png (PNG copy)>]
-<../../.././nick/gpBias/fMSYRelBiasPellaFlatNoQ.png, id=845, 481.8pt x 481.8pt>
-
-File: ../../.././nick/gpBias/fMSYRelBiasPellaFlatNoQ.png Graphic file (type png
-)
-<use ../../.././nick/gpBias/fMSYRelBiasPellaFlatNoQ.png>
-Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaFlatNoQ.png  us
-ed on input line 752.
-(pdftex.def)             Requested size: 165.632pt x 165.62569pt.
-
-Overfull \hbox (24.6048pt too wide) in paragraph at lines 752--752
-[]|  [] 
+ <./shaeferDat.png (PNG copy)>]
+Overfull \hbox (24.01787pt too wide) detected at line 311
+[]
  []
 
-<../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png, id=846, 481.8pt x 481.8pt>
+File: shaeferDat.png Graphic file (type png)
+<use shaeferDat.png>
+Package pdftex.def Info: shaeferDat.png  used on input line 311.
+(pdftex.def)             Requested size: 178.30731pt x 178.31036pt.
+<../../.././nick/gpBias/bioExpT45X0.5Z0.6.png, id=958, 481.8pt x 481.8pt>
+File: ../../.././nick/gpBias/bioExpT45X0.5Z0.6.png Graphic file (type png)
+<use ../../.././nick/gpBias/bioExpT45X0.5Z0.6.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bioExpT45X0.5Z0.6.png  used on 
+input line 311.
+(pdftex.def)             Requested size: 55.71828pt x 55.72177pt.
+<../../.././nick/gpBias/bioExpT45X3.5Z0.6.png, id=959, 481.8pt x 481.8pt>
+File: ../../.././nick/gpBias/bioExpT45X3.5Z0.6.png Graphic file (type png)
+<use ../../.././nick/gpBias/bioExpT45X3.5Z0.6.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bioExpT45X3.5Z0.6.png  used on 
+input line 311.
+(pdftex.def)             Requested size: 55.71828pt x 55.72177pt.
+<../../.././nick/gpBias/bioExpT45X3.5Z0.2.png, id=960, 481.8pt x 481.8pt>
+File: ../../.././nick/gpBias/bioExpT45X3.5Z0.2.png Graphic file (type png)
+<use ../../.././nick/gpBias/bioExpT45X3.5Z0.2.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bioExpT45X3.5Z0.2.png  used on 
+input line 311.
+(pdftex.def)             Requested size: 55.71828pt x 55.72177pt.
+<../../.././nick/gpBias/bioExpT45X0.5Z0.2.png, id=961, 481.8pt x 481.8pt>
+File: ../../.././nick/gpBias/bioExpT45X0.5Z0.2.png Graphic file (type png)
+<use ../../.././nick/gpBias/bioExpT45X0.5Z0.2.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bioExpT45X0.5Z0.2.png  used on 
+input line 311.
+(pdftex.def)             Requested size: 55.71828pt x 55.72177pt.
 
-File: ../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png Graphic file (type png
-)
-<use ../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png>
-Package pdftex.def Info: ../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png  us
-ed on input line 752.
-(pdftex.def)             Requested size: 165.632pt x 165.62569pt.
-
-Overfull \hbox (45.94437pt too wide) in paragraph at lines 752--752
-[]|  [] 
+Overfull \vbox (10.12369pt too high) detected at line 311
  []
 
 [14
 
+ <../../.././nick/gpBias/bioExpT45X0.5Z0.6.png> <../../.././nick/gpBias/bioExpT
+45X3.5Z0.6.png> <../../.././nick/gpBias/bioExpT45X3.5Z0.2.png> <../../.././nick
+/gpBias/bioExpT45X0.5Z0.2.png>]
+
+Package amsmath Warning: Foreign command \atop;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 326.
+
+[15
+
+] (./advancePres.toc)
+File: ../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png Graphic file (type png)
+<use ../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png  used
+ on input line 340.
+(pdftex.def)             Requested size: 153.64493pt x 153.64247pt.
+
+Overfull \vbox (2.61925pt too high) detected at line 340
+ []
+
+[16
+
+]
+<../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png, id=1150, 481.8pt x 481
+.8pt>
+File: ../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png Graphic file (type
+ png)
+<use ../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png>
+Package pdftex.def Info: ../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png
+  used on input line 361.
+(pdftex.def)             Requested size: 222.88782pt x 222.88712pt.
+
+Overfull \vbox (9.0pt too high) detected at line 361
+ []
+
+[17
+
+ <../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png (PNG copy)>]
+<../../.././nick/gpBias/fMSYRelBiasPellaFlatNoQ.png, id=1210, 481.8pt x 481.8pt
+>
+File: ../../.././nick/gpBias/fMSYRelBiasPellaFlatNoQ.png Graphic file (type png
+)
+<use ../../.././nick/gpBias/fMSYRelBiasPellaFlatNoQ.png>
+Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaFlatNoQ.png  us
+ed on input line 380.
+(pdftex.def)             Requested size: 165.632pt x 165.62569pt.
+
+Overfull \hbox (24.6048pt too wide) in paragraph at lines 380--380
+[]|  [] 
+ []
+
+<../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png, id=1211, 481.8pt x 481.8pt
+>
+File: ../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png Graphic file (type png
+)
+<use ../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png>
+Package pdftex.def Info: ../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png  us
+ed on input line 380.
+(pdftex.def)             Requested size: 165.632pt x 165.62569pt.
+
+Overfull \hbox (45.94437pt too wide) in paragraph at lines 380--380
+[]|  [] 
+ []
+
+[18
+
  <../../.././nick/gpBias/fMSYRelBiasPellaFlatNoQ.png (PNG copy)> <../../.././ni
 ck/gpBias/zetaRelBiasPellaFlatNoQ.png (PNG copy)>]
-<../../.././nick/gpBias/fMSYXRelBiasPellaFlatNoQ.png, id=901, 481.8pt x 481.8pt
->
+<../../.././nick/gpBias/fMSYXRelBiasPellaFlatNoQ.png, id=1271, 481.8pt x 481.8p
+t>
 File: ../../.././nick/gpBias/fMSYXRelBiasPellaFlatNoQ.png Graphic file (type pn
 g)
 <use ../../.././nick/gpBias/fMSYXRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../.././nick/gpBias/fMSYXRelBiasPellaFlatNoQ.png  u
-sed on input line 777.
+sed on input line 405.
 (pdftex.def)             Requested size: 124.83531pt x 124.83128pt.
-<../../.././nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png, id=902, 481.8pt x 481.
-8pt>
+<../../.././nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png, id=1272, 481.8pt x 481
+.8pt>
 File: ../../.././nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png Graphic file (type
  png)
 <use ../../.././nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png>
 Package pdftex.def Info: ../../.././nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png
-  used on input line 777.
+  used on input line 405.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
-<../../.././nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png, id=903, 481.8pt x 481.
-8pt>
+<../../.././nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png, id=1273, 481.8pt x 481
+.8pt>
 File: ../../.././nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png Graphic file (type
  png)
 <use ../../.././nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png>
 Package pdftex.def Info: ../../.././nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png
-  used on input line 777.
+  used on input line 405.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
 
-Overfull \hbox (9.98743pt too wide) in paragraph at lines 777--777
+Overfull \hbox (9.98743pt too wide) in paragraph at lines 405--405
 [][] 
  []
 
 
-Overfull \hbox (9.98743pt too wide) in paragraph at lines 777--777
+Overfull \hbox (9.98743pt too wide) in paragraph at lines 405--405
 [] 
  []
 
-<../../.././nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png, id=904, 481.8pt x 481.
-8pt>
+<../../.././nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png, id=1274, 481.8pt x 481
+.8pt>
 File: ../../.././nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png Graphic file (type
  png)
 <use ../../.././nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png>
 Package pdftex.def Info: ../../.././nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png
-  used on input line 777.
+  used on input line 405.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
-<../../.././nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png, id=905, 481.8pt x 481.
-8pt>
+<../../.././nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png, id=1275, 481.8pt x 481
+.8pt>
 File: ../../.././nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png Graphic file (type
  png)
 <use ../../.././nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png>
 Package pdftex.def Info: ../../.././nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png
-  used on input line 777.
+  used on input line 405.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
 
-Overfull \hbox (19.53394pt too wide) in paragraph at lines 777--777
+Overfull \hbox (19.53394pt too wide) in paragraph at lines 405--405
 []|  [] 
  []
 
 
-Overfull \hbox (19.53394pt too wide) in paragraph at lines 777--777
+Overfull \hbox (19.53394pt too wide) in paragraph at lines 405--405
 |  [] 
  []
 
-[15
+[19
 
  <../../.././nick/gpBias/fMSYXRelBiasPellaFlatNoQ.png (PNG copy)> <../../.././n
 ick/gpBias/curveCompareFlatNoQX0.5Z0.6.png (PNG copy)> <../../.././nick/gpBias/
@@ -1508,198 +1529,249 @@ File: ../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png Graphic file (type png
 )
 <use ../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png  us
-ed on input line 834.
+ed on input line 442.
 (pdftex.def)             Requested size: 122.58904pt x 122.5886pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 834--834
+Underfull \hbox (badness 10000) in paragraph at lines 442--442
 
  []
 
-<../../.././nick/gpBias/bMSYRelBiasPellaFlatNoQ.png, id=961, 481.8pt x 481.8pt>
-
+<../../.././nick/gpBias/bMSYRelBiasPellaFlatNoQ.png, id=1335, 481.8pt x 481.8pt
+>
 File: ../../.././nick/gpBias/bMSYRelBiasPellaFlatNoQ.png Graphic file (type png
 )
 <use ../../.././nick/gpBias/bMSYRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaFlatNoQ.png  us
-ed on input line 834.
+ed on input line 442.
 (pdftex.def)             Requested size: 122.58904pt x 122.5886pt.
-<../../.././nick/gpBias/kRelBiasPellaFlatNoQ.png, id=962, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/kRelBiasPellaFlatNoQ.png, id=1336, 481.8pt x 481.8pt>
 File: ../../.././nick/gpBias/kRelBiasPellaFlatNoQ.png Graphic file (type png)
 <use ../../.././nick/gpBias/kRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../.././nick/gpBias/kRelBiasPellaFlatNoQ.png  used 
-on input line 834.
+on input line 442.
 (pdftex.def)             Requested size: 122.58904pt x 122.5886pt.
 
-Overfull \hbox (4.79532pt too wide) in paragraph at lines 834--834
+Overfull \hbox (4.79532pt too wide) in paragraph at lines 442--442
 []|  |  [] 
  []
 
 
-Overfull \vbox (14.69849pt too high) detected at line 834
+Overfull \vbox (14.69849pt too high) detected at line 442
  []
 
-[16
+[20
 
  <../../.././nick/gpBias/bMSYRelBiasPellaFlatNoQ.png (PNG copy)> <../../.././ni
-ck/gpBias/kRelBiasPellaFlatNoQ.png (PNG copy)>]
+ck/gpBias/kRelBiasPellaFlatNoQ.png (PNG copy)>] (./advancePres.toc)
+File: ../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png Graphic file (type png)
+<use ../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png  used 
+on input line 457.
+(pdftex.def)             Requested size: 153.64493pt x 153.64247pt.
+
+Overfull \vbox (2.61925pt too high) detected at line 457
+ []
+
+[21
+
+]
 File: ../../.././nick/gpBias/rfExpT45X2Z0.6.png Graphic file (type png)
 <use ../../.././nick/gpBias/rfExpT45X2Z0.6.png>
 Package pdftex.def Info: ../../.././nick/gpBias/rfExpT45X2Z0.6.png  used on inp
-ut line 880.
+ut line 498.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
-<../../.././nick/gpBias/rfExpT90X2Z0.6.png, id=1017, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/rfExpT90X2Z0.6.png, id=1463, 481.8pt x 481.8pt>
 File: ../../.././nick/gpBias/rfExpT90X2Z0.6.png Graphic file (type png)
 <use ../../.././nick/gpBias/rfExpT90X2Z0.6.png>
 Package pdftex.def Info: ../../.././nick/gpBias/rfExpT90X2Z0.6.png  used on inp
-ut line 880.
+ut line 498.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
-<../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png, id=1018, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png, id=1464, 481.8pt x 481.8pt>
 
 File: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png Graphic file (type png)
 
 <use ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png>
 Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png  use
-d on input line 880.
+d on input line 498.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
-<../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png, id=1019, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png, id=1465, 481.8pt x 481.8pt>
 
 File: ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png Graphic file (type png)
 
 <use ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png>
 Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png  use
-d on input line 880.
+d on input line 498.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
 
-Overfull \hbox (5.30759pt too wide) in paragraph at lines 880--880
+Overfull \hbox (5.30759pt too wide) in paragraph at lines 498--498
 []|  [] 
  []
 
 
-Overfull \hbox (5.30759pt too wide) in paragraph at lines 880--880
+Overfull \hbox (5.30759pt too wide) in paragraph at lines 498--498
 |  [] 
  []
 
-<../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png, id=1020, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png, id=1466, 481.8pt x 481.8pt>
 
 File: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png Graphic file (type png)
 
 <use ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png>
 Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png  use
-d on input line 880.
+d on input line 498.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
-<../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png, id=1021, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png, id=1467, 481.8pt x 481.8pt>
 
 File: ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png Graphic file (type png)
 
 <use ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png>
 Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png  use
-d on input line 880.
+d on input line 498.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
 
-Overfull \hbox (19.53394pt too wide) in paragraph at lines 880--880
+Overfull \hbox (19.53394pt too wide) in paragraph at lines 498--498
 []|  [] 
  []
 
 
-Overfull \hbox (19.53394pt too wide) in paragraph at lines 880--880
+Overfull \hbox (19.53394pt too wide) in paragraph at lines 498--498
 |  [] 
  []
 
-[17
+[22
 
  <../../.././nick/gpBias/rfExpT90X2Z0.6.png> <../../.././nick/gpBias/bMSYRelBia
 sPellaExpT45.png (PNG copy)> <../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png
  (PNG copy)> <../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png (PNG copy)> <..
 /../.././nick/gpBias/fMSYRelBiasPellaExpT90.png (PNG copy)>]
-Overfull \vbox (15.29486pt too high) detected at line 954
+Overfull \vbox (44.0668pt too high) detected at line 523
  []
 
-[18
+[23
+
+] (./advancePres.toc) [24
 
 ]
-Overfull \hbox (0.76175pt too wide) detected at line 979
+Overfull \hbox (0.76175pt too wide) detected at line 550
 []
  []
 
-<../plots/derisoSrr.png, id=1137, 481.8pt x 481.8pt>
+<../plots/derisoSrr.png, id=1654, 481.8pt x 481.8pt>
 File: ../plots/derisoSrr.png Graphic file (type png)
 <use ../plots/derisoSrr.png>
-Package pdftex.def Info: ../plots/derisoSrr.png  used on input line 979.
+Package pdftex.def Info: ../plots/derisoSrr.png  used on input line 550.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
-[19
+[25
 
  <../plots/derisoSrr.png (PNG copy)>]
-<../plots/bhRP.png, id=1197, 481.8pt x 481.8pt>
+<../plots/bhRP.png, id=1716, 481.8pt x 481.8pt>
 File: ../plots/bhRP.png Graphic file (type png)
 <use ../plots/bhRP.png>
-Package pdftex.def Info: ../plots/bhRP.png  used on input line 994.
+Package pdftex.def Info: ../plots/bhRP.png  used on input line 565.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
- [20
+ [26
 
- <../plots/bhRP.png>] [21
+ <../plots/bhRP.png>] [27
 
 ]
-<../plots/eulerTry.png, id=1308, 481.8pt x 481.8pt>
-File: ../plots/eulerTry.png Graphic file (type png)
-<use ../plots/eulerTry.png>
-Package pdftex.def Info: ../plots/eulerTry.png  used on input line 1039.
-(pdftex.def)             Requested size: 140.12692pt x 140.12276pt.
+(./advancePres.toc) [28
 
-Overfull \hbox (66.37567pt too wide) in paragraph at lines 1039--1039
-[][] 
- []
-
-[22
-
- <../plots/eulerTry.png>]
-LaTeX Font Info:    Trying to load font information for U+dsrom on input line 1
-054.
+]
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 6
+17.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
 File: ../plots/hakeCatch.png Graphic file (type png)
 <use ../plots/hakeCatch.png>
-Package pdftex.def Info: ../plots/hakeCatch.png  used on input line 1054.
+Package pdftex.def Info: ../plots/hakeCatch.png  used on input line 617.
 (pdftex.def)             Requested size: 165.632pt x 165.62569pt.
 
-Overfull \hbox (15.05829pt too wide) in paragraph at lines 1054--1054
+Overfull \hbox (15.05829pt too wide) in paragraph at lines 617--617
 [][] 
  []
 
-[23
+[29
 
 ]
-Overfull \hbox (12.54472pt too wide) detected at line 1070
+Overfull \hbox (12.54472pt too wide) detected at line 650
 []
  []
 
-<../../.././nick/spline/dataPlots.png, id=1421, 481.8pt x 481.8pt>
+<../../.././nick/spline/dataPlots.png, id=1963, 481.8pt x 481.8pt>
 File: ../../.././nick/spline/dataPlots.png Graphic file (type png)
 <use ../../.././nick/spline/dataPlots.png>
 Package pdftex.def Info: ../../.././nick/spline/dataPlots.png  used on input li
-ne 1070.
+ne 650.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
-<../../.././nick/spline/intCurves.png, id=1422, 481.8pt x 481.8pt>
+<../../.././nick/spline/intCurves.png, id=1964, 481.8pt x 481.8pt>
 File: ../../.././nick/spline/intCurves.png Graphic file (type png)
 <use ../../.././nick/spline/intCurves.png>
 Package pdftex.def Info: ../../.././nick/spline/intCurves.png  used on input li
-ne 1070.
+ne 650.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
 
-Overfull \vbox (7.37856pt too high) detected at line 1070
+Overfull \vbox (8.37856pt too high) detected at line 650
  []
 
-[24
+[30
 
  <../../.././nick/spline/dataPlots.png (PNG copy)> <../../.././nick/spline/intC
-urves.png (PNG copy)>] [25
+urves.png (PNG copy)>]
+File: ../../.././nick/spline/dataPlots.png Graphic file (type png)
+<use ../../.././nick/spline/dataPlots.png>
+Package pdftex.def Info: ../../.././nick/spline/dataPlots.png  used on input li
+ne 650.
+(pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
+File: ../../.././nick/spline/intCurves.png Graphic file (type png)
+<use ../../.././nick/spline/intCurves.png>
+Package pdftex.def Info: ../../.././nick/spline/intCurves.png  used on input li
+ne 650.
+(pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
+ [31
 
-] [26
+] [32
 
-] [27
+] [33
+
+] [34
+
+] [35
 
 ]
+File: ../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png Graphic file (type
+ png)
+<use ../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png>
+Package pdftex.def Info: ../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png
+  used on input line 731.
+(pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
+<../../.././nick/gpBias/directionalBiasPellaExpT45.png, id=2321, 481.8pt x 481.
+8pt>
+File: ../../.././nick/gpBias/directionalBiasPellaExpT45.png Graphic file (type 
+png)
+<use ../../.././nick/gpBias/directionalBiasPellaExpT45.png>
+Package pdftex.def Info: ../../.././nick/gpBias/directionalBiasPellaExpT45.png 
+ used on input line 731.
+(pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
+ [36
+
+ <../../.././nick/gpBias/directionalBiasPellaExpT45.png (PNG copy)>] [37
+
+]
+<../plots/eulerTry.png, id=2439, 481.8pt x 481.8pt>
+File: ../plots/eulerTry.png Graphic file (type png)
+<use ../plots/eulerTry.png>
+Package pdftex.def Info: ../plots/eulerTry.png  used on input line 731.
+(pdftex.def)             Requested size: 140.12692pt x 140.12276pt.
+
+Overfull \hbox (66.37567pt too wide) in paragraph at lines 731--731
+[][] 
+ []
+
+[38
+
+ <../plots/eulerTry.png>]
 \tf@nav=\write6
 \openout6 = `advancePres.nav'.
 
@@ -1711,50 +1783,44 @@ urves.png (PNG copy)>] [25
 
  (./advancePres.aux)
 
-Package rerunfilecheck Warning: File `advancePres.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package rerunfilecheck Info: Checksums for `advancePres.out':
-(rerunfilecheck)             Before: EDF671A907B5114CFCCA6D91F11FBD6B;294
-(rerunfilecheck)             After:  458E90D74F0ED85CE6524D45BF294472;822.
+Package rerunfilecheck Info: File `advancePres.out' has not changed.
+(rerunfilecheck)             Checksum: DF6F9A6ACB889C7DBD7790EABFE77757;1197.
  ) 
 Here is how much of TeX's memory you used:
- 26825 strings out of 478994
- 533985 string characters out of 5858183
- 858482 words of memory out of 5000000
- 43588 multiletter control sequences out of 15000+600000
- 428014 words of font info for 104 fonts, out of 8000000 for 9000
+ 26933 strings out of 478994
+ 536782 string characters out of 5858183
+ 867379 words of memory out of 5000000
+ 43668 multiletter control sequences out of 15000+600000
+ 425223 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  131i,19n,132p,415b,823s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Navigation28} has been referenced but does not ex
-ist, replaced by a fixed one
-
-</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pf
-b></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><
-/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
-sr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></u
-sr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb
-></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb>
-</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb><
-/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></u
-sr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr
-/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></us
-r/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></us
-r/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr
-/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/
-local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
-ocal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/loc
-al/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local
-/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/t
-exlive/2021/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/
-texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on advancePres.pdf (27 pages, 1097236 bytes).
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.
+pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.p
+fb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex
+8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10
+.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.p
+fb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb
+></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8
+.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.
+pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.p
+fb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb
+></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pf
+b></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pf
+b></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb
+></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></
+usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></us
+r/local/texlive/2021/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></u
+sr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfso1000.pfb>
+Output written on advancePres.pdf (38 pages, 1173846 bytes).
 PDF statistics:
- 1729 PDF objects out of 2073 (max. 8388607)
- 1576 compressed objects within 16 object streams
- 69 named destinations out of 1000 (max. 500000)
- 265 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2587 PDF objects out of 2984 (max. 8388607)
+ 2410 compressed objects within 25 object streams
+ 90 named destinations out of 1000 (max. 500000)
+ 342 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -70,6 +70,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 	* Mangel et. al. suggests looking into 3-parameter curves to avoid back ourselves into a corner and unintentionally overspecifying our models in the prior.
 -->
 
+\clearpage
 # RP Constraints 
 
 * Conceptually $\frac{B^*}{B_0}$ and $\frac{F^*}{M}$ is an entire 2D space
@@ -85,6 +86,10 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 
 * **Next:** The Schaefer Model is a two parameter curve that suffers similarly from a constrained RP-Space.
 
+	* model misspecification in this context limits the space of RPs.
+	* This is the "Shaefer Line".
+	* this over constrains variance of estimates 
+	* and induces severe bias in estimated RPs.
 
 # Pella-Tomlinson Production Model
 
@@ -123,9 +128,8 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 
 * **Next** For Brevity here we will only look at results of the constant fishing case.
 * We will see that the detail you can get out of this simulation setting is plenty rich and the simplicty of this constant catch is helpful for understanding the mechanisms by which bias is induced when fitting a two parameter production function to even slightly more complicated data.
-
-
 -->
+
 
 # Catch
 
@@ -165,10 +169,68 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 
 # Metamodel
 
+* Particular model fits are only as helpful as their standard errors allow, but when you observe trends on repeated sampling you can start to gain confidence.
+* a squared exponential GP model is used as a flexible, stochastic interpolator of Schaefer model parameter estimates over RP space
+* Since estimates are random variables the GP residual variation provides an ideal mechanism for propagating uncertainty from inference in the simulation step into the metamodel.
+* While the constrained RP space limits the extend of RP standard errors, accounting for estimate uncertainty has a smoothing effect that focus on the metamodel on the mean behavior.
+
+* While previous studies have considered the factors neccisary to estimate RPs, the limiting constraints of model misspecification have not been explicatly considered.
+* This metamodeling approach explicatly highlights the inferencial trade-offs imposed by productivity model misspecification in terms of the bottom line metrics of managing fisheries. 
+
+<!--
+* The particular model fits from the last slide are only as helpful as their standard errors allow, but when you observe trends on repeated sampling you can start to gain confidence.
+* With my grid of locations in RP space I am able to get a grid of fits, and across that grid I am able to establish bias tends in all of the major latent model quanities, and thats what I show on this slide.
+-->
+
+\clearpage
 # Directionally
 
-# Components
+* Start with analysis of the low contrast, low information, catch setting. 
 
+* Here I'm showing the entire space of PT data and when those data are fit with a Scheafer model how do RPs map onto the Schaeffer line?
+* Give example, of data generated at location and mapped onto shaefer line.
+* Arrows indicate direction of bias, and color indicates the magnitude of bias.
+
+* Below the Shaefer line we underestimate $Fmsy$ and above the line we overestimate $Fmsy$. 
+
+
+# \color{red}Components
+
+* For all other plots Red indicates over estimation of the modeled quanity and blue indicates underestimates of the modeled quantity.
+* **Left** In the bottom right you can see the generalized version of the our $F^*$ story
+	* Below the line we underestimate $F^*$
+	* Above the line we overestimate $F^*$
+* **Right** I show the bias in $\frac{B^*}{B_0}$
+	* this picture is a law of nature for this simulation setting (estimate must land on the line)
+
+
+# \color{red}$Fmsy$ Curves
+
+* This slide visualizes the posterior fit of those data in the 4 large model misspecification corners of RP space
+* In all cases the red lines represent the posterior fit of the Scheafer model, and the black is the truth of each of quantity.
+* I show the production curves of those 4 corner max misspecification fits with each plot in the relative position of each corner.
+
+* When the data are generated with $\frac{B^*}{B_0}>1/2$ (above the scheaffer line) $F^*$ is over estimated
+	* We see that in the slope at the origin being too steep
+* When the data are generated with $\frac{B^*}{B_0}>1/2$ (above the scheaffer line) $F^*$ tends to be under estimated
+* Looking at these pictures you can start to understand why
+	* When fishing is held at $F^*$ the population simply declines exponentially from $K$ to $B^*$.
+	* The model only observes the right half of the true SRR
+	* Due to the leaning of the true PT curves, and the symmetry of the logistic parabola, the logistic curve is learning about its slope at the origin entirely from data where depletion$>\frac{1}{2}$, and above the schaefer line PT is steeper that on the right half than it is on the left, and so we over estimate $F^*$ for data generated above the line.
+	* The vice versa phenomena occurs below the schaffer line.
+	* Data is only obsevered on the right half of the production function $\Rightarrow$ PT is shallower on the right than on the left $\Rightarrow$ and so the logistic parabola estimate tends to under estimate $F^*$.
+
+# \color{red}Ratio
+
+* What's more interesting is what is the behavior of bias in the numerator ($B^*$) and the demoniator ($K$) not divided but independently
+* Whatever the individual patterns are they need to divide back up to give this top middle picture.
+* **Left:** On the left I show those quantities, the bias in the quantity $B^*$ is shown *top left*, and the bias in $K$ is shown on the *bottom left*.
+* Interestingly, $B^*$ shows large swaths of relatively little bias, and most of the pattern in the top middle panel comes from bias in $K$.
+* The world did not have to be this way, but this says that $Bmsy$ is often a robustly estimated quantity, but due to restrictive model misspecification, its a zero sum game and accuray in $B^*$ often come at the cost of estimates of $K$. 
+
+# \color{red} Contrast
+
+<!--
 # Heat Map
 
 * The particular model fits from tyhe last slide are only as helpful as their standard errors allow, but when you observe trends on repeated sampling you can start to gain confidence.
@@ -187,34 +249,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 * **Left:** On the left I show those quantities, the bias in the quantity $B^*$ is shown *top left*, and the bias in $K$ is shown on the *bottom left*.
 * Interestingly, $B^*$ shows large swaths of relatively little bias, and most of the pattern in the top middle panel comes from bias in $K$.
 * The world did not have to be this way, but this says that $B^*$ is often a robustly estimated quantity, but due to restrictive model misspecification, its a zero sum game and accuray in $B^*$ often come at the cost of estimates of $K$. 
-
-# $Fmsy$ Curves
-
-* This slide visualizes the posterior fit of those data in the 4 large model misspecification corners of RP space
-* In all cases the red lines represent the posterior fit of the Scheafer model, and the black is the truth of each of quantity.
-* On the left I show the production curves of those 4 corner max misspecification fits with each plot in the relative position of each corner.
-* In the middle column of small plots I shoe the posterior fit to biomass
-* In the far right column of small plots I show the posterior fit to depletion
-
-* **Left:** So starting on the left its immediatly possible to notice a few trends from these fits of the prodction function.
-	
-	* When the data are generated with $\frac{B^*}{B_0}>1/2$ (above the scheaffer line) $F^*$ is over estimated
-		* We see that in the slope at the origin being too steep
-	* When the data are generated with $\frac{B^*}{B_0}>1/2$ (above the scheaffer line) $F^*$ tends to be under estimated
-	* Looking at these pictures you can start to understand why
-		* When fishing is held at $F^*$ the population simply declines exponentially from $K$ to $B^*$.
-		* The model only observes the right half of the true SRR
-		* Due to the leaning of the true PT curves, and the symmetry of the logistic parabola, the logistic curve is learning about its slope at the origin entirely from data where depletion$>\frac{1}{2}$, and above the schaefer line PT is steeper that on the right half than it is on the left, and so we over estimate $F^*$ for data generated above the line.
-		* The vice versa phenomena occurs below the schaffer line.
-		* Data is only obsevered on the right half of the production function $\Rightarrow$ PT is shallower on the right than on the left $\Rightarrow$ and so the logistic parabola estimate tends to under estimate $F^*$.
-	* Thats my $F^*$ story, but we can also observe some trends in biomass RPs.
-	* Notice that the fits tend to match up the location of the humps fairly well
-	* So the model tend to be estimating $B^*$ fairly well, but since we are fitting a restrictive parabola something has to give and you can see that we are totally missing on $K$.
-* **Biomass:** In the center column we can see for the most part we doing ok on Biomass
-* **Depletion:** But when you rescale things to consider depletion, we can see that the posterior estimate of ratio of biomass realtive to $K$, is ending up completely wrong for the highly misspecified cases.
-* So that can be a small lesson that even if our models manage to predict faily well, model misspecification can completely lead us to incorrect inferences for some quantites. 
-
-# Ratio
+-->
 
 # Summary
 
@@ -230,6 +265,30 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 	* estimates in $B^*$ are tending to be less sensative to model misspecification than $K$
 	* and $F^*$ bias is going to tend to be strongly catch dependent
 
+
+# Productivity Extension
+
+# Growth Extension
+
+# Catch Interpolation
+
+
+
+
+
+
+<!--
+* In the middle column of small plots I shoe the posterior fit to biomass
+* In the far right column of small plots I show the posterior fit to depletion
+	* Thats my $F^*$ story, but we can also observe some trends in biomass RPs.
+	* Notice that the fits tend to match up the location of the humps fairly well
+	* So the model tend to be estimating $B^*$ fairly well, but since we are fitting a restrictive parabola something has to give and you can see that we are totally missing on $K$.
+* **Biomass:** In the center column we can see for the most part we doing ok on Biomass
+* **Depletion:** But when you rescale things to consider depletion, we can see that the posterior estimate of ratio of biomass realtive to $K$, is ending up completely wrong for the highly misspecified cases.
+* So that can be a small lesson that even if our models manage to predict faily well, model misspecification can completely lead us to incorrect inferences for some quantites. 
+
+
+-->
 
 <!--
 # 78-82 Bars
