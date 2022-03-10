@@ -1,9 +1,9 @@
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
 \beamer@sectionintoc {2}{Simulation}{9}{0}{2}
-\beamer@sectionintoc {3}{Results}{16}{0}{3}
-\beamer@subsectionintoc {3}{1}{Low Contrast}{16}{0}{3}
-\beamer@subsectionintoc {3}{2}{High Contrast}{21}{0}{3}
-\beamer@sectionintoc {4}{Proposals}{24}{0}{4}
-\beamer@subsectionintoc {4}{1}{Growth \& Productivity}{24}{0}{4}
-\beamer@subsectionintoc {4}{2}{Catch Interpolation}{28}{0}{4}
+\beamer@sectionintoc {3}{Results}{15}{0}{3}
+\beamer@subsectionintoc {3}{1}{Low Contrast}{15}{0}{3}
+\beamer@subsectionintoc {3}{2}{High Contrast}{20}{0}{3}
+\beamer@sectionintoc {4}{Proposals}{23}{0}{4}
+\beamer@subsectionintoc {4}{1}{Project \#2: Growth \& Productivity Extension}{23}{0}{4}
+\beamer@subsectionintoc {4}{2}{Project \#3: Catch Interpolation}{27}{0}{4}
 \beamer@sectionintoc {5}{End}{35}{0}{5}

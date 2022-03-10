@@ -149,7 +149,7 @@ B0 = 10000
 M  = 0.2
 
 #number of samples in design
-n = 100 #500 maxed out method
+n = 50 #500 maxed out method
 
 #LHS boundaries
 xiMin = 0

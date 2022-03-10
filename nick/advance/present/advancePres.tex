@@ -228,35 +228,42 @@ $~$\\
 \end{minipage}
 \end{frame}
 
+%%
+%\begin{frame}{Catch}
+%\only<1>{
+%\vspace*{-0.1cm}
+%\begin{center}
+%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfFlatNoQX2Z0.6.png}
+%\hspace*{1cm}
+%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT45X2Z0.6.png}
+%%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT90X2Z0.6.png}
+%\end{center}
+%\begin{align*}
+%C(t) &= F(t)B(t)\\
+%&= F^*\left(\frac{F(t)}{F^*}\right)B(t)\\
+%\end{align*}
+%}
+%\only<2>{
+%\vspace*{-0.1cm}
+%\begin{center}
+%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfFlatNoQX2Z0.6.png}
+%\hspace*{1cm}
+%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT45X2Z0.6.png}\\
+%%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT90X2Z0.6.png}\\
+%\vspace*{-0.1cm}
+%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png}
+%\hspace*{1cm}
+%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png}
+%%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/bioCatchExpT90X2Z0.6.png}
+%\end{center}
+%}
+%\end{frame}
+
 %
 \begin{frame}{Catch}
-\only<1>{
-\vspace*{-0.1cm}
-\begin{center}
-\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfFlatNoQX2Z0.6.png}
-\hspace*{1cm}
-\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT45X2Z0.6.png}
-%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT90X2Z0.6.png}
-\end{center}
-\begin{align*}
-C(t) &= F(t)B(t)\\
-&= F^*\left(\frac{F(t)}{F^*}\right)B(t)\\
-\end{align*}
-}
-\only<2>{
-\vspace*{-0.1cm}
-\begin{center}
-\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfFlatNoQX2Z0.6.png}
-\hspace*{1cm}
-\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT45X2Z0.6.png}\\
-%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT90X2Z0.6.png}\\
-\vspace*{-0.1cm}
-\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png}
-\hspace*{1cm}
-\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png}
-%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/bioCatchExpT90X2Z0.6.png}
-\end{center}
-}
+\includegraphics[width=0.49\textwidth]{../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png}
+%\hspace*{1cm}
+\includegraphics[width=0.49\textwidth]{../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png}
 \end{frame}
 
 %
@@ -534,7 +541,7 @@ $~$\\
 
 %
 \section{Proposals}
-\subsection{Growth \& Productivity}
+\subsection{Project \#2: Growth \& Productivity Extension}
 \begin{frame}{Outline}
     \tableofcontents[currentsection, currentsubsection]
 \end{frame}
@@ -591,7 +598,7 @@ P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
 \end{frame}
 
 %
-\subsection{Catch Interpolation}
+\subsection{Project \#3: Catch Interpolation}
 \begin{frame}{Outline}
     \tableofcontents[currentsection, currentsubsection]
 \end{frame}
@@ -700,10 +707,24 @@ Yearly
 \includegraphics[width=1\textwidth]{../../.././nick/spline/dataPlots.png}%505.png}
 \end{minipage}
 \begin{minipage}[h!]{0.49\textwidth}
-\includegraphics[width=1\textwidth]{../../.././nick/spline/intCurves.png}%505.png}
+%\includegraphics[width=1\textwidth]{../../.././nick/spline/intCurves.png}%505.png}
 \end{minipage}
 }
 \only<2>{
+\begin{align*} %\beta_0(\tau_i-\tau_{i-1})
+\hspace*{-1cm} c(\tau_i) &= \beta_0 + \sum_{j=1}^{i-1} \beta_j \left[ \left(\frac{\tau_i^2}{2}-\tau_j\tau_i\right)\mathds{1}_{\tau_i>\tau_j} - \left(\frac{\tau_{i-1}^2}{2}-\tau_j\tau_{i-1}\right)\mathds{1}_{\tau_{i-1}>\tau_j}\right] + \epsilon_i \\
+&\beta_j \sim N(0, \phi) ~~~~ ~~~~ \phi \sim \text{Half-Cauchy}(0, 1) ~~~~ ~~~~ \epsilon_i \sim N(0, \sigma^2_i) \nonumber
+\end{align*}
+%
+\begin{minipage}[h!]{0.49\textwidth}
+%\hspace{-1cm}
+\includegraphics[width=1\textwidth]{../../.././nick/spline/dataPlots.png}%505.png}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=1\textwidth]{../../.././nick/spline/intCurves.png}%505.png}
+\end{minipage}
+}
+\only<3>{
 \begin{align*}
 \frac{dB}{dt} &= P_\theta(B(t)) - C(t)\\
 %\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
