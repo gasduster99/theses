@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.21)  9 MAR 2022 14:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.21)  9 MAR 2022 14:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1847,7 +1847,7 @@ Package rerunfilecheck Info: File `advancePres.out' has not changed.
 Here is how much of TeX's memory you used:
  26977 strings out of 478994
  537596 string characters out of 5858183
- 872842 words of memory out of 5000000
+ 872590 words of memory out of 5000000
  43704 multiletter control sequences out of 15000+600000
  425223 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1873,7 +1873,7 @@ usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></us
 r/local/texlive/2021/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></u
 sr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 ></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfso1000.pfb>
-Output written on advancePres.pdf (40 pages, 4073838 bytes).
+Output written on advancePres.pdf (40 pages, 4073803 bytes).
 PDF statistics:
  2754 PDF objects out of 2984 (max. 8388607)
  2567 compressed objects within 26 object streams
