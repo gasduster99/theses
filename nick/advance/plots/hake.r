@@ -11,11 +11,11 @@ catch = c(94, 212, 195, 383, 320, 402, 366, 505, 378, 319, 309, 389, 277, 254, 1
 
 #
 png("hakeIndex.png")
-plot(hake, xlab="Time", ylab="CPUE", main="Index Of Abundance")
+plot(hake, xlab="Time", ylab="CPUE", main="Index Of Abundance", cex.lab = 1.5, cex.main= 1.5)
 dev.off()
 
 #
 png("hakeCatch.png")
-plot(catch, xlab="Time", ylab="Biomass", main="Catch")
+plot(catch, xlab="Time", ylab="Catch", main="Catch", cex.lab = 1.5, cex.main= 1.5)
 dev.off()
 

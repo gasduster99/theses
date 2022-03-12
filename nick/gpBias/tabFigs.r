@@ -129,7 +129,9 @@ curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	ylim=c(0, yMax),
 	ylab="Production",
 	xlab="B",
-	main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
+    cex.lab = 1.5,
+    cex.main= 1.5
 )
 polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
 	col=adjustcolor(cols[1], alpha.f=0.2),
@@ -150,7 +152,9 @@ curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	ylim=c(0, yMax),
 	ylab="Production",
 	xlab="B",
-	main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
+	cex.lab = 1.5,
+    cex.main= 1.5
 )
 step=-10
 quiver( dat$N, SRR(dat$N, dat$lalpha, dat$lbeta, dat$gamma),
@@ -176,11 +180,13 @@ dev.off()
 #
 png(sprintf("fitCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -194,11 +200,13 @@ bMsy = PBar(dff, dat$alpha, dat$beta, dat$gamma, M)
 #
 png(sprintf("fitCompareBmsy%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -215,11 +223,13 @@ depSam = NSam/exp(sam[,2])
 #
 png(sprintf("bioCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Biomass",
         ylim=c(min(0, dat$N), max(fit$N, dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N, lwd=3)
 lines(fit$time, fit$N, lwd=3, col='red')
@@ -237,11 +247,13 @@ dev.off()
 #
 png(sprintf("depCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Depletion",
         ylim=c(min(0, dat$N/dat$N0), max(fit$N/fit$N0, dat$N/dat$N0, colQuantiles(depSam, probs=0.975))),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N/dat$N0, lwd=3)
 lines(fit$time, fit$N/fit$N0, lwd=3, col='red')
@@ -268,11 +280,13 @@ dPost = t(mapply( function(a, b){
 #
 png(sprintf("depPostCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Depletion",
         ylim=c(min(0, dat$N/dat$N0), max(fit$N/fit$N0, dat$N/dat$N0, colQuantiles(depSam, probs=0.975))),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N/dat$N0, lwd=3)
 lines(fit$time, colMeans(dPost), lwd=3, col='red')
@@ -300,11 +314,13 @@ bPost = t(mapply( function(a, b){
 #
 png(sprintf("bioPostCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Biomass",
         ylim=c(min(0, dat$N), max(fit$N, dat$N, colQuantiles(bPost, probs=0.975))),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N, lwd=3)
 lines(fit$time, colMeans(bPost), lwd=3, col='red')
@@ -326,7 +342,7 @@ ff = FMsy(fit$alpha, fit$gamma, M)
 writeLines(sprintf("(%1.1f, %1.1f)\t& (%1.2f, %1.2f, %1.1f)\t& (%1.0f, %1.0f, %1.1f)\t& %1.3f\t", dat$xi*M, dat$zeta, dat$alpha, fit$alpha, (fit$lalpha-dat$lalpha)/sqrt(C['lalpha', 'lalpha']), dat$beta, fit$beta, (fit$lbeta-dat$lbeta)/sqrt(C['lbeta', 'lbeta']), fit$sdo) )
 tl = ff*fit$catch*fit$N
 dtl = dff*dat$catch*dat$N
-ltl = TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+ltl = TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta))
 
 
 #
@@ -365,7 +381,9 @@ curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	ylim=c(0, yMax),
 	ylab="Production",
 	xlab="B",
-	main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
+	cex.lab = 1.5,
+    cex.main= 1.5
 )
 polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
 	col=adjustcolor(cols[1], alpha.f=0.2),
@@ -386,7 +404,9 @@ curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	ylim=c(0, yMax),
 	ylab="Production",
 	xlab="B",
-	main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
+	cex.lab = 1.5,
+    cex.main= 1.5
 )
 step=-10
 quiver( dat$N, SRR(dat$N, dat$lalpha, dat$lbeta, dat$gamma),
@@ -426,11 +446,13 @@ dev.off()
 #
 png(sprintf("fitCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -444,11 +466,13 @@ bMsy = PBar(dff, dat$alpha, dat$beta, dat$gamma, M)
 #
 png(sprintf("fitCompareBmsy%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -465,11 +489,13 @@ depSam = NSam/exp(sam[,2])
 #
 png(sprintf("bioCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Biomass",
         ylim=c(min(0, dat$N), max(fit$N, dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N, lwd=3)
 lines(fit$time, fit$N, lwd=3, col='red')
@@ -487,11 +513,13 @@ dev.off()
 #
 png(sprintf("depCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Depletion",
         ylim=c(min(0, dat$N/dat$N0), max(fit$N/fit$N0, dat$N/dat$N0, colQuantiles(depSam, probs=0.975))),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N/dat$N0, lwd=3)
 lines(fit$time, fit$N/fit$N0, lwd=3, col='red')
@@ -518,11 +546,13 @@ dPost = t(mapply( function(a, b){
 #
 png(sprintf("depPostCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Depletion",
         ylim=c(min(0, dat$N/dat$N0), max(fit$N/fit$N0, dat$N/dat$N0, colQuantiles(depSam, probs=0.975))),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N/dat$N0, lwd=3)
 lines(fit$time, colMeans(dPost), lwd=3, col='red')
@@ -550,11 +580,13 @@ bPost = t(mapply( function(a, b){
 #
 png(sprintf("bioPostCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Biomass",
         ylim=c(min(0, dat$N), max(fit$N, dat$N, colQuantiles(bPost, probs=0.975))),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N, lwd=3)
 lines(fit$time, colMeans(bPost), lwd=3, col='red')
@@ -576,7 +608,7 @@ ff = FMsy(fit$alpha, fit$gamma, M)
 writeLines(sprintf("(%1.1f, %1.1f)\t& (%1.2f, %1.2f, %1.1f)\t& (%1.0f, %1.0f, %1.1f)\t& %1.3f\t", dat$xi*M, dat$zeta, dat$alpha, fit$alpha, (fit$lalpha-dat$lalpha)/sqrt(C['lalpha', 'lalpha']), dat$beta, fit$beta, (fit$lbeta-dat$lbeta)/sqrt(C['lbeta', 'lbeta']), fit$sdo) )
 tr = ff*fit$catch*fit$N
 dtr = dff*dat$catch*dat$N
-ltr = TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+ltr = TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta))
 
 #
 xi = 0.5 		#2.3 	#
@@ -613,7 +645,9 @@ curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	ylim=c(0, yMax),
 	ylab="Production",
 	xlab="B",
-	main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
+	cex.lab = 1.5,
+    cex.main= 1.5
 )
 polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
 	col=adjustcolor(cols[1], alpha.f=0.2),
@@ -634,7 +668,9 @@ curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	ylim=c(0, yMax),
 	ylab="Production",
 	xlab="B",
-	main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
+	cex.lab = 1.5,
+    cex.main= 1.5
 )
 step=-10
 quiver( dat$N, SRR(dat$N, dat$lalpha, dat$lbeta, dat$gamma),
@@ -671,11 +707,13 @@ dev.off()
 #
 png(sprintf("fitCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -692,11 +730,13 @@ depSam = NSam/exp(sam[,2])
 #
 png(sprintf("bioCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Biomass",
         ylim=c(min(0, dat$N), max(fit$N, dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N, lwd=3)
 lines(fit$time, fit$N, lwd=3, col='red')
@@ -714,11 +754,13 @@ dev.off()
 #
 png(sprintf("depCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Depletion",
         ylim=c(min(0, dat$N/dat$N0), max(fit$N/fit$N0, dat$N/dat$N0, colQuantiles(depSam, probs=0.975))),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N/dat$N0, lwd=3)
 lines(fit$time, fit$N/fit$N0, lwd=3, col='red')
@@ -746,11 +788,13 @@ dPost = t(mapply( function(a, b){
 #
 png(sprintf("depPostCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Depletion",
         ylim=c(min(0, dat$N/dat$N0), max(fit$N/fit$N0, dat$N/dat$N0, colQuantiles(dPost, probs=0.975))),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N/dat$N0, lwd=3)
 lines(fit$time, colMeans(dPost), lwd=3, col='red')
@@ -778,11 +822,13 @@ bPost = t(mapply( function(a, b){
 #
 png(sprintf("bioPostCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Biomass",
         ylim=c(min(0, dat$N), max(fit$N, dat$N, colQuantiles(bPost, probs=0.975))),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N, lwd=3)
 lines(fit$time, colMeans(bPost), lwd=3, col='red')
@@ -803,11 +849,13 @@ bMsy = PBar(dff, dat$alpha, dat$beta, dat$gamma, M)
 #
 png(sprintf("fitCompareBmsy%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -824,7 +872,7 @@ ff = FMsy(fit$alpha, fit$gamma, M)
 writeLines(sprintf("(%1.1f, %1.1f)\t& (%1.2f, %1.2f, %1.1f)\t& (%1.0f, %1.0f, %1.1f)\t& %1.3f\t", dat$xi*M, dat$zeta, dat$alpha, fit$alpha, (fit$lalpha-dat$lalpha)/sqrt(C['lalpha', 'lalpha']), dat$beta, fit$beta, (fit$lbeta-dat$lbeta)/sqrt(C['lbeta', 'lbeta']), fit$sdo) )
 bl = ff*fit$catch*fit$N
 dbl = dff*dat$catch*dat$N
-lbl = TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+lbl = TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta))
 
 #
 xi = 3.5
@@ -862,7 +910,9 @@ curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	ylim=c(0, yMax),
 	ylab="Production",
 	xlab="B",
-	main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
+	cex.lab = 1.5,
+    cex.main= 1.5
 )
 polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
 	col=adjustcolor(cols[1], alpha.f=0.2),
@@ -883,7 +933,9 @@ curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	ylim=c(0, yMax),
 	ylab="Production",
 	xlab="B",
-	main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
+	cex.lab = 1.5,
+    cex.main= 1.5
 )
 step=-10
 quiver( dat$N, SRR(dat$N, dat$lalpha, dat$lbeta, dat$gamma),
@@ -905,11 +957,13 @@ dev.off()
 #
 png(sprintf("fitCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -923,11 +977,13 @@ bMsy = PBar(dff, dat$alpha, dat$beta, dat$gamma, M)
 #
 png(sprintf("fitCompareBmsy%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -944,11 +1000,13 @@ depSam = NSam/exp(sam[,2])
 #
 png(sprintf("bioCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Biomass",
         ylim=c(min(0, dat$N), max(fit$N, dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N, lwd=3)
 lines(fit$time, fit$N, lwd=3, col='red')
@@ -966,11 +1024,13 @@ dev.off()
 #
 png(sprintf("depCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Depletion",
         ylim=c(min(0, dat$N/dat$N0), max(fit$N/fit$N0, dat$N/dat$N0, colQuantiles(depSam, probs=0.975))),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N/dat$N0, lwd=3)
 lines(fit$time, fit$N/fit$N0, lwd=3, col='red')
@@ -997,11 +1057,13 @@ dPost = t(mapply( function(a, b){
 #
 png(sprintf("depPostCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Depletion",
         ylim=c(min(0, dat$N/dat$N0), max(fit$N/fit$N0, dat$N/dat$N0, colQuantiles(depSam, probs=0.975))),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N/dat$N0, lwd=3)
 lines(fit$time, colMeans(dPost), lwd=3, col='red')
@@ -1029,11 +1091,13 @@ bPost = t(mapply( function(a, b){
 #
 png(sprintf("bioPostCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="Biomass",
         ylim=c(min(0, dat$N), max(fit$N, dat$N, colQuantiles(bPost, probs=0.975))),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 lines(dat$time, dat$N, lwd=3)
 lines(fit$time, colMeans(bPost), lwd=3, col='red')
@@ -1055,7 +1119,7 @@ ff = FMsy(fit$alpha, fit$gamma, M)
 writeLines(sprintf("(%1.1f, %1.1f)\t& (%1.2f, %1.2f, %1.1f)\t& (%1.0f, %1.0f, %1.1f)\t& %1.3f\t", dat$xi*M, dat$zeta, dat$alpha, fit$alpha, (fit$lalpha-dat$lalpha)/sqrt(C['lalpha', 'lalpha']), dat$beta, fit$beta, (fit$lbeta-dat$lbeta)/sqrt(C['lbeta', 'lbeta']), fit$sdo) )
 br = ff*fit$catch*fit$N
 dbr = dff*dat$catch*dat$N
-lbr = TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+lbr = TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta))
 
 
 #
@@ -1090,7 +1154,9 @@ curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	ylim=c(0, yMax),
 	ylab="Production",
 	xlab="B",
-	main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
+	cex.lab = 1.5,
+    cex.main= 1.5
 )
 polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
 	col=adjustcolor(cols[1], alpha.f=0.2),
@@ -1106,11 +1172,13 @@ dev.off()
 #
 png(sprintf("fitCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -1124,11 +1192,13 @@ bMsy = PBar(dff, dat$alpha, dat$beta, dat$gamma, M)
 #
 png(sprintf("fitCompareBmsy%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -1182,7 +1252,9 @@ curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	ylim=c(0, yMax),
 	ylab="Production",
 	xlab="B",
-	main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
+	cex.lab = 1.5,
+    cex.main= 1.5
 )
 polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
 	col=adjustcolor(cols[1], alpha.f=0.2),
@@ -1198,11 +1270,13 @@ dev.off()
 #
 png(sprintf("fitCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -1216,11 +1290,13 @@ bMsy = PBar(dff, dat$alpha, dat$beta, dat$gamma, M)
 #
 png(sprintf("fitCompareBmsy%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -1267,7 +1343,9 @@ curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	ylim=c(0, yMax),
 	ylab="Production",
 	xlab="B",
-	main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
+	cex.lab = 1.5,
+    cex.main= 1.5
 )
 polygon(c(grd, rev(grd)), c(qLns[,1], rev(qLns[,3])), 
 	col=adjustcolor(cols[1], alpha.f=0.2),
@@ -1288,7 +1366,7 @@ dev.off()
 #	ylim=c(0, yMax),
 #	ylab="Production",
 #	xlab="B",
-#	main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta))
+#	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta))
 #)
 #step=-10
 #quiver( dat$N, SRR(dat$N, dat$lalpha, dat$lbeta, dat$gamma),
@@ -1308,11 +1386,13 @@ dev.off()
 #
 png(sprintf("fitCompare%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
@@ -1326,11 +1406,13 @@ bMsy = PBar(dff, dat$alpha, dat$beta, dat$gamma, M)
 #
 png(sprintf("fitCompareBmsy%sX%sZ%s.png", mod, xi, zeta))
 plot(-1, -1,
-        main=TeX(sprintf("$F^*$=%s  \t  $B^*/B_0$=%s", xi*M, zeta)),
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", xi*M, zeta)),
         xlab="Time",
         ylab="CPUE",
         ylim=c(min(0, dat$q*dat$N), max(fit$q*fit$N, dat$q*dat$N)),
-        xlim=c(min(dat$time), max(dat$time))
+        xlim=c(min(dat$time), max(dat$time)),
+        cex.lab = 1.5,
+        cex.main= 1.5
 )
 dat$plotMean(add=T)
 fit$plotMean(add=T, col='red')
