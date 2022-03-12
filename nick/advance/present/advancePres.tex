@@ -11,6 +11,8 @@
 \usepackage{pgfgantt}
 \usepackage{nicefrac}
 \usepackage{scalerel}
+\usepackage{xcolor}
+%\usepackage{enumitem}
 
 %\title{Baysian Nonparametric Estimation of ODEs as Applied to the Stock Recruitment Relationship}
 \title{Metamodeling for Bias Estimation of Biological Reference Points Under Two-Parameter SRRs}
@@ -370,9 +372,10 @@ $~$\\
 \end{equation*}
 
 \begin{itemize}
-\item GP interpolates over degrees of RP model misspecification.
-\item Propogation of estimate uncertainty smooths bias estimation.
-\item Explicitely highlights trade-offs induced in RPs.
+%\setlength{\itemindent}{-2.5em}
+\item GP approximates constrained RP inference.  %over RP model misspecification.
+\item Propogation of estimator uncertainty smooths bias estimation.
+\item Explicitely highlights trade-offs induced in infered RPs.
 \end{itemize}
 %
 \end{frame}
@@ -603,9 +606,9 @@ $~$\\
 &P(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}} \nonumber
 \end{align}
 \begin{align*}
-\gamma = -1 &\Rightarrow \text{Beverton-Holt}\\
-\gamma = 1 &\Rightarrow  \text{Logistic}\\
-\gamma \rightarrow 0 &\Rightarrow \text{Ricker}
+\gamma = -1 &\Rightarrow \text{\color{ForestGreen}Beverton-Holt}\\
+\gamma \rightarrow 0 &\Rightarrow \text{\color{RoyalBlue}Ricker}\\
+\gamma = 1 &\Rightarrow  \text{\color{Red}Logistic}
 \end{align*}
 \end{minipage}
 \begin{minipage}[h!]{0.49\textwidth}
