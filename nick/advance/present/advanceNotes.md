@@ -3,7 +3,7 @@ title: Metamodeling for Bias Estimation of Biological Reference Points.
 author: Nick Grunloh
 documentclass: extarticle
 geometry: margin=2cm
-fontsize: 14pt
+fontsize: 16pt
 header-includes:
     - \usepackage{setspace}
     - \doublespacing

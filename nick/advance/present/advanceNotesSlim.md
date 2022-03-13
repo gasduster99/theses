@@ -3,7 +3,7 @@ title: Metamodeling for Bias Estimation of Biological Reference Points.
 author: Nick Grunloh
 documentclass: extarticle
 geometry: margin=2cm
-fontsize: 12pt
+fontsize: 17pt
 header-includes:
     - \usepackage{setspace}
     - \singlespacing
@@ -27,6 +27,7 @@ header-includes:
 \clearpage
 -->
 
+\clearpage
 # Data and Basic Modeling Structure
 
 * Context:
@@ -42,7 +43,6 @@ header-includes:
 	* **Left** A measure of population biomass thru time (called an index of abundance) 
 	* **Right** A Variety of other quantites, but at a minimum observe a matched time series of catches.
 
-\clearpage
 * We can't observe all the fish in the sea, but thru the index
 * We assume we observe biomass upto a proportionality constant $q$
 * $q$ relates our index of abundance to actual biomass in the population.
