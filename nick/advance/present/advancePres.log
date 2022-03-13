@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.21)  12 MAR 2022 17:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.21)  12 MAR 2022 17:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1587,12 +1587,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 579--579
 
  []
 
-<../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png, id=1546, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png, id=1546, 481.8pt x 481.8pt>
 
-File: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png Graphic file (type png)
+File: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png Graphic file (type png)
 
-<use ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png>
-Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png  use
+<use ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png>
+Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png  use
 d on input line 579.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
 
@@ -1605,12 +1605,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 579--579
 
  []
 
-<../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png, id=1547, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png, id=1547, 481.8pt x 481.8pt>
 
-File: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png Graphic file (type png)
+File: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png Graphic file (type png)
 
-<use ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png>
-Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png  use
+<use ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png  use
 d on input line 579.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
 
@@ -1626,8 +1626,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 579--579
 [23
 
  <../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png (PNG copy)> <../../.././nick/
-gpBias/bMSYRelBiasPellaExpT45.png (PNG copy)> <../../.././nick/gpBias/fMSYRelBi
-asPellaExpT45.png>]
+gpBias/fMSYRelBiasPellaExpT45.png> <../../.././nick/gpBias/bMSYRelBiasPellaExpT
+45.png (PNG copy)>]
 File: ../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png Graphic file (type png)
 <use ../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png>
 Package pdftex.def Info: ../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png  used 
@@ -1639,18 +1639,18 @@ File: ../../.././nick/gpBias/bioCatchExpT90X1Z0.3.png Graphic file (type png)
 Package pdftex.def Info: ../../.././nick/gpBias/bioCatchExpT90X1Z0.3.png  used 
 on input line 579.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
-File: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png Graphic file (type png)
+File: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png Graphic file (type png)
 
-<use ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png>
-Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png  use
+<use ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png>
+Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png  use
 d on input line 579.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
-<../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png, id=1610, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png, id=1610, 481.8pt x 481.8pt>
 
-File: ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png Graphic file (type png)
+File: ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png Graphic file (type png)
 
-<use ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png>
-Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png  use
+<use ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png>
+Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png  use
 d on input line 579.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
 
@@ -1663,18 +1663,18 @@ Overfull \hbox (5.30759pt too wide) in paragraph at lines 579--579
 |  [] 
  []
 
-File: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png Graphic file (type png)
+File: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png Graphic file (type png)
 
-<use ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png>
-Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png  use
+<use ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png  use
 d on input line 579.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
-<../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png, id=1611, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png, id=1611, 481.8pt x 481.8pt>
 
-File: ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png Graphic file (type png)
+File: ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png Graphic file (type png)
 
-<use ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png>
-Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png  use
+<use ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png  use
 d on input line 579.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
 
@@ -1690,8 +1690,8 @@ Overfull \hbox (19.53394pt too wide) in paragraph at lines 579--579
 [24
 
  <../../.././nick/gpBias/bioCatchExpT90X1Z0.3.png (PNG copy)> <../../.././nick/
-gpBias/bMSYRelBiasPellaExpT90.png> <../../.././nick/gpBias/fMSYRelBiasPellaExpT
-90.png (PNG copy)>] [25
+gpBias/fMSYRelBiasPellaExpT90.png (PNG copy)> <../../.././nick/gpBias/bMSYRelBi
+asPellaExpT90.png>] [25
 
 ] (./advancePres.toc) [26
 
@@ -1935,7 +1935,7 @@ usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></us
 r/local/texlive/2021/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></u
 sr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 ></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfso1000.pfb>
-Output written on advancePres.pdf (43 pages, 4108671 bytes).
+Output written on advancePres.pdf (43 pages, 4108670 bytes).
 PDF statistics:
  2937 PDF objects out of 2984 (max. 8388607)
  2746 compressed objects within 28 object streams
