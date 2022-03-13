@@ -3,7 +3,7 @@ title: Metamodeling for Bias Estimation of Biological Reference Points.
 author: Nick Grunloh
 documentclass: extarticle
 geometry: margin=2cm
-fontsize: 14pt
+fontsize: 17pt
 header-includes:
     - \usepackage{setspace}
     - \singlespacing
@@ -60,9 +60,9 @@ header-includes:
 * And naturally the nonnegative index of abundance is observed with some uncertainty, which is typically assumed to have lognormal errors.
 -->
 
-* Most of the action in these models comes in through a process model on Biomass.
+* Most of the action in these models comes in through $B$ process.
 * Biomass is modeled as a (typically) nonlinear ODE.
-	* the population biomass grows through a production function, $P(B)$
+	* the population biomass grows via a production function, $P(B)$
 	* biomass is removed due to catch, $C(t)$. 
 	* Production maps the current biomass to some net growth of future biomass.
 		* all Reproduction, maturation, and mortality processes other than fishing
@@ -104,7 +104,7 @@ header-includes:
 * introduce fishing so as to move the stable equilibrium nearer to $MSY$
 
 * **Next** 
-
+\clearpage
 * For management purposes we look at heuristic measures of the population called RP.
 * Commonly RPs are ways of noticing MSY.
 * Here I focus on two:
@@ -137,7 +137,6 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 	* Mangel et. al. suggests looking into 3-parameter curves to avoid back ourselves into a corner and unintentionally overspecifying our models in the prior.
 -->
 
-\clearpage
 # RP Constraints 
 
 * Conceptually $F^*$ and $\frac{B^*}{B_0}$ coexist in an entire 2D space.
@@ -164,7 +163,9 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 	* Mangel et. al. suggests looking into 3-parameter curves to avoid unintentionally overspecifying our models in the prior.
 -->
 
-* **Next:** The Schaefer Model is a two parameter curve that suffers from a constrained RP-Space.
+* **Next:** 
+\clearpage
+* The Schaefer Model is a two parameter curve that suffers from a constrained RP-Space.
 
 	* We already saw the constrain on the last slide
 		
@@ -185,6 +186,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 
 * In the next section I'll outline a simulaiton method for exploring the inferential effects of this type of model misspecification.
 
+\clearpage
 # Pella-Tomlinson Production Model
 
 * Generate a species off of the Shaefer line, with a 3 parameter PT model.
@@ -236,7 +238,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 * We will see that the detail you can get out of this simulation setting is plenty rich and the simplicty of this constant catch is helpful for understanding the mechanisms by which bias is induced when fitting a two parameter production function to even slightly more complicated data.
 -->
 
-
+\clearpage
 # Catch
 
 * Assume synthetic catch series, To complete the model specification.
@@ -277,7 +279,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 
 * I've looked other catch histories, but we'll focus on these tow extremes
 -->
-
+\clearpage
 # Simulation
 
 * Again, use PT to generate data broadly in RP-space.
@@ -342,7 +344,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 
 * Below the Shaefer line we underestimate $Fmsy$ and above the line we overestimate $Fmsy$. 
 -->
-
+\clearpage
 # Components of Bias
 
 * Split out thosse arrows into the components of bias.
@@ -380,6 +382,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 	* rug plot are the data
 
 * Recall: low contrast, biomass is exponential decay from $K$ -> $Bmsy$.
+\clearpage
 * Tell top story
 
 	* The model only observes the right half of the true SRR
@@ -403,7 +406,6 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 	* Data is only obsevered on the right half of the production function $\Rightarrow$ PT is shallower on the right than on the left $\Rightarrow$ and so the logistic parabola estimate tends to under estimate $F^*$.
 -->
 
-\clearpage
 # Ratio
 
 * Recall: realtive $Bmsy$ pattern fixed in place
@@ -423,7 +425,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 * Interestingly, $B^*$ shows large swaths of relatively little bias, and most of the pattern in the top middle panel comes from bias in $K$.
 * The world did not have to be this way, but this says that $Bmsy$ is often a robustly estimated quantity, but due to restrictive model misspecification, its a zero sum game and accuray in $B^*$ often come at the cost of estimates of $K$. 
 -->
-
+\clearpage
 # Contrast
 
 * I show $Fmsy$ and $Bmsy$
@@ -546,9 +548,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 * Individuals grow via von bertilanfy growth (Derived directly from).
 * Biomass dynamics, can then be seen to describe biomass by an account 
 	
-	* biomass of new recruits
-	* the net growth of existing biomass 
-	* biomass lost due to mortality
+	* B(new recruits), growth(existing biomass), mortality
 
 # Outline 
 
@@ -567,6 +567,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 	* bottom matches the stucture of data as typiclly collected.
 	* but the integral implies a useful latent stucture for modeling.
 	
+\clearpage
 # Catch Interpolation
 
 * **Right** I show the Namibian Hake catch again.
@@ -582,7 +583,7 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 * Catch is commonly assumed known without uncertainty
 * and there are biological hypotheses that could make use of jitters 
 * A Statisticians eye will notice what looks like uncertainty in catch.
-* and so then I investigatewhat becomes of the uncertainty assumption?
+* so, I investigate what becomes of the uncertainty assumption?
 
 # **Next**
 
