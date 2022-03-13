@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.21)  12 MAR 2022 14:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.21)  12 MAR 2022 17:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1576,276 +1576,321 @@ Overfull \vbox (2.61925pt too high) detected at line 512
 [22
 
 ]
-<../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png, id=1544, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png, id=1545, 481.8pt x 481.8pt>
 File: ../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png Graphic file (type png)
 <use ../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png>
 Package pdftex.def Info: ../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png  used 
-on input line 553.
+on input line 579.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
-<../../.././nick/gpBias/bioCatchExpT90X1Z0.3.png, id=1545, 481.8pt x 481.8pt>
-File: ../../.././nick/gpBias/bioCatchExpT90X1Z0.3.png Graphic file (type png)
-<use ../../.././nick/gpBias/bioCatchExpT90X1Z0.3.png>
-Package pdftex.def Info: ../../.././nick/gpBias/bioCatchExpT90X1Z0.3.png  used 
-on input line 553.
-(pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 579--579
+
+ []
+
 <../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png, id=1546, 481.8pt x 481.8pt>
 
 File: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png Graphic file (type png)
 
 <use ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png>
 Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png  use
-d on input line 553.
-(pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
-<../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png, id=1547, 481.8pt x 481.8pt>
-
-File: ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png Graphic file (type png)
-
-<use ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png>
-Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png  use
-d on input line 553.
+d on input line 579.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
 
-Overfull \hbox (5.30759pt too wide) in paragraph at lines 553--553
+Overfull \hbox (5.30759pt too wide) in paragraph at lines 579--579
 []|  [] 
  []
 
 
-Overfull \hbox (5.30759pt too wide) in paragraph at lines 553--553
-|  [] 
+Underfull \hbox (badness 10000) in paragraph at lines 579--579
+
  []
 
-<../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png, id=1548, 481.8pt x 481.8pt>
+<../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png, id=1547, 481.8pt x 481.8pt>
 
 File: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png Graphic file (type png)
 
 <use ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png>
 Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png  use
-d on input line 553.
-(pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
-<../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png, id=1549, 481.8pt x 481.8pt>
-
-File: ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png Graphic file (type png)
-
-<use ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png>
-Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png  use
-d on input line 553.
+d on input line 579.
 (pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
 
-Overfull \hbox (19.53394pt too wide) in paragraph at lines 553--553
+Overfull \hbox (19.53394pt too wide) in paragraph at lines 579--579
 []|  [] 
  []
 
 
-Overfull \hbox (19.53394pt too wide) in paragraph at lines 553--553
-|  [] 
+Underfull \hbox (badness 10000) in paragraph at lines 579--579
+
  []
 
 [23
 
  <../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png (PNG copy)> <../../.././nick/
-gpBias/bioCatchExpT90X1Z0.3.png (PNG copy)> <../../.././nick/gpBias/bMSYRelBias
-PellaExpT45.png (PNG copy)> <../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png>
- <../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png> <../../.././nick/gpBias/fM
-SYRelBiasPellaExpT90.png (PNG copy)>] [24
+gpBias/bMSYRelBiasPellaExpT45.png (PNG copy)> <../../.././nick/gpBias/fMSYRelBi
+asPellaExpT45.png>]
+File: ../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png Graphic file (type png)
+<use ../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bioCatchExpT45X1Z0.3.png  used 
+on input line 579.
+(pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
+<../../.././nick/gpBias/bioCatchExpT90X1Z0.3.png, id=1609, 481.8pt x 481.8pt>
+File: ../../.././nick/gpBias/bioCatchExpT90X1Z0.3.png Graphic file (type png)
+<use ../../.././nick/gpBias/bioCatchExpT90X1Z0.3.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bioCatchExpT90X1Z0.3.png  used 
+on input line 579.
+(pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
+File: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png Graphic file (type png)
 
-] (./advancePres.toc) [25
+<use ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png  use
+d on input line 579.
+(pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
+<../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png, id=1610, 481.8pt x 481.8pt>
+
+File: ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png Graphic file (type png)
+
+<use ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png>
+Package pdftex.def Info: ../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png  use
+d on input line 579.
+(pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
+
+Overfull \hbox (5.30759pt too wide) in paragraph at lines 579--579
+[]|  [] 
+ []
+
+
+Overfull \hbox (5.30759pt too wide) in paragraph at lines 579--579
+|  [] 
+ []
+
+File: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png Graphic file (type png)
+
+<use ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png>
+Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png  use
+d on input line 579.
+(pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
+<../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png, id=1611, 481.8pt x 481.8pt>
+
+File: ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png Graphic file (type png)
+
+<use ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png>
+Package pdftex.def Info: ../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png  use
+d on input line 579.
+(pdftex.def)             Requested size: 109.85568pt x 109.85594pt.
+
+Overfull \hbox (19.53394pt too wide) in paragraph at lines 579--579
+[]|  [] 
+ []
+
+
+Overfull \hbox (19.53394pt too wide) in paragraph at lines 579--579
+|  [] 
+ []
+
+[24
+
+ <../../.././nick/gpBias/bioCatchExpT90X1Z0.3.png (PNG copy)> <../../.././nick/
+gpBias/bMSYRelBiasPellaExpT90.png> <../../.././nick/gpBias/fMSYRelBiasPellaExpT
+90.png (PNG copy)>] [25
+
+] (./advancePres.toc) [26
 
 ]
-Overfull \hbox (0.76175pt too wide) detected at line 617
+Overfull \hbox (0.76175pt too wide) detected at line 643
 []
  []
 
-<../plots/derisoSrr.png, id=1741, 481.8pt x 481.8pt>
+<../plots/derisoSrr.png, id=1802, 481.8pt x 481.8pt>
 File: ../plots/derisoSrr.png Graphic file (type png)
 <use ../plots/derisoSrr.png>
-Package pdftex.def Info: ../plots/derisoSrr.png  used on input line 617.
+Package pdftex.def Info: ../plots/derisoSrr.png  used on input line 643.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
-[26
+[27
 
  <../plots/derisoSrr.png (PNG copy)>]
-<../plots/bhRP.png, id=1803, 481.8pt x 481.8pt>
+<../plots/bhRP.png, id=1863, 481.8pt x 481.8pt>
 File: ../plots/bhRP.png Graphic file (type png)
 <use ../plots/bhRP.png>
-Package pdftex.def Info: ../plots/bhRP.png  used on input line 632.
+Package pdftex.def Info: ../plots/bhRP.png  used on input line 658.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
- [27
+ [28
 
- <../plots/bhRP.png>] [28
-
-]
-(./advancePres.toc) [29
+ <../plots/bhRP.png>] [29
 
 ]
-Overfull \hbox (21.97595pt too wide) detected at line 728
+(./advancePres.toc) [30
+
+]
+Overfull \hbox (21.97595pt too wide) detected at line 754
 []
- []
-
-[30
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 728--728
-
- []
-
-
-Overfull \hbox (21.97595pt too wide) detected at line 728
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 728--728
-
  []
 
 [31
 
 ]
-LaTeX Font Info:    Trying to load font information for U+dsrom on input line 7
-45.
- (/usr/local/texlive/2021/texmf-dist/tex/latex/doublestroke/Udsrom.fd
-File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
-)
-Overfull \hbox (1.71115pt too wide) detected at line 745
+Underfull \hbox (badness 10000) in paragraph at lines 754--754
+
+ []
+
+
+Overfull \hbox (21.97595pt too wide) detected at line 754
 []
  []
 
-File: ../plots/hakeCatch.png Graphic file (type png)
-<use ../plots/hakeCatch.png>
-Package pdftex.def Info: ../plots/hakeCatch.png  used on input line 745.
-(pdftex.def)             Requested size: 165.632pt x 165.62569pt.
 
-Overfull \hbox (15.05829pt too wide) in paragraph at lines 745--745
-[][] 
+Underfull \hbox (badness 10000) in paragraph at lines 754--754
+
  []
 
 [32
 
 ]
-Overfull \hbox (12.54472pt too wide) detected at line 793
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 7
+71.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/doublestroke/Udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+)
+Overfull \hbox (1.71115pt too wide) detected at line 771
 []
  []
 
-<../../.././nick/spline/dataPlots.png, id=2175, 481.8pt x 481.8pt>
-File: ../../.././nick/spline/dataPlots.png Graphic file (type png)
-<use ../../.././nick/spline/dataPlots.png>
-Package pdftex.def Info: ../../.././nick/spline/dataPlots.png  used on input li
-ne 793.
-(pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
+File: ../plots/hakeCatch.png Graphic file (type png)
+<use ../plots/hakeCatch.png>
+Package pdftex.def Info: ../plots/hakeCatch.png  used on input line 771.
+(pdftex.def)             Requested size: 165.632pt x 165.62569pt.
 
-Overfull \vbox (7.37856pt too high) detected at line 793
+Overfull \hbox (15.05829pt too wide) in paragraph at lines 771--771
+[][] 
  []
 
 [33
 
+]
+Overfull \hbox (12.54472pt too wide) detected at line 819
+[]
+ []
+
+<../../.././nick/spline/dataPlots.png, id=2236, 481.8pt x 481.8pt>
+File: ../../.././nick/spline/dataPlots.png Graphic file (type png)
+<use ../../.././nick/spline/dataPlots.png>
+Package pdftex.def Info: ../../.././nick/spline/dataPlots.png  used on input li
+ne 819.
+(pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
+
+Overfull \vbox (7.37856pt too high) detected at line 819
+ []
+
+[34
+
  <../../.././nick/spline/dataPlots.png (PNG copy)>]
-Overfull \hbox (12.54472pt too wide) detected at line 793
+Overfull \hbox (12.54472pt too wide) detected at line 819
 []
  []
 
 File: ../../.././nick/spline/dataPlots.png Graphic file (type png)
 <use ../../.././nick/spline/dataPlots.png>
 Package pdftex.def Info: ../../.././nick/spline/dataPlots.png  used on input li
-ne 793.
+ne 819.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
-<../../.././nick/spline/intCurves.png, id=2237, 481.8pt x 481.8pt>
+<../../.././nick/spline/intCurves.png, id=2298, 481.8pt x 481.8pt>
 File: ../../.././nick/spline/intCurves.png Graphic file (type png)
 <use ../../.././nick/spline/intCurves.png>
 Package pdftex.def Info: ../../.././nick/spline/intCurves.png  used on input li
-ne 793.
+ne 819.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
 
-Overfull \vbox (8.37856pt too high) detected at line 793
+Overfull \vbox (8.37856pt too high) detected at line 819
  []
 
-[34
+[35
 
  <../../.././nick/spline/intCurves.png (PNG copy)>]
 File: ../../.././nick/spline/dataPlots.png Graphic file (type png)
 <use ../../.././nick/spline/dataPlots.png>
 Package pdftex.def Info: ../../.././nick/spline/dataPlots.png  used on input li
-ne 793.
+ne 819.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
 File: ../../.././nick/spline/intCurves.png Graphic file (type png)
 <use ../../.././nick/spline/intCurves.png>
 Package pdftex.def Info: ../../.././nick/spline/intCurves.png  used on input li
-ne 793.
+ne 819.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
 
-Overfull \vbox (3.92538pt too high) detected at line 793
+Overfull \vbox (3.92538pt too high) detected at line 819
  []
 
-[35
+[36
 
-] [36
+] [37
 
 ]
-<rockFish.png, id=2418, 716.6775pt x 422.57875pt>
+<rockFish.png, id=2479, 716.6775pt x 422.57875pt>
 File: rockFish.png Graphic file (type png)
 <use rockFish.png>
-Package pdftex.def Info: rockFish.png  used on input line 899.
+Package pdftex.def Info: rockFish.png  used on input line 925.
 (pdftex.def)             Requested size: 121.68661pt x 71.74716pt.
-<seaGrant-logo.png, id=2419, 216.81pt x 83.31125pt>
+<seaGrant-logo.png, id=2480, 216.81pt x 83.31125pt>
 File: seaGrant-logo.png Graphic file (type png)
 <use seaGrant-logo.png>
-Package pdftex.def Info: seaGrant-logo.png  used on input line 899.
+Package pdftex.def Info: seaGrant-logo.png  used on input line 925.
 (pdftex.def)             Requested size: 181.2999pt x 69.66951pt.
-<dssc.jpg, id=2420, 447.6725pt x 384.43625pt>
+<dssc.jpg, id=2481, 447.6725pt x 384.43625pt>
 File: dssc.jpg Graphic file (type jpg)
 <use dssc.jpg>
-Package pdftex.def Info: dssc.jpg  used on input line 899.
+Package pdftex.def Info: dssc.jpg  used on input line 925.
 (pdftex.def)             Requested size: 119.84285pt x 102.91339pt.
- [37
+ [38
 
  <./rockFish.png> <./seaGrant-logo.png> <./dssc.jpg>]
-Overfull \vbox (2.06293pt too high) detected at line 899
- []
-
-[38
-
-]
-<../../.././nick/gpBias/crossCovExpT45.png, id=2545, 481.8pt x 481.8pt>
-File: ../../.././nick/gpBias/crossCovExpT45.png Graphic file (type png)
-<use ../../.././nick/gpBias/crossCovExpT45.png>
-Package pdftex.def Info: ../../.././nick/gpBias/crossCovExpT45.png  used on inp
-ut line 899.
-(pdftex.def)             Requested size: 215.10196pt x 215.1024pt.
-
-Overfull \vbox (1.21529pt too high) detected at line 899
+Overfull \vbox (2.06293pt too high) detected at line 925
  []
 
 [39
+
+]
+<../../.././nick/gpBias/crossCovExpT45.png, id=2606, 481.8pt x 481.8pt>
+File: ../../.././nick/gpBias/crossCovExpT45.png Graphic file (type png)
+<use ../../.././nick/gpBias/crossCovExpT45.png>
+Package pdftex.def Info: ../../.././nick/gpBias/crossCovExpT45.png  used on inp
+ut line 925.
+(pdftex.def)             Requested size: 215.10196pt x 215.1024pt.
+
+Overfull \vbox (1.21529pt too high) detected at line 925
+ []
+
+[40
 
  <../../.././nick/gpBias/crossCovExpT45.png (PNG copy)>]
 File: ../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png Graphic file (type
  png)
 <use ../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png
-  used on input line 899.
+  used on input line 925.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
-<../../.././nick/gpBias/directionalBiasPellaExpT45.png, id=2606, 481.8pt x 481.
+<../../.././nick/gpBias/directionalBiasPellaExpT45.png, id=2666, 481.8pt x 481.
 8pt>
 File: ../../.././nick/gpBias/directionalBiasPellaExpT45.png Graphic file (type 
 png)
 <use ../../.././nick/gpBias/directionalBiasPellaExpT45.png>
 Package pdftex.def Info: ../../.././nick/gpBias/directionalBiasPellaExpT45.png 
- used on input line 899.
+ used on input line 925.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
- [40
+ [41
 
- <../../.././nick/gpBias/directionalBiasPellaExpT45.png (PNG copy)>] [41
+ <../../.././nick/gpBias/directionalBiasPellaExpT45.png (PNG copy)>] [42
 
 ]
-<../plots/eulerTry.png, id=2725, 481.8pt x 481.8pt>
+<../plots/eulerTry.png, id=2785, 481.8pt x 481.8pt>
 File: ../plots/eulerTry.png Graphic file (type png)
 <use ../plots/eulerTry.png>
-Package pdftex.def Info: ../plots/eulerTry.png  used on input line 899.
+Package pdftex.def Info: ../plots/eulerTry.png  used on input line 925.
 (pdftex.def)             Requested size: 140.12692pt x 140.12276pt.
 
-Overfull \hbox (66.37567pt too wide) in paragraph at lines 899--899
+Overfull \hbox (66.37567pt too wide) in paragraph at lines 925--925
 [][] 
  []
 
-[42
+[43
 
  <../plots/eulerTry.png>]
 \tf@nav=\write6
@@ -1859,11 +1904,11 @@ Overfull \hbox (66.37567pt too wide) in paragraph at lines 899--899
 
  (./advancePres.aux)
 Package rerunfilecheck Info: File `advancePres.out' has not changed.
-(rerunfilecheck)             Checksum: A6860939684F5599A7A2A74217286C4A;1389.
+(rerunfilecheck)             Checksum: EE34DD5DE2DACBA637FBF9387A52EF38;1389.
  ) 
 Here is how much of TeX's memory you used:
- 26988 strings out of 478994
- 537850 string characters out of 5858183
+ 26990 strings out of 478994
+ 537869 string characters out of 5858183
  873010 words of memory out of 5000000
  43708 multiletter control sequences out of 15000+600000
  425223 words of font info for 94 fonts, out of 8000000 for 9000
@@ -1890,10 +1935,10 @@ usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></us
 r/local/texlive/2021/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></u
 sr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 ></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfso1000.pfb>
-Output written on advancePres.pdf (42 pages, 4105931 bytes).
+Output written on advancePres.pdf (43 pages, 4108671 bytes).
 PDF statistics:
- 2875 PDF objects out of 2984 (max. 8388607)
- 2686 compressed objects within 27 object streams
- 98 named destinations out of 1000 (max. 500000)
+ 2937 PDF objects out of 2984 (max. 8388607)
+ 2746 compressed objects within 28 object streams
+ 100 named destinations out of 1000 (max. 500000)
  362 words of extra memory for PDF output out of 10000 (max. 10000000)
 
