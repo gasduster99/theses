@@ -206,9 +206,6 @@ foreach(i=1:length(datFiles), .options.multicore = opts) %dopar% {
                  	upper   = c(log(1), log(100), -2), 
 			cov     = T,
 			fitQ    = F
-			#c('lsdo', 'alpha', 'beta', 'lq'),                   				        
-                         #lower   = c(log(0.001), eps(), eps(), log(1e-7)),
-                         #upper   = c(log(1), 10, 2, log(1e-2)),
 		)
 	}, error=function(err){
 		writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", xiSims[j], zetaSims[i]) )
@@ -218,9 +215,6 @@ foreach(i=1:length(datFiles), .options.multicore = opts) %dopar% {
 			upper   = c(log(1), log(100), -2), 
 			cov     = F,
 			fitQ    = F
-			#c('lsdo', 'alpha', 'beta', 'lq'),                   				        
-                        #lower   = c(log(0.001), eps(), eps(), log(1e-7)),
-                        #upper   = c(log(1), 10, 2, log(1e-2)), 
 		)
 	})
 	#convenience
