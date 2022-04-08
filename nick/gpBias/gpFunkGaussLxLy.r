@@ -113,7 +113,7 @@ rectDist = function(x, y){
 }
 
 #
-l1a=2; l1b=0.1
+l1a=2; l1b=1 #0.1
 l1Prior = function(l1, log=T){
         #
         out = dinvgamma(l1, l1a, l1b, log=T)

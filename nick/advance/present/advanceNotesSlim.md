@@ -385,10 +385,14 @@ This is accomplished by maximizing the equilibrium level of catch over time.
 \clearpage
 * Tell top story
 
-	* The model only observes the right half of the true SRR
-        	* Due to the leaning of the true PT curves, and the symmetry of the logistic parabola, the logistic curve is learning about its slope at the origin entirely from data where depletion$>\frac{1}{2}$, and above the schaefer line PT is steeper that on the right half than it is on the left, and so we over estimate $F^*$ for data generated above the line.
-        * The vice versa phenomena occurs below the schaffer line.
-		* $Fmsy$ is underestimated because of the shallow slopes on the right half of PT.
+	* The model only observes the right portion of the true SRR	
+	* Due to the leaning of the true PT curves, and the symmetry of the logistic 
+		parabola, the logistic curve is learning about its slope at the origin 
+		entirely from data where Biomass>Bmsy, and above the schaefer line the 
+		PT is steeper that on the right half than it is on the left, and so we over 
+		estimate $F^*$ for data generated above the line.  
+	* The vice versa phenomena occurs below the schaffer line.  
+	* $Fmsy$ is underestimated because of the shallow slopes on the right half of PT.
 
 <!--
 * This slide visualizes the posterior fit of those data in the 4 large model misspecification corners of RP space

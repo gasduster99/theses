@@ -1,0 +1,32 @@
+rm(list=ls())
+
+#
+#
+#
+
+#
+place = './modsSchnuteExpN200/'
+
+#
+datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
+
+#
+xiList = c()
+zetaList = c()
+for(datF in datFiles){
+	#
+	dat = readRDS(datF)
+	#
+	xiList = c(xiList, dat$xi)
+	zetaList = c(zetaList, dat$zeta)
+}
+
+#
+word = gsub("\\/", "", gsub("\\.", "", place))
+png(sprintf('%sDesign.png', word))
+plot(xiList, zetaList, pch=20)
+#abline(v=xiL, lty=3)
+#abline(h=zetaL, lty=3)
+curve(1/(x+2), 0, 4, add=T)
+dev.off()
+

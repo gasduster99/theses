@@ -154,8 +154,8 @@ n = 50 #500 maxed out method
 #LHS boundaries
 xiMin = 0
 xiMax = 4 #2 #3.5
-zetaMin = 0 #0.1
-zetaMax = 1 #0.3 #0.7 #1
+zetaMin = 0.1 #0.1
+zetaMax = 0.7 #0.3 #0.7 #1
 #zeta range should not be too small
 
 #xi and zeta Bins (bin defined by left edge right egde not used) [n+1 used to give n left edges]
@@ -232,6 +232,12 @@ while( any(Llist) ){
 	}
 }
 
+#
+png('design.png')
+plot(xiList, zetaList, pch=20)
+abline(v=xiL, lty=3)
+abline(h=zetaL, lty=3)
+dev.off()
 
 ##
 #f = function(x){ ((ff/(M+ff))*(1-zeta)/(zeta*x)+1)^x - (M+ff)/M }

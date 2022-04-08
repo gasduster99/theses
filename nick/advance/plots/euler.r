@@ -3,13 +3,13 @@ rm(list=ls())
 library(deSolve)
 
 #
-r=0.7
+r=0.2
 K=10000
 f = function(t, B, p){list(r*B*(1-B/K))}
 
 #
 h = 1
-TT = 30
+TT = 100
 C = rep(1, TT)
 B = matrix(NA, nrow=TT, ncol=1)
 B[1] = 1
