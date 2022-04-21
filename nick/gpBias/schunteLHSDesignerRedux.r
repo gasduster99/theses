@@ -63,12 +63,12 @@ getZeta = function(gamma, ff, M){
 }
 z = Vectorize(getZeta, "gamma")
 
-##
-#getGamma = function(zeta, ff, M){
-#	uniroot.all(function(gamma){z(gamma, ff, M)-zeta}, c(-500, 100))
-#	#uniroot.all(function(gamma){ ((ff/(M+ff))*(1-zeta)/(zeta*gamma)+1)^gamma - (M+ff)/M }, c(-1, 100))
-#	#strongRoot()
-#}
+#
+getGamma = function(zeta, ff, M){
+	uniroot.all(function(gamma){z(gamma, ff, M)-zeta}, c(-500, 100))
+	#uniroot.all(function(gamma){ ((ff/(M+ff))*(1-zeta)/(zeta*gamma)+1)^gamma - (M+ff)/M }, c(-1, 100))
+	#strongRoot()
+}
 
 #
 FMsy = function(alpha, gamma, M){
@@ -89,7 +89,7 @@ FMsy = function(alpha, gamma, M){
 #
 
 #
-place = './modsSchnuteExpN200/'
+place = './modsSchnuteExpN100/'
 odeMethod = "lsode"
 
 #safely create place
@@ -107,7 +107,6 @@ if( dir.exists(place) ){
 	}
 } else{ dir.create(place, showWarnings=FALSE) }
 
-
 #
 TT=30
 FtFmsy = rep(1, TT) #make faux catch
@@ -117,7 +116,7 @@ B0 = 10000
 M  = 0.2
 
 #number of samples in design
-n = 200 #500 maxed out method
+n = 100 #500 maxed out method
 
 #LHS boundaries
 xiMin = 0.2
@@ -214,8 +213,9 @@ while( any(Llist) ){
                	datGen$iterate(odeMethod)
 		datGen$plotMean()
 	
-		#NOTE: catelogue by bin lables (left edges of xiL, zetaL)s
-		datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(xiL[bin], binTrk), round(zetaL[bin], binTrk)))
+		#NOTE: catelogue by bin lables (left edges of xiL, zetaL)s  xiShuffle[xii]
+		datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(xiShuffle[xii], binTrk), round(zetaL[bin], binTrk)))
+		#datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(xiL[bin], binTrk), round(zetaL[bin], binTrk)))
 
 		#knobs for making the design
 		Llist[bin] = F 	#turn off bin
@@ -228,6 +228,114 @@ while( any(Llist) ){
 		if( fudge>giveUp ){ break } #give up (it mostly just misses one of two bins so its usually fine)
 	}
 }
+
+#
+#Extreme Design Elements
+#
+
+#c(xiMax, zetaMax)
+xi   = xiMax
+zeta = zetaMax
+#curve(z(x, xi*M, M), 0, 10)
+gs = uniroot.all(function(gamma){z(gamma, xi*M, M)-zeta}, c(0, 10))
+as = a(gs, xi*M, M)
+bs = b(as, gs, M, B0)
+#make Schunte production model
+datGen = prodModel$new(
+        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)},
+        time=1:30, catch=FtFmsy, M=M,                  #constants
+        alpha=as, beta=bs, gamma=gs,                   #parameters
+        lalpha=log(as), lbeta=log(bs),                 #reparameterize
+        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256) #nuisance paramet
+        xi=xi, zeta=zeta                               #other incidentals to carr
+)
+datGen$iterate(odeMethod)
+datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(xi, binTrk), round(zeta, binTrk)))
+
+#c(xiMax, zetaMin)
+xi   = xiMax
+zeta = zetaMin
+#curve(z(x, xi*M, M), -1, 10)
+gs = uniroot.all(function(gamma){z(gamma, xi*M, M)-zeta}, c(-1, 10))
+as = a(gs, xi*M, M)
+bs = b(as, gs, M, B0)
+#make Schunte production model
+datGen = prodModel$new(
+        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)},
+        time=1:30, catch=FtFmsy, M=M,                  #constants
+        alpha=as, beta=bs, gamma=gs,                   #parameters
+        lalpha=log(as), lbeta=log(bs),                 #reparameterize
+        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256) #nuisance paramet
+        xi=xi, zeta=zeta                               #other incidentals to carr
+)
+datGen$iterate(odeMethod)
+datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(xi, binTrk), round(zeta, binTrk)))
+
+#c(xiMin, zetaMax)
+xi   = xiMin
+zeta = zetaMax
+#curve(z(x, xi*M, M), -1, 10)
+gs = uniroot.all(function(gamma){z(gamma, xi*M, M)-zeta}, c(-1, 10))
+as = a(gs, xi*M, M)
+bs = b(as, gs, M, B0)
+#make Schunte production model
+datGen = prodModel$new(
+        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)},
+        time=1:30, catch=FtFmsy, M=M,                  #constants
+        alpha=as, beta=bs, gamma=gs,                   #parameters
+        lalpha=log(as), lbeta=log(bs),                 #reparameterize
+        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256) #nuisance paramet
+        xi=xi, zeta=zeta                               #other incidentals to carr
+)
+datGen$iterate(odeMethod)
+datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(xi, binTrk), round(zeta, binTrk)))
+
+#c(xiMin, z(xiMin))
+xi = xiMin
+zetaOpt = suppressWarnings(stats::optimize(function(x){z(x, xi*M, M)}, c(-100, 100)))
+zeta = zetaOpt$objective #+ 2*.Machine$double.eps^0.25
+#curve(z(x, xi*M, M), -1, 10)
+gs = zetaOpt$minimum 	#+ 2*.Machine$double.eps^0.25
+as = 1 			#a(gs, xi*M, M)
+bs = b(as, gs, M, B0)
+#make Schunte production model
+datGen = prodModel$new(
+        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)},
+        time=1:30, catch=FtFmsy, M=M,                  #constants
+        alpha=as, beta=bs, gamma=gs,                   #parameters
+        lalpha=log(as), lbeta=log(bs),                 #reparameterize
+        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256) #nuisance paramet
+        xi=FMsy(as, gs, M)/M, zeta=getZeta(gs, FMsy(1, gs, M), M)                               #other incidentals to carr
+)
+datGen$iterate(odeMethod)
+datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(xi, binTrk), round(zeta, binTrk)))
+
+##c(xiMax, z(xiMax))
+#xi = xiMax
+#zetaOpt = suppressWarnings(stats::optimize(function(x){z(x, xi*M, M)}, c(-100, 100)))
+#zeta = zetaOpt$objective #+ 2*.Machine$double.eps^0.25
+##curve(z(x, xi*M, M), -1, 10)
+#gs = zetaOpt$minimum 	#+ 2*.Machine$double.eps^0.25
+#as = a(gs, xi*M, M)
+#bs = b(as, gs, M, B0)
+##make Schunte production model
+#datGen = prodModel$new(
+#        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)},
+#        time=1:30, catch=FtFmsy, M=M,                  #constants
+#        alpha=as, beta=bs, gamma=gs,                   #parameters
+#        lalpha=log(as), lbeta=log(bs),                 #reparameterize
+#        lq=log(0.00049), lsdo=log(0.01160256), #log(0.1160256) #nuisance paramet
+#        xi=FMsy(as, gs, M)/M, zeta=getZeta(gs, FMsy(1, gs, M), M)                               #other incidentals to carr
+#)
+#datGen$iterate(odeMethod)
+#datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(xi, binTrk), round(zeta, binTrk)))
+
+
+
+
+
+
+
 
 ##
 #png('design.png')
