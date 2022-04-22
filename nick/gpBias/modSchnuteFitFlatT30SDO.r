@@ -144,7 +144,7 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	datGen$catch = FtFmsy
 	datGen$iterate(odeMethod)
 	#
-	datGen$sdo  = datGen$sdo*10
+	datGen$sdo  = datGen$sdo*10/2
         datGen$lsdo = log(datGen$sdo)
 	#
 	datGen$save( datFiles[i] )
@@ -213,7 +213,7 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 			fitQ    = F
 		)
 	}, error=function(err){
-		writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", xiSims[j], zetaSims[i]) )
+		writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
 		optAns = fit$optimize(cpue,
 			c('lsdo', 'lalpha', 'lbeta'), 
 			lower   = c(log(0.001), log(M), -10), 

@@ -209,7 +209,7 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 			fitQ    = F
 		)
 	}, error=function(err){
-		writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", xiSims[j], zetaSims[i]) )
+		writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
 		optAns = fit$optimize(cpue,
 			c('lsdo', 'lalpha', 'lbeta'), 
 			lower   = c(log(0.001), log(M), -10), 
