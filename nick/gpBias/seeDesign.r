@@ -5,7 +5,7 @@ rm(list=ls())
 #
 
 #
-place = './modsSchnuteExpN100/'
+place = './modsSchnuteExpN150/'
 
 #
 datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
