@@ -89,7 +89,7 @@ FMsy = function(alpha, gamma, M){
 #
 
 #
-place = './modsSchnuteExpN150/'
+place = './modsSchnuteExpN150Wide/'
 odeMethod = "lsode"
 
 #safely create place
@@ -119,10 +119,10 @@ M  = 0.2
 n = 150 #500 maxed out method
 
 #LHS boundaries
-xiMin = 0.2
+xiMin = 0.5
 xiMax = 3.5 #2 #3.5
 zetaMin = 0.2 
-zetaMax = 0.6 
+zetaMax = 0.7 
 #zeta range should not be too small
 
 #xi and zeta Bins (bin defined by left edge right egde not used) [n+1 used to give n left edges]
@@ -296,7 +296,7 @@ zetaOpt = suppressWarnings(stats::optimize(function(x){z(x, xi*M, M)}, c(-100, 1
 zeta = zetaOpt$objective #+ 2*.Machine$double.eps^0.25
 #curve(z(x, xi*M, M), -1, 10)
 gs = zetaOpt$minimum 	#+ 2*.Machine$double.eps^0.25
-as = 1 			#a(gs, xi*M, M)
+as = 0.969 #1 			#a(gs, xi*M, M)
 bs = b(as, gs, M, B0)
 #make Schunte production model
 datGen = prodModel$new(
