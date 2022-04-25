@@ -123,7 +123,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsSchnuteFlatT30N100/'
+place = './modsSchnuteFlatT30N150/'
 odeMethod = "lsode"
 
 #
