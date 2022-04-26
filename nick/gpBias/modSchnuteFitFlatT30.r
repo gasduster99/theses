@@ -123,7 +123,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsSchnuteFlatT30N150/'
+place = './modsSchnuteFlatT30N150Wide/'
 odeMethod = "lsode"
 
 #
@@ -170,16 +170,18 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	#FIT
 	#
 
-	#NOTE: N0Funk does not function correctly with $clone()
-	fit = prodModel$new(
-	        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)}, #model
-	        time=1:TT, catch=FtFmsy, M=M,				     #BH	#constants
-	        alpha=datGen$alpha, beta=getBeta(datGen$alpha, -1, M, P0), gamma=-1, 	#parameters
-		lalpha=datGen$lalpha, lbeta=log(getBeta(datGen$alpha, -1, M, P0)), 	#reparameterize
-	        lq=log(0.00049), lsdo=log(0.01160256), 		#nuisance parameters
-	        xi=datGen$xi, zeta=datGen$zeta			#other incidentals to carry along
-	)
-	#fit = readRDS('modsPellaFineQFixRFixP010000/fit_xi4_zeta0.35.rda')
+	##NOTE: N0Funk does not function correctly with $clone()
+	#fit = prodModel$new(
+	#        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)}, #model
+	#        time=1:TT, catch=FtFmsy, M=M,				     #BH	#constants
+	#        alpha=datGen$alpha, beta=getBeta(datGen$alpha, -1, M, P0), gamma=-1, 	#parameters
+	#	lalpha=datGen$lalpha, lbeta=log(getBeta(datGen$alpha, -1, M, P0)), 	#reparameterize
+	#        lq=log(0.00049), lsdo=log(0.01160256), 		#nuisance parameters
+	#        xi=datGen$xi, zeta=datGen$zeta			#other incidentals to carry along
+	#)
+	hotFile = gsub("datGen", "fit", datFiles[i])
+	hotFile = gsub(place, "./modsSchnuteExpT30N150Wide/", hotFile)
+	fit = readRDS(hotFile) #readRDS('modsPellaFineQFixRFixP010000/fit_xi4_zeta0.35.rda')
 	fit$iterate(odeMethod)
 	#optimization	
 	optAns = fit$optimize(cpue,

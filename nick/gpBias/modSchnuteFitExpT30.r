@@ -122,7 +122,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsSchnuteExpT30N150/'
+place = './modsSchnuteExpT30N150Wide/'
 odeMethod = "lsode"
 
 #
@@ -131,7 +131,7 @@ datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen
 #
 registerDoParallel(46) 
 opts = list(preschedule=F)
-foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
+foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 #for(i in 1:length(datFiles)){
 	#
 	#DATA
