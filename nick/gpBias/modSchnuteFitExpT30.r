@@ -100,9 +100,10 @@ TT = 31 #length(hake)
 tt = 1
 time = tt:TT
 #
+l = (0:5)[1]
 mid = round(TT/2)
-cMax = 2 #4*M
-cMin = 0.2 #M/4
+cMax = 2-l/5		#2 = 2-0/5 
+cMin = 1/5+4*l/25	#0.2 = 1/5+4*0/25
 bb = log(cMin/cMax)/(tt-mid)
 aa = exp(log(cMax)-bb*mid)
 rSlope = (cMax-1)/(mid-1)
