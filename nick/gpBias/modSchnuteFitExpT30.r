@@ -100,7 +100,7 @@ TT = 31 #length(hake)
 tt = 1
 time = tt:TT
 #
-l = (0:5)[1]
+l = (0:5)[5]
 mid = round(TT/2)
 cMax = 2-l/5		#2 = 2-0/5 
 cMin = 1/5+4*l/25	#0.2 = 1/5+4*0/25
@@ -123,7 +123,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsSchnuteExpT30N150Wide/'
+place = './modsSchnuteExpT30L4N150Wide/'
 odeMethod = "lsode"
 
 #
