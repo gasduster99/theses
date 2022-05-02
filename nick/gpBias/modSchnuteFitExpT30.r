@@ -100,7 +100,7 @@ TT = 31 #length(hake)
 tt = 1
 time = tt:TT
 #
-l = (0:5)[5]
+l = (0:5)[4]
 mid = round(TT/2)
 cMax = 2-l/5		#2 = 2-0/5 
 cMin = 1/5+4*l/25	#0.2 = 1/5+4*0/25
@@ -122,8 +122,10 @@ P0 = 10000 #3000
 #SIM
 #
 
+#
+lPlace = './modsSchnuteExpT30L2N150Wide/'
 #a place to store data
-place = './modsSchnuteExpT30L4N150Wide/'
+place = './modsSchnuteExpT30L3N150Wide/'
 odeMethod = "lsode"
 
 #
@@ -170,17 +172,20 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	#FIT
 	#
 
-	#NOTE: N0Funk does not function correctly with $clone()
-	fit = prodModel$new(
-	        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)}, #model
-	        time=1:TT, catch=FtFmsy, M=M,				     #BH	#constants
-	        alpha=datGen$alpha, beta=getBeta(datGen$alpha, -1, M, P0), gamma=-1, 	#parameters
-		lalpha=datGen$lalpha, lbeta=log(getBeta(datGen$alpha, -1, M, P0)), 	#reparameterize
-	        lq=log(0.00049), lsdo=log(0.01160256), 		#nuisance parameters
-	        xi=datGen$xi, zeta=datGen$zeta			#other incidentals to carry along
-	)
+	##NOTE: N0Funk does not function correctly with $clone()
+	#fit = prodModel$new(
+	#        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)}, #model
+	#        time=1:TT, catch=FtFmsy, M=M,				     #BH	#constants
+	#        alpha=datGen$alpha, beta=getBeta(datGen$alpha, -1, M, P0), gamma=-1, 	#parameters
+	#	lalpha=datGen$lalpha, lbeta=log(getBeta(datGen$alpha, -1, M, P0)), 	#reparameterize
+	#        lq=log(0.00049), lsdo=log(0.01160256), 		#nuisance parameters
+	#        xi=datGen$xi, zeta=datGen$zeta			#other incidentals to carry along
+	#)
 	#fit = readRDS('modsPellaFineQFixRFixP010000/fit_xi4_zeta0.35.rda')
-	fit$iterate(odeMethod)
+	hotFile = gsub("datGen", "fit", datFiles[i])
+        hotFile = gsub(place, lPlace, hotFile)
+        fit = readRDS(hotFile) #readRDS('modsPellaFineQFixRFixP010000/fit_xi4_zeta0.35.rda
+        fit$iterate(odeMethod)	
 	#optimization	
 	optAns = fit$optimize(cpue,
 	        c('lsdo', 'lalpha'), 
