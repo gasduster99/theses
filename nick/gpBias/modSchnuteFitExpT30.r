@@ -100,7 +100,7 @@ TT = 31 #length(hake)
 tt = 1
 time = tt:TT
 #
-l = (0:5)[4]
+l = 5 #(0:5)[4]
 mid = round(TT/2)
 cMax = 2-l/5		#2 = 2-0/5 
 cMin = 1/5+4*l/25	#0.2 = 1/5+4*0/25
@@ -122,10 +122,10 @@ P0 = 10000 #3000
 #SIM
 #
 
-#
+#a hot start lcoation
 lPlace = './modsSchnuteExpT30L2N150Wide/'
 #a place to store data
-place = './modsSchnuteExpT30L3N150Wide/'
+place = './modsSchnuteExpT30L5N150Wide/'
 odeMethod = "lsode"
 
 #
