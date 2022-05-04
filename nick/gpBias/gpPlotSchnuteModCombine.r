@@ -173,7 +173,7 @@ getData = function(dir, xiRange, zetaRange){
 
 #
 P0 = 10000
-mod =  "ExpT30L4N150Wide" #"FlatT30N100" #"ExpT45N150" #
+mod =  "FlatT30N150Wide" #"ExpT30L4N150Wide" # #"ExpT45N150" #
 place = sprintf("./modsSchnute%s/", mod)
 
 #
@@ -325,6 +325,9 @@ fMSYStar = xiStar*M
 #F* bias
 
 #
+freq = c(T,F,F,F,F,F)
+
+#
 png(sprintf("fMSYBiasSchnute%s.png", mod))
 nCols = 100
 maxBias = abs(max(xiBias, na.rm=T))
@@ -345,6 +348,7 @@ image(xiStar, zetaStar, xiBias,
 	ylim = c(zetaBot, zetaTop),
 	xlim = c(xiBot, xiTop)
 )
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T) 
 show = seq(1, length(xCols), length.out=20)
 legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
@@ -362,8 +366,8 @@ rSurf = exp(lFPred)*2
 
 #
 png(sprintf("fMSYRelBiasSchnute%s.png", mod))
-nCols = 50*2
-maxAbsXBias = max(abs(xiBias/xiStar), na.rm=T)
+nCols = 21 #50*2
+maxAbsXBias = 1 #max(abs(xiBias/xiStar), na.rm=T)
 posCols = hcl.colors(nCols/2, "Reds 2", rev=T)
 negCols = hcl.colors(nCols/2, "Blues 2", rev=F)
 xCols = c(negCols, "#FFFFFF", posCols)
@@ -381,8 +385,46 @@ image(xiStar, zetaStar, xiBias/xiStar,
 	xlim = c(xiBot, xiTop),
 	zlim = c(-maxAbsXBias, maxAbsXBias)
 )
+contour(xiStar[15:16], zetaStar, (xiBias/xiStar)[15:16,], 
+	method = "simple", 
+        levels = seq(-1, 1, 0.1),
+	labcex = 1.025,
+	lwd  = eps(),
+	xlab = TeX("$F^*/M$"), #'Xi',
+        ylab = TeX('$B^*/B_0$'), 
+	main = TeX("Relative Bias in Estimated $F^*$"), 
+	ylim = c(zetaBot, zetaTop), 
+	xlim = c(xiBot, xiBot), 
+	zlim = c(-maxAbsXBias, maxAbsXBias), 
+	add  = T 
+)
+end = rev(length(xiStar)-c(15:16))
+contour(xiStar[end], zetaStar, (xiBias/xiStar)[end,], 
+	method = "simple", 
+        levels = seq(-1, 1, 0.1),
+	labcex = 1.025,
+	lwd  = eps(),
+	xlab = TeX("$F^*/M$"), #'Xi',
+        ylab = TeX('$B^*/B_0$'), 
+	main = TeX("Relative Bias in Estimated $F^*$"), 
+	ylim = c(zetaBot, zetaTop), 
+	xlim = c(xiBot, xiBot), 
+	zlim = c(-maxAbsXBias, maxAbsXBias), 
+	add  = T 
+)
+image(xiStar, zetaStar, xiBias/xiStar,
+        col  = "grey10", #adjustcolor(xCols, alpha.f=0.6),
+        xlab = TeX("$F^*/M$"),#'Xi',
+        ylab = TeX('$B^*/B_0$'),
+        main = TeX("Relative Bias in Estimated $F^*$"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        zlim = c(1, max(xiBias/xiStar, 1, na.rm=T)),
+	add  = T
+)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
-show = seq(1, length(xCols), length.out=20)
+show = seq(1, length(xCols), length.out=nCols) #20)
 legend(grconvertX(415, "device"), grconvertY(90, "device"), 
         sprintf("%1.2f", rev(seq(-maxAbsXBias, maxAbsXBias, length.out=length(show)))), 
         fill = rev(xCols[show]), 
@@ -410,6 +452,7 @@ image(xiStar, zetaStar, zetaBias,
 	ylim = c(zetaBot, zetaTop),
 	xlim = c(xiBot, xiTop)
 )
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 show = seq(1, length(yCols), length.out=20) 
 legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
@@ -435,6 +478,7 @@ image(xiStar, zetaStar, eucBias,
 )
 #curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
 thin = c(T,rep(F,125))#135))
 quiver(
@@ -474,6 +518,7 @@ image(xiStar, zetaStar, kBias, #xiStar[xiMask], zetaStar[zetaMask], xBias[xiMask
         ylim = c(zetaBot, zetaTop),
         xlim = c(xiBot, xiTop)
 )
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 show = seq(1, length(kCols), length.out=20)
 legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(580, "device"), grconvertY(150, "device"),
@@ -488,8 +533,8 @@ dev.off()
 #
 png(sprintf("kRelBiasSchnute%s.png", mod))
 #
-nCol = 15*2
-maxAbsXBias = max(abs(kBias/P0), na.rm=T)
+nCol = 21 #15*2
+maxAbsXBias = 1 #max(abs(kBias/P0), na.rm=T)
 posCols = hcl.colors(nCol/2, "Reds 2", rev=T)
 negCols = hcl.colors(nCol/2, "Blues 2", rev=F)
 xCols = c(negCols, "#FFFFFF", posCols)
@@ -507,8 +552,46 @@ image(xiStar, zetaStar, kBias/P0,
         xlim = c(xiBot, xiTop),
         zlim = c(-maxAbsXBias, maxAbsXBias)
 )
+contour(xiStar[15:16], zetaStar, (kBias/P0)[15:16,], 
+	method = "simple", 
+        levels = seq(-1, 1, 0.1),
+	labcex = 1.025,
+	lwd  = eps(),
+	xlab = TeX("$F^*/M$"), #'Xi',
+        ylab = TeX('$B^*/B_0$'), 
+	main = TeX("Relative Bias in Estimated $F^*$"), 
+	ylim = c(zetaBot, zetaTop), 
+	xlim = c(xiBot, xiBot), 
+	zlim = c(-maxAbsXBias, maxAbsXBias), 
+	add  = T 
+)
+end = rev(length(xiStar)-c(15:16))
+contour(xiStar[end], zetaStar, (kBias/P0)[end,], 
+	method = "simple", 
+        levels = seq(-1, 1, 0.1),
+	labcex = 1.025,
+	lwd  = eps(),
+	xlab = TeX("$F^*/M$"), #'Xi',
+        ylab = TeX('$B^*/B_0$'), 
+	main = TeX("Relative Bias in Estimated $F^*$"), 
+	ylim = c(zetaBot, zetaTop), 
+	xlim = c(xiBot, xiBot), 
+	zlim = c(-maxAbsXBias, maxAbsXBias), 
+	add  = T 
+)
+image(xiStar, zetaStar, kBias/P0,
+        col  = "grey10", #adjustcolor(xCols, alpha.f=0.6),
+        xlab = TeX("$F^*/M$"),#'Xi',
+        ylab = TeX('$B^*/B_0$'),
+        main = TeX("Relative Bias in Estimated $F^*$"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        zlim = c(1, max(kBias/P0, 1, na.rm=T)),
+        add  = T
+)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
-show = seq(1, length(xCols), length.out=20)
+show = seq(1, length(xCols), length.out=nCol) #20)
 legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(580, "device"), grconvertY(120, "device"), 
         sprintf("%1.2f", rev(seq(-maxAbsXBias, maxAbsXBias, length.out=length(show)))),
         fill = rev(xCols[show]), 
@@ -540,6 +623,7 @@ image(xiStar, zetaStar, bMSYBias,
         ylim = c(zetaBot, zetaTop),
         xlim = c(xiBot, xiTop)
 )
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 show = seq(1, length(bMSYCols), length.out=20)
 legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(580, "device"), grconvertY(150, "device"), 
@@ -554,8 +638,8 @@ dev.off()
 #
 png(sprintf("bMSYRelBiasSchunte%s.png", mod))
 #
-nCols = 2*15
-maxAbsXBias = max(abs(t(bMSYBias)/(P0*zetaStar)), na.rm=T)
+nCols = 21 #2*15
+maxAbsXBias = 1 #max(abs(t(bMSYBias)/(P0*zetaStar)), na.rm=T)
 posCols = hcl.colors(nCols/2, "Reds 2", rev=T)
 negCols = hcl.colors(nCols/2, "Blues 2", rev=F)
 xCols = c(negCols, "#FFFFFF", posCols)
@@ -573,8 +657,46 @@ image(xiStar, zetaStar, t(t(bMSYBias)/(P0*zetaStar)),
         xlim = c(xiBot, xiTop)
         ,zlim = c(-maxAbsXBias, maxAbsXBias)
 )
+contour(xiStar[15:16], zetaStar, (t(t(bMSYBias)/(P0*zetaStar)))[15:16,], 
+	method = "simple", 
+        levels = seq(-1, 1, 0.1),
+	labcex = 1.025,
+	lwd  = eps(),
+	xlab = TeX("$F^*/M$"), #'Xi',
+        ylab = TeX('$B^*/B_0$'), 
+	main = TeX("Relative Bias in Estimated $F^*$"), 
+	ylim = c(zetaBot, zetaTop), 
+	xlim = c(xiBot, xiBot), 
+	zlim = c(-maxAbsXBias, maxAbsXBias), 
+	add  = T 
+)
+end = rev(length(xiStar)-c(15:16))
+contour(xiStar[end], zetaStar, (t(t(bMSYBias)/(P0*zetaStar)))[end,], 
+	method = "simple", 
+        levels = seq(-1, 1, 0.1),
+	labcex = 1.025,
+	lwd  = eps(),
+	xlab = TeX("$F^*/M$"), #'Xi',
+        ylab = TeX('$B^*/B_0$'), 
+	main = TeX("Relative Bias in Estimated $F^*$"), 
+	ylim = c(zetaBot, zetaTop), 
+	xlim = c(xiBot, xiBot), 
+	zlim = c(-maxAbsXBias, maxAbsXBias), 
+	add  = T 
+)
+image(xiStar, zetaStar, t(t(bMSYBias)/(P0*zetaStar)),
+        col  = "grey10", #adjustcolor(xCols, alpha.f=0.6),
+        xlab = TeX("$F^*/M$"),#'Xi',
+        ylab = TeX('$B^*/B_0$'),
+        main = TeX("Relative Bias in Estimated $F^*$"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        zlim = c(1, max(t(t(bMSYBias)/(P0*zetaStar)), 1, na.rm=T)),
+        add  = T
+)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
-show = seq(1, length(xCols), length.out=20)
+show = seq(1, length(xCols), length.out=nCol) #20)
 legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(580, "device"), grconvertY(120, "device"), 
         sprintf("%1.2f", rev(seq(-maxAbsXBias, maxAbsXBias, length.out=length(show)))),
         fill = rev(xCols[show]),
