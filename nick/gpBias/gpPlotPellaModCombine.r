@@ -136,7 +136,7 @@ getlFV = function(fit, MM=10^4, samples=F){
 
 #
 P0 = 10000
-mod = "ExpT45" #"CupNoQ"
+mod = "ExpNoQ" #"CupNoQ"
 dir = sprintf("./modsPella%s", mod)
 
 #
