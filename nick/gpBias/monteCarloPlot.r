@@ -107,8 +107,6 @@ getlV = function(fit, MM=10^4, samples=F){
         return(out)
 }
 
-
-
 #
 #
 #
@@ -140,8 +138,8 @@ zetas = unlist(sapply(datFiles, function(fn){
 )
 
 #
-xiPoint = (3.5-0.5)/2 + 0.5
-zetaPoint = (0.7-0.2)/2 + 0.2
+xiPoint = 0.5 #(3.5-0.5)/2 + 0.5
+zetaPoint = 0.2 #(0.7-0.2)/2 + 0.2
 #minimize (max, max) norm
 norms = sqrt((xiPoint-xis)^2 + (zetaPoint-zetas)^2)
 who   = which(min(norms)==norms)

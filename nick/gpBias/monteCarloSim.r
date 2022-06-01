@@ -83,8 +83,8 @@ zetas = unlist(sapply(datFiles, function(fn){
 )
 
 #
-xiPoint = (3.5-0.5)/2 + 0.5
-zetaPoint = (0.7-0.2)/2 + 0.2
+xiPoint = 0.5   #(3.5-0.5)/2 + 0.5
+zetaPoint = 0.5 #(0.7-0.2)/2 + 0.2
 
 #minimize (max, max) norm
 norms = sqrt((xiPoint-xis)^2 + (zetaPoint-zetas)^2)
@@ -104,10 +104,14 @@ if( dir.exists(dirOut) ){
                 dir.create(dirOut, showWarnings=FALSE)
 		#
 		fits = getFits(dirOut, xi, zeta)
-		fits = gsub('.rda', '', fits) 
-		fits = strsplit(fits, 'sim')
-		fits = as.numeric(unlist(fits)[c(F,T)])
-		start = max(fits)
+		if(length(fits)==0){ start=1 
+		}else{
+			#
+			fits = gsub('.rda', '', fits) 
+			fits = strsplit(fits, 'sim')
+			fits = as.numeric(unlist(fits)[c(F,T)])
+			start = max(fits)
+		}
         }else{
                 #
                 unlink(dirOut, recursive=TRUE)
@@ -130,8 +134,8 @@ P0 = datGen$N0
 FtFmsy = rep(1, TT)
 
 #
-threads = 6
-MM = threads*3
+threads = 46
+MM = 100 #threads
 registerDoParallel(threads)
 opts = list(preschedule=F)
 foreach(i=rev(start:(start+MM)), .options.multicore = opts) %dopar% {
