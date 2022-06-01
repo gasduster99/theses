@@ -149,7 +149,7 @@ dPdt = function(t, P, lalpha, lbeta, gamma, M, catch){
 #M = 0.2
 #P0 = 10000
 #
-mod = "FlatT30N150Wide"
+mod = "FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
 dir = sprintf("./modsSchnute%s/", mod)
 M = 0.2
 P0 = 10000

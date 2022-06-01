@@ -9,7 +9,7 @@ source("spcSeeEWMANormFunc.r")
 #
 
 #name = "RoseEasyEasy"; uu=30; tMin=0;  	#it=74          #lambda=0.2
-name = "RastHard"; uu=50; tMin=0;	#it=138
+name = "RastHard"; uu=59; tMin=0;	#it=138
 #uu=40; tMin=0;	#it=96          #lambda=0.3
 
 #
@@ -48,19 +48,20 @@ while(T){
 	abline(v=ewmaOut[[10]], col='red', lty=2)
 	dev.off()
 	#
-	#pdf(sprintf("bestZ%s.pdf", name))
-        #plot( seq(1, it), Zmax,
-        #        "l",
-        #        xlab="Iteration Number",
-        #        ylab="Objective Value",
-        #        main="Best Z Value",
-        #        ylim=c(tMin, max(ZMax))
-        #)
-        #abline( h=tMin, lty=3 )
-        #legend("left", c("\nCurrent Best\n Z Value", "\nTheoretical\n Minimum", NA),
-        #        lty=c(1, 3, NA)
-        #)
-	#dev.off()
+	pdf(sprintf("bestZ%s.pdf", name))
+	ZMax = ewmaOut[[11]]
+        plot( seq(1, it), ZMax,
+                "l",
+                xlab="Iteration Number",
+                ylab="Objective Value",
+                main="Best Z Value",
+                ylim=c(tMin, max(ZMax))
+        )
+        abline( h=tMin, lty=3 )
+        legend("left", c("\nCurrent Best\n Z Value", "\nTheoretical\n Minimum", NA),
+                lty=c(1, 3, NA)
+        )
+	dev.off()
 	#
 	it = wasd(name)
 }

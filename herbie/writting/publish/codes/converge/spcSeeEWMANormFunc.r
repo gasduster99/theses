@@ -60,7 +60,7 @@ wasd = function(name){
 	}else if( move=="save" | move=="S" | move=="Save" | move=="SAVE" ){
 		add = readline("Distinguishing Text? ")
 		saveSS = sprintf("cp ./ss%s.pdf ../../nickHerbie/figures/ss%s%s.pdf", name, name, add)
-		#saveBest = sprintf("cp ./bestZ%s.pdf ../../nickHerbie/figures/bestZ%s%s.pdf", name, name, add)
+		saveBest = sprintf("cp ./bestZ%s.pdf ../../nickHerbie/figures/bestZ%s%s.pdf", name, name, add)
 		saveEWMA = sprintf("cp ./ewmaConvChart%s.pdf ../../nickHerbie/figures/ewmaConvChart%s%s.pdf", name, name, add)
 		system( saveSS )
 		#system( saveBest )
@@ -112,7 +112,8 @@ ewmaConvChart = function(lamb, it){
 		ewmaOut$x,					#7
 		rev(ewmaOut$y),					#8 \hat{z}
 		matrix(rev(ewmaOut$limits), ncol=2),		#9
-		lamb						#10
+		lamb,						#10
+		ZMax						#11
 	)
 	return( out )
 }

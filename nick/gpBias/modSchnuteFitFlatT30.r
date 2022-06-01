@@ -52,6 +52,26 @@ getBeta = function(alpha, gamma, M, B0){
 }
 b = Vectorize(getBeta, c("alpha", "gamma"))
 
+##
+#getScale = function(alpha, gamma, M, P0){
+#        #
+#        ob = function(x){ log((PBar(0, alpha, x, gamma, M)-P0)^2+1) }
+#        #
+#        order = golden_ratio(ob, 10^-40, 10^6, tol=10^-40)$xmin
+#        #
+#        left = order/1e10
+#        right = order*10
+#        out = optim(right, ob, method='Brent', lower=left, upper=right)$par
+#        while((out==right | ob(out/2)<ob(out)) & ob(right/2)<ob(right)){
+#                right = right/2
+#                out = optim(right, ob, method='Brent', lower=order/1e10, upper=right)$par
+#        }
+#        #
+#        return(out)
+#        #optim(0.01, function(x){ (PBar(0, alpha, x, gamma, M)-P0)^2 }, method='Brent', l
+#        #optim(0.01, function(x){ (PBar(0, alpha, x, gamma, M)-P0)^2 }, method='Brent', l
+#}
+
 #
 getAlpha = function(gamma, ff, M){
         (ff+M)*(1+ff*gamma/(ff+M))^(1/gamma)
@@ -170,18 +190,18 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	#FIT
 	#
 
-	##NOTE: N0Funk does not function correctly with $clone()
-	#fit = prodModel$new(
-	#        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)}, #model
-	#        time=1:TT, catch=FtFmsy, M=M,				     #BH	#constants
-	#        alpha=datGen$alpha, beta=getBeta(datGen$alpha, -1, M, P0), gamma=-1, 	#parameters
-	#	lalpha=datGen$lalpha, lbeta=log(getBeta(datGen$alpha, -1, M, P0)), 	#reparameterize
-	#        lq=log(0.00049), lsdo=log(0.01160256), 		#nuisance parameters
-	#        xi=datGen$xi, zeta=datGen$zeta			#other incidentals to carry along
-	#)
-	hotFile = gsub("datGen", "fit", datFiles[i])
-	hotFile = gsub(place, "./modsSchnuteExpT30N150Wide/", hotFile)
-	fit = readRDS(hotFile) #readRDS('modsPellaFineQFixRFixP010000/fit_xi4_zeta0.35.rda')
+	#NOTE: N0Funk does not function correctly with $clone()
+	fit = prodModel$new(
+	        dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)}, #model
+	        time=1:TT, catch=FtFmsy, M=M,				     #BH	#constants
+	        alpha=datGen$alpha, beta=getBeta(datGen$alpha, -1, M, P0), gamma=-1, 	#parameters
+		lalpha=datGen$lalpha, lbeta=log(getBeta(datGen$alpha, -1, M, P0)), 	#reparameterize
+	        lq=log(0.00049), lsdo=log(0.01160256), 		#nuisance parameters
+	        xi=datGen$xi, zeta=datGen$zeta			#other incidentals to carry along
+	)
+	#hotFile = gsub("datGen", "fit", datFiles[i])
+	#hotFile = gsub(place, "./modsSchnuteExpT30N150Wide/", hotFile)
+	#fit = readRDS(hotFile) #readRDS('modsPellaFineQFixRFixP010000/fit_xi4_zeta0.35.rda')
 	fit$iterate(odeMethod)
 	#optimization	
 	optAns = fit$optimize(cpue,
