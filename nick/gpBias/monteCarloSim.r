@@ -83,8 +83,8 @@ zetas = unlist(sapply(datFiles, function(fn){
 )
 
 #
-xiPoint = 0.5   #(3.5-0.5)/2 + 0.5
-zetaPoint = 0.5 #(0.7-0.2)/2 + 0.2
+xiPoint = 3.4	#0.5   #(3.5-0.5)/2 + 0.5
+zetaPoint = 0.4	#0.5 #(0.7-0.2)/2 + 0.2
 
 #minimize (max, max) norm
 norms = sqrt((xiPoint-xis)^2 + (zetaPoint-zetas)^2)
@@ -94,7 +94,7 @@ zeta  = zetas[who]
 
 #safely create dirOut
 start = 1
-dirOut = sprintf("./monteCarlo%s/", mod)
+dirOut = sprintf("./monteCarloHard%s/", mod)
 if( dir.exists(dirOut) ){
         #
         isGo = readline(sprintf("Overwrite %s Simulation?\nCtrl-C to Escape, Enter to Overwrite, or A to Append: ", dirOut))
@@ -158,7 +158,7 @@ foreach(i=rev(start:(start+MM)), .options.multicore = opts) %dopar% {
 	        c('lsdo', 'lalpha'),
 	        lower   = c(log(0.001), log(M)),
 	        upper   = c(log(1), log(100)),
-	        gaBoost = list(run=10, parallel=F, popSize=10^3),
+	        gaBoost = list(run=10, parallel=F, popSize=10^4),
 	        persistFor = 5,
 	        fitQ    = F
 	)
