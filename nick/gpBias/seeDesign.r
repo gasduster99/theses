@@ -5,7 +5,7 @@ rm(list=ls())
 #
 
 #
-place = './modsSchnuteExpN150/'
+place = './modsSchnuteFlatT30N150Wide/' #'./modsSchnuteExpN150/'
 
 #
 datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
@@ -17,6 +17,7 @@ for(datF in datFiles){
 	#
 	dat = readRDS(datF)
 	#
+	print(c(dat$xi, dat$zeta))
 	xiList = c(xiList, dat$xi)
 	zetaList = c(zetaList, dat$zeta)
 }

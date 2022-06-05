@@ -94,7 +94,7 @@ zeta  = zetas[who]
 
 #safely create dirOut
 start = 1
-dirOut = sprintf("./monteCarloHard%s/", mod)
+dirOut = sprintf("./monteCarloHHard%s/", mod)
 if( dir.exists(dirOut) ){
         #
         isGo = readline(sprintf("Overwrite %s Simulation?\nCtrl-C to Escape, Enter to Overwrite, or A to Append: ", dirOut))
@@ -167,7 +167,7 @@ foreach(i=rev(start:(start+MM)), .options.multicore = opts) %dopar% {
 	        c('lsdo', 'lalpha', 'lbeta'),
 	        lower   = c(log(0.001), log(M), -10),
 	        upper   = c(log(1), log(100), -2),      #log(getBeta(100, -1, M, P0))
-	        gaBoost = list(run=100, parallel=F, popSize=10^3),
+	        gaBoost = list(run=100, parallel=F, popSize=10^4),
 	        persistFor = 5,
 	        fitQ    = F
 	)

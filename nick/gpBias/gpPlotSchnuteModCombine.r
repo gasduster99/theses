@@ -273,12 +273,12 @@ lKy = D$lK
 lKV = diag(c(D$lKV))
 lKX = cbind(1, D$xiSeed, D$zetaSeed)
 
-##
-#xAug = seq(0.75, 4, 0.5) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
-#aug = cbind(rep(1, length(xAug)), xAug, 1/(xAug+2))
-#lKX = rbind(lKX, aug)
-#lKy = c(lKy, log(P0))
-#lFV = diag(c(D$lFV, rep(0, length(xAug))))
+#
+xAug = seq(0.75, 4, 0.5) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+aug = cbind(rep(1, length(xAug)), xAug, 1/(xAug+2))
+lKX = rbind(lKX, aug)
+lKy = c(lKy, log(P0))
+lFV = diag(c(D$lFV, rep(0, length(xAug))))
 
 #
 lKaxes = lKX[,2:3]

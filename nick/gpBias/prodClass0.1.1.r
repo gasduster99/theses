@@ -103,7 +103,9 @@ prodModel = R6Class("ProdModel", lock_objects=FALSE,
 		plotRS 	 = plotRS,
 		#
 		save = function(fileName){ saveRDS(self, file=fileName) },
-		load = function(fileName){ readRDS(fileName) }
+		load = function(fileName){ readRDS(fileName) },
+		#
+		like = function(data){ sum(private$dLikes[[self$model$observation]](self, data)) }
 	),
 	
 	#
