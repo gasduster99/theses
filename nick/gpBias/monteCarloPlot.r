@@ -161,7 +161,7 @@ getlV = function(fit, MM=10^4, samples=F){
 M = 0.2
 P0 = 10000
 #
-mod = "FlatT30N150Wide"
+mod = "HHardFlatT30N150Wide"
 dirOut = sprintf("./monteCarlo%s/", mod)
 dirIn = sprintf("./modsSchnute%s/", mod)
 
