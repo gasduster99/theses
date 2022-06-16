@@ -187,8 +187,8 @@ xiTop = 3.5
 M = 0.2
 
 #
-D = getData(place, c(xiBot, xiTop), c(zetaBot, zetaTop))
-D = D[D$lFV>0 & D$lKV>0,]
+D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
+#D = D[D$lFV>0 & D$lKV>0,]
 #D = D[c(rep(T, 7), F),]
 #D = D[seq(1, nrow(D), 2),]
 #D = Dall[Dall$lF<4,]
@@ -207,11 +207,11 @@ lFV = diag(D$lFV)
 lFX = cbind(1, D$xiSeed, D$zetaSeed)
 
 #
-xAug = seq(0.75, 4, 0.5) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
 aug = cbind(rep(1, length(xAug)), xAug, 1/(xAug+2))
 lFX = rbind(lFX, aug)
 lFy = c(lFy, log(xAug*M))
-lFV = diag(c(D$lFV, rep(0, length(xAug))))
+lFV = diag(c(D$lFV, rep(mean(D$lFV), length(xAug))))
 
 #
 lFaxes = lFX[,2:3]

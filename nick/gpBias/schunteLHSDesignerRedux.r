@@ -89,7 +89,7 @@ FMsy = function(alpha, gamma, M){
 #
 
 #
-place = './modsSchnuteExpN150Wide/'
+place = './modsSchnuteN200WWide/'
 odeMethod = "lsode"
 
 #safely create place
@@ -116,13 +116,13 @@ B0 = 10000
 M  = 0.2
 
 #number of samples in design
-n = 150 #500 maxed out method
+n = 2 #150 #500 maxed out method
 
 #LHS boundaries
-xiMin = 0.5
-xiMax = 3.5 #2 #3.5
-zetaMin = 0.2 
-zetaMax = 0.7 
+xiMin = 3.25 #0.5
+xiMax = 3.75 #3.5 
+zetaMin = 0.32 #0.15 
+zetaMax = 0.43 #0.7 
 #zeta range should not be too small
 
 #xi and zeta Bins (bin defined by left edge right egde not used) [n+1 used to give n left edges]
