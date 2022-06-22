@@ -113,7 +113,7 @@ FtFmsy = c(FtFmsy, rep(1, 15))
 TT = length(FtFmsy)
 time = tt:TT
 #
-M = 0.2
+M = 0.1
 #
 P0 = 10000 #3000
 
