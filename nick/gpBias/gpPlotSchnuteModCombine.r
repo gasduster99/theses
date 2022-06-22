@@ -173,7 +173,7 @@ getData = function(dir, xiRange, zetaRange){
 
 #
 P0 = 10000
-mod = "HHardFlatT30N150Wide" #"ExpT45N150Wide" ##"ExpT30L4N150Wide" # #"ExpT45N150" #
+mod = "HHardFlatT30N150WWideExtra" #"ExpT45N150Wide" ##"ExpT30L4N150Wide" # #"ExpT45N150" #
 place = sprintf("./modsSchnute%s/", mod)
 
 #
@@ -188,8 +188,8 @@ M = 0.2
 
 #
 D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
-#D = D[D$lFV>0 & D$lKV>0,]
-#D = D[c(rep(T, 7), F),]
+D = D[D$lFV>0 & D$lKV>0,]
+#D = D[c(rep(T, 10), F),]
 #D = D[seq(1, nrow(D), 2),]
 #D = Dall[Dall$lF<4,]
 #plot(D[,1], D[,2], pch=20)
