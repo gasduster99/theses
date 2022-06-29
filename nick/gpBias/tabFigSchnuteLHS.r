@@ -149,10 +149,10 @@ dPdt = function(t, P, lalpha, lbeta, gamma, M, catch){
 #M = 0.2
 #P0 = 10000
 #
-mod = "FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
+mod = "HHardFlatT30N150WWide" #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
 dir = sprintf("./modsSchnute%s/", mod)
-M = 0.2
 P0 = 10000
+M = 0.2
 
 #LHS boundaries
 xiMin = 0.5
@@ -423,8 +423,8 @@ dev.off()
 tmp = prodModel$new(
 	dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)}, #mode
 	time=fit$time, catch=fit$catch, M=M,		#BH        #constants
-	alpha=fit$alpha, beta=fit$alpha, gamma=-1,	#parameters
-	lalpha=fit$lalpha, lbeta=fit$lalpha,		#reparameterize
+	alpha=fit$alpha, beta=fit$beta, gamma=-1,	#parameters
+	lalpha=fit$lalpha, lbeta=fit$lbeta,		#reparameterize
 	lq=log(0.00049), lsdo=log(0.01160256)		#nuisance parameters
 )
 #tmp = prodModel$new(
@@ -434,14 +434,28 @@ tmp = prodModel$new(
 #        lalpha=log(fit$alpha), lbeta=log(P0),       #reparameterize
 #        lq=log(0.00049), lsdo=log(0.01160256) #log(0.1160256)
 #)
-dPost = t(mapply( function(a, b){
+
+#
+#dPost = t(mapply( function(a, b){
+dPost = c()
+for(i in 1:nrow(sam)){
 	#
-	tmp$lalpha = a
-	tmp$lbeta  = b
+	aa = sam[i,1]
+	bb = sam[i,2]
+	#
+	tmp$lalpha = aa
+	tmp$lbeta  = bb
 	tmp$iterate('lsode')
+	
 	#
-	return( tmp$N/tmp$N[1] )
-}, sam[,1], sam[,2] ))
+	out = tmp$N/tmp$N[1]
+	if( length(out)!=length(tmp$time) ){ next } 
+	dPost = rbind(dPost, out)
+
+	#return(numeric(0)) }
+	#return( out )
+#}, sam[,1], sam[,2] ))
+}
 
 #
 png(sprintf("depPostCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
@@ -467,15 +481,30 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
-#
-bPost = t(mapply( function(a, b){
-	#
-	tmp$lalpha = a
-	tmp$lbeta  = b
-	tmp$iterate('lsode')
-	#
-	return( tmp$N )
-}, sam[,1], sam[,2] ))
+##
+#bPost = t(mapply( function(a, b){
+#	#
+#	tmp$lalpha = a
+#	tmp$lbeta  = b
+#	tmp$iterate('lsode')
+#	#
+#	return( tmp$N )
+#}, sam[,1], sam[,2] ))
+bPost = c()
+for(i in 1:nrow(sam)){
+        #
+        aa = sam[i,1]
+        bb = sam[i,2]
+        #
+        tmp$lalpha = aa
+        tmp$lbeta  = bb
+        tmp$iterate('lsode')
+
+        #
+        out = tmp$N
+        if( length(out)!=length(tmp$time) ){ next }
+        bPost = rbind(bPost, out)
+}
 
 #
 png(sprintf("bioPostCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
@@ -763,14 +792,33 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
-dPost = t(mapply( function(a, b){
+#dPost = t(mapply( function(a, b){
+#	#
+#	tmp$lalpha = a
+#	tmp$lbeta  = b
+#	tmp$iterate('lsode')
+#	#
+#	return( tmp$N/tmp$N[1] )
+#}, sam[,1], sam[,2] ))
+dPost = c()
+for(i in 1:nrow(sam)){
 	#
-	tmp$lalpha = a
-	tmp$lbeta  = b
+	aa = sam[i,1]
+	bb = sam[i,2]
+	#
+	tmp$lalpha = aa
+	tmp$lbeta  = bb
 	tmp$iterate('lsode')
+	
 	#
-	return( tmp$N/tmp$N[1] )
-}, sam[,1], sam[,2] ))
+	out = tmp$N/tmp$N[1]
+	if( length(out)!=length(tmp$time) ){ next } 
+	dPost = rbind(dPost, out)
+
+	#return(numeric(0)) }
+	#return( out )
+#}, sam[,1], sam[,2] ))
+}
 
 #
 png(sprintf("depPostCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
@@ -796,15 +844,31 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
-#
-bPost = t(mapply( function(a, b){
-	#
-	tmp$lalpha = a
-	tmp$lbeta  = b
-	tmp$iterate('lsode')
-	#
-	return( tmp$N )
-}, sam[,1], sam[,2] ))
+##
+#bPost = t(mapply( function(a, b){
+#	#
+#	tmp$lalpha = a
+#	tmp$lbeta  = b
+#	tmp$iterate('lsode')
+#	#
+#	return( tmp$N )
+#}, sam[,1], sam[,2] ))
+bPost = c()
+for(i in 1:nrow(sam)){
+        #
+        aa = sam[i,1]
+        bb = sam[i,2]
+        #
+        tmp$lalpha = aa
+        tmp$lbeta  = bb
+        tmp$iterate('lsode')
+
+        #
+        out = tmp$N
+        if( length(out)!=length(tmp$time) ){ next }
+        bPost = rbind(bPost, out)
+}
+
 
 #
 png(sprintf("bioPostCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
@@ -1075,15 +1139,34 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
-#
-dPost = t(mapply( function(a, b){
+##
+#dPost = t(mapply( function(a, b){
+#	#
+#	tmp$lalpha = a
+#	tmp$lbeta  = b
+#	tmp$iterate('lsode')
+#	#
+#	return( tmp$N/tmp$N[1] )
+#}, sam[,1], sam[,2] ))
+dPost = c()
+for(i in 1:nrow(sam)){
 	#
-	tmp$lalpha = a
-	tmp$lbeta  = b
+	aa = sam[i,1]
+	bb = sam[i,2]
+	#
+	tmp$lalpha = aa
+	tmp$lbeta  = bb
 	tmp$iterate('lsode')
+	
 	#
-	return( tmp$N/tmp$N[1] )
-}, sam[,1], sam[,2] ))
+	out = tmp$N/tmp$N[1]
+	if( length(out)!=length(tmp$time) ){ next } 
+	dPost = rbind(dPost, out)
+
+	#return(numeric(0)) }
+	#return( out )
+#}, sam[,1], sam[,2] ))
+}
 
 #
 png(sprintf("depPostCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
@@ -1109,15 +1192,30 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
-#
-bPost = t(mapply( function(a, b){
-	#
-	tmp$lalpha = a
-	tmp$lbeta  = b
-	tmp$iterate('lsode')
-	#
-	return( tmp$N )
-}, sam[,1], sam[,2] ))
+##
+#bPost = t(mapply( function(a, b){
+#	#
+#	tmp$lalpha = a
+#	tmp$lbeta  = b
+#	tmp$iterate('lsode')
+#	#
+#	return( tmp$N )
+#}, sam[,1], sam[,2] ))
+bPost = c()
+for(i in 1:nrow(sam)){
+        #
+        aa = sam[i,1]
+        bb = sam[i,2]
+        #
+        tmp$lalpha = aa
+        tmp$lbeta  = bb
+        tmp$iterate('lsode')
+
+        #
+        out = tmp$N
+        if( length(out)!=length(tmp$time) ){ next }
+        bPost = rbind(bPost, out)
+}
 
 #
 png(sprintf("bioPostCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
@@ -1418,14 +1516,33 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
-dPost = t(mapply( function(a, b){
+#dPost = t(mapply( function(a, b){
+#	#
+#	tmp$lalpha = a
+#	tmp$lbeta  = b
+#	tmp$iterate('lsode')
+#	#
+#	return( tmp$N/tmp$N[1] )
+#}, sam[,1], sam[,2] ))
+dPost = c()
+for(i in 1:nrow(sam)){
 	#
-	tmp$lalpha = a
-	tmp$lbeta  = b
+	aa = sam[i,1]
+	bb = sam[i,2]
+	#
+	tmp$lalpha = aa
+	tmp$lbeta  = bb
 	tmp$iterate('lsode')
+	
 	#
-	return( tmp$N/tmp$N[1] )
-}, sam[,1], sam[,2] ))
+	out = tmp$N/tmp$N[1]
+	if( length(out)!=length(tmp$time) ){ next } 
+	dPost = rbind(dPost, out)
+
+	#return(numeric(0)) }
+	#return( out )
+#}, sam[,1], sam[,2] ))
+}
 
 #
 png(sprintf("depPostCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
@@ -1451,15 +1568,30 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
-#
-bPost = t(mapply( function(a, b){
-	#
-	tmp$lalpha = a
-	tmp$lbeta  = b
-	tmp$iterate('lsode')
-	#
-	return( tmp$N )
-}, sam[,1], sam[,2] ))
+##
+#bPost = t(mapply( function(a, b){
+#	#
+#	tmp$lalpha = a
+#	tmp$lbeta  = b
+#	tmp$iterate('lsode')
+#	#
+#	return( tmp$N )
+#}, sam[,1], sam[,2] ))
+bPost = c()
+for(i in 1:nrow(sam)){
+        #
+        aa = sam[i,1]
+        bb = sam[i,2]
+        #
+        tmp$lalpha = aa
+        tmp$lbeta  = bb
+        tmp$iterate('lsode')
+
+        #
+        out = tmp$N
+        if( length(out)!=length(tmp$time) ){ next }
+        bPost = rbind(bPost, out)
+}
 
 #
 png(sprintf("bioPostCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
@@ -1738,14 +1870,33 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
-dPost = t(mapply( function(a, b){
-	#
-	tmp$lalpha = a
-	tmp$lbeta  = b
-	tmp$iterate('lsode')
-	#
-	return( tmp$N/tmp$N[1] )
-}, sam[,1], sam[,2] ))
+#dPost = t(mapply( function(a, b){
+#	#
+#	tmp$lalpha = a
+#	tmp$lbeta  = b
+#	tmp$iterate('lsode')
+#	#
+#	return( tmp$N/tmp$N[1] )
+#}, sam[,1], sam[,2] ))
+dPost = c()
+for(i in 1:nrow(sam)){
+        #
+        aa = sam[i,1]
+        bb = sam[i,2]
+        #
+        tmp$lalpha = aa
+        tmp$lbeta  = bb
+        tmp$iterate('lsode')
+        
+        #
+        out = tmp$N/tmp$N[1]
+        if( length(out)!=length(tmp$time) ){ next }
+        dPost = rbind(dPost, out)
+        
+        #return(numeric(0)) }
+        #return( out )
+#}, sam[,1], sam[,2] ))
+}
 
 #
 png(sprintf("depPostCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
@@ -1771,15 +1922,31 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
-#
-bPost = t(mapply( function(a, b){
-	#
-	tmp$lalpha = a
-	tmp$lbeta  = b
-	tmp$iterate('lsode')
-	#
-	return( tmp$N )
-}, sam[,1], sam[,2] ))
+##
+#bPost = t(mapply( function(a, b){
+#	#
+#	tmp$lalpha = a
+#	tmp$lbeta  = b
+#	tmp$iterate('lsode')
+#	#
+#	return( tmp$N )
+#}, sam[,1], sam[,2] ))
+bPost = c()
+for(i in 1:nrow(sam)){
+        #
+        aa = sam[i,1]
+        bb = sam[i,2]
+        #
+        tmp$lalpha = aa
+        tmp$lbeta  = bb
+        tmp$iterate('lsode')
+
+        #
+        out = tmp$N
+        if( length(out)!=length(tmp$time) ){ next }
+        bPost = rbind(bPost, out)
+}
+
 
 #
 png(sprintf("bioPostCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
@@ -1990,14 +2157,33 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
-dPost = t(mapply( function(a, b){
-	#
-	tmp$lalpha = a
-	tmp$lbeta  = b
-	tmp$iterate('lsode')
-	#
-	return( tmp$N/tmp$N[1] )
-}, sam[,1], sam[,2] ))
+dPost = c()
+for(i in 1:nrow(sam)){
+        #
+        aa = sam[i,1]
+        bb = sam[i,2]
+        #
+        tmp$lalpha = aa
+        tmp$lbeta  = bb
+        tmp$iterate('lsode')
+
+        #
+        out = tmp$N/tmp$N[1]
+        if( length(out)!=length(tmp$time) ){ next }
+        dPost = rbind(dPost, out)
+
+        #return(numeric(0)) }
+        #return( out )
+#}, sam[,1], sam[,2] ))
+}
+#dPost = t(mapply( function(a, b){
+#	#
+#	tmp$lalpha = a
+#	tmp$lbeta  = b
+#	tmp$iterate('lsode')
+#	#
+#	return( tmp$N/tmp$N[1] )
+#}, sam[,1], sam[,2] ))
 
 #
 png(sprintf("depPostCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
@@ -2023,15 +2209,30 @@ polygon( c(fit$time, rev(fit$time)),
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", 'red'), lwd=3)
 dev.off()
 
-#
-bPost = t(mapply( function(a, b){
-	#
-	tmp$lalpha = a
-	tmp$lbeta  = b
-	tmp$iterate('lsode')
-	#
-	return( tmp$N )
-}, sam[,1], sam[,2] ))
+##
+#bPost = t(mapply( function(a, b){
+#	#
+#	tmp$lalpha = a
+#	tmp$lbeta  = b
+#	tmp$iterate('lsode')
+#	#
+#	return( tmp$N )
+#}, sam[,1], sam[,2] ))
+bPost = c()
+for(i in 1:nrow(sam)){
+        #
+        aa = sam[i,1]
+        bb = sam[i,2]
+        #
+        tmp$lalpha = aa
+        tmp$lbeta  = bb
+        tmp$iterate('lsode')
+
+        #
+        out = tmp$N
+        if( length(out)!=length(tmp$time) ){ next }
+        bPost = rbind(bPost, out)
+}
 
 #
 png(sprintf("bioPostCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))

@@ -439,6 +439,7 @@ show = seq(1, length(xCols), length.out=nCols) #20)
 #        fill = rev(xCols[show]), 
 #        xpd = NA
 #)
+points(D$xiSeed, D$zetaSeed)
 dev.off()
 
 #zeta bias
@@ -473,6 +474,7 @@ show = seq(1, length(yCols), length.out=20)
 #        fill = rev(yCols[show]), 
 #        xpd = NA
 #)
+points(D$xiSeed, D$zetaSeed)
 dev.off()
 
 #euc bias
@@ -508,6 +510,7 @@ show = seq(1, length(eucCols), length.out=20)
 #        fill = rev(eucCols[show]), 
 #        xpd = NA
 #)
+points(D$xiSeed, D$zetaSeed)
 dev.off()
 
 #K bias
