@@ -131,7 +131,9 @@ datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen
 #
 registerDoParallel(46) 
 opts = list(preschedule=F)
-foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
+#foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
+foreach(i=floor(length(datFiles)/2):length(datFiles), .options.multicore = opts) %dopar% {
+#foreach(i=seq(floor(length(datFiles)/2)-1, 1, -1), .options.multicore = opts) %dopar% {
 #for(i in 1:length(datFiles)){
 	#
 	#DATA
@@ -186,7 +188,7 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	        c('lsdo', 'lalpha'), 
 	        lower   = c(log(0.001), log(M)), 
 	        upper   = c(log(1), log(100)),
-	        gaBoost = list(run=10, parallel=F, popSize=10^3),
+	        gaBoost = list(run=10, parallel=F, popSize=10^4),
 		persistFor = 5,
 		fitQ    = F
 	)
@@ -195,7 +197,7 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	        c('lsdo', 'lalpha', 'lbeta'), 
 	        lower   = c(log(0.001), log(M), -10), 	
 	        upper   = c(log(1), log(100), -2), 	#log(getBeta(100, -1, M, P0))
-	        gaBoost = list(run=100, parallel=F, popSize=10^3),
+	        gaBoost = list(run=100, parallel=F, popSize=10^4),
 		persistFor = 5,
 		fitQ    = F
 	)

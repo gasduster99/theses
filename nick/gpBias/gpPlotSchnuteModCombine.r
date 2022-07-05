@@ -430,6 +430,7 @@ image(xiStar, zetaStar, xiBias/xiStar,
         zlim = c(1, max(xiBias/xiStar, 1, na.rm=T)),
 	add  = T
 )
+points(D$xiSeed, D$zetaSeed)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 show = seq(1, length(xCols), length.out=nCols) #20)
@@ -438,6 +439,7 @@ show = seq(1, length(xCols), length.out=nCols) #20)
 #        fill = rev(xCols[show]), 
 #        xpd = NA
 #)
+points(D$xiSeed, D$zetaSeed)
 dev.off()
 
 #zeta bias
@@ -463,6 +465,7 @@ image(xiStar, zetaStar, zetaBias,
 	cex.lab = 1.5,
         cex.main= 1.5
 )
+points(D$xiSeed, D$zetaSeed)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 show = seq(1, length(yCols), length.out=20) 
@@ -471,6 +474,7 @@ show = seq(1, length(yCols), length.out=20)
 #        fill = rev(yCols[show]), 
 #        xpd = NA
 #)
+points(D$xiSeed, D$zetaSeed)
 dev.off()
 
 #euc bias
@@ -506,6 +510,7 @@ show = seq(1, length(eucCols), length.out=20)
 #        fill = rev(eucCols[show]), 
 #        xpd = NA
 #)
+points(D$xiSeed, D$zetaSeed)
 dev.off()
 
 #K bias
@@ -609,6 +614,7 @@ image(xiStar, zetaStar, kBias/P0,
         zlim = c(1, max(kBias/P0, 1, na.rm=T)),
         add  = T
 )
+points(D$xiSeed, D$zetaSeed)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 show = seq(1, length(xCols), length.out=nCol) #20)
