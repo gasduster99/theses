@@ -173,7 +173,7 @@ getData = function(dir, xiRange, zetaRange){
 
 #
 P0 = 10000
-mod = "HHardFlatT30N150WWideExtra" #"ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" #"ExpT45N150Wide" ##"ExpT30L4N150Wide" # #"ExpT45N150" #
+mod = "ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" # #"ExpT45N150Wide" ##"ExpT30L4N150Wide" # #"ExpT45N150" #
 place = sprintf("./modsSchnute%s/", mod)
 
 #
@@ -726,6 +726,7 @@ image(xiStar, zetaStar, t(t(bMSYBias)/(P0*zetaStar)),
         zlim = c(1, max(t(t(bMSYBias)/(P0*zetaStar)), 1, na.rm=T)),
         add  = T
 )
+points(D$xiSeed, D$zetaSeed)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 show = seq(1, length(xCols), length.out=nCol) #20)

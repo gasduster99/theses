@@ -89,7 +89,7 @@ FMsy = function(alpha, gamma, M){
 #
 
 #
-place = './modsSchnuteHHardFlatT30N150WWideExtra/'
+place = './modsSchnuteHHardExpT30N150M0.1Wide/'
 odeMethod = "lsode"
 
 #safely create place
@@ -108,12 +108,12 @@ if( dir.exists(place) ){
 } else{ dir.create(place, showWarnings=FALSE) }
 
 #
-TT=30
+TT = 30
 FtFmsy = rep(1, TT) #make faux catch
 
 #
 B0 = 10000
-M  = 0.2
+M  = 0.1
 
 #number of samples in design
 n = 150 #500 maxed out method

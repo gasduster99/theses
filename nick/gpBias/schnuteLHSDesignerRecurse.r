@@ -3,13 +3,21 @@ rm(list=ls())
 #
 library(GA)
 library(crch)
+library(plgp)
+library(gMOIP)
 library(deldir)
 library(pracma)
 library(numDeriv)
 library(rootSolve)
+library(RColorBrewer)
 #
 source('prodClass0.1.1.r')
 
+#make convex hull
+#https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/chull
+#maximin accept reject scheme, rejecting outisdie of the hull
+#https://search.r-project.org/CRAN/refmans/gMOIP/html/inHull.html
+#https://askubuntu.com/questions/913493/gsl-config-not-found
 
 #
 #FUNCTIONS
@@ -86,7 +94,7 @@ FMsy = function(alpha, gamma, M){
 }
 
 #
-lhsMake = function(xiLim, zetaLim, n, save=F, append=F){
+lhsMake = function(xiLim, zetaLim, n, batch, save=F){
 	#somehow define place when save!=F
 	#deal with append behaviour
 	
@@ -125,8 +133,8 @@ lhsMake = function(xiLim, zetaLim, n, save=F, append=F){
 	scopeRun = seq(-scope, scope, length.out=scopeN)
 	#start at fudge (hessian sd) slowing increase fudge by fudgeFactor so that we eventually search flat region, but still allow for repetition at calculated sd 
 	fudge = 1
-	giveUp = 100
-	fudgeFactor = 0.1
+	giveUp = 10 #100
+	fudgeFactor = 0.1 #0.01
 	#start df at dfStart with thin tails (to explore curvature), decrement by dfFactor to transition to explore flat regiem 
 	dfStart = 100
 	df = dfStart
@@ -167,15 +175,7 @@ lhsMake = function(xiLim, zetaLim, n, save=F, append=F){
 			#print('Skip Fmsy')
 			next
 		}
-		#BStar = PBar(as, bs, gs, ff, M)
-		#BZero = PBar(as, bs, gs, 0, M)	
-		##print(c(as, bs, gs))
-		#print(c(xi, FMsy(as, gs, M)/M))
-		#print(c(ff, FMsy(as, gs, M)))
-		#print(c(zs, BStar/BZero))
-		#print('')
-		##if( reverse a,b,g->xi,zeta and xi,zeta->a,b,g fail ){ next } #reject
-	
+			
 		#find left edge of bin sampled
 		bin = max(which(zetaL<=zs))
 		#if sampled bin not yet sampled, then save
@@ -198,10 +198,16 @@ lhsMake = function(xiLim, zetaLim, n, save=F, append=F){
 			#datGen$plotMean()
 			
 			#	
-			if( save ){
+			if( save!=F ){
+				if( save==T ){ 
+					#create place
+					place=date(); dir.create(place, showWarnings=FALSE)
+				}else{ place=save }
 				#NOTE: catelogue by bin lables (left edges of xiL, zetaL)s  xiShuffle[xii]
-				datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(xiShuffle[xii], binTrk), round(zetaL[bin], binTrk)))
 				#datGen$save(sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(xiL[bin], binTrk), round(zetaL[bin], binTrk)))
+				datName = sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(xiShuffle[xii], binTrk), round(zetaL[bin], binTrk))
+				datGen$save(datName)	
+				write.table(t(c(batch, datName)), sprintf("%s/appends.csv", outPlace), sep=',', row.names=F, col.names=F, append=T)
 			}
 
 			#knobs for making the design
@@ -211,71 +217,334 @@ lhsMake = function(xiLim, zetaLim, n, save=F, append=F){
 			fudge = 1   	#reset fudge to thin tails
 		}else{ # catch case where hyperbola gap requires heavy tails
 			df = max(1, df-1)  #decrement df to broadend search to get the center bald spot
-			fudge = fudge+0.01 #increase fudge factor to get a wider sd
+			fudge = fudge+fudgeFactor #increase fudge factor to get a wider sd
 			if( fudge>giveUp ){ break } #give up (it mostly just misses one of two bins so its usually fine)
-		}
+		}	
 	}
 	#
-	return( list(xiList=xiList, zetaList=zetaList) )
+	#return( list(xiList=xiList, zetaList=zetaList) )
+	return( cbind(xiList[!is.na(xiList)], zetaList[!is.na(zetaList)]) )
 }
 
 #
-maximin = function(n, xlim, ylim, TT=10^7, Xorig=NULL){ 
+maximinAdd = function(n, xlim, ylim, TT=5e5, XStart=NULL) {
+        #n : number of points to draw
+        #m : dimension of space to draw from
+        #
+        #value :  only retunrs new additions
+        
 	#
-	X <- matrix(runif(n*2), ncol=2) ## initial design 
-	X[,1] = X[,1]*(xlim[2]-xlim[1]) + xlim[1]
-	X[,2] = X[,2]*(ylim[2]-ylim[1]) + ylim[1]
-	d <- distance(X) 
-	d <- d[upper.tri(d)] 
-	md <- min(d) 
-	if( !is.null(Xorig) ){ 		## new code 
-		md2 <- min(distance(X, Xorig)) 
-		if(md2 < md) md <- md2
-	}
-	for( t in 1:TT ){ 
-		row <- sample(1:n, 1) 
-		xold <- X[row,] 	## random row selection 
-		X[row,1] = runif(1, xlim[1], xlim[2]) 	## random new row 
-		X[row,2] = runif(1, ylim[1], ylim[2])
-		d <- distance(X) 
-		d <- d[upper.tri(d)] 
-		mdprime <- min(d) 
-		if(!is.null(Xorig)){ 
-			## new code 
-			mdprime2 <- min(distance(X, Xorig)) 
-			if(mdprime2 < mdprime){ 
-				mdprime <- mdprime2 
-			}
-		} 
-		if(mdprime > md){ 	##accept
-			md <- mdprime	 
-		} else{ 
-			X[row,] <- xold ##reject
-		}
-	}
-	return(X) 
+        X = matrix(NA, nrow=n, ncol=2)
+	X[,1] = runif(n, xlim[1], xlim[2])   ## random new row
+	X[,2] = runif(n, ylim[1], ylim[2])
+	d = distance(X)
+        d = d[upper.tri(d)]
+        #
+        md = min(d)
+        #handle initiated design
+        if(!is.null(XStart)){
+                md2 = min(distance(X, XStart))
+                if(md2 < md){ md=md2 }
+        }
+        for(t in 1:TT){
+                #propse a row
+                row = sample(1:n, 1)
+                xold = X[row,]
+                #assume we accept
+                #X[row,] = runif(m)
+		X[row,1] = runif(1, xlim[1], xlim[2])   ## random new row 
+                X[row,2] = runif(1, ylim[1], ylim[2])
+                d = distance(X) #new distance
+                d = d[upper.tri(d)]
+                mdprime = min(d)
+                #handle initial design (make min dist smaller if neccesary with DStart included)
+                if(!is.null(XStart)){
+                        mdprime2 = min(distance(X, XStart))
+                        if(mdprime2 < mdprime) mdprime=mdprime2
+                }
+                #
+                if( mdprime > md ){ md=mdprime ## accept 
+                } else{ X[row,]=xold } ## reject
+        }
+        #return only the augmenting points
+        return(X)
 }
-#lhsRead = function()
+
+#
+maximinAddHull = function(n, vchull, TT=5e5, XStart=NULL) {
+        #n : number of points to draw
+        #m : dimension of space to draw from
+        #
+        #value :  only returns new additions
+        
+	#
+	xlim = c(min(vchull[,1]), max(vchull[,1]))
+	ylim = c(min(vchull[,2]), max(vchull[,2]))
+	#
+        X = matrix(NA, nrow=n, ncol=2)
+	X[,1] = rep(mean(xlim), n) ## start everything in a place that is guaranteed to be inside the hull
+	X[,2] = rep(mean(ylim), n) 
+	d = distance(X)
+        d = d[upper.tri(d)]
+        #
+        md = min(d)
+        #handle initiated design
+        if(!is.null(XStart)){
+                md2 = min(distance(X, XStart))
+                if(md2 < md){ md=md2 }
+        }
+	propX = cbind(runif(TT, xlim[1], xlim[2]), runif(TT, ylim[1], ylim[2]))
+	isIn = inHull(propX, vchull)>=0
+	inX = propX[isIn,]
+	tList = 1:sum(isIn)
+        for(t in tList){
+                #propse a row
+                row = sample(1:n, 1)
+                xold = X[row,]
+                #assume we accept
+                X[row,] = inX[t,] ## random new row 
+                d = distance(X) #new distance
+                d = d[upper.tri(d)]
+                mdprime = min(d)
+                #handle initial design (make min dist smaller if neccesary with DStart included)
+                if(!is.null(XStart)){
+                        mdprime2 = min(distance(X, XStart))
+                        if(mdprime2 < mdprime) mdprime=mdprime2
+                } 
+		#
+		if( mdprime > md ){ md=mdprime ## accept 
+                } else{ X[row,]=xold } ## reject
+        	
+	}
+        #return only the augmenting points
+        return(X)
+}
+
+#
+move01tolim = function(coord01, lim){
+	coord01*(lim[2]-lim[1])+lim[1]
+}
+
+#
+movelimto01 = function(coordlim, lim){
+	(coordlim-lim[1])/(lim[2]-lim[1])
+}
+
+#
+maximinAddHullScale = function(n, xlim, ylim, TT=1e5, XStart=NULL) {
+        #n : number of points to draw
+        #m : dimension of space to draw from
+        #
+        #value :  only returns new additions
+        
+	#
+	ZStart = cbind( movelimto01(XStart[,1], xlim), movelimto01(XStart[,2], ylim) )
+	vchull = ZStart[chull(ZStart),]
+	#plot(ZStart)
+	#polygon(vchull)
+
+	#
+        Z = matrix(NA, nrow=n, ncol=2)
+	Z[,1] = rep(vchull[1,1], n) ## start everything in a place that is guaranteed to be inside the hull
+	Z[,2] = rep(vchull[1,2], n) 
+	#
+	d = distance(Z)
+        d = d[upper.tri(d)]
+        #
+        md = min(d)
+        #handle initiated design
+        if(!is.null(ZStart)){
+                md2 = min(distance(Z, ZStart))
+                if(md2 < md){ md=md2 }
+        }
+	#
+	propZ = cbind(runif(TT), runif(TT))
+	isIn = inHull(propZ, vchull)>=0
+	inZ = propZ[isIn,]
+	#
+	tList = 1:sum(isIn)
+        for(t in tList){
+                #propse a row
+                row = sample(1:n, 1)
+                zold = Z[row,]
+                #assume we accept
+                Z[row,] = inZ[t,] ## random new row 
+                d = distance(Z) #new distance
+                d = d[upper.tri(d)]
+                mdprime = min(d)
+                #handle initial design (make min dist smaller if neccesary with DStart included)
+                if(!is.null(ZStart)){
+                        mdprime2 = min(distance(Z, ZStart))
+                        if(mdprime2 < mdprime) mdprime=mdprime2
+                } 
+		#
+		if( mdprime > md ){ md=mdprime ## accept 
+                } else{ Z[row,]=zold } ## reject
+        	
+	}
+	#points(Z, pch=19)
+	#addCircle(Z[,1], Z[,2], sqrt(md))
+        
+	#
+	X = cbind( move01tolim(Z[,1], xlim), move01tolim(Z[,2], ylim) )
+	out = list(X=X, Z=Z, md=sqrt(md))
+	
+	#
+	return( out )
+}
+
+#
+addCircle = function(centerx, centery, radius, length=200){
+	# prepare "circle data"
+	theta = seq(0, 2 * pi, length=length) # angles for drawing points around the circle
+	
+	# draw the circle
+	lines(x = radius * cos(theta) + centerx, y = radius * sin(theta) + centery)	
+}
 
 #
 #MAIN
 #
 
 #
-library(plgp)
+thresh = 0.02 
+r01 = 1
+n = 28 #about 3 flushes all of the thialacia ranks
+#r = 1
+#r1 = r
+#t = 1
+#
+xlim = c(0.25, 3.75)
+ylim = c(0.15, 0.7)
 
 #
-l = lhsMake(c(0.25, 3.75), c(0.15, 0.7), 20)
-l = matrix(unlist(l), ncol=2)
+inPlace = './modsSchnuteHHardFlatT30N150WWide/' #Extra/'
+outPlace = sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
 #
-nn = 10
-boxGrid = cbind(seq(0.25, 3.75, length.out=nn*2), rep(0.15, nn*2))
-boxGrid = rbind(boxGrid, cbind(seq(0.25, 3.75, length.out=nn*2), rep(0.7, nn*2)) )
-boxGrid = rbind(boxGrid, cbind(rep(0.25, nn*0.5), seq(0.15, 0.7, length.out=nn*0.5)) )
-boxGrid = rbind(boxGrid, cbind(rep(3.75, nn*0.5), seq(0.15, 0.7, length.out=nn*0.5)) )
-#
-m = maximin(5, c(0.25, 3.75), c(0.15, 0.7), Xorig=rbind(l, boxGrid))
+datFiles = sprintf("%s%s", inPlace, list.files(path=inPlace, pattern=glob2rx("datGen*.rda")))
 
+#start append file
+#remove overwrite options for now
+	#later read append file to roll back appends
+#add in a line to add to the append file
+
+#
+oldMaxBatch = 0
+#safely create place
+if( dir.exists(outPlace) ){
+        #
+        isGo = readline(sprintf("Overwrite %s Design?\nCtrl-C to Escape, Enter to Overwrite, or A to Append: ", outPlace))
+        #Append
+        if( toupper(isGo)=="A" ){
+                #Append
+                dir.create(outPlace, showWarnings=FALSE)
+		#update datFiles to come from the current modsPlace
+		datFiles = sprintf("%s%s", outPlace, list.files(path=outPlace, pattern=glob2rx("datGen*.rda")))
+		oldMaxBatch = max( read.csv(sprintf("%s/appends.csv", outPlace))$batch )
+	#Overwrite  	
+	}else{
+                #remove and recopy inPlace over to outPlace
+                unlink(outPlace, recursive=TRUE)
+		system(sprintf("cp -r %s %s", inPlace, outPlace))
+		write.table(t(c('batch', 'modName')), sprintf("%s/appends.csv", outPlace), sep=',', row.names=F, col.names=F, append=F)
+                
+		#dir.create(outPlace, showWarnings=FALSE)
+		#modsSchnuteHHardFlatT30N150WWide/ modsSchnuteHHardFlatT30N150WWideN28/")
+        }
+#Make Fresh
+} else{
+	# 
+	system(sprintf("cp -r %s %s", inPlace, outPlace)) 
+	write.table(t(c('batch', 'modName')), sprintf("%s/appends.csv", outPlace), sep=',', row.names=F, col.names=F, append=F)
+}
+#dir.create(outPlace, showWarnings=FALSE) }
+
+#
+xiList = c()
+zetaList = c()
+for(datF in datFiles){
+        #
+        dat = readRDS(datF)
+        #
+        xiList = c(xiList, dat$xi)
+        zetaList = c(zetaList, dat$zeta)
+}
+l = cbind(xiList, zetaList)
+#vchull = l[chull(l),]
+
+#
+#png("adaptDesignSquare.png")
+plot(l)
+
+#
+i = 1
+ms = c()
+#
+for(i in 1:n){
+#while(r01>thresh){
+	#
+	#m = maximinAddHull(1, vchull, XStart=l) #rbind(l, boxGrid))	
+	mOut = maximinAddHullScale(1, xlim, ylim, XStart=l)
+	m = mOut$X
+	m01 = mOut$Z
+	r01 = mOut$md
+	#
+	X = rbind(l, m)
+	ms = c(ms, r01)
+	#
+	print(sprintf("(%3s, %3s): %s", m01[1], m01[2], r01))
+	#	
+	lx = move01tolim(m01[1]-r01, xlim)  
+	ux = move01tolim(m01[1]+r01, xlim)  
+	ly = move01tolim(m01[2]-r01, ylim)  
+	uy = move01tolim(m01[2]+r01, ylim)  
+	#
+	xB = c(max(lx, xlim[1]), min(ux, xlim[2]))
+	yB = c(max(ly, ylim[1]), min(uy, ylim[2]))
+	#
+	ll = lhsMake(xB, yB, 5, i+oldMaxBatch, save=outPlace)
+	l = rbind(l, ll)
+	
+	#
+	text(m, col=i, label=sprintf("%s",i))
+	points(ll, pch=19, col=i) #cols[i])
+	polygon(l[chull(l),], border=i)
+	segments(xB[1], yB[1], xB[2], yB[1], col=i, lty=3)
+	segments(xB[1], yB[2], xB[2], yB[2], col=i, lty=3)
+	segments(xB[1], yB[1], xB[1], yB[2], col=i, lty=3)
+	segments(xB[2], yB[1], xB[2], yB[2], col=i, lty=3)
+	
+	#
+	i = i+1
+	#t = r1-r
+	#r1 = r
+}
+#dev.off()
+
+
+
+
+
+
+
+
+
+#
+#l = lhsMake(c(0.25, 3.75), c(0.15, 0.7), 20)
+#l = matrix(unlist(l), ncol=2)
+
+
+#xr = min(xDD)
+#yr = min(yDD)
+#l = lhsMake(c(0.25, 3.75), c(0.15, 0.7), 5)
+
+##
+#nn = 10
+#boxGrid = cbind(seq(0.25, 3.75, length.out=nn*2), rep(0.15, nn*2))
+#boxGrid = rbind(boxGrid, cbind(seq(0.25, 3.75, length.out=nn*2), rep(0.7, nn*2)) )
+#boxGrid = rbind(boxGrid, cbind(rep(0.25, nn*0.5), seq(0.15, 0.7, length.out=nn*0.5)) )
+#boxGrid = rbind(boxGrid, cbind(rep(3.75, nn*0.5), seq(0.15, 0.7, length.out=nn*0.5)) )
+##
 ###
 ##tri = tri.mesh(l$x, l$z)
 ##
@@ -302,6 +571,43 @@ m = maximin(5, c(0.25, 3.75), c(0.15, 0.7), Xorig=rbind(l, boxGrid))
 
 
 
+##
+#maximin = function(n, xlim, ylim, TT=10^5, Xorig=NULL){ 
+#	#
+#	X <- matrix(runif(n*2), ncol=2) ## initial design 
+#	X[,1] = X[,1]*(xlim[2]-xlim[1]) + xlim[1]
+#	X[,2] = X[,2]*(ylim[2]-ylim[1]) + ylim[1]
+#	d <- distance(X) 
+#	d <- d[upper.tri(d)] 
+#	md <- min(d) 
+#	if( !is.null(Xorig) ){ 		## new code 
+#		md2 <- min(distance(X, Xorig)) 
+#		if(md2 < md) md <- md2
+#	}
+#	for( t in 1:TT ){ 
+#		row <- sample(1:n, 1) 
+#		xold <- X[row,] 	## random row selection 
+#		X[row,1] = runif(1, xlim[1], xlim[2]) 	## random new row 
+#		X[row,2] = runif(1, ylim[1], ylim[2])
+#		d <- distance(X) 
+#		d <- d[upper.tri(d)] 
+#		mdprime <- min(d) 
+#		if(!is.null(Xorig)){ 
+#			## new code 
+#			mdprime2 <- min(distance(X, Xorig)) 
+#			if(mdprime2 < mdprime){ 
+#				mdprime <- mdprime2 
+#			}
+#		} 
+#		if(mdprime > md){ 	##accept
+#			md <- mdprime	 
+#		} else{ 
+#			X[row,] <- xold ##reject
+#		}
+#	}
+#	return(X) 
+#}
+##lhsRead = function()
 
 
 ##
