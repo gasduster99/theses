@@ -143,7 +143,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = "./modsSchnuteHHardFlatT30N150WWideExtra/" #'./modsSchnuteHHardFlatT30N150WWide/'
+place = "./modsSchnuteHHardFlatT30N150WWideN28/" #"./modsSchnuteHHardFlatT30N150WWideExtra/" #'./modsSchnuteHHardFlatT30N150WWide/'
 odeMethod = "lsode"
 
 #

@@ -141,7 +141,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	
 	#read in data from design locations
 	datGen = readRDS(datFiles[i])
-	datGen$M = M
+	#datGen$M = M
 	datGen$time = 1:TT	
 	datGen$catch = FtFmsy
 	datGen$iterate(odeMethod)

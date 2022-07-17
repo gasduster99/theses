@@ -122,7 +122,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsSchnuteExpT45N150M0.1Wide/'
+place = "./modsSchnuteHHardExpT45N150M0.1Wide/" #'./modsSchnuteExpT45N150M0.1Wide/'
 odeMethod = "lsode"
 
 #
@@ -139,7 +139,7 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	
 	#read in data from design locations
 	datGen = readRDS(datFiles[i])
-	datGen$M = M
+	#datGen$M = M
 	datGen$time = 1:TT	
 	datGen$catch = FtFmsy
 	datGen$iterate(odeMethod)
