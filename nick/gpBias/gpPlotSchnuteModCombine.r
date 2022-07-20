@@ -118,9 +118,24 @@ getData = function(dir, xiRange, zetaRange){
 	fitFiles = sprintf( "%s%s", dir, list.files(path=dir, pattern=glob2rx("fit*.rda")) )
 	#
 	i = 1
-	D = data.frame(xiBin=double(), zetaBin=double(), xiSeed=double(), zetaSeed=double(), xiHat=double(), zetaHat=double(), minDist=double(), lF=double(), lFV=double(), lK=double(), lKV=double(), stringsAsFactors=F)
+	D = data.frame(
+		xiBin=double(), 
+		zetaBin=double(), 
+		xiSeed=double(), 
+		zetaSeed=double(), 
+		xiHat=double(), 
+		zetaHat=double(), 
+		minDist=double(), 
+		lF=double(), 
+		lFV=double(), 
+		lK=double(), 
+		lKV=double(), 
+		stringsAsFactors=F
+	)
+	#
 	for(f in fitFiles){
 		#
+		#print(f)
 		fit = readRDS(f)
 		dat = readRDS(gsub("fit", "datGen", f))			
 
@@ -173,7 +188,7 @@ getData = function(dir, xiRange, zetaRange){
 
 #
 P0 = 10000
-mod = "ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" # #"ExpT45N150Wide" ##"ExpT30L4N150Wide" # #"ExpT45N150" #
+mod = "HHardFlatT30N150WWideN28" #"HHardExpT45N150M0.1Wide" #"ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" # #"ExpT45N150Wide" ##"ExpT30L4N150Wide" # #"ExpT45N150" #
 place = sprintf("./modsSchnute%s/", mod)
 
 #
@@ -190,7 +205,7 @@ M = readRDS(f)$M #0.2
 #
 D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
 D = D[D$lFV>0 & D$lKV>0,]
-D = D[c(rep(T, 5), F),]
+#D = D[c(rep(T, 5), F),]
 #D = D[seq(1, nrow(D), 2),]
 #D = Dall[Dall$lF<4,]
 #plot(D[,1], D[,2], pch=20)
@@ -430,7 +445,7 @@ image(xiStar, zetaStar, xiBias/xiStar,
         zlim = c(1, max(xiBias/xiStar, 1, na.rm=T)),
 	add  = T
 )
-points(D$xiSeed, D$zetaSeed)
+#points(D$xiSeed, D$zetaSeed)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 show = seq(1, length(xCols), length.out=nCols) #20)
@@ -465,7 +480,7 @@ image(xiStar, zetaStar, zetaBias,
 	cex.lab = 1.5,
         cex.main= 1.5
 )
-points(D$xiSeed, D$zetaSeed)
+#points(D$xiSeed, D$zetaSeed)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 show = seq(1, length(yCols), length.out=20) 
@@ -614,7 +629,7 @@ image(xiStar, zetaStar, kBias/P0,
         zlim = c(1, max(kBias/P0, 1, na.rm=T)),
         add  = T
 )
-points(D$xiSeed, D$zetaSeed)
+#points(D$xiSeed, D$zetaSeed)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 show = seq(1, length(xCols), length.out=nCol) #20)
@@ -726,7 +741,7 @@ image(xiStar, zetaStar, t(t(bMSYBias)/(P0*zetaStar)),
         zlim = c(1, max(t(t(bMSYBias)/(P0*zetaStar)), 1, na.rm=T)),
         add  = T
 )
-points(D$xiSeed, D$zetaSeed)
+#points(D$xiSeed, D$zetaSeed)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 show = seq(1, length(xCols), length.out=nCol) #20)

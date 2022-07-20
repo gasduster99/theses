@@ -419,7 +419,7 @@ ylim = c(0.15, 0.7)
 
 #
 inPlace = './modsSchnuteHHardFlatT30N150WWide/' #Extra/'
-outPlace = sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
+outPlace = sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 2*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
 #
 datFiles = sprintf("%s%s", inPlace, list.files(path=inPlace, pattern=glob2rx("datGen*.rda")))
 

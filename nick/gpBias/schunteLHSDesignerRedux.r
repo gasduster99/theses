@@ -89,7 +89,7 @@ FMsy = function(alpha, gamma, M){
 #
 
 #
-place = './modsSchnuteHHardExpT30N150M0.1Wide/'
+place = './modsSchnuteHHardExpT45N150M0.1Wide/'
 odeMethod = "lsode"
 
 #safely create place
