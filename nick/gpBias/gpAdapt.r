@@ -270,7 +270,8 @@ getDataSeq = function(dir, xiRange, zetaRange, it=1){
 
 #
 P0 = 10000
-mod = "HHardFlatT30N150WWideN56" #"HHardExpT45N150M0.1Wide" # #"ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" # #"Exp
+itMax  = 28
+mod = sprintf("HHardFlatT30N150WWideN%s", itMax) #"HHardExpT45N150M0.1Wide" # #"ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" # #"Exp
 place = sprintf("./modsSchnute%s/", mod)
 
 #
@@ -289,7 +290,7 @@ sd2lF = c()
 obslF = c()
 sd2lK = c()
 obslK = c()
-for(it in 0:56){
+for(it in 0:itMax){
 	#
 	#D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
 	D = getDataSeq(place, c(xiBot, xiTop), c(zetaBot, 0.7), it=it)
