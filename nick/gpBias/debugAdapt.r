@@ -1,22 +1,6 @@
 rm(list=ls())
 
 #
-library(VGAM)
-library(boot)
-library(pracma)
-library(mvtnorm)
-library(graphics)
-library(parallel)
-library(latex2exp)
-library(rootSolve)
-library(plot.matrix)
-library(RColorBrewer)
-library(scatterplot3d)
-#
-#source('gpFunk.r')
-source('gpFunkGaussLxLy.r')
-
-#
 #FUNCTIONS
 #
 
@@ -185,17 +169,17 @@ getData = function(dir, xiRange, zetaRange){
 #
 getDataApp = function(place, xiRange, zetaRange){
         #
-
-        #
-        appWhole = read.csv(sprintf("%s/appends.csv", place))
-        batches = appWhole$batch
-        apps = appWhole$modName
-        fitFiles = gsub("datGen", "fit", apps)
+	
+	#
+	appWhole = read.csv(sprintf("%s/appends.csv", place))
+	batches = appWhole$batch
+	apps = appWhole$modName
+	fitFiles = gsub("datGen", "fit", apps)
         #fitFiles = sprintf( "%s%s", dir, list.files(path=dir, pattern=glob2rx("fit*.rda")) )
         #
         i = 1
         D = data.frame(
-                batch=double(),
+		batch=double(),
                 xiBin=double(),
                 zetaBin=double(),
                 xiSeed=double(),
@@ -212,11 +196,11 @@ getDataApp = function(place, xiRange, zetaRange){
         #
         for(f in fitFiles){
                 #
-                #print(f)
+		#print(f)
                 d = gsub("fit", "datGen", f)
-                batch = batches[apps==d]
-                if( !file.exists(f) | !file.exists(d)){ next }
-                #
+		batch = batches[apps==d]
+		if( !file.exists(f) | !file.exists(d)){ next }
+		#
                 fit = readRDS(f)
                 dat = readRDS(d) #gsub("fit", "datGen", f))
 
@@ -263,97 +247,9 @@ getDataApp = function(place, xiRange, zetaRange){
         return(D)
 }
 
-##
-#getDataSeq = function(dir, xiRange, zetaRange, it=1){
-#        #
 #
-#        #
-#        fitFiles = sprintf( "%s%s", dir, list.files(path=dir, pattern=glob2rx("fit*.rda")) )
-#	fitFNames = sapply(strsplit(fitFiles, '/'), function(x){x[length(x)]})
-#	#
-#	allApps = read.csv(sprintf("%s/appends.csv", dir))
-#	allAppFNames = sapply(strsplit(allApps$modName, '/'), function(x){x[length(x)]})
-#	#
-#	fitFiles = fitFiles[!(fitFNames%in%allAppFNames)]
-#	fitFiles = c(fitFiles, allApps[allApps$batch<=it,'modName'])	
-#	#fitFiles = allApps[allApps$batch=it,'modName']
-#	#
-#        i = 1
-#        D = data.frame(
-#                xiBin=double(),
-#                zetaBin=double(),
-#                xiSeed=double(),
-#                zetaSeed=double(),
-#                xiHat=double(),
-#                zetaHat=double(),
-#                minDist=double(),
-#                lF=double(),
-#                lFV=double(),
-#                lK=double(),
-#                lKV=double(),
-#                stringsAsFactors=F
-#        )
-#        #
-#        for(f in fitFiles){
-#                #
-#                #print(f)
-#                fit = readRDS(f)
-#                dat = readRDS(gsub("fit", "datGen", f))
+#MAIN
 #
-#                #       
-#                if( dat$xi<xiRange[1] | dat$xi>xiRange[2] ){
-#                        #| dat$zeta<zetaRange[1] | dat$zeta>zetaRange[2]){ 
-#                        next
-#                }
-#
-#                #
-#                xiBin   = strsplit(f, "_")[[1]]
-#                zetaBin = xiBin[3]
-#                xiBin   = xiBin[2]
-#                #
-#                zetaBin = gsub("zeta", "", zetaBin)
-#                zetaBin = as.numeric(gsub(".rda", "", zetaBin))
-#                xiBin = as.numeric(gsub("xi", "", xiBin))
-#
-#                #
-#                Fs = FMsy(fit$alpha, fit$gamma, M)
-#                xiHat = Fs/M
-#                #
-#                BStar = PBar(fit$alpha, fit$beta, fit$gamma, Fs, M)
-#                BZero = PBar(fit$alpha, fit$beta, fit$gamma, 0, M)
-#                zetaHat = BStar/BZero
-#
-#                #
-#                md = optimize(myDist, c(0, max(xiRange)), xi=dat$xi, zeta=dat$zeta)$objective
-#
-#                #
-#		#print(fit$rsCov)
-#                if(length(fit$rsCov)==0){ lfv=0; lbv=0 }else{
-#                        #
-#                        lV = getlV(fit)
-#                        #
-#                        lfv = lV$lFV
-#                        lbv = lV$lKV
-#                }
-#
-#                #
-#                D[i,] = c(xiBin, zetaBin, dat$xi, dat$zeta, xiHat, zetaHat, md, log(Fs), lfv, log(BZero), lbv)
-#                i = i+1
-#        }
-#        #
-#        return(D)
-#}
-
-
-#
-#DATA
-#
-
-#
-P0 = 10000
-itMax  = 56 #28 # 
-mod = sprintf("HHardFlatT30N150WWideN%s", itMax) #"HHardExpT45N150M0.1Wide" # #"ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" # #"Exp
-place = sprintf("./modsSchnute%s/", mod)
 
 #
 xiRes = 0.5
@@ -363,102 +259,24 @@ xiBot = 0.5
 xiTop = 3.5
 
 #
-f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))[1] )
-M = readRDS(f)$M #0.2
+M = 0.2
 
 #
-Dall  = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
-Aall  = getDataApp(place, c(xiBot, xiTop), c(zetaBot, 0.7))
-Dbase = Dall[!(Dall$xiHat%in%Aall$xiHat) & !(Dall$zetaHat%in%Aall$zetaHat),]
-D = Dbase
+place = "./modsSchnuteHHardFlatT30N150WWide/"
+D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
 
 #
-sd2lF = c()
-obslF = c()
-sd2lK = c()
-obslK = c()
-for(it in 0:itMax){
-	#	
-	D = rbind(D, Aall[Aall$batch==it,-1])
-	#print(dim(D))
-	D = D[D$lFV>0 & D$lKV>0,]
-	#print(dim(D))
-
-	#D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
-	#D = getDataSeq(place, c(xiBot, xiTop), c(zetaBot, 0.7), it=it)
-	#print(dim(D))
-	#D = D[c(rep(T, 5), F),]
-	#D = D[seq(1, nrow(D), 2),]
-	#D = Dall[Dall$lF<4,]
-	#plot(D[,1], D[,2], pch=20)
-	#points(D[,3], D[,4])
-	
-	#
-	#GP INTERPOLATION
-	#
-	
-	#First fit the lF Model and make lF related Predictions
-	
-	#pick a polynomial mean function
-	lFy = D$lF
-	lFV = diag(D$lFV)
-	lFX = cbind(1, D$xiSeed, D$zetaSeed)
-	
-	#
-	xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
-	aug = cbind(rep(1, length(xAug)), xAug, 1/(xAug+2))
-	lFX = rbind(lFX, aug)
-	lFy = c(lFy, log(xAug*M))
-	lFV = diag(c(D$lFV, rep(mean(D$lFV), length(xAug))))
-	
-	#
-	lFaxes = lFX[,2:3]
-	registerData(lFy, lFX, lFaxes, lFV)
-	par = c(l1=0.5, l2=0.5, s2=0.5)
-	lFFit = gpMAP(par, hessian=F, psiSample=F, lower=c(rep(eps(), 3))) #lower=c(0.3, rep(eps(), 2)))	
-	sd2lF = c(sd2lF, lFFit$psi['s2'])
-	obslF = c(obslF, mean(D$lFV))
-	
-	#
-	lKy = D$lK
-	lKV = diag(c(D$lKV))
-	lKX = cbind(1, D$xiSeed, D$zetaSeed)
-	
-	##
-	#xAug = seq(0.75, 4, 0.5) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
-	#aug = cbind(rep(1, length(xAug)), xAug, 1/(xAug+2))
-	#lKX = rbind(lKX, aug)
-	#lKy = c(lKy, log(P0))
-	#lKV = diag(c(D$lKV, rep(0, length(xAug))))
-	
-	#
-	lKaxes = lKX[,2:3]
-	#
-	registerData(lKy, lKX, lKaxes, lKV)
-	par = c(l1=0.5, l2=0.5, s2=0.5)
-	lKFit = gpMAP(par, hessian=F, psiSample=F, lower=c(eps(), rep(eps(), 2)))	
-	sd2lK = c(sd2lK, lKFit$psi['s2'])
-	obslK = c(obslK, mean(D$lKV))	
-
-	writeLines(sprintf("\nIteration: %s n: %s\n", it, nrow(D)))
-	#writeLines("lF Fit:")
-	#print(lFFit)
-	#print(mean(D$lFV))
-	#writeLines('')
-	#writeLines("lK Fit:")
-	#print(lKFit)
-	#print(mean(D$lKV))
-}
+place28 = "./modsSchnuteHHardFlatT30N150WWideN28/"
+D28 = getData(place28, c(xiBot, xiTop), c(zetaBot, 0.7))
+#apps28 = read.csv(sprintf("%s/appends.csv", place28))$modName
+A28 = getDataApp(place28, c(xiBot, xiTop), c(zetaBot, 0.7))
 
 #
-png('s2lF.png')
-plot(sd2lF)
-dev.off()
+place56 = "./modsSchnuteHHardFlatT30N150WWideN56/"
+D56 = getData(place56, c(xiBot, xiTop), c(zetaBot, 0.7))
+#apps56 = read.csv(sprintf("%s/appends.csv", place56))$modName
+A56 = getDataApp(place56, c(xiBot, xiTop), c(zetaBot, 0.7))
 
 #
-png('s2lK.png')
-plot(sd2lK)
-dev.off()
-
 
 
