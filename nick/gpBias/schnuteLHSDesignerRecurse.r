@@ -418,10 +418,11 @@ xlim = c(0.25, 3.75)
 ylim = c(0.15, 0.7)
 
 #
-inPlace = './modsSchnuteHHardFlatT30N150WWide/' #Extra/'
-outPlace = sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 2*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
+inPlace = "./modsSchnuteHHardFlatT30N150WWideN56/" #'./modsSchnuteHHardFlatT30N150WWide/' #Extra/'
+outPlace = sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 3*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
 #
 datFiles = sprintf("%s%s", inPlace, list.files(path=inPlace, pattern=glob2rx("datGen*.rda")))
+fitFiles = sprintf("%s%s", inPlace, list.files(path=inPlace, pattern=glob2rx("fit*.rda")))
 
 #start append file
 #remove overwrite options for now
@@ -440,6 +441,7 @@ if( dir.exists(outPlace) ){
                 dir.create(outPlace, showWarnings=FALSE)
 		#update datFiles to come from the current modsPlace
 		datFiles = sprintf("%s%s", outPlace, list.files(path=outPlace, pattern=glob2rx("datGen*.rda")))
+		fitFiles = sprintf("%s%s", inPlace, list.files(path=inPlace, pattern=glob2rx("fit*.rda")))
 		oldMaxBatch = max( read.csv(sprintf("%s/appends.csv", outPlace))$batch )
 	#Overwrite  	
 	}else{
@@ -462,12 +464,14 @@ if( dir.exists(outPlace) ){
 #
 xiList = c()
 zetaList = c()
-for(datF in datFiles){
+for(fitF in fitFiles){
         #
-        dat = readRDS(datF)
-        #
-        xiList = c(xiList, dat$xi)
-        zetaList = c(zetaList, dat$zeta)
+        fit = readRDS(fitF)
+        #check rsCOV
+	if(length(fit$rsCov)==0){ next }
+	#
+        xiList = c(xiList, fit$xi)
+        zetaList = c(zetaList, fit$zeta)
 }
 l = cbind(xiList, zetaList)
 #vchull = l[chull(l),]
