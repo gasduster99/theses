@@ -89,7 +89,7 @@ FMsy = function(alpha, gamma, M){
 #
 
 #
-place = './modsSchnuteHHardExpT45N150M0.1Wide/'
+place = './modsSchnuteHHardExpT45N150M0.05Wide/'
 odeMethod = "lsode"
 
 #safely create place
@@ -113,7 +113,7 @@ FtFmsy = rep(1, TT) #make faux catch
 
 #
 B0 = 10000
-M  = 0.1
+M  = 0.05
 
 #number of samples in design
 n = 150 #500 maxed out method
