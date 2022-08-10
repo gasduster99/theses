@@ -188,7 +188,7 @@ getData = function(dir, xiRange, zetaRange){
 
 #
 P0 = 10000
-mod = "HHardExpT45N150M0.3Wide" #"HHardFlatT30N150WWideN28" # #"HHardExpT45N150M0.1Wide" #"ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" # #"ExpT45N150Wide" ##"ExpT30L4N150Wide" # #"ExpT45N150" #
+mod = "HHardFlatT30N150WWideN56" #"HHardExpT45N150M0.3Wide" # #"HHardExpT45N150M0.1Wide" #"ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" # #"ExpT45N150Wide" ##"ExpT30L4N150Wide" # #"ExpT45N150" #
 place = sprintf("./modsSchnute%s/", mod)
 
 #
