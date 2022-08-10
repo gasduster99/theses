@@ -188,7 +188,7 @@ getData = function(dir, xiRange, zetaRange){
 
 #
 P0 = 10000
-mod = "HHardFlatT30N150WWideN56" #"HHardExpT45N150M0.3Wide" # #"HHardExpT45N150M0.1Wide" #"ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" # #"ExpT45N150Wide" ##"ExpT30L4N150Wide" # #"ExpT45N150" #
+mod = "HHardExpT45N150M0.3Wide" #"HHardFlatT30N150WWideN28" # #"HHardExpT45N150M0.1Wide" #"ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" # #"ExpT45N150Wide" ##"ExpT30L4N150Wide" # #"ExpT45N150" #
 place = sprintf("./modsSchnute%s/", mod)
 
 #
@@ -525,7 +525,7 @@ show = seq(1, length(eucCols), length.out=20)
 #        fill = rev(eucCols[show]), 
 #        xpd = NA
 #)
-points(D$xiSeed, D$zetaSeed)
+#points(D$xiSeed, D$zetaSeed)
 dev.off()
 
 #K bias
@@ -830,9 +830,23 @@ dev.off()
 ##dev.off()
 
 #design
-png(sprintf("design%s.png", mod))
-plot(D$xiSeed, D$zetaSeed, xlab=TeX("$F_{MSY}/M$"), ylab=TeX('$B_{MSY}/B_0$'), main="Design", cex.lab = 1.5, cex.main= 1.5)
+png(sprintf("designLine%s.png", mod))
+plot(D$xiSeed, D$zetaSeed, xlab=TeX("$F_{MSY}/M$"), ylab=TeX('$B_{MSY}/B_0$'), main="Design", cex.lab = 1.5, cex.main= 1.5, xlim=c(xiBot, xiTop), ylim=c(zetaBot, zetaTop))
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+dotX = lFXStar[!mask,2][freq]
+dotY = lFXStar[!mask,3][freq]
+points(dotX[dotY>zetaBot & dotY<zetaTop], dotY[dotY>zetaBot & dotY<zetaTop], pch='.')
+#plot(D$xiSeed, D$zetaSeed, xlab=TeX("$F_{MSY}/M$"), ylab=TeX('$B_{MSY}/B_0$'), main="Design", cex.lab = 1.5, cex.main= 1.5)
+#curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+dev.off()
+
+#design
+png(sprintf("design%s.png", mod))
+plot(D$xiSeed, D$zetaSeed, xlab=TeX("$F_{MSY}/M$"), ylab=TeX('$B_{MSY}/B_0$'), main="Design", cex.lab = 1.5, cex.main= 1.5, xlim=c(xiBot, xiTop), ylim=c(zetaBot, zetaTop))
+#curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+dotX = lFXStar[!mask,2][freq]
+dotY = lFXStar[!mask,3][freq]
+points(dotX[dotY>zetaBot & dotY<zetaTop], dotY[dotY>zetaBot & dotY<zetaTop], pch='.')
 dev.off()
 
 

@@ -18,7 +18,7 @@ In collaboration with:\\
 Dr. E.J. Dick\\
 Dr. H. K.H. Lee
 }
-\date{02 Dec 2021}
+\date{15 Aug 2022}
 
 \DeclareMathOperator*{\argmin}{\arg\!\min}
 \DeclareMathOperator*{\argmax}{\arg\!\max}
@@ -35,6 +35,7 @@ Dr. H. K.H. Lee
 %\item[]}{\end{list}}
 
 \begin{document}
+%
 \begin{frame}
 \titlepage
 \vspace*{-3cm}
@@ -52,74 +53,127 @@ Dr. H. K.H. Lee
 \section{Introduction}
 \subsection{}
 
+
 %
-\begin{frame}{Mangel et al. 2013, CJFAS}
-\only<1>{
-\hspace*{-1cm}
-\begin{minipage}[h!]{0.55\textwidth}
+\begin{frame}
+$~$\\\hspace*{-0.5cm}
+\begin{minipage}[h!]{0.49\textwidth}
 \begin{align*}
-\frac{dB(t)}{dt} &= \frac{\alpha B(t)}{1+\beta B(t)} - (M+F(t))B(t)~\\
-~&~\\
-h &= \frac{\frac{\alpha}{M}}{4+\frac{\alpha}{M}}\\
-~&~\\
-\frac{F^*}{M} &= \sqrt{\frac{4h}{1-h}} - 1\\
-\frac{B^*}{B_0} &= \frac{\sqrt{\frac{4h}{1-h}} - 1}{\frac{4h}{1-h} - 1 }
+I_t &= q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2) \\
+~\\
+\frac{dB(t)}{dt} &= P(B(t);\bm{\theta}) - Z(t)B(t)\\
+~\\~\\
+RP &: MSY, ~\frac{F_{MSY}}{M}, ~\frac{B_{MSY}}{B_0} 
 \end{align*}
 \end{minipage}
-\begin{minipage}[h!]{0.45\textwidth}
-$~$\\
-%\hspace*{0.05cm}
-\includegraphics[width=1.2\textwidth]{cjasFig.png}
+\begin{minipage}[h!]{0.49\textwidth}
+$~$\\\hspace*{0.2cm}
+\includegraphics[width=1.2\textwidth]{../advance/plots/yieldRPplus.png}
 \end{minipage}
-}
-\only<2>{
-\hspace*{-1cm}
-\begin{minipage}[h!]{0.55\textwidth}
-\begin{align*}
-\frac{dB(t)}{dt} &= \frac{\alpha B(t)}{1+\beta B(t)^{\frac{1}{\gamma}}} - (M+F(t))B(t)\\
-\end{align*}
-\hspace*{0.3cm} Mangel et al. (2013) suggest\\
-\hspace*{0.3cm} exploration of three\\
-\hspace*{0.3cm} parameter stock recruit\\
-\hspace*{0.3cm} relationships (SRRs) to\\
-\hspace*{0.3cm} avoid pre-determined\\ 
-\hspace*{0.3cm} reference points (RP) in\\
-\hspace*{0.3cm} assessments\\
-%\begin{align*}
-%\frac{F^*}{M} &= \sqrt{\frac{4h}{1-h}} - 1\\
-%\frac{B^*}{B_0} &= \frac{\sqrt{\frac{4h}{1-h}} - 1}{\frac{4h}{1-h} - 1 }
-%\end{align*}
-\end{minipage}
-\begin{minipage}[h!]{0.45\textwidth}
-\hspace*{-0.23cm}
-\includegraphics[width=1.2\textwidth]{cjasFig.png}
-\end{minipage}
-}
 \end{frame}
 
 %
-\begin{frame}{A'Priori RP Prior Relationships}
-\hspace*{-1cm}
+\begin{frame}
+\only<1>{
+\hspace*{-0.5cm}
 \begin{minipage}[h!]{0.59\textwidth}
+Conceptually:
 \begin{align*}
-\frac{dB(t)}{dt} &= \frac{\alpha B(t)}{1+\beta B(t)} - (M+F(t))B(t)\\
-~&~\\
-\frac{B^*}{B_0} &= \frac{1}{\frac{F^*}{M}+2}\\
-&~\\
-log(F^*) &\sim N(\mu, \sigma^2)\\
-&\Updownarrow\\
-2\frac{B^*}{B_0} ~&\sim~ \text{logit-N}\left(\log(2M)-\mu, \sigma^2\right)
+\frac{F_{MSY}}{M}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{B_{0}}\in\left(0, 1\right)
 \end{align*}
+$~$\\
+Mangel et al. 2013, CJFAS:
+\begin{itemize}
+        \item BH Model: $~ F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{F_{MSY}/M+2}$
+        \item Similar Constraints for other Two-Parameter Curves %Logistic, Ricker and 
+	 % Three-Parameter Relationships Allow Independent RP Estimation
+\end{itemize}
+$~$\\\vspace{0.075cm}
 \end{minipage}
-\begin{minipage}[h!]{0.4\textwidth}
-\includegraphics[width=1.25\textwidth]{bhConst.png}
+\begin{minipage}[h!]{0.39\textwidth}
+$~$\\
+\hspace*{-0.3cm}
+\includegraphics[width=1.4\textwidth]{cjasFig.png}
 \end{minipage}
+}
+\only<2>{
+\hspace*{-0.5cm}
+\begin{minipage}[h!]{0.59\textwidth}
+Conceptually:
+\begin{align*}
+\frac{F_{MSY}}{M}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{B_{0}}\in\left(0, 1\right)
+\end{align*}
+$~$\\
+Mangel et al. 2013, CJFAS:
+\begin{itemize}
+        \item BH Model: $~ F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{F_{MSY}/M+2}$
+        \item Similar Constraints for other Two-Parameter Curves %Logistic, Ricker and 
+        \item Three-Parameter Relationships Allow Independent RP Estimation
+\end{itemize}
+\end{minipage}
+\begin{minipage}[h!]{0.39\textwidth}
+$~$\\
+\hspace*{-0.3cm}
+\includegraphics[width=1.4\textwidth]{cjasFig.png}
+\end{minipage}
+}
 \end{frame}
 
 %
 \section{Simulation}
 \subsection{}
 
+%
+\begin{frame}{Schnute 1985, CJFAS}
+\begin{minipage}[h!]{0.49\textwidth}
+\begin{align}
+&\frac{dB}{dt} = P(B;\bm{\theta}) - (M+F)B \nonumber%\label{schunte}%
+\end{align}
+\begin{align}
+&P(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}} \nonumber
+\end{align}
+\begin{align*}
+\gamma = -1 &\Rightarrow \text{\color{ForestGreen}Beverton-Holt}\\
+\gamma \rightarrow 0 &\Rightarrow \text{\color{RoyalBlue}Ricker}\\
+\gamma = 1 &\Rightarrow  \text{\color{Red}Logistic}
+\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=\textwidth]{../advance/plots/derisoSrr.png}
+\end{minipage}
+\end{frame}
+
+%
+\begin{frame}{\color{orange} Introish Ideas list}
+\begin{itemize}
+\color{orange}	
+	\item PT/Schaffer work (link)
+	\item Computational Difficulties
+	\item Schnute Space Filling
+	\item Catch/Contrast
+\end{itemize}
+\end{frame}
+
+%
+\begin{frame}
+%
+\begin{minipage}[h!]{0.69\textwidth}
+%
+\begin{align*}
+\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
+\alpha &= (M+F_{MSY})\left(1+\frac{\gamma F_{MSY}}{M+F_{MSY}}\right)^{1/\gamma} \\
+\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right)
+\end{align*}
+%
+\end{minipage}
+\begin{minipage}[h!]{0.29\textwidth}
+%
+\includegraphics[width=\textwidth]{../gpBias/designLineHHardExpT45N150M0.3Wide.png}
+\end{minipage}
+\end{frame}
+
+{
+\color{gray}
 %
 \begin{frame}{Pella-Tomlinson Production Model}
 \only<1>{
@@ -184,9 +238,10 @@ log(F^*) &\sim N(\mu, \sigma^2)\\
 \includegraphics[height=1\textheight]{shaeferDat.png}
 \end{center}
 \end{frame}
+}
 
 %
-\begin{frame}{Catch}
+\begin{frame}{\color{red}Catch}
 %
 \only<1>{
 \hspace*{-1cm}
@@ -312,6 +367,22 @@ $~$\\
 \section{Bias}
 \subsection{}
 
+\begin{frame}{\color{orange}Results Idea List}
+\begin{itemize}
+\item contrast
+	\begin{itemize}
+		\item components
+		\item animated arrows and yeild curves
+	\end{itemize}
+\item flat
+\begin{itemize}
+	\item animated arrows and yeild curves
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+{
+\color{gray}
 %
 \begin{frame}%{Flat}
 %\vspace{-0.5cm}
@@ -589,360 +660,487 @@ $~$
 \end{frame}
 
 
+%%
+%\section{Examples}
+%\subsection{}
 %
-\section{Examples}
+%%
+%\begin{frame}{Flat: Misspecified SRR $~~~~~~~~~~~$ Biomass $~~~~~$ Depletion}
+%%\vspace{-0.5cm}
+%$~$
+%\hspace*{-1.25cm}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png}\\
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png}\\
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace*{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.2.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace*{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.2.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.2.png}
+%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}{Contrast: Misspecified SRR $~~~~~~$ Biomass $~~~~$ Depletion}
+%%\vspace{-0.5cm}
+%$~$
+%\hspace*{-1.25cm}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.6.png}\\
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.6.png}\\
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0.2.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.2.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.2.png}
+%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}{ContrastT45: Misspecified SRR $~$ Biomass $~~~~$ Depletion}
+%%\vspace{-0.5cm}
+%$~$
+%\hspace*{-1.25cm}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.6.png}\\
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.6.png}\\
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.2.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.2.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.2.png}
+%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}{ContrastT60: Misspecified SRR $~$ Biomass $~~~~$ Depletion}
+%%\vspace{-0.5cm}
+%$~$
+%\hspace*{-1.25cm}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.6.png}\\
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.6.png}\\
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0.2.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0.6.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0.2.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0.2.png}
+%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}{SchnuteExpT45: Misspecified SRR $~$ Biomass $~~~~$ Depletion}
+%%\vspace{-0.5cm}
+%$~$
+%\hspace*{-1.25cm}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT45N150WideX0.5Z0.7.png}\\
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT45N150WideX0.619Z0.308.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT45N150WideX3.5Z0.7.png}\\
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT45N150WideX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45N150WideX0.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45N150WideX3.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45N150WideX0.619Z0.308.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45N150WideX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45N150WideX0.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45N150WideX3.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45N150WideX0.619Z0.308.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45N150WideX3.5Z0.2.png}
+%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}{SchnuteExpT30: Misspecified SRR $~$ Biomass $~~~~$ Depletion}
+%%\vspace{-0.5cm}
+%$~$
+%\hspace*{-1.25cm}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30N150WideX0.5Z0.7.png}\\
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30N150WideX0.619Z0.308.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30N150WideX3.5Z0.7.png}\\
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30N150WideX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30N150WideX0.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30N150WideX3.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30N150WideX0.619Z0.308.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30N150WideX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30N150WideX0.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30N150WideX3.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30N150WideX0.619Z0.308.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30N150WideX3.5Z0.2.png}
+%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}{SchnuteExpT30L2: SRR $~~~~~~~~~~~$ Biomass $~~~~$ Depletion}
+%%\vspace{-0.5cm}
+%$~$
+%\hspace*{-1.25cm}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L2N150WideX0.5Z0.7.png}\\
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L2N150WideX0.619Z0.308.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L2N150WideX3.5Z0.7.png}\\
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L2N150WideX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L2N150WideX0.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L2N150WideX3.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L2N150WideX0.619Z0.308.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L2N150WideX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L2N150WideX0.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L2N150WideX3.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L2N150WideX0.619Z0.308.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L2N150WideX3.5Z0.2.png}
+%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}{SchnuteExpT30L3: SRR $~~~~~~~~~~~$ Biomass $~~~~$ Depletion}
+%%\vspace{-0.5cm}
+%$~$
+%\hspace*{-1.25cm}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L3N150WideX0.5Z0.7.png}\\
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L3N150WideX0.619Z0.308.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L3N150WideX3.5Z0.7.png}\\
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L3N150WideX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L3N150WideX0.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L3N150WideX3.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L3N150WideX0.619Z0.308.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L3N150WideX3.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L3N150WideX0.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L3N150WideX3.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L3N150WideX0.619Z0.308.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L3N150WideX3.5Z0.2.png}
+%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}{SchnuteFlatT30: SRR $~~~~~~~~~~~$ Biomass $~~~~$ Depletion}
+%%\vspace{-0.5cm}
+%$~$
+%\hspace*{-1.25cm}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareFlatT30N150WideX0.5Z0.7.png}\\
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareFlatT30N150WideX0.619Z0.308.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareFlatT30N150WideX3.5Z0.7.png}\\
+%\hspace*{0.45cm}
+%\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareFlatT30N150WideX3.483Z0.269.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatT30N150WideX0.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatT30N150WideX3.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatT30N150WideX0.619Z0.308.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatT30N150WideX3.483Z0.269.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.25\textwidth}
+%\vspace{-0.1cm}
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatT30N150WideX0.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatT30N150WideX3.5Z0.7.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatT30N150WideX0.619Z0.308.png}\\
+%\hspace*{1.5cm}
+%\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatT30N150WideX3.483Z0.269.png}
+%\end{minipage}
+%\end{frame}
+}
+
+%
+\section{Conclusion}
 \subsection{}
-
 %
-\begin{frame}{Flat: Misspecified SRR $~~~~~~~~~~~$ Biomass $~~~~~$ Depletion}
-%\vspace{-0.5cm}
-$~$
-\hspace*{-1.25cm}
-\begin{minipage}[h!]{0.25\textwidth}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png}\\
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png}\\
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace*{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX0.5Z0.2.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatNoQX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace*{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX0.5Z0.2.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.6\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatNoQX3.5Z0.2.png}
-\end{minipage}
+\begin{frame}{\color{orange}Conclusions}
+\begin{itemize}
+	\item Contrast story
+	\item Importance of getting the computaional details correct for moving to analysis of Delay Difference and age structure
+\end{itemize}
 \end{frame}
 
-%
-\begin{frame}{Contrast: Misspecified SRR $~~~~~~$ Biomass $~~~~$ Depletion}
-%\vspace{-0.5cm}
-$~$
-\hspace*{-1.25cm}
-\begin{minipage}[h!]{0.25\textwidth}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.6.png}\\
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpNoQX0.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.6.png}\\
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpNoQX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpNoQX0.5Z0.2.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpNoQX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpNoQX0.5Z0.2.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpNoQX3.5Z0.2.png}
-\end{minipage}
-\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %
-\begin{frame}{ContrastT45: Misspecified SRR $~$ Biomass $~~~~$ Depletion}
-%\vspace{-0.5cm}
-$~$
-\hspace*{-1.25cm}
-\begin{minipage}[h!]{0.25\textwidth}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.6.png}\\
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT45X0.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.6.png}\\
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT45X3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.2.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45X0.5Z0.2.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45X3.5Z0.2.png}
-\end{minipage}
-\end{frame}
-
+%BONE YARD
 %
-\begin{frame}{ContrastT60: Misspecified SRR $~$ Biomass $~~~~$ Depletion}
-%\vspace{-0.5cm}
-$~$
-\hspace*{-1.25cm}
-\begin{minipage}[h!]{0.25\textwidth}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.6.png}\\
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT60X0.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.6.png}\\
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/curveCompareExpT60X3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT60X0.5Z0.2.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT60X3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0.6.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT60X0.5Z0.2.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT60X3.5Z0.2.png}
-\end{minipage}
-\end{frame}
 
-%
-\begin{frame}{SchnuteExpT45: Misspecified SRR $~$ Biomass $~~~~$ Depletion}
-%\vspace{-0.5cm}
-$~$
-\hspace*{-1.25cm}
-\begin{minipage}[h!]{0.25\textwidth}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT45N150WideX0.5Z0.7.png}\\
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT45N150WideX0.619Z0.308.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT45N150WideX3.5Z0.7.png}\\
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT45N150WideX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45N150WideX0.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45N150WideX3.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45N150WideX0.619Z0.308.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45N150WideX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45N150WideX0.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45N150WideX3.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45N150WideX0.619Z0.308.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT45N150WideX3.5Z0.2.png}
-\end{minipage}
-\end{frame}
+%%
+%\begin{frame}{Mangel et al. 2013, CJFAS}
+%\only<1>{
+%\hspace*{-1cm}
+%\begin{minipage}[h!]{0.55\textwidth}
+%\begin{align*}
+%\frac{dB(t)}{dt} &= \frac{\alpha B(t)}{1+\beta B(t)} - (M+F(t))B(t)~\\
+%~&~\\
+%h &= \frac{\frac{\alpha}{M}}{4+\frac{\alpha}{M}}\\
+%~&~\\
+%\frac{F^*}{M} &= \sqrt{\frac{4h}{1-h}} - 1\\
+%\frac{B^*}{B_0} &= \frac{\sqrt{\frac{4h}{1-h}} - 1}{\frac{4h}{1-h} - 1 }
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.45\textwidth}
+%$~$\\
+%%\hspace*{0.05cm}
+%\includegraphics[width=1.2\textwidth]{cjasFig.png}
+%\end{minipage}
+%}
+%\only<2>{
+%\hspace*{-1cm}
+%\begin{minipage}[h!]{0.55\textwidth}
+%\begin{align*}
+%\frac{dB(t)}{dt} &= \frac{\alpha B(t)}{1+\beta B(t)} - (M+F(t))B(t)\\
+%\bm{\theta'} &= [\alpha, \beta]
+%\end{align*}
+%\hspace*{0.3cm} Mangel et al. (2013) suggest\\
+%\hspace*{0.3cm} exploration of three parameter\\
+%\hspace*{0.3cm} stock recruit relationships (SRRs)\\
+%\hspace*{0.3cm} to avoid pre-determined reference\\ 
+%\hspace*{0.3cm} points (RP) in assessments\\
+%%\begin{align*}
+%%\frac{dB(t)}{dt} &= \frac{\alpha B(t)}{1+\beta B(t)^{\frac{1}{\gamma}}} - (M+F(t))B(t)\\
+%%\bm{\theta'}_{S} &= [\alpha, \beta, \gamma]
+%%\end{align*}
+%%\begin{align*}
+%%\frac{F^*}{M} &= \sqrt{\frac{4h}{1-h}} - 1\\
+%%\frac{B^*}{B_0} &= \frac{\sqrt{\frac{4h}{1-h}} - 1}{\frac{4h}{1-h} - 1 }
+%%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.45\textwidth}
+%\hspace*{-0.23cm}
+%\includegraphics[width=1.2\textwidth]{cjasFig.png}
+%\end{minipage}
+%}
+%\only<3>{
+%\hspace*{-1cm}
+%\begin{minipage}[h!]{0.55\textwidth}
+%\begin{align*}
+%\frac{dB(t)}{dt} &= \frac{\alpha B(t)}{1+\beta B(t)^{\color{blue}\frac{1}{\gamma}}} - (M+F(t))B(t)\\
+%\bm{\theta'} &= [\alpha, \beta, {\color{blue}\gamma}]
+%\end{align*}
+%\hspace*{0.3cm} Mangel et al. (2013) suggest\\
+%\hspace*{0.3cm} exploration of three parameter\\
+%\hspace*{0.3cm} stock recruit relationships (SRRs)\\
+%\hspace*{0.3cm} to avoid pre-determined reference\\ 
+%\hspace*{0.3cm} points (RP) in assessments\\
+%%\begin{align*}
+%%\frac{F^*}{M} &= \sqrt{\frac{4h}{1-h}} - 1\\
+%%\frac{B^*}{B_0} &= \frac{\sqrt{\frac{4h}{1-h}} - 1}{\frac{4h}{1-h} - 1 }
+%%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.45\textwidth}
+%\hspace*{-0.23cm}
+%\includegraphics[width=1.2\textwidth]{cjasFig.png}
+%\end{minipage}
+%}
+%\end{frame}
 
-%
-\begin{frame}{SchnuteExpT30: Misspecified SRR $~$ Biomass $~~~~$ Depletion}
-%\vspace{-0.5cm}
-$~$
-\hspace*{-1.25cm}
-\begin{minipage}[h!]{0.25\textwidth}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30N150WideX0.5Z0.7.png}\\
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30N150WideX0.619Z0.308.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30N150WideX3.5Z0.7.png}\\
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30N150WideX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30N150WideX0.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30N150WideX3.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30N150WideX0.619Z0.308.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30N150WideX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30N150WideX0.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30N150WideX3.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30N150WideX0.619Z0.308.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30N150WideX3.5Z0.2.png}
-\end{minipage}
-\end{frame}
 
-%
-\begin{frame}{SchnuteExpT30L2: SRR $~~~~~~~~~~~$ Biomass $~~~~$ Depletion}
-%\vspace{-0.5cm}
-$~$
-\hspace*{-1.25cm}
-\begin{minipage}[h!]{0.25\textwidth}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L2N150WideX0.5Z0.7.png}\\
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L2N150WideX0.619Z0.308.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L2N150WideX3.5Z0.7.png}\\
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L2N150WideX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L2N150WideX0.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L2N150WideX3.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L2N150WideX0.619Z0.308.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L2N150WideX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L2N150WideX0.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L2N150WideX3.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L2N150WideX0.619Z0.308.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L2N150WideX3.5Z0.2.png}
-\end{minipage}
-\end{frame}
+%%
+%\begin{frame}{A'Priori RP Prior Relationships}
+%\hspace*{-1cm}
+%\begin{minipage}[h!]{0.59\textwidth}
+%\begin{align*}
+%\frac{dB(t)}{dt} &= \frac{\alpha B(t)}{1+\beta B(t)} - (M+F(t))B(t)\\
+%~&~\\
+%\frac{B^*}{B_0} &= \frac{1}{\frac{F^*}{M}+2}\\
+%&~\\
+%log(F^*) &\sim N(\mu, \sigma^2)\\
+%&\Updownarrow\\
+%2\frac{B^*}{B_0} ~&\sim~ \text{logit-N}\left(\log(2M)-\mu, \sigma^2\right)
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.4\textwidth}
+%\includegraphics[width=1.25\textwidth]{bhConst.png}
+%\end{minipage}
+%\end{frame}
 
-%
-\begin{frame}{SchnuteExpT30L3: SRR $~~~~~~~~~~~$ Biomass $~~~~$ Depletion}
-%\vspace{-0.5cm}
-$~$
-\hspace*{-1.25cm}
-\begin{minipage}[h!]{0.25\textwidth}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L3N150WideX0.5Z0.7.png}\\
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L3N150WideX0.619Z0.308.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L3N150WideX3.5Z0.7.png}\\
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareExpT30L3N150WideX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L3N150WideX0.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L3N150WideX3.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L3N150WideX0.619Z0.308.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT30L3N150WideX3.5Z0.2.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L3N150WideX0.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L3N150WideX3.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L3N150WideX0.619Z0.308.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareExpT30L3N150WideX3.5Z0.2.png}
-\end{minipage}
-\end{frame}
-
-%
-\begin{frame}{SchnuteFlatT30: SRR $~~~~~~~~~~~$ Biomass $~~~~$ Depletion}
-%\vspace{-0.5cm}
-$~$
-\hspace*{-1.25cm}
-\begin{minipage}[h!]{0.25\textwidth}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareFlatT30N150WideX0.5Z0.7.png}\\
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareFlatT30N150WideX0.619Z0.308.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareFlatT30N150WideX3.5Z0.7.png}\\
-\hspace*{0.45cm}
-\includegraphics[width=1.3\textwidth]{../../../theses/nick/gpBias/yeildCurveCompareFlatT30N150WideX3.483Z0.269.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatT30N150WideX0.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatT30N150WideX3.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatT30N150WideX0.619Z0.308.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/bioPostCompareFlatT30N150WideX3.483Z0.269.png}
-\end{minipage}
-\begin{minipage}[h!]{0.25\textwidth}
-\vspace{-0.1cm}
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatT30N150WideX0.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatT30N150WideX3.5Z0.7.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatT30N150WideX0.619Z0.308.png}\\
-\hspace*{1.5cm}
-\includegraphics[width=0.65\textwidth]{../../../theses/nick/gpBias/depPostCompareFlatT30N150WideX3.483Z0.269.png}
-\end{minipage}
-\end{frame}
 
 
 
