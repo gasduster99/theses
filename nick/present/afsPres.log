@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.4.28)  11 AUG 2022 10:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.4.28)  11 AUG 2022 15:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1014,12 +1014,12 @@ ut line 37.
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
 )
-<noaaText.png, id=61, 628.43478pt x 471.32608pt>
+<noaaText.png, id=53, 628.43478pt x 471.32608pt>
 File: noaaText.png Graphic file (type png)
 <use noaaText.png>
 Package pdftex.def Info: noaaText.png  used on input line 50.
 (pdftex.def)             Requested size: 90.34514pt x 67.7544pt.
-<slug.jpg, id=63, 301.125pt x 254.9525pt>
+<slug.jpg, id=55, 301.125pt x 254.9525pt>
 File: slug.jpg Graphic file (type jpg)
 <use slug.jpg>
 Package pdftex.def Info: slug.jpg  used on input line 50.
@@ -1028,7 +1028,7 @@ Package pdftex.def Info: slug.jpg  used on input line 50.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
  <./noaaText.png> <./slug.jpg>]
-<../advance/plots/yieldRPplus.png, id=121, 481.8pt x 481.8pt>
+<../advance/plots/yieldRPplus.png, id=113, 481.8pt x 481.8pt>
 File: ../advance/plots/yieldRPplus.png Graphic file (type png)
 <use ../advance/plots/yieldRPplus.png>
 Package pdftex.def Info: ../advance/plots/yieldRPplus.png  used on input line 7
@@ -1042,7 +1042,7 @@ Overfull \hbox (38.23807pt too wide) in paragraph at lines 73--73
 [2
 
  <../advance/plots/yieldRPplus.png (PNG copy)>]
-<cjasFig.png, id=171, 433.1382pt x 434.5836pt>
+<cjasFig.png, id=162, 433.1382pt x 434.5836pt>
 File: cjasFig.png Graphic file (type png)
 <use cjasFig.png>
 Package pdftex.def Info: cjasFig.png  used on input line 120.
@@ -1071,7 +1071,7 @@ Overfull \hbox (0.76175pt too wide) detected at line 144
 []
  []
 
-<../advance/plots/derisoSrr.png, id=256, 481.8pt x 481.8pt>
+<../advance/plots/derisoSrr.png, id=248, 481.8pt x 481.8pt>
 File: ../advance/plots/derisoSrr.png Graphic file (type png)
 <use ../advance/plots/derisoSrr.png>
 Package pdftex.def Info: ../advance/plots/derisoSrr.png  used on input line 144
@@ -1082,7 +1082,7 @@ Package pdftex.def Info: ../advance/plots/derisoSrr.png  used on input line 144
  <../advance/plots/derisoSrr.png (PNG copy)>] [6
 
 ]
-<../gpBias/designLineHHardExpT45N150M0.3Wide.png, id=341, 481.8pt x 481.8pt>
+<../gpBias/designLineHHardExpT45N150M0.3Wide.png, id=333, 481.8pt x 481.8pt>
 File: ../gpBias/designLineHHardExpT45N150M0.3Wide.png Graphic file (type png)
 <use ../gpBias/designLineHHardExpT45N150M0.3Wide.png>
 Package pdftex.def Info: ../gpBias/designLineHHardExpT45N150M0.3Wide.png  used 
@@ -1091,13 +1091,13 @@ on input line 173.
  [7
 
  <../gpBias/designLineHHardExpT45N150M0.3Wide.png>]
-<../gpBias/bioCatchFlatNoQX2Z0.6.png, id=387, 481.8pt x 481.8pt>
+<../gpBias/bioCatchFlatNoQX2Z0.6.png, id=379, 481.8pt x 481.8pt>
 File: ../gpBias/bioCatchFlatNoQX2Z0.6.png Graphic file (type png)
 <use ../gpBias/bioCatchFlatNoQX2Z0.6.png>
 Package pdftex.def Info: ../gpBias/bioCatchFlatNoQX2Z0.6.png  used on input lin
 e 248.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
-<../gpBias/bioCatchExpT45X2Z0.6.png, id=388, 481.8pt x 481.8pt>
+<../gpBias/bioCatchExpT45X2Z0.6.png, id=380, 481.8pt x 481.8pt>
 File: ../gpBias/bioCatchExpT45X2Z0.6.png Graphic file (type png)
 <use ../gpBias/bioCatchExpT45X2Z0.6.png>
 Package pdftex.def Info: ../gpBias/bioCatchExpT45X2Z0.6.png  used on input line
@@ -1109,7 +1109,7 @@ Package pdftex.def Info: ../gpBias/bioCatchExpT45X2Z0.6.png  used on input line
 .6.png (PNG copy)>] [9
 
 ]
-<../../../theses/nick/gpBias/bMSYRelBiasSchunteExpT45N150Wide.png, id=471, 481.
+<../../../theses/nick/gpBias/bMSYRelBiasSchunteExpT45N150Wide.png, id=464, 481.
 8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/bMSYRelBiasSchunteExpT45N150Wide.png Graphic 
 file (type png)
@@ -1117,7 +1117,7 @@ file (type png)
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasSchunteExpT45N1
 50Wide.png  used on input line 419.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/kRelBiasSchnuteExpT45N150Wide.png, id=472, 481.8pt
+<../../../theses/nick/gpBias/kRelBiasSchnuteExpT45N150Wide.png, id=465, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/kRelBiasSchnuteExpT45N150Wide.png Graphic fil
 e (type png)
@@ -1135,13 +1135,13 @@ Overfull \hbox (19.68774pt too wide) in paragraph at lines 419--419
 |  [] 
  []
 
-<../../../theses/nick/gpBias/catchExpT45.png, id=473, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/catchExpT45.png, id=466, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/catchExpT45.png Graphic file (type png)
 <use ../../../theses/nick/gpBias/catchExpT45.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/catchExpT45.png  used on i
 nput line 419.
 (pdftex.def)             Requested size: 111.54745pt x 111.54683pt.
-<../../../theses/nick/gpBias/zetaBiasSchnuteExpT45N150Wide.png, id=474, 481.8pt
+<../../../theses/nick/gpBias/zetaBiasSchnuteExpT45N150Wide.png, id=467, 481.8pt
  x 481.8pt>
 File: ../../../theses/nick/gpBias/zetaBiasSchnuteExpT45N150Wide.png Graphic fil
 e (type png)
@@ -1159,7 +1159,7 @@ Overfull \hbox (33.91412pt too wide) in paragraph at lines 419--419
 |  [] 
  []
 
-<../../../theses/nick/gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png, id=475, 481.
+<../../../theses/nick/gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png, id=468, 481.
 8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png Graphic 
 file (type png)
@@ -1182,123 +1182,258 @@ Overfull \vbox (1.06863pt too high) detected at line 419
 heses/nick/gpBias/kRelBiasSchnuteExpT45N150Wide.png> <../../../theses/nick/gpBi
 as/catchExpT45.png> <../../../theses/nick/gpBias/zetaBiasSchnuteExpT45N150Wide.
 png> <../../../theses/nick/gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png>]
-<../gpBias/directionalBiasSchnuteAnimateBaseExpT45N150Wide.png, id=523, 481.8pt
- x 481.8pt>
-File: ../gpBias/directionalBiasSchnuteAnimateBaseExpT45N150Wide.png Graphic fil
-e (type png)
-<use ../gpBias/directionalBiasSchnuteAnimateBaseExpT45N150Wide.png>
+<../gpBias/directionalBiasSchnuteAnimateBaseExpT45N150WideX3Z0.55.png, id=516, 
+481.8pt x 481.8pt>
+File: ../gpBias/directionalBiasSchnuteAnimateBaseExpT45N150WideX3Z0.55.png Grap
+hic file (type png)
+<use ../gpBias/directionalBiasSchnuteAnimateBaseExpT45N150WideX3Z0.55.png>
 Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateBaseExpT45N150W
-ide.png  used on input line 450.
+ideX3Z0.55.png  used on input line 504.
 (pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
 
 [11
 
- <../gpBias/directionalBiasSchnuteAnimateBaseExpT45N150Wide.png (PNG copy)>]
-<../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150Wide.png, id=567, 481.8
-pt x 481.8pt>
-File: ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150Wide.png Graphic f
-ile (type png)
-<use ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150Wide.png>
+ <../gpBias/directionalBiasSchnuteAnimateBaseExpT45N150WideX3Z0.55.png (PNG cop
+y)>]
+<../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX3Z0.55.png, id=560
+, 481.8pt x 481.8pt>
+File: ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX3Z0.55.png Gr
+aphic file (type png)
+<use ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX3Z0.55.png>
 Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N15
-0Wide.png  used on input line 450.
+0WideX3Z0.55.png  used on input line 504.
 (pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
-<../gpBias/yeildCurveTruthExpT45N150WideX3.348Z0.541.png, id=568, 481.8pt x 481
-.8pt>
-File: ../gpBias/yeildCurveTruthExpT45N150WideX3.348Z0.541.png Graphic file (typ
-e png)
-<use ../gpBias/yeildCurveTruthExpT45N150WideX3.348Z0.541.png>
-Package pdftex.def Info: ../gpBias/yeildCurveTruthExpT45N150WideX3.348Z0.541.pn
-g  used on input line 450.
-(pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
-[12
+<../gpBias/yeildCurveTruthExpT45N150WideX3Z0.55.png, id=561, 481.8pt x 481.8pt>
 
- <../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150Wide.png (PNG copy)> <
-../gpBias/yeildCurveTruthExpT45N150WideX3.348Z0.541.png>]
-<../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150Wide.png, id=612, 481.8pt
- x 481.8pt>
-File: ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150Wide.png Graphic fil
-e (type png)
-<use ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150Wide.png>
-Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150W
-ide.png  used on input line 450.
-(pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
-File: ../gpBias/yeildCurveTruthExpT45N150WideX3.348Z0.541.png Graphic file (typ
-e png)
-<use ../gpBias/yeildCurveTruthExpT45N150WideX3.348Z0.541.png>
-Package pdftex.def Info: ../gpBias/yeildCurveTruthExpT45N150WideX3.348Z0.541.pn
-g  used on input line 450.
+File: ../gpBias/yeildCurveTruthExpT45N150WideX3Z0.55.png Graphic file (type png
+)
+<use ../gpBias/yeildCurveTruthExpT45N150WideX3Z0.55.png>
+Package pdftex.def Info: ../gpBias/yeildCurveTruthExpT45N150WideX3Z0.55.png  us
+ed on input line 504.
 (pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
-<../gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png, id=613, 481.8pt x 481.8
-pt>
-File: ../gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png Graphic file (type 
-png)
-<use ../gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png>
-Package pdftex.def Info: ../gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png 
- used on input line 450.
+ [12
+
+ <../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX3Z0.55.png (PNG c
+opy)> <../gpBias/yeildCurveTruthExpT45N150WideX3Z0.55.png>]
+<../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX3Z0.55.png, id=606, 
+481.8pt x 481.8pt>
+File: ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX3Z0.55.png Grap
+hic file (type png)
+<use ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX3Z0.55.png>
+Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150W
+ideX3Z0.55.png  used on input line 504.
+(pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
+File: ../gpBias/yeildCurveTruthExpT45N150WideX3Z0.55.png Graphic file (type png
+)
+<use ../gpBias/yeildCurveTruthExpT45N150WideX3Z0.55.png>
+Package pdftex.def Info: ../gpBias/yeildCurveTruthExpT45N150WideX3Z0.55.png  us
+ed on input line 504.
+(pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
+<../gpBias/yeildCurveFitExpT45N150WideX3Z0.55.png, id=607, 481.8pt x 481.8pt>
+File: ../gpBias/yeildCurveFitExpT45N150WideX3Z0.55.png Graphic file (type png)
+<use ../gpBias/yeildCurveFitExpT45N150WideX3Z0.55.png>
+Package pdftex.def Info: ../gpBias/yeildCurveFitExpT45N150WideX3Z0.55.png  used
+ on input line 504.
 (pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
  [13
 
- <../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150Wide.png (PNG copy)> <..
-/gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png (PNG copy)>]
-<../gpBias/directionalBiasSchnuteAnimateBaseHHardFlatT30N150WWideN56.png, id=65
+ <../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX3Z0.55.png (PNG cop
+y)> <../gpBias/yeildCurveFitExpT45N150WideX3Z0.55.png (PNG copy)>]
+<../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX0.5Z0.275.png, id=
+651, 481.8pt x 481.8pt>
+File: ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX0.5Z0.275.png
+ Graphic file (type png)
+<use ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX0.5Z0.275.png>
+
+Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N15
+0WideX0.5Z0.275.png  used on input line 504.
+(pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
+<../gpBias/yeildCurveTruthExpT45N150WideX0.5Z0.275.png, id=652, 481.8pt x 481.8
+pt>
+File: ../gpBias/yeildCurveTruthExpT45N150WideX0.5Z0.275.png Graphic file (type 
+png)
+<use ../gpBias/yeildCurveTruthExpT45N150WideX0.5Z0.275.png>
+Package pdftex.def Info: ../gpBias/yeildCurveTruthExpT45N150WideX0.5Z0.275.png 
+ used on input line 504.
+(pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
+ [14
+
+ <../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX0.5Z0.275.png (PN
+G copy)> <../gpBias/yeildCurveTruthExpT45N150WideX0.5Z0.275.png>]
+<../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX0.5Z0.275.png, id=69
 6, 481.8pt x 481.8pt>
+File: ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX0.5Z0.275.png G
+raphic file (type png)
+<use ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX0.5Z0.275.png>
+Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150W
+ideX0.5Z0.275.png  used on input line 504.
+(pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
+File: ../gpBias/yeildCurveTruthExpT45N150WideX0.5Z0.275.png Graphic file (type 
+png)
+<use ../gpBias/yeildCurveTruthExpT45N150WideX0.5Z0.275.png>
+Package pdftex.def Info: ../gpBias/yeildCurveTruthExpT45N150WideX0.5Z0.275.png 
+ used on input line 504.
+(pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
+<../gpBias/yeildCurveFitExpT45N150WideX0.5Z0.275.png, id=697, 481.8pt x 481.8pt
+>
+File: ../gpBias/yeildCurveFitExpT45N150WideX0.5Z0.275.png Graphic file (type pn
+g)
+<use ../gpBias/yeildCurveFitExpT45N150WideX0.5Z0.275.png>
+Package pdftex.def Info: ../gpBias/yeildCurveFitExpT45N150WideX0.5Z0.275.png  u
+sed on input line 504.
+(pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
+ [15
+
+ <../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX0.5Z0.275.png (PNG 
+copy)> <../gpBias/yeildCurveFitExpT45N150WideX0.5Z0.275.png (PNG copy)>]
+<../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX1.5Z0.2.png, id=74
+1, 481.8pt x 481.8pt>
+File: ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX1.5Z0.2.png G
+raphic file (type png)
+<use ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX1.5Z0.2.png>
+Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N15
+0WideX1.5Z0.2.png  used on input line 504.
+(pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
+<../gpBias/yeildCurveTruthExpT45N150WideX1.5Z0.2.png, id=742, 481.8pt x 481.8pt
+>
+File: ../gpBias/yeildCurveTruthExpT45N150WideX1.5Z0.2.png Graphic file (type pn
+g)
+<use ../gpBias/yeildCurveTruthExpT45N150WideX1.5Z0.2.png>
+Package pdftex.def Info: ../gpBias/yeildCurveTruthExpT45N150WideX1.5Z0.2.png  u
+sed on input line 504.
+(pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
+ [16
+
+ <../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX1.5Z0.2.png (PNG 
+copy)> <../gpBias/yeildCurveTruthExpT45N150WideX1.5Z0.2.png>]
+<../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX1.5Z0.2.png, id=786,
+ 481.8pt x 481.8pt>
+File: ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX1.5Z0.2.png Gra
+phic file (type png)
+<use ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX1.5Z0.2.png>
+Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150W
+ideX1.5Z0.2.png  used on input line 504.
+(pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
+File: ../gpBias/yeildCurveTruthExpT45N150WideX1.5Z0.2.png Graphic file (type pn
+g)
+<use ../gpBias/yeildCurveTruthExpT45N150WideX1.5Z0.2.png>
+Package pdftex.def Info: ../gpBias/yeildCurveTruthExpT45N150WideX1.5Z0.2.png  u
+sed on input line 504.
+(pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
+<../gpBias/yeildCurveFitExpT45N150WideX1.5Z0.2.png, id=787, 481.8pt x 481.8pt>
+File: ../gpBias/yeildCurveFitExpT45N150WideX1.5Z0.2.png Graphic file (type png)
+
+<use ../gpBias/yeildCurveFitExpT45N150WideX1.5Z0.2.png>
+Package pdftex.def Info: ../gpBias/yeildCurveFitExpT45N150WideX1.5Z0.2.png  use
+d on input line 504.
+(pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
+ [17
+
+ <../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX1.5Z0.2.png (PNG co
+py)> <../gpBias/yeildCurveFitExpT45N150WideX1.5Z0.2.png (PNG copy)>]
+<../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX2Z0.2.png, id=830,
+ 481.8pt x 481.8pt>
+File: ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX2Z0.2.png Gra
+phic file (type png)
+<use ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX2Z0.2.png>
+Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateSourceExpT45N15
+0WideX2Z0.2.png  used on input line 504.
+(pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
+<../gpBias/yeildCurveTruthExpT45N150WideX2Z0.2.png, id=831, 481.8pt x 481.8pt>
+File: ../gpBias/yeildCurveTruthExpT45N150WideX2Z0.2.png Graphic file (type png)
+
+<use ../gpBias/yeildCurveTruthExpT45N150WideX2Z0.2.png>
+Package pdftex.def Info: ../gpBias/yeildCurveTruthExpT45N150WideX2Z0.2.png  use
+d on input line 504.
+(pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
+ [18
+
+ <../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX2Z0.2.png (PNG co
+py)> <../gpBias/yeildCurveTruthExpT45N150WideX2Z0.2.png>]
+<../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX2Z0.2.png, id=874, 4
+81.8pt x 481.8pt>
+File: ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX2Z0.2.png Graph
+ic file (type png)
+<use ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX2Z0.2.png>
+Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150W
+ideX2Z0.2.png  used on input line 504.
+(pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
+File: ../gpBias/yeildCurveTruthExpT45N150WideX2Z0.2.png Graphic file (type png)
+
+<use ../gpBias/yeildCurveTruthExpT45N150WideX2Z0.2.png>
+Package pdftex.def Info: ../gpBias/yeildCurveTruthExpT45N150WideX2Z0.2.png  use
+d on input line 504.
+(pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
+<../gpBias/yeildCurveFitExpT45N150WideX2Z0.2.png, id=875, 481.8pt x 481.8pt>
+File: ../gpBias/yeildCurveFitExpT45N150WideX2Z0.2.png Graphic file (type png)
+<use ../gpBias/yeildCurveFitExpT45N150WideX2Z0.2.png>
+Package pdftex.def Info: ../gpBias/yeildCurveFitExpT45N150WideX2Z0.2.png  used 
+on input line 504.
+(pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
+ [19
+
+ <../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX2Z0.2.png (PNG copy
+)> <../gpBias/yeildCurveFitExpT45N150WideX2Z0.2.png (PNG copy)>]
+<../gpBias/directionalBiasSchnuteAnimateBaseHHardFlatT30N150WWideN56.png, id=91
+9, 481.8pt x 481.8pt>
 File: ../gpBias/directionalBiasSchnuteAnimateBaseHHardFlatT30N150WWideN56.png G
 raphic file (type png)
 <use ../gpBias/directionalBiasSchnuteAnimateBaseHHardFlatT30N150WWideN56.png>
 Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateBaseHHardFlatT3
-0N150WWideN56.png  used on input line 481.
+0N150WWideN56.png  used on input line 535.
 (pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
- [14
+
+[20
 
  <../gpBias/directionalBiasSchnuteAnimateBaseHHardFlatT30N150WWideN56.png (PNG 
 copy)>]
 <../gpBias/directionalBiasSchnuteAnimateSourceHHardFlatT30N150WWideN56.png, id=
-698, 481.8pt x 481.8pt>
+962, 481.8pt x 481.8pt>
 File: ../gpBias/directionalBiasSchnuteAnimateSourceHHardFlatT30N150WWideN56.png
  Graphic file (type png)
 <use ../gpBias/directionalBiasSchnuteAnimateSourceHHardFlatT30N150WWideN56.png>
 
 Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateSourceHHardFlat
-T30N150WWideN56.png  used on input line 481.
+T30N150WWideN56.png  used on input line 535.
 (pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
-<../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3.497Z0.578.png, id=699, 481
+<../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3.497Z0.578.png, id=963, 481
 .8pt x 481.8pt>
 File: ../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3.497Z0.578.png Graphic
  file (type png)
 <use ../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3.497Z0.578.png>
 Package pdftex.def Info: ../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3.49
-7Z0.578.png  used on input line 481.
+7Z0.578.png  used on input line 535.
 (pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
- [15
+ [21
 
  <../gpBias/directionalBiasSchnuteAnimateSourceHHardFlatT30N150WWideN56.png (PN
 G copy)> <../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3.497Z0.578.png>]
-<../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN56.png, id=74
-3, 481.8pt x 481.8pt>
+<../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN56.png, id=10
+06, 481.8pt x 481.8pt>
 File: ../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN56.png G
 raphic file (type png)
 <use ../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN56.png>
 Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT3
-0N150WWideN56.png  used on input line 481.
+0N150WWideN56.png  used on input line 535.
 (pdftex.def)             Requested size: 224.01997pt x 224.02502pt.
 File: ../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3.497Z0.578.png Graphic
  file (type png)
 <use ../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3.497Z0.578.png>
 Package pdftex.def Info: ../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3.49
-7Z0.578.png  used on input line 481.
+7Z0.578.png  used on input line 535.
 (pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
-<../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png, id=744, 481.8
-pt x 481.8pt>
+<../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png, id=1007, 481.
+8pt x 481.8pt>
 File: ../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png Graphic f
 ile (type png)
 <use ../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png>
 Package pdftex.def Info: ../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z
-0.578.png  used on input line 481.
+0.578.png  used on input line 535.
 (pdftex.def)             Requested size: 72.26688pt x 72.26688pt.
- [16
+ [22
 
  <../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN56.png (PNG 
-copy)> <../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png>] [17
+copy)> <../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png>] [23
 
 ]
 \tf@nav=\write6
@@ -1310,44 +1445,40 @@ copy)> <../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png>] [17
 \tf@snm=\write8
 \openout8 = `afsPres.snm'.
 
-
-(./afsPres.aux)
+ (./afsPres.aux)
 
 Package rerunfilecheck Warning: File `afsPres.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `afsPres.out':
-(rerunfilecheck)             Before: 7BA3C3B27510A98FBE4A1A63254F9DA4;549
-(rerunfilecheck)             After:  68D9523C29EB06FA2941424EA63E18A1;549.
+(rerunfilecheck)             Before: A85982A142812CC1FA7B58DAAE1B95B0;406
+(rerunfilecheck)             After:  B7614AAEDD58206B84EDDA6FC9AE1128;549.
  ) 
 Here is how much of TeX's memory you used:
- 25462 strings out of 478287
- 516223 string characters out of 5849289
- 768712 words of memory out of 5000000
- 43053 multiletter control sequences out of 15000+600000
+ 25555 strings out of 478287
+ 521662 string characters out of 5849289
+ 780916 words of memory out of 5000000
+ 43123 multiletter control sequences out of 15000+600000
  484229 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,19n,122p,387b,778s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Outline0.4.1.15} has been referenced but does not
- exist, replaced by a fixed one
-
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/
-msbm10.pfb>
-Output written on afsPres.pdf (17 pages, 960407 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbol
+s/msbm10.pfb>
+Output written on afsPres.pdf (23 pages, 1380758 bytes).
 PDF statistics:
- 896 PDF objects out of 1000 (max. 8388607)
- 789 compressed objects within 8 object streams
- 44 named destinations out of 1000 (max. 500000)
- 222 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1162 PDF objects out of 1200 (max. 8388607)
+ 1031 compressed objects within 11 object streams
+ 55 named destinations out of 1000 (max. 500000)
+ 266 words of extra memory for PDF output out of 10000 (max. 10000000)
 

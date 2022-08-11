@@ -326,8 +326,8 @@ dev.off()
 
 #
 #minimize target norm
-xiTar   = 3#3.4
-zetaTar = 0.55
+xiTar   = 2 #3    #0.5   #3.4
+zetaTar = 0.2 #0.55 #0.275 #0.55
 norms = sqrt((xiTar-xis)^2 + (zetaTar-zetas)^2)
 who   = which(min(norms)==norms)
 xi    = xis[who]
@@ -360,7 +360,7 @@ qYield = rowQuantiles(lns-M*grd, probs=c(0.025, 0.5, 0.975))
 yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), qSRR, na.rm=T)
 
 #
-png(sprintf("yeildCurveCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
+png(sprintf("yeildCurveCompare%sX%sZ%s.png", mod, xiTar, zetaTar))
 cols = brewer.pal(9, "Set1")
 curve(yield(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	lwd=3, 
@@ -384,7 +384,7 @@ legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", cols[1]),
 dev.off()
 
 #
-png(sprintf("yeildCurveTruth%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
+png(sprintf("yeildCurveTruth%sX%sZ%s.png", mod, xiTar, zetaTar))
 cols = brewer.pal(9, "Set1")
 curve(yield(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	lwd=3, 
@@ -408,7 +408,7 @@ curve(yield(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 dev.off()
 
 #
-png(sprintf("yeildCurveFit%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
+png(sprintf("yeildCurveFit%sX%sZ%s.png", mod, xiTar, zetaTar))
 cols = brewer.pal(9, "Set1")
 curve(yield(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 #curve(yield(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, n=1000,
@@ -567,7 +567,7 @@ xiFill   = seq(0, min(D$xiSeed), 0.01)
 dotStar = expand.grid(xiFill, zetaStar)
 
 #
-png(sprintf("directionalBiasSchnuteAnimateBase%s.png", mod))
+png(sprintf("directionalBiasSchnuteAnimateBase%sX%sZ%s.png", mod, xiTar, zetaTar))
 eucCols = hcl.colors(41, "Reds 2", rev=T)
 #par(mar=c(5, 4, 4, 5)+0.1)
 par(mar=c(5, 5, 4, 4)+0.1)
@@ -602,7 +602,7 @@ show = seq(1, length(eucCols), length.out=20)
 dev.off()
 
 #
-png(sprintf("directionalBiasSchnuteAnimateSource%s.png", mod))
+png(sprintf("directionalBiasSchnuteAnimateSource%sX%sZ%s.png", mod, xiTar, zetaTar))
 eucCols = hcl.colors(41, "Reds 2", rev=T)
 #par(mar=c(5, 4, 4, 5)+0.1)
 par(mar=c(5, 5, 4, 4)+0.1)
@@ -638,7 +638,7 @@ show = seq(1, length(eucCols), length.out=20)
 dev.off()
 
 #
-png(sprintf("directionalBiasSchnuteAnimateSink%s.png", mod))
+png(sprintf("directionalBiasSchnuteAnimateSink%sX%sZ%s.png", mod, xiTar, zetaTar))
 eucCols = hcl.colors(41, "Reds 2", rev=T)
 #par(mar=c(5, 4, 4, 5)+0.1)
 par(mar=c(5, 5, 4, 4)+0.1)
