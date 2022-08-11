@@ -328,6 +328,8 @@ dev.off()
 #minimize target norm
 xiTar   = 2 #3    #0.5   #3.4
 zetaTar = 0.2 #0.55 #0.275 #0.55
+#xiTar   = 3 #1 #3#3.4
+#zetaTar = 0.45 #0.275#0.55
 norms = sqrt((xiTar-xis)^2 + (zetaTar-zetas)^2)
 who   = which(min(norms)==norms)
 xi    = xis[who]
