@@ -415,11 +415,11 @@ n = 28 #56 #about 3 flushes all of the thialacia ranks
 #t = 1
 #
 xlim = c(0.25, 3.75)
-ylim = c(0.15, 0.7)
+ylim = c(0.15, 0.6) #0.7)
 
 #
-inPlace = "./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30N150WWideN56/" #'./modsSchnuteHHardFlatT30N150WWide/' #Extra/'
-outPlace = sprintf('./modsSchnuteHHardExpT30L3N150WWideN%s/', n) #3*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
+inPlace = "./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30N150WWideN56/" #'./modsSchnuteHHardFlatT30N150WWide/' #Extra/'
+outPlace = sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
 #
 datFiles = sprintf("%s%s", inPlace, list.files(path=inPlace, pattern=glob2rx("datGen*.rda")))
 fitFiles = sprintf("%s%s", inPlace, list.files(path=inPlace, pattern=glob2rx("fit*.rda")))
@@ -478,7 +478,7 @@ l = cbind(xiList, zetaList)
 
 #
 #png("adaptDesignSquare.png")
-plot(l)
+plot(l[,1], l[,2])
 
 #
 i = 1

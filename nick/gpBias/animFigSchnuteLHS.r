@@ -277,7 +277,8 @@ getData = function(dir, xiRange, zetaRange){
 #P0 = 10000
 #
 #mod = "ExpT45N150Wide" #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
-mod = "HHardFlatT30N150WWideN56"
+#mod = "HHardFlatT30N150WWideN56"
+mod = "HHardFlatT30N150WWideN84"
 dir = sprintf("./modsSchnute%s/", mod)
 P0 = 10000
 M = 0.2
@@ -327,7 +328,7 @@ dev.off()
 #
 #minimize target norm
 xiTar   = 3 #1 #3#3.4
-zetaTar = 0.45 #0.275#0.55
+zetaTar = 0.35 #0.275#0.55
 norms = sqrt((xiTar-xis)^2 + (zetaTar-zetas)^2)
 who   = which(min(norms)==norms)
 xi    = xis[who]
