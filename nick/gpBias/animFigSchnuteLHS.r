@@ -316,18 +316,14 @@ png(sprintf('%sDesign.png', mod))
 plot(xis, zetas)
 dev.off()
 
-#maximize (min, min) norm
-##(max, max) is defined by its opposing (min, min) diagonal bound
-#norms = sqrt((xiMin-xis)^2 + (zetaMin-zetas)^2)
-
 #
 #TARGET YEILD CURVES
 #
 
 #
 #minimize target norm
-xiTar   = 2 #3    #0.5   #3.4
-zetaTar = 0.2 #0.55 #0.275 #0.55
+xiTar   = 0.5 #3    #0.5   #3.4
+zetaTar = 0.275 #0.55 #0.275 #0.55
 #xiTar   = 3 #1 #3#3.4
 #zetaTar = 0.45 #0.275#0.55
 norms = sqrt((xiTar-xis)^2 + (zetaTar-zetas)^2)
@@ -579,7 +575,7 @@ image(xiStar, zetaStar, eucBias,
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
-        xlim = c(0, xiTop), #c(xiBot, 
+        xlim = c(xiBot, xiTop), #c(0, xiTop), # 
         cex.lab = 1.5,
         cex.main= 1.5
 )
@@ -614,7 +610,7 @@ image(xiStar, zetaStar, eucBias,
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
-        xlim = c(0, xiTop),
+        xlim = c(xiBot, xiTop), #c(0, xiTop),
         cex.lab = 1.5,
         cex.main= 1.5
 )
@@ -650,7 +646,7 @@ image(xiStar, zetaStar, eucBias,
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
-        xlim = c(0, xiTop),
+        xlim = c(xiBot, xiTop), #c(0, xiTop),
         cex.lab = 1.5,
         cex.main= 1.5
 )
