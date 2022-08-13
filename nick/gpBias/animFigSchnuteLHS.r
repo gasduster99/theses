@@ -276,8 +276,11 @@ getData = function(dir, xiRange, zetaRange){
 #M = 0.2
 #P0 = 10000
 #
+
 mod = "ExpT45N150Wide" #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
 #mod = "HHardFlatT30N150WWideN56"
+#mod = "HHardFlatT30N150WWideN84"
+#
 dir = sprintf("./modsSchnute%s/", mod)
 P0 = 10000
 M = 0.2

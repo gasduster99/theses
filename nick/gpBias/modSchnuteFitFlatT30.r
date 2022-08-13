@@ -143,14 +143,14 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = "./modsSchnuteHHardFlatT30N150WWideN56/" #"./modsSchnuteHHardFlatT30N150WWideExtra/" #'./modsSchnuteHHardFlatT30N150WWide/'
+place = "./modsSchnuteHHardFlatT30N150WWideN84" #56/28/ #"./modsSchnuteHHardFlatT30N150WWideExtra/" #'./modsSchnuteHHardFlatT30N150WWide/'
 odeMethod = "lsode"
 
 #
 datFiles = sprintf("%s/%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
 
 #
-registerDoParallel(48) 
+registerDoParallel(46) 
 opts = list(preschedule=F)
 foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 #foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
