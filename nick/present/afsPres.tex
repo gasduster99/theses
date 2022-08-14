@@ -7,6 +7,7 @@
 \usepackage{tikz}
 \usepackage{graphicx}
 \usepackage{verbatim}
+\usepackage{hyperref}
 \usepackage{changepage}
 
 %\usepackage{rNames}
@@ -19,7 +20,7 @@ In collaboration with:\\
 Dr. E.J. Dick\\
 Dr. H. K.H. Lee
 }
-\date{15 Aug 2022}
+\date{17 Aug 2022}
 
 \DeclareMathOperator*{\argmin}{\arg\!\min}
 \DeclareMathOperator*{\argmax}{\arg\!\max}
@@ -56,8 +57,8 @@ Dr. H. K.H. Lee
 
 
 %
-\begin{frame}
-$~$\\\hspace*{-0.5cm}
+\begin{frame}{General Surplus-Production Structure}
+\hspace*{-0.5cm}
 \begin{minipage}[h!]{0.49\textwidth}
 \begin{align*}
 I_t &= q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2) \\
@@ -85,7 +86,7 @@ Conceptually:
 $~$\\
 Mangel et al. 2013, CJFAS:
 \begin{itemize}
-        \item BH Model: $~ F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{F_{MSY}/M+2}$
+        \item BH Model: $~ \frac{F_{MSY}}{M}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{F_{MSY}/M+2}$
         \item Similar Constraints for other Two-Parameter Curves %Logistic, Ricker and 
 	 % Three-Parameter Relationships Allow Independent RP Estimation
 \end{itemize}
@@ -124,23 +125,43 @@ $~$\\
 \begin{frame}
 \begin{minipage}[h!]{0.59\textwidth}
 \begin{itemize}
-\item Starting from the rock bottom to build understanding
-\item And analysis of biases for the Scheaffer model can be seen here
-\item Attacking this problem from the ground up working towards age structred models is important due to the many computational issues that can arrise in ode modeling.
+\vspace{0.3cm}
+\item Isolalting RP Bias is Hard:
 \begin{itemize}
-	\item chaos
-	\item time integration error
-	\item estimation error
-	\item etc., etc.
+        \item Chaos in the Dynamical System
+        \item Time Integrator Inaccuracy
+        \item Model Identifiability
+        \item Global Optimization
+        \item etc...
 \end{itemize}
+\vspace{0.3cm}
+\item Production Models are simplified places to build intuition % places to build from
+\vspace{0.3cm}
+%\item Build intuition relavant to Management 
+\item See my analysis of the mechanisms of bias in the Schaefer Model $\Longrightarrow$
+%that are useful for understanding toward 
+%provide an intuitive modeling environment to build towards 
+%\item Move towards
+%\color{orange}
+%%\item Starting from the rock bottom to build understanding
+%\item And analysis of biases for the Scheaffer model can be seen here
+%\item Schaefer Mechanistic Understanding
+%%\item Attacking this problem from the ground up working towards age structred models is important due to the many computational issues that can arrise in ode modeling.
+%%\begin{itemize}
+%%	\item Chaos in the Dynamical System
+%%	\item Time Integrator Inaccuracy
+%%	\item Model Identifiability
+%%	\item Global Optimization
+%%	\item etc...
+%%\end{itemize}
 \end{itemize}
 \end{minipage}
 \begin{minipage}[h!]{0.39\textwidth}
 
 \begin{center}
-{\color{blue}\underline{\large Schaefer Analysis}}\\$~$\\
+{\underline{\large Schaefer RP Analysis}}\\$~$\\
 \includegraphics[height=0.5\textheight]{./talkQR.png}\\$~$\\
-\texttt{https://ggle.io/5EnI}
+\href{https://ggle.io/5EnI}{\color{blue}\texttt{https://ggle.io/5EnI}}
 \end{center}
 
 \end{minipage}
@@ -170,15 +191,15 @@ $~$\\
 \end{minipage}
 \end{frame}
 
-%
-\begin{frame}{\color{orange} Introish Ideas list}
-\begin{itemize}
-	\item PT/Schaffer work (link)
-	\item Computational Difficulties
-	\item {\color{orange}Schnute Space Filling}
-	\item Catch/Contrast
-\end{itemize}
-\end{frame}
+%%
+%\begin{frame}{\color{orange} Introish Ideas list}
+%\begin{itemize}
+%	\item PT/Schaffer work (link)
+%	\item Computational Difficulties
+%	\item {\color{orange}Schnute Space Filling}
+%	\item Catch/Contrast
+%\end{itemize}
+%\end{frame}
 
 %%
 %\begin{frame}
@@ -205,6 +226,12 @@ $~$\\
 \includegraphics[width=0.49\textwidth]{../gpBias/bioCatchExpT45X2Z0.6NoPT.png}
 \end{frame}
 
+\begin{frame}{\color{orange}Simulation Design}
+\begin{center}
+\includegraphics[height=0.9\textheight]{../gpBias/designLineHHardExpT45N150M0.3Wide.png}
+\end{center}
+\end{frame}
+
 %
 \section{Bias}
 \subsection{}
@@ -223,35 +250,35 @@ $~$\\
 %\end{itemize}
 %\end{frame}
 
-%
-\begin{frame}%{Exp}
-%\vspace{-0.5cm}
-$~$
-\hspace*{-1.25cm}
-%\begin{minipage}[h!]{0.25\textwidth}
-%\includegraphics[width=1.1\textwidth]{~/Documents/school/ucscGrad/theses/nick/gpBias/bMSYRelBiasPellaExpNoQ.png}\\
-%\includegraphics[width=1.1\textwidth]{~/Documents/school/ucscGrad/theses/nick/gpBias/catchExpNoQ.png}
+%%
+%\begin{frame}%{Exp}
+%%\vspace{-0.5cm}
+%$~$
+%\hspace*{-1.25cm}
+%%\begin{minipage}[h!]{0.25\textwidth}
+%%\includegraphics[width=1.1\textwidth]{~/Documents/school/ucscGrad/theses/nick/gpBias/bMSYRelBiasPellaExpNoQ.png}\\
+%%\includegraphics[width=1.1\textwidth]{~/Documents/school/ucscGrad/theses/nick/gpBias/catchExpNoQ.png}
+%%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasSchunteExpT45N150Wide.png}\\
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasSchnuteExpT45N150Wide.png}
 %\end{minipage}
-\begin{minipage}[h!]{0.33\textwidth}
-\hspace*{0.25cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasSchunteExpT45N150Wide.png}\\
-\hspace*{0.25cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/kRelBiasSchnuteExpT45N150Wide.png}
-\end{minipage}
-\begin{minipage}[h!]{0.33\textwidth}
-\hspace*{0.75cm}
-%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaExpT45.png}\\
-%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchExpT45.png}\\
+%\begin{minipage}[h!]{0.33\textwidth}
 %\hspace*{0.75cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasSchnuteExpT45N150Wide.png}
-\end{minipage}
-\begin{minipage}[h!]{0.33\textwidth}
+%%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasPellaExpT45.png}\\
+%%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/catchExpT45.png}\\
+%%\hspace*{0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/zetaBiasSchnuteExpT45N150Wide.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.33\textwidth}
+%%\hspace*{1cm}
+%%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasSchnuteExpT45N150Wide.png}\\
 %\hspace*{1cm}
-%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/directionalBiasSchnuteExpT45N150Wide.png}\\
-\hspace*{1cm}
-\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
-\end{minipage}
-\end{frame}
+%\includegraphics[width=1.1\textwidth]{../../../theses/nick/gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
+%\end{minipage}
+%\end{frame}
 
 %
 \begin{frame}{High Contrast}
@@ -451,15 +478,99 @@ $~$
 \end{frame}
 
 %
-\section{Conclusion}
+\section{End}
 \subsection{}
 %
 \begin{frame}{\color{orange}Conclusions}
 \begin{itemize}
+	\color{orange}
 	\item Contrast story
 	\item Importance of getting the computaional details correct for moving to analysis of Delay Difference and age structure
 \end{itemize}
 \end{frame}
+
+%
+\begin{frame}
+\only<1>{
+$~$\\$~$\\
+\begin{minipage}[h!]{0.54\textwidth}
+Many Thanks:\\
+\begin{itemize}
+\item UCSC Advisors
+\item SWFSC Groundfish
+\item NMFS Sea Grant
+%\item Members of my Committee
+\end{itemize}
+\end{minipage}
+\begin{minipage}[h!]{0.44\textwidth}
+\includegraphics[width=0.9\textwidth]{rockFish.png}
+\end{minipage}
+
+%\vspace*{-0.5cm}
+\begin{minipage}[h!]{0.59\textwidth}
+\includegraphics[width=\textwidth]{seaGrant-logo.png}
+\end{minipage}
+\begin{minipage}[h!]{0.39\textwidth}
+\includegraphics[width=\textwidth]{dssc.jpg}
+\end{minipage}
+}
+\only<2>{
+\frametitle{Metamodel Details}
+\vspace*{-0.5cm}
+\begin{align*}
+        %\hat\mu &= \widehat{log(r)} ~~ -or- ~~ \hat\mu = \widehat{log(K)}\\
+        %~\\
+        \bm{x} &= \left(F_{MSY}, \frac{B_{MSY}}{\bar B(0)}\right) \nonumber\\
+        ~\\
+        \hat\mu &= \beta_0 + \bm{\beta}'\bm{x} + f(\bm{x}) + {\epsilon} \nonumber \\
+        f(\bm{x}) &\sim \text{GP}(0, \tau^2 R(\bm{x}, \bm{x'})) \nonumber \\
+        \epsilon_i &\sim \text{N}(0, \hat\omega_i).
+\end{align*}
+\begin{align*}
+R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \right)
+\end{align*}
+}
+\only<3>{
+\begin{center}
+\includegraphics[width=0.7\textwidth]{../gpBias/crossCovExpT45.png}
+\end{center}
+}
+\only<4>{
+\begin{center}
+ Low Contrast $~~~~~~~~~~~~~~~~~~~~~~$ High Contrast\\
+\includegraphics[width=0.49\textwidth]{../gpBias/directionalBiasPellaFlatNoQ.png}
+\includegraphics[width=0.49\textwidth]{../gpBias/directionalBiasPellaExpT45.png}
+\end{center}
+}
+\only<5>{
+\frametitle{Schnute RP-Parameter System of Equations}
+\begin{align*}
+\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
+\alpha &= (M+F_{MSY})\left(1+\frac{\gamma F_{MSY}}{M+F_{MSY}}\right)^{1/\gamma} \\
+\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right)
+\end{align*}
+}
+\only<6>{
+\frametitle{Common Discretization}
+\hspace*{-1cm}
+\begin{minipage}[h!]{0.64\textwidth}
+\begin{align*}
+\frac{dB}{dt} &= P_\theta(B(t)) - C(t)
+\end{align*}
+
+\begin{align*}
+%\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
+B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - c(\tau)
+\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.24\textwidth}
+\includegraphics[width=1.9\textwidth]{./eulerTry.png}
+\end{minipage}
+}
+\end{frame}
+
+
+
 
 
 
