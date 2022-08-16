@@ -6,7 +6,7 @@ geometry: margin=2cm
 fontsize: 16pt
 header-includes:
     - \usepackage{setspace}
-    - \doublespacing
+    - \onehalfspacing
 ---
 
 # Introduction
