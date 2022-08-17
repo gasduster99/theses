@@ -108,7 +108,7 @@ Conceptually:
 $~$\\
 Mangel et al. 2013, CJFAS:
 \begin{itemize}
-        \item BH Model: $~ F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{F_{MSY}/M+2}$
+        \item BH Model: $~ \frac{F_{MSY}}{M}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{F_{MSY}/M+2}$
         \item Similar Constraints for other Two-Parameter Curves %Logistic, Ricker and 
         \item Three-Parameter Relationships Allow Independent RP Estimation
 \end{itemize}
@@ -119,6 +119,30 @@ $~$\\
 \includegraphics[width=1.4\textwidth]{cjasFig.png}
 \end{minipage}
 }
+\end{frame}
+
+%
+\section{Simulation}
+\subsection{}
+
+%
+\begin{frame}{Schnute 1985, CJFAS}
+\begin{minipage}[h!]{0.49\textwidth}
+\begin{align}
+&\frac{dB}{dt} = P(B;\bm{\theta}) - (M+F)B \nonumber%\label{schunte}%
+\end{align}
+\begin{align}
+&P(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}} \nonumber
+\end{align}
+\begin{align*}
+\gamma = -1 &\Rightarrow \text{\color{ForestGreen}Beverton-Holt}\\
+\gamma \rightarrow 0 &\Rightarrow \text{\color{RoyalBlue}Ricker}\\
+\gamma = 1 &\Rightarrow  \text{\color{Red}Logistic}
+\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=1.1\textwidth]{./derisoSrr.png}
+\end{minipage}
 \end{frame}
 
 %
@@ -160,76 +184,95 @@ $~$\\
 
 \begin{center}
 {\underline{\large Schaefer RP Analysis}}\\$~$\\
-\includegraphics[height=0.5\textheight]{./talkQR.png}\\$~$\\
+\href{https://ggle.io/5EnI}{\includegraphics[height=0.5\textheight]{./talkQR.png}}\\$~$\\
 \href{https://ggle.io/5EnI}{\color{blue}\texttt{https://ggle.io/5EnI}}
 \end{center}
 
 \end{minipage}
 \end{frame}
 
-%
-\section{Simulation}
-\subsection{}
 
 %
-\begin{frame}{Schnute 1985, CJFAS}
-\begin{minipage}[h!]{0.49\textwidth}
-\begin{align}
-&\frac{dB}{dt} = P(B;\bm{\theta}) - (M+F)B \nonumber%\label{schunte}%
-\end{align}
-\begin{align}
-&P(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}} \nonumber
-\end{align}
+\begin{frame}{Simulation Design}
+\only<1>{
+$~$\hspace{-1cm}
+\begin{minipage}[h!]{0.59\textwidth}
+\begin{itemize}
+\item LHS design based on analytical results similar to Schnute and Richards 1998, CJFAS
+\vspace{0.3cm}
+\item[] % GP Metamodeling of RP bias
+\vspace{0.6cm}
+\end{itemize}
 \begin{align*}
-\gamma = -1 &\Rightarrow \text{\color{ForestGreen}Beverton-Holt}\\
-\gamma \rightarrow 0 &\Rightarrow \text{\color{RoyalBlue}Ricker}\\
-\gamma = 1 &\Rightarrow  \text{\color{Red}Logistic}
+~\\~\\%\underbrace{\left(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{Schnute Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\frac{\hat F_{MSY}}{M}, \frac{\hat B_{MSY}}{\bar B(0)}\right)}_{\text{BH Estimate}}
 \end{align*}
 \end{minipage}
-\begin{minipage}[h!]{0.49\textwidth}
-\includegraphics[width=\textwidth]{./derisoSrr.png}
+\begin{minipage}[h!]{0.39\textwidth}
+\begin{center}
+\begin{tikzpicture}[overlay]
+\node at (1,0) {\includegraphics[height=0.7\textheight]{../gpBias/designLineHHardExpT45N150M0.3Wide.png}};
+%\node[circle, draw, minimum size=7, inner sep=-2] at (2.6,1.5){\tiny S};
+%\draw[latex-, very thick,black] (0.6,-0.9) -- ++(1.9,2.3);
+%\node[circle,fill=red, minimum size=9, inner sep=-2] at (0.5,-1){\tiny BH};
+\end{tikzpicture}
+\end{center}
 \end{minipage}
+}
+\only<2>{
+$~$\hspace{-1cm}
+\begin{minipage}[h!]{0.59\textwidth}
+\begin{itemize}
+\item LHS design based on analytical results similar to Schnute and Richards 1998, CJFAS
+\vspace{0.3cm}
+\item[] % GP Metamodeling of RP bias
+\vspace{0.6cm}
+\end{itemize}
+\begin{align*}
+~\\~\\%\underbrace{\left(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{Schnute Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\frac{\hat F_{MSY}}{M}, \frac{\hat B_{MSY}}{\bar B(0)}\right)}_{\text{BH Estimate}}
+\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.39\textwidth}
+\begin{center}
+\begin{tikzpicture}[overlay]
+\node at (1,0) {\includegraphics[height=0.7\textheight]{../gpBias/designLineHHardExpT45N150M0.3Wide.png}};
+\node[circle, draw, minimum size=7, inner sep=-2] at (2.6,1.5){\tiny S};
+\draw[latex-, very thick,black] (0.6,-0.9) -- ++(1.9,2.3);
+\node[circle,fill=red, minimum size=9, inner sep=-2] at (0.5,-1){\tiny BH};
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+}
+\only<3>{
+$~$\hspace{-1cm}
+\begin{minipage}[h!]{0.59\textwidth}
+\begin{itemize}
+\item LHS design based on analytical results similar to Schnute and Richards 1998, CJFAS
+\vspace{0.3cm}
+\item GP Metamodeling of RP bias
+\vspace{0.6cm}
+\end{itemize}
+\begin{equation*}
+\underbrace{\left(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{Schnute Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\frac{\hat F_{MSY}}{M}, \frac{\hat B_{MSY}}{\bar B(0)}\right)}_{\text{BH Estimate}}
+\end{equation*}
+\end{minipage}
+\begin{minipage}[h!]{0.39\textwidth}
+\begin{center}
+\begin{tikzpicture}[overlay]
+\node at (1,0) {\includegraphics[height=0.7\textheight]{../gpBias/designLineHHardExpT45N150M0.3Wide.png}};
+\node[circle, draw, minimum size=7, inner sep=-2] at (2.6,1.5){\tiny S};
+\draw[latex-, very thick,black] (0.6,-0.9) -- ++(1.9,2.3);
+\node[circle,fill=red, minimum size=9, inner sep=-2] at (0.5,-1){\tiny BH};
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+}
 \end{frame}
-
-%%
-%\begin{frame}{\color{orange} Introish Ideas list}
-%\begin{itemize}
-%	\item PT/Schaffer work (link)
-%	\item Computational Difficulties
-%	\item {\color{orange}Schnute Space Filling}
-%	\item Catch/Contrast
-%\end{itemize}
-%\end{frame}
-
-%%
-%\begin{frame}
-%%
-%\begin{minipage}[h!]{0.69\textwidth}
-%%
-%\begin{align*}
-%\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
-%\alpha &= (M+F_{MSY})\left(1+\frac{\gamma F_{MSY}}{M+F_{MSY}}\right)^{1/\gamma} \\
-%\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right)
-%\end{align*}
-%%
-%\end{minipage}
-%\begin{minipage}[h!]{0.29\textwidth}
-%%
-%\includegraphics[width=\textwidth]{../gpBias/designLineHHardExpT45N150M0.3Wide.png}
-%\end{minipage}
-%\end{frame}
 
 %
 \begin{frame}{Catch}
 \includegraphics[width=0.49\textwidth]{../gpBias/bioCatchFlatNoQX2Z0.6NoPT.png}
 %\hspace*{1cm}
 \includegraphics[width=0.49\textwidth]{../gpBias/bioCatchExpT45X2Z0.6NoPT.png}
-\end{frame}
-
-\begin{frame}{\color{orange}Simulation Design}
-\begin{center}
-\includegraphics[height=0.9\textheight]{../gpBias/designLineHHardExpT45N150M0.3Wide.png}
-\end{center}
 \end{frame}
 
 %
@@ -311,8 +354,8 @@ $~$\\
 %}
 \only<1>{
 \begin{center}
-\begin{tikzpicture}[overlay]
-	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateBaseExpT45N150WideX2.5Z0.45.png}};
+\begin{tikzpicture}[overlay]                                                    
+	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimatePrecentExpT45N150WideX2.5Z0.45.png}};
 	%\node at (4.5,2)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveTruthExpT45N150WideX3.348Z0.541.png}};
 	%\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png}};
 \end{tikzpicture}
@@ -336,24 +379,24 @@ $~$\\
 \end{tikzpicture}
 \end{center}
 }
-\only<4>{
-\begin{center}
-\begin{tikzpicture}[overlay]
-	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX0.5Z0.275.png}};
-	\node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthExpT45N150WideX0.5Z0.275.png}};
-	%\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png}};
-\end{tikzpicture}
-\end{center}
-}
-\only<5>{
-\begin{center}
-\begin{tikzpicture}[overlay]
-	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX0.5Z0.275.png}};
-	\node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthExpT45N150WideX0.5Z0.275.png}};
-	\node at (-4.75,1.5)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveFitExpT45N150WideX0.5Z0.275.png}};
-\end{tikzpicture}
-\end{center}
-}
+%\only<4>{
+%\begin{center}
+%\begin{tikzpicture}[overlay]
+%	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSourceExpT45N150WideX0.5Z0.275.png}};
+%	\node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthExpT45N150WideX0.5Z0.275.png}};
+%	%\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png}};
+%\end{tikzpicture}
+%\end{center}
+%}
+%\only<5>{
+%\begin{center}
+%\begin{tikzpicture}[overlay]
+%	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSinkExpT45N150WideX0.5Z0.275.png}};
+%	\node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthExpT45N150WideX0.5Z0.275.png}};
+%	\node at (-4.75,1.5)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveFitExpT45N150WideX0.5Z0.275.png}};
+%\end{tikzpicture}
+%\end{center}
+%}
 %\only<6>{
 %\begin{center}
 %\begin{tikzpicture}[overlay]
@@ -397,7 +440,7 @@ $~$\\
 \only<1>{
 \begin{center}
 \begin{tikzpicture}[overlay]
-	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateBaseHHardFlatT30N150WWideN56X3Z0.55.png}};
+	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN112X3Z0.55.png}};
 	%\node at (4.5,2)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3.497Z0.578.png}};
 	%\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png}};
 \end{tikzpicture}
@@ -406,8 +449,8 @@ $~$\\
 \only<2>{
 \begin{center}
 \begin{tikzpicture}[overlay]
-	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSourceHHardFlatT30N150WWideN56X3Z0.55.png}};
-	\node at (4.75,1.5)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3Z0.55.png}};
+	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSourceHHardFlatT30N150WWideN112X3Z0.55.png}};
+	\node at (4.75,1.5)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.55.png}};
 	%\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png}};
 \end{tikzpicture}
 \end{center}
@@ -415,9 +458,9 @@ $~$\\
 \only<3>{
 \begin{center}
 \begin{tikzpicture}[overlay]
-	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN56X3Z0.55.png}};
-	\node at (4.75,1.5)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3Z0.55.png}};
-	\node at (-4.75,1.5)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3Z0.55.png}};
+	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.55.png}};
+	\node at (4.75,1.5)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.55.png}};
+	\node at (-4.75,1.5)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.55.png}};
 \end{tikzpicture}
 \end{center}
 }
@@ -442,8 +485,8 @@ $~$\\
 \only<4>{
 \begin{center}
 \begin{tikzpicture}[overlay]
-	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSourceHHardFlatT30N150WWideN56X3Z0.35.png}};
-	\node at (4.75,-1)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3Z0.35.png}};
+	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSourceHHardFlatT30N150WWideN112X3Z0.35.png}};
+	\node at (4.75,-1)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png}};
 	%\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png}};
 \end{tikzpicture}
 \end{center}
@@ -451,9 +494,19 @@ $~$\\
 \only<5>{
 \begin{center}
 \begin{tikzpicture}[overlay]
-	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN56X3Z0.35.png}};
-	\node at (4.75,-1)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthHHardFlatT30N150WWideN56X3Z0.35.png}};
-	\node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3Z0.35.png}};
+	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png}};
+	\node at (4.75,-1)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png}};
+	\node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.35.png}};
+\end{tikzpicture}
+\end{center}
+}
+\only<6>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+	\node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png}};
+	\node at (4.75,-1)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png}};
+	\node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.35.png}};
+	\draw[very thick,blue] (-2.25,0.5) -- ++(5.25,-1.1);
 \end{tikzpicture}
 \end{center}
 }
@@ -481,11 +534,20 @@ $~$\\
 \section{End}
 \subsection{}
 %
-\begin{frame}{\color{orange}Conclusions}
+\begin{frame}{Conclusions}
 \begin{itemize}
-	\color{orange}
-	\item Contrast story
-	\item Importance of getting the computaional details correct for moving to analysis of Delay Difference and age structure
+	\setlength\itemsep{1em}
+	\item A rich simulation-based method for describing global RP bias and a stepping stone for understanding more complex models.
+	\begin{itemize}
+                \item[$\Rightarrow$] Individual growth and maturity dynamics
+        \end{itemize}
+	\item RPs are not directly observable quantities, but rather model dependent latent quantities.
+	\begin{itemize}
+		\item[$\Rightarrow$] Subject to Model Misspecification, Uncertainty, \& Bias
+		\item[$\Rightarrow$] In severly constrained settings we pay for our modeling mistakes primarily in estimate bias.
+	\end{itemize}
+	\item The observed contrast serves to increase the range of potentially ``allowable'' model misspecification. %distribute the available information among $B_{MSY}$ and $F_{MSY}$.
+	%\item Importance of getting the computaional details correct for moving to analysis of Delay Difference and age structure
 \end{itemize}
 \end{frame}
 
@@ -536,6 +598,7 @@ R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \r
 \end{center}
 }
 \only<4>{
+\frametitle{PT Data Fit with the Schaefer Model}
 \begin{center}
  Low Contrast $~~~~~~~~~~~~~~~~~~~~~~$ High Contrast\\
 \includegraphics[width=0.49\textwidth]{../gpBias/directionalBiasPellaFlatNoQ.png}
@@ -576,6 +639,33 @@ B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - c(\tau)
 
 
 
+%%
+%\begin{frame}{\color{orange} Introish Ideas list}
+%\begin{itemize}
+%	\item PT/Schaffer work (link)
+%	\item Computational Difficulties
+%	\item {\color{orange}Schnute Space Filling}
+%	\item Catch/Contrast
+%\end{itemize}
+%\end{frame}
+
+%%
+%\begin{frame}
+%%
+%\begin{minipage}[h!]{0.69\textwidth}
+%%
+%\begin{align*}
+%\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
+%\alpha &= (M+F_{MSY})\left(1+\frac{\gamma F_{MSY}}{M+F_{MSY}}\right)^{1/\gamma} \\
+%\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right)
+%\end{align*}
+%%
+%\end{minipage}
+%\begin{minipage}[h!]{0.29\textwidth}
+%%
+%\includegraphics[width=\textwidth]{../gpBias/designLineHHardExpT45N150M0.3Wide.png}
+%\end{minipage}
+%\end{frame}
 
 
 
