@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.21)  16 AUG 2022 18:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.21)  16 AUG 2022 20:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1124,6 +1124,10 @@ Package pdftex.def Info: slug.jpg  used on input line 52.
  [1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
  <./noaaText.png> <./slug.jpg>]
+Overfull \hbox (3.68225pt too wide) detected at line 75
+[]
+ []
+
 <../advance/plots/yieldRPplus.png, id=119, 481.8pt x 481.8pt>
 File: ../advance/plots/yieldRPplus.png Graphic file (type png)
 <use ../advance/plots/yieldRPplus.png>
@@ -1526,7 +1530,7 @@ cal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loca
 l/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local
 /texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/l
 ocal/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfso1000.pfb>
-Output written on afsPres.pdf (26 pages, 4002405 bytes).
+Output written on afsPres.pdf (26 pages, 4002635 bytes).
 PDF statistics:
  1281 PDF objects out of 1440 (max. 8388607)
  1151 compressed objects within 12 object streams

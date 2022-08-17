@@ -277,10 +277,11 @@ getData = function(dir, xiRange, zetaRange){
 #P0 = 10000
 #
 
-#mod = "ExpT45N150Wide" #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
+#
+mod = "ExpT45N150Wide" #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
 #mod = "HHardFlatT30N150WWideN56"
 #mod = "HHardFlatT30N150WWideN84"
-mod = "HHardFlatT30N150WWideN112"
+#mod = "HHardFlatT30N150WWideN112"
 #
 dir = sprintf("./modsSchnute%s/", mod)
 P0 = 10000
@@ -326,8 +327,8 @@ dev.off()
 
 #
 #minimize target norm
-xiTar   = 3    #3    #2.5  #3    #0.5   #3.4
-zetaTar = 0.55 #0.35 #0.45 #0.275 #0.55 #0.275 #0.55
+xiTar   = 2.5  #3    #3    #2.5  #3    #0.5   #3.4
+zetaTar = 0.45 #0.55 #0.35 #0.45 #0.275 #0.55 #0.275 #0.55
 #xiTar   = 3 #1 #3#3.4
 #zetaTar = 0.45 #0.275#0.55
 norms = sqrt((xiTar-xis)^2 + (zetaTar-zetas)^2)
@@ -580,7 +581,7 @@ image(xiStar, zetaStar, eucBias,
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
-        xlim = c(0, xiTop), # c(xiBot, xiTop), #
+        xlim = c(xiBot, xiTop), #c(0, xiTop), # 
         cex.lab = 1.5,
         cex.main= 1.5
 )
@@ -619,8 +620,9 @@ image(xiStar, zetaStar, eucBias/ds,
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
-        xlim = c(0, xiTop), # c(xiBot, xiTop), #
-        cex.lab = 1.5,
+        xlim = c(xiBot, xiTop), # c(0, xiTop), #
+        zlim = c(0, 0.95),
+	cex.lab = 1.5,
         cex.main= 1.5
 )
 points(dotStar[freq,1], dotStar[freq,2], pch='.')
@@ -654,8 +656,9 @@ image(xiStar, zetaStar, eucBias/ds, #eucBias,
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
-        xlim = c(0, xiTop), #c(xiBot, xiTop), #
-        cex.lab = 1.5,
+        xlim = c(xiBot, xiTop), #c(0, xiTop), #
+        zlim = c(0, 0.95),
+	cex.lab = 1.5,
         cex.main= 1.5
 )
 points(dotStar[freq,1], dotStar[freq,2], pch='.')
@@ -690,8 +693,9 @@ image(xiStar, zetaStar, eucBias/ds, #eucBias,
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
-        xlim = c(0, xiTop), #c(xiBot, xiTop), #
-        cex.lab = 1.5,
+        xlim = c(xiBot, xiTop), #c(0, xiTop), #
+        zlim = c(0, 0.95),
+	cex.lab = 1.5,
         cex.main= 1.5
 )
 points(dotStar[freq,1], dotStar[freq,2], pch='.')
