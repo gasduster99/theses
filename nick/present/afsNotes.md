@@ -80,13 +80,11 @@ header-includes:
 * Production models are simplified places which are easier to hunt down the many computational issues, and are simple enough to make it possible to understand the mechanisms 
 * At the link provided here you can see our anlysis of the mechanisms of Bias for the Schaefer Model.
 
-
-
 \clearpage
+
 # Simulation Design
 
 * Again, we use Schnute to generate data broadly in RP-space.
-
 * In order to do this, one would need to invert the relationship between RPs and productivity parameters.
 * Schnute and Richards (1998) show that it's not analytically possible to invert this relationship
 <!--* It's not analytically possible to invert the relationship between RPs and productivity parameters...--> 
@@ -98,11 +96,15 @@ Which can be used to generate approximate LHS designs broadly in RP space.
 
 * **Next:** With a design in place Schnute data can be generated for example in the upper right.
 * Fitting the BH model against those data will neccessarily land somewhere on the $1/(x+2)$ BH line.  (Say the red dot)
-* The aim is then to understand the behaviour of these bias arrow broadly in RP space.
-
-
-* **Next:** A GP metamodel of the biases over RP space is fit using the observations at each design location
-* Particular BH fits are only as helpful as their standard errors allow, but when you observe trends in RP bias on repeated sampling the metamodel can discern patterns of inferential bias and how it changes across RP space.
+* The aim is then to understand the behaviour of these bias arrows broadly in RP space.
+	* Will One reference point be prioritized over the other?
+	* Is there a compromise between RPs?
+	* Is the mapping a shortest distance onto the BH line? 
+* **Next:** Design locations used to train a GP metamodel of $\hat{RP}$. <!-- space is fit using the observations at each design location-->
+* Particular BH fits are as helpful as their standard errors, but in repeated sampling metamodeling can discern global RP bias trends.
+<!--
+that metamodeling can discern patterns of inferential bias and how it changes across RP space.
+-->
 
 # Catch
 
@@ -122,6 +124,56 @@ Which can be used to generate approximate LHS designs broadly in RP space.
 	* high contrast, relatively high information setting
 	* wiggles about until coming to equilibrium
 
+\clearpage
+# High Contrast
+
+* Here we Visualize RP Biases as a bias field.
+* Color indicates the MLE estimate percent error from the Truth
+* Arrows indicate the Direction of Bias (from Truth to BH MLE)
+
+* **Next:** For example data is generated off of the line (say here)
+* **Next:** and then fit w/ BH. (maps to the red dot)
+<!--
+* The arrows show the mapping of MLE inference under BH.
+-->
+
+* We can observe a few things:
+	* Overall As Model misspecification increase (far from the line), estimation bias increases.
+	* In high contrast example we can see a fairly reasonable mapping.
+		* Resembles a shortest distance mapping onto the BH line.
+		* Neither RP dominates bias; both RPs fail togehter
+
+\clearpage
+# Low Contrast
+
+* In the low constrast evironment:
+	* lower information content in the data
+	* we see a higher bias pattern overall
+
+* **Next:** When Model Misspecification is large (in the upper part) we see an interesting limiting behaviour of BH
+	* **Next:** the arrows in the upper part of this picture shoot off to the less.
+	* Looking at the yeild fit BH yeild curve we can see that we are drastically underestimating steepness.
+	* this pushes the BH yeild curve toward the limiting flat symmetric case as relative Fmsy goes to 0.
+	* at this level of model misspecification this pattern prioritzes relative Bmsy over relative Fmsy.
+ 
+* **Next:** For better specified Models: **Next**
+	* bias pattern returns to something like shortest distance mapping
+	* in this shortest distance mapping neither RP dominates bias; 
+	* both RPs compromise to fail togehter
+
+* **Next:** It is interesting to note that for the lower information setting we are only allowed to misspecify model so much before we observe this ``Catstrophic'' inferential failure.
+
+# Conclusion
+
+* We have a rich simulation environment for describing global RP bias.
+* It's a robust and easily extensible simulator that is hardened against a lot of numerical failings of ODE models.
+* We will use this framework to further extend this analysis to study how patterns my be affected by dynamics of individaul growth and maturity.
+
+* This study reminds us that RP are not observable quantities, but rather modeled quantites that are subject to Model misspecification, uncertainty, and bias.
+* In particular the severly constrained setting of using a two parameter production function we are going to pay for our modeling mistakes primarily via estimation bias.
+
+* The role of contrast in our data series serves to distribute information amoung our RP estimates, but
+* The information content in our data also interacts with how poorly we are misspecifying our models of management RPs and so we should be very thoughtful about choosing models of population productivity as misspecified models my produce horribly biased estimate of RPs.
 
 <!--
 * Data informs parameters differently than we normally expect.
