@@ -277,9 +277,11 @@ getData = function(dir, xiRange, zetaRange){
 #P0 = 10000
 #
 
+#
 mod = "ExpT45N150Wide" #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
 #mod = "HHardFlatT30N150WWideN56"
 #mod = "HHardFlatT30N150WWideN84"
+#mod = "HHardFlatT30N150WWideN112"
 #
 dir = sprintf("./modsSchnute%s/", mod)
 P0 = 10000
@@ -325,8 +327,8 @@ dev.off()
 
 #
 #minimize target norm
-xiTar   = 0.5 #3    #0.5   #3.4
-zetaTar = 0.275 #0.55 #0.275 #0.55
+xiTar   = 2.5  #3    #3    #2.5  #3    #0.5   #3.4
+zetaTar = 0.45 #0.55 #0.35 #0.45 #0.275 #0.55 #0.275 #0.55
 #xiTar   = 3 #1 #3#3.4
 #zetaTar = 0.45 #0.275#0.55
 norms = sqrt((xiTar-xis)^2 + (zetaTar-zetas)^2)
@@ -367,11 +369,11 @@ curve(yield(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	lwd=3, 
 	ylim=c(0, yMax),
 	xlim=c(0, xMax),
-	ylab="Production",
+	ylab="Yield",
 	xlab="B",
 	main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", round(xi, binTrk)*M, round(zeta, binTrk))),
-    	cex.lab = 1.5,
-    	cex.main= 1.5
+    	cex.lab = 2.5,
+    	cex.main= 2.5
 )
 polygon(c(grd, rev(grd)), c(qYield[,1], rev(qYield[,3])), 
 	col=adjustcolor(cols[1], alpha.f=0.2),
@@ -386,16 +388,17 @@ dev.off()
 
 #
 png(sprintf("yeildCurveTruth%sX%sZ%s.png", mod, xiTar, zetaTar))
+par(mar=c(5, 5, 4, 4)+0.1)
 cols = brewer.pal(9, "Set1")
 curve(yield(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	lwd=3, 
 	ylim=c(0, yMax),
 	xlim=c(0, xMax),
-	ylab="Production",
+	ylab="Yield",
 	xlab="B",
-	main="Truth", #TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", round(xi, binTrk)*M, round(zeta, binTrk))),
-    	cex.lab = 1.5,
-    	cex.main= 1.5
+	main="Schnute Truth", #TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", round(xi, binTrk)*M, round(zeta, binTrk))),
+    	cex.lab = 2.5,
+    	cex.main= 2.5
 )
 #polygon(c(grd, rev(grd)), c(qYield[,1], rev(qYield[,3])), 
 #	col=adjustcolor(cols[1], alpha.f=0.2),
@@ -410,6 +413,7 @@ dev.off()
 
 #
 png(sprintf("yeildCurveFit%sX%sZ%s.png", mod, xiTar, zetaTar))
+par(mar=c(5, 5, 4, 4)+0.1)
 cols = brewer.pal(9, "Set1")
 curve(yield(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 #curve(yield(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, n=1000,
@@ -417,11 +421,11 @@ curve(yield(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
 	lty=3, 
 	ylim=c(0, yMax),
 	xlim=c(0, xMax),
-	ylab="Production",
+	ylab="Yield",
 	xlab="B",
-	main="Beverton-Holt MLE", #TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", round(xi, binTrk)*M, round(zeta, binTrk))),
-    	cex.lab = 1.5,
-    	cex.main= 1.5
+	main="BH Fit", #TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", round(xi, binTrk)*M, round(zeta, binTrk))),
+    	cex.lab = 2.5,
+    	cex.main= 2.5
 	#,col=cols[1]
 )
 polygon(c(grd, rev(grd)), c(qYield[,1], rev(qYield[,3])), 
@@ -434,7 +438,6 @@ curve(yield(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, lwd=3, add=T, col=col
 #rug(fit$N, col=cols[1])
 legend("topright", legend=c("Truth", "BH MLE"), col=c("black", cols[1]), lwd=c(1,3), lty=c(3,1))
 dev.off()
-
 
 #
 #ARROW PLOT
@@ -573,7 +576,7 @@ eucCols = hcl.colors(41, "Reds 2", rev=T)
 #par(mar=c(5, 4, 4, 5)+0.1)
 par(mar=c(5, 5, 4, 4)+0.1)
 image(xiStar, zetaStar, eucBias,
-        col  = adjustcolor(eucCols, alpha.f=0.6),
+        col  = adjustcolor(eucCols, alpha.f=0.99),
         xlab = TeX("$F_{MSY}/M$"),
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
@@ -594,11 +597,51 @@ quiver(
         scale=0.05, length=0.15 #scale=0.025
 )
 show = seq(1, length(eucCols), length.out=20)
-#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
-#        sprintf("%1.2f", rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), length.out=length(show
-#        fill = rev(eucCols[show]), 
-#        xpd = NA
-#)
+legend(grconvertX(421.25, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+        sprintf("%1.2f", rev(seq(min(eucBias, na.rm=T), max(eucBias, na.rm=T), length.out=length(show)))),
+        fill = rev(eucCols[show]), 
+        xpd = NA
+)
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
+
+#
+png(sprintf("directionalBiasSchnuteAnimatePrecent%sX%sZ%s.png", mod, xiTar, zetaTar))
+#
+eg = expand.grid(xiStar, zetaStar)
+ds = matrix(sqrt(eg[,1]^2+eg[,2]^2), nrow=length(xiStar), ncol=length(zetaStar))
+#
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, eucBias/ds,
+        col  = adjustcolor(eucCols, alpha.f=0.99),  #eucCols, #
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop), # c(0, xiTop), #
+        zlim = c(0, 0.95),
+	cex.lab = 1.5,
+        cex.main= 1.5
+)
+points(dotStar[freq,1], dotStar[freq,2], pch='.')
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.05, length=0.15 #scale=0.025
+)
+show = seq(1, length(eucCols), length.out=20)
+legend(grconvertX(421.25, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+        sprintf("%s %%", seq(95, 0, -5)), #round(rev(seq(min(eucBias/ds, na.rm=T), max(eucBias/ds, na.rm=T), length.out=length(show))/5)*5*100)), #length(show)))),
+        fill = adjustcolor(rev(eucCols[show]), alpha.f=0.99), 
+        xpd = NA
+)
 #points(D$xiSeed, D$zetaSeed)
 dev.off()
 
@@ -607,14 +650,15 @@ png(sprintf("directionalBiasSchnuteAnimateSource%sX%sZ%s.png", mod, xiTar, zetaT
 eucCols = hcl.colors(41, "Reds 2", rev=T)
 #par(mar=c(5, 4, 4, 5)+0.1)
 par(mar=c(5, 5, 4, 4)+0.1)
-image(xiStar, zetaStar, eucBias,
-        col  = adjustcolor(eucCols, alpha.f=0.6),
+image(xiStar, zetaStar, eucBias/ds, #eucBias,
+        col  = adjustcolor(eucCols, alpha.f=0.99), #eucCols, #
         xlab = TeX("$F_{MSY}/M$"),
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
-        xlim = c(xiBot, xiTop), #c(0, xiTop),
-        cex.lab = 1.5,
+        xlim = c(xiBot, xiTop), #c(0, xiTop), #
+        zlim = c(0, 0.95),
+	cex.lab = 1.5,
         cex.main= 1.5
 )
 points(dotStar[freq,1], dotStar[freq,2], pch='.')
@@ -643,14 +687,15 @@ png(sprintf("directionalBiasSchnuteAnimateSink%sX%sZ%s.png", mod, xiTar, zetaTar
 eucCols = hcl.colors(41, "Reds 2", rev=T)
 #par(mar=c(5, 4, 4, 5)+0.1)
 par(mar=c(5, 5, 4, 4)+0.1)
-image(xiStar, zetaStar, eucBias,
-        col  = adjustcolor(eucCols, alpha.f=0.6),
+image(xiStar, zetaStar, eucBias/ds, #eucBias,
+        col  = adjustcolor(eucCols, alpha.f=0.99), #eucCols, #
         xlab = TeX("$F_{MSY}/M$"),
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
-        xlim = c(xiBot, xiTop), #c(0, xiTop),
-        cex.lab = 1.5,
+        xlim = c(xiBot, xiTop), #c(0, xiTop), #
+        zlim = c(0, 0.95),
+	cex.lab = 1.5,
         cex.main= 1.5
 )
 points(dotStar[freq,1], dotStar[freq,2], pch='.')
