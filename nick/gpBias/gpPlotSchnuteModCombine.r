@@ -188,7 +188,7 @@ getData = function(dir, xiRange, zetaRange){
 
 #
 P0 = 10000
-mod = "HHardFlatT30N150WWideN112" #"HHardExpT45N150M0.3Wide" # #"HHardExpT45N150M0.1Wide" #"ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" # #"ExpT45N150Wide" ##"ExpT30L4N150Wide" # #"ExpT45N150" #
+mod = "HHardFlatT30N150WWideN112" #"HHardExpT45N150M0.05Wide" #"HHardFlatT30N150M0.1WWideN56" # #"HHardExpT45N150M0.3Wide" # #"HHardExpT45N150M0.1Wide" #"ExpT45N150M0.3Wide" #"HHardFlatT30N150WWideExtra" # #"ExpT45N150Wide" ##"ExpT30L4N150Wide" # #"ExpT45N150" #
 place = sprintf("./modsSchnute%s/", mod)
 
 #
@@ -819,15 +819,15 @@ dev.off()
 #        xpd = NA
 #)
 #dev.off()
-#
-##catch
-#
-###
-##png(sprintf("catch%s.png", mod))
-##fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xiSims[5], zetaSims[5])
-##dat = readRDS(fileDat)
-##plot(dat$time, dat$catch, xlab="Time", ylab="F(t)/F*", ylim=c(0, 2), main="Catch=F* (F(t)/F*) B(t)", type="l", lwd=3)
-##dev.off()
+
+#catch
+
+##
+#png(sprintf("catch%s.png", mod))
+#fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, xiSims[5], zetaSims[5])
+#dat = readRDS(fileDat)
+#plot(dat$time, dat$catch, xlab="Time", ylab="F(t)/F*", ylim=c(0, 2), main="Catch=F* (F(t)/F*) B(t)", type="l", lwd=3)
+#dev.off()
 
 #design
 png(sprintf("designLine%s.png", mod))
