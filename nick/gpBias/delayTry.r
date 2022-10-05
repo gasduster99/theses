@@ -55,7 +55,7 @@ TT = 45
 a0 = 2 #10 #2
 
 #
-dOut = dede(c(N0, P0), 1:TT, f, NULL) #seq(, TT, 0.1), f)
+dOut = dede(c(N0, P0), 1:TT, f, NULL, method="lsode") #seq(, TT, 0.1), f)
 
 #
 #JUNK
