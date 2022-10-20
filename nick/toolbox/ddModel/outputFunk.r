@@ -22,7 +22,7 @@ printSelf = function(ins, outs=c()){
         n = 5
         #
         nome = names(self)
-	extraNames = c(outs, ".__enclos_env__", "initialize", "printSelf", "clone") #"iterate", "optimize", "clone", "model", "prior", "plotMean", "plotBand", "plotRS", "N0Funk", "save", "load")
+	extraNames = c(outs, ".__enclos_env__", "initialize", "printSelf", "clone")#, "iterate", "optimize", "clone", "model", "prior", "plotMean", "plotBand", "plotRS", "N0Funk", "B0Funk", "save", "load", "like")
         display = nome[!nome%in%extraNames | nome%in%ins]
 	display = display[order(nchar(display))]
 	if(length(ins)>0){ display=display[display%in%ins] } 
@@ -46,18 +46,42 @@ printSelf = function(ins, outs=c()){
 }
 
 #
+plotQuan = function(quan=function(B){B}, col='black', alpha=100, lwd=3, add=F, ...){
+        #arguments passed directly to plotting functions
+	
+	#
+	private$N0_classify(quan)
+
+        #       
+        if(!add){
+                plot(self$time, self$quan(),
+                        type='l',
+                        lwd=lwd,
+                        col=col,
+			...
+                )
+        } else{
+                lines(self$time, self$quan(),
+                        lwd=lwd,
+                        col=col,
+			...
+                )
+        }
+}
+
+#
 plotMean = function(col='black', alpha=100, lwd=3, add=F){
         #arguments passed directly to plotting functions
 
         #       
         if(!add){
-                plot(self$time, exp(self$lq+log(self$N)),
+                plot(self$time, exp(self$lq+log(self$B)),
                         type='l',
                         lwd=lwd,
                         col=col
                 )
         } else{
-                lines(self$time, exp(self$lq+log(self$N)),
+                lines(self$time, exp(self$lq+log(self$B)),
                         lwd=lwd,
                         col=col
                 )
