@@ -5,40 +5,38 @@ library(Ryacas)
 library(stringr)
 
 #
-#
-#
-
+#FUNCTIONS
 #
 
-#
-#SYMBOL
-#
+#prepmath
+##
+#R = ysym("alpha*B*(1-gamma*beta*B)^(1/gamma)")
+##
+#Nbar = ysym("R - (M+F)*N")
+#Nbar = with_value(Nbar, "R", R)
+#Nbar = ysym("(alpha*B*(1-gamma*beta*B)^(1/gamma))/(M+F)") #solve(Nbar, 'N')[1]
+##
+##Bbar = ysym("w*R + k*(W*N-B) - (M+F)*B")
+##Bbar = with_value(Bbar, "R", R)
+##Bbar = with_value(Bbar, "N", Nbar)
 
-#
-R = ysym("alpha*B*(1-gamma*beta*B)^(1/gamma)")
-#
-Nbar = ysym("R - (M+F)*N")
-Nbar = with_value(Nbar, "R", R)
-Nbar = ysym("(alpha*B*(1-gamma*beta*B)^(1/gamma))/(M+F)") #solve(Nbar, 'N')[1]
-#
-#Bbar = ysym("w*R + k*(W*N-B) - (M+F)*B")
-#Bbar = with_value(Bbar, "R", R)
-#Bbar = with_value(Bbar, "N", Nbar)
-
-#https://www.wolframalpha.com/input?i=solve+w*a*B*%281-gamma*beta*B%29%5E%281%2Fgamma%29%2Bk*%28%28W*a*B*%281-gamma*beta*B%29%5E%281%2Fgamma%29%29%2F%28M%2BF%29-B%29-%28M%2BF%29*B+for+B&assumption=%7B%22C%22%2C+%22gamma%22%7D+-%3E+%7B%22Variable%22%7D
+#https://www.wolframalpha.com/input?i=solve+w*a*B*%281-gamma*beta*B%29%5E%281%2Fgamma%29%2Bk*%28%28W*a*B*%281-gamma*bet
 #B = (1 - (((F + M) (F + k + M))/(a (F w + k W + M w)))^γ)/(β γ)
 Bbar = ysym("(1 - (((F + M)*(F + k + M))/(alpha*(F*w + k*W + M*w)))^gamma)/(beta*gamma)")
+BBar = function(FF, M, k, w, W, alpha, beta, gamma){ eval(as_r( with_value(Bbar, "F", ysym("FF")) )) }
 #
 FBbar = ysym("F*B")
 FBbar = with_value(FBbar, "B", Bbar)
 FBbar = with_value(FBbar, "F", ysym("FF"))
 #
 dFBdF = deriv(FBbar, "FF")
-#yac('MaxEvalDepth(10000)')
-#Fmsy = solve(dFBdF, 'FF')
+FMsy = function(M, k, w, W, alpha, beta, gamma){ 
+	uniroot(function(FF){ eval(as_r(dFBdF)) }, c(0, 10))$root 
+}
 
 #
-dYdF = function(FF, M, k, w, W, alpha, beta, gamma){ eval(as_r(dFBdF)) }
+#SYMBOL
+#
 
 #
 w = function(a, wi, k){ wi*(1-exp(-k*a)) }
@@ -52,17 +50,61 @@ w = w(a, W, k)
 #
 alpha = 5
 beta = 1
-gamma = -0.2
+gamma = -0.5
 #
-Fmsy = uniroot(function(x){dYdF(x, M, k, w, W, alpha, beta, gamma)}, c(0, 10))$root
+Fmsy = FMsy(M, k, w, W, alpha, beta, gamma) 
+xi = Fmsy/M
+
+#
+BStar = BBar(Fmsy, M, k, w, W, alpha, beta, gamma) 
+BZero = BBar(0, M, k, w, W, alpha, beta, gamma)
+zeta = BStar/BZero
 
 
+
+
+
+##
+#R = function(B, alpha, beta, gamma){
+#	alpha*B*(1-gamma*beta*B)^(1/gamma)
+#}
+
+#Fmsy = uniroot(function(x){dYdF(x, M, k, w, W, alpha, beta, gamma)}, c(0, 10))$root
 
 ##yac('MaxEvalDepth(100000)')
 ##Fmsy  = solve(dFBdF, "F")
 
 #
 #yac_expr(dFBdF)
+
+
+##
+#R = ysym("alpha*B*(1-gamma*beta*B)^(1/gamma)")
+##
+#Nbar = ysym("R - (M+F)*N")
+#Nbar = with_value(Nbar, "R", R)
+#Nbar = ysym("(alpha*B*(1-gamma*beta*B)^(1/gamma))/(M+F)") #solve(Nbar, 'N')[1]
+##
+#Bbar = ysym("w*R + k*(W*N-B) - (M+F)*B")
+#Bbar = with_value(Bbar, "R", R)
+#Bbar = with_value(Bbar, "N", Nbar)
+
+#https://www.wolframalpha.com/input?i=solve+w*a*B*%281-gamma*beta*B%29%5E%281%2Fgamma%29%2Bk*%28%28W*a*B*%281-gamma*beta*B%29%5E%281%2Fgamma%29%29%2F%28M%2BF%29-B%29-%28M%2BF%29*B+for+B&assumption=%7B%22C%22%2C+%22gamma%22%7D+-%3E+%7B%22Variable%22%7D
+#B = (1 - (((F + M) (F + k + M))/(a (F w + k W + M w)))^γ)/(β γ)
+#Bbar = ysym("(1 - (((F + M)*(F + k + M))/(alpha*(F*w + k*W + M*w)))^gamma)/(beta*gamma)")
+##
+#FBbar = ysym("F*B")
+#FBbar = with_value(FBbar, "B", Bbar)
+#FBbar = with_value(FBbar, "F", ysym("FF"))
+##
+#dFBdF = deriv(FBbar, "FF")
+##yac('MaxEvalDepth(10000)')
+##Fmsy = solve(dFBdF, 'FF')
+
+##
+#dYdF = function(FF, M, k, w, W, alpha, beta, gamma){ eval(as_r(dFBdF)) }
+
+
 
 
 ##
