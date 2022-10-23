@@ -2,6 +2,7 @@ rm(list=ls())
 
 #
 library(Ryacas)
+library(pracma)
 library(stringr)
 
 #
@@ -33,6 +34,39 @@ dFBdF = deriv(FBbar, "FF")
 FMsy = function(M, k, w, W, alpha, beta, gamma){ 
 	uniroot(function(FF){ eval(as_r(dFBdF)) }, c(0, 10))$root 
 }
+#beta does not matter for either of these
+#alpha|gamma, Fmsy
+getAlphaFmsy = function(FF, M, k, w, W, beta, gamma){
+	#FF = FMsy(M, k, w, W, alpha, beta, gamma)
+        uniroot(function(alpha){ eval(as_r(dFBdF)) }, c(eps(), 10))$root
+}
+#gamma|alpha, Fmsy
+getGammaFmsy = function(FF, M, k, w, W, alpha, beta){
+	#FF = FMsy(M, k, w, W, alpha, beta, gamma)
+        uniroot(function(gamma){ eval(as_r(dFBdF)) }, c(-10, 10))$root
+}
+
+#beta determines Bzero
+getBeta = function(B0, M, k, w, W, alpha, gamma){
+	f = function(b){ BBar(0, M, k, w, W, alpha, b, gamma) - B0 }
+	uniroot(f, c(0, 10), tol=eps())$root
+}
+
+#Does BStar/BZero depend on both alpha and gamma 
+
+#I think this is not th ebest way to get alpha 
+#getAlphaZeta = function(zeta, FF, M, k, w, W, beta, gamma){
+#	f = function(a){ 
+#		BBar(FF, M, k, w, W, a, beta, gamma)/BBar(0, M, k, w, W, a, beta, gamma) - zeta
+#	}
+#	uniroot(f, c(eps(), 10))$root
+#}
+getGammaZeta = function(zeta, FF, M, k, w, W, alpha, beta){
+	f = function(g){ 
+		BBar(FF, M, k, w, W, alpha, beta, g)/BBar(0, M, k, w, W, alpha, beta, g) - zeta
+	}
+	uniroot(f, c(-10, 10))$root
+}
 
 #
 #SYMBOL
@@ -59,6 +93,78 @@ xi = Fmsy/M
 BStar = BBar(Fmsy, M, k, w, W, alpha, beta, gamma) 
 BZero = BBar(0, M, k, w, W, alpha, beta, gamma)
 zeta = BStar/BZero
+
+#
+xi = 1
+zeta = 0.3
+B0 = 10000
+#
+
+#AN IMPLICATE IDEA
+xTol = 10^-3
+zTol = xTol
+bTol = 10
+xiHat = xi+xTol*10
+zetaHat = zeta+zTol*10
+#
+xis = c()
+zetas = c()
+zeros = c()
+#for(i in 1:10){
+i = 0
+#| abs(BZero-B0)>=bTol
+while( abs(xiHat-xi)>=xTol | abs(zetaHat-zeta)>=zTol ){
+	#
+	gamma = getGammaZeta(zeta, xi*M, M, k, w, W, alpha, beta)
+	alpha = getAlphaFmsy(xi*M, M, k, w, W, beta, gamma)
+	beta  = getBeta(B0, M, k, w, W, alpha, gamma)
+	#
+	BZero = BBar(0, M, k, w, W, alpha, beta, gamma)
+	xiHat = FMsy(M, k, w, W, alpha, beta, gamma)/M
+	zetaHat = BBar(xiHat*M, M, k, w, W, alpha, beta, gamma)/BBar(0, M, k, w, W, alpha, beta, gamma)
+	#
+	xis = c(xis, xiHat)
+	zetas = c(zetas, zetaHat)
+	#
+	i = i+1
+}
+
+
+
+
+
+
+
+
+
+
+##dig into LHS code
+#	#I think sample alpha with a T
+#	#get gamma
+#	#get beta
+#	#get Fmsy
+#	#figure out which zeta was sampled
+#	#
+#
+##
+#f = function(alpha, gamma, x, z){
+#	#
+#	gamma = getGammaZeta(zeta, xi*M, M, k, w, W, alpha, beta)
+#	alpha = getAlphaFmsy(xi*M, M, k, w, W, beta, gamma)
+#	beta  = getBeta(B0, M, k, w, W, alpha, gamma)
+#	#
+#	xiHat = FMsy(M, k, w, W, alpha, beta, gamma)/M
+#	zetaHat = BBar(xiHat*M, M, k, w, W, alpha, beta, gamma)/BBar(0, M, k, w, W, alpha, beta, gamma)
+#	#
+#	return( (xiHat-x)^2 + (zetaHat-z)^2 )
+#}
+##
+#optOut = optim(c(alpha, gamma), function(a, b){f(a, b, xi, zeta)}, 
+#	lower = c(eps(), -10),
+#	upper = c(10, 10),
+#	method = "L-BFGS-B"
+#)
+
 
 
 
