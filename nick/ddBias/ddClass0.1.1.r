@@ -150,208 +150,207 @@ ddModel = R6Class("DDModel", lock_objects=FALSE,
 )
 
 
-#
-#TEST
-#
-
-#
-w = function(a, wi, k){ wi*(1-exp(-k*a)) }
-
-#
-f = function(t, Y, lalpha, lbeta, gamma, a0, wi, k, catch, B0){
-        #linearly interpolate catches
-        ft = floor(t)
-        q  = (t-ft)
-        Cl = catch[ft]
-        Cu = catch[ft+1]
-        C = q*Cu + (1-q)*Cl
-        if(q==0){ C=Cl }
-	#
-        N = Y[1]
-        B = Y[2]
-        #
-        if( (t-a0)<1){
-                Blag = B0
-        }else{
-                Blag = lagvalue(t-a0)[2]
-        }
-        #
-	#R = exp(lalpha)*Blag*(1-exp(lbeta)*gamma*Blag)^(1/gamma)
-        alpha = exp(lalpha)
-	beta = exp(lbeta)
-	R = alpha*Blag*(1-gamma*beta*Blag)^(1/gamma)
-	#
-	print(C)
-        out = c(N=NA, B=NA)
-        out[1] = R - (M+C)*N
-        out[2] = wi*(1-exp(-k*a0))*R + k*(wi*N-B) - (M+C)*B
-        #
-        return( list(out) )
-}
-
-#
-g = function(t, Y, p){ #alpha, beta, gamma, a0, wi, k, catch){
-        #linearly interpolate catches
-        ft = floor(t)
-        q  = (t-ft)
-        Cl = catch[ft]
-        Cu = catch[ft+1]
-        C = q*Cu + (1-q)*Cl
-        if(q==0){ C=Cl }
-	#
-        N = Y[1]
-        B = Y[2]
-        #
-        if( (t-a0)<1){
-                Blag = P0
-        }else{
-                Blag = lagvalue(t-a0)[2]
-        }
-        #
-	#R = exp(lalpha)*Blag*(1-exp(lbeta)*gamma*Blag)^(1/gamma)
-        R = alpha*Blag*(1-gamma*beta*Blag)^(1/gamma)
-	#
-        out = c(N=NA, B=NA)
-        out[1] = R - (M+C)*N
-        out[2] = wi*(1-exp(-k*a0))*R + k*(wi*N-B) - (M+C)*B
-        #
-        return( list(out) )
-}
-
-#
-Fs = c(seq(0.2, 2, length.out=15), rev(seq(0.1, 2, length.out=15)), rep(0.1, 15))
-catch = Fs
-
-#
-M = 0.2
-k = 0.2
-
-#
-wi = 1
-a0 = 2
-TT = 45
-
-#
-alpha = 5
-beta = 1
-gamma = -0.99
-#gamma=0 is a problem
-#gamma=-1 is BH in limit; a problem otherwise
-
-#
-Rtil = alpha/(beta*(1+gamma)) * (1-gamma/(1+gamma))^(1/gamma)
-N0 = Rtil/(M)#+FF)
-P0 = (w(a0, wi, k)*Rtil + k*wi*N0)/(k+M)#+FF)
-
-#
-dOut = dede(c(N0, P0), 1:TT, g, NULL, method="lsode")
-
-#
-dat = ddModel$new( derivs=f,
-        N0Funk=function(lalpha, lbeta, gamma){
-                #
-                alpha = exp(lalpha)
-                beta  = exp(lbeta)
-                #
-                ( alpha/(beta*(1+gamma)) * (1-gamma/(1+gamma))^(1/gamma) )/M
-        },
-        B0Funk=function(lalpha, lbeta, gamma, wi, k){
-                #
-                alpha = exp(lalpha)
-                beta = exp(lbeta)
-                #
-                ( wi*(1-exp(-k*a0))*(alpha/(beta*(1+gamma))*(1-gamma/(1+gamma))^(1/gamma)) +
-                  k*wi*(alpha/(beta*(1+gamma))*(1-gamma/(1+gamma))^(1/gamma))/M
-                )/(k+M)
-        },
-        time=1:TT, catch=Fs, a0=a0, M=M, wi=wi, k=k,    #constants
-        lalpha=log(alpha), lbeta=log(beta), gamma=0.2, #parameters
-        lq=log(0.00049), lsdo=log(0.01160256)           #nuisance parameters
-)
-dat$iterate()
-
-#
-test = ddModel$new( derivs=f, 
-	N0Funk=function(lalpha, lbeta, gamma){
-		#
-		alpha = exp(lalpha)
-		beta  = exp(lbeta) 
-		#
-		( alpha/(beta*(1+gamma)) * (1-gamma/(1+gamma))^(1/gamma) )/M 
-	},
-        B0Funk=function(lalpha, lbeta, gamma, wi, k){ 
-		#
-		alpha = exp(lalpha)
-		beta = exp(lbeta)
-		#
-		( wi*(1-exp(-k*a0))*(alpha/(beta*(1+gamma))*(1-gamma/(1+gamma))^(1/gamma)) + 
-		  k*wi*(alpha/(beta*(1+gamma))*(1-gamma/(1+gamma))^(1/gamma))/M
-		)/(k+M)
-	},
-	time=1:TT, catch=Fs, a0=a0, M=M, wi=wi, k=k, 	#constants
-        lalpha=log(alpha), lbeta=log(beta), gamma=gamma,#parameters
-        lq=log(0.00049), lsdo=log(0.01160256)  		#nuisance parameters
-)
-test$iterate()
-
 ##
-#cpue  = c(1.78, 1.31, 0.91, 0.96, 0.88, 0.90, 0.87, 0.72, 0.57, 0.45, 0.42, 0.42, 0.49, 0.43, 0.40, 0.45, 0.55, 0.53, 0.58, 0.64, 0.66, 0.65, 0.63)
-#catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277, 254, 170, 97, 91, 177, 216, 229, 211, 231, 223)
+##TEST
+##
 #
-#test$time = 1:length(cpue)
-#test$catch = catch
+##
+#w = function(a, wi, k){ wi*(1-exp(-k*a)) }
+#
+##
+#f = function(t, Y, lalpha, lbeta, gamma, a0, wi, k, catch, B0){
+#        #linearly interpolate catches
+#        ft = floor(t)
+#        q  = (t-ft)
+#        Cl = catch[ft]
+#        Cu = catch[ft+1]
+#        C = q*Cu + (1-q)*Cl
+#        if(q==0){ C=Cl }
+#	#
+#        N = Y[1]
+#        B = Y[2]
+#        #
+#        if( (t-a0)<1){
+#                Blag = B0
+#        }else{
+#                Blag = lagvalue(t-a0)[2]
+#        }
+#        #
+#	#R = exp(lalpha)*Blag*(1-exp(lbeta)*gamma*Blag)^(1/gamma)
+#        alpha = exp(lalpha)
+#	beta = exp(lbeta)
+#	R = alpha*Blag*(1-gamma*beta*Blag)^(1/gamma)
+#	#print(C)
+#        out = c(N=NA, B=NA)
+#        out[1] = R - (M+C)*N
+#        out[2] = wi*(1-exp(-k*a0))*R + k*(wi*N-B) - (M+C)*B
+#        #
+#        return( list(out) )
+#}
+#
+##
+#g = function(t, Y, p){ #alpha, beta, gamma, a0, wi, k, catch){
+#        #linearly interpolate catches
+#        ft = floor(t)
+#        q  = (t-ft)
+#        Cl = catch[ft]
+#        Cu = catch[ft+1]
+#        C = q*Cu + (1-q)*Cl
+#        if(q==0){ C=Cl }
+#	#
+#        N = Y[1]
+#        B = Y[2]
+#        #
+#        if( (t-a0)<1){
+#                Blag = P0
+#        }else{
+#                Blag = lagvalue(t-a0)[2]
+#        }
+#        #
+#	#R = exp(lalpha)*Blag*(1-exp(lbeta)*gamma*Blag)^(1/gamma)
+#        R = alpha*Blag*(1-gamma*beta*Blag)^(1/gamma)
+#	#
+#        out = c(N=NA, B=NA)
+#        out[1] = R - (M+C)*N
+#        out[2] = wi*(1-exp(-k*a0))*R + k*(wi*N-B) - (M+C)*B
+#        #
+#        return( list(out) )
+#}
+#
+##
+#Fs = c(seq(0.2, 2, length.out=15), rev(seq(0.1, 2, length.out=15)), rep(0.1, 15))
+#catch = Fs
+#
+##
+#M = 0.2
+#k = 0.2
+#
+##
+#wi = 1
+#a0 = 2
+#TT = 45
+#
+##
+#alpha = 5
+#beta = 1
+#gamma = -0.99
+##gamma=0 is a problem
+##gamma=-1 is BH in limit; a problem otherwise
+#
+##
+#Rtil = alpha/(beta*(1+gamma)) * (1-gamma/(1+gamma))^(1/gamma)
+#N0 = Rtil/(M)#+FF)
+#P0 = (w(a0, wi, k)*Rtil + k*wi*N0)/(k+M)#+FF)
+#
+##
+#dOut = dede(c(N0, P0), 1:TT, g, NULL, method="lsode")
+#
+##
+#dat = ddModel$new( derivs=f,
+#        N0Funk=function(lalpha, lbeta, gamma){
+#                #
+#                alpha = exp(lalpha)
+#                beta  = exp(lbeta)
+#                #
+#                ( alpha/(beta*(1+gamma)) * (1-gamma/(1+gamma))^(1/gamma) )/M
+#        },
+#        B0Funk=function(lalpha, lbeta, gamma, wi, k){
+#                #
+#                alpha = exp(lalpha)
+#                beta = exp(lbeta)
+#                #
+#                ( wi*(1-exp(-k*a0))*(alpha/(beta*(1+gamma))*(1-gamma/(1+gamma))^(1/gamma)) +
+#                  k*wi*(alpha/(beta*(1+gamma))*(1-gamma/(1+gamma))^(1/gamma))/M
+#                )/(k+M)
+#        },
+#        time=1:TT, catch=Fs, a0=a0, M=M, wi=wi, k=k,    #constants
+#        lalpha=log(alpha), lbeta=log(beta), gamma=0.2, #parameters
+#        lq=log(0.00049), lsdo=log(0.01160256)           #nuisance parameters
+#)
+#dat$iterate()
+#
+##
+#test = ddModel$new( derivs=f, 
+#	N0Funk=function(lalpha, lbeta, gamma){
+#		#
+#		alpha = exp(lalpha)
+#		beta  = exp(lbeta) 
+#		#
+#		( alpha/(beta*(1+gamma)) * (1-gamma/(1+gamma))^(1/gamma) )/M 
+#	},
+#        B0Funk=function(lalpha, lbeta, gamma, wi, k){ 
+#		#
+#		alpha = exp(lalpha)
+#		beta = exp(lbeta)
+#		#
+#		( wi*(1-exp(-k*a0))*(alpha/(beta*(1+gamma))*(1-gamma/(1+gamma))^(1/gamma)) + 
+#		  k*wi*(alpha/(beta*(1+gamma))*(1-gamma/(1+gamma))^(1/gamma))/M
+#		)/(k+M)
+#	},
+#	time=1:TT, catch=Fs, a0=a0, M=M, wi=wi, k=k, 	#constants
+#        lalpha=log(alpha), lbeta=log(beta), gamma=gamma,#parameters
+#        lq=log(0.00049), lsdo=log(0.01160256)  		#nuisance parameters
+#)
 #test$iterate()
-
 #
-library(pracma)
-
+###
+##cpue  = c(1.78, 1.31, 0.91, 0.96, 0.88, 0.90, 0.87, 0.72, 0.57, 0.45, 0.42, 0.42, 0.49, 0.43, 0.40, 0.45, 0.55, 0.53, 0.58, 0.64, 0.66, 0.65, 0.63)
+##catch = c(94, 212, 195, 383, 320, 402, 366, 606, 378, 319, 309, 389, 277, 254, 170, 97, 91, 177, 216, 229, 211, 231, 223)
+##
+##test$time = 1:length(cpue)
+##test$catch = catch
+##test$iterate()
 #
-d = exp( rnorm(TT, dat$lq+log(dat$B), exp(dat$lsdo)) ) #exp(log(dat$B)+dat$lq+rlnorm(TT)
-
+##
+#library(pracma)
 #
-test$optimize( d,
-	c('lsdo', 'lalpha', 'lbeta'),	
-	lower = c(-10, log(eps()), log(eps())),
-	upper = c(10, log(10), log(10)),
-	gaBoost = list(run=10, parallel=T, popSize=5*10^3),
-	fitQ = F,
-	cov = T
-)
-test$printSelf()
-
+##
+#d = exp( rnorm(TT, dat$lq+log(dat$B), exp(dat$lsdo)) ) #exp(log(dat$B)+dat$lq+rlnorm(TT)
 #
-plot(d)
-test$plotMean(add=T)
-test$plotBand()
-#
-dat$plotMean(add=T, col='red')
-
 ##
 #test$optimize( d,
-#	c('lsdo', 'lalpha', 'lbeta', 'gamma'),	
-#	lower = c(-10, log(eps()), log(eps()), -1),
-#	upper = c(10, log(10), log(10), 2),
+#	c('lsdo', 'lalpha', 'lbeta'),	
+#	lower = c(-10, log(eps()), log(eps())),
+#	upper = c(10, log(10), log(10)),
 #	gaBoost = list(run=10, parallel=T, popSize=5*10^3),
 #	fitQ = F,
 #	cov = T
 #)
+#test$printSelf()
+#
+##
+#plot(d)
+#test$plotMean(add=T)
+#test$plotBand()
+##
+#dat$plotMean(add=T, col='red')
 #
 ###
 ##test$optimize( d,
-##        c('lsdo', 'lalpha', 'lbeta'),
-##        lower = c(-10, log(eps()), log(eps())),
-##        upper = c(10, log(10), log(10)),
-##        #gaBoost = list(run=10, parallel=T, popSize=5*10^3),
-##        fitQ = T,
-##        cov = T
+##	c('lsdo', 'lalpha', 'lbeta', 'gamma'),	
+##	lower = c(-10, log(eps()), log(eps()), -1),
+##	upper = c(10, log(10), log(10), 2),
+##	gaBoost = list(run=10, parallel=T, popSize=5*10^3),
+##	fitQ = F,
+##	cov = T
 ##)
+##
+####
+###test$optimize( d,
+###        c('lsdo', 'lalpha', 'lbeta'),
+###        lower = c(-10, log(eps()), log(eps())),
+###        upper = c(10, log(10), log(10)),
+###        #gaBoost = list(run=10, parallel=T, popSize=5*10^3),
+###        fitQ = T,
+###        cov = T
+###)
+##
+###
+##test$printSelf()
+##test$plotMean(add=T, col='blue')
 #
 ##
-#test$printSelf()
-#test$plotMean(add=T, col='blue')
-
-#
-dev.new()
-test$plotQuan(function(N){N})
-dev.new()
-test$plotQuan(function(N, B){B/N})
+#dev.new()
+#test$plotQuan(function(N){N})
+#dev.new()
+#test$plotQuan(function(N, B){B/N})

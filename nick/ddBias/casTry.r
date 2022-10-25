@@ -96,7 +96,7 @@ zeta = BStar/BZero
 
 #
 xi = 1
-zeta = 0.3
+zeta = 1/(xi+2)
 B0 = 10000
 #
 
