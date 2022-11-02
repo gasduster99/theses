@@ -114,6 +114,23 @@ invert = function(zeta, xi, B0, M, k, w, W, alphaStart=1, betaStart=1, gammaStar
 	return( data.frame(alpha=alpha, beta=beta, gamma=gamma) )
 }
 
+#
+getZetaBH = function(x, M, k, W, a0){
+        #
+        w = W*(1-exp(-k*a0))
+        #
+        gamma = -1
+        alpha = getAlphaFmsy(x*M, M, k, w, W, 1, gamma)
+        beta  = getBeta(B0, M, k, w, W, alpha, gamma)
+        #
+        BZero = BBar(0, M, k, w, W, alpha, beta, gamma)
+        xiHat = FMsy(M, k, w, W, alpha, beta, gamma)/M
+        zetaHat = BBar(x*M, M, k, w, W, alpha, beta, gamma)/BBar(0, M, k, w, W, alpha, beta, gamma)
+        #
+        return(zetaHat)
+}
+getZetaBH = Vectorize(getZetaBH, "x")
+
 #DIFFERENTIAL EQUATION 
 
 #

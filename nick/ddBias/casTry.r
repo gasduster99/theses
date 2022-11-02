@@ -38,7 +38,7 @@ FMsy = function(M, k, w, W, alpha, beta, gamma){
 #alpha|gamma, Fmsy
 getAlphaFmsy = function(FF, M, k, w, W, beta, gamma){
 	#FF = FMsy(M, k, w, W, alpha, beta, gamma)
-        uniroot(function(alpha){ eval(as_r(dFBdF)) }, c(eps(), 10))$root
+        uniroot(function(alpha){ eval(as_r(dFBdF)) }, c(eps(), 100))$root
 }
 #gamma|alpha, Fmsy
 getGammaFmsy = function(FF, M, k, w, W, alpha, beta){
@@ -67,6 +67,23 @@ getGammaZeta = function(zeta, FF, M, k, w, W, alpha, beta){
 	}
 	uniroot(f, c(-10, 10))$root
 }
+
+#
+getZetaBH = function(x, M, k, W, a0){
+        #
+	w = W*(1-exp(-k*a0))
+	#
+        gamma = -1
+        alpha = getAlphaFmsy(x*M, M, k, w, W, 1, gamma)
+        beta  = getBeta(B0, M, k, w, W, alpha, gamma)
+        #
+        BZero = BBar(0, M, k, w, W, alpha, beta, gamma)
+        xiHat = FMsy(M, k, w, W, alpha, beta, gamma)/M
+        zetaHat = BBar(x*M, M, k, w, W, alpha, beta, gamma)/BBar(0, M, k, w, W, alpha, beta, gamma)
+        #
+        return(zetaHat)
+}
+getZetaBH = Vectorize(getZetaBH, "x")
 
 #
 #SYMBOL
@@ -130,11 +147,55 @@ while( abs(xiHat-xi)>=xTol | abs(zetaHat-zeta)>=zTol ){
 }
 
 
+#BH RPS
+f = function(x){1/(x+2)}
+curve(f(x), 0.01, 3, lwd=3)
+curve(getZetaBH(x, M, k, W, a), 0.01, 3, add=T)
+curve(getZetaBH(x, M, 1, W, a), 0.01, 3, col=2, add=T)
+curve(getZetaBH(x, M, 0.15, W, a), 0.01, 3, col=3, add=T)
+
+##the constraint is invariant to W
+#dev.new()
+#curve(getZetaBH(x, M, k, W, a), 0.01, 3)
+#curve(getZetaBH(x, M, k, 5, a), 0.01, 3, col=2, add=T)
+#curve(getZetaBH(x, M, k, 0.5, a), 0.01, 3, col=3, add=T)
+
+#
+dev.new()
+f = function(x){1/(x+2)}
+curve(f(x), 0.01, 3, lwd=3)
+curve(getZetaBH(x, M, k, W, a), 0.01, 3, add=T)
+curve(getZetaBH(x, M, k, W, 10), 0.01, 3, col=2, add=T)
+#curve(getZetaBH(x, M, k, W, a), 0.01, 3, col=3, add=T)
 
 
 
+##
+#zetaBH = c()
+#xiBH = seq(0.1, 4, 0.1)
+#for(x in xiBH){
+#	#
+#	gamma = -1 #getGammaZeta(zeta, xi*M, M, k, w, W, alpha, beta)
+#	alpha = getAlphaFmsy(x*M, M, k, w, W, beta, gamma)
+#	beta  = getBeta(B0, M, k, w, W, alpha, gamma)
+#	#
+#	BZero = BBar(0, M, k, w, W, alpha, beta, gamma)
+#	xiHat = FMsy(M, k, w, W, alpha, beta, gamma)/M
+#	zetaHat = BBar(x*M, M, k, w, W, alpha, beta, gamma)/BBar(0, M, k, w, W, alpha, beta, gamma)
+#	#
+#	zetaBH = c(zetaBH, zetaHat)
+#}
 
-
+##
+#BBH = with_value(Bbar, "gamma", -1)
+##
+#FBBH = ysym("F*B")
+#FBBH = with_value(FBBH, "B", BBH)
+#FBBH = with_value(FBBH, "F", ysym("FF"))
+##
+#dFBdFBH = deriv(FBBH, "FF")
+#yac('MaxEvalDepth(100000)')
+#FBH = solve(dFBdFBH, 'FF')
 
 
 
