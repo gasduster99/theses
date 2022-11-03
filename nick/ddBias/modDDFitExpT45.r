@@ -164,8 +164,8 @@ B0 = 10000
 #
 
 #a place to store data
-place = './test/'#'./modsDDExpT45N150Wide/'
-odeMethod = "radau" #"lsode"
+place = './modsDDExpT45N150Wide/' #'./test/'#
+odeMethod = "lsode" #"radau" #
 
 #
 datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
@@ -173,8 +173,8 @@ datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen
 #
 registerDoParallel(46)
 opts = list(preschedule=F)
-#foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
-for(i in 1:length(datFiles)){
+foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
+#for(i in 1:length(datFiles)){
 	#
         #DATA
         #
@@ -237,26 +237,65 @@ for(i in 1:length(datFiles)){
 	)
 	fit$iterate(odeMethod)
 
-	#
-	plot(cpue)
-	fit$plotMean(add=T)
+	##
+	#plot(cpue)
+	#fit$plotMean(add=T)
+	#fit$printSelf()
 
 	
 	#optimization   
         optAns = fit$optimize(cpue,
                 c('lsdo', 'lalpha'),
-                lower   = c(log(0.001), log(M)),
+                lower   = c(log(0.001), log(M+kappa)),
                 upper   = c(log(1), log(100)),
-                gaBoost = list(run=10, parallel=F, popSize=10^3),
+                gaBoost = list(run=10, parallel=F, popSize=10^3), #10^4),
                 persistFor = 5,
                 fitQ    = F
         )
         
-	#
-	fit$plotMean(add=T, col='red')
+	##
+	#fit$plotMean(add=T, col='red')
+	#fit$printSelf()
 			
+	#
+        optAns = fit$optimize(cpue,
+                c('lsdo', 'lalpha', 'lbeta'),
+                lower   = c(log(0.001), log(M+kappa), -10),
+                upper   = c(log(1), log(100), -2),      #log(getBeta(100, -1, M, P0))
+                gaBoost = list(run=100, parallel=F, popSize=10^3),#10^4),
+                persistFor = 5,
+                fitQ    = F
+        )
+        #get hessian if possible
+        tryCatch({
+                optAns = fit$optimize(cpue,
+                        c('lsdo', 'lalpha', 'lbeta'),
+                        lower   = c(log(0.001), log(M+kappa), -10),
+                        upper   = c(log(1), log(100), -2),
+                        cov     = T,
+                        fitQ    = F
+                )
+        }, error=function(err){
+                writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
+                optAns = fit$optimize(cpue,
+                        c('lsdo', 'lalpha', 'lbeta'),
+                        lower   = c(log(0.001), log(M+kappa), -10),
+                        upper   = c(log(1), log(100), -2),
+                        cov     = F,
+                        fitQ    = F
+                )
+        })
 	
-
+	#convenience
+        fit$alpha = exp(fit$lalpha)
+        fit$beta  = exp(fit$lbeta)
+        fit$sdo   = exp(fit$lsdo)
+        fit$q     = exp(fit$lq)
+        #save
+        fit$save( fileFit )
+        ##plot
+        #fit$plotMean(add=T, col='blue')
+        #fit$plotBand(col='blue', alpha=50)
 }
 
 

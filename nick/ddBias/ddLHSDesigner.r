@@ -292,6 +292,8 @@ lhsMake = function(xiLim, zetaLim, n, batch, save=F){
 			)
 			dat$iterate(odeMethod)
 			dat$plotQuan()
+			writeLines(sprintf("\n\n%s, %s", xi, zs))
+			dat$printSelf()
 			
 			#       
                         if( save!=F ){
@@ -416,28 +418,6 @@ addCircle = function(centerx, centery, radius, length=200){
 #HEAD
 #
 
-#DESIGN STUFF
-
-#
-thresh = 0.02
-n = 28 #56 #about 3 flushes all of the thialacia ranks
-
-#
-xlim = c(0.25, 3.75)
-ylim = c(0.15, 0.7) #0.6) #
-
-#
-if(F){
-#Just run this to start
-p = 'test'
-dir.create(p)
-ll = lhsMake(xlim, ylim, 100, 0, save=p) #(xiLim, zetaLim, 
-}
-
-#
-inPlace = "./test/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
-outPlace = sprintf("./test1/") 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
-
 #DD MODEL STUFF
 
 #
@@ -465,6 +445,31 @@ gamma = inv$gamma
 #
 TT = 45
 FtFmsy = rep(1, TT) #make faux catch
+
+#DESIGN STUFF
+
+#
+thresh = 0.02
+n = 28 #about 3 flushes all of the thialacia ranks
+#n = 56
+
+#
+xlim = c(0.25, 3.75)
+ylim = c(0.15, 0.7) #0.6) #
+
+#
+if(T){
+#Only run this to start a design
+p = "./modsDDExpT45N150Wide/" #'test'
+if(dir.exists(p)){ unlink(p, recursive=TRUE) }
+dir.create(p)
+#
+ll = lhsMake(xlim, ylim, 150, 0, save=p) #(xiLim, zetaLim, 
+}else{
+
+#
+inPlace = "./modsDDExpT45N150Wide/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
+outPlace = sprintf("./modsDDEcpT45N150WideN%d/", n) 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
 
 #
 #MAIN
@@ -565,7 +570,7 @@ for(i in 1:n){
         if( nrow(ll)>0 ){ ii=ii+1 }
 }
 
-
+}
 
 
 
