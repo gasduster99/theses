@@ -292,8 +292,8 @@ lhsMake = function(xiLim, zetaLim, n, batch, save=F){
 			)
 			dat$iterate(odeMethod)
 			dat$plotQuan()
-			writeLines(sprintf("\n\n%s, %s", xi, zs))
-			dat$printSelf()
+			#writeLines(sprintf("\n\n%s, %s", xi, zs))
+			#dat$printSelf()
 			
 			#       
                         if( save!=F ){
@@ -424,9 +424,9 @@ addCircle = function(centerx, centery, radius, length=200){
 odeMethod = "lsode"
 
 #
-a0 = 2
+a0 = 2 #7.5 #15
 M  = 0.2
-kappa = 0.2
+kappa = 1 #0.2
 WW = 1
 ww = WW*(1-exp(-kappa*a0))
 
@@ -450,7 +450,7 @@ FtFmsy = rep(1, TT) #make faux catch
 
 #
 thresh = 0.02
-n = 28 #about 3 flushes all of the thialacia ranks
+n = 2#28 #about 3 flushes all of the thialacia ranks
 #n = 56
 
 #
@@ -458,9 +458,9 @@ xlim = c(0.25, 3.75)
 ylim = c(0.15, 0.7) #0.6) #
 
 #
-if(T){
+if( T ){
 #Only run this to start a design
-p = "./modsDDExpT45N150Wide/" #'test'
+p = "./modsDDExpT45N150K1/" #'test'
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
 dir.create(p)
 #
@@ -468,8 +468,8 @@ ll = lhsMake(xlim, ylim, 150, 0, save=p) #(xiLim, zetaLim,
 }else{
 
 #
-inPlace = "./modsDDExpT45N150Wide/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
-outPlace = sprintf("./modsDDEcpT45N150WideN%d/", n) 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
+inPlace = "./modsDDExpT45N150A7.5/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
+outPlace = sprintf("./modsDDExpT45N150A7.5N%d/", n) 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
 
 #
 #MAIN
@@ -527,7 +527,7 @@ l = cbind(xiList, zetaList)
 
 #
 #png("adaptDesignSquare.png")
-plot(l[,1], l[,2])
+if( !is.null(l) ){ plot(l[,1], l[,2]) }
 
 #
 ii = 1
