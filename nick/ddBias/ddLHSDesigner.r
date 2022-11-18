@@ -291,7 +291,7 @@ lhsMake = function(xiLim, zetaLim, n, batch, save=F){
 				xi=xi, zeta=zs
 			)
 			dat$iterate(odeMethod)
-			dat$plotQuan()
+			dat$plotQuan(main=sprintf("%s, %s", xi, zs))
 			#writeLines(sprintf("\n\n%s, %s", xi, zs))
 			#dat$printSelf()
 			
@@ -424,9 +424,9 @@ addCircle = function(centerx, centery, radius, length=200){
 odeMethod = "lsode"
 
 #
-a0 = 2 #7.5 #15
+a0 = 1     #7.5 #15  #1
 M  = 0.2
-kappa = 1 #0.2
+kappa = 10 #0.2 #0.2 #10
 WW = 1
 ww = WW*(1-exp(-kappa*a0))
 
@@ -457,10 +457,11 @@ n = 2#28 #about 3 flushes all of the thialacia ranks
 xlim = c(0.25, 3.75)
 ylim = c(0.15, 0.7) #0.6) #
 
+#NOTE:high zeta and high xi lets the initial drop get below Bmsy
 #
 if( T ){
 #Only run this to start a design
-p = "./modsDDExpT45N150K1/" #'test'
+p = "./modsDDExpT45N150A1K10/" #'test'
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
 dir.create(p)
 #

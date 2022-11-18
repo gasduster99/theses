@@ -167,7 +167,7 @@ invert = function(zeta, xi, B0, M, k, w, W, alphaStart=1, betaStart=1, gammaStar
 #Statistics
 
 #
-myDist = function(x, xi, zeta){ sqrt((xi-x)^2 + (zeta-(1/(x+2)))^2) }
+myDist = function(x, xi, zeta){ sqrt((xi-x)^2 + (zeta-getZetaBH(x, M, kappa, WW, a0))^2) }
 
 #
 getlFV = function(fit, MM=10^4, samples=F){
@@ -228,7 +228,8 @@ getData = function(dir, xiRange, zetaRange){
 		lF=double(), 
 		lFV=double(), 
 		lB0=double(), 
-		lB0V=double(), 
+		lB0V=double(),
+		minDist=double(), 
 		stringsAsFactors=F
 	)
 	#
@@ -266,7 +267,7 @@ getData = function(dir, xiRange, zetaRange){
 		zetaHat = BStar/BZero	
 		
 		#
-		#md = optimize(myDist, c(0, max(xiRange)), xi=dat$xi, zeta=dat$zeta)$objective
+		md = stats::optimize(myDist, c(0, max(xiRange)), xi=dat$xi, zeta=dat$zeta)$objective
 		
 		#
 		if(length(fit$rsCov)==0){ lfv=0; lbv=0 }else{ 
@@ -278,7 +279,7 @@ getData = function(dir, xiRange, zetaRange){
 		}
 
 		#
-		D[i,] = c(xiBin, zetaBin, dat$xi, dat$zeta, xiHat, zetaHat, log(Fs), lfv, log(BZero), lbv)	
+		D[i,] = c(xiBin, zetaBin, dat$xi, dat$zeta, xiHat, zetaHat, log(Fs), lfv, log(BZero), lbv, md)	
 		i = i+1
 	}
 	#
@@ -290,7 +291,7 @@ getData = function(dir, xiRange, zetaRange){
 #
 
 #
-mod = "ExpT45N150Wide"
+mod = "ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A7.5" # #"ExpT45N150Wide"
 place = sprintf("./modsDD%s/", mod)
 
 #
@@ -301,8 +302,16 @@ xiBot = 0.5
 xiTop = 3.5
 
 #
-f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))[1] )
-fOne = readRDS(f)
+i = 1
+C = NULL
+while( is.null(C) ){
+	#
+	f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))[i] )
+	fOne = readRDS(f)
+	C = fOne$rsCov
+	#
+	i = i+1
+}
 
 #
 a0 = fOne$a0
@@ -320,7 +329,7 @@ outlV = getlV(fOne)
 #
 D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
 D = D[D$lFV>0 & D$lB0V>0,]
-#D = D[c(rep(T, 5), F),]
+D = D[c(rep(T, 3), F),]
 #D = D[seq(1, nrow(D), 2),]
 #D = Dall[Dall$lF<4,]
 #plot(D[,1], D[,2], pch=20)
@@ -346,7 +355,9 @@ aug = cbind(rep(1, length(xAug)), xAug, getZetaBH(xAug, M, kappa, WW, a0)) #1/(x
 #aug = numeric(0)
 lFX = rbind(lFX, aug)
 lFy = c(lFy, log(xAug*M))
-lFV = diag(c(D$lFV, rep(mean(D$lFV), length(xAug))))
+lFVm = mean(D$lFV, na.rm=T)
+lFV = diag(c(D$lFV, rep(lFVm, length(xAug))))
+lFV[is.na(lFV)] = lFVm
 
 #
 lFaxes = lFX[,2:3]
@@ -397,12 +408,12 @@ zetaBias = sweep(zbh, 2, zetaStar)
 #zetaBias = sweep(matrix(0.5, nrow(xiHat), ncol(xiHat)), 2, zetaStar)
 zetaBias[!mask] = NA
 
-##NOTE: debug
-#eucBias = mcmapply(function(xiHat, xi, zeta){
-#                myDist(xiHat, xi, zeta)
-#        }, xiHat, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
-#)
-#eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
+#
+eucBias = mcmapply(function(xiHat, xi, zeta){
+                myDist(xiHat, xi, zeta)
+        }, xiHat, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
+)
+eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
 
 #Now fit the lK Model and make lK related Predictions
 
@@ -617,39 +628,39 @@ dev.off()
 
 #euc bias
 
-##NOTE: debug
-#png(sprintf("directionalBiasDD%s.png", mod))
-#eucCols = hcl.colors(41, "Reds 2", rev=T)
-##par(mar=c(5, 4, 4, 5)+0.1)
-#par(mar=c(5, 4, 4, 4)+0.1)
-#image(xiStar, zetaStar, eucBias,
-#        col  = adjustcolor(eucCols, alpha.f=0.6),
-#        xlab = TeX("$F_{MSY}/M$"), 
-#        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-#	main = TeX("Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
-#	ylim = c(zetaBot, zetaTop),
-#	xlim = c(xiBot, xiTop),
-#	cex.lab = 1.5,
-#        cex.main= 1.5
+#
+png(sprintf("directionalBiasDD%s.png", mod))
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 4, 4, 4)+0.1)
+image(xiStar, zetaStar, eucBias,
+        col  = adjustcolor(eucCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"), 
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+	main = TeX("Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+	ylim = c(zetaBot, zetaTop),
+	xlim = c(xiBot, xiTop),
+	cex.lab = 1.5,
+        cex.main= 1.5
+)
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.025
+)
+show = seq(1, length(eucCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.2f", rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), length.out=length(show)))),
+#        fill = rev(eucCols[show]), 
+#        xpd = NA
 #)
-##curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
-#curve(1/(x+2), from=0, to=4, lwd=3, add=T)
-#points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
-#w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
-#thin = c(T,rep(F,125))#135))
-#quiver(
-#        lFXStar[w,2][thin], lFXStar[w,3][thin],
-#        xiBias[w][thin], zetaBias[w][thin],
-#        scale=0.025
-#)
-#show = seq(1, length(eucCols), length.out=20)
-##legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
-##        sprintf("%1.2f", rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), length.out=length(show)))),
-##        fill = rev(eucCols[show]), 
-##        xpd = NA
-##)
-##points(D$xiSeed, D$zetaSeed)
-#dev.off()
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
 
 #K bias
 
