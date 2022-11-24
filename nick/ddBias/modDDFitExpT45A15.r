@@ -164,7 +164,7 @@ B0 = 10000
 #
 
 #a place to store data
-place = './modsDDExpT45N150A15/' #'./test/'#
+place = './modsDDExpT45N150A15N28/' #'./test/'#
 odeMethod = "lsode" #"radau" #
 
 #
