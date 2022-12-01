@@ -346,7 +346,7 @@ lhsForPlot = function(xiLim, zetaLim, n, batch, save=F){
 	#
 	out = list(
 		ll = cbind(xiList[!is.na(xiList)], zetaList[!is.na(zetaList)]),
-		mod = mod
+		mod = mod[!is.na(xiList)]
 	)
 	#
 	return( out )
@@ -445,9 +445,9 @@ addCircle = function(centerx, centery, radius, length=200){
 odeMethod = "lsode"
 
 #
-a0 = 15     #15  #7.5 #15  #1
+a0 = 0.1 	#15     #15  #7.5 #15  #1
 M  = 0.2
-kappa = 0.1 #0.1 #0.2 #0.2 #10
+kappa = 15 	#0.1 #0.2 #0.2 #10
 WW = 1
 ww = WW*(1-exp(-kappa*a0))
 
@@ -480,9 +480,10 @@ ylim = c(0.15, 0.7) #0.6) #
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
 N = 20
-set.seed(111)
+#set.seed(111)
 #
 out = lhsForPlot(xlim, ylim, N, 0, save=F)
+N = nrow(out$ll)
 #
 ox = order(out$ll[,1])
 lay = matrix(0, N, N) 
