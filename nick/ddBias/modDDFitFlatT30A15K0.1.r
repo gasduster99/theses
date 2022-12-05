@@ -134,6 +134,8 @@ der = function(t, Y, lalpha, lbeta, gamma, a0, WW, kappa, catch, B0){
 TT = 31 #length(hake)
 tt = 1
 time = tt:TT
+#
+FtFmsy = rep(1, TT)
 ##
 #mid = round(TT/2)
 #cMax = 2 #4*M
@@ -174,8 +176,8 @@ datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen
 registerDoParallel(46)
 opts = list(preschedule=F)
 #foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
-foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
-#for(i in 1:length(datFiles)){
+#foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
+for(i in 1:length(datFiles)){
 	#
         #DATA
         #
