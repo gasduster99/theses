@@ -470,7 +470,7 @@ FtFmsy = rep(1, TT) #make faux catch
 #DATA STUFF
 
 #
-mod = "ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A7.5" # #"ExpT45N150Wide"
+mod = "ExpT45N150K1" #"ExpT45N150A15" # "ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
 place = sprintf("./modsDD%s/", mod)
 
 #
@@ -547,6 +547,24 @@ lay = P%*%t(lay)%*%P
 #PLOT
 
 #
+png(sprintf('indexGrid%s.png', mod), width=2000, height=2000)
+layout(lay)
+for(i in 1:nrow(l)){ #nrow(out$ll)){
+	#
+	if( !i%in%tops ){next}
+	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+	fit = readRDS(fWho)
+	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
+	dat = readRDS(dWho)
+	#
+	par(mar=c(1,1,1,0))
+	dat$plotMean() #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
+	fit$plotMean( add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+	fit$plotBand( col='red' )
+}
+dev.off()
+
+#
 png(sprintf('bioGrid%s.png', mod), width=2000, height=2000)
 layout(lay)
 for(i in 1:nrow(l)){ #nrow(out$ll)){
@@ -596,6 +614,42 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
 }
 dev.off()
+
+#
+png(sprintf('srrGrid%s.png', mod), width=2000, height=2000)
+layout(lay)
+for(i in 1:nrow(l)){ #nrow(out$ll)){
+	#
+	if( !i%in%tops ){next}
+	#
+	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+	fit  = readRDS(fWho)
+	#
+	wwFit = fit$WW*(1-exp(-fit$kappa*fit$a0))
+	fFit = function(x){ww*SRR(x, fit)-fit$M*x} #- fitt$kappa*x + fit$kappa*fit$WW*fit$N0
+	mFit = stats::optimize(fFit, c(0, fit$B0), maximum=T)
+	#
+	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
+	dat  = readRDS(dWho)
+	#
+	wwDat = dat$WW*(1-exp(-dat$kappa*dat$a0))
+	fDat = function(x){ww*SRR(x, dat)-dat$M*x} #- dat$kappa*x + dat$kappa*dat$WW*dat$N0}
+	mDat = stats::optimize(fDat, c(0, dat$B0), maximum=T) 
+	#
+	par(mar=c(1,1,1,0))
+	curve(fDat(x), 0, max(dat$B0, fit$B0), n=10000, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), lwd=3, ylim=c(0, max(mFit$objective, mDat$objective)))
+	curve(fFit(x), 0, fit$B0, col='red', add=T, lwd=3, n=10000)
+	FF = FMsy(dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
+	curve(x*FF, 0, dat$B0, add=T, col='red')
+	BB = BBar(FF, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
+	abline( v=BB )
+	abline( v=dat$B0 )
+	#dat$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]) ) #, ylim=c(0,dat$N0) )
+	#fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+}
+dev.off()
+
+
 
 
 ##
