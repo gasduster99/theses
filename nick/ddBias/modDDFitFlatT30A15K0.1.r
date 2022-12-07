@@ -166,7 +166,7 @@ B0 = 10000
 #
 
 #a place to store data
-place = './modsDDFlatT30N150A15K0.1/' #'./modsDDExpT45N150A15K0.1/' #'./test/'#
+place = './modsDDFlatT30N150A15K0.1N28/' #'./modsDDExpT45N150A15K0.1/' #'./test/'#
 odeMethod = "lsode" #"radau" #
 
 #
@@ -176,8 +176,8 @@ datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen
 registerDoParallel(46)
 opts = list(preschedule=F)
 #foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
-#foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
-for(i in 1:length(datFiles)){
+foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
+#for(i in 1:length(datFiles)){
 	#
         #DATA
         #
