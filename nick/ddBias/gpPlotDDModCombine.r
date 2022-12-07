@@ -291,7 +291,7 @@ getData = function(dir, xiRange, zetaRange){
 #
 
 #
-mod = "ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A7.5" # #"ExpT45N150Wide"
+mod = "ExpT45N150K1" #"ExpT45N150A7.5" # #"ExpT45N150A15K0.1" #"ExpT45N150A15N28" #"ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A7.5" # #"ExpT45N150Wide"
 place = sprintf("./modsDD%s/", mod)
 
 #
@@ -329,7 +329,7 @@ outlV = getlV(fOne)
 #
 D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
 D = D[D$lFV>0 & D$lB0V>0,]
-D = D[c(rep(T, 3), F),]
+D = D[c(rep(T, 7), F),]
 #D = D[seq(1, nrow(D), 2),]
 #D = Dall[Dall$lF<4,]
 #plot(D[,1], D[,2], pch=20)
@@ -349,10 +349,10 @@ lFV = diag(D$lFV)
 lFX = cbind(1, D$xiSeed, D$zetaSeed)
 
 #
-xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
-aug = cbind(rep(1, length(xAug)), xAug, getZetaBH(xAug, M, kappa, WW, a0)) #1/(xAug+2))
-#xAug = numeric(0)
-#aug = numeric(0)
+#xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+#aug = cbind(rep(1, length(xAug)), xAug, getZetaBH(xAug, M, kappa, WW, a0)) #1/(xAug+2))
+xAug = numeric(0)
+aug = numeric(0)
 lFX = rbind(lFX, aug)
 lFy = c(lFy, log(xAug*M))
 lFVm = mean(D$lFV, na.rm=T)

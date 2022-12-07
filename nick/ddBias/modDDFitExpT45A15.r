@@ -34,6 +34,12 @@ FDebug = function(FF, M, k, w, W, alpha, beta, gamma, dFBdFexpr=dFBdF_r){
 FMsy = function(M, k, w, W, alpha, beta, gamma, dFBdFexpr=dFBdF_r){
         uniroot(function(FF){ eval(dFBdFexpr) }, c(0, 10))$root
 }
+#
+NBar = function(FF, M, k, w, W, alpha, beta, gamma){
+	#
+	BB = BBar(FF, M, kappa, ww, WW, alpha, beta, gamma)
+	(alpha*BB*( 1-beta*gamma*BB )^(1/gamma))/(M+FF)
+}
 
 #beta does not matter for either of getAlphaFmsy or getGammaFmsy
 #alpha|gamma, Fmsy
