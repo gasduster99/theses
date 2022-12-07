@@ -45,6 +45,17 @@ dFBdF_r = as_r(dFBdF)
 FMsy = function(M, k, w, W, alpha, beta, gamma, dFBdFexpr=dFBdF_r){
         uniroot(function(FF){ eval(dFBdFexpr) }, c(0, 10))$root
 }
+#
+NBar = function(FF, M, k, w, W, alpha, beta, gamma){
+        #
+        BB = BBar(FF, M, kappa, ww, WW, alpha, beta, gamma)
+        (alpha*BB*( 1-beta*gamma*BB )^(1/gamma))/(M+FF)
+}
+NCar = function(x, FF, M, k, w, W, alpha, beta, gamma){
+        #
+        #BB = BBar(FF, M, kappa, ww, WW, alpha, beta, gamma)
+        (alpha*x*( 1-beta*gamma*x )^(1/gamma))/(M+FF)
+}
 #beta does not matter for either of these
 #alpha|gamma, Fmsy
 getAlphaFmsy = function(FF, M, k, w, W, beta, gamma, dFBdFexpr=dFBdF_r){
@@ -682,26 +693,51 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	fit  = readRDS(fWho)
 	#
 	wwFit = fit$WW*(1-exp(-fit$kappa*fit$a0))
-	fFit = function(x){ww*SRR(x, fit)-fit$M*x} #- fitt$kappa*x + fit$kappa*fit$WW*fit$N0
+	FFit = FMsy(fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)
+	#
+	fFit = function(x){wwFit*SRR(x, fit)-fit$M*x - fit$kappa*x + fit$kappa*fit$WW*NCar(x, 0, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma) }
 	mFit = stats::optimize(fFit, c(0, fit$B0), maximum=T)
+	
 	#
 	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
 	dat  = readRDS(dWho)
 	#
 	wwDat = dat$WW*(1-exp(-dat$kappa*dat$a0))
-	fDat = function(x){ww*SRR(x, dat)-dat$M*x} #- dat$kappa*x + dat$kappa*dat$WW*dat$N0}
+	FDat = FMsy(dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
+	#
+	fDat = function(x){wwDat*SRR(x, dat)-dat$M*x - dat$kappa*x + dat$kappa*dat$WW*NCar(x, 0, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma) }
 	mDat = stats::optimize(fDat, c(0, dat$B0), maximum=T) 
+	
+	#
+	fitFU = BBar(FFit, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)*FFit/mFit$objective
+	datFU = BBar(FDat, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)*FDat/mDat$objective
+	
 	#
 	par(mar=c(1,1,1,0))
-	curve(fDat(x), 0, max(dat$B0, fit$B0), n=10000, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), lwd=3, ylim=c(0, max(mFit$objective, mDat$objective)))
-	curve(fFit(x), 0, fit$B0, col='red', add=T, lwd=3, n=10000)
-	#FF = FMsy(dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
-	#curve(x*FF, 0, dat$B0, add=T, col='red')
-	#BB = BBar(FF, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
-	#abline( v=BB )
-	#abline( v=dat$B0 )
-	#dat$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]) ) #, ylim=c(0,dat$N0) )
-	#fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+	curve(fitFU*fDat(x), 0, max(dat$B0, fit$B0), n=10000, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), lwd=3, ylim=c(0, max(mFit$objective*fitFU, mDat$objective*datFU)))
+	curve(fitFU*fFit(x), 0, fit$B0, col='red', add=T, lwd=3, n=10000)
+	#netSRD = function(x){SRR(x, dat)-dat$M*x}
+	#curve(netSRD(x), 0, dat$B0, lty=2, add=T)
+	#netSRF = function(x){SRR(x, fit)-fit$M*x}
+	#curve(netSRF(x), 0, fit$B0, lty=2, col='red', add=T)
+	#curve(x*FDat, 0, dat$B0, add=T, col='red')
+	#abline( v=BBar(FDat, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma) )
+	##abline( v=dat$B0 )
+	#curve(x*FFit, 0, fit$B0, add=T, col='red')
+	#abline( v=BBar(FFit, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma) )
+	##dat$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]) ) #, ylim=c(0,dat$N0) )
+	##fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+	#
+	##
+	#print( BBar(FFit, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)*FFit )
+	#print( mFit$objective )
+	#print( BBar(FFit, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)*FFit/mFit$objective )
+	#print('')
+	#print( BBar(FDat, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)*FDat )
+	#print( mDat$objective )
+	#print( BBar(FDat, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)*FDat/mDat$objective )
+	#print('')
+	#print('')
 }
 dev.off()
 
