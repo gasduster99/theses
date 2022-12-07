@@ -291,7 +291,7 @@ getData = function(dir, xiRange, zetaRange){
 #
 
 #
-mod = "ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A7.5" # #"ExpT45N150Wide"
+mod = "FlatT30N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A7.5" # #"ExpT45N150Wide"
 place = sprintf("./modsDD%s/", mod)
 
 #
@@ -329,7 +329,7 @@ outlV = getlV(fOne)
 #
 D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
 D = D[D$lFV>0 & D$lB0V>0,]
-D = D[c(rep(T, 3), F),]
+#D = D[c(rep(T, 1), F),]
 #D = D[seq(1, nrow(D), 2),]
 #D = Dall[Dall$lF<4,]
 #plot(D[,1], D[,2], pch=20)
