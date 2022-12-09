@@ -481,7 +481,7 @@ FtFmsy = rep(1, TT) #make faux catch
 #DATA STUFF
 
 #
-mod = "ExpT45N150K1" #"ExpT45N150A15K0.1" #"FlatT30N150A15K0.1" #"ExpT45N150A15" # "ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
+mod = "FlatT30N150A15K0.1" #"ExpT45N150K1" #"ExpT45N150A15" #"ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
 place = sprintf("./modsDD%s/", mod)
 
 #
