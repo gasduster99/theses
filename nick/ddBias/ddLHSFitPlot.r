@@ -481,7 +481,7 @@ FtFmsy = rep(1, TT) #make faux catch
 #DATA STUFF
 
 #
-mod = "ExpT45N150K1" #"ExpT45N150A15K0.1" #"FlatT30N150A15K0.1" #"ExpT45N150A15" # "ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
+mod = "FlatT30N150A15K0.1" #"ExpT45N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A15" # "ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
 place = sprintf("./modsDD%s/", mod)
 
 #
@@ -508,7 +508,7 @@ rownames(l) = rn
 #LAYOUT STUFF
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
-N = 4#20
+N = 3 #4#20
 
 #
 xiLim = c(0.25, 3.75)

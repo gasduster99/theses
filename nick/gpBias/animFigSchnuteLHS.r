@@ -277,11 +277,12 @@ getData = function(dir, xiRange, zetaRange){
 #P0 = 10000
 #
 
-#
-mod = "ExpT45N150Wide" #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
+##
+#mod = "ExpT45N150Wide" #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
 #mod = "HHardFlatT30N150WWideN56"
 #mod = "HHardFlatT30N150WWideN84"
-#mod = "HHardFlatT30N150WWideN112"
+mod = "HHardFlatT30N150WWideN112" 
+#directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png
 #
 dir = sprintf("./modsSchnute%s/", mod)
 P0 = 10000
@@ -325,17 +326,16 @@ dev.off()
 #TARGET YEILD CURVES
 #
 
-#
+#directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png
 #minimize target norm
-xiTar   = 2.5  #3    #3    #2.5  #3    #0.5   #3.4
-zetaTar = 0.45 #0.55 #0.35 #0.45 #0.275 #0.55 #0.275 #0.55
+xiTar   = 3    #2.5  #3    ##2.5  #3    #0.5   #3.4
+zetaTar = 0.35 #0.45 #0.55 ##0.45 #0.275 #0.55 #0.275 #0.55
 #xiTar   = 3 #1 #3#3.4
 #zetaTar = 0.45 #0.275#0.55
 norms = sqrt((xiTar-xis)^2 + (zetaTar-zetas)^2)
 who   = which(min(norms)==norms)
 xi    = xis[who]
 zeta  = zetas[who]
-
 #
 fileDat = names(who)
 fileFit = gsub("datGen", "fit", fileDat)
@@ -621,7 +621,7 @@ image(xiStar, zetaStar, eucBias/ds,
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
         xlim = c(xiBot, xiTop), # c(0, xiTop), #
-        zlim = c(0, 0.95),
+        zlim = c(0, 1), #0.95),
 	cex.lab = 1.5,
         cex.main= 1.5
 )
@@ -657,13 +657,14 @@ image(xiStar, zetaStar, eucBias/ds, #eucBias,
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
         xlim = c(xiBot, xiTop), #c(0, xiTop), #
-        zlim = c(0, 0.95),
+        zlim = c(0, 1), #0.95),
 	cex.lab = 1.5,
         cex.main= 1.5
 )
 points(dotStar[freq,1], dotStar[freq,2], pch='.')
 #curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
 points(xi, zeta, pch=19, cex=1.5)
+points(xi, zeta, cex=1.5, col='white')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
@@ -693,8 +694,8 @@ image(xiStar, zetaStar, eucBias/ds, #eucBias,
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
-        xlim = c(xiBot, xiTop), #c(0, xiTop), #
-        zlim = c(0, 0.95),
+        xlim = c(0, xiTop), #c(xiBot, xiTop), #
+        zlim = c(0, 1), #0.95),
 	cex.lab = 1.5,
         cex.main= 1.5
 )
@@ -702,6 +703,7 @@ points(dotStar[freq,1], dotStar[freq,2], pch='.')
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 #curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
 points(xi, zeta, pch=19, cex=1.5)
+points(xi, zeta, cex=1.5, col='white')
 points(D[D$xiSeed==xi & D$zetaSeed==zeta,'xiHat'], D[D$xiSeed==xi & D$zetaSeed==zeta,'zetaHat'], pch=19, cex=1.5, col='red')
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
@@ -720,6 +722,58 @@ show = seq(1, length(eucCols), length.out=20)
 #points(D$xiSeed, D$zetaSeed)
 dev.off()
 
+#
+png(sprintf("directionalBiasSchnuteAnimateBoth%sX%sZ%s.png", mod, xiTar, zetaTar))
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, eucBias/ds, #eucBias,
+        col  = adjustcolor(eucCols, alpha.f=0.99), #eucCols, #
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(0, xiTop), #c(xiBot, xiTop), #
+        zlim = c(0, 1), #0.95),
+	cex.lab = 1.5,
+        cex.main= 1.5
+)
+points(dotStar[freq,1], dotStar[freq,2], pch='.')
+curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+#
+points(xi, zeta, pch=19, cex=1.5)
+points(xi, zeta, cex=1.5, col='white')
+points(D[D$xiSeed==xi & D$zetaSeed==zeta,'xiHat'], D[D$xiSeed==xi & D$zetaSeed==zeta,'zetaHat'], pch=19, cex=1.5, col='red')
+#
+#minimize target norm
+xiTar   = 3    #2.5  #3    ##2.5  #3    #0.5   #3.4
+zetaTar = 0.55 #0.45 #0.55 ##0.45 #0.275 #0.55 #0.275 #0.55
+#xiTar   = 3 #1 #3#3.4
+#zetaTar = 0.45 #0.275#0.55
+norms = sqrt((xiTar-xis)^2 + (zetaTar-zetas)^2)
+who   = which(min(norms)==norms)
+xi    = xis[who]
+zeta  = zetas[who]
+points(xi, zeta, pch=19, cex=1.5)
+points(xi, zeta, cex=1.5, col='white')
+points(D[D$xiSeed==xi & D$zetaSeed==zeta,'xiHat'], D[D$xiSeed==xi & D$zetaSeed==zeta,'zetaHat'], pch=19, cex=1.5, col='red')
+#
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.05, length=0.15 #scale=0.035, length=0.13  #0.025
+)
+show = seq(1, length(eucCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.2f", rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), length.out=length(show
+#        fill = rev(eucCols[show]), 
+#        xpd = NA
+#)
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
 
 
 
