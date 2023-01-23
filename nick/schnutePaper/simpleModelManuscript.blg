@@ -1,0 +1,82 @@
+This is BibTeX, Version 0.99d (TeX Live 2021)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: simpleModelManuscript.aux
+The style file: apacite.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: ./gpBias.bib
+Database file #2: ./spline.bib
+Repeated entry---line 65 of file ./spline.bib
+ : @article{gramacy_cases_2012
+ :                            ,
+I'm skipping whatever remains of this entry
+Database file #3: ./ageStructure.bib
+Repeated entry---line 2 of file ./ageStructure.bib
+ : @article{schnute_analytical_1998
+ :                                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 19 of file ./ageStructure.bib
+ : @article{schnute_general_1985
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 56 of file ./ageStructure.bib
+ : @article{hilborn_quantitative_1992
+ :                                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 106 of file ./ageStructure.bib
+ : @article{schnute_general_1987
+ :                              ,
+I'm skipping whatever remains of this entry
+apacite.bst [2013/07/21 v6.03 APA bibliography style]
+Warning--No journal in narita_pacfin_1988
+Warning--No journal in pearson_documentation_1997
+Warning--No journal in radhakrishnan_description_1993
+You've used 39 entries,
+            6951 wiz_defined-function locations,
+            1530 strings with 18521 characters,
+and the built_in function-call counts, 75558 in all, are:
+= -- 9306
+> -- 540
+< -- 3813
++ -- 3953
+- -- 80
+* -- 5024
+:= -- 14336
+add.period$ -- 157
+call.type$ -- 39
+change.case$ -- 683
+chr.to.int$ -- 0
+cite$ -- 81
+duplicate$ -- 1918
+empty$ -- 2903
+format.name$ -- 895
+if$ -- 14108
+int.to.chr$ -- 0
+int.to.str$ -- 117
+missing$ -- 0
+newline$ -- 1005
+num.names$ -- 312
+pop$ -- 1181
+preamble$ -- 1
+purify$ -- 176
+quote$ -- 0
+skip$ -- 4704
+stack$ -- 0
+substring$ -- 4300
+swap$ -- 1112
+text.length$ -- 104
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 3184
+warning$ -- 3
+while$ -- 323
+width$ -- 0
+write$ -- 1199
+(There were 5 error messages)
