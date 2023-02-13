@@ -4,6 +4,7 @@ rm(list=ls())
 library(GA)
 library(crch)
 library(pracma)
+library(EnvStats)
 library(numDeriv)
 library(rootSolve)
 #
@@ -85,36 +86,220 @@ FMsy = function(alpha, gamma, M){
 }
 
 #
+rttV = function(n, loc, scale, df, V, pV, left=-Inf, right=Inf){
+	out = V*rbinom(n, 1, pV) 
+	out[out==0] = rtt(sum(out==0), loc, scale, df, left, right)
+}
+#
+pttV = function(x, loc, scale, df, V, pV, left=-Inf, right=Inf){
+        #
+	out = 0
+	if(x>=V){ out=pV + (1-pV)*ptt(x, loc, scale, df, left, right) }
+	#
+	return(out)
+}
+pttV = Vectorize(pttV, 'x')
+
+#
 #MAIN
 #
 
-##
-#place = './modsSchnuteHHardExpT45N150M0.05Wide/'
-#odeMethod = "lsode"
 #
-##safely create place
-#if( dir.exists(place) ){
-#	#
-#	isGo = readline(sprintf("Overwrite %s Design?\nCtrl-C to Escape, Enter to Overwrite, or A to Append: ", place))	
-#	#
-#	if( toupper(isGo)=="A" ){
-#		#
-#		dir.create(place, showWarnings=FALSE)
-#	}else{
-#		#
-#		unlink(place, recursive=TRUE)
-#		dir.create(place, showWarnings=FALSE)
+B0 = 10000
+M  = 0.2 #05
+
+#
+n = 150
+xi = 0.5 #3 #0.5 #seq(0, 4, length.out=n+1)
+ff = xi*M
+
+#
+broke = suppressWarnings(stats::optimize(function(x){z(x, ff, M)}, c(-100, 100)))
+minG = broke$minimum
+minZ = broke$objective
+#
+f = function(x){grad(z, x, ff=ff, M=M)}#pdf analogy    
+fv = Vectorize(f, "x")
+peak = stats::optimize(function(x){-log(fv(x))}, c(minZ, 100))
+peakG = peak$minimum
+
+#
+varZ = 1/optimHess(peakG, function(x){-log(fv(x))})
+
+#
+q = 0.9
+
+#
+l2_dist <- function(f, g) {
+  f_diff <- function(x) (f(x) - g(x))^2
+  sqrt(integrate(f = f_diff, lower=minG, upper=qnorm(q, peakG, sqrt(varZ)), subdivisions=10^5)$value)
+}
+
+##
+#par = c(peakG, sqrt(varZ), 2, minG)
+#o = optim(par, 
+#	function(x){
+#	a = x[1]
+#	b = x[2]
+#	c = x[3]
+#	d = x[4]
+#        #(ptt(minG, peakG, x, df)-minZ)^2 +
+#        #(ptt(peakG, peakG, x, df)+ptt(minG, peakG, x, df)-z(peakG, ff, M))^2
+#        l2_dist(
+#                function(y){
+#                        ptt(y, a, b, c, left=d)
+#                        #ptt(y, a, b, c, left=minG)/(1+ptt(minG, a, b, c))+ptt(minG, a, b, c)
+#                },
+#                function(y){
+#                        z(y, ff, M)
+#                }
+#        )
 #	}
-#} else{ dir.create(place, showWarnings=FALSE) }
+#)
+#peakGo = o$par[1]
+#sdZ = o$par[2]
+#df = o$par[3]
+#lef = o$par[4]
+
 #
+par = c(peakG, sqrt(varZ), 2)
+o = optim(par, 
+	function(x){
+	#
+	a = x[1]
+	b = x[2]
+	c = x[3]
+	#d = x[4]
+	#
+        l2_dist(
+                function(y){#                  d
+			pttV(y, a, b, c, minG, minZ, left=minG)
+                },
+                function(y){
+                        z(y, ff, M)
+                }
+        )
+	}
+)
+peakGo = o$par[1]
+sdZo = o$par[2]
+dfo = o$par[3]
+pVo =  minZ #o1$par[4]
+
+#
+par = c(peakG, sqrt(varZ), 2)
+o1 = optim(par[-3], 
+	function(x){
+	#
+	a = x[1]
+	b = x[2]
+	#c = x[3]
+	#d = x[4]
+	#
+        l2_dist(
+                function(y){#                  d
+			pttV(y, a, b, 100, minG, minZ, left=minG)
+                },
+                function(y){
+                        z(y, ff, M)
+                }
+        )
+	}
+)
+peakGo1 = o1$par[1]
+sdZo1 = o1$par[2]
+dfo1 = 100 #o$par[3]
+pVo1 =  minZ
+
+#
+qq = q #0.99
+curve(z(x, ff, M), -5, qtt(qq, peakG, sdZo, 2), n=10000, ylim=c(0,1), lwd = 3)
+#abline(v=peakG)
+
+#
+f = function(x){ pttV(x, peakGo1, sdZo1, dfo1, minG, pVo1, left=minG) }
+curve(f(x), minG, qtt(qq, peakG, sdZo, 2), col='green', add=T)
+
+#
+g = function(x){ ptt(x, peakG, sqrt(varZ), 2, left=minG) }
+curve(g(x), minG, qtt(qq, peakG, sdZo, 2), col='blue', add=T)
+
+#
+h = function(x){ pttV(x, peakGo, sdZo, dfo, minG, pVo, left=minG) }
+curve(h(x), minG, qtt(qq, peakG, sdZo, 2), col='red', add=T)
+
+
+
+#
+#quantiles
+#
+
+#
+gs = rttV(10000, peakGo, sdZo, dfo, minG, pVo, left=minG)
+zs = z(gs, ff, M)
+#
+gsBase = rtt(10000, peakG, sqrt(varZ), 2, left=minG)
+zsBase = z(gsBase, ff, M)
+#
+gso1 = rttV(10000, peakGo1, sdZo1, dfo1, minG, pVo1, left=minG)
+zso1 = z(gso1, ff, M)
+
+#
+dev.new()
+qqPlot(zs, distribution="unif", param.list=list(min=minZ, max=1), add.line=T)
+dev.new()
+qqPlot(zsBase, distribution="unif", param.list=list(min=minZ, max=1), add.line=T)
+dev.new()
+qqPlot(zso1, distribution="unif", param.list=list(min=minZ, max=1), add.line=T)
+
+
+
+
+
+
+#dev.new()
+#d = function(x){dtt(x, peakG, sqrt(varZ), df, left=minG)}
+#curve(d, -5, peakG+qt(0.9, df)*sqrt(varZ))
+
+#
+#       minZ = suppressWarnings(stats::optimize(function(x){z(x, ff, M)}, c(-100, 100))$minimum)
+#       f = function(x){grad(z, x, ff=ff, M=M)}#pdf analogy    
+#       fv = Vectorize(f, "x")
+#       peakZ = stats::optimize(function(x){-log(fv(x))}, c(minZ, 100))$minimum
+#       varZ = 1/optimHess(peakZ, function(x){-log(fv(x))})
+#       if(varZ<0){ next }
+#       #
+#       gs = rtt(1, peakZ, sqrt(varZ)*fudge, df, left=minZ)
+
+
+
+
+
+
+
+
+
+
+
 ##
-#TT = 30
-#FtFmsy = rep(1, TT) #make faux catch
-#
-##
-#B0 = 10000
-#M  = 0.05
-#
+#out = stats::optimize(function(x){ 
+#	#(ptt(minG, peakG, x, df)-minZ)^2 +
+#	#(ptt(peakG, peakG, x, df)+ptt(minG, peakG, x, df)-z(peakG, ff, M))^2
+#	l2_dist(
+#		function(y){
+#			ptt(y, peakG, x, df)
+#			#ptt(y, peakG, x, df, left=minG)/(1+ptt(minG, peakG, x, df))+ptt(minG, peakG, x, df)
+#		},
+#		function(y){
+#			z(y, ff, M)
+#		}
+#	)
+#	}, c(0, 100))
+#sdZ = out$minimum
+
+
+
+
 ##number of samples in design
 #n = 150 #500 maxed out method
 #
@@ -228,7 +413,36 @@ FMsy = function(alpha, gamma, M){
 #		if( fudge>giveUp ){ break } #give up (it mostly just misses one of two bins so its usually fine)
 #	}
 #}
+
 #
+#JUNK
+#
+
+##
+#place = './modsSchnuteHHardExpT45N150M0.05Wide/'
+#odeMethod = "lsode"
+#
+##safely create place
+#if( dir.exists(place) ){
+#	#
+#	isGo = readline(sprintf("Overwrite %s Design?\nCtrl-C to Escape, Enter to Overwrite, or A to Append: ", place))	
+#	#
+#	if( toupper(isGo)=="A" ){
+#		#
+#		dir.create(place, showWarnings=FALSE)
+#	}else{
+#		#
+#		unlink(place, recursive=TRUE)
+#		dir.create(place, showWarnings=FALSE)
+#	}
+#} else{ dir.create(place, showWarnings=FALSE) }
+#
+##
+#TT = 30
+#FtFmsy = rep(1, TT) #make faux catch
+
+
+
 ##
 ##Extreme Design Elements
 ##

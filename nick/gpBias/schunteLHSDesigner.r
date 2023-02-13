@@ -85,24 +85,24 @@ FMsy = function(alpha, gamma, M){
 #TT=30
 #FtFmsy = rep(1, TT)
 #
-##
-#B0 = 10000
-#M  = 0.2
 #
-##number of samples in design
-#n = 50 #500 maxed out method
+B0 = 10000
+M  = 0.2
+
+#number of samples in design
+n = 50 #500 maxed out method
+
+#LHS boundaries
+xiMin = 0
+xiMax = 4 #2 #3.5
+zetaMin = 0.1 #0.1
+zetaMax = 0.7 #0.3 #0.7 #1
+#zeta range should not be too small
+
+#xi and zeta Bins (bin defined by left edge right egde not used) [n+1 used to give n left edges]
+xiL = seq(xiMin, xiMax, length.out=n+1)
+zetaL = seq(zetaMin, zetaMax, length.out=n+1)
 #
-##LHS boundaries
-#xiMin = 0
-#xiMax = 4 #2 #3.5
-#zetaMin = 0.1 #0.1
-#zetaMax = 0.7 #0.3 #0.7 #1
-##zeta range should not be too small
-#
-##xi and zeta Bins (bin defined by left edge right egde not used) [n+1 used to give n left edges]
-#xiL = seq(xiMin, xiMax, length.out=n+1)
-#zetaL = seq(zetaMin, zetaMax, length.out=n+1)
-##
 #Llist = rep(T, n) #a list to track which zeta bin still needs a sample
 #zetaList = rep(NA, n) #a list the sampled zeta value in each bin
 #xiList = rep(NA, n)   #a list the sampled xi value in each bin
