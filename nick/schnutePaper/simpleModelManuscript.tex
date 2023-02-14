@@ -24,6 +24,7 @@
 %\usepackage{relsize}
 \usepackage{dsfont}
 \usepackage{pgfgantt}
+\usepackage{bbm}
 
 \hypersetup{colorlinks   = true, %Colors links instead of ugly boxes
             urlcolor     = blue, %Color for external hyperlinks
@@ -534,7 +535,7 @@ system is obtained,
 
 %
 For a population experienceing natural mortality $M$, by fixing $F_{MSY}$, 
-$B_0$, $\frac{B_{MSY}}{B_0}$, the above system can fully specify $\theta$ if only 
+$B_0$, and $\frac{B_{MSY}}{B_0}$ the above system can fully specify $\theta$ if only 
 $\gamma$ were further isolated. Notice for a given $\gamma$ a cascade of closed 
 form solutions for $\alpha$ and $\beta$ can be obtained. First $\alpha(\gamma)$ 
 can be computed, and then $\beta(\alpha(\gamma), \gamma)$ can be computed. If 
@@ -549,10 +550,13 @@ $\alpha(\gamma)$, and then $\beta(\alpha(\gamma), \gamma)$, fully defines the
 Schnute model for a given $(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{B_0})$. However
 inverting $\zeta$ accuratly is extremely difficult. Inverting $\zeta$ 
 analytically is not feasible, and typical methods of numerically inverting 
-$\zeta$ are unstable. Numerically inverting $\zeta$ quickly becomes 
-prohibitivly expensive, and solutions are often still unreliable. 
+$\zeta$ are unstable and expensive. 
+%Numerically inverting $\zeta$ quickly becomes 
+%prohibitivly expensive, and solutions are often still unreliable. 
 
-
+%
+Rather than numerically invert precise values of $\zeta(\gamma)$, $\gamma$ is 
+sampled so that the overall simulation design is space filling.
 
 %%
 %However, for 
@@ -611,9 +615,9 @@ prohibitivly expensive, and solutions are often still unreliable.
 
 %
 A Latin hypercube sample (LHS) of size $n$, in an $m$ dimensional space, samples 
-along grids of size $n$ in each dimension of the design space. By intersecting 
-the grids of each dimension, $n^m$ cells are produced, from which a total 
-$n$ samples are taken. Crutially only one sample is taken from a given element 
+uniformly among uniform grids of size $n$ in each dimension of the design space. By 
+intersecting the grids of each dimension, $n^m$ cells are produced, from which 
+a total $n$ samples are taken. Crutially only one sample is taken from a given element 
 of each grid in each dimensions so as to reduce clumping of the $n$ samples 
 across the design space.  
 
@@ -629,8 +633,63 @@ $\mathcal{F}\times\mathcal{B}$.
 %equally spaced grid of size $n$ for $\frac{B_{MSY}}{B_0} \in (0.15, 0.7)$. 
 %$\mathcal{F}$
 
+%
+{\color{red} Describe algorithm for computing LHS}
 
+%
+\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../gpBias/zeta.png}
+\caption{$\zeta(\gamma)$ Plotted for $F_{MSY}=0.1$ and $M=0.2$. The point 
+$(\gamma_{min}, \zeta_{min})$ shows the lowest biologically meaningful 
+value of $\gamma$; below which productivity is negative.}
+\end{figure}
+
+%
+Since it is not practicle to invert $\zeta(\gamma)$, a uniform sample in 
+$\frac{B_{MSY}}{B_0}$ can be obtained by thinking of $\gamma$ as a random 
+variable, and modeling $\zeta(\gamma)$ as its CDF. The aim is to model $\gamma$ 
+as an easily sampled random varaible with a CDF that closely approximates 
+$\zeta$, so that $\zeta(\gamma)\dot\sim U(\zeta_{min},1)$ as closely as possible.
+There may be many good models for the distribution of $\gamma$, but in this setting
+the following distribution is effective,
+%
+\begin{align}
+\gamma \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}. \label{mixT}
+\end{align}
  
+%
+Above, $t$ is the three parameter location-scale family Student's $t$ distribution
+with location $\mu$, scale $\sigma$, and degrees of freedom $\nu$. 
+$\bm{1}_{\gamma>\gamma_{min}}$ is an indicator function that serves to truncate 
+Student's $t$ distribution at the lower bound $\gamma_{min}$. 
+$\delta(\gamma_{min})$ is the dirac delta function evaluated at $\gamma_{min}$, 
+which is scaled by the known value $\zeta_{min}$, to place probability mass 
+$\zeta_{min}$ at the point $\gamma_{min}$. Since sampling from Student's $t$ 
+distribution is readily doable, sampling from a truncated Student's $t$ mixture 
+only requires slight modification. 
+
+%
+Let $T$ be the CDF of the modeled distribution of $\gamma$. Since the point 
+$(\gamma_{min}, \zeta_{min})$ is known from the dynamics of the Schnute model 
+at a given RP, full specification of Eq. (\ref{mixT}) only requires determining 
+the values for $\mu$, $\sigma$, and $\nu$ which make $T$ best approximate 
+$\zeta(\gamma)$. Thus, the values of $\mu$, $\sigma$, and $\nu$ are chosen by 
+minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
+%Letting $T$ be the CDF of the modeled distribtuion of $\gamma$, the values of $\mu$, $\sigma$, and $\nu$ are chosen by minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
+
+%{\gamma_{min}}^{\gamma_{0.9}}
+\begin{align}
+[\hat\mu, \hat\sigma, \hat\nu]=\underset{{[\mu, \sigma, \nu]}}{\arg\min}\int_\Gamma \big(T(\gamma; \mu, \sigma, \nu) - \zeta(\gamma)\big)^2 d\gamma
+\end{align}  
+
+%
+\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../gpBias/qqUnif.png}
+\caption{Uniform Q-Q plot for sampled $\zeta$ against theoretical uniform quantiles.}
+\end{figure}
+
+
+
 %
 \subsubsection{Design Refinement}
 	\begin{itemize}

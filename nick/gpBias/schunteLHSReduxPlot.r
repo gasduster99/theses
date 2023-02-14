@@ -7,6 +7,7 @@ library(pracma)
 library(EnvStats)
 library(numDeriv)
 library(rootSolve)
+library(latex2exp)
 #
 source('prodClass0.1.1.r')
 
@@ -127,11 +128,11 @@ peakG = peak$minimum
 varZ = 1/optimHess(peakG, function(x){-log(fv(x))})
 
 #
-q = 0.9
+q = 0.9#9
 
 #
 l2_dist <- function(f, g) {
-  f_diff <- function(x) (f(x) - g(x))^2
+  f_diff <- function(x) (f(x) - g(x))^2       
   sqrt(integrate(f = f_diff, lower=minG, upper=qnorm(q, peakG, sqrt(varZ)), subdivisions=10^5)$value)
 }
 
@@ -171,7 +172,7 @@ o = optim(par,
 	c = x[3]
 	#d = x[4]
 	#
-        l2_dist(
+        l2_dist(#          x, loc,scale,df, V, pV,   left=-Inf, right=Inf
                 function(y){#                  d
 			pttV(y, a, b, c, minG, minZ, left=minG)
                 },
@@ -213,6 +214,22 @@ pVo1 =  minZ
 
 #
 qq = q #0.99
+
+#
+png('zeta.png')
+curve(z(x, ff, M), -5, qtt(qq, peakG, sdZo, 2), 
+	n=10000, 
+	ylim=c(0,1), 
+	lwd=3,
+	main=TeX("$\\zeta(\\gamma)$"),
+	ylab=TeX("$B_{MSY}/B_0$"),
+	xlab=TeX("$\\gamma$")
+)
+points(minG, minZ, pch=19)
+legend('bottomleft', legend=TeX('$(\\gamma_{min}, \\zeta_{min})$'), pch=19)
+dev.off()
+
+
 curve(z(x, ff, M), -5, qtt(qq, peakG, sdZo, 2), n=10000, ylim=c(0,1), lwd = 3)
 #abline(v=peakG)
 
@@ -244,13 +261,25 @@ zsBase = z(gsBase, ff, M)
 gso1 = rttV(10000, peakGo1, sdZo1, dfo1, minG, pVo1, left=minG)
 zso1 = z(gso1, ff, M)
 
-#
-dev.new()
-qqPlot(zs, distribution="unif", param.list=list(min=minZ, max=1), add.line=T)
-dev.new()
-qqPlot(zsBase, distribution="unif", param.list=list(min=minZ, max=1), add.line=T)
-dev.new()
-qqPlot(zso1, distribution="unif", param.list=list(min=minZ, max=1), add.line=T)
+png("qqUnif.png")
+qqPlot(zs, 
+	distribution="unif", 
+	param.list=list(min=minZ, max=1), 
+	#add.line=T,
+	ylab="Sample Quantiles",
+	xlab="Uniform Quantiles",
+	main=TeX("Uniform Q-Q Plot for Modeled Samples of $\\zeta$")
+)
+abline(0, 1, col='red')
+dev.off()
+
+##
+#dev.new()
+#qqPlot(zs, distribution="unif", param.list=list(min=minZ, max=1), add.line=T)
+#dev.new()
+#qqPlot(zsBase, distribution="unif", param.list=list(min=minZ, max=1), add.line=T)
+#dev.new()
+#qqPlot(zso1, distribution="unif", param.list=list(min=minZ, max=1), add.line=T)
 
 
 
