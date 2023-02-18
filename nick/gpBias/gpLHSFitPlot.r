@@ -9,8 +9,9 @@ library(pracma)
 library(stringr)
 library(rootSolve)
 
-#
-source('ddClass0.1.1.r')
+##
+#source('ddClass0.1.1.r')
+source("prodClass0.1.1.r")
 
 #
 #FUNCTIONS
@@ -480,9 +481,9 @@ FtFmsy = rep(1, TT) #make faux catch
 
 #DATA STUFF
 
-#
-mod = "FlatT30N150A15K0.1" #"ExpT45N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A15" # "ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
-place = sprintf("./modsDD%s/", mod)
+#modsSchnuteHHardFlatT30N150WWideN112
+mod = "HHardFlatT30N150WWideN112"
+place = sprintf("./modsSchnute%s/", mod)
 
 #
 datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
@@ -511,8 +512,8 @@ rownames(l) = rn
 N = 4 #4#20
 
 #
-xiLim = c(0.5, 3.5)   #c(0.25, 3.75)
-zetaLim = c(0.2, 0.65) #c(0.15, 0.7) #0.6) #
+xiLim = c(0.5, 3.5)    #c(0.25, 3.75)
+zetaLim = c(0.15, 0.65) #c(0.15, 0.7) #0.6) #
 
 #LHS boundaries
 xiMin = xiLim[1]        #0.25 #3.25 #0.5
@@ -525,12 +526,14 @@ zetaMax = zetaLim[2]    #0.7  #0.43 #0.7
 xiL = seq(xiMin, xiMax, length.out=N+1)
 zetaL = seq(zetaMin, zetaMax, length.out=N+1)
 
-#if sampled bin not yet sampled, then save
-l = l[	l$xiList>=xiLim[1] & 
-	l$xiList<=xiLim[2] &
-	l$zetaList>=zetaLim[1] &
-	l$zetaList<=zetaLim[2]
+#limit l
+l = l[  l$xiList>=xiLim[1] &
+        l$xiList<=xiLim[2] &
+        l$zetaList>=zetaLim[1] &
+        l$zetaList<=zetaLim[2]
 ,]
+
+#if sampled bin not yet sampled, then save
 Lay = matrix(0, N, N)
 for( i in 1:nrow(l) ){
 	#
@@ -563,188 +566,25 @@ lay = P%*%t(lay)%*%P
 #PLOT
 
 #
-png(sprintf('indexGrid%s.png', mod), width=2000, height=2000)
-layout(lay)
-for(i in 1:nrow(l)){ #nrow(out$ll)){
-	#
-	if( !i%in%tops ){next}
-	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
-	fit = readRDS(fWho)
-	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
-	dat = readRDS(dWho)
-	#
-	par(mar=c(1,1,1,0))
-	dat$plotMean() #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
-	fit$plotMean( add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
-	fit$plotBand( col='red' )
-}
-dev.off()
-
+expMerge = "./modsSchnuteExpT45N150Wide/"
+expFiles = sprintf("%s%s", expMerge, list.files(path=expMerge, pattern=glob2rx("fit*.rda")))
 #
-png(sprintf('bioGrid%s.png', mod), width=2000, height=2000)
-layout(lay)
-for(i in 1:nrow(l)){ #nrow(out$ll)){
-	#
-	if( !i%in%tops ){next}
-	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
-	fit = readRDS(fWho)
-	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
-	dat = readRDS(dWho)
-	#
-	par(mar=c(1,1,1,0))
-	dat$plotQuan( function(B){B}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
-	fit$plotQuan( function(B){B}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+exprn = c()
+expxiList = c()
+expzetaList = c()
+for(fitF in expFiles){
+        #
+        fit = readRDS(fitF)
+        #check rsCOV
+        if(length(fit$rsCov)==0){ next }
+        #
+        exprn = c(exprn, gsub(sprintf('%sfit_', place), '', fitF))
+        expxiList = c(expxiList, fit$xi)
+        expzetaList = c(expzetaList, fit$zeta)
 }
-dev.off()
+expl = as.data.frame(cbind(expxiList, expzetaList))
+rownames(expl) = exprn
 
-#
-png(sprintf('numGrid%s.png', mod), width=2000, height=2000)
-layout(lay)
-for(i in 1:nrow(l)){ #nrow(out$ll)){
-	#
-	if( !i%in%tops ){next}
-	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
-	fit = readRDS(fWho)
-	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
-	dat = readRDS(dWho)
-	#
-	par(mar=c(1,1,1,0))
-	dat$plotQuan( function(N){N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$N0) )
-	fit$plotQuan( function(N){N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
-}
-dev.off()
-
-#
-png(sprintf('avgGrid%s.png', mod), width=2000, height=2000)
-layout(lay)
-for(i in 1:nrow(l)){ #nrow(out$ll)){
-	#
-	if( !i%in%tops ){next}
-	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
-	fit = readRDS(fWho)
-	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
-	dat = readRDS(dWho)
-	#
-	par(mar=c(1,1,1,0))
-	dat$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]) ) #, ylim=c(0,dat$N0) )
-	fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
-}
-dev.off()
-
-#
-png(sprintf('recGrid%s.png', mod), width=2000, height=2000)
-layout(lay)
-for(i in 1:nrow(l)){ #nrow(out$ll)){
-	#
-	if( !i%in%tops ){next}
-	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
-	fit = readRDS(fWho)
-	#
-	f = function(t, Y, p=NULL){ der(t, Y, fit$lalpha, fit$lbeta, fit$gamma, fit$a0, fit$WW, fit$kappa, fit$catch, fit$B0) }
-	fOut = dede(c(fit$N0, fit$B0), 1:TT, f, parms=NULL, method="lsode")#"radau") # 
-	colnames(fOut) = c('time', 'N', 'B', 'Rec. Biomass', 'Net Growth')
-	#
-	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
-	dat = readRDS(dWho)
-	#
-	d = function(t, Y, p=NULL){ der(t, Y, dat$lalpha, dat$lbeta, dat$gamma, dat$a0, dat$WW, dat$kappa, dat$catch, dat$B0) }
-	dOut = dede(c(dat$N0, dat$B0), 1:TT, d, parms=NULL, method="lsode")#"radau") # 
-	colnames(fOut) = c('time', 'N', 'B', 'Rec. Biomass', 'Net Growth')
-	#
-	par(mar=c(1,1,1,0))
-	plot(dOut[,1], dOut[,4], 'l', lwd=3, ylim=c(0, max(dOut[,4], fOut[,4], na.rm=T)))
-	lines(fOut[,1], fOut[,4], lwd=3, col='red')
-	#dat$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]) ) #, ylim=c(0,dat$N0) )
-	#fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
-}
-dev.off()
-
-#
-png(sprintf('groGrid%s.png', mod), width=2000, height=2000)
-layout(lay)
-for(i in 1:nrow(l)){ #nrow(out$ll)){
-	#
-	if( !i%in%tops ){next}
-	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
-	fit = readRDS(fWho)
-	#
-	f = function(t, Y, p=NULL){ der(t, Y, fit$lalpha, fit$lbeta, fit$gamma, fit$a0, fit$WW, fit$kappa, fit$catch, fit$B0) }
-	fOut = dede(c(fit$N0, fit$B0), 1:TT, f, parms=NULL, method="lsode")#"radau") # 
-	colnames(fOut) = c('time', 'N', 'B', 'Rec. Biomass', 'Net Growth')
-	#
-	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
-	dat = readRDS(dWho)
-	#
-	d = function(t, Y, p=NULL){ der(t, Y, dat$lalpha, dat$lbeta, dat$gamma, dat$a0, dat$WW, dat$kappa, dat$catch, dat$B0) }
-	dOut = dede(c(dat$N0, dat$B0), 1:TT, d, parms=NULL, method="lsode")#"radau") # 
-	colnames(fOut) = c('time', 'N', 'B', 'Rec. Biomass', 'Net Growth')
-	#
-	par(mar=c(1,1,1,0))
-	plot(dOut[,1], dOut[,5], 'l', lwd=3, ylim=c(0, max(dOut[,4], fOut[,4], na.rm=T)))
-	lines(fOut[,1], fOut[,5], lwd=3, col='red')
-	#dat$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]) ) #, ylim=c(0,dat$N0) )
-	#fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
-}
-dev.off()
-
-#
-png(sprintf('srrGrid%s.png', mod), width=2000, height=2000)
-layout(lay)
-for(i in 1:nrow(l)){ #nrow(out$ll)){
-	#
-	if( !i%in%tops ){next}
-	#
-	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
-	fit  = readRDS(fWho)
-	#
-	wwFit = fit$WW*(1-exp(-fit$kappa*fit$a0))
-	FFit = FMsy(fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)
-	#
-	fFit = function(x){wwFit*SRR(x, fit)-fit$M*x - fit$kappa*x + fit$kappa*fit$WW*NCar(x, 0, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma) }
-	mFit = stats::optimize(fFit, c(0, fit$B0), maximum=T)
-	
-	#
-	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
-	dat  = readRDS(dWho)
-	#
-	wwDat = dat$WW*(1-exp(-dat$kappa*dat$a0))
-	FDat = FMsy(dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
-	#
-	fDat = function(x){wwDat*SRR(x, dat)-dat$M*x - dat$kappa*x + dat$kappa*dat$WW*NCar(x, 0, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma) }
-	mDat = stats::optimize(fDat, c(0, dat$B0), maximum=T) 
-	
-	#
-	fitFU = BBar(FFit, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)*FFit/mFit$objective
-	datFU = BBar(FDat, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)*FDat/mDat$objective
-	
-	#
-	par(mar=c(1,1,1,0))
-	curve(fitFU*fDat(x), 0, max(dat$B0, fit$B0), n=10000, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), lwd=3, ylim=c(0, max(mFit$objective*fitFU, mDat$objective*datFU)))
-	curve(fitFU*fFit(x), 0, fit$B0, col='red', add=T, lwd=3, n=10000)
-	#netSRD = function(x){SRR(x, dat)-dat$M*x}
-	#curve(netSRD(x), 0, dat$B0, lty=2, add=T)
-	#netSRF = function(x){SRR(x, fit)-fit$M*x}
-	#curve(netSRF(x), 0, fit$B0, lty=2, col='red', add=T)
-	#curve(x*FDat, 0, dat$B0, add=T, col='red')
-	#abline( v=BBar(FDat, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma) )
-	##abline( v=dat$B0 )
-	#curve(x*FFit, 0, fit$B0, add=T, col='red')
-	#abline( v=BBar(FFit, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma) )
-	##dat$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]) ) #, ylim=c(0,dat$N0) )
-	##fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
-	#
-	##
-	#print( BBar(FFit, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)*FFit )
-	#print( mFit$objective )
-	#print( BBar(FFit, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)*FFit/mFit$objective )
-	#print('')
-	#print( BBar(FDat, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)*FDat )
-	#print( mDat$objective )
-	#print( BBar(FDat, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)*FDat/mDat$objective )
-	#print('')
-	#print('')
-}
-dev.off()
 
 #
 png(sprintf('rGrid%s.png', mod), width=2000, height=2000)
@@ -756,20 +596,30 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
 	fit  = readRDS(fWho)
 	#
-	wwFit = fit$WW*(1-exp(-fit$kappa*fit$a0))
+	#wwFit = fit$WW*(1-exp(-fit$kappa*fit$a0))
 	fFit = function(x){SRR(x, fit)} #- fitt$kappa*x + fit$kappa*fit$WW*fit$N0
-	mFit = stats::optimize(fFit, c(0, fit$B0), maximum=T)
+	mFit = stats::optimize(fFit, c(0, fit$N0), maximum=T)
 	#
 	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
 	dat  = readRDS(dWho)
 	#
-	wwDat = dat$WW*(1-exp(-dat$kappa*dat$a0))
+	#wwDat = dat$WW*(1-exp(-dat$kappa*dat$a0))
 	fDat = function(x){SRR(x, dat)} #- dat$kappa*x + dat$kappa*dat$WW*dat$N0}
-	mDat = stats::optimize(fDat, c(0, dat$B0), maximum=T) 
+	mDat = stats::optimize(fDat, c(0, dat$N0), maximum=T) 
+	
+	#try to merge in closest expfit
+	dists = sqrt((fit$xi-expl$expxiList)^2+(fit$zeta-expl$expzetaList)^2)
+	expWho = rownames(expl)[dists==min(dists)] #sprintf("%sfit_%s", expMerge, rownames(expl)[dists==min(dists)])
+	expFit = readRDS(expWho)
+	#
+	eFit = function(x){SRR(x, expFit)}
+	emFit = stats::optimize(eFit, c(0, expFit$N0), maximum=T)
+
 	#
 	par(mar=c(1,1,1,0))
-	curve(fDat(x), 0, max(dat$B0, fit$B0), n=10000, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), lwd=3, ylim=c(0, max(mFit$objective, mDat$objective)))
-	#curve(fFit(x), 0, fit$B0, col='red', add=T, lwd=3, n=10000)
+	curve(fDat(x), 0, max(dat$N0, fit$N0), n=10000, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), lwd=3, ylim=c(0, max(mFit$objective, mDat$objective)))
+	curve(fFit(x), 0, max(dat$N0, fit$N0), col='red', add=T, lwd=3, n=10000)
+	curve(eFit(x), 0, max(dat$N0, fit$N0), col='blue', add=T, lwd=3, n=10000)
 	#FF = FMsy(dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
 	#curve(x*FF, 0, dat$B0, add=T, col='red')
 	#BB = BBar(FF, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
@@ -779,6 +629,200 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	#fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
 }
 dev.off()
+
+
+
+
+
+
+
+
+
+
+##
+#png(sprintf('indexGrid%s.png', mod), width=2000, height=2000)
+#layout(lay)
+#for(i in 1:nrow(l)){ #nrow(out$ll)){
+#	#
+#	if( !i%in%tops ){next}
+#	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+#	fit = readRDS(fWho)
+#	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
+#	dat = readRDS(dWho)
+#	#
+#	par(mar=c(1,1,1,0))
+#	dat$plotMean() #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
+#	fit$plotMean( add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+#	fit$plotBand( col='red' )
+#}
+#dev.off()
+#
+##
+#png(sprintf('bioGrid%s.png', mod), width=2000, height=2000)
+#layout(lay)
+#for(i in 1:nrow(l)){ #nrow(out$ll)){
+#	#
+#	if( !i%in%tops ){next}
+#	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+#	fit = readRDS(fWho)
+#	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
+#	dat = readRDS(dWho)
+#	#
+#	par(mar=c(1,1,1,0))
+#	dat$plotQuan( function(B){B}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
+#	fit$plotQuan( function(B){B}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+#}
+#dev.off()
+#
+##
+#png(sprintf('numGrid%s.png', mod), width=2000, height=2000)
+#layout(lay)
+#for(i in 1:nrow(l)){ #nrow(out$ll)){
+#	#
+#	if( !i%in%tops ){next}
+#	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+#	fit = readRDS(fWho)
+#	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
+#	dat = readRDS(dWho)
+#	#
+#	par(mar=c(1,1,1,0))
+#	dat$plotQuan( function(N){N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$N0) )
+#	fit$plotQuan( function(N){N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+#}
+#dev.off()
+#
+##
+#png(sprintf('avgGrid%s.png', mod), width=2000, height=2000)
+#layout(lay)
+#for(i in 1:nrow(l)){ #nrow(out$ll)){
+#	#
+#	if( !i%in%tops ){next}
+#	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+#	fit = readRDS(fWho)
+#	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
+#	dat = readRDS(dWho)
+#	#
+#	par(mar=c(1,1,1,0))
+#	dat$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]) ) #, ylim=c(0,dat$N0) )
+#	fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+#}
+#dev.off()
+#
+##
+#png(sprintf('recGrid%s.png', mod), width=2000, height=2000)
+#layout(lay)
+#for(i in 1:nrow(l)){ #nrow(out$ll)){
+#	#
+#	if( !i%in%tops ){next}
+#	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+#	fit = readRDS(fWho)
+#	#
+#	f = function(t, Y, p=NULL){ der(t, Y, fit$lalpha, fit$lbeta, fit$gamma, fit$a0, fit$WW, fit$kappa, fit$catch, fit$B0) }
+#	fOut = dede(c(fit$N0, fit$B0), 1:TT, f, parms=NULL, method="lsode")#"radau") # 
+#	colnames(fOut) = c('time', 'N', 'B', 'Rec. Biomass', 'Net Growth')
+#	#
+#	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
+#	dat = readRDS(dWho)
+#	#
+#	d = function(t, Y, p=NULL){ der(t, Y, dat$lalpha, dat$lbeta, dat$gamma, dat$a0, dat$WW, dat$kappa, dat$catch, dat$B0) }
+#	dOut = dede(c(dat$N0, dat$B0), 1:TT, d, parms=NULL, method="lsode")#"radau") # 
+#	colnames(fOut) = c('time', 'N', 'B', 'Rec. Biomass', 'Net Growth')
+#	#
+#	par(mar=c(1,1,1,0))
+#	plot(dOut[,1], dOut[,4], 'l', lwd=3, ylim=c(0, max(dOut[,4], fOut[,4], na.rm=T)))
+#	lines(fOut[,1], fOut[,4], lwd=3, col='red')
+#	#dat$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]) ) #, ylim=c(0,dat$N0) )
+#	#fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+#}
+#dev.off()
+#
+##
+#png(sprintf('groGrid%s.png', mod), width=2000, height=2000)
+#layout(lay)
+#for(i in 1:nrow(l)){ #nrow(out$ll)){
+#	#
+#	if( !i%in%tops ){next}
+#	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+#	fit = readRDS(fWho)
+#	#
+#	f = function(t, Y, p=NULL){ der(t, Y, fit$lalpha, fit$lbeta, fit$gamma, fit$a0, fit$WW, fit$kappa, fit$catch, fit$B0) }
+#	fOut = dede(c(fit$N0, fit$B0), 1:TT, f, parms=NULL, method="lsode")#"radau") # 
+#	colnames(fOut) = c('time', 'N', 'B', 'Rec. Biomass', 'Net Growth')
+#	#
+#	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
+#	dat = readRDS(dWho)
+#	#
+#	d = function(t, Y, p=NULL){ der(t, Y, dat$lalpha, dat$lbeta, dat$gamma, dat$a0, dat$WW, dat$kappa, dat$catch, dat$B0) }
+#	dOut = dede(c(dat$N0, dat$B0), 1:TT, d, parms=NULL, method="lsode")#"radau") # 
+#	colnames(fOut) = c('time', 'N', 'B', 'Rec. Biomass', 'Net Growth')
+#	#
+#	par(mar=c(1,1,1,0))
+#	plot(dOut[,1], dOut[,5], 'l', lwd=3, ylim=c(0, max(dOut[,4], fOut[,4], na.rm=T)))
+#	lines(fOut[,1], fOut[,5], lwd=3, col='red')
+#	#dat$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]) ) #, ylim=c(0,dat$N0) )
+#	#fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+#}
+#dev.off()
+#
+##
+#png(sprintf('srrGrid%s.png', mod), width=2000, height=2000)
+#layout(lay)
+#for(i in 1:nrow(l)){ #nrow(out$ll)){
+#	#
+#	if( !i%in%tops ){next}
+#	#
+#	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+#	fit  = readRDS(fWho)
+#	#
+#	wwFit = fit$WW*(1-exp(-fit$kappa*fit$a0))
+#	FFit = FMsy(fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)
+#	#
+#	fFit = function(x){wwFit*SRR(x, fit)-fit$M*x - fit$kappa*x + fit$kappa*fit$WW*NCar(x, 0, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma) }
+#	mFit = stats::optimize(fFit, c(0, fit$B0), maximum=T)
+#	
+#	#
+#	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
+#	dat  = readRDS(dWho)
+#	#
+#	wwDat = dat$WW*(1-exp(-dat$kappa*dat$a0))
+#	FDat = FMsy(dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
+#	#
+#	fDat = function(x){wwDat*SRR(x, dat)-dat$M*x - dat$kappa*x + dat$kappa*dat$WW*NCar(x, 0, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma) }
+#	mDat = stats::optimize(fDat, c(0, dat$B0), maximum=T) 
+#	
+#	#
+#	fitFU = BBar(FFit, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)*FFit/mFit$objective
+#	datFU = BBar(FDat, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)*FDat/mDat$objective
+#	
+#	#
+#	par(mar=c(1,1,1,0))
+#	curve(fitFU*fDat(x), 0, max(dat$B0, fit$B0), n=10000, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), lwd=3, ylim=c(0, max(mFit$objective*fitFU, mDat$objective*datFU)))
+#	curve(fitFU*fFit(x), 0, fit$B0, col='red', add=T, lwd=3, n=10000)
+#	#netSRD = function(x){SRR(x, dat)-dat$M*x}
+#	#curve(netSRD(x), 0, dat$B0, lty=2, add=T)
+#	#netSRF = function(x){SRR(x, fit)-fit$M*x}
+#	#curve(netSRF(x), 0, fit$B0, lty=2, col='red', add=T)
+#	#curve(x*FDat, 0, dat$B0, add=T, col='red')
+#	#abline( v=BBar(FDat, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma) )
+#	##abline( v=dat$B0 )
+#	#curve(x*FFit, 0, fit$B0, add=T, col='red')
+#	#abline( v=BBar(FFit, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma) )
+#	##dat$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]) ) #, ylim=c(0,dat$N0) )
+#	##fit$plotQuan( function(B,N){B/N}, add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+#	#
+#	##
+#	#print( BBar(FFit, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)*FFit )
+#	#print( mFit$objective )
+#	#print( BBar(FFit, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)*FFit/mFit$objective )
+#	#print('')
+#	#print( BBar(FDat, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)*FDat )
+#	#print( mDat$objective )
+#	#print( BBar(FDat, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)*FDat/mDat$objective )
+#	#print('')
+#	#print('')
+#}
+#dev.off()
+
 
 
 ##

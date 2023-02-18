@@ -220,565 +220,187 @@
 
 %\subsection{PT Model}
 
-{\color{blue}
-%Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
-The three parameter PT family has a convenient form that includes, among 
-others \shortcite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
-logistic production function as a special case to form the Schaefer model. The 
-Pella-Tomlinson production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$ 
-and the family takes the following form, 
-%Pella Tomlinson
-\begin{align}
-P(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}. \label{pellaTomlinson}
-\end{align}
-%
-
-%
-$\gamma$ is a parameter which breaks PT out of the restrictive symmetry of the 
-logistic curve. In the special case of $\gamma=2~~$ Eq (\ref{pellaTomlinson}) 
-collapses back to the logistic curve, however in general $\gamma\in(1, \infty)$.
-The parameters $r$ and $K$ maintain the same interpretation as 
-they do in the logistic production function. In Figure (\ref{srrPT}) PT recruitment 
-is shown for a range of parameter values so as to demonstrate the various 
-recruitment shapes that can be achieved by PT recruitment.  
-%{\color{red} And $\gamma$ is a parameter which adds 
-%flexibility to the family by allowing for compensatory or non-compensatory 
-%growth. (break symmetry... get better description) }
-
-%\begin{wrapfigure}{r}{0.5\textwidth}
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.49\textwidth]{./plots/srr1.1.png}	
-	\includegraphics[width=0.49\textwidth]{./plots/srr2.png}
-	\caption{\label{srrPT}
-	(\emph{left}) PT production functions with parameters chosen so that MSY is consistent, but $\frac{B^*}{\bar B(0)}$ is less than $\frac{1}{2}$ (in red), greater than $\frac{1}{2}$ (in blue), or equal to $\frac{1}{2}$ (in black; logistic production function).
-	(\emph{right}) PT production functions over a range of $\gamma$ values with the values of $r$ and $K$ fixed at 1 and 10,000 respectively.  
-	}
-\end{figure}
-%\end{wrapfigure}
-
+%{\color{blue}
+%%Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
+%The three parameter PT family has a convenient form that includes, among 
+%others \shortcite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
+%logistic production function as a special case to form the Schaefer model. The 
+%Pella-Tomlinson production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$ 
+%and the family takes the following form, 
+%%Pella Tomlinson
+%\begin{align}
+%P(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}. \label{pellaTomlinson}
+%\end{align}
 %%
-%\clearpage
-
-%
-While the particular form of how $\gamma$ appears in PT still produces some 
-limitations to the form of the production function, importantly the 
-introduction of a third parameter allows enough flexibility to fully describe 
-the space of reference points used in management. To see this, the reference 
-points are analytically derived for the PT model below. % in the following section.
-
-%%
-%\begin{equation}
-%\frac{dB}{dt} = P - FB.
-%\end{equation}
-
-%
-\subsection{PT Reference Points}\label{ptRef}
-
-%
-With $B(t)$ representing biomass at time $t$, under PT production, the 
-dynamics of biomass are defined by the following ODE,
- 
-\begin{equation}
-\frac{dB}{dt} = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1} - FB. \label{odePT}
-\end{equation}
-
-An expression for the equilibrium biomass is attained by setting Eq (\ref{odePT}) 
-equal to zero, and rearranging the resulting equation to solve for $B$. 
-Thinking of the result as a function of $F$ gives, 
-%When thought of as a 
-%function of $F$ the following expression emerges,
-%{\color{red}Under Pella-Tomlinson SRR the equilibrium biomass can be written,}
-\begin{align}
-\bar B(F) = K\left(1-\left(\frac{F(\gamma-1)}{r}\right)^{\frac{1}{(\gamma-1)}}\right). \label{Beq}
-\end{align}
-
-%By definition $B_0=K$. Alternatively, Setting $F=0$ in Eq(\ref{Beq}) makes it convenient to notice that $\bar B(0)=K$ to arrive at the same result
-At this point it is convenient to notice that $\bar B(0)=K$. The expression for $B^*$ is given by evaluating Eq (\ref{Beq}) at $F^*$.
-
-%
-To get an expression for $F^*$, the equilibrium yield is maximized with respect to $F$,
-\begin{equation}
-F^* = \argmax_F F\bar B(F).
-\end{equation}
-%
-In the case of PT production this maximization can be done analytically (however 
-many three parameter production functions do not result in tractable analytical 
-solutions). In this case maximization can proceed by differentiating the 
-equilibrium yield with respect to $F$ as follows,
-
-%
-\begin{align}
-\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{Fderiv}\\
-%\frac{d \bar B}{dF} &= -\frac{K}{\gamma-1}\left(\frac{\gamma-1}{r}\right)^{\frac{1}{\gamma-1}}F^{\frac{1}{\gamma-1}-1}\\
-\frac{d \bar B}{dF} &= -\frac{K}{F(\gamma-1)}\left(\frac{F(\gamma-1)}{r}\right)^{\frac{1}{\gamma-1}}\label{dBdF}.
-\end{align}
-%{\color{red}
-Setting Eq (\ref{Fderiv}) equal to 0, substituting $\bar B(F)$ and 
-$\frac{d \bar B}{dF}$ by Equations (\ref{Beq}) and (\ref{dBdF}) respectively, 
-and then solving for $F$ produces the following expression for the fishing 
-rate required to produce MSY, %{\color{red}Below any quantity evaluated at MSY shall be decorated with $~^*$.}
-%
-\begin{align}
-F^* = \frac{r}{\gamma-1} \left(\frac{\gamma-1}{\gamma}\right)^{\gamma-1}. \label{Fmsy}
-\end{align}
-%
-Plugging the above expression for $F^*$ back into Eq (\ref{Beq}) gives the 
-following expression for biomass at MSY, 
-\begin{align}
-B^* = \frac{K}{\gamma} \label{Bmsy}. %\left(1-\left(\frac{\gamma-1}{\gamma}\right)\right) \label{Bmsy}.
-\end{align}
-
-%
-The above derived expressions for $\bar B(0)$, $B^*$, and $F^*$ can then be used to 
-build a specific analytical form for the biological reference points in terms of only 
-biological model parameters.
-%%
-%By substituting the expressions given above for $B_0$, $B^*$, and $F^*$ into 
-%Eq(\ref{xizetaSimple}), $\xi$ and $\zeta$ can take a specific analytical form 
-%in terms of the biological model parameters. 
-%%given by substituting the expressions given in Eq(\ref{Fmsy}) 
-%%and Eq(\ref{Bmsy}) in Eq(\ref{xizetaSimple}).
-%%Eq(\ref{xizetaSimple}) can then take a specific analytical form in terms of the 
-%  %an expression for $\xi$ and $\zeta$ can be found in terms of model parameters.  
-\begin{align}
-&F^* = \frac{r}{(\gamma-1)} \left(\frac{\gamma-1}{\gamma}\right)^{\gamma-1}
-&\frac{B^*}{\bar B(0)} = \frac{1}{\gamma} %1-\left(\frac{\gamma-1}{\gamma}\right)
-\end{align}
-
-%%{\color{red}demonstration of the restricted case with graph over RP space as used.}
-%
-%\subsection{Simulation Study \label{sim}}
 %
 %%
-%Indices of abundance are simulated from the three parameter PT production model 
-%over a grid of $F^*$ and $\frac{B^*}{\bar B(0)}$ values. These PT data are then 
-%fit with a two parameter Schaefer model. 
-%%$\gamma$ is then fixed to two so that the PT SRR reduces to the special case of logistic recruitment. 
-%%The restricted Schaefer model is then fit to the 
-%%simulated PT indices. 
+%$\gamma$ is a parameter which breaks PT out of the restrictive symmetry of the 
+%logistic curve. In the special case of $\gamma=2~~$ Eq (\ref{pellaTomlinson}) 
+%collapses back to the logistic curve, however in general $\gamma\in(1, \infty)$.
+%The parameters $r$ and $K$ maintain the same interpretation as 
+%they do in the logistic production function. In Figure (\ref{srrPT}) PT recruitment 
+%is shown for a range of parameter values so as to demonstrate the various 
+%recruitment shapes that can be achieved by PT recruitment.  
+%%{\color{red} And $\gamma$ is a parameter which adds 
+%%flexibility to the family by allowing for compensatory or non-compensatory 
+%%growth. (break symmetry... get better description) }
+%
+%%\begin{wrapfigure}{r}{0.5\textwidth}
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=0.49\textwidth]{./plots/srr1.1.png}	
+%	\includegraphics[width=0.49\textwidth]{./plots/srr2.png}
+%	\caption{\label{srrPT}
+%	(\emph{left}) PT production functions with parameters chosen so that MSY is consistent, but $\frac{B^*}{\bar B(0)}$ is less than $\frac{1}{2}$ (in red), greater than $\frac{1}{2}$ (in blue), or equal to $\frac{1}{2}$ (in black; logistic production function).
+%	(\emph{right}) PT production functions over a range of $\gamma$ values with the values of $r$ and $K$ fixed at 1 and 10,000 respectively.  
+%	}
+%\end{figure}
+%%\end{wrapfigure}
 %
 %%%
+%%\clearpage
+%
 %%
-%%Let $\tilde~$ decorate any quantity that is derived under the restricted two 
-%%parameter SRR.\\ Collapse to the case of Schaefer. Similarly to Eq(\ref{
-%%logisticSRR}) setting $\gamma=2$ results in the equilibrium equations for the 
-%%restricted Schaefer model.  
-%% 
+%While the particular form of how $\gamma$ appears in PT still produces some 
+%limitations to the form of the production function, importantly the 
+%introduction of a third parameter allows enough flexibility to fully describe 
+%the space of reference points used in management. To see this, the reference 
+%points are analytically derived for the PT model below. % in the following section.
 %
-%%speaking it is not possible to analytically invert this  
-%Generating simulated indices of abundance from the PT model requires 
-%inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and 
-%$(r, \gamma)$. It is not generally possible to analytically invert this 
-%relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
-%Most three parameter production functions lead to RPs that require expensive 
-%numerical methods to invert; more over the numerical inversion procedure can %is 
-%often be unstable. That said, for the case of PT this relationship is 
-%analytically invertible, and leads to the following relationship
-
+%%%
+%%\begin{equation}
+%%\frac{dB}{dt} = P - FB.
+%%\end{equation}
 %
-\begin{align}
-&r = F^*\left( \frac{1-\frac{B^*}{\bar B(0)}}{\frac{B^*}{\bar B(0)}} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{\frac{B^*}{\bar B(0)}-1}{\frac{B^*}{\bar B(0)}} \right)}
-&\gamma = \frac{1}{\frac{B^*}{\bar B(0)}}. \label{rg}
-\end{align}
-%{\color{red}
+%%
+%\subsection{PT Reference Points}\label{ptRef}
+%
+%%
+%With $B(t)$ representing biomass at time $t$, under PT production, the 
+%dynamics of biomass are defined by the following ODE,
+% 
+%\begin{equation}
+%\frac{dB}{dt} = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1} - FB. \label{odePT}
+%\end{equation}
+%
+%An expression for the equilibrium biomass is attained by setting Eq (\ref{odePT}) 
+%equal to zero, and rearranging the resulting equation to solve for $B$. 
+%Thinking of the result as a function of $F$ gives, 
+%%When thought of as a 
+%%function of $F$ the following expression emerges,
+%%{\color{red}Under Pella-Tomlinson SRR the equilibrium biomass can be written,}
 %\begin{align}
-%&r = F^*\left( \frac{\bar B(0)-B^*}{B^*} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{B^*-\bar B(0)}{B^*} \right)}
-%&\gamma = \frac{\bar B(0)}{B^*}.
+%\bar B(F) = K\left(1-\left(\frac{F(\gamma-1)}{r}\right)^{\frac{1}{(\gamma-1)}}\right). \label{Beq}
 %\end{align}
+%
+%%By definition $B_0=K$. Alternatively, Setting $F=0$ in Eq(\ref{Beq}) makes it convenient to notice that $\bar B(0)=K$ to arrive at the same result
+%At this point it is convenient to notice that $\bar B(0)=K$. The expression for $B^*$ is given by evaluating Eq (\ref{Beq}) at $F^*$.
+%
+%%
+%To get an expression for $F^*$, the equilibrium yield is maximized with respect to $F$,
+%\begin{equation}
+%F^* = \argmax_F F\bar B(F).
+%\end{equation}
+%%
+%In the case of PT production this maximization can be done analytically (however 
+%many three parameter production functions do not result in tractable analytical 
+%solutions). In this case maximization can proceed by differentiating the 
+%equilibrium yield with respect to $F$ as follows,
+%
+%%
+%\begin{align}
+%\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{Fderiv}\\
+%%\frac{d \bar B}{dF} &= -\frac{K}{\gamma-1}\left(\frac{\gamma-1}{r}\right)^{\frac{1}{\gamma-1}}F^{\frac{1}{\gamma-1}-1}\\
+%\frac{d \bar B}{dF} &= -\frac{K}{F(\gamma-1)}\left(\frac{F(\gamma-1)}{r}\right)^{\frac{1}{\gamma-1}}\label{dBdF}.
+%\end{align}
+%%{\color{red}
+%Setting Eq (\ref{Fderiv}) equal to 0, substituting $\bar B(F)$ and 
+%$\frac{d \bar B}{dF}$ by Equations (\ref{Beq}) and (\ref{dBdF}) respectively, 
+%and then solving for $F$ produces the following expression for the fishing 
+%rate required to produce MSY, %{\color{red}Below any quantity evaluated at MSY shall be decorated with $~^*$.}
+%%
+%\begin{align}
+%F^* = \frac{r}{\gamma-1} \left(\frac{\gamma-1}{\gamma}\right)^{\gamma-1}. \label{Fmsy}
+%\end{align}
+%%
+%Plugging the above expression for $F^*$ back into Eq (\ref{Beq}) gives the 
+%following expression for biomass at MSY, 
+%\begin{align}
+%B^* = \frac{K}{\gamma} \label{Bmsy}. %\left(1-\left(\frac{\gamma-1}{\gamma}\right)\right) \label{Bmsy}.
+%\end{align}
+%
+%%
+%The above derived expressions for $\bar B(0)$, $B^*$, and $F^*$ can then be used to 
+%build a specific analytical form for the biological reference points in terms of only 
+%biological model parameters.
+%%%
+%%By substituting the expressions given above for $B_0$, $B^*$, and $F^*$ into 
+%%Eq(\ref{xizetaSimple}), $\xi$ and $\zeta$ can take a specific analytical form 
+%%in terms of the biological model parameters. 
+%%%given by substituting the expressions given in Eq(\ref{Fmsy}) 
+%%%and Eq(\ref{Bmsy}) in Eq(\ref{xizetaSimple}).
+%%%Eq(\ref{xizetaSimple}) can then take a specific analytical form in terms of the 
+%%  %an expression for $\xi$ and $\zeta$ can be found in terms of model parameters.  
+%\begin{align}
+%&F^* = \frac{r}{(\gamma-1)} \left(\frac{\gamma-1}{\gamma}\right)^{\gamma-1}
+%&\frac{B^*}{\bar B(0)} = \frac{1}{\gamma} %1-\left(\frac{\gamma-1}{\gamma}\right)
+%\end{align}
+%
+%%%{\color{red}demonstration of the restricted case with graph over RP space as used.}
+%%
+%%\subsection{Simulation Study \label{sim}}
+%%
+%%%
+%%Indices of abundance are simulated from the three parameter PT production model 
+%%over a grid of $F^*$ and $\frac{B^*}{\bar B(0)}$ values. These PT data are then 
+%%fit with a two parameter Schaefer model. 
+%%%$\gamma$ is then fixed to two so that the PT SRR reduces to the special case of logistic recruitment. 
+%%%The restricted Schaefer model is then fit to the 
+%%%simulated PT indices. 
+%%
+%%%%
+%%%
+%%%Let $\tilde~$ decorate any quantity that is derived under the restricted two 
+%%%parameter SRR.\\ Collapse to the case of Schaefer. Similarly to Eq(\ref{
+%%%logisticSRR}) setting $\gamma=2$ results in the equilibrium equations for the 
+%%%restricted Schaefer model.  
+%%% 
+%%
+%%%speaking it is not possible to analytically invert this  
+%%Generating simulated indices of abundance from the PT model requires 
+%%inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and 
+%%$(r, \gamma)$. It is not generally possible to analytically invert this 
+%%relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
+%%Most three parameter production functions lead to RPs that require expensive 
+%%numerical methods to invert; more over the numerical inversion procedure can %is 
+%%often be unstable. That said, for the case of PT this relationship is 
+%%analytically invertible, and leads to the following relationship
+%
+%%
+%\begin{align}
+%&r = F^*\left( \frac{1-\frac{B^*}{\bar B(0)}}{\frac{B^*}{\bar B(0)}} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{\frac{B^*}{\bar B(0)}-1}{\frac{B^*}{\bar B(0)}} \right)}
+%&\gamma = \frac{1}{\frac{B^*}{\bar B(0)}}. \label{rg}
+%\end{align}
+%%{\color{red}
+%%\begin{align}
+%%&r = F^*\left( \frac{\bar B(0)-B^*}{B^*} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{B^*-\bar B(0)}{B^*} \right)}
+%%&\gamma = \frac{\bar B(0)}{B^*}.
+%%\end{align}
+%%}
+%
 %}
 
-}
 
-
-
-%
-\subsection{Schnute/BH Model}
-	\begin{itemize}
-		\item Explicit Natural mortality $\frac{dB}{dt} = P(B(t); \bm{\theta}) - M B(t) - F(t) B(t)$
-		\item Schnute: $P(B; [\alpha, \beta, \gamma]) = \alpha B (1-\beta\gamma B)^{\frac{1}{\gamma}}$
-		\item RP's
-		\item $\gamma=-1$ $\Rightarrow$ BH model (as seen in Marc Perspectives)
-	\end{itemize}
-
-%
-\begin{wrapfigure}{r}{0.5\textwidth}
-\includegraphics[width=0.5\textwidth]{plots/derisoSrr.png}
-\caption{
-The Schnute production function plotted across a variety of parameter
-values. The special cases of BH, Ricker, and Logistic production are shown in
-green, blue, and red respectively.
-}
-\end{wrapfigure}
-The Schnute production function is a three parameter generalization of many of 
-the most common two parameter production functions \shortcite{deriso_harvesting_1980, schnute_general_1985}. %\shortcit{deriso_harvesting_1980}. 
-It can be written in the following form, with parameters $\alpha$, $\beta$, and $\gamma$,
-%
-\begin{align}
-P_s(B; [\alpha, \beta, \gamma]) = \alpha B (1-\beta\gamma B)^{\frac{1}{\gamma}}.
-\end{align}
-
-%
-The BH and Logistic production functions arise when $\gamma$ is fixed to -1 or 
-1 respectively, and the Ricker model is a limiting case as $\gamma\rightarrow0$. %\shortcite{schnute_general_1985}.
-
-% 
-Inference of BH productivity parameters under a wide variety of data is of particular 
-interest due to the overwhelming popularity of the BH assumption in fisheries 
-models. Since Schnute production models can represent a quantifiably wide varienty 
-of possible productivity behaviours, they present an ideal simulation 
-environment for inquiry of the relability of inference under the BH 
-assumption.
-
-%
-Under Schnute production, biomass dynamics evolve accourding to the following ODE, 
-%
-\begin{align}
-\frac{dB}{dt} = P_s(B;\theta) - (M+F)B. \label{schnuteSimple}
-\end{align}
-%
-This equation largely takes the same form as previously described, except that 
-$P_s$ is the Schnute production function and natural mortality, $M$, is modeled 
-explicatly here. % as opposed to  inclusion of natural mortality, $M$. 
-Natural mortality models the instantaneous rate of mortality from all causes 
-outside of fishing. Explicatly modeling natural mortality in this way is not 
-only a typical assumption of fisheries models, but is also key to the making 
-RPs well defined over the relavant domain of $\gamma$.
-
-%% matches the assumptions of typical fisheries models and 
-%%
-%In the Schaeffer and PT models
-%$M$ is modeled expliciatly here  and $F$ are instantaneous rates of natural and fishing 
-%mortality respectively. Unlinke the PT model described above 
-
-%with Schnute production simulates a
-%wide varienty of possible population productivety behaviours and provides an 
-
-%
-The derivation of RPs under Eq. (\ref{schnuteSimple}) follows a similar logic 
-as under the PT model. An expression for equilibrium biomass is attained by 
-setting $\frac{dB}{dt}=0$ and rearranging the resulting expression to solve 
-for $B$ 
-%
-\begin{align}
-\bar{B}(F) &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M+F}{\alpha}\right)^\gamma\right).
-\end{align}
-
-%
-The above expression quickly yeilds $B_0$, $B_{MSY}$ by evaluation at $F=0$ and $F=F_{MSY}$ respectively,
-%derive \bar B(F)
-\begin{align}
-B_0 &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{B0S}\\
-\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma }. \label{BratS}
-\end{align}
-
-%
-Attaining an expression for $F_{MSY}$ requires maximization of equilibrium 
-yeild, $\bar{Y}=F\bar{B}(F)$, with respect to $F$. Analytically maximizing 
-proceeds by differentiating $\bar{Y}$ to produce
-%
-\begin{align}
-\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{FderivS}\\
-\frac{d \bar B}{dF} &= -\frac{1}{\beta}  \left(\frac{\left(\frac{M+F}{\alpha}\right)^\gamma}{F+M}\right)\label{dBdFS}.
-\end{align}
-%
-Setting $\frac{d \bar{Y}}{dF}=0$, filling in the expressions for $\bar B(F)$ 
-and $\frac{d \bar B}{dF}$, then rearranging to solve for $F_{MSY}$ is less 
-yeilding here than it was in the case of the PT model. This proceedure falls 
-short of providing an analytical solution for $F_{MSY}$ directly in terms of 
-$\theta$, % $\alpha$, $\beta$, and $\gamma$, 
-but rather shows that $F_{MSY}$ must respect the following expression,  
-%
-\begin{align}
-0 &= \frac{1}{\gamma} - \left(\frac{1}{\gamma} + \frac{F_{MSY}}{F_{MSY}+M}\right)\left(\frac{F_{MSY}+M}{\alpha}\right)^\gamma. \label{yeildS} 
-\end{align}
-
-%, although parameterizing slightly differently,
-The lack of an analytical solution here is understood. 
-\citeA[pg. 519]{schnute_analytical_1998} specifically points out that 
-$F_{MSY}$ cannot be expressed analytically in terms of productivity parameters, 
-but rather gives a partial analytical expression for the inverse relationship. 
-\citeA[pg. 519]{schnute_analytical_1998} derives expressions for $\alpha$ and 
-$\beta$ as a function of RPs and $\gamma$. 
-%rather suggests that a numerical solution 
-
-%
-%By working with the expressions $\frac{F_{MSY}}{M}$, $B_0$, $\frac{B_{MSY}}{B_0}$
-Since RPs are left without a closed form expression, computing RPs from 
-productivity parameters amounts to numerically solving the system formed by collecting the 
-expressions (\ref{yeildS}), (\ref{B0S}), and (\ref{BratS}).
-
-%
-\subsection{Simulation}
-
-%
-For the purposed of simulation, it is not neccessary to completely know either 
-of the precise relationships mapping RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$ 
-RPs. Simulation only requires enough knowledge of these mappings to gather a list 
-of $(\alpha, \beta, \gamma)$ tuples, for data generation under the Schnute model, 
-and the corresponding RPs in some reasonable spacefilling design over RP space. 
-
-%
-Similarly to \shortcite{schnute_analytical_1998}, solving expressions 
-(\ref{yeildS}) and (\ref{B0S}) for $\alpha$ and $\beta$ as a function of RPs 
-and $\gamma$ yeilds a partial mapping from 
-$\big(F_{MSY}, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$.
-By further working with Eq. (\ref{BratS}), to identify $\gamma$, the following 
-system is obtained,
-%
-\begin{align}
-%\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
-\alpha &= (M+F_{MSY})\left(1+\frac{\gamma F_{MSY}}{M+F_{MSY}}\right)^{1/\gamma} \nonumber\\
-\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{abgSys}\\
-\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \nonumber.
-\end{align}
-
-%
-For a population experienceing natural mortality $M$, by fixing $F_{MSY}$, 
-$B_0$, and $\frac{B_{MSY}}{B_0}$ the above system can fully specify $\theta$ if only 
-$\gamma$ were further isolated. Notice for a given $\gamma$ a cascade of closed 
-form solutions for $\alpha$ and $\beta$ can be obtained. First $\alpha(\gamma)$ 
-can be computed, and then $\beta(\alpha(\gamma), \gamma)$ can be computed. If 
-$\alpha(\gamma)$ is filled back into the expression for $\frac{B_{MSY}}{B_0}$, 
-the system collapses into a single onerous expression for 
-$\frac{B_{MSY}}{B_0}(\alpha(\gamma), \gamma)$. For bevity, define 
-$\zeta(\gamma)=\frac{B_{MSY}}{B_0}(\alpha(\gamma), \gamma)$. 
-
-% %possible;
-Inverting $\zeta(\gamma)$ for $\gamma$, and computing the cascade of 
-$\alpha(\gamma)$, and then $\beta(\alpha(\gamma), \gamma)$, fully defines the 
-Schnute model for a given $(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{B_0})$. However
-inverting $\zeta$ accuratly is extremely difficult. Inverting $\zeta$ 
-analytically is not feasible, and typical methods of numerically inverting 
-$\zeta$ are unstable and expensive. 
-%Numerically inverting $\zeta$ quickly becomes 
-%prohibitivly expensive, and solutions are often still unreliable. 
-
-%
-Rather than numerically invert precise values of $\zeta(\gamma)$, $\gamma$ is 
-sampled so that the overall simulation design is space filling.
-
-%%
-%However, for 
-%the purpose of obtaining a space filling design in $\mathcal{F}\times\mathcal{B}$ 
-%it is not neccessary to precisly invert $\zeta(\gamma)$ for $\gamma$. Rather 
-%we only require a list of $(\alpha, \beta, \gamma)$ tuples which correspond to 
-%some reasonable spacefilling design in $\mathcal{F}\times\mathcal{B}$.
-
-
-
-%%
-%By working with expressions (\ref{yeildS}) and (\ref{B0S}) aiming toward 
-%deriving expressions for $\alpha$ and $\beta$ as a function of RPs and $\gamma$, 
-%similarly to \shortcite{schnute_analytical_1998} and (\ref{BratS}) 
-%respectively, and solv
-%
-%
-%However, for 
-%the purpose of obtaining a space filling design in $\mathcal{F}\times\mathcal{B}$ 
-%it is not neccessary to precisly invert $\zeta(\gamma)$ for $\gamma$. Rather 
-%we only require a list of $(\alpha, \beta, \gamma)$ tuples which correspond to 
-%some reasonable spacefilling design in $\mathcal{F}\times\mathcal{B}$.
-%
-%
-%
-% must be solved for 
-%By working with expressions (\ref{yeildS}), (\ref{B0S}), and (\ref{BratS}) respectively, the following system is obtained
-%%
-%\begin{align*}
-%%\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
-%\alpha &= (M+F_{MSY})\left(1+\frac{\gamma F_{MSY}}{M+F_{MSY}}\right)^{1/\gamma} \\
-%\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right)\\
-%\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma }.
-%\end{align*}
-
-	%%
-%\begin{align}
-%%\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \nonumber\\
-%0 &= \frac{1}{\gamma} - \left(\frac{1}{\gamma} + \frac{F_{MSY}}{F_{MSY}+M}\right)\left(\frac{F_{MSY}+M}{\alpha}\right)^\gamma  \label{system}\\
-%%B_0 &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \nonumber
-%\end{align}
-
-%
-%\clearpage	
-
-\subsubsection{Latin Hypercube Sampling}
-
-	\begin{itemize}
-		\item a quick lit review of space filling designs
-		\item approximate LHS
-		\item $\frac{B_{MSY}}{B_0} (\gamma) = \zeta(\gamma)$ picture
-		\item match center, match curvature, df are tuned algorithmically
-		\item $\gamma$-> $\frac{B_{MSY}}{B_0}$
-		\item $\alpha(\gamma)$, $\beta(\alpha, \gamma)$ 
-	\end{itemize}
-
-%
-A Latin hypercube sample (LHS) of size $n$, in an $m$ dimensional space, samples 
-uniformly among uniform grids of size $n$ in each dimension of the design space. By 
-intersecting the grids of each dimension, $n^m$ cells are produced, from which 
-a total $n$ samples are taken. Crutially only one sample is taken from a given element 
-of each grid in each dimensions so as to reduce clumping of the $n$ samples 
-across the design space.  
-
-%
-Letting $\mathcal{F}$ and $\mathcal{B}$ be equally spaced grids, of size $n$, on 
-$\frac{F_{MSY}}{M}\in(0.25, 4)$ and $\frac{B_{MSY}}{B_0} \in (0.15, 0.7)$ 
-respectively, a LHS samples 1 point in $n$ of the $n^2$ cells produced by 
-$\mathcal{F}\times\mathcal{B}$.
-
-%
-%If $\mathcal{F}$ is an equally spaced grid of size $n$ for 
-%$\frac{F_{MSY}}{M}\in(0.25, 4)$, and letting $\mathcal{B}$ be an 
-%equally spaced grid of size $n$ for $\frac{B_{MSY}}{B_0} \in (0.15, 0.7)$. 
-%$\mathcal{F}$
-
-%
-{\color{red} Describe algorithm for computing LHS}
-
-%
-\begin{figure}[h!]
-\includegraphics[width=0.5\textwidth]{../gpBias/zeta.png}
-\caption{$\zeta(\gamma)$ Plotted for $F_{MSY}=0.1$ and $M=0.2$. The point 
-$(\gamma_{min}, \zeta_{min})$ shows the lowest biologically meaningful 
-value of $\gamma$; below which productivity is negative.}
-\end{figure}
-
-%
-Since it is not practicle to invert $\zeta(\gamma)$, a uniform sample in 
-$\frac{B_{MSY}}{B_0}$ can be obtained by thinking of $\gamma$ as a random 
-variable, and modeling $\zeta(\gamma)$ as its CDF. The aim is to model $\gamma$ 
-as an easily sampled random varaible with a CDF that closely approximates 
-$\zeta$, so that $\zeta(\gamma)\dot\sim U(\zeta_{min},1)$ as closely as possible.
-There may be many good models for the distribution of $\gamma$, but in this setting
-the following distribution is effective,
-%
-\begin{align}
-\gamma \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}. \label{mixT}
-\end{align}
- 
-%
-Above, $t$ is the three parameter location-scale family Student's $t$ distribution
-with location $\mu$, scale $\sigma$, and degrees of freedom $\nu$. 
-$\bm{1}_{\gamma>\gamma_{min}}$ is an indicator function that serves to truncate 
-Student's $t$ distribution at the lower bound $\gamma_{min}$. 
-$\delta(\gamma_{min})$ is the dirac delta function evaluated at $\gamma_{min}$, 
-which is scaled by the known value $\zeta_{min}$, to place probability mass 
-$\zeta_{min}$ at the point $\gamma_{min}$. Since sampling from Student's $t$ 
-distribution is readily doable, sampling from a truncated Student's $t$ mixture 
-only requires slight modification. 
-
-%
-Let $T$ be the CDF of the modeled distribution of $\gamma$. Since the point 
-$(\gamma_{min}, \zeta_{min})$ is known from the dynamics of the Schnute model 
-at a given RP, full specification of Eq. (\ref{mixT}) only requires determining 
-the values for $\mu$, $\sigma$, and $\nu$ which make $T$ best approximate 
-$\zeta(\gamma)$. Thus, the values of $\mu$, $\sigma$, and $\nu$ are chosen by 
-minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
-%Letting $T$ be the CDF of the modeled distribtuion of $\gamma$, the values of $\mu$, $\sigma$, and $\nu$ are chosen by minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
-
-%{\gamma_{min}}^{\gamma_{0.9}}
-\begin{align}
-[\hat\mu, \hat\sigma, \hat\nu]=\underset{{[\mu, \sigma, \nu]}}{\arg\min}\int_\Gamma \big(T(\gamma; \mu, \sigma, \nu) - \zeta(\gamma)\big)^2 d\gamma
-\end{align}  
-
-%
-\begin{figure}[h!]
-\includegraphics[width=0.5\textwidth]{../gpBias/qqUnif.png}
-\caption{Uniform Q-Q plot for sampled $\zeta$ against theoretical uniform quantiles.}
-\end{figure}
-
+%	\begin{itemize}
+%		\item Explicit Natural mortality $\frac{dB}{dt} = P(B(t); \bm{\theta}) - M B(t) - F(t) B(t)$
+%		\item[\checkmark] Schnute: $P(B; [\alpha, \beta, \gamma]) = \alpha B (1-\beta\gamma B)^{\frac{1}{\gamma}}$
+%		\item[\checkmark] RP's
+%		\item $\gamma=-1$ $\Rightarrow$ BH model (as seen in Marc Perspectives)
+%	\end{itemize}
 
 
 %
-\subsubsection{Design Refinement}
-	\begin{itemize}
-		\item maximin find holes
-		\item lhs centered on maximin
-	\end{itemize}
-
-
-
-
-{\color{blue}
-
-%
-The Deriso production function presents a convenient three parameter form 
-that is capable of representing many of the most common two parameter production 
-functions as special cases \shortcite{deriso_harvesting_1980}. The BH and 
-Logistic production functions arise when $\gamma$ is fixed to -1 or 1 
-respectively, and the Ricker model is a \mbox{limiting case as $\gamma\rightarrow0$ \shortcite{schnute_general_1985}.}
-
-%
-\vspace{-0.5cm}
-\begin{figure}[h!]
-\begin{minipage}[h!]{0.49\textwidth}
-\begin{align}
-&\frac{dB}{dt} = P(B;\theta) - (M+F)B \nonumber%\label{schunte}%
-\end{align}
-\begin{align}
-&P(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}} \nonumber
-\end{align}
-\caption{
-The Deriso production function plotted across a variety of parameter 
-values. The special cases of BH, Ricker, and Logistic production are shown in 
-green, blue, and red respectively.
-} 
-\end{minipage} 
-\begin{minipage}[h!]{0.49\textwidth}
-\includegraphics[width=0.9\textwidth]{plots/derisoSrr.png}
-\end{minipage}
-\end{figure}
-
-%
-%\vspace{-0.5cm}
-Using the Deriso model as a data generating model across a wide range 
-of RP-space, similarly as described in Section (\ref{sim}), %, and fitting those data under a BH model, 
-presents an ideal setting for extending the above study of RP biases across a 
-broad range of productivity assumptions. Under the Deriso model inverting the 
-relationship between RPs and model parameters is not fully analytically possible 
-\shortcite{schnute_analytical_1998}. Numerical inversion of the nonlinear system 
-seen in Eq (\ref{system}) is required for determining parameter values for data 
-generation. Notice for a given $\gamma$ value, $\alpha$ and $\beta$ can be 
-solved analytically.
-
-
-%%
-%$~$
-%\hspace*{-1.25cm}
-\begin{figure}[h!]
-\begin{minipage}[h!]{0.54\textwidth}
-\begin{align}
-P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
-\end{align}
-\begin{align}
-\frac{B^*}{\bar B(0)} = \frac{1}{\frac{F^*}{M}+2} \nonumber
-\end{align}
-\caption{\label{bhRP} The restricted RP-space under the BH production function.}
-\end{minipage}
-\begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=0.8\textwidth]{plots/bhRP.png}
-\end{minipage}
-\end{figure}
-
-%While the Deriso model generalizes many common models, inference under 
-Inference under the BH model is of particular interest due to its overwhelming 
-popularity in stock assessment. Similar to the limited RP-space of the 
-Schaefer model the two parameter BH model also has a limited RP-space as shown 
-in Figure (\ref{bhRP}).  While the BH constrained RP space is more complicated 
-than the Schaefer model, analogy to the results obtained under the 
-PT-Schaefer simulation setting, and the flexible GP metamodel, should expedite 
-the analysis of BH inference.  
-
-
-}
-
-
-
-
-
-%
-\subsection{Continuous model formulation}
+\subsubsection{Continuous model formulation}
 	\begin{itemize}
 		\item differential equation theory (uniqueness)
 		\item chaos
@@ -883,6 +505,306 @@ relatively smaller footprint in system memory.
 
 }
 
+
+%
+\clearpage
+\subsection{Schnute/BH Model}
+
+%
+\begin{wrapfigure}{r}{0.5\textwidth}
+\includegraphics[width=0.5\textwidth]{plots/derisoSrr.png}
+\caption{
+The Schnute production function plotted across a variety of parameter
+values. The special cases of BH, Ricker, and Logistic production are shown in
+green, blue, and red respectively.
+}
+\end{wrapfigure}
+The Schnute production function is a three parameter generalization of many of 
+the most common two parameter production functions \shortcite{deriso_harvesting_1980, schnute_general_1985}. %\shortcit{deriso_harvesting_1980}. 
+It can be written in the following form, with parameters $\alpha$, $\beta$, and $\gamma$,
+%
+\begin{align}
+P_s(B; [\alpha, \beta, \gamma]) = \alpha B (1-\beta\gamma B)^{\frac{1}{\gamma}}.
+\end{align}
+
+%
+The BH and Logistic production functions arise when $\gamma$ is fixed to -1 or 
+1 respectively, and the Ricker model is a limiting case as $\gamma\rightarrow0$. %\shortcite{schnute_general_1985}.
+
+% 
+Inference of BH productivity parameters under a wide variety of data is of particular 
+interest due to the overwhelming popularity of the BH assumption in fisheries 
+models. Since Schnute production models can represent a quantifiably wide varienty 
+of possible productivity behaviours, they present an ideal simulation 
+environment for inquiry of the relability of inference under the BH 
+assumption.
+
+%
+Under Schnute production, biomass dynamics evolve accourding to the following ODE, 
+%
+\begin{align}
+\frac{dB}{dt} = P_s(B;\theta) - (M+F)B. \label{schnuteSimple}
+\end{align}
+%
+This equation largely takes the same form as previously described, except that 
+$P_s$ is the Schnute production function and natural mortality, $M$, is modeled 
+explicatly here. % as opposed to  inclusion of natural mortality, $M$. 
+Natural mortality models the instantaneous rate of mortality from all causes 
+outside of fishing. Explicatly modeling natural mortality in this way is not 
+only a typical assumption of fisheries models, but is also key to the making 
+RPs well defined over the relavant domain of $\gamma$.
+
+%% matches the assumptions of typical fisheries models and 
+%%
+%In the Schaeffer and PT models
+%$M$ is modeled expliciatly here  and $F$ are instantaneous rates of natural and fishing 
+%mortality respectively. Unlinke the PT model described above 
+
+%with Schnute production simulates a
+%wide varienty of possible population productivety behaviours and provides an 
+
+%
+The derivation of RPs under Eq. (\ref{schnuteSimple}) follows a similar logic 
+as under the PT model. An expression for equilibrium biomass is attained by 
+setting $\frac{dB}{dt}=0$ and rearranging the resulting expression to solve 
+for $B$ 
+%
+\begin{align}
+\bar{B}(F) &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M+F}{\alpha}\right)^\gamma\right).
+\end{align}
+
+%
+The above expression quickly yeilds $B_0$, $B_{MSY}$ by evaluation at $F=0$ and $F=F_{MSY}$ respectively,
+%derive \bar B(F)
+\begin{align}
+B_0 &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{B0S}\\
+\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma }. \label{BratS}
+\end{align}
+
+%
+Attaining an expression for $F_{MSY}$ requires maximization of equilibrium 
+yeild, $\bar{Y}=F\bar{B}(F)$, with respect to $F$. Analytically maximizing 
+proceeds by differentiating $\bar{Y}$ to produce
+%
+\begin{align}
+\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{FderivS}\\
+\frac{d \bar B}{dF} &= -\frac{1}{\beta}  \left(\frac{\left(\frac{M+F}{\alpha}\right)^\gamma}{F+M}\right)\label{dBdFS}.
+\end{align}
+%
+Setting $\frac{d \bar{Y}}{dF}=0$, filling in the expressions for $\bar B(F)$ 
+and $\frac{d \bar B}{dF}$, then rearranging to solve for $F_{MSY}$ is less 
+yeilding here than it was in the case of the PT model. This proceedure falls 
+short of providing an analytical solution for $F_{MSY}$ directly in terms of 
+$\theta$, % $\alpha$, $\beta$, and $\gamma$, 
+but rather shows that $F_{MSY}$ must respect the following expression,  
+%
+\begin{align}
+0 &= \frac{1}{\gamma} - \left(\frac{1}{\gamma} + \frac{F_{MSY}}{F_{MSY}+M}\right)\left(\frac{F_{MSY}+M}{\alpha}\right)^\gamma. \label{yeildS} 
+\end{align}
+
+%, although parameterizing slightly differently,
+The lack of an analytical solution here is understood. 
+\citeA[pg. 519]{schnute_analytical_1998} specifically points out that 
+$F_{MSY}$ cannot be expressed analytically in terms of productivity parameters, 
+but rather gives a partial analytical expression for the inverse relationship. 
+\citeA{schnute_analytical_1998}, although parameterized slightly differently, 
+derives expressions for $\alpha$ and $\beta$ as a function of RPs and $\gamma$. 
+%rather suggests that a numerical solution 
+
+%
+%By working with the expressions $\frac{F_{MSY}}{M}$, $B_0$, $\frac{B_{MSY}}{B_0}$
+Since RPs are left without a closed form expression, computing RPs from 
+productivity parameters amounts to numerically solving the system formed by collecting the 
+expressions (\ref{yeildS}), (\ref{B0S}), and (\ref{BratS}).
+
+%
+\subsubsection{Simulation}
+
+%
+For the purposed of simulation, it is not neccessary to completely know either 
+of the precise relationships mapping RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$ 
+RPs. Simulation only requires enough knowledge of these mappings to gather a list 
+of $(\alpha, \beta, \gamma)$ tuples, for data generation under the Schnute model, 
+and the corresponding RPs in some reasonable spacefilling design over RP space. 
+
+%
+Similarly to \shortcite{schnute_analytical_1998}, solving expressions 
+(\ref{yeildS}) and (\ref{B0S}) for $\alpha$ and $\beta$ as a function of RPs 
+and $\gamma$ yeilds a partial mapping from 
+$\big(F_{MSY}, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$.
+By further working with Eq. (\ref{BratS}), to identify $\gamma$, the following 
+system is obtained,
+%
+\begin{align}
+%\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
+\alpha &= (M+F_{MSY})\left(1+\frac{\gamma F_{MSY}}{M+F_{MSY}}\right)^{1/\gamma} \nonumber\\
+\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{abgSys}\\
+\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \nonumber.
+\end{align}
+
+%
+For a population experienceing natural mortality $M$, by fixing $F_{MSY}$, 
+$B_0$, and $\frac{B_{MSY}}{B_0}$ the above system can fully specify $\alpha$ 
+and $\beta$ for a given $\gamma$. % if only $\gamma$ were further isolated
+Notice for a given $\gamma$ a cascade of closed form solutions for $\alpha$ 
+and $\beta$ can be obtained. First $\alpha(\gamma)$ can be computed, and then 
+$\beta(\alpha(\gamma), \gamma)$ can be computed. If $\alpha(\gamma)$ is filled 
+back into the expression for $\frac{B_{MSY}}{B_0}$, the system collapses into 
+a single onerous expression for $\frac{B_{MSY}}{B_0}(\alpha(\gamma), \gamma)$. 
+For bevity, define the function \mbox{$\zeta(\gamma)=\frac{B_{MSY}}{B_0}\big(\alpha(\gamma), \gamma, F_{MSY}, M\big)$} based on Eq. (\ref{BratS}). 
+
+% %possible;
+Inverting $\zeta(\gamma)$ for $\gamma$, and computing the cascade of 
+$\alpha(\gamma)$, and then $\beta(\alpha(\gamma), \gamma)$, fully defines the 
+Schnute model for a given $(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{B_0})$. However
+inverting $\zeta$ accuratly is extremely difficult. Inverting $\zeta$ 
+analytically is not feasible, and typical methods of numerically inverting 
+$\zeta$ are unstable and expensive. 
+%Numerically inverting $\zeta$ quickly becomes 
+%prohibitivly expensive, and solutions are often still unreliable. 
+%
+Rather than numerically invert precise values of $\zeta(\gamma)$, $\gamma$ is 
+sampled so that the overall simulation design is space filling.
+
+%
+\clearpage	
+\subsubsection{Latin Hypercube Sampling}
+
+	\begin{itemize}
+		\item a quick lit review of space filling designs
+		\item[\checkmark] approximate LHS
+		\item[\checkmark] $\frac{B_{MSY}}{B_0} (\gamma) = \zeta(\gamma)$ pic, $\alpha(\gamma)$, $\beta(\alpha, \gamma)$ 
+	\end{itemize}
+
+%
+A Latin hypercube sample (LHS) of size $n$, in an $m$ dimensional space, samples 
+uniformly among uniform grids of size $n$ in each dimension of the design space. By 
+intersecting the grids of each dimension, $n^m$ cells are produced, from which 
+a total of $n$ samples are taken. Crutially only one sample is taken from a given element 
+of each grid in each dimension so as to reduce clumping of the $n$ samples 
+across the design space.  
+
+%
+Letting $\mathcal{F}$ and $\mathcal{B}$ be equally spaced grids, of size $n$, on 
+\mbox{$\frac{F_{MSY}}{M}\in(0.25, 4)$} and \mbox{$\frac{B_{MSY}}{B_0}\in(0.15, 0.7)$}
+respectively, a LHS samples 1 point in $n$ of the $n^2$ cells produced by 
+$\mathcal{F}\times\mathcal{B}$.
+
+%
+%If $\mathcal{F}$ is an equally spaced grid of size $n$ for 
+%$\frac{F_{MSY}}{M}\in(0.25, 4)$, and letting $\mathcal{B}$ be an 
+%equally spaced grid of size $n$ for $\frac{B_{MSY}}{B_0} \in (0.15, 0.7)$. 
+%$\mathcal{F}$
+
+%
+Given the structured relationship between the RPs and productivity parameters 
+$\alpha$, $\beta$, and $\gamma$, obtaining a uniform LHS sample among 
+$\mathcal{F}\times\mathcal{B}$ requires a tactful navigation of the system of 
+equations seen in Eq. (\ref{abgSys}). The LHS grid setup and rough sampling strategy 
+can be seen in Figure (\ref{sudoGrid}).
+
+%
+\begin{figure}[h!]
+\centering
+\begin{minipage}[h!]{0.49\textwidth}
+	\includegraphics[width=0.96\textwidth]{../gpBias/designGrid.png}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+\begin{itemize}
+	\item[] \hspace*{-1cm}Given $B_0$, $M$, and $F_{MSY}$:
+	\item[] Draw $\gamma^* \sim \gamma|F_{MSY}, M$.
+	\item[] Compute $\frac{B_{MSY}}{B_0} = \zeta(\gamma^*)$
+	\item[] Compute $\alpha^* = \alpha(\gamma^*, F_{MSY}, M)$
+        \item[] Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$
+\end{itemize}
+\end{minipage}
+\caption{
+($left$) LHS grids. Intersecting $\mathcal{F}$ and $\mathcal{B}$ produces $n^2$ 
+cells; a particular cell $\mathcal{F}_i\times\mathcal{B}_j$ is shown in grey. 
+($right$) An outline of the sampling proceedure for $\gamma$ (and associated 
+quantities) given $B_0$, $M$, and $F_{MSY}$. %$\mathcal{F}_i$.
+\label{sudoGrid}}
+\end{figure}
+
+%
+\clearpage
+{\color{red}Connect overview to details below}
+
+%
+\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../gpBias/zeta.png}
+\caption{$\zeta(\gamma)$ Plotted for $F_{MSY}=0.1$ and $M=0.2$. The point 
+$(\gamma_{min}, \zeta_{min})$ shows the lowest biologically meaningful 
+value of $\gamma$; below which productivity is negative.}
+\end{figure}
+
+%
+Since it is not practicle to invert $\zeta(\gamma)$, a uniform sample in 
+$\frac{B_{MSY}}{B_0}$ can be obtained by modeling $\gamma$ as a random 
+variable, with realization $\gamma^*$, and thinking of $\zeta(\gamma)$ as its 
+CDF. The aim is to model $\gamma$ as an easily sampled random varaible with a 
+CDF that closely approximates $\zeta$, so that 
+$\zeta(\gamma^*)\dot\sim U(\zeta_{min},1)$ as closely as possible. There may be 
+many good models for the distribution of $\gamma$, but in this setting the 
+following distribution is very effective,
+%
+\begin{align}
+\gamma \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}. \label{mixT}
+\end{align}
+ 
+%
+Above, $t$ is the three parameter location-scale family Student's $t$ distribution
+with location $\mu$, scale $\sigma$, and degrees of freedom $\nu$. 
+$\bm{1}_{\gamma>\gamma_{min}}$ is an indicator function that serves to truncate 
+Student's $t$ distribution at the lower bound $\gamma_{min}$. 
+$\delta(\gamma_{min})$ is the dirac delta function evaluated at $\gamma_{min}$, 
+which is scaled by the known value $\zeta_{min}$; this places probability mass 
+$\zeta_{min}$ at the point $\gamma_{min}$. Since sampling from Student's $t$ 
+distribution is readily doable, sampling from a truncated Student's $t$ mixture 
+only requires slight modification. 
+
+%
+Let $T$ be the CDF of the modeled distribution of $\gamma$. Since the point 
+$(\gamma_{min}, \zeta_{min})$ is known from the dynamics of the Schnute model 
+at a given RP, full specification of Eq. (\ref{mixT}) only requires determining 
+the values for $\mu$, $\sigma$, and $\nu$ which make $T$ best approximate 
+$\zeta(\gamma)$. Thus, the values of $\mu$, $\sigma$, and $\nu$ are chosen by 
+minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
+%Letting $T$ be the CDF of the modeled distribtuion of $\gamma$, the values of $\mu$, $\sigma$, and $\nu$ are chosen by minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
+
+%{\gamma_{min}}^{\gamma_{0.9}}
+\begin{align}
+[\hat\mu, \hat\sigma, \hat\nu]=\underset{{[\mu, \sigma, \nu]}}{\arg\min}\int_\Gamma \big(T(\gamma; \mu, \sigma, \nu) - \zeta(\gamma)\big)^2 d\gamma
+\end{align}  
+
+%
+{\color{red}Connect $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ to overall algorithm.}
+
+%
+\begin{itemize}
+	\setlength\itemsep{-0.5em}
+	\item[$\forall i$]
+	\item[1)] Draw $\frac{F_{MSY}}{M} \sim Unif(\mathcal{F}_i)$.
+	\item[2)] Compute $[\hat\mu, \hat\sigma, \hat\nu]$ given $F_{MSY}$ and $M$.
+	\item[3)] Draw $\gamma^* \sim T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$.
+	\item[4)] Compute $\zeta^* = \zeta(\gamma^*)$.
+	\item[5)] Compute $j$ such that $\zeta^*\in\mathcal{B}_j$.
+	\item[6)] If $\mathcal{B}_j$ is already sampled, go to 3).
+	\item[7)] Compute $\alpha^* = \alpha(\gamma^*, F_{MSY}, M)$. 
+	\item[8)] Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$.	
+	\item[9)] Save $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$ in $\mathcal{F}_i\times\mathcal{B}_j$. 
+	%\\ Otherwise go to 1).%If $\mathcal{B}_j$ is not sampled: save $\zeta^*$.\\ Otherwise go to 3). %
+\end{itemize}
+
+
+%
+\subsubsection{Design Refinement}
+	\begin{itemize}
+		\item maximin find holes
+		\item lhs centered on maximin
+	\end{itemize}
+
+
 %
 \subsection{Catch \label{catch}}
 	\begin{itemize}
@@ -966,8 +888,33 @@ is linearly interpolated between sampled epochs.
 \begin{itemize}
 	\item region of chaotic fits due to model misspecification
 	\item arrow plots 
+	\item RP break out plots with mechanism of failure
 \end{itemize}
 
+%
+\subsection{Schnute/BH}
+
+%
+\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../gpBias/qqUnif.png}
+\caption{Uniform Q-Q plot for sampled $\zeta$ against theoretical uniform quantiles.}
+\end{figure}
+
+%
+\begin{figure}[h!]
+%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN56X3Z0.35.png}
+\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN112X2.5Z0.45.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN112X3Z0.55.png}
+\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentExpT45N150WideX3Z0.35.png}
+\caption{\color{red} Low Contrast/High Contrast Titles, unify the Legends (Only show one.), Matern to eliviate some smoothness wiggles}
+\end{figure}
+
+%
+\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../gpBias/designLineColorHHardFlatT30N150WWideN112.png}
+\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+\caption{\color{red} grid plot of production functions.)}
+\end{figure}
 
 
 
@@ -975,6 +922,7 @@ is linearly interpolated between sampled epochs.
 %OLD
 %
 
+\clearpage
 {\color{gray}
 \section{Introduction\label{int}}
 
@@ -3307,6 +3255,47 @@ by $q$.
 %
 %JUNK
 %
+
+%%
+%However, for 
+%the purpose of obtaining a space filling design in $\mathcal{F}\times\mathcal{B}$ 
+%it is not neccessary to precisly invert $\zeta(\gamma)$ for $\gamma$. Rather 
+%we only require a list of $(\alpha, \beta, \gamma)$ tuples which correspond to 
+%some reasonable spacefilling design in $\mathcal{F}\times\mathcal{B}$.
+
+
+
+%%
+%By working with expressions (\ref{yeildS}) and (\ref{B0S}) aiming toward 
+%deriving expressions for $\alpha$ and $\beta$ as a function of RPs and $\gamma$, 
+%similarly to \shortcite{schnute_analytical_1998} and (\ref{BratS}) 
+%respectively, and solv
+%
+%
+%However, for 
+%the purpose of obtaining a space filling design in $\mathcal{F}\times\mathcal{B}$ 
+%it is not neccessary to precisly invert $\zeta(\gamma)$ for $\gamma$. Rather 
+%we only require a list of $(\alpha, \beta, \gamma)$ tuples which correspond to 
+%some reasonable spacefilling design in $\mathcal{F}\times\mathcal{B}$.
+%
+%
+%
+% must be solved for 
+%By working with expressions (\ref{yeildS}), (\ref{B0S}), and (\ref{BratS}) respectively, the following system is obtained
+%%
+%\begin{align*}
+%%\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
+%\alpha &= (M+F_{MSY})\left(1+\frac{\gamma F_{MSY}}{M+F_{MSY}}\right)^{1/\gamma} \\
+%\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right)\\
+%\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma }.
+%\end{align*}
+
+	%%
+%\begin{align}
+%%\frac{B_{MSY}}{B_0} &= \frac{1-\left(\frac{M+F_{MSY}}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \nonumber\\
+%0 &= \frac{1}{\gamma} - \left(\frac{1}{\gamma} + \frac{F_{MSY}}{F_{MSY}+M}\right)\left(\frac{F_{MSY}+M}{\alpha}\right)^\gamma  \label{system}\\
+%%B_0 &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \nonumber
+%\end{align}
 
 
 

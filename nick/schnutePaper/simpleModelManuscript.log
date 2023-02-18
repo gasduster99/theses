@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.4.28)  13 FEB 2023 18:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.4.28)  15 FEB 2023 13:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -786,40 +786,7 @@ Package: titlesec 2021/07/05 v2.14 Sectioning titles
 LaTeX Warning: Label `int' multiply defined.
 
 
-LaTeX Warning: Label `pellaTomlinson' multiply defined.
-
-
-LaTeX Warning: Label `srrPT' multiply defined.
-
-
-LaTeX Warning: Label `ptRef' multiply defined.
-
-
-LaTeX Warning: Label `odePT' multiply defined.
-
-
-LaTeX Warning: Label `Beq' multiply defined.
-
-
-LaTeX Warning: Label `Fderiv' multiply defined.
-
-
-LaTeX Warning: Label `dBdF' multiply defined.
-
-
-LaTeX Warning: Label `Fmsy' multiply defined.
-
-
-LaTeX Warning: Label `Bmsy' multiply defined.
-
-
-LaTeX Warning: Label `rg' multiply defined.
-
-
 LaTeX Warning: Label `catch' multiply defined.
-
-
-LaTeX Warning: Label `bhRP' multiply defined.
 
 
 LaTeX Warning: Label `logLike' multiply defined.
@@ -944,294 +911,333 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 Non-PDF special ignored!
 <special> header=psfrag.pro
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<./plots/srr1.1.png, id=133, 481.8pt x 481.8pt>
-File: ./plots/srr1.1.png Graphic file (type png)
-<use ./plots/srr1.1.png>
-Package pdftex.def Info: ./plots/srr1.1.png  used on input line 251.
-(pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
-<./plots/srr2.png, id=135, 481.8pt x 481.8pt>
-File: ./plots/srr2.png Graphic file (type png)
-<use ./plots/srr2.png>
-Package pdftex.def Info: ./plots/srr2.png  used on input line 252.
-(pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[2
-
-] [3 <./plots/srr1.1.png> <./plots/srr2.png>] [4]
-<plots/derisoSrr.png, id=189, 481.8pt x 481.8pt>
+] [3] [4]
+<plots/derisoSrr.png, id=155, 481.8pt x 481.8pt>
 File: plots/derisoSrr.png Graphic file (type png)
 <use plots/derisoSrr.png>
-Package pdftex.def Info: plots/derisoSrr.png  used on input line 406.
+Package pdftex.def Info: plots/derisoSrr.png  used on input line 515.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
- [5 <./plots/derisoSrr.png>] [6] [7]
-<../gpBias/zeta.png, id=237, 481.8pt x 481.8pt>
+ [5
+
+ <./plots/derisoSrr.png>] [6] [7]
+Overfull \hbox (14.61398pt too wide) in paragraph at lines 688--692
+[]\T1/cmr/m/n/12 Letting $\OMS/cmsy/m/n/12 F$ \T1/cmr/m/n/12 and $\OMS/cmsy/m/n
+/12 B$ \T1/cmr/m/n/12 be equally spaced grids, of size $\OML/cmm/m/it/12 n$\T1/
+cmr/m/n/12 , on [] and []
+ []
+
+<../gpBias/designGrid.png, id=207, 481.8pt x 481.8pt>
+File: ../gpBias/designGrid.png Graphic file (type png)
+<use ../gpBias/designGrid.png>
+Package pdftex.def Info: ../gpBias/designGrid.png  used on input line 710.
+(pdftex.def)             Requested size: 220.97676pt x 220.97638pt.
+[8
+
+ <../gpBias/designGrid.png>]
+<../gpBias/zeta.png, id=215, 481.8pt x 481.8pt>
 File: ../gpBias/zeta.png Graphic file (type png)
 <use ../gpBias/zeta.png>
-Package pdftex.def Info: ../gpBias/zeta.png  used on input line 641.
+Package pdftex.def Info: ../gpBias/zeta.png  used on input line 735.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
+ [9
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[8] [9 <../gpBias/zeta.png>]
-<../gpBias/qqUnif.png, id=252, 481.8pt x 481.8pt>
+ <../gpBias/zeta.png>] [10] [11]
+<../gpBias/qqUnif.png, id=247, 481.8pt x 481.8pt>
 File: ../gpBias/qqUnif.png Graphic file (type png)
 <use ../gpBias/qqUnif.png>
-Package pdftex.def Info: ../gpBias/qqUnif.png  used on input line 687.
+Package pdftex.def Info: ../gpBias/qqUnif.png  used on input line 899.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
-File: plots/derisoSrr.png Graphic file (type png)
-<use plots/derisoSrr.png>
-Package pdftex.def Info: plots/derisoSrr.png  used on input line 729.
-(pdftex.def)             Requested size: 207.16286pt x 207.1626pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[10 <../gpBias/qqUnif.png (PNG copy)>]
-<plots/bhRP.png, id=267, 481.8pt x 481.8pt>
-File: plots/bhRP.png Graphic file (type png)
-<use plots/bhRP.png>
-Package pdftex.def Info: plots/bhRP.png  used on input line 760.
-(pdftex.def)             Requested size: 165.3553pt x 165.35367pt.
- [11 <./plots/bhRP.png>] [12] [13]
-[14]
-<./plots/hakeIndex.png, id=307, 481.8pt x 481.8pt>
-File: ./plots/hakeIndex.png Graphic file (type png)
-<use ./plots/hakeIndex.png>
-Package pdftex.def Info: ./plots/hakeIndex.png  used on input line 1026.
+<../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN112X2.5Z0.
+45.png, id=248, 481.8pt x 481.8pt>
+File: ../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN112X2
+.5Z0.45.png Graphic file (type png)
+<use ../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN112X2.
+5Z0.45.png>
+Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimatePrecentHHardFla
+tT30N150WWideN112X2.5Z0.45.png  used on input line 906.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
-<./plots/hakeCatch.png, id=308, 481.8pt x 481.8pt>
-File: ./plots/hakeCatch.png Graphic file (type png)
-<use ./plots/hakeCatch.png>
-Package pdftex.def Info: ./plots/hakeCatch.png  used on input line 1027.
+<../gpBias/directionalBiasSchnuteAnimatePrecentExpT45N150WideX3Z0.35.png, id=24
+9, 481.8pt x 481.8pt>
+File: ../gpBias/directionalBiasSchnuteAnimatePrecentExpT45N150WideX3Z0.35.png G
+raphic file (type png)
+<use ../gpBias/directionalBiasSchnuteAnimatePrecentExpT45N150WideX3Z0.35.png>
+Package pdftex.def Info: ../gpBias/directionalBiasSchnuteAnimatePrecentExpT45N1
+50WideX3Z0.35.png  used on input line 908.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
 
-Overfull \hbox (2.61047pt too wide) in paragraph at lines 1026--1031
+Overfull \hbox (2.61047pt too wide) in paragraph at lines 906--909
 [][] [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[15] [16 <./plots/hakeIndex.png> <./plots/hakeCatch.png>]
-<./plots/srrSchaeffer.png, id=334, 481.8pt x 481.8pt>
-File: ./plots/srrSchaeffer.png Graphic file (type png)
-<use ./plots/srrSchaeffer.png>
-Package pdftex.def Info: ./plots/srrSchaeffer.png  used on input line 1111.
-(pdftex.def)             Requested size: 281.85587pt x 281.86288pt.
+<../gpBias/designLineColorHHardFlatT30N150WWideN112.png, id=250, 481.8pt x 481.
+8pt>
+File: ../gpBias/designLineColorHHardFlatT30N150WWideN112.png Graphic file (type
+ png)
+<use ../gpBias/designLineColorHHardFlatT30N150WWideN112.png>
+Package pdftex.def Info: ../gpBias/designLineColorHHardFlatT30N150WWideN112.png
+  used on input line 914.
+(pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
+<../gpBias/rGridHHardFlatT30N150WWideN112.png, id=251, 2007.5pt x 2007.5pt>
+File: ../gpBias/rGridHHardFlatT30N150WWideN112.png Graphic file (type png)
+<use ../gpBias/rGridHHardFlatT30N150WWideN112.png>
+Package pdftex.def Info: ../gpBias/rGridHHardFlatT30N150WWideN112.png  used on 
+input line 915.
+(pdftex.def)             Requested size: 234.8775pt x 234.85512pt.
+
+Overfull \hbox (2.61047pt too wide) in paragraph at lines 914--916
+[][] [] 
+ []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[17] [18 <./plots/srrSchaeffer.png>] [19] [20]
+[12 <../gpBias/qqUnif.png (PNG copy)>] [13 <../gpBias/directionalBiasSchnuteAni
+matePrecentHHardFlatT30N150WWideN112X2.5Z0.45.png> <../gpBias/directionalBiasSc
+hnuteAnimatePrecentExpT45N150WideX3Z0.35.png> <../gpBias/designLineColorHHardFl
+atT30N150WWideN112.png (PNG copy)> <../gpBias/rGridHHardFlatT30N150WWideN112.pn
+g (PNG copy)>]
+<./plots/hakeIndex.png, id=268, 481.8pt x 481.8pt>
+File: ./plots/hakeIndex.png Graphic file (type png)
+<use ./plots/hakeIndex.png>
+Package pdftex.def Info: ./plots/hakeIndex.png  used on input line 974.
+(pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
+<./plots/hakeCatch.png, id=269, 481.8pt x 481.8pt>
+File: ./plots/hakeCatch.png Graphic file (type png)
+<use ./plots/hakeCatch.png>
+Package pdftex.def Info: ./plots/hakeCatch.png  used on input line 975.
+(pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
+
+Overfull \hbox (2.61047pt too wide) in paragraph at lines 974--979
+[][] [] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[14
+
+] [15 <./plots/hakeIndex.png> <./plots/hakeCatch.png>]
+<./plots/srrSchaeffer.png, id=294, 481.8pt x 481.8pt>
+File: ./plots/srrSchaeffer.png Graphic file (type png)
+<use ./plots/srrSchaeffer.png>
+Package pdftex.def Info: ./plots/srrSchaeffer.png  used on input line 1059.
+(pdftex.def)             Requested size: 281.85587pt x 281.86288pt.
+ [16 <./plots/srrSchaeffer.png>] [17] [18]
+<./plots/srr1.1.png, id=370, 481.8pt x 481.8pt>
 File: ./plots/srr1.1.png Graphic file (type png)
 <use ./plots/srr1.1.png>
-Package pdftex.def Info: ./plots/srr1.1.png  used on input line 1452.
+Package pdftex.def Info: ./plots/srr1.1.png  used on input line 1400.
 (pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
+<./plots/srr2.png, id=371, 481.8pt x 481.8pt>
 File: ./plots/srr2.png Graphic file (type png)
 <use ./plots/srr2.png>
-Package pdftex.def Info: ./plots/srr2.png  used on input line 1453.
+Package pdftex.def Info: ./plots/srr2.png  used on input line 1401.
 (pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
- [21] [22
 
-] [23]
-<../present/shaeferDat.png, id=444, 481.8pt x 481.8pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[19] [20 <./plots/srr1.1.png> <./plots/srr2.png>] [21
+
+] [22]
+<../present/shaeferDat.png, id=415, 481.8pt x 481.8pt>
 File: ../present/shaeferDat.png Graphic file (type png)
 <use ../present/shaeferDat.png>
-Package pdftex.def Info: ../present/shaeferDat.png  used on input line 1641.
+Package pdftex.def Info: ../present/shaeferDat.png  used on input line 1589.
 (pdftex.def)             Requested size: 281.85587pt x 281.86288pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1649--1649
+Underfull \hbox (badness 10000) in paragraph at lines 1597--1597
 \T1/cmr/m/n/12 Open cir-cles show the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1649--1649
+Underfull \hbox (badness 10000) in paragraph at lines 1597--1597
 [] \T1/cmr/m/n/12 of the sim-u-la-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1649--1649
+Underfull \hbox (badness 10000) in paragraph at lines 1597--1597
 \T1/cmr/m/n/12 tion grid [] The
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 1649--1649
+Underfull \hbox (badness 1221) in paragraph at lines 1597--1597
 [] \T1/cmr/m/n/12 line shows the
  []
 
 
-Underfull \hbox (badness 5359) in paragraph at lines 1649--1649
+Underfull \hbox (badness 5359) in paragraph at lines 1597--1597
 \T1/cmr/m/n/12 for the [] model.
  []
 
 
-Underfull \hbox (badness 1460) in paragraph at lines 1649--1649
+Underfull \hbox (badness 1460) in paragraph at lines 1597--1597
 \T1/cmr/m/n/12 The red X's in-di-cated 4
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1649--1649
+Underfull \hbox (badness 10000) in paragraph at lines 1597--1597
 \T1/cmr/m/n/12 the [] model is
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[24] [25 <../present/shaeferDat.png (PNG copy)>] [26
+[23] [24 <../present/shaeferDat.png (PNG copy)>] [25
 
-] [27
+] [26
 
-] [28] [29]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1950.
-
+] [27] [28]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1950.
+(hyperref)                removing `math shift' on input line 1898.
 
-[30
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1898.
+
+[29
 
 ]
-<../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.png, id=515, 481.8pt x 481
+<../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.png, id=487, 481.8pt x 481
 .8pt>
 File: ../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.png Graphic file (typ
 e png)
 <use ../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.pn
-g  used on input line 1992.
+g  used on input line 1940.
 (pdftex.def)             Requested size: 253.20218pt x 253.19873pt.
 
-Overfull \hbox (11.40378pt too wide) in paragraph at lines 1991--2003
+Overfull \hbox (11.40378pt too wide) in paragraph at lines 1939--1951
 []|  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1991--2003
+Underfull \hbox (badness 10000) in paragraph at lines 1939--1951
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2004--2005
+Underfull \hbox (badness 10000) in paragraph at lines 1952--1953
 
  []
 
-<../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png, id=516, 481.8pt x
+<../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png, id=488, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/directionalBiasPellaFlatNo
-Q.png  used on input line 2008.
+Q.png  used on input line 1956.
 (pdftex.def)             Requested size: 253.20218pt x 253.19873pt.
-<../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png, id=517, 481.8pt x 481
+<../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png, id=489, 481.8pt x 481
 .8pt>
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png Graphic file (typ
 e png)
 <use ../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.pn
-g  used on input line 2010.
+g  used on input line 1958.
 (pdftex.def)             Requested size: 253.20218pt x 253.19873pt.
 
-Overfull \hbox (54.08289pt too wide) in paragraph at lines 2007--2011
+Overfull \hbox (54.08289pt too wide) in paragraph at lines 1955--1959
 []|  [] 
  []
 
 
-Overfull \hbox (54.08289pt too wide) in paragraph at lines 2007--2011
+Overfull \hbox (54.08289pt too wide) in paragraph at lines 1955--1959
 |  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[31] [32 <../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.png (PNG copy)> <
+[30] [31 <../../../theses/nick/gpBias/zetaRelBiasPellaFlatNoQ.png (PNG copy)> <
 ../../../theses/nick/gpBias/directionalBiasPellaFlatNoQ.png (PNG copy)> <../../
 ../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png (PNG copy)>]
-<../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png, id=528, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png, id=500, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.
-6.png  used on input line 2051.
+6.png  used on input line 1999.
 (pdftex.def)             Requested size: 172.14172pt x 172.13927pt.
-<../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png, id=529, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png, id=501, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.
-2.png  used on input line 2053.
+2.png  used on input line 2001.
 (pdftex.def)             Requested size: 172.14172pt x 172.13927pt.
-<../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png, id=530, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png, id=502, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.
-6.png  used on input line 2057.
+6.png  used on input line 2005.
 (pdftex.def)             Requested size: 172.14172pt x 172.13927pt.
-<../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png, id=531, 481.8pt x
+<../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png, id=503, 481.8pt x
  481.8pt>
 File: ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png Graphic file 
 (type png)
 <use ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/curveCompareFlatNoQX3.5Z0.
-2.png  used on input line 2059.
+2.png  used on input line 2007.
 (pdftex.def)             Requested size: 172.14172pt x 172.13927pt.
 
-Underfull \hbox (badness 4291) in paragraph at lines 2067--2067
+Underfull \hbox (badness 4291) in paragraph at lines 2015--2015
 \T1/cmr/m/n/12 re-sent the four cor-ners
  []
 
-[33
+[32
 
  <../../../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png (PNG copy)> <../.
 ./../theses/nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png (PNG copy)> <../../../t
 heses/nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png (PNG copy)> <../../../theses/
 nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png (PNG copy)>]
-<../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png, id=538, 481.8pt x 481
+<../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png, id=510, 481.8pt x 481
 .8pt>
 File: ../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png Graphic file (typ
 e png)
 <use ../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.pn
-g  used on input line 2091.
+g  used on input line 2039.
 (pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
-<../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png, id=539, 481.8pt x 481.8p
+<../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png, id=511, 481.8pt x 481.8p
 t>
 File: ../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png Graphic file (type p
 ng)
 <use ../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png  
-used on input line 2093.
+used on input line 2041.
 (pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
- [34
+ [33
 
  <../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png (PNG copy)> <../../..
 /theses/nick/gpBias/kRelBiasPellaFlatNoQ.png (PNG copy)>]
-<../../../theses/nick/gpBias/rfExpT45X2Z0.6.png, id=549, 481.8pt x 481.8pt>
+<../../../theses/nick/gpBias/rfExpT45X2Z0.6.png, id=521, 481.8pt x 481.8pt>
 File: ../../../theses/nick/gpBias/rfExpT45X2Z0.6.png Graphic file (type png)
 <use ../../../theses/nick/gpBias/rfExpT45X2Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/rfExpT45X2Z0.6.png  used o
-n input line 2143.
+n input line 2091.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
-<../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png, id=550, 481.8pt x 481.8p
+<../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png, id=522, 481.8pt x 481.8p
 t>
 File: ../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png Graphic file (type p
 ng)
 <use ../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png  
-used on input line 2144.
+used on input line 2092.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
 
-Overfull \hbox (2.61047pt too wide) in paragraph at lines 2143--2149
+Overfull \hbox (2.61047pt too wide) in paragraph at lines 2091--2097
 [][] [] 
  []
 
@@ -1239,69 +1245,70 @@ File: ../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png Graphic file (typ
 e png)
 <use ../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.pn
-g  used on input line 2170.
+g  used on input line 2118.
 (pdftex.def)             Requested size: 195.65654pt x 195.65724pt.
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png Graphic file (typ
 e png)
 <use ../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/fMSYRelBiasPellaFlatNoQ.pn
-g  used on input line 2173.
+g  used on input line 2121.
 (pdftex.def)             Requested size: 195.65654pt x 195.65724pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[35
+[34
 
  <../../../theses/nick/gpBias/rfExpT45X2Z0.6.png> <../../../theses/nick/gpBias/
 bioCatchExpT45X2Z0.6.png (PNG copy)>]
-<../../../theses/nick/gpBias/bMSYRelBiasPellaExpT90.png, id=563, 481.8pt x 481.
+<../../../theses/nick/gpBias/bMSYRelBiasPellaExpT90.png, id=535, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT90.png Graphic file (type
  png)
 <use ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT90.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/bMSYRelBiasPellaExpT90.png
-  used on input line 2211.
+  used on input line 2159.
 (pdftex.def)             Requested size: 195.65654pt x 195.65724pt.
-<../../../theses/nick/gpBias/fMSYRelBiasPellaExpT90.png, id=564, 481.8pt x 481.
+<../../../theses/nick/gpBias/fMSYRelBiasPellaExpT90.png, id=536, 481.8pt x 481.
 8pt>
 File: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpT90.png Graphic file (type
  png)
 <use ../../../theses/nick/gpBias/fMSYRelBiasPellaExpT90.png>
 Package pdftex.def Info: ../../../theses/nick/gpBias/fMSYRelBiasPellaExpT90.png
-  used on input line 2219.
+  used on input line 2167.
 (pdftex.def)             Requested size: 195.65654pt x 195.65724pt.
- [36 <../../../theses/nick/gpBias/bMSYRelBiasPellaExpT90.png> <../../../theses/
-nick/gpBias/fMSYRelBiasPellaExpT90.png (PNG copy)>] [37
+ [35 <../../../theses/nick/gpBias/bMSYRelBiasPellaExpT90.png> <../../../theses/
+nick/gpBias/fMSYRelBiasPellaExpT90.png (PNG copy)>] [36
 
-] [38]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2428.
-
+] [37]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2428.
+(hyperref)                removing `math shift' on input line 2376.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 2376.
 
 File: plots/derisoSrr.png Graphic file (type png)
 <use plots/derisoSrr.png>
-Package pdftex.def Info: plots/derisoSrr.png  used on input line 2454.
+Package pdftex.def Info: plots/derisoSrr.png  used on input line 2402.
 (pdftex.def)             Requested size: 207.16286pt x 207.1626pt.
-[39
+[38
 
 ]
+<plots/bhRP.png, id=580, 481.8pt x 481.8pt>
 File: plots/bhRP.png Graphic file (type png)
 <use plots/bhRP.png>
-Package pdftex.def Info: plots/bhRP.png  used on input line 2493.
+Package pdftex.def Info: plots/bhRP.png  used on input line 2441.
 (pdftex.def)             Requested size: 165.3553pt x 165.35367pt.
 
-Overfull \hbox (11.7331pt too wide) in paragraph at lines 2533--2550
+Overfull \hbox (11.7331pt too wide) in paragraph at lines 2481--2498
 []\T1/cmr/m/n/12 The DD model is de-rived di-rectly from an as-sump-tion of Von
  Berta-lanffy growth [][][]Von Berta-
  []
 
-[40
+[39
 
-] [41] [42] (./simpleModelManuscript.bbl
+ <./plots/bhRP.png>] [40] [41] (./simpleModelManuscript.bbl
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
 33.
 
@@ -1344,31 +1351,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 171--195
 /
  []
 
-[43
+[42
 
-] [44] [45]) [46] [47
+] [43] [44]) [45] [46
 
 ]
 
-LaTeX Warning: Command \l invalid in math mode on input line 3134.
+LaTeX Warning: Command \l invalid in math mode on input line 3082.
 
 Missing character: There is no ª in font cmr12!
 
-LaTeX Warning: Command \l invalid in math mode on input line 3134.
+LaTeX Warning: Command \l invalid in math mode on input line 3082.
 
 Missing character: There is no ª in font cmr12!
-[48] (./simpleModelManuscript.aux)
+[47] (./simpleModelManuscript.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `simpleModelManuscript.out' has not changed.
-(rerunfilecheck)             Checksum: 5761CD60493F80D8705D6223B9362090;4057.
+(rerunfilecheck)             Checksum: 4BE6AE009CE991BFC21D10BE904386B1;4026.
  ) 
 Here is how much of TeX's memory you used:
- 26576 strings out of 478287
- 496091 string characters out of 5849289
- 778511 words of memory out of 5000000
- 44082 multiletter control sequences out of 15000+600000
+ 26601 strings out of 478287
+ 498028 string characters out of 5849289
+ 778759 words of memory out of 5000000
+ 44113 multiletter control sequences out of 15000+600000
  492763 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,15n,94p,731b,578s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1390,18 +1397,19 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1
-200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/
-texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/pu
-blic/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm12
-00.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/t
-exmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/pub
-lic/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt120
-0.pfb>
-Output written on simpleModelManuscript.pdf (48 pages, 978936 bytes).
+amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx12
+00.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/t
+exmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/pub
+lic/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm120
+0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/te
+xmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/publ
+ic/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200
+.pfb>
+Output written on simpleModelManuscript.pdf (47 pages, 1540073 bytes).
 PDF statistics:
- 874 PDF objects out of 1000 (max. 8388607)
- 725 compressed objects within 8 object streams
- 190 named destinations out of 1000 (max. 500000)
- 352 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 851 PDF objects out of 1000 (max. 8388607)
+ 694 compressed objects within 7 object streams
+ 179 named destinations out of 1000 (max. 500000)
+ 377 words of extra memory for PDF output out of 10000 (max. 10000000)
 
