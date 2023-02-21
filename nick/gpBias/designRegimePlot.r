@@ -208,11 +208,6 @@ M = readRDS(f)$M #0.2
 #
 D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
 D = D[D$lFV>0 & D$lKV>0,]
-#D = D[c(rep(T, 5), F),]
-#D = D[seq(1, nrow(D), 2),]
-#D = Dall[Dall$lF<4,]
-#plot(D[,1], D[,2], pch=20)
-#points(D[,3], D[,4])
 
 #
 zetaStar = seq(min(D$zetaSeed), max(D$zetaSeed), 0.005) #length.out=)  #seq(0.15, 0.35, 0.001)  #rev(seq(0.1
@@ -245,23 +240,21 @@ mask = sapply(1:nrow(lFXStar), function(i){
 )
 
 #
-freq = c(T,F,F,F,F,F)
-
-#
-#DESIGN
+#REGIMES
 #
 
-cols=brewer.pal(9, 'Set1')
+cols = brewer.pal(9, 'Set1')
+#cols = brewer.pal(9, 'Dark2')
 
 #design
 png(sprintf("designLineColor%s.png", mod))
-plot(D$xiSeed, D$zetaSeed, xlab=TeX("$F_{MSY}/M$"), ylab=TeX('$B_{MSY}/B_0$'), main="Design", cex.lab = 1.5, cex.main= 1.5, xlim=c(xiBot, xiTop), ylim=c(zetaBot, zetaTop))
+plot(D$xiSeed, D$zetaSeed, xlab=TeX("$F_{MSY}/M$"), ylab=TeX('$B_{MSY}/B_0$'), main="Schnute Regimes", cex.lab = 1.5, cex.main= 1.5, xlim=c(xiBot, xiTop), ylim=c(zetaBot, zetaTop))
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
-points(D$xiSeed[D$gSeed>=1], D$zetaSeed[D$gSeed>=1], col=cols[1], pch=20)
-points(D$xiSeed[D$gSeed>=0 & D$gSeed<1], D$zetaSeed[D$gSeed>=0 & D$gSeed<1], col=cols[2], pch=20)
-points(D$xiSeed[D$gSeed<0 & D$gSeed>=-1], D$zetaSeed[D$gSeed<0 & D$gSeed>=-1], col=cols[3], pch=20)
-points(D$xiSeed[D$gSeed< -1], D$zetaSeed[D$gSeed< -1], col=cols[4], pch=20)
-legend('bottomleft', legend=c('Super-Logistic', 'Super-Ricker', 'Super-BH', 'Sub-Linear'), col=cols[1:4], lwd=4)
+points(D$xiSeed[D$gSeed>=1], D$zetaSeed[D$gSeed>=1], col=cols[1], pch=19, cex=1.5)
+points(D$xiSeed[D$gSeed>=0 & D$gSeed<1], D$zetaSeed[D$gSeed>=0 & D$gSeed<1], col=cols[2], pch=19, cex=1.5)
+points(D$xiSeed[D$gSeed<0 & D$gSeed>=-1], D$zetaSeed[D$gSeed<0 & D$gSeed>=-1], col=cols[3], pch=19, cex=1.5)
+points(D$xiSeed[D$gSeed< -1], D$zetaSeed[D$gSeed< -1], col=cols[4], pch=19, cex=1.5)
+legend('bottomleft', legend=c('Super-Logistic', 'Super-Ricker', 'Super-BH', 'Super-Cushing'), col=cols[1:4], pch=19)
 #dotX = lFXStar[!mask,2][freq]
 #dotY = lFXStar[!mask,3][freq]
 #points(dotX[dotY>zetaBot & dotY<zetaTop], dotY[dotY>zetaBot & dotY<zetaTop], pch='.')
@@ -269,34 +262,247 @@ legend('bottomleft', legend=c('Super-Logistic', 'Super-Ricker', 'Super-BH', 'Sub
 ##curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 dev.off()
 
-#design
-#png(sprintf("designHulls%s.png", mod))
-plot(D$xiSeed, D$zetaSeed, 
-	xlab=TeX("$F_{MSY}/M$"), 
-	ylab=TeX('$B_{MSY}/B_0$'), 
-	main="Design", 
-	cex.lab = 1.5, 
-	cex.main= 1.5, 
-	xlim=c(xiBot, xiTop), 
-	ylim=c(zetaBot, zetaTop)
-)
-loggys = D[D$gSeed>=1, c('xiSeed', 'zetaSeed')]
-rickys = D[D$gSeed>=0 & D$gSeed<1, c('xiSeed', 'zetaSeed')]
-beveys = D[D$gSeed<0 & D$gSeed>=-1, c('xiSeed', 'zetaSeed')]
-lineys = D[D$gSeed<-1, c('xiSeed', 'zetaSeed')]
 #
-polygon(loggys[chull(loggys),], col=cols[1])
-polygon(rickys[chull(rickys),], col=cols[2])
-polygon(beveys[chull(beveys),], col=cols[3])
-polygon(lineys[chull(lineys),], col=cols[4])
+#ARROW PLOT
+#
 
+#
+place = sprintf("./modsSchnute%s/", mod)
+#
+freq = c(T,F,F,F,F,F)
 
+#
+f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))[1] )
+M = readRDS(f)$M #0.2
 
-##curve(1/(x+2), from=0, to=4, lwd=3, add=T)
-#dotX = lFXStar[!mask,2][freq]
-#dotY = lFXStar[!mask,3][freq]
-#points(dotX[dotY>zetaBot & dotY<zetaTop], dotY[dotY>zetaBot & dotY<zetaTop], pch='.')
+#First fit the lF Model and make lF related Predictions
+
+#pick a polynomial mean function
+lFy = D$lF
+lFV = diag(D$lFV)
+lFX = cbind(1, D$xiSeed, D$zetaSeed)
+
+#
+xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+aug = cbind(rep(1, length(xAug)), xAug, 1/(xAug+2))
+lFX = rbind(lFX, aug)
+lFy = c(lFy, log(xAug*M))
+lFV = diag(c(D$lFV, rep(mean(D$lFV), length(xAug))))
+
+#
+lFaxes = lFX[,2:3]
+registerData(lFy, lFX, lFaxes, lFV)
+par = c(l1=0.5, l2=0.5, s2=0.5)
+lFFit = gpMAP(par, hessian=F, psiSample=F, lower=c(rep(eps(), 3))) #lower=c(0.3, rep(eps(), 2)))
+writeLines("lF Fit:")
+print(lFFit)
+
+#lF prediction
+zetaStar = seq(min(D$zetaSeed), max(D$zetaSeed), 0.005) #length.out=)   #seq(0.15, 0.35, 0.001)  #rev(seq(0.1, 0.80, 0.01)) #
+xiStar   = seq(min(D$xiSeed), max(D$xiSeed), 0.01) #length.out=)        #seq(1, 3.5, 0.005)
+lFXStar = cbind(1, expand.grid(xiStar, zetaStar))
+mask = sapply(1:nrow(lFXStar), function(i){
+                #
+                win = 0.3
+                #
+                xi = lFXStar[i,2]
+                zeta = lFXStar[i,3]
+                #step = win*10/0.1
+                bot = c()
+                top = c()
+                for(x in seq(max(xi-win, xiBot), min(xi+win, xiTop), length.out=30)){
+                        #
+                        isWin = x<=(D$xiBin+win) & x>=(D$xiBin-win)
+                        bot = c(bot, min(D$zetaBin[isWin]) )
+                        top = c(top, max(D$zetaBin[isWin]) )
+                }
+                bot = mean(bot)
+                top = mean(top)
+                ##
+                #bot = min(D$zetaSeed[D$xiSeed==round(xi/xiRes)*xiRes])
+                #top = max(D$zetaSeed[D$xiSeed==round(xi/xiRes)*xiRes])
+                #
+                return( zeta>bot & zeta<top & zeta>zetaBot & zeta<zetaTop )
+                #return(T)
+        }
+)
+lFPred = gpPredict(lFXStar, lFXStar[,2:3], lFFit)
+lFPred[!mask] = NA
+
+#bias
+xiHat = exp(lFPred)/M
+xiBias = sweep(xiHat, 1, xiStar)
+zetaBias = sweep(1/(xiHat+2), 2, zetaStar)
+#zetaBias = sweep(matrix(0.5, nrow(xiHat), ncol(xiHat)), 2, zetaStar)
+zetaBias[!mask] = NA
+
+#
+eucBias = mcmapply(function(xiHat, xi, zeta){
+                myDist(xiHat, xi, zeta)
+        }, xiHat, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
+)
+eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
+
+#Now fit the lK Model and make lK related Predictions
+
+#
+lKy = D$lK
+lKV = diag(c(D$lKV))
+lKX = cbind(1, D$xiSeed, D$zetaSeed)
+
+#
+lKaxes = lKX[,2:3]
+#
+registerData(lKy, lKX, lKaxes, lKV)
+par = c(l1=0.5, l2=0.5, s2=0.5)
+lKFit = gpMAP(par, hessian=F, psiSample=F, lower=c(eps(), rep(eps(), 2)))
+writeLines("lK Fit:")
+print(lKFit)
+
+#lK prediction
+lKXStar = cbind(1, expand.grid(xiStar, zetaStar))
+lKPred = gpPredict(lKXStar, lKXStar[,2:3], lKFit)
+lKPred[!mask] = NA
+
+#biomass bias
+kBias = exp(lKPred)-P0
+#zetaHat*B0Hat
+bMSYHat = exp(lKPred)/(xiHat+2)
+bMSYBias = sweep(bMSYHat, 2, zetaStar*P0)
+
+#MSY bias
+bMSYStar = zetaStar*P0
+fMSYStar = xiStar*M
+
+#extra fill
+xiFill   = seq(0, min(D$xiSeed), 0.01)
+dotStar = expand.grid(xiFill, zetaStar)
+ 
+#
+png(sprintf("directionalBiasSchnuteAnimatePrecent%s.png", mod))
+#
+eg = expand.grid(xiStar, zetaStar)
+ds = matrix(sqrt(eg[,1]^2+eg[,2]^2), nrow=length(xiStar), ncol=length(zetaStar))
+#
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, eucBias/ds,
+        col  = adjustcolor(eucCols, alpha.f=0.99),  #eucCols, #
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop), # c(0, xiTop), #
+        zlim = c(0, 1), #0.95),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+points(dotStar[freq,1], dotStar[freq,2], pch='.')
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.05, length=0.15 #scale=0.025
+)
+show = seq(1, length(eucCols), length.out=20)
+#legend(grconvertX(421.25, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%s %%", seq(95, 0, -5)), #round(rev(seq(min(eucBias/ds, na.rm=T), max(eucBias/ds, na.rm=T), length.out=length(show))/5)*5*100)), #length(show)))),
+#        fill = adjustcolor(rev(eucCols[show]), alpha.f=0.99),
+#        xpd = NA
+#)
+#points(D$xiSeed, D$zetaSeed)
 dev.off()
+
+#
+png(sprintf("directionalBiasSchnuteAnimatePrecentRegime%s.png", mod))
+#
+eg = expand.grid(xiStar, zetaStar)
+ds = matrix(sqrt(eg[,1]^2+eg[,2]^2), nrow=length(xiStar), ncol=length(zetaStar))
+#
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, eucBias/ds,
+        col  = adjustcolor(eucCols, alpha.f=0.99),  #eucCols, #
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop), # c(0, xiTop), #
+        zlim = c(0, 1), #0.95),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+points(dotStar[freq,1], dotStar[freq,2], pch='.')
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.05, length=0.15 #scale=0.025
+)
+show = seq(1, length(eucCols), length.out=20)
+points(D$xiSeed[D$gSeed>=1], D$zetaSeed[D$gSeed>=1], col=cols[1], pch=19, cex=1.5)
+points(D$xiSeed[D$gSeed>=0 & D$gSeed<1], D$zetaSeed[D$gSeed>=0 & D$gSeed<1], col=cols[2], pch=19, cex=1.5)
+points(D$xiSeed[D$gSeed<0 & D$gSeed>=-1], D$zetaSeed[D$gSeed<0 & D$gSeed>=-1], col=cols[3], pch=19, cex=1.5)
+points(D$xiSeed[D$gSeed< -1], D$zetaSeed[D$gSeed< -1], col=cols[4], pch=19, cex=1.5)
+#legend('bottomleft', legend=c('Super-Logistic', 'Super-Ricker', 'Super-BH', 'Super-Cushing'), col=cols[1:4], lwd=4)
+#legend(grconvertX(421.25, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%s %%", seq(95, 0, -5)), #round(rev(seq(min(eucBias/ds, na.rm=T), max(eucBias/ds, na.rm=T), length.out=length(show))/5)*5*100)), #length(show)))),
+#        fill = adjustcolor(rev(eucCols[show]), alpha.f=0.99),
+#        xpd = NA
+#)
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
+
+
+
+
+
+
+
+
+
+
+
+
+
+##design
+##png(sprintf("designHulls%s.png", mod))
+#plot(D$xiSeed, D$zetaSeed, 
+#	xlab=TeX("$F_{MSY}/M$"), 
+#	ylab=TeX('$B_{MSY}/B_0$'), 
+#	main="Design", 
+#	cex.lab = 1.5, 
+#	cex.main= 1.5, 
+#	xlim=c(xiBot, xiTop), 
+#	ylim=c(zetaBot, zetaTop)
+#)
+#loggys = D[D$gSeed>=1, c('xiSeed', 'zetaSeed')]
+#rickys = D[D$gSeed>=0 & D$gSeed<1, c('xiSeed', 'zetaSeed')]
+#beveys = D[D$gSeed<0 & D$gSeed>=-1, c('xiSeed', 'zetaSeed')]
+#lineys = D[D$gSeed<-1, c('xiSeed', 'zetaSeed')]
+##
+#polygon(loggys[chull(loggys),], col=cols[1])
+#polygon(rickys[chull(rickys),], col=cols[2])
+#polygon(beveys[chull(beveys),], col=cols[3])
+#polygon(lineys[chull(lineys),], col=cols[4])
+#
+#
+#
+###curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+##dotX = lFXStar[!mask,2][freq]
+##dotY = lFXStar[!mask,3][freq]
+##points(dotX[dotY>zetaBot & dotY<zetaTop], dotY[dotY>zetaBot & dotY<zetaTop], pch='.')
+#dev.off()
 
 
 ##

@@ -17,11 +17,12 @@
 \title{Bias Estimation of Biological Reference Points Under Two-Parameter SRRs}
 \author{
 Nick Grunloh\\$~$\\
-In collaboration with:\\
-Dr. E.J. Dick\\
-Dr. H. K.H. Lee
+%In collaboration with:\\
+%Dr. E.J. Dick\\
+%Dr. H. K.H. Lee
 }
-\date{17 Aug 2022}
+%\date{17 Aug 2022}
+\date{\today}
 
 \DeclareMathOperator*{\argmin}{\arg\!\min}
 \DeclareMathOperator*{\argmax}{\arg\!\max}
@@ -220,35 +221,54 @@ $~$\hspace{-1cm}
 %\end{frame}
 
 %
-\begin{frame}
+\begin{frame}{High Contrast}
 \begin{minipage}[h!]{0.32\textwidth}
 \hspace*{-1cm}
 \includegraphics[width=1.35\textwidth]{../../ddBias/directionalBiasDDExpT45N150A15.png}
 %\includegraphics[width=\textwidth]{../../ddBias/fMSYRelBiasDDExpT45N150Wide.png}
 \end{minipage}
 \begin{minipage}[h!]{0.32\textwidth}
-\includegraphics[width=\textwidth]{../../ddBias/bMSYRelBiasDDExpT45N150A15.png}
-\includegraphics[width=\textwidth]{../../ddBias/kRelBiasDDExpT45N150A15.png}
+\begin{tikzpicture}[overlay]
+\hspace*{1.8cm}
+%\includegraphics[width=1.2\textwidth]{../../ddBias/indexGridFlatT30N150A15K0.1.png}
+\node (img) {\includegraphics[width=1\textwidth]{../../ddBias/indexGridExpT45N150A15.png}};
+\node[above, text width=2cm, align=center] at (img.north){B(t)};
+\end{tikzpicture}
 \end{minipage}
 \begin{minipage}[h!]{0.33\textwidth}
-\includegraphics[width=1.2\textwidth]{../../ddBias/indexGridExpT45N150A15.png}
-\includegraphics[width=0.5\textwidth]{../../ddBias/rGridExpT45N150A15.png}
+%\begin{center}
+\begin{tikzpicture}[overlay]
+\hspace*{2.2cm}
+%\includegraphics[width=1.2\textwidth]{../../ddBias/indexGridFlatT30N150A15K0.1.png}
+\node (img) {\includegraphics[width=\textwidth]{../../ddBias/rGridExpT45N150A15.png}};
+\node[above, text width=2cm, align=center] at (img.north){R(B)};
+\end{tikzpicture}
 \end{minipage}
 \end{frame}
 
 %
-\begin{frame}
+\begin{frame}{Low Contrast}
+%
 \begin{minipage}[h!]{0.32\textwidth}
 \hspace*{-1cm}
 \includegraphics[width=1.35\textwidth]{../../ddBias/directionalBiasDDFlatT30N150A15K0.1.png}
 \end{minipage}
 \begin{minipage}[h!]{0.32\textwidth}
-\includegraphics[width=\textwidth]{../../ddBias/bMSYRelBiasDDFlatT30N150A15K0.1.png}
-\includegraphics[width=\textwidth]{../../ddBias/kRelBiasDDFlatT30N150A15K0.1.png}
+\begin{tikzpicture}[overlay]
+\hspace*{1.8cm}
+%\includegraphics[width=1.2\textwidth]{../../ddBias/indexGridFlatT30N150A15K0.1.png}
+\node (img) {\includegraphics[width=1\textwidth]{../../ddBias/indexGridFlatT30N150A15K0.1.png}};
+\node[above, text width=2cm, align=center] at (img.north){B(t)};
+\end{tikzpicture}
 \end{minipage}
 \begin{minipage}[h!]{0.33\textwidth}
-\includegraphics[width=1.2\textwidth]{../../ddBias/indexGridFlatT30N150A15K0.1.png}
-\includegraphics[width=0.5\textwidth]{../../ddBias/rGridFlatT30N150A15K0.1.png}
+%\begin{center}
+\begin{tikzpicture}[overlay]
+\hspace*{2.2cm}
+%\includegraphics[width=1.2\textwidth]{../../ddBias/indexGridFlatT30N150A15K0.1.png}
+\node (img) {\includegraphics[width=\textwidth]{../../ddBias/rGridFlatT30N150A15K0.1.png}};
+\node[above, text width=2cm, align=center] at (img.north){R(B)};
+\end{tikzpicture}
 \end{minipage}
 \end{frame}
 
@@ -376,56 +396,56 @@ $~$\\
 \section{End}
 \subsection{}
 
+%%
+%\begin{frame}{Summary}
+%\linespread{1.25}
+%%
+%$~$\\
+%\vspace*{-1.5cm}
+%\hspace*{-1cm}
+%\begin{itemize}	
+%	%\item Model misspecification is a necessary but not sufficient condition for inducing bias.
+%	%\item Different data informs different parts of the production function differently.
+%	%\item When Schaefer model is unlikely to be correctly specified, one should at best expect to only estimate either $B_{MSY}$ or $F_{MSY}$ correctly. % depending on the particular degree of model misspecification. 
+%	\item A rich simulation-based method for describing global RP bias and a stepping stone for understanding other models	
+%	\begin{itemize}
+%                \item[$\Rightarrow$] Productivity Extensions
+%                \item[$\Rightarrow$] Individual growth and maturity dynamics
+%        \end{itemize}
+%	\item In this severly constrained settings we pay for our modeling mistakes primarily in estimate bias.
+%	\item In practice the Schaefer model is at best only likely to reasonably estimate one of either $B_{MSY}$ or $F_{MSY}$.
+%	\item The observed contrast serves to distribute the available information among $B_{MSY}$ and $F_{MSY}$. 
+%	\begin{itemize}
+%		\item[$\Rightarrow$] Models of catch contextulize interpretation of RP estimation.
+%	\end{itemize}
+%	%
+%	%\item $F_{MSY}$ bias is strongly contrast dependent
+%	%\begin{itemize}
+%        %        \item[$\Rightarrow$] Bias depends on how similar the modeled and true production functions can be at the observed biomasses % of the true production function observed
+%	%	%\item[$\Rightarrow$] Contrast is key
+%        %\end{itemize}
+%	%\item In the overconstrained setting we pay for our modeling mistakes in bias
+%	%In practice, when the true model is not known and the Schaefer model is unlikely to be correctly specified, one should at best expect to only estimate either $B_{MSY}$ or $F_{MSY}$ correctly depending on the particular degree of model misspecification. The observed contrast then serves to distribute the available information among $B_{MSY}$ and $F_{MSY}$. 
+%\end{itemize}
+%\end{frame}
 %
-\begin{frame}{Summary}
-\linespread{1.25}
-%
-$~$\\
-\vspace*{-1.5cm}
-\hspace*{-1cm}
-\begin{itemize}	
-	%\item Model misspecification is a necessary but not sufficient condition for inducing bias.
-	%\item Different data informs different parts of the production function differently.
-	%\item When Schaefer model is unlikely to be correctly specified, one should at best expect to only estimate either $B_{MSY}$ or $F_{MSY}$ correctly. % depending on the particular degree of model misspecification. 
-	\item A rich simulation-based method for describing global RP bias and a stepping stone for understanding other models	
-	\begin{itemize}
-                \item[$\Rightarrow$] Productivity Extensions
-                \item[$\Rightarrow$] Individual growth and maturity dynamics
-        \end{itemize}
-	\item In this severly constrained settings we pay for our modeling mistakes primarily in estimate bias.
-	\item In practice the Schaefer model is at best only likely to reasonably estimate one of either $B_{MSY}$ or $F_{MSY}$.
-	\item The observed contrast serves to distribute the available information among $B_{MSY}$ and $F_{MSY}$. 
-	\begin{itemize}
-		\item[$\Rightarrow$] Models of catch contextulize interpretation of RP estimation.
-	\end{itemize}
-	%
-	%\item $F_{MSY}$ bias is strongly contrast dependent
-	%\begin{itemize}
-        %        \item[$\Rightarrow$] Bias depends on how similar the modeled and true production functions can be at the observed biomasses % of the true production function observed
-	%	%\item[$\Rightarrow$] Contrast is key
-        %\end{itemize}
-	%\item In the overconstrained setting we pay for our modeling mistakes in bias
-	%In practice, when the true model is not known and the Schaefer model is unlikely to be correctly specified, one should at best expect to only estimate either $B_{MSY}$ or $F_{MSY}$ correctly depending on the particular degree of model misspecification. The observed contrast then serves to distribute the available information among $B_{MSY}$ and $F_{MSY}$. 
-\end{itemize}
-\end{frame}
-
-%
-\begin{frame}{Conclusions}
-\begin{itemize}
-	\setlength\itemsep{1em}
-	\item A rich simulation-based method for describing global RP bias and a stepping stone for understanding more complex models.
-	\begin{itemize}
-                \item[$\Rightarrow$] Individual growth and maturity dynamics
-        \end{itemize}
-	\item RPs are not directly observable quantities, but rather model dependent latent quantities.
-	\begin{itemize}
-		\item[$\Rightarrow$] Subject to Model Misspecification, Uncertainty, \& Bias
-		\item[$\Rightarrow$] In severly constrained settings we pay for our modeling mistakes primarily in estimate bias.
-	\end{itemize}
-	\item The observed contrast serves to increase the range of potentially ``allowable'' model misspecification. %distribute the available information among $B_{MSY}$ and $F_{MSY}$.
-	%\item Importance of getting the computaional details correct for moving to analysis of Delay Difference and age structure
-\end{itemize}
-\end{frame}
+%%
+%\begin{frame}{Conclusions}
+%\begin{itemize}
+%	\setlength\itemsep{1em}
+%	\item A rich simulation-based method for describing global RP bias and a stepping stone for understanding more complex models.
+%	\begin{itemize}
+%                \item[$\Rightarrow$] Individual growth and maturity dynamics
+%        \end{itemize}
+%	\item RPs are not directly observable quantities, but rather model dependent latent quantities.
+%	\begin{itemize}
+%		\item[$\Rightarrow$] Subject to Model Misspecification, Uncertainty, \& Bias
+%		\item[$\Rightarrow$] In severly constrained settings we pay for our modeling mistakes primarily in estimate bias.
+%	\end{itemize}
+%	\item The observed contrast serves to increase the range of potentially ``allowable'' model misspecification. %distribute the available information among $B_{MSY}$ and $F_{MSY}$.
+%	%\item Importance of getting the computaional details correct for moving to analysis of Delay Difference and age structure
+%\end{itemize}
+%\end{frame}
 
 %
 \begin{frame}

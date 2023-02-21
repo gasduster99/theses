@@ -424,8 +424,8 @@ addCircle = function(centerx, centery, radius, length=200){
 odeMethod = "lsode"
 
 #
-a0 = 0.1  #15     #15  #7.5 #15  #1
-M  = 0.2
+a0 = 15 #0.1  #15     #15  #7.5 #15  #1
+M  = 0.05 #0.2
 kappa = 15 #0.2 #0.1 #0.2 #0.2 #10
 WW = 1
 ww = WW*(1-exp(-kappa*a0))
@@ -459,9 +459,9 @@ ylim = c(0.15, 0.7) #0.6) #
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
 #
-if( F ){
+if( T ){
 #Only run this to start a design
-p = "./modsDDExpT45N150A0.1K15/" #'test'
+p = "./modsDDExpT45N150A15M0.05/" #"./modsDDExpT45N150A0.1K15/" #'test'
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
 dir.create(p)
 #

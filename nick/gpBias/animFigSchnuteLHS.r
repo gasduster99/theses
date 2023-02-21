@@ -342,6 +342,8 @@ fileFit = gsub("datGen", "fit", fileDat)
 #
 dat = readRDS(fileDat)
 fit = readRDS(fileFit)
+datLow = dat
+fitLow = fit
 
 #
 xMax = max(dat$N0, fit$N0)
@@ -438,6 +440,27 @@ curve(yield(x, fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, lwd=3, add=T, col=col
 #rug(fit$N, col=cols[1])
 legend("topright", legend=c("Truth", "BH MLE"), col=c("black", cols[1]), lwd=c(1,3), lty=c(3,1))
 dev.off()
+
+
+##directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png
+##minimize target norm
+#xiTar   = 3    #2.5  #3    ##2.5  #3    #0.5   #3.4
+#zetaTar = 0.55 #0.45 #0.55 ##0.45 #0.275 #0.55 #0.275 #0.55
+##xiTar   = 3 #1 #3#3.4
+##zetaTar = 0.45 #0.275#0.55
+#norms = sqrt((xiTar-xis)^2 + (zetaTar-zetas)^2)
+#who   = which(min(norms)==norms)
+#xi    = xis[who]
+#zeta  = zetas[who]
+##
+#fileDat = names(who)
+#fileFit = gsub("datGen", "fit", fileDat)
+##
+#dat = readRDS(fileDat)
+#fit = readRDS(fileFit)
+#datHi = dat
+#fitHi = fit
+
 
 #
 #ARROW PLOT

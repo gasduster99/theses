@@ -445,9 +445,9 @@ addCircle = function(centerx, centery, radius, length=200){
 odeMethod = "lsode"
 
 #
-a0 = 0.1 	#15     #15  #7.5 #15  #1
-M  = 0.2
-kappa = 15 	#0.1 #0.2 #0.2 #10
+a0 = 15 #0.1 	#15     #15  #7.5 #15  #1
+M  = 0.01 #0.2
+kappa = 0.1 	#0.1 #0.2 #0.2 #10
 WW = 1
 ww = WW*(1-exp(-kappa*a0))
 
@@ -479,7 +479,7 @@ xlim = c(0.25, 3.75)
 ylim = c(0.15, 0.7) #0.6) #
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
-N = 20
+N = 10#20
 #set.seed(111)
 #
 out = lhsForPlot(xlim, ylim, N, 0, save=F)
@@ -491,7 +491,7 @@ for(i in 1:length(ox)){ lay[i,which(ox==i)]=i }
 lay = lay[seq(N,1),]
 
 #
-png(sprintf('bioGridA%sK%sW%s.png', a0, kappa, WW), width=2000, height=2000)
+png(sprintf('bioGridA%sK%sW%sM%s.png', a0, kappa, WW, M), width=2000, height=2000)
 layout(lay)
 for(i in 1:nrow(out$ll)){
 	par(mar=c(1,1,1,0))
@@ -500,7 +500,7 @@ for(i in 1:nrow(out$ll)){
 dev.off()
 
 #
-png(sprintf('numGridA%sK%sW%s.png', a0, kappa, WW), width=2000, height=2000)
+png(sprintf('numGridA%sK%sW%sM%s.png', a0, kappa, WW, M), width=2000, height=2000)
 layout(lay)
 for(i in 1:nrow(out$ll)){
 	par(mar=c(1,1,1,0))
@@ -508,24 +508,24 @@ for(i in 1:nrow(out$ll)){
 }
 dev.off()
 
+##
+#png(sprintf('avgGridA%sK%sW%s.png', a0, kappa, WW), width=2000, height=2000)
+#layout(lay)
+#for(i in 1:nrow(out$ll)){
+#	par(mar=c(1,1,1,0))
+#	out$mod[[i]]$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", out$ll[i,1], out$ll[i,2]) ) #, ylim=c(0,1) )
+#}
+#dev.off()
 #
-png(sprintf('avgGridA%sK%sW%s.png', a0, kappa, WW), width=2000, height=2000)
-layout(lay)
-for(i in 1:nrow(out$ll)){
-	par(mar=c(1,1,1,0))
-	out$mod[[i]]$plotQuan( function(B,N){B/N}, main=sprintf("%1.2f, %1.2f", out$ll[i,1], out$ll[i,2]) ) #, ylim=c(0,1) )
-}
-dev.off()
-
-#
-png(sprintf('srrGridA%sK%sW%s.png', a0, kappa, WW), width=2000, height=2000)
-layout(lay)
-for(i in 1:nrow(out$ll)){
-	par(mar=c(1,1,1,0))
-	f = function(x){SRR(x, out$mod[[i]])-out$mod[[i]]$M*x}
-	curve(f(x), 0, out$mod[[i]]$B0, main=sprintf("%1.2f, %1.2f", out$ll[i,1], out$ll[i,2]) ) #, ylim=c(0,1) )
-}
-dev.off()
+##
+#png(sprintf('srrGridA%sK%sW%s.png', a0, kappa, WW), width=2000, height=2000)
+#layout(lay)
+#for(i in 1:nrow(out$ll)){
+#	par(mar=c(1,1,1,0))
+#	f = function(x){SRR(x, out$mod[[i]])-out$mod[[i]]$M*x}
+#	curve(f(x), 0, out$mod[[i]]$B0, main=sprintf("%1.2f, %1.2f", out$ll[i,1], out$ll[i,2]) ) #, ylim=c(0,1) )
+#}
+#dev.off()
 
 
 
