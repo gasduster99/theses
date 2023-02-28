@@ -93,7 +93,7 @@
 
 
 %\thispagestyle{first}
-%\linenumbers
+\linenumbers
 
 %\begin{itemize}
 %\item Introduction
@@ -671,9 +671,9 @@ sampled so that the overall simulation design is space filling.
 \subsubsection{Latin Hypercube Sampling}
 
 	\begin{itemize}
-		\item a quick lit review of space filling designs
-		\item[\checkmark] approximate LHS
-		\item[\checkmark] $\frac{B_{MSY}}{B_0} (\gamma) = \zeta(\gamma)$ pic, $\alpha(\gamma)$, $\beta(\alpha, \gamma)$ 
+		\item {\color{red}a quick lit review of space filling designs}
+		%\item[\checkmark] approximate LHS
+		%\item[\checkmark] $\frac{B_{MSY}}{B_0} (\gamma) = \zeta(\gamma)$ pic, $\alpha(\gamma)$, $\beta(\alpha, \gamma)$ 
 	\end{itemize}
 
 %
@@ -689,13 +689,11 @@ Letting $\mathcal{F}$ and $\mathcal{B}$ be equally spaced grids, of size $n$, on
 \mbox{$\frac{F_{MSY}}{M}\in(0.25, 4)$} and \mbox{$\frac{B_{MSY}}{B_0}\in(0.15, 0.7)$}
 respectively, a LHS samples 1 point in $n$ of the $n^2$ cells produced by 
 $\mathcal{F}\times\mathcal{B}$.
-
 %
 %If $\mathcal{F}$ is an equally spaced grid of size $n$ for 
 %$\frac{F_{MSY}}{M}\in(0.25, 4)$, and letting $\mathcal{B}$ be an 
 %equally spaced grid of size $n$ for $\frac{B_{MSY}}{B_0} \in (0.15, 0.7)$. 
 %$\mathcal{F}$
-
 %
 Given the structured relationship between the RPs and productivity parameters 
 $\alpha$, $\beta$, and $\gamma$, obtaining a uniform LHS sample among 
@@ -712,10 +710,10 @@ can be seen in Figure (\ref{sudoGrid}).
 \begin{minipage}[h!]{0.49\textwidth}
 \begin{itemize}
 	\item[] \hspace*{-1cm}Given $B_0$, $M$, and $F_{MSY}$:
-	\item[] Draw $\gamma^* \sim \gamma|F_{MSY}, M$.
-	\item[] Compute $\frac{B_{MSY}}{B_0} = \zeta(\gamma^*)$
-	\item[] Compute $\alpha^* = \alpha(\gamma^*, F_{MSY}, M)$
-        \item[] Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$
+	\item[1)] Draw $\gamma^* \sim \gamma|F_{MSY}, M$.
+	\item[2)] Compute $\frac{B_{MSY}}{B_0} = \zeta(\gamma^*)$
+	\item[3)] Compute $\alpha^* = \alpha(\gamma^*, F_{MSY}, M)$
+        \item[4)] Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$
 \end{itemize}
 \end{minipage}
 \caption{
@@ -728,33 +726,39 @@ quantities) given $B_0$, $M$, and $F_{MSY}$. %$\mathcal{F}_i$.
 
 %
 \clearpage
-{\color{red}Connect overview to details below}
+%{\color{red}Connect overview to details below}
+%Since inverting $\zeta(\gamma)$ is not feasible, sampling $\gamma$ so as to 
+%produce a LHS design  
+
 
 %
-\begin{figure}[h!]
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-1cm}
+%\begin{figure}[h!]
 \includegraphics[width=0.5\textwidth]{../gpBias/zeta.png}
 \caption{$\zeta(\gamma)$ Plotted for $F_{MSY}=0.1$ and $M=0.2$. The point 
 $(\gamma_{min}, \zeta_{min})$ shows the lowest biologically meaningful 
 value of $\gamma$; below which productivity is negative.}
-\end{figure}
+%\end{figure}
+\end{wrapfigure}
 
 %
 Since it is not practicle to invert $\zeta(\gamma)$, a uniform sample in 
 $\frac{B_{MSY}}{B_0}$ can be obtained by modeling $\gamma$ as a random 
 variable, with realization $\gamma^*$, and thinking of $\zeta(\gamma)$ as its 
-CDF. The aim is to model $\gamma$ as an easily sampled random varaible with a 
-CDF that closely approximates $\zeta$, so that 
-$\zeta(\gamma^*)\dot\sim U(\zeta_{min},1)$ as closely as possible. There may be 
-many good models for the distribution of $\gamma$, but in this setting the 
-following distribution is very effective,
+cumulatice distribution function (CDF). The aim is to model $\gamma$ as an 
+easily sampled random varaible with a CDF that closely approximates $\zeta$, so 
+that $\zeta(\gamma^*)\dot\sim U(\zeta_{min},1)$ as closely as possible. There 
+may be many good models for the distribution of $\gamma$, but in this setting 
+the following distribution is very effective,
 %
 \begin{align}
 \gamma \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}. \label{mixT}
 \end{align}
  
 %
-Above, $t$ is the three parameter location-scale family Student's $t$ distribution
-with location $\mu$, scale $\sigma$, and degrees of freedom $\nu$. 
+Above, $t$ is the density of the three parameter location-scale family Student's $t$ 
+distribution with location $\mu$, scale $\sigma$, and degrees of freedom $\nu$. 
 $\bm{1}_{\gamma>\gamma_{min}}$ is an indicator function that serves to truncate 
 Student's $t$ distribution at the lower bound $\gamma_{min}$. 
 $\delta(\gamma_{min})$ is the dirac delta function evaluated at $\gamma_{min}$, 
@@ -778,12 +782,39 @@ minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
 \end{align}  
 
 %
-{\color{red}Connect $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ to overall algorithm.}
+\begin{figure}
+\begin{minipage}[h!]{0.49\textwidth}
+\setstretch{1.5}
+
+%{\color{red}Connect $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ to overall algorithm.}
+Fitting the proposal distribution $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$, for 
+use generating $\gamma^*$ values, at a specific $F_{MSY}$ and $M$, releases the 
+need to invert $\zeta$. $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$, together with 
+the structure in Eq. (\ref{abgSys}), allows for the collection of an approximate
+LHS sample via the algorithm seen in Figure (\ref{sudoCode}). 
 
 %
+$\frac{F_{MSY}}{M}$ is drawn uniformly from $\mathcal{F}_i$. Conditioning on the 
+sample of $F_{MSY}$, and $M$, $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ is fit and 
+$\gamma^*$ is sampled. $\zeta^*$ is then computed and placed into the appropriate
+grid element $\mathcal{B}_j$. Given $\gamma^*$, the cascade $\alpha(\gamma^*)$, 
+and $\beta(\alpha(\gamma^*), \gamma^*)$, can be computed. 
+The algorithm continues until all of the 
+%design elements, $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$,
+%have been computed for all $i\in[1,...,n]$.
+
+
+%With $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ fitted for a specific $F_{MSY}$ 
+%and $M$, Eq. (\ref{abgSys}) can be navigated to  
+
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+%\begin{figure}
+%\begin{wrapfigure}{r}{0.8\textwidth}
+%\vspace*{-1cm}
 \begin{itemize}
-	\setlength\itemsep{-0.5em}
-	\item[$\forall i$]
+	%\setlength\itemsep{-0.5em}
+	\item[$\forall i$:]
 	\item[1)] Draw $\frac{F_{MSY}}{M} \sim Unif(\mathcal{F}_i)$.
 	\item[2)] Compute $[\hat\mu, \hat\sigma, \hat\nu]$ given $F_{MSY}$ and $M$.
 	\item[3)] Draw $\gamma^* \sim T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$.
@@ -792,17 +823,65 @@ minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
 	\item[6)] If $\mathcal{B}_j$ is already sampled, go to 3).
 	\item[7)] Compute $\alpha^* = \alpha(\gamma^*, F_{MSY}, M)$. 
 	\item[8)] Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$.	
-	\item[9)] Save $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$ in $\mathcal{F}_i\times\mathcal{B}_j$. 
+	\item[9)] \mbox{Save $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$ in $\mathcal{F}_i\times\mathcal{B}_j$.} 
 	%\\ Otherwise go to 1).%If $\mathcal{B}_j$ is not sampled: save $\zeta^*$.\\ Otherwise go to 3). %
 \end{itemize}
+%\end{wrapfigure}
+\caption{Sudo-code proceedure for LHS sampling in $\mathcal{F}\times\mathcal{B}$.}
+\label{sudoCode}
+\end{minipage}
+\end{figure}
+\noindent
+%\vspace*{0.5cm}
+%The algorithm continues until all of the 
+design elements, $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$,
+have been computed for all $i\in[1,...,n]$.
 
+
+%%
+%The better $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ approximates $\zeta(\gamma)$, 
+%the more uniformly samples in the $\frac{B_{msy}}{B_0}$ margin will be.   
 
 %
 \subsubsection{Design Refinement}
+	
 	\begin{itemize}
 		\item maximin find holes
 		\item lhs centered on maximin
 	\end{itemize}
+
+%
+Since the behavior of RP inference, under misspecified models, will vary in 
+yet-unkown ways, the exact sampling design density may be hard to know a'priori 
+to simulation results. Several factors, including the particular level of 
+observation uncertainty, high variance (i.e. hard to resolve) features of the 
+response surface, or simply "gappy" instanciations of the initial LHS design 
+may necessitate adaptive design refinement, to accuratly describe RP biases. 
+Given the tempermental relationship between RPs and productivity parameters in
+the Schnute model, a recursive refinement algorithm, that makes use of the 
+previously described LHS routine, is developed. 
+
+%
+Holes in the existing design are identified based on maximin design principles.
+That is to say, new design points are collected based on areas of the RP design 
+space which maximizes the minimum distance between all pairs of points in the 
+current design. If $X_n$ is the initial design, of size $n$, let $x_a$ be the 
+augmenting point which maximizes the minimum distance between all of the existing 
+design points.
+
+%
+\begin{align}
+	x_a = \argmax_{x'} ~\min\{ ||x_i-x'||^2: i=1,...,n \}
+\end{align} 
+
+%
+$d_a = \min\{ ||x_i-x_a||^2: i=1,...,n \}$
+%Given the tempermental relationship between RPs and productivity parameters in 
+%the Schnute model a recursive refinement algorithm, that identifies sampling 
+%holes based on maximin design distances, and fills those holes by making use of the 
+%previously described LHS routine, is developed.
+
+%
 
 
 %
