@@ -124,9 +124,9 @@ if( F ){
 datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
 
 #
-registerDoParallel(6) #46)
+registerDoParallel(46)
 opts = list(preschedule=F)
-foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
+foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 #for(i in 1:n){
 	#
         #DATA
@@ -144,7 +144,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
         #
 
         #
-        fileFit = gsub("datGen", "fit", datName)
+        fileFit = gsub("datGen", "fit", datFiles[i])
         if( file.exists(fileFit) ){
                 #writeLines(sprintf('\nSKIP Xi: %s, Zeta: %s\n', xiSims[j], zetaSims[i]))
                 next
