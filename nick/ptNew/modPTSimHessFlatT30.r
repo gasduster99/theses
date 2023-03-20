@@ -90,41 +90,55 @@ zetaMax = 0.7
 zetaMin = 0.15
 xiMax = 3.75
 xiMin = 0.25
-
 #
 n = 100
-des = lhs(n, rbind(c(xiMin, xiMax),c(zetaMin, zetaMax)))
-colnames(des) = c('xi', 'zeta')
-pars = getPar(des[,1], des[,2])
-des = as.data.frame(des)
-pars = as.data.frame(pars)
-
-#
 minDiff = min((zetaMax-zetaMin)/n, (xiMax-xiMin)/n)
 binTrk = ceiling(abs(log10(minDiff)))
+
+#make new design
+if( F ){
+	#
+	des = lhs(n, rbind(c(xiMin, xiMax),c(zetaMin, zetaMax)))
+	colnames(des) = c('xi', 'zeta')
+	pars = getPar(des[,1], des[,2])
+	des = as.data.frame(des)
+	pars = as.data.frame(pars)
+	#
+	for(i in 1:n){
+		#read in data from design locations
+	        datGen = prodModel$new(
+	                dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #
+	                time=1:TT, catch=FtFmsy,  				#constants
+	                alpha=pars$alpha[i], beta=P0, gamma=pars$gamma[i],	#parameters
+	                lalpha=log(pars$alpha[i]), lbeta=log(P0),      	 	#reparameterize
+	                lq=log(0.00049), lsdo=log(0.01160256),          	#nuisance parameters
+	                xi=des$xi[i], zeta=des$zeta[i]		                  	#other incidentals to carry along
+	        )
+	        datGen$iterate(odeMethod)
+		datName = sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(des$xi[i], binTrk), round(des$zeta[i], binTrk))
+	        datGen$save( datName )
+	}
+}
+
+#
+datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
 
 #
 registerDoParallel(6) #46)
 opts = list(preschedule=F)
-foreach(i=(1:n), .options.multicore = opts) %dopar% {
+foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 #for(i in 1:n){
 	#
         #DATA
         #
 
-        #read in data from design locations
-        datGen = prodModel$new(
-                dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #
-                time=1:TT, catch=FtFmsy,  				#constants
-                alpha=pars$alpha[i], beta=P0, gamma=pars$gamma[i],	#parameters
-                lalpha=log(pars$alpha[i]), lbeta=log(P0),      	 	#reparameterize
-                lq=log(0.00049), lsdo=log(0.01160256),          	#nuisance parameters
-                xi=des$xi[i], zeta=des$zeta[i]		                  	#other incidentals to carry along
-        )
+	#read in data from design locations
+        datGen = readRDS(datFiles[i])
+        datGen$time = 1:TT
+        datGen$catch = FtFmsy
         datGen$iterate(odeMethod)
-	datName = sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(des$xi[i], binTrk), round(des$zeta[i], binTrk))
-        datGen$save( datName )
-	
+        datGen$save( datFiles[i] )
+		
 	#
         #SKIP
         #
@@ -156,7 +170,7 @@ foreach(i=(1:n), .options.multicore = opts) %dopar% {
                 alpha=datGen$alpha, beta=P0, gamma=2, 	#parameters
                 lalpha=datGen$lalpha, lbeta=log(P0),  	#reparameterize
                 lq=log(0.00049), lsdo=log(0.01160256), 	#nuisance parameters
-                xi=des$xi[i], zeta=des$zeta[i]		#other incidentals to carry along
+                xi=datGen$xi, zeta=datGen$zeta		#other incidentals to carry along
         )
         #fit = readRDS('modsPellaFineQFixRFixP010000/fit_xi4_zeta0.35.rda')
         fit$iterate(odeMethod)
@@ -191,7 +205,7 @@ foreach(i=(1:n), .options.multicore = opts) %dopar% {
                         #upper   = c(log(1), 10, 2, log(1e-2)),
                 )
         }, error=function(err){
-                writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", xiSims[j], zetaSims[i]) )
+                writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
                 optAns = fit$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta'),
                         lower   = c(log(0.001), log(0), log(P0/10)),
