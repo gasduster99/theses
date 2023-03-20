@@ -243,7 +243,7 @@ xiStar   = seq(min(D$xiSeed), max(D$xiSeed), 0.01) #length.out=)  	#seq(1, 3.5, 
 lFXStar = cbind(1, expand.grid(xiStar, zetaStar))
 mask = sapply(1:nrow(lFXStar), function(i){
 		#
-		win = 0.3
+		win = 0.3 #0.3
 		#
 		xi = lFXStar[i,2]
 		zeta = lFXStar[i,3]

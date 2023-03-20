@@ -1,6 +1,7 @@
 rm(list=ls())
 
 #
+library(gMOIP)
 library(pracma)
 library(mvtnorm)
 library(rootSolve)
@@ -485,6 +486,11 @@ M = readRDS(f)$M #0.2
 #
 D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
 D = D[D$lFV>0 & D$lKV>0,]
+#Remove for the chull
+#0.540   0.270 0.6291777 0.2877782
+#0.534   0.347 0.5442120 0.3539416
+D = D[D$xiBin!=0.540 & D$zetaBin!=0.270,]
+D = D[D$xiBin!=0.534 & D$zetaBin!=0.347,]
 
 #
 #GP INTERPOLATION
@@ -516,9 +522,12 @@ print(lFFit)
 zetaStar = seq(min(D$zetaSeed), max(D$zetaSeed), 0.005) #length.out=)   #seq(0.15, 0.35, 0.001)  #rev(seq(0.1, 0.80, 0.01)) #
 xiStar   = seq(min(D$xiSeed), max(D$xiSeed), 0.01) #length.out=)        #seq(1, 3.5, 0.005)
 lFXStar = cbind(1, expand.grid(xiStar, zetaStar))
-mask = sapply(1:nrow(lFXStar), function(i){
+#
+vchull = D[chull(D[,c('xiBin', 'zetaBin')]),c('xiBin', 'zetaBin')]
+mask = inHull(lFXStar[,c(2,3)], vchull)>=0 
+mask1 = sapply(1:nrow(lFXStar), function(i){
                 #
-                win = 0.3
+                win = 0.15#6 #0.3
                 #
                 xi = lFXStar[i,2]
                 zeta = lFXStar[i,3]

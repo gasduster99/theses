@@ -25,6 +25,8 @@
 \usepackage{dsfont}
 \usepackage{pgfgantt}
 \usepackage{bbm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 
 \hypersetup{colorlinks   = true, %Colors links instead of ugly boxes
             urlcolor     = blue, %Color for external hyperlinks
@@ -512,7 +514,10 @@ relatively smaller footprint in system memory.
 
 %
 \begin{wrapfigure}{r}{0.5\textwidth}
-\includegraphics[width=0.5\textwidth]{plots/derisoSrr.png}
+\vspace{-2cm}
+%\includegraphics[width=0.5\textwidth]{plots/derisoSrr.png}
+\includegraphics[width=0.5\textwidth]{../gpBias/g3.png}
+\vspace{-1cm}
 \caption{
 The Schnute production function plotted across a variety of parameter
 values. The special cases of BH, Ricker, and Logistic production are shown in
@@ -571,6 +576,7 @@ for $B$
 %
 \begin{align}
 \bar{B}(F) &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M+F}{\alpha}\right)^\gamma\right).
+\label{BsEq}
 \end{align}
 
 %
@@ -736,6 +742,7 @@ quantities) given $B_0$, $M$, and $F_{MSY}$. %$\mathcal{F}_i$.
 \vspace*{-1cm}
 %\begin{figure}[h!]
 \includegraphics[width=0.5\textwidth]{../gpBias/zeta.png}
+\vspace*{-1.3cm}
 \caption{$\zeta(\gamma)$ Plotted for $F_{MSY}=0.1$ and $M=0.2$. The point 
 $(\gamma_{min}, \zeta_{min})$ shows the lowest biologically meaningful 
 value of $\gamma$; below which productivity is negative.}
@@ -781,25 +788,58 @@ minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
 [\hat\mu, \hat\sigma, \hat\nu]=\underset{{[\mu, \sigma, \nu]}}{\arg\min}\int_\Gamma \big(T(\gamma; \mu, \sigma, \nu) - \zeta(\gamma)\big)^2 d\gamma
 \end{align}  
 
-%
-\begin{figure}
-\begin{minipage}[h!]{0.49\textwidth}
-\setstretch{1.5}
+%%
+%\begin{figure}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\setstretch{1.5}
 
+%
+\begin{wrapfigure}{R}{0.5\textwidth}
+	\vspace{-0.5cm}
+	\begin{minipage}{0.5\textwidth}
+      		\begin{algorithm}[H]
+			\caption{LHS of size $n$ on rectangle $R$.}
+			\label{lhsAlg}
+			\begin{algorithmic}[1]
+			\Procedure{$LHS_n(R)$}{}
+			\State Define $n$-grids $\mathcal{F}, \mathcal{B}\in R$
+			\For{each grid element $i$}
+			\State Draw $\frac{F_{MSY}}{M} \sim Unif(\mathcal{F}_i)$
+			\State Compute $[\hat\mu, \hat\sigma, \hat\nu]$ given $F_{MSY}~\&~M$
+			\While {$\mathcal{B}_j$ not sampled}
+				\State Draw $\gamma^* \sim T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$
+				\State Compute $\zeta^* = \zeta(\gamma^*)$
+				\State Compute $j$ such that $\zeta^*\in\mathcal{B}_j$
+				%\State Compute $\alpha^* = \alpha(\gamma^*, F_{MSY}, M)$ 
+				%\State Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$	
+				%\State \mbox{Save $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$ in $\mathcal{F}_i\times\mathcal{B}_j$} 
+			\EndWhile
+			\State Compute $\alpha^* = \alpha(\gamma^*, F_{MSY}, M)$ 
+			\State Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$	
+			\State \mbox{Save $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$ in $\mathcal{F}_i\times\mathcal{B}_j$} 
+			\EndFor
+			\EndProcedure
+			\end{algorithmic}
+		\end{algorithm}
+	\end{minipage}
+\end{wrapfigure}
 %{\color{red}Connect $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ to overall algorithm.}
-Fitting the proposal distribution $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$, for 
-use generating $\gamma^*$ values, at a specific $F_{MSY}$ and $M$, releases the 
+
+Fitting the distribution $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ for 
+use generating $\gamma^*$ values at a specific $F_{MSY}$ and $M$ releases the 
 need to invert $\zeta$. $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$, together with 
 the structure in Eq. (\ref{abgSys}), allows for the collection of an approximate
-LHS sample via the algorithm seen in Figure (\ref{sudoCode}). 
+LHS sample via the algorithm seen in Algorithm (\ref{lhsAlg}).%Figure (\ref{sudoCode}). 
 
 %
 $\frac{F_{MSY}}{M}$ is drawn uniformly from $\mathcal{F}_i$. Conditioning on the 
 sample of $F_{MSY}$, and $M$, $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ is fit and 
 $\gamma^*$ is sampled. $\zeta^*$ is then computed and placed into the appropriate
 grid element $\mathcal{B}_j$. Given $\gamma^*$, the cascade $\alpha(\gamma^*)$, 
-and $\beta(\alpha(\gamma^*), \gamma^*)$, can be computed. 
-The algorithm continues until all of the 
+and $\beta(\alpha(\gamma^*), \gamma^*)$, can be computed. The algorithm 
+continues until all of the design elements, $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$,
+have been computed for all $i\in[1,...,n]$.
+
 %design elements, $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$,
 %have been computed for all $i\in[1,...,n]$.
 
@@ -807,35 +847,61 @@ The algorithm continues until all of the
 %With $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ fitted for a specific $F_{MSY}$ 
 %and $M$, Eq. (\ref{abgSys}) can be navigated to  
 
-\end{minipage}
-\begin{minipage}[h!]{0.49\textwidth}
-%\begin{figure}
-%\begin{wrapfigure}{r}{0.8\textwidth}
-%\vspace*{-1cm}
-\begin{itemize}
-	%\setlength\itemsep{-0.5em}
-	\item[$\forall i$:]
-	\item[1)] Draw $\frac{F_{MSY}}{M} \sim Unif(\mathcal{F}_i)$.
-	\item[2)] Compute $[\hat\mu, \hat\sigma, \hat\nu]$ given $F_{MSY}$ and $M$.
-	\item[3)] Draw $\gamma^* \sim T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$.
-	\item[4)] Compute $\zeta^* = \zeta(\gamma^*)$.
-	\item[5)] Compute $j$ such that $\zeta^*\in\mathcal{B}_j$.
-	\item[6)] If $\mathcal{B}_j$ is already sampled, go to 3).
-	\item[7)] Compute $\alpha^* = \alpha(\gamma^*, F_{MSY}, M)$. 
-	\item[8)] Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$.	
-	\item[9)] \mbox{Save $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$ in $\mathcal{F}_i\times\mathcal{B}_j$.} 
-	%\\ Otherwise go to 1).%If $\mathcal{B}_j$ is not sampled: save $\zeta^*$.\\ Otherwise go to 3). %
-\end{itemize}
-%\end{wrapfigure}
-\caption{Sudo-code proceedure for LHS sampling in $\mathcal{F}\times\mathcal{B}$.}
-\label{sudoCode}
-\end{minipage}
-\end{figure}
-\noindent
-%\vspace*{0.5cm}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%%\begin{figure}
+%%\begin{wrapfigure}{r}{0.8\textwidth}
+%%\vspace*{-1cm}
+%\begin{itemize}
+%	%\setlength\itemsep{-0.5em}
+%	\item[$\forall i$:]
+%	\item[1)] Draw $\frac{F_{MSY}}{M} \sim Unif(\mathcal{F}_i)$.
+%	\item[2)] Compute $[\hat\mu, \hat\sigma, \hat\nu]$ given $F_{MSY}$ and $M$.
+%	\item[3)] Draw $\gamma^* \sim T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$.
+%	\item[4)] Compute $\zeta^* = \zeta(\gamma^*)$.
+%	\item[5)] Compute $j$ such that $\zeta^*\in\mathcal{B}_j$.
+%	\item[6)] If $\mathcal{B}_j$ is already sampled, go to 3).
+%	\item[7)] Compute $\alpha^* = \alpha(\gamma^*, F_{MSY}, M)$. 
+%	\item[8)] Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$.	
+%	\item[9)] \mbox{Save $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$ in $\mathcal{F}_i\times\mathcal{B}_j$.} 
+%	%\\ Otherwise go to 1).%If $\mathcal{B}_j$ is not sampled: save $\zeta^*$.\\ Otherwise go to 3). %
+%\end{itemize}
+%%\end{wrapfigure}
+%\caption{Sudo-code proceedure for LHS sampling in $\mathcal{F}\times\mathcal{B}$.}
+%\label{sudoCode}
+%\end{minipage}
+%\end{figure}
+%\noindent
+%%\vspace*{0.5cm}
 %The algorithm continues until all of the 
-design elements, $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$,
-have been computed for all $i\in[1,...,n]$.
+
+
+%%
+%\begin{wrapfigure}{R}{0.5\textwidth}
+%	\begin{minipage}{0.5\textwidth}
+%      		\begin{algorithm}[H]
+%			\caption{}
+%			\label{lhsAlg}
+%			\begin{algorithmic}[1]
+%			\Procedure{$LHS_n(x,y)$}{}
+%			\State Define $n$-grids $\mathcal{F}\in x$ and $\mathcal{B}\in y$
+%			\For{each grid element $i$}
+%			\State Draw $\frac{F_{MSY}}{M} \sim Unif(\mathcal{F}_i)$
+%			\State Compute $[\hat\mu, \hat\sigma, \hat\nu]$ given $F_{MSY}$ and $M$
+%			\While {any $\mathcal{B}$ not sampled}
+%				\State Draw $\gamma^* \sim T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$
+%				\State Compute $\zeta^* = \zeta(\gamma^*)$
+%				\State Compute $j$ such that $\zeta^*\in\mathcal{B}_j$
+%			\EndWhile
+%			\State Compute $\alpha^* = \alpha(\gamma^*, F_{MSY}, M)$ 
+%			\State Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$	
+%			\State \mbox{Save $(\frac{F_{MSY}}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$ in $\mathcal{F}_i\times\mathcal{B}_j$.} 
+%			\EndFor
+%			\EndProcedure
+%			\end{algorithmic}
+%		\end{algorithm}
+%	\end{minipage}
+%\end{wrapfigure}
 
 
 %%
@@ -844,38 +910,90 @@ have been computed for all $i\in[1,...,n]$.
 
 %
 \subsubsection{Design Refinement}
-	
-	\begin{itemize}
-		\item maximin find holes
-		\item lhs centered on maximin
-	\end{itemize}
 
 %
 Since the behavior of RP inference, under misspecified models, will vary in 
-yet-unkown ways, the exact sampling design density may be hard to know a'priori 
-to simulation results. Several factors, including the particular level of 
-observation uncertainty, high variance (i.e. hard to resolve) features of the 
-response surface, or simply "gappy" instanciations of the initial LHS design 
-may necessitate adaptive design refinement, to accuratly describe RP biases. 
-Given the tempermental relationship between RPs and productivity parameters in
-the Schnute model, a recursive refinement algorithm, that makes use of the 
-previously described LHS routine, is developed. 
+yet-unkown ways, the exact sampling design density may be hard to know a'priori. 
+Several factors, including the particular level of observation uncertainty, 
+high variance (i.e. hard to resolve) features of the response surface, or 
+simply "gappy" instanciations of the initial LHS design may necessitate 
+adaptive design refinement, to accuratly describe RP biases. Given the 
+tempermental relationship between RPs and productivity parameters in the Schnute 
+model, a recursive refinement algorithm, that makes use of the previously 
+described LHS routine, is developed. 
 
 %
 Holes in the existing design are identified based on maximin design principles.
 That is to say, new design points are collected based on areas of the RP design 
 space which maximizes the minimum distance between all pairs of points in the 
-current design. If $X_n$ is the initial design, of size $n$, let $x_a$ be the 
+current design. 
+%$\mathcal{F}$ and $\mathcal{B}$
+\begin{align}
+d(\bm{x}, \bm{x'}) &= \sqrt{(\bm{x}-\bm{x'})^T\bm{D}^{-1}(\bm{x}-\bm{x'})}\\
+\bm{D} &= \bm{\mbox{diag}\left[} \big(max(\mathcal{F})-min(\mathcal{F})\big)^2, ~\big(max(\mathcal{B})-min(\mathcal{B})\big)^2 \bm{\right]} \nonumber
+\end{align}
+
+%
+Above, $d$ is a scaled distance function that defines the distance between 
+points in the differing scales of $\frac{B_{MSY}}{B_0}$ and $\frac{F_{MSY}}{M}$.
+$\bm{D}$ is a diagonal matrix that measures the squared size of each axis of 
+the domain for use normalizing distances to a common scale.
+%Since the scales of $\frac{B_{MSY}}{B_0}$ and $\frac{F_{MSY}}{M}$ differ, the 
+%distance function 
+
+%
+If $\bm{X_n}$ is the initial design, of size $n$, let $\bm{x_a}$ be the 
 augmenting point which maximizes the minimum distance between all of the existing 
-design points.
+design points,
+%
+\begin{align}
+	%x_a = \argmax_{x'} ~\min\{ ||x_i-x'||^2: i=1,...,n \}
+	\bm{x_a} = \argmax_{\bm{x'}} ~\min\{ d(\bm{x_i}, \bm{x'}): i=1,...,n \}.
+\end{align} 
+%
+
+%
+The point $\bm{x_a}$ is used as an anchor for augmenting $\bm{X_n}$. %by collecting 
+An additional $LHS_{n'}$ (via Algorithm (\ref{lhsAlg})) is collected, adding 
+$n'$ design points, centered around $\bm{x_a}$, to the overall design. %are collected, %$LHS_{n'}$ is collected, using Algorithm (\ref{lhsAlg}). 
+In the LHS $R$ is defined based on the square centered at $\bm{x_a}$ with side 
+length $2d_a$, where \mbox{$d_a = \min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$},
+in the space defined by the metric $d$.
+%that circumscribes the circle (in the space, defined by the metric $d$) 
+%at point $\bm{x_a}$ with radius \mbox{$d_a = \min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$}.
+%
+%A $LHS_{n'}$ is collected, using Algorithm (\ref{lhsAlg}), on the rectangle in 
+%RP-space that circumscribes the circle (in the space, defined by the metric $d$) 
+%at point $\bm{x_a}$ with radius \mbox{$d_a = \min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$}.
+%%in the space defined by the metric $d$.
+
+%
+$R_{(x_a, d_a)}$ is truncated by the limits of $R_{full}$.
+Since the design space has a nonlinear constraint. the calculation of $x_a$ is 
+truncated based on a convex hull defined by the existing samples in the overall design.
+
+%
+{\color{red}iterate until ....}
 
 %
 \begin{align}
-	x_a = \argmax_{x'} ~\min\{ ||x_i-x'||^2: i=1,...,n \}
-\end{align} 
+X_{n} &= LHS_{n}(R_{full})\\
+find~&(x_a, d_a)\\
+X_{n'} &= LHS_{n'}(R_{(x_a, d_a)})\\
+add~&X_{n'}~to~X_{n}
+\end{align}
 
+%  
+%An augmented design within a square centered on $\bm{x_a}$  
+%Letting $S$ be the square that circumscribes the circle certered at $\bm{x_a}$ 
+%with radius $d_a=\min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$, a $LHS_{n'}$ is collected on i
 %
-$d_a = \min\{ ||x_i-x_a||^2: i=1,...,n \}$
+%
+%%
+%$d_a = \min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$\\
+%$X_{n'} = LHS_{n'}\big([x_{a1}-d_a, x_{a1}+d_a], [x_{a2}-d_a, x_{a2}+d_a]\big)$
+
+
 %Given the tempermental relationship between RPs and productivity parameters in 
 %the Schnute model a recursive refinement algorithm, that identifies sampling 
 %holes based on maximin design distances, and fills those holes by making use of the 
@@ -885,61 +1003,71 @@ $d_a = \min\{ ||x_i-x_a||^2: i=1,...,n \}$
 
 
 %
-\subsection{Catch \label{catch}}
-	\begin{itemize}
-		\item contrast definition 
-		\item picture relative fishing rate
-		\item ?quantification of degrees of information?
-	\end{itemize}
-
-{\color{blue}
+\subsection{Catch \label{catch}}	
 
 %%
 %For the sake of simulation, catch is parameterized so that $F_t$ can be 
 %controlled with respect to $F^*$. 
 
 %
-It is known that the behavior of catch can effect inference on the biological 
+It is known that the behavior of catch can effect inference on the productivity %biological 
 parameters \shortcite{hilborn_quantitative_1992}. % {\color{red} cite walters}). 
-In particular it is thought that catch can induce "contrast" in index data
-so as to better inform $r$. In this setting contrast refers to changes in the 
-long term trends of index data. Figure (\ref{expCatchT45}, \emph{right}) 
-demonstrates an example of biomass that includes contrast induced by catch. It 
-is not well understood how contrast may factor into biases induced by model 
-misspecification. To better understand this a variety of catches are investigated.
+%In particular it is thought that catch can induce "contrast" in index data
+%so as to better inform $r$. 
+In this setting contrast refers to changes in the long term trends of index data. 
+Figure (\ref{catchT45}, \emph{right}) demonstrates an example of biomass 
+that includes contrast induced by catch. It 
+is not well understood how contrast may factor into inferential failure induced by model %biases induced by model 
+misspecification. A variety of catches are investigated.
+%To better understand this a variety of catches are investigated.
 %the role that 
 %catch plays in understanding model misspecification errors a variety of 
 %catches are investigated.  
 
 %
 Catch is parameterized so that $F(t)$ can be controlled with respect to $F^*$. 
-Recall that catch is assumed to be proportional to biomass with the 
-proportionality constant amounting to the fishing rate, so that $C(t)=F(t)B(t)$. 
+Recall that catch is assumed to be proportional to biomass, so that $C(t)=F(t)B(t)$.
+%with the proportionality constant amounting to the fishing rate, so that $C(t)=F(t)B(t)$. 
 To control $F(t)$ with respect to $F^*$, $C(t)$ is specified by defining the 
 quantity $\frac{F(t)}{F^*}$ as the relative fishing rate. $B(t)$ is defined 
 by the solution of the ODE, and $F^*$ is defined by the biological parameters 
-of the model, see Eq (\ref{Fmsy}).  Thus by defining 
-$\frac{F(t)}{F^*}$, catch can then be written as \mbox{$C(t)=F^*\left(\frac{F(t)}{F^*}\right)B(t)$.}
+of the model, see Eq (\ref{Fmsy}). By defining $\frac{F(t)}{F^*}$, catch 
+can then be written as \mbox{$C(t)=F^*\left(\frac{F(t)}{F^*}\right)B(t)$.}
 
 %
 Intuitively $\frac{F(t)}{F^*}$ describes the fraction of $F^*$ that $F(t)$ is  
 specified to for the current $B(t)$. When $\frac{F(t)}{F^*}=1$, $F(t)$ will be 
 held at $F^*$, and the solution of the ODE brings $B(t)$ into equilibrium at 
-$B^*$. For constant $\frac{F(t)}{F^*}$ the Schaefer model 
+$B^*$. For constant $\frac{F(t)}{F^*}$ biomass %the Schaefer model 
 %has an analytical 
 %solution, via integrating factors, so that $B(t)$ 
-comes to equilibrium as an exponential decay from $K$ approaching $B^*$. The relative fishing rate is defined on $[0, \infty)$; when 
-$\frac{F(t)}{F^*}<1$, $F(t)$ is lower than $F^*$ and $B(t)$ is pushed toward 
-$\bar B>B^*$. Contrarily, when $\frac{F(t)}{F^*}>1$, $F(t)$ is higher than 
-$F^*$ and $B(t)$ is pushed toward $\bar B<B^*$; the precise values of $\bar B$
-can be calculated from Eq (\ref{Beq}).
+comes to equilibrium as an exponential decay from $K$ approaching $B^*$. 
+%The relative fishing rate is defined on $[0, \infty)$; 
+When $\frac{F(t)}{F^*}<1$, $F(t)$ is lower than $F^*$ and $B(t)$ is pushed 
+toward $\bar B>B^*$. Contrarily, when $\frac{F(t)}{F^*}>1$, $F(t)$ is higher 
+than $F^*$ and $B(t)$ is pushed toward $\bar B<B^*$; the precise values of 
+$\bar B$ can be calculated from Eq (\ref{BsEq}).
+%(\ref{Beq}).
 
+%
+\begin{figure}[h!]
+\includegraphics[width=0.45\textwidth]{../../../theses/nick/gpBias/rfExpT45X2Z0.6.png}
+\includegraphics[width=0.45\textwidth]{../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png}
+%\includegraphics[width=0.5\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png}
+\caption{ \label{catchT45}
+($left$) Relative fishing specified so as to induce contrast.
+($right$) Population biomass and catch demonstrating contrast in a {\color{red}PT population} with $F^*=0.4$ and $\frac{B^*}{\bar B(0)}=0.6$.
+}
+\end{figure}
+
+%
+\clearpage
 %
 In practice, catch is determined by a series of observed, assumed known, catches. 
 Catch observations are typically observed on a quarterly (or yearly) basis, so 
 that the ODE may be discretized via Euler’s method with integration step sizes 
 to match the observation frequency of the modeled data. In this case, catch is sampled 
-as would be done in practice however, the simulation can encounter a variate of issues 
+as would be done in practice however, the simulation can encounter a variety of issues 
 working with the naively discretized ODE. As a result the ODE is integrated implicitly 
 via the Livermore Solver \shortcite[lsode]{radhakrishnan_description_1993}, and catch 
 is linearly interpolated between sampled epochs. 
@@ -954,7 +1082,11 @@ is linearly interpolated between sampled epochs.
 %	\item continuity and the solution of ODEs
 %\end{itemize}
 
-}
+\begin{itemize}
+	%\item picture relative fishing rate
+	\item ?quantification of degrees of information? (avg curvature?)
+	\item remake picture w/o PT references
+\end{itemize}
 
 %
 %RESULTS
@@ -3334,6 +3466,25 @@ by $q$.
 %
 %JUNK
 %
+
+%
+%\begin{algorithm}
+%\caption{CH election algorithm}
+%\label{CHalgorithm}
+%\begin{algorithmic}[1]
+%\Procedure{CH\textendash Election}{}
+%\For{each node $i$ } %\Pisymbol{psy}{206} $N$ }
+%\State Broadcast HELLO message to its neighbor
+%\State let $k$ %\Pisymbol{psy}{206} $N1$ ($i$) U {$i$} be s.t
+%\State QOS($k$) = max {QOS($j$) \textbar $j$} %\Pisymbol{psy}{206} $N1$($i$)  U $i$}
+%\State MPRSet($i$) = $k$
+%\EndFor
+%\EndProcedure
+%\end{algorithmic}
+%\end{algorithm}
+
+
+
 
 %%
 %However, for 
