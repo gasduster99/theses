@@ -209,44 +209,58 @@
 \end{itemize}
 
 %
+\clearpage
 \section{Methods \label{meth}}
 
 %
 \subsection{PT/Schaffer Model}
 	\begin{itemize}
-		\item $\frac{dB}{dt} = P(B(t); \bm{\theta}) - F(t)B(t)$
-		\item PT: $P(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}$
-		\item RP's (and analytically invert)
-		\item $\gamma=2$ $\Rightarrow$ Schaffer model (show Schaffer RP)
+		%\item $\frac{dB}{dt} = P(B(t); \bm{\theta}) - F(t)B(t)$
+		%\item PT: $P(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}$
+		%\item RP's (and analytically invert)
+		%\item fix PT plot
+		\item $\gamma=2$ $\Rightarrow$ Schaffer model (Schaffer RP)
 	\end{itemize}
 
 %\subsection{PT Model}
+%
+\begin{wrapfigure}{r}{0.45\textwidth}
+\vspace{-2cm}
+%\includegraphics[width=0.5\textwidth]{plots/derisoSrr.png}
+\includegraphics[width=0.49\textwidth]{../ptNew/g4PTLog.png}
+\vspace{-1cm}
+\caption{
+The PT production function plotted across a variety of parameter
+values. The special cases of Logistic production is shown in black, and the 
+left-leaning and right-leaning regiems are shown in blue and red respectively.
+}
+\label{srrPT}
+\end{wrapfigure}
 
-%{\color{blue}
-%%Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
-%The three parameter PT family has a convenient form that includes, among 
-%others \shortcite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
-%logistic production function as a special case to form the Schaefer model. The 
-%Pella-Tomlinson production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$ 
-%and the family takes the following form, 
-%%Pella Tomlinson
-%\begin{align}
-%P(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}. \label{pellaTomlinson}
-%\end{align}
-%%
+%Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
+The three parameter PT family has a convenient form that includes, among 
+others \shortcite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
+logistic production function as a special case to form the Schaefer model. The 
+Pella-Tomlinson production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$ 
+and the family takes the following form, 
+%Pella Tomlinson
+\begin{align}
+P(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{(\gamma-1)}\right). \label{pt}
+\end{align}
 %
-%%
-%$\gamma$ is a parameter which breaks PT out of the restrictive symmetry of the 
-%logistic curve. In the special case of $\gamma=2~~$ Eq (\ref{pellaTomlinson}) 
-%collapses back to the logistic curve, however in general $\gamma\in(1, \infty)$.
-%The parameters $r$ and $K$ maintain the same interpretation as 
-%they do in the logistic production function. In Figure (\ref{srrPT}) PT recruitment 
-%is shown for a range of parameter values so as to demonstrate the various 
-%recruitment shapes that can be achieved by PT recruitment.  
-%%{\color{red} And $\gamma$ is a parameter which adds 
-%%flexibility to the family by allowing for compensatory or non-compensatory 
-%%growth. (break symmetry... get better description) }
+
 %
+$\gamma$ is a parameter which breaks PT out of the restrictive symmetry of the 
+logistic curve. In the special case of $\gamma=2~~$ Eq (\ref{pt}) 
+collapses back to the logistic curve, however in general $\gamma\in(1, \infty)$.
+The parameters $r$ and $K$ maintain the same interpretation as 
+they do in the logistic production function. In Figure (\ref{srrPT}) PT recruitment 
+is shown for a range of parameter values so as to demonstrate the various 
+recruitment shapes that can be achieved by PT recruitment.  
+%{\color{red} And $\gamma$ is a parameter which adds 
+%flexibility to the family by allowing for compensatory or non-compensatory 
+%growth. (break symmetry... get better description) }
+
 %%\begin{wrapfigure}{r}{0.5\textwidth}
 %\begin{figure}[h!]
 %	\centering
@@ -258,126 +272,193 @@
 %	}
 %\end{figure}
 %%\end{wrapfigure}
-%
-%%%
-%%\clearpage
-%
+
 %%
-%While the particular form of how $\gamma$ appears in PT still produces some 
-%limitations to the form of the production function, importantly the 
-%introduction of a third parameter allows enough flexibility to fully describe 
-%the space of reference points used in management. To see this, the reference 
-%points are analytically derived for the PT model below. % in the following section.
+%\clearpage
+
 %
-%%%
-%%\begin{equation}
-%%\frac{dB}{dt} = P - FB.
-%%\end{equation}
-%
+While the form of the PT curve produces some limitations {(\color{red}cite)}, 
+importantly the % how $\gamma$ appears in PT still produces some limitations to the form of the production function 
+introduction of a third parameter allows enough flexibility to fully describe 
+the space of reference points used in management. To see this, the reference 
+points are analytically derived for the PT model below. % in the following section.
+
 %%
-%\subsection{PT Reference Points}\label{ptRef}
-%
-%%
-%With $B(t)$ representing biomass at time $t$, under PT production, the 
-%dynamics of biomass are defined by the following ODE,
-% 
 %\begin{equation}
-%\frac{dB}{dt} = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1} - FB. \label{odePT}
+%\frac{dB}{dt} = P - FB.
 %\end{equation}
+
 %
-%An expression for the equilibrium biomass is attained by setting Eq (\ref{odePT}) 
-%equal to zero, and rearranging the resulting equation to solve for $B$. 
-%Thinking of the result as a function of $F$ gives, 
-%%When thought of as a 
-%%function of $F$ the following expression emerges,
-%%{\color{red}Under Pella-Tomlinson SRR the equilibrium biomass can be written,}
-%\begin{align}
-%\bar B(F) = K\left(1-\left(\frac{F(\gamma-1)}{r}\right)^{\frac{1}{(\gamma-1)}}\right). \label{Beq}
-%\end{align}
+\subsection{PT Reference Points}\label{ptRef}
 %
-%%By definition $B_0=K$. Alternatively, Setting $F=0$ in Eq(\ref{Beq}) makes it convenient to notice that $\bar B(0)=K$ to arrive at the same result
-%At this point it is convenient to notice that $\bar B(0)=K$. The expression for $B^*$ is given by evaluating Eq (\ref{Beq}) at $F^*$.
+With $B(t)$ representing biomass at time $t$, under PT production, the 
+dynamics of biomass are defined by the following ODE,
+ 
+\begin{equation}
+\frac{dB}{dt} = \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{\gamma-1}\right) - FB. \label{dBdtPT}
+\end{equation}
+
+An expression for the equilibrium biomass is attained by setting Eq (\ref{dBdtPT}) 
+equal to zero, and rearranging the resulting equation to solve for $B$. 
+Thinking of the result as a function of $F$ gives, 
+%When thought of as a 
+%function of $F$ the following expression emerges,
+%{\color{red}Under Pella-Tomlinson SRR the equilibrium biomass can be written,}
+\begin{align}
+\bar B(F) = K\left(1-\frac{F(\gamma-1)}{r}\right)^{\frac{1}{(\gamma-1)}}. \label{BbarPT}
+\end{align}
+
+%By definition $B_0=K$. Alternatively, Setting $F=0$ in Eq(\ref{Beq}) makes it convenient to notice that $\bar B(0)=K$ to arrive at the same result
+At this point it is convenient to notice that $\bar B(0)=K$. The expression for 
+$B^*$ is given by evaluating Eq (\ref{BbarPT}) at $F^*$.
+%
+To get an expression for $F^*$, the equilibrium yield is maximized with respect to $F$,
+\begin{equation}
+F^* = \argmax_F F\bar B(F).
+\end{equation}
+%
+In the case of PT production this maximization can be done analytically. In this 
+case maximization can proceed by differentiating the equilibrium yield with 
+respect to $F$ as follows,
+%
+\begin{align}
+\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{FderivPT}\\
+%\frac{d \bar B}{dF} &= -\frac{K}{\gamma-1}\left(\frac{\gamma-1}{r}\right)^{\frac{1}{\gamma-1}}F^{\frac{1}{\gamma-1}-1}\\
+\frac{d \bar B}{dF} &= -\frac{K}{r}\left(1-\frac{F(\gamma-1)}{r}\right)^{\frac{1}{\gamma-1}-1}\label{dBdFPT}.
+\end{align}
+
+%{\color{red}
+Setting Eq (\ref{FderivPT}) equal to 0, substituting $\bar B(F)$ and 
+$\frac{d \bar B}{dF}$ by Equations (\ref{BbarPT}) and (\ref{dBdFPT}) respectively, 
+and solving for $F$ produces the following expression for the fishing 
+rate required to produce MSY, %{\color{red}Below any quantity evaluated at MSY shall be decorated with $~^*$.}
+%
+\begin{align}
+F^* = \frac{r}{\gamma}%-1} \left(\frac{\gamma-1}{\gamma}\right)^{\gamma-1}. \label{Fmsy}
+\end{align}
+
+%
+Plugging the above expression for $F^*$ back into Eq (\ref{BbarPT}) gives the 
+following expression for biomass at MSY, 
+\begin{align}
+B^* = K\left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}} \label{BmsyPT}. %\left(1-\left(\frac{\gamma-1}{\gamma}\right)\right) \label{Bmsy}.
+\end{align}
+
+%
+The above derived expressions for $\bar B(0)$, $B^*$, and $F^*$ can then be used to 
+build a specific analytical form for the biological reference points in terms of only 
+biological model parameters.
+%%
+%By substituting the expressions given above for $B_0$, $B^*$, and $F^*$ into 
+%Eq(\ref{xizetaSimple}), $\xi$ and $\zeta$ can take a specific analytical form 
+%in terms of the biological model parameters. 
+%%given by substituting the expressions given in Eq(\ref{Fmsy}) 
+%%and Eq(\ref{Bmsy}) in Eq(\ref{xizetaSimple}).
+%%Eq(\ref{xizetaSimple}) can then take a specific analytical form in terms of the 
+%  %an expression for $\xi$ and $\zeta$ can be found in terms of model parameters.  
+\begin{align}
+&F^* = \frac{r}{\gamma}
+&\frac{B^*}{\bar B(0)} = \left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}
+\end{align}
+
+%%{\color{red}demonstration of the restricted case with graph over RP space as used.}
+%
+%\subsection{Simulation Study \label{sim}}
 %
 %%
-%To get an expression for $F^*$, the equilibrium yield is maximized with respect to $F$,
-%\begin{equation}
-%F^* = \argmax_F F\bar B(F).
-%\end{equation}
-%%
-%In the case of PT production this maximization can be done analytically (however 
-%many three parameter production functions do not result in tractable analytical 
-%solutions). In this case maximization can proceed by differentiating the 
-%equilibrium yield with respect to $F$ as follows,
+%Indices of abundance are simulated from the three parameter PT production model 
+%over a grid of $F^*$ and $\frac{B^*}{\bar B(0)}$ values. These PT data are then 
+%fit with a two parameter Schaefer model. 
+%%$\gamma$ is then fixed to two so that the PT SRR reduces to the special case of logistic recruitment. 
+%%The restricted Schaefer model is then fit to the 
+%%simulated PT indices. 
 %
-%%
-%\begin{align}
-%\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{Fderiv}\\
-%%\frac{d \bar B}{dF} &= -\frac{K}{\gamma-1}\left(\frac{\gamma-1}{r}\right)^{\frac{1}{\gamma-1}}F^{\frac{1}{\gamma-1}-1}\\
-%\frac{d \bar B}{dF} &= -\frac{K}{F(\gamma-1)}\left(\frac{F(\gamma-1)}{r}\right)^{\frac{1}{\gamma-1}}\label{dBdF}.
-%\end{align}
-%%{\color{red}
-%Setting Eq (\ref{Fderiv}) equal to 0, substituting $\bar B(F)$ and 
-%$\frac{d \bar B}{dF}$ by Equations (\ref{Beq}) and (\ref{dBdF}) respectively, 
-%and then solving for $F$ produces the following expression for the fishing 
-%rate required to produce MSY, %{\color{red}Below any quantity evaluated at MSY shall be decorated with $~^*$.}
-%%
-%\begin{align}
-%F^* = \frac{r}{\gamma-1} \left(\frac{\gamma-1}{\gamma}\right)^{\gamma-1}. \label{Fmsy}
-%\end{align}
-%%
-%Plugging the above expression for $F^*$ back into Eq (\ref{Beq}) gives the 
-%following expression for biomass at MSY, 
-%\begin{align}
-%B^* = \frac{K}{\gamma} \label{Bmsy}. %\left(1-\left(\frac{\gamma-1}{\gamma}\right)\right) \label{Bmsy}.
-%\end{align}
-%
-%%
-%The above derived expressions for $\bar B(0)$, $B^*$, and $F^*$ can then be used to 
-%build a specific analytical form for the biological reference points in terms of only 
-%biological model parameters.
 %%%
-%%By substituting the expressions given above for $B_0$, $B^*$, and $F^*$ into 
-%%Eq(\ref{xizetaSimple}), $\xi$ and $\zeta$ can take a specific analytical form 
-%%in terms of the biological model parameters. 
-%%%given by substituting the expressions given in Eq(\ref{Fmsy}) 
-%%%and Eq(\ref{Bmsy}) in Eq(\ref{xizetaSimple}).
-%%%Eq(\ref{xizetaSimple}) can then take a specific analytical form in terms of the 
-%%  %an expression for $\xi$ and $\zeta$ can be found in terms of model parameters.  
-%\begin{align}
-%&F^* = \frac{r}{(\gamma-1)} \left(\frac{\gamma-1}{\gamma}\right)^{\gamma-1}
-%&\frac{B^*}{\bar B(0)} = \frac{1}{\gamma} %1-\left(\frac{\gamma-1}{\gamma}\right)
-%\end{align}
+%%
+%%Let $\tilde~$ decorate any quantity that is derived under the restricted two 
+%%parameter SRR.\\ Collapse to the case of Schaefer. Similarly to Eq(\ref{
+%%logisticSRR}) setting $\gamma=2$ results in the equilibrium equations for the 
+%%restricted Schaefer model.  
+%% 
 %
-%%%{\color{red}demonstration of the restricted case with graph over RP space as used.}
-%%
-%%\subsection{Simulation Study \label{sim}}
-%%
-%%%
-%%Indices of abundance are simulated from the three parameter PT production model 
-%%over a grid of $F^*$ and $\frac{B^*}{\bar B(0)}$ values. These PT data are then 
-%%fit with a two parameter Schaefer model. 
-%%%$\gamma$ is then fixed to two so that the PT SRR reduces to the special case of logistic recruitment. 
-%%%The restricted Schaefer model is then fit to the 
-%%%simulated PT indices. 
-%%
-%%%%
-%%%
-%%%Let $\tilde~$ decorate any quantity that is derived under the restricted two 
-%%%parameter SRR.\\ Collapse to the case of Schaefer. Similarly to Eq(\ref{
-%%%logisticSRR}) setting $\gamma=2$ results in the equilibrium equations for the 
-%%%restricted Schaefer model.  
-%%% 
-%%
-%%%speaking it is not possible to analytically invert this  
-%%Generating simulated indices of abundance from the PT model requires 
-%%inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and 
-%%$(r, \gamma)$. It is not generally possible to analytically invert this 
-%%relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
-%%Most three parameter production functions lead to RPs that require expensive 
-%%numerical methods to invert; more over the numerical inversion procedure can %is 
-%%often be unstable. That said, for the case of PT this relationship is 
-%%analytically invertible, and leads to the following relationship
+%%speaking it is not possible to analytically invert this  
+%Generating simulated indices of abundance from the PT model requires 
+%inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and 
+%$(r, \gamma)$. It is not generally possible to analytically invert this 
+%relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
+%Most three parameter production functions lead to RPs that require expensive 
+%numerical methods to invert; more over the numerical inversion procedure can %is 
+%often be unstable. That said, for the case of PT this relationship is 
+%analytically invertible, and leads to the following relationship
+
 %
+\begin{align}
+&r = \gamma F^*
+&\gamma = \frac{W\left(\frac{B^*}{\bar B(0)}\log\left(\frac{B^*}{\bar B(0)}\right)\right)}{\log\left(\frac{B^*}{\bar B(0)}\right)} \label{gammaOfB}
+\end{align}
+
+%
+%Above $W_0$ is the principal branch of the Lambert product logarithm function. 
+%Above $W_{-1}$ is the lower branch of the Lambert product logarithm function. 
+Above $W$ is the Lambert product logarithm function. 
+More details about this derivation, and the Lambert product logarithm, are given in \mbox{Appendix (\ref{lambApp}).}
+
+\section{Appendix\label{lambApp}: Inverting $\frac{B^*}{\bar B(0)}$ and $\gamma$ for the PT Model}
+For bevity let $\zeta=\frac{B^*}{\bar B(0)}$.
+\begin{align*}
+&\zeta=\left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}\\
+%&\zeta^{\gamma-1}=\frac{1}{\gamma}\\
+&\zeta=\gamma\zeta^{\gamma}\\
+&\zeta=\gamma e^{\gamma\log(\zeta)}\\
+&\zeta\log(\zeta)=\gamma\log(\zeta) e^{\gamma\log(\zeta)}
+\end{align*}
+The Lambert product logarithm, $W$, is defined as the inverse function of $z=xe^x$ such that $x=W(z)$. 
+Applying this definition allows for the isolation of $\gamma$.
+\begin{align}
+&\gamma\log(\zeta)=W\left(\zeta\log(\zeta)\right) \nonumber\\
+&\gamma=\frac{W\left(\zeta\log(\zeta)\right)}{\log(\zeta)} \label{gammaOfZeta}
+\end{align}
+The Lambert product logarithm is a mulivalued function with a branch point at 
+$-\frac{1}{e}$. The principal branch, $W_0(z)$, is defined on $z\in\left(-\frac{1}{e}, \infty\right)$, 
+and the lower branch, $W_{-1}(z)$, is defined on $z\in\left(-\frac{1}{e}, 0\right)$. Taken 
+individually, each respective branch is analytic, but cannot be expressed in terms 
+of elementary functions.
+
+%
+When $\zeta\in\left(0, \frac{1}{e}\right)$ the solution of interest in Eq. (\ref{gammaOfB}) 
+comes from $W_0$. %$\gamma\to1$ as $\zeta\to\frac{1}{e}$ to produce the Fox Model. 
+When $\zeta\to\frac{1}{e}$, the Fox Model emerges as $\gamma\to1$.
+When $\zeta\in\left(\frac{1}{e}, 1\right)$ the solution of interest comes from 
+$W_{-1}$. For the use case presented here, Eq. (\ref{gammaOfB}) is be interpreted as,
+
+\begin{equation}
+\gamma = 
+\begin{cases} 
+\frac{W_0\left(\zeta\log\left(\zeta\right)\right)}{\log\left(\zeta\right)} & \zeta\in\left(0, \frac{1}{e}\right)\\
+\frac{W_{-1}\left(\zeta\log\left(\zeta\right)\right)}{\log\left(\zeta\right)} & \zeta\in\left(\frac{1}{e}, 1\right)
+\end{cases}. 
+\end{equation} 
+
+%
+Prager 2002, Figure(2).
+
+%goes from $0$ to $1$ the solution of interest starts on the principal branch,
+%and runs toward the 
+%The solution of interest, for the use cases here, come from the 
+%principal branch, often denoted $W_0(z)$. The principal branch of the Lambert 
+%lower branch, often denoted $W_{-1}(z)$.
+%The product logarithm is analytic for $z>-\frac{1}{e}$ , but cannot be expressed 
+%in terms of elementary functions.
+
+
+%principal branch
+https://math.stackexchange.com/questions/3004835/is-the-lambert-w-function-analytic-if-not-everywhere-then-on-what-set-is-it-ana
+https://researchportal.bath.ac.uk/en/publications/algebraic-properties-of-the-lambert-w-function-from-a-result-of-r
+
+%
+https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
+
+%{\color{blue}
 %%
 %\begin{align}
 %&r = F^*\left( \frac{1-\frac{B^*}{\bar B(0)}}{\frac{B^*}{\bar B(0)}} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{\frac{B^*}{\bar B(0)}-1}{\frac{B^*}{\bar B(0)}} \right)}
@@ -613,7 +694,7 @@ The lack of an analytical solution here is understood.
 \citeA[pg. 519]{schnute_analytical_1998} specifically points out that 
 $F_{MSY}$ cannot be expressed analytically in terms of productivity parameters, 
 but rather gives a partial analytical expression for the inverse relationship. 
-\citeA{schnute_analytical_1998}, although parameterized slightly differently, 
+Although parameterized slightly differently, \citeA{schnute_analytical_1998} 
 derives expressions for $\alpha$ and $\beta$ as a function of RPs and $\gamma$. 
 %rather suggests that a numerical solution 
 

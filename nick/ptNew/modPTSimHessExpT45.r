@@ -46,7 +46,11 @@ FMsy = function(alpha, gamma){ alpha/gamma }
 #
 getPar = function(ff, zeta){
         #
-	gamma = lambertW0(zeta*log(zeta))/(zeta*log(zeta))
+	gamma = c()
+	for(z in zeta){
+		gammas = c(lambertW0(z*log(z))/log(z), lambertWm1(z*log(z))/log(z))
+		gamma = c(gamma, gammas[1+(z>(1/exp(1)))])
+	}
         alpha = ff*gamma
         #
         return(cbind(alpha, gamma))
