@@ -131,7 +131,7 @@ if( F ){
                 datName = sprintf('%s/datGen_xi%s_zeta%s.rda', place, round(des$xi[i], binTrk), round(des$zeta[i], binTrk))
                 datGen$save( datName )
         }
-}
+}else{
 
 #
 datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
@@ -239,7 +239,7 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
         fit$save( fileFit )
 }
 
-
+}
 
 
 
