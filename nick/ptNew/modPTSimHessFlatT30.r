@@ -92,8 +92,8 @@ odeMethod = "lsode"
 ##xiSims = rev(seq(0.5, 4.5, 0.05))
 zetaMax = 0.7
 zetaMin = 0.15
-xiMax = 3.75
-xiMin = 0.25
+xiMax = 0.8  #3.75
+xiMin = 0.05 #0.25
 #
 n = 100
 minDiff = min((zetaMax-zetaMin)/n, (xiMax-xiMin)/n)
