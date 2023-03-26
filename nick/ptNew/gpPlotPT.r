@@ -149,8 +149,8 @@ place = sprintf("./modsPT%s/", mod)
 xiRes = 0.5
 zetaTop = 0.6 #0.7
 zetaBot = 0.2 #0.1
-xiBot = 0.5
-xiTop = 3.5
+xiBot = 0.1 #0.5
+xiTop = 0.7 #3.5
 
 #
 f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))[1] )
