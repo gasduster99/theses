@@ -100,7 +100,7 @@ minDiff = min((zetaMax-zetaMin)/n, (xiMax-xiMin)/n)
 binTrk = ceiling(abs(log10(minDiff)))
 
 #make new design
-if( T ){
+if( F ){
 	#
 	des = lhs(n, rbind(c(xiMin, xiMax),c(0.45, 0.55))) #c(zetaMin, zetaMax)))
 	colnames(des) = c('xi', 'zeta')
@@ -130,7 +130,7 @@ datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen
 #
 registerDoParallel(46)
 opts = list(preschedule=F)
-foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
+foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 #for(i in 1:n){
 	#
         #DATA
