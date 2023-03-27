@@ -148,7 +148,7 @@ place = sprintf("./modsPT%s/", mod)
 #
 xiRes = 0.5
 zetaTop = 0.6 #0.7
-zetaBot = 0.2 #0.1
+zetaBot = 0.3#0.2 #0.1
 xiBot = 0.1 #0.5
 xiTop = 0.7 #3.5
 
@@ -158,6 +158,7 @@ f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))[
 #
 D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
 D = D[D$lFV>0 & D$lKV>0,]
+D = D[!(round(D$xiHat,1)<0.1 & D$zetaSeed>0.5),] #D[!(D$zetaSeed>0.6),] #D[!(D$xiHat<=D$xiSeed*3/4 & D$zetaSeed>0.5),]#
 
 #
 #GP INTERPOLATION
@@ -171,11 +172,12 @@ lFV = diag(D$lFV)
 lFX = cbind(1, D$xiSeed, D$zetaSeed)
 
 #
-xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+xAug = seq(xiBot, xiTop, 0.01) #seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
 aug = cbind(rep(1, length(xAug)), xAug, 1/(2))
 lFX = rbind(lFX, aug)
 lFy = c(lFy, log(xAug))
-lFV = diag(c(D$lFV, rep(mean(D$lFV), length(xAug))))
+lFV = diag(c(D$lFV, rep(mean(D$lFV)*10^-10, length(xAug)))) #mean(D$lFV)
+#lFV = diag( apply(cbind((diag(lFV)), 1e-2), 1, max)*10 )
 
 #
 lFaxes = lFX[,2:3]
@@ -207,7 +209,6 @@ mask = inHull(lFXStar[,c(2,3)], vchull)>=0
 lFPred = gpPredict(lFXStar, lFXStar[,2:3], lFFit)
 lFPred[!mask] = NA
 
-
 #bias
 xiHat = exp(lFPred)
 xiBias = sweep(xiHat, 1, xiStar)
@@ -226,7 +227,7 @@ eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
 
 #
 lKy = D$lK
-lKV = diag(c(D$lKV))
+lKV = diag(c(D$lKV))#*10)
 lKX = cbind(1, D$xiSeed, D$zetaSeed)
 
 #
@@ -278,7 +279,7 @@ zetaMask = zetaStar>zetaBot & zetaStar<zetaTop
 par(mar=c(5, 4, 4, 4)+0.1)
 image(xiStar, zetaStar, xiBias,
         col  = adjustcolor(xCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),
+        xlab = TeX("$F_{MSY}$"),
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Bias in Estimated $F_{MSY}$"),
         ylim = c(zetaBot, zetaTop),
@@ -318,7 +319,7 @@ zetaMask = zetaStar>zetaBot & zetaStar<zetaTop
 par(mar=c(5, 4, 4, 4)+0.1)
 image(xiStar, zetaStar, xiBias/xiStar,
         col  = adjustcolor(xCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),#'Xi',
+        xlab = TeX("$F_{MSY}$"),#'Xi',
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Relative Bias in Estimated $F_{MSY}$"),
         ylim = c(zetaBot, zetaTop),
@@ -332,7 +333,7 @@ contour(xiStar[15:16], zetaStar, (xiBias/xiStar)[15:16,],
         levels = seq(-1, 1, 0.1),
         labcex = 1.025,
         lwd  = eps(),
-        xlab = TeX("$F_{MSY}/M$"), #'Xi',
+        xlab = TeX("$F_{MSY}$"), #'Xi',
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Relative Bias in Estimated $F_{MSY}$"),
         ylim = c(zetaBot, zetaTop),
@@ -346,7 +347,7 @@ contour(xiStar[end], zetaStar, (xiBias/xiStar)[end,],
         levels = seq(-1, 1, 0.1),
         labcex = 1.025,
         lwd  = eps(),
-        xlab = TeX("$F_{MSY}/M$"), #'Xi',
+        xlab = TeX("$F_{MSY}$"), #'Xi',
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Relative Bias in Estimated $F_{MSY}$"),
         ylim = c(zetaBot, zetaTop),
@@ -356,7 +357,7 @@ contour(xiStar[end], zetaStar, (xiBias/xiStar)[end,],
 )
 image(xiStar, zetaStar, xiBias/xiStar,
         col  = "grey10", #adjustcolor(xCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),#'Xi',
+        xlab = TeX("$F_{MSY}$"),#'Xi',
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Relative Bias in Estimated $F_{MSY}$"),
         ylim = c(zetaBot, zetaTop),
@@ -391,7 +392,7 @@ yCols = c(negCols, "#FFFFFF", posCols)
 par(mar=c(5, 4, 4, 4)+0.1)
 image(xiStar, zetaStar, zetaBias,
         col  = adjustcolor(yCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),
+        xlab = TeX("$F_{MSY}$"),
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Bias in Estimated $B_{MSY}/B_0$"),
         ylim = c(zetaBot, zetaTop),
@@ -421,11 +422,12 @@ eucCols = hcl.colors(41, "Reds 2", rev=T)
 par(mar=c(5, 4, 4, 4)+0.1)
 image(xiStar, zetaStar, eucBias,
         col  = adjustcolor(eucCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),
+        xlab = TeX("$F_{MSY}$"),
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-        main = TeX("Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+        main = TeX("Bias Direction for ($F_{MSY}$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
         xlim = c(xiBot, xiTop),
+	zlim = c(0, 2),
         cex.lab = 1.5,
         cex.main= 1.5
 )
@@ -439,6 +441,86 @@ quiver(
         lFXStar[w,2][thin], lFXStar[w,3][thin],
         xiBias[w][thin], zetaBias[w][thin],
         scale=0.025
+)
+show = seq(1, length(eucCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.2f", rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), length.out=leng
+#        fill = rev(eucCols[show]), 
+#        xpd = NA
+#)
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
+
+#
+eg = expand.grid(xiStar, zetaStar)
+ds = matrix(sqrt(eg[,1]^2+eg[,2]^2), nrow=length(xiStar), ncol=length(zetaStar))
+#
+png(sprintf("directionalBiasPercentPT%s.png", mod))
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 4, 4, 4)+0.1)
+image(xiStar, zetaStar, eucBias/ds,
+        col  = adjustcolor(eucCols, alpha.f=0.99),
+        xlab = TeX("$F_{MSY}$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("Bias Direction for ($F_{MSY}$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+	zlim = c(0, 0.6), #1), #1.5),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+#curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+abline(h=0.5, lwd=3)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,165))#125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.065, length=0.175, lwd=2
+)
+show = seq(1, length(eucCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.2f", rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), length.out=leng
+#        fill = rev(eucCols[show]), 
+#        xpd = NA
+#)
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
+
+##
+#eg = expand.grid(xiStar, zetaStar)
+#ds = matrix(sqrt(eg[,1]^2+eg[,2]^2), nrow=length(xiStar), ncol=length(zetaStar))
+ms = matrix(abs(0.5-eg[,2]), nrow=length(xiStar), ncol=length(zetaStar))
+#
+png(sprintf("directionalBiasPercentSmallPT%s.png", mod))
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 4, 4, 4)+0.1)
+image(xiStar, zetaStar, eucBias/ms,
+        col  = adjustcolor(eucCols, alpha.f=0.99),
+        xlab = TeX("$F_{MSY}$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("Bias Direction for ($F_{MSY}$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+	#zlim = c(0, 0.6), #1), #1.5),
+        zlim = c(1, 3.5), #22.3),
+	cex.lab = 1.5,
+        cex.main= 1.5
+)
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+#curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+abline(h=0.5, lwd=3)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,165))#125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.065, length=0.175, lwd=2
 )
 show = seq(1, length(eucCols), length.out=20)
 #legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
@@ -505,7 +587,7 @@ zetaMask = zetaStar>zetaBot & zetaStar<zetaTop
 par(mar=c(5, 4, 4, 4)+0.1)
 image(xiStar, zetaStar, kBias/P0,
         col  = adjustcolor(xCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),
+        xlab = TeX("$F_{MSY}$"),
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Relative Bias in Estimated $B_0$"),
         ylim = c(zetaBot, zetaTop),
@@ -519,7 +601,7 @@ contour(xiStar[15:16], zetaStar, (kBias/P0)[15:16,],
         levels = seq(-1, 1, 0.1),
         labcex = 1.025,
         lwd  = eps(),
-        xlab = TeX("$F_{MSY}/M$"), #'Xi',
+        xlab = TeX("$F_{MSY}$"), #'Xi',
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Relative Bias in Estimated $F_{MSY}$"),
         ylim = c(zetaBot, zetaTop),
@@ -533,7 +615,7 @@ contour(xiStar[end], zetaStar, (kBias/P0)[end,],
         levels = seq(-1, 1, 0.1),
         labcex = 1.025,
         lwd  = eps(),
-        xlab = TeX("$F_{MSY}/M$"), #'Xi',
+        xlab = TeX("$F_{MSY}$"), #'Xi',
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Relative Bias in Estimated $F_{MSY}$"),
         ylim = c(zetaBot, zetaTop),
@@ -543,7 +625,7 @@ contour(xiStar[end], zetaStar, (kBias/P0)[end,],
 )
 image(xiStar, zetaStar, kBias/P0,
         col  = "grey10", #adjustcolor(xCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),#'Xi',
+        xlab = TeX("$F_{MSY}$"),#'Xi',
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Relative Bias in Estimated $F_{MSY}$"),
         ylim = c(zetaBot, zetaTop),
@@ -582,7 +664,7 @@ zetaMask = zetaStar>zetaBot & zetaStar<zetaTop
 par(mar=c(5, 4, 4, 4)+0.1)
 image(xiStar, zetaStar, bMSYBias,
         col  = adjustcolor(bMSYCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),
+        xlab = TeX("$F_{MSY}$"),
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Bias in Estimated $B_{MSY}$"),
         ylim = c(zetaBot, zetaTop),
@@ -619,7 +701,7 @@ zetaMask = zetaStar>zetaBot & zetaStar<zetaTop
 par(mar=c(5, 4, 4, 4)+0.1)
 image(xiStar, zetaStar, t(t(bMSYBias)/(P0*zetaStar)),
         col  = adjustcolor(xCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),#'Xi',
+        xlab = TeX("$F_{MSY}$"),#'Xi',
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Relative Bias in Estimated $B_{MSY}$"),
         ylim = c(zetaBot, zetaTop),
@@ -633,7 +715,7 @@ contour(xiStar[15:16], zetaStar, (t(t(bMSYBias)/(P0*zetaStar)))[15:16,],
         levels = seq(-1, 1, 0.1),
         labcex = 1.025,
         lwd  = eps(),
-        xlab = TeX("$F_{MSY}/M$"), #'Xi',
+        xlab = TeX("$F_{MSY}$"), #'Xi',
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Relative Bias in Estimated $F_{MSY}$"),
         ylim = c(zetaBot, zetaTop),
@@ -647,7 +729,7 @@ contour(xiStar[end], zetaStar, (t(t(bMSYBias)/(P0*zetaStar)))[end,],
         levels = seq(-1, 1, 0.1),
         labcex = 1.025,
         lwd  = eps(),
-        xlab = TeX("$F_{MSY}/M$"), #'Xi',
+        xlab = TeX("$F_{MSY}$"), #'Xi',
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Relative Bias in Estimated $F_{MSY}$"),
         ylim = c(zetaBot, zetaTop),
@@ -657,7 +739,7 @@ contour(xiStar[end], zetaStar, (t(t(bMSYBias)/(P0*zetaStar)))[end,],
 )
 image(xiStar, zetaStar, t(t(bMSYBias)/(P0*zetaStar)),
         col  = "grey10", #adjustcolor(xCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),#'Xi',
+        xlab = TeX("$F_{MSY}$"),#'Xi',
         ylab = TeX('$B_{MSY}/B_0$'),
         main = TeX("Relative Bias in Estimated $F_{MSY}$"),
         ylim = c(zetaBot, zetaTop),

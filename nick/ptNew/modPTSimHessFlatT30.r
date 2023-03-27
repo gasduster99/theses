@@ -100,9 +100,9 @@ minDiff = min((zetaMax-zetaMin)/n, (xiMax-xiMin)/n)
 binTrk = ceiling(abs(log10(minDiff)))
 
 #make new design
-if( F ){
+if( T ){
 	#
-	des = lhs(n, rbind(c(xiMin, xiMax),c(zetaMin, zetaMax)))
+	des = lhs(n, rbind(c(xiMin, xiMax),c(0.45, 0.55))) #c(zetaMin, zetaMax)))
 	colnames(des) = c('xi', 'zeta')
 	pars = getPar(des[,1], des[,2])
 	des = as.data.frame(des)
