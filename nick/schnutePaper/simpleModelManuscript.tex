@@ -227,7 +227,7 @@
 \begin{wrapfigure}{r}{0.45\textwidth}
 \vspace{-2cm}
 %\includegraphics[width=0.5\textwidth]{plots/derisoSrr.png}
-\includegraphics[width=0.49\textwidth]{../ptNew/g4PTLog.png}
+\includegraphics[width=0.49\textwidth]{../ptNew/g4PT.png}
 \vspace{-1cm}
 \caption{
 The PT production function plotted across a variety of parameter
@@ -356,7 +356,7 @@ biological model parameters.
 %%and Eq(\ref{Bmsy}) in Eq(\ref{xizetaSimple}).
 %%Eq(\ref{xizetaSimple}) can then take a specific analytical form in terms of the 
 %  %an expression for $\xi$ and $\zeta$ can be found in terms of model parameters.  
-\begin{align}
+\begin{align}\label{ptRP}
 &F^* = \frac{r}{\gamma}
 &\frac{B^*}{\bar B(0)} = \left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}
 \end{align}
@@ -403,76 +403,6 @@ biological model parameters.
 Above $W$ is the Lambert product logarithm function. 
 More details about this derivation, and the Lambert product logarithm, are given in \mbox{Appendix (\ref{lambApp}).}
 
-\section{Appendix\label{lambApp}: Inverting $\frac{B^*}{\bar B(0)}$ and $\gamma$ for the PT Model}
-For bevity let $\zeta=\frac{B^*}{\bar B(0)}$.
-\begin{align*}
-&\zeta=\left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}\\
-%&\zeta^{\gamma-1}=\frac{1}{\gamma}\\
-&\zeta=\gamma\zeta^{\gamma}\\
-&\zeta=\gamma e^{\gamma\log(\zeta)}\\
-&\zeta\log(\zeta)=\gamma\log(\zeta) e^{\gamma\log(\zeta)}
-\end{align*}
-The Lambert product logarithm, $W$, is defined as the inverse function of $z=xe^x$ such that $x=W(z)$. 
-Applying this definition allows for the isolation of $\gamma$.
-\begin{align}
-&\gamma\log(\zeta)=W\left(\zeta\log(\zeta)\right) \nonumber\\
-&\gamma=\frac{W\left(\zeta\log(\zeta)\right)}{\log(\zeta)} \label{gammaOfZeta}
-\end{align}
-The Lambert product logarithm is a mulivalued function with a branch point at 
-$-\frac{1}{e}$. The principal branch, $W_0(z)$, is defined on $z\in\left(-\frac{1}{e}, \infty\right)$, 
-and the lower branch, $W_{-1}(z)$, is defined on $z\in\left(-\frac{1}{e}, 0\right)$. Taken 
-individually, each respective branch is analytic, but cannot be expressed in terms 
-of elementary functions.
-
-%
-When $\zeta\in\left(0, \frac{1}{e}\right)$ the solution of interest in Eq. (\ref{gammaOfB}) 
-comes from $W_0$. %$\gamma\to1$ as $\zeta\to\frac{1}{e}$ to produce the Fox Model. 
-When $\zeta\to\frac{1}{e}$, the Fox Model emerges as $\gamma\to1$.
-When $\zeta\in\left(\frac{1}{e}, 1\right)$ the solution of interest comes from 
-$W_{-1}$. For the use case presented here, Eq. (\ref{gammaOfB}) is be interpreted as,
-
-\begin{equation}
-\gamma = 
-\begin{cases} 
-\frac{W_0\left(\zeta\log\left(\zeta\right)\right)}{\log\left(\zeta\right)} & \zeta\in\left(0, \frac{1}{e}\right)\\
-\frac{W_{-1}\left(\zeta\log\left(\zeta\right)\right)}{\log\left(\zeta\right)} & \zeta\in\left(\frac{1}{e}, 1\right)
-\end{cases}. 
-\end{equation} 
-
-%
-Prager 2002, Figure(2).
-
-%goes from $0$ to $1$ the solution of interest starts on the principal branch,
-%and runs toward the 
-%The solution of interest, for the use cases here, come from the 
-%principal branch, often denoted $W_0(z)$. The principal branch of the Lambert 
-%lower branch, often denoted $W_{-1}(z)$.
-%The product logarithm is analytic for $z>-\frac{1}{e}$ , but cannot be expressed 
-%in terms of elementary functions.
-
-
-%principal branch
-https://math.stackexchange.com/questions/3004835/is-the-lambert-w-function-analytic-if-not-everywhere-then-on-what-set-is-it-ana
-https://researchportal.bath.ac.uk/en/publications/algebraic-properties-of-the-lambert-w-function-from-a-result-of-r
-
-%
-https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
-
-%{\color{blue}
-%%
-%\begin{align}
-%&r = F^*\left( \frac{1-\frac{B^*}{\bar B(0)}}{\frac{B^*}{\bar B(0)}} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{\frac{B^*}{\bar B(0)}-1}{\frac{B^*}{\bar B(0)}} \right)}
-%&\gamma = \frac{1}{\frac{B^*}{\bar B(0)}}. \label{rg}
-%\end{align}
-%%{\color{red}
-%%\begin{align}
-%%&r = F^*\left( \frac{\bar B(0)-B^*}{B^*} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{B^*-\bar B(0)}{B^*} \right)}
-%%&\gamma = \frac{\bar B(0)}{B^*}.
-%%\end{align}
-%%}
-%
-%}
-
 
 %	\begin{itemize}
 %		\item Explicit Natural mortality $\frac{dB}{dt} = P(B(t); \bm{\theta}) - M B(t) - F(t) B(t)$
@@ -483,7 +413,94 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 
 
 %
-\subsubsection{Continuous model formulation}
+\subsection{Catch \label{catch}}	
+
+%%
+%For the sake of simulation, catch is parameterized so that $F_t$ can be 
+%controlled with respect to $F^*$. 
+
+%
+It is known that the behavior of catch can effect inference on the productivity %biological 
+parameters \shortcite{hilborn_quantitative_1992}. % {\color{red} cite walters}). 
+%In particular it is thought that catch can induce "contrast" in index data
+%so as to better inform $r$. 
+In this setting contrast refers to changes in the long term trends of index data. 
+Figure (\ref{catchT45}, \emph{right}) demonstrates an example of biomass 
+that includes contrast induced by catch. It 
+is not well understood how contrast may factor into inferential failure induced by model %biases induced by model 
+misspecification. A variety of catches are investigated.
+%To better understand this a variety of catches are investigated.
+%the role that 
+%catch plays in understanding model misspecification errors a variety of 
+%catches are investigated.  
+
+%
+Catch is parameterized so that $F(t)$ can be controlled with respect to $F^*$. 
+Recall that catch is assumed to be proportional to biomass, so that $C(t)=F(t)B(t)$.
+%with the proportionality constant amounting to the fishing rate, so that $C(t)=F(t)B(t)$. 
+To control $F(t)$ with respect to $F^*$, $C(t)$ is specified by defining the 
+quantity $\frac{F(t)}{F^*}$ as the relative fishing rate. $B(t)$ is defined 
+by the solution of the ODE, and $F^*$ is defined by the biological parameters 
+of the model, see Eq (\ref{Fmsy}). By defining $\frac{F(t)}{F^*}$, catch 
+can then be written as \mbox{$C(t)=F^*\left(\frac{F(t)}{F^*}\right)B(t)$.}
+
+%
+Intuitively $\frac{F(t)}{F^*}$ describes the fraction of $F^*$ that $F(t)$ is  
+specified to for the current $B(t)$. When $\frac{F(t)}{F^*}=1$, $F(t)$ will be 
+held at $F^*$, and the solution of the ODE brings $B(t)$ into equilibrium at 
+$B^*$. For constant $\frac{F(t)}{F^*}$ biomass %the Schaefer model 
+%has an analytical 
+%solution, via integrating factors, so that $B(t)$ 
+comes to equilibrium as an exponential decay from $K$ approaching $B^*$. 
+%The relative fishing rate is defined on $[0, \infty)$; 
+When $\frac{F(t)}{F^*}<1$, $F(t)$ is lower than $F^*$ and $B(t)$ is pushed 
+toward $\bar B>B^*$. Contrarily, when $\frac{F(t)}{F^*}>1$, $F(t)$ is higher 
+than $F^*$ and $B(t)$ is pushed toward $\bar B<B^*$; the precise values of 
+$\bar B$ can be calculated from Eq (\ref{BsEq}).
+%(\ref{Beq}).
+
+%
+\begin{figure}[h!]
+\includegraphics[width=0.45\textwidth]{../../../theses/nick/gpBias/rfExpT45X2Z0.6.png}
+\includegraphics[width=0.45\textwidth]{../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png}
+%\includegraphics[width=0.5\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png}
+\caption{ \label{catchT45}
+($left$) Relative fishing specified so as to induce contrast.
+($right$) Population biomass and catch demonstrating contrast in a {\color{red}PT population} with $F^*=0.4$ and $\frac{B^*}{\bar B(0)}=0.6$.
+}
+\end{figure}
+
+%
+\clearpage
+%
+In practice, catch is determined by a series of observed, assumed known, catches. 
+Catch observations are typically observed on a quarterly (or yearly) basis, so 
+that the ODE may be discretized via Euler’s method with integration step sizes 
+to match the observation frequency of the modeled data. In this case, catch is sampled 
+as would be done in practice however, the simulation can encounter a variety of issues 
+working with the naively discretized ODE. As a result the ODE is integrated implicitly 
+via the Livermore Solver \shortcite[lsode]{radhakrishnan_description_1993}, and catch 
+is linearly interpolated between sampled epochs. 
+%More detail about issues of continuity and ODE integration are described in 
+%Appendix (\ref{appODE}).
+
+%\begin{itemize}
+%	%\item how its parameterized
+%	%\item different behaviors
+%	%\item contrast
+%	\item Forcing function
+%	\item continuity and the solution of ODEs
+%\end{itemize}
+
+\begin{itemize}
+	%\item picture relative fishing rate
+	\item ?quantification of degrees of information? (avg curvature?)
+	\item remake picture w/o PT references
+\end{itemize}
+
+
+%
+\subsection{Continuous model formulation}
 	\begin{itemize}
 		\item differential equation theory (uniqueness)
 		\item chaos
@@ -685,8 +702,8 @@ short of providing an analytical solution for $F_{MSY}$ directly in terms of
 $\theta$, % $\alpha$, $\beta$, and $\gamma$, 
 but rather shows that $F_{MSY}$ must respect the following expression,  
 %
-\begin{align}
-0 &= \frac{1}{\gamma} - \left(\frac{1}{\gamma} + \frac{F_{MSY}}{F_{MSY}+M}\right)\left(\frac{F_{MSY}+M}{\alpha}\right)^\gamma. \label{yeildS} 
+\begin{align}\label{FmsyS}
+0 &= \frac{1}{\gamma} - \left(\frac{1}{\gamma} + \frac{F_{MSY}}{F_{MSY}+M}\right)\left(\frac{F_{MSY}+M}{\alpha}\right)^\gamma.  
 \end{align}
 
 %, although parameterizing slightly differently,
@@ -1083,91 +1100,90 @@ add~&X_{n'}~to~X_{n}
 %
 
 
-%
-\subsection{Catch \label{catch}}	
-
-%%
-%For the sake of simulation, catch is parameterized so that $F_t$ can be 
-%controlled with respect to $F^*$. 
 
 %
-It is known that the behavior of catch can effect inference on the productivity %biological 
-parameters \shortcite{hilborn_quantitative_1992}. % {\color{red} cite walters}). 
-%In particular it is thought that catch can induce "contrast" in index data
-%so as to better inform $r$. 
-In this setting contrast refers to changes in the long term trends of index data. 
-Figure (\ref{catchT45}, \emph{right}) demonstrates an example of biomass 
-that includes contrast induced by catch. It 
-is not well understood how contrast may factor into inferential failure induced by model %biases induced by model 
-misspecification. A variety of catches are investigated.
-%To better understand this a variety of catches are investigated.
-%the role that 
-%catch plays in understanding model misspecification errors a variety of 
-%catches are investigated.  
+\subsection{Gaussian Process Metamodel}
+%
 
 %
-Catch is parameterized so that $F(t)$ can be controlled with respect to $F^*$. 
-Recall that catch is assumed to be proportional to biomass, so that $C(t)=F(t)B(t)$.
-%with the proportionality constant amounting to the fishing rate, so that $C(t)=F(t)B(t)$. 
-To control $F(t)$ with respect to $F^*$, $C(t)$ is specified by defining the 
-quantity $\frac{F(t)}{F^*}$ as the relative fishing rate. $B(t)$ is defined 
-by the solution of the ODE, and $F^*$ is defined by the biological parameters 
-of the model, see Eq (\ref{Fmsy}). By defining $\frac{F(t)}{F^*}$, catch 
-can then be written as \mbox{$C(t)=F^*\left(\frac{F(t)}{F^*}\right)B(t)$.}
+A GP is a stochastic process generalizing the multivariate normal distribution 
+to an infinite dimensional analog. GPs are often specified primarily through the
+choice of a covariance (or correlation) function which defines the relationship 
+between locations in an index set. Typically the index set is spatial for GPs, 
+with points closely related in the index set resulting in correlated effects in 
+the model. In this setting the model is over the space of reference points. A GP 
+model implies an $n$ dimensional multivariate normal distribution on the 
+observations of the model with a correlated error structure defined by the 
+modeled covariance function.
 
 %
-Intuitively $\frac{F(t)}{F^*}$ describes the fraction of $F^*$ that $F(t)$ is  
-specified to for the current $B(t)$. When $\frac{F(t)}{F^*}=1$, $F(t)$ will be 
-held at $F^*$, and the solution of the ODE brings $B(t)$ into equilibrium at 
-$B^*$. For constant $\frac{F(t)}{F^*}$ biomass %the Schaefer model 
-%has an analytical 
-%solution, via integrating factors, so that $B(t)$ 
-comes to equilibrium as an exponential decay from $K$ approaching $B^*$. 
-%The relative fishing rate is defined on $[0, \infty)$; 
-When $\frac{F(t)}{F^*}<1$, $F(t)$ is lower than $F^*$ and $B(t)$ is pushed 
-toward $\bar B>B^*$. Contrarily, when $\frac{F(t)}{F^*}>1$, $F(t)$ is higher 
-than $F^*$ and $B(t)$ is pushed toward $\bar B<B^*$; the precise values of 
-$\bar B$ can be calculated from Eq (\ref{BsEq}).
-%(\ref{Beq}).
+Each design location of the simulation produces an estimate of two productivity 
+parameters under the restricted production model. Each of the fitted 
+productivty parameter estimates are then modeled using independent instances of 
+the following model in Eq (\ref{GPModel}).
 
 %
-\begin{figure}[h!]
-\includegraphics[width=0.45\textwidth]{../../../theses/nick/gpBias/rfExpT45X2Z0.6.png}
-\includegraphics[width=0.45\textwidth]{../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png}
-%\includegraphics[width=0.5\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png}
-\caption{ \label{catchT45}
-($left$) Relative fishing specified so as to induce contrast.
-($right$) Population biomass and catch demonstrating contrast in a {\color{red}PT population} with $F^*=0.4$ and $\frac{B^*}{\bar B(0)}=0.6$.
-}
-\end{figure}
+Let $\textbf{y}$ be a vector collecting the fitted log productivity parameter MLEs under 
+the restricted two parameter production models. Furthermore, let $\bm{\omega}$ 
+be a vector of the MLE standard error estimates, on the variance scale (via the inverted Fisher 
+information of the production model log likelihood).  
+%
+$\bm{X}$ is the $n$ x 2 LHS design matrix of RPs derived above for each respective 
+three parameter data generating model. 
+\begin{align} \label{GPModel}
+	\textbf{y} &= \beta_0 + \bm{X}\bm{\beta} + \bm{v} + \bm{\epsilon} \nonumber \\
+	\bm{v} &\sim N_n(\bm{0}, \tau^2 \bm{R_{\ell}}) \\
+	\bm{\epsilon} &\sim N_n(\bm{0}, \bm{\omega}'\bm{I}) \nonumber
+\end{align}
+
+%The GP residual variation
+$\epsilon$ models independent normally distributed error, which provides an 
+ideal mechanism for propagating uncertainty from inference in the simulation 
+step into the metamodel. By matching each $\text{y}_i$ with an observed $\omega_i$ 
+variance term, $\epsilon$ serves to down weight the influence of each $\text{y}_i$ 
+in proportion to the inferred production model sampling distribution 
+uncertainty. This has the effect of smoothing the GP model in a way similar to 
+the nugget effect \shortcite{gramacy_cases_2012}, although the application 
+here models this effect heterogeniously.
+
+%Above $\bm{v}$ is a vector of gaussian process effects
+The term, $\bm{v}$, contains spatially correlated GP effects. The correlation 
+matrix, $\bm{R_{\ell}}$ describes how RPs closer in the simulation design are more 
+correlated. This spatial effect is modeled with a squared exponential correlation function,
+%
+\begin{align}   \label{corModel}
+R(\bm{x}, \bm{\tilde x}) &= \exp\left( \sum_{i=1}^2 \frac{-(x_{i}-\tilde x_{i})^2}{2\ell_j^2} \right). 
+\end{align}
+
+$R$ has an anisotropic separable form which allows for differing length scales, 
+$\ell_1$ and $\ell_2$, in the different RP axes. The flexibility to model 
+correlations separately in the different RP axes is key due to the differences 
+in the extent of the RP domains marginally. 
+%$\ell_1$ and $\ell_2$ model the length scales for $F^*$ and 
+%$\frac{B^*}{\bar B(0)}$
+%respectively. 
+The metamodel parameters $\beta_0$, $\bm{\beta}$, $\tau^2$,
+$\ell_1$ and $\ell_2$ are fit via MLE against the observations $\textbf{y}$, $\bm{X}$,
+and $\bm{\omega}$ from simulation fits.
 
 %
-\clearpage
+Predictive estimates are obtained via kriging {(\color{red}cite)}. 
+%over intermediate values over RP space. 
+%with $\hat~$ decorate any quantity that is derived for metamodel interpolation.
+%{\color{red}Let $\tilde~$ decorate any quantity that is derived 
+%under the metamodel prediction.}
+\begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+	\hat y(\textbf{x}) = \beta_0 + \textbf{x}\bm{\beta} + \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\Big(\textbf{y}-\big(\beta_0+\bm{X}\bm{\beta}\big)\Big)
+\end{equation}
+
 %
-In practice, catch is determined by a series of observed, assumed known, catches. 
-Catch observations are typically observed on a quarterly (or yearly) basis, so 
-that the ODE may be discretized via Euler’s method with integration step sizes 
-to match the observation frequency of the modeled data. In this case, catch is sampled 
-as would be done in practice however, the simulation can encounter a variety of issues 
-working with the naively discretized ODE. As a result the ODE is integrated implicitly 
-via the Livermore Solver \shortcite[lsode]{radhakrishnan_description_1993}, and catch 
-is linearly interpolated between sampled epochs. 
-%More detail about issues of continuity and ODE integration are described in 
-%Appendix (\ref{appODE}).
+$\hat y(\textbf{x})$ is a predicted value of the metamodel at the 
+RP location $\textbf{x}$. $\textbf{r(x)}$ is defined as the vector of correlation 
+function evaluations for the predictive location $\textbf{x}$ against all observations 
+in $\bm{X}$ (i.e. $\textbf{r(x)}=\bm{R}(\textbf{x}, \bm{x}_i)~\forall~\bm{x}_i\in\bm{X}$).
 
-%\begin{itemize}
-%	%\item how its parameterized
-%	%\item different behaviors
-%	%\item contrast
-%	\item Forcing function
-%	\item continuity and the solution of ODEs
-%\end{itemize}
-
-\begin{itemize}
-	%\item picture relative fishing rate
-	\item ?quantification of degrees of information? (avg curvature?)
-	\item remake picture w/o PT references
-\end{itemize}
+%
+{\color{blue} Maybe a bit of hinting at uses}.
 
 %
 %RESULTS
@@ -1175,13 +1191,159 @@ is linearly interpolated between sampled epochs.
 
 \section{Results}
 
+%%
+%While interpolation occurs in the space of either $\log(r)$ or $\log(K)$, these
+%interpolated values are used to build interpolated estimates of major biological
+%reference points. Using the interpolated values $\check{\log(r)}$ and $\check{\log(K)}$
+%the following transformation are applied to interpolate RP quantities under the Schaefer
+%model,
+%%
+%\begin{align}~
+%        \check B^* = \frac{\check K}{2} ~~~~~~~~
+%        %\check{MSY} = \frac{\check K \check r}{4} ~~~~~~~
+%        \check F^* = \frac{\check r}{2}.  %\check r \check B^* \left(1-\frac{\check B^*}{\check K}\right)
+%\end{align}
+
+%
+While metamodeling occurs on the inferred productivity parameters of the 
+restricted production model, the metamodel can also be used to build 
+metamodeled estimates of major biological RPs. The relavant transformations 
+are given Eqs. (\ref{ptRP}, \ref{BratS}, \ref{FmsyS}) with $\gamma$ 
+fixed to the restricting case. 
+%reference points.
+
+%estimate of two productivity pa-
+%225 rameters under the restricted production model. Each of the fitted productivty parameter
+%226 estimates are then modeled using independent instances of the following model in Eq (28).
+
+%
+Applying the metamodel predictive surfaces to the RP estimate allows for the 
+quantification of RP bias induced by model misspecification of two parameter 
+production functions. Below RP bias is quantified by the following relative 
+measure of bias, similar to a percent error calculation.
+%
+\begin{align}
+\text{Relative Bias} = \frac{\hat{RP}-RP}{RP}
+\end{align}
+
+%
+Above $RP$ is a stand in for the the true value of any of the biological
+reference points under the three parameter data generating production model, 
+and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the 
+two parameter restricted cases.
+
 %
 \subsection{PT/Schaffer}
 \begin{itemize}
-	\item region of chaotic fits due to model misspecification
-	\item arrow plots 
+	\item[~] region of chaotic fits due to model misspecification
+	%\item arrow plots 
 	\item RP break out plots with mechanism of failure
 \end{itemize}
+
+%../ptNew/ptLook.r
+\begin{figure}[h!]
+\includegraphics[width=0.45\textwidth]{../ptNew/directionalBiasSubPTFlatT30.png}
+\includegraphics[width=0.45\textwidth]{../ptNew/directionalBiasSubPTExpT45.png}
+\hspace*{-1cm}
+\includegraphics[width=0.1\textwidth]{../ptNew/subLegnd.png}
+\caption{
+Joint bias direction for ($F_{MSY}$, $\frac{B_{MSY}}{B_0}$) estimates under the misspecified Schaefer Model. The intesity of color represents the excess bias relative to the shortest possible mapping. 
+}
+\end{figure}
+
+\begin{itemize}
+\item Mechanism plot on SRR LHS Grid plot
+\item some detail views in $B_{MSY}$, $B_0$, $F_{MSY}$, $?F_{SPR?}$, $MSY$
+\end{itemize}
+
+\clearpage
+
+%
+Figure (\ref{flatProd}) shows four of the most misspecified example
+production function fits as compared to the true data generating PT production
+functions. In the rug plots below each set of curves the observed biomasses
+demonstrate the exponential decay from $K$ to $B^*$ in each case. In particular,
+notice how only biomasses greater than the PT $B^*$ are observed. 
+%Due to the
+%leaning of the true PT curves, and the symmetry of the logistic parabola, the
+%logistic curve only observes information about its slope at the origin from
+%data observed on the right portion of the PT curves. Above the Schaefer line
+%PT is steeper on the right of $B^*$ than it is on the left, and so the the
+%logistic curve over-estimates $r$, and thus $F^*$, for data generated above
+%the Schaefer line. Below the Schaefer line the vice versa phenomena occurs.
+%Below the Schaefer line PT is shallower to the right of $B^*$ than it is on the
+%left and so the logistic parabola estimate tends to under estimate $F^*$.
+
+%\begin{figure}[h!]
+\begin{wrapfigure}{r}{0.5\textwidth}
+%\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.12Z0.573.png}
+\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.674Z0.599.png}\\
+\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.096Z0.22.png}
+\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.699Z0.201.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.116Z0.62.png}
+%%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.702Z0.614.png}\\
+%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.774Z0.586.png}\\
+%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.065Z0.226.png}
+%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.715Z0.17.png}
+%\end{minipage}
+\caption{
+A comparison of the true PT production function (in black) and the estimated logistic curve (in red)
+with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification
+in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves.
+%Fitted logistic production function verses true PT production function. 
+%Observed biomass plotted along x-axis.
+}
+\label{flatProd}
+%\end{figure}
+\end{wrapfigure}
+
+%%
+%Figure (\ref{flatProd}) shows four of the most misspecified example
+%production function fits as compared to the true data generating PT production
+%functions. In the rug plots below each set of curves the observed biomasses
+%demonstrate the exponential decay from $K$ to $B^*$ in each case. In particular,
+%notice how only biomasses greater than the PT $B^*$ are observed. 
+Due to the
+leaning of the true PT curves, and the symmetry of the logistic parabola, the
+logistic curve only observes information about its slope at the origin from
+data observed on the right portion of the PT curves. Above the Schaefer line
+PT is steeper on the right of $B^*$ than it is on the left, and so the the
+logistic curve over-estimates $r$, and thus $F^*$, for data generated above
+the Schaefer line. Below the Schaefer line the vice versa phenomena occurs.
+Below the Schaefer line PT is shallower to the right of $B^*$ than it is on the
+left and so the logistic parabola estimate tends to under estimate $F^*$.
+
+%
+
+Figure (\ref{flatProd}) indicates that the individual biases of $B^*$ and $K$
+may behave quite differently. $B^*$ appears to be estimated fairly accurately
+while $K$ does not.
+
+%%
+%\clearpage
+%\begin{figure}[h!]
+%%\begin{wrapfigure}{r}{0.5\textwidth}
+%%\hspace*{0.25cm}
+%\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}
+%%\hspace*{0.25cm
+%\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png}
+%\caption{\label{flatRat}
+%MLE Bias surfaces for $B^*$ (\emph{left}) and $K$ (\emph{right}) individually.
+%}
+%\end{figure}
+
+% the parabolic structures ties their ratio to $\frac{1}{2}$.  
+Figure (\ref{flatCurves}) also gives some examples of the relative behavior of
+$B^*$ and $K$. In Figure (\ref{flatTrio}) it is clear that the bias behavior of
+$\frac{B^*}{\bar B(0)}$ is locked in a fixed pattern under the Schaefer model.
+Figure (\ref{flatCurves}) indicates that the individual biases of $B^*$ and $K$
+may behave quite differently. $B^*$ appears to be estimated fairly accurately
+while $K$ does not.
+
+
 
 %
 \subsection{Schnute/BH}
@@ -1192,22 +1354,99 @@ is linearly interpolated between sampled epochs.
 \caption{Uniform Q-Q plot for sampled $\zeta$ against theoretical uniform quantiles.}
 \end{figure}
 
-%
+%../gpBias/animFigSchnuteLHS.r 
 \begin{figure}[h!]
 %\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN56X3Z0.35.png}
-\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN112X2.5Z0.45.png}
+\includegraphics[width=0.45\textwidth]{../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
 %\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN112X3Z0.55.png}
-\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentExpT45N150WideX3Z0.35.png}
-\caption{\color{red} Low Contrast/High Contrast Titles, unify the Legends (Only show one.), Matern to eliviate some smoothness wiggles}
+%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentExpT45N150WideX3Z0.35.png}
+\includegraphics[width=0.45\textwidth]{../gpBias/directionalBiasSchnuteSubExpT45N150Wide.png}
+\hspace*{-1cm}
+\includegraphics[width=0.1\textwidth]{../gpBias/legendSubSchnute.png}
+\caption{Joint bias direction for $\left(\frac{F_{MSY}}{M}\right.$, $\left.\frac{B_{MSY}}{B_0}\right)$ estimates under the misspecified BH Model. The intesity of color represents the excess bias relative to the shortest possible mapping.}
+%\caption{\color{red} Low Contrast/High Contrast Titles, unify the Legends (Only show one.) Redo the colors relative to minimum distance. Less arrows. Bolder arrows, bolder line}
 \end{figure}
 
 %
 \begin{figure}[h!]
 \includegraphics[width=0.5\textwidth]{../gpBias/designLineColorHHardFlatT30N150WWideN112.png}
-\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
 \caption{\color{red} grid plot of production functions.)}
 \end{figure}
 
+%
+\clearpage
+
+%
+\section{Appendix\label{lambApp}: Inverting $\frac{B^*}{\bar B(0)}$ and $\gamma$ for the PT Model}
+For bevity let $\zeta=\frac{B^*}{\bar B(0)}$.
+\begin{align*}
+&\zeta=\left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}\\
+%&\zeta^{\gamma-1}=\frac{1}{\gamma}\\
+&\zeta=\gamma\zeta^{\gamma}\\
+&\zeta=\gamma e^{\gamma\log(\zeta)}\\
+&\zeta\log(\zeta)=\gamma\log(\zeta) e^{\gamma\log(\zeta)}
+\end{align*}
+The Lambert product logarithm, $W$, is defined as the inverse function of $z=xe^x$ such that $x=W(z)$. 
+Applying this definition allows for the isolation of $\gamma$.
+\begin{align}
+&\gamma\log(\zeta)=W\left(\zeta\log(\zeta)\right) \nonumber\\
+&\gamma=\frac{W\left(\zeta\log(\zeta)\right)}{\log(\zeta)} \label{gammaOfZeta}
+\end{align}
+The Lambert product logarithm is a mulivalued function with a branch point at 
+$-\frac{1}{e}$. The principal branch, $W_0(z)$, is defined on $z\in\left(-\frac{1}{e}, \infty\right)$, 
+and the lower branch, $W_{-1}(z)$, is defined on $z\in\left(-\frac{1}{e}, 0\right)$. Taken 
+individually, each respective branch is analytic, but cannot be expressed in terms 
+of elementary functions.
+
+%
+When $\zeta\in\left(0, \frac{1}{e}\right)$ the solution of interest in Eq. (\ref{gammaOfB}) 
+comes from $W_0$. %$\gamma\to1$ as $\zeta\to\frac{1}{e}$ to produce the Fox Model. 
+When $\zeta\to\frac{1}{e}$, the Fox Model emerges as $\gamma\to1$.
+When $\zeta\in\left(\frac{1}{e}, 1\right)$ the solution of interest comes from 
+$W_{-1}$. For the use case presented here, Eq. (\ref{gammaOfB}) is to be interpreted as,
+
+\begin{equation}
+\gamma = 
+\begin{cases} 
+\frac{W_0\left(\zeta\log\left(\zeta\right)\right)}{\log\left(\zeta\right)} & \zeta\in\left(0, \frac{1}{e}\right)\\
+\frac{W_{-1}\left(\zeta\log\left(\zeta\right)\right)}{\log\left(\zeta\right)} & \zeta\in\left(\frac{1}{e}, 1\right)
+\end{cases}. 
+\end{equation} 
+
+%
+Prager 2002, Figure(2).
+
+%goes from $0$ to $1$ the solution of interest starts on the principal branch,
+%and runs toward the 
+%The solution of interest, for the use cases here, come from the 
+%principal branch, often denoted $W_0(z)$. The principal branch of the Lambert 
+%lower branch, often denoted $W_{-1}(z)$.
+%The product logarithm is analytic for $z>-\frac{1}{e}$ , but cannot be expressed 
+%in terms of elementary functions.
+
+
+%principal branch
+https://math.stackexchange.com/questions/3004835/is-the-lambert-w-function-analytic-if-not-everywhere-then-on-what-set-is-it-ana
+https://researchportal.bath.ac.uk/en/publications/algebraic-properties-of-the-lambert-w-function-from-a-result-of-r
+
+%
+https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
+
+%{\color{blue}
+%%
+%\begin{align}
+%&r = F^*\left( \frac{1-\frac{B^*}{\bar B(0)}}{\frac{B^*}{\bar B(0)}} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{\frac{B^*}{\bar B(0)}-1}{\frac{B^*}{\bar B(0)}} \right)}
+%&\gamma = \frac{1}{\frac{B^*}{\bar B(0)}}. \label{rg}
+%\end{align}
+%%{\color{red}
+%%\begin{align}
+%%&r = F^*\left( \frac{\bar B(0)-B^*}{B^*} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{B^*-\bar B(0)}{B^*} \right)}
+%%&\gamma = \frac{\bar B(0)}{B^*}.
+%%\end{align}
+%%}
+%
+%}
 
 
 %

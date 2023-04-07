@@ -278,11 +278,11 @@ getData = function(dir, xiRange, zetaRange){
 #P0 = 10000
 #
 
-##
-#mod = "ExpT45N150Wide" #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
-#mod = "HHardFlatT30N150WWideN56"
-#mod = "HHardFlatT30N150WWideN84"
-mod = "HHardFlatT30N150WWideN112" 
+#
+mod = "ExpT45N150Wide"; contrast=T; #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
+#mod = "HHardFlatT30N150WWideN56"; contrast=F;
+#mod = "HHardFlatT30N150WWideN84"; contrast=F;
+#mod = "HHardFlatT30N150WWideN112"; contrast=F;
 #directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png
 #
 dir = sprintf("./modsSchnute%s/", mod)
@@ -498,17 +498,21 @@ D = D[D$xiBin!=0.534 & D$zetaBin!=0.347,]
 
 #First fit the lF Model and make lF related Predictions
 
+#
+augV = 10^-8
+sigV = 2
 #pick a polynomial mean function
 lFy = D$lF
 lFV = diag(D$lFV)
 lFX = cbind(1, D$xiSeed, D$zetaSeed)
-
+#diag(lFV)[lFX[,3]<1/exp(1)] = diag(lFV)[lFX[,3]<1/exp(1)]*sigV
 #
-xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+xAug = seq(0.5, 4, 0.05) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
 aug = cbind(rep(1, length(xAug)), xAug, 1/(xAug+2))
 lFX = rbind(lFX, aug)
 lFy = c(lFy, log(xAug*M))
-lFV = diag(c(D$lFV, rep(mean(D$lFV), length(xAug))))
+#lFV = diag(c(D$lFV, rep(mean(D$lFV), length(xAug))))
+lFV = diag(c(D$lFV, rep(mean(D$lFV)*augV, length(xAug))))
 
 #
 lFaxes = lFX[,2:3]
@@ -573,6 +577,15 @@ eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
 lKy = D$lK
 lKV = diag(c(D$lKV))
 lKX = cbind(1, D$xiSeed, D$zetaSeed)
+#diag(lKV)[lKX[,3]<(1/exp(1))] = diag(lKV)[lKX[,3]<(1/exp(1))]*sigV
+##
+#xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+#aug = cbind(rep(1, length(xAug)), xAug, 1/(xAug+2))
+lKX = rbind(lKX, aug)
+lKy = c(lKy, rep(log(P0), length(xAug)))
+#lKV = diag(c(D$lKV, rep(mean(D$lKV), length(xAug))))
+lKV = diag(c(D$lKV, rep(mean(D$lKV)*augV, length(xAug))))
+
 
 #
 lKaxes = lKX[,2:3]
@@ -633,6 +646,144 @@ legend(grconvertX(421.25, "device"), grconvertY(90, "device"), #grconvertX(0.5, 
         sprintf("%1.2f", rev(seq(min(eucBias, na.rm=T), max(eucBias, na.rm=T), length.out=length(show)))),
         fill = rev(eucCols[show]), 
         xpd = NA
+)
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
+
+#
+title = c(TeX("Low Contrast"), TeX("High Contrast"))
+png(sprintf("directionalBiasSchnuteMinDist%s.png", mod))
+#
+eg = expand.grid(xiStar, zetaStar)
+ms = apply(eg, 1, function(r){ stats::optimize(function(x){ sqrt((r[1]-x)^2 + (r[2]-(1/(x+2)))^2) }, c(0,4))$objective })
+ms = matrix(ms, nrow=length(xiStar), ncol=length(zetaStar))
+#mdThresh = 
+#low:
+#fivenum(log(eucBias/ms))
+#[1] -8.8990744 -1.0013181 -0.1577205  0.5057364  1.1217219
+#high:
+#fivenum(log(eucBias/ms))
+#[1] 5.717565e-07 1.252115e+00 1.741566e+00 2.115137e+00 7.808551e+00
+#
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, eucBias/ms,
+        col  = adjustcolor(eucCols, alpha.f=0.99),  #eucCols, #
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = title[contrast+1], #TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop), # c(0, xiTop), #
+        zlim = (c(1, 15)), #1.71466050), #c(0, 1), #0.95),
+	cex.lab = 1.5,
+        cex.main= 1.5
+)
+points(dotStar[freq,1], dotStar[freq,2], pch='.')
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+curve(1/(x+2), from=0, to=4, lwd=4, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,475)) #125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.065, length=0.175, lwd=2 #scale=0.05, length=0.15 
+)
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
+
+#
+title = c(TeX("Low Contrast"), TeX("High Contrast"))
+png(sprintf("directionalBiasSchnuteSub%s.png", mod))
+#
+eg = expand.grid(xiStar, zetaStar)
+ms = apply(eg, 1, function(r){ stats::optimize(function(x){ sqrt((r[1]-x)^2 + (r[2]-(1/(x+2)))^2) }, c(0,4))$objective })
+ms = matrix(ms, nrow=length(xiStar), ncol=length(zetaStar))
+#
+msThresh = 3.11
+#
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, eucBias-ms,
+        col  = adjustcolor(eucCols, alpha.f=0.99),  #eucCols, #
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = title[contrast+1], #TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop), # c(0, xiTop), #
+        zlim = (c(0, msThresh)), #1.71466050), #c(0, 1), #0.95),
+	cex.lab = 1.5,
+        cex.main= 1.5
+)
+greyRed =  colorRampPalette(c(eucCols[length(eucCols)],'grey10'))(4)[2]
+image(xiStar, zetaStar, (eucBias-ms),
+        col  = greyRed, #eucCols[length(eucCols)], #"grey10", #adjustcolor(xCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}$"),#'Xi',
+        ylab = TeX('$B_{MSY}/B_0$'),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        zlim = c(msThresh, max((eucBias-ms), msThresh, na.rm=T)), #log(c(lmThresh, max(eucBias/ms, mThresh, na.rm=T))),
+        add  = T
+)
+points(dotStar[freq,1], dotStar[freq,2], pch='.')
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+curve(1/(x+2), from=0, to=4, lwd=4, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,475)) #125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.065, length=0.175, lwd=2 #scale=0.05, length=0.15 
+)
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
+
+#
+png(sprintf("legendSubSchnute.png"), width = 150, height = 400)
+show = seq(1, length(eucCols), length.out=20)
+plot.new()
+legend("top", #grconvertX(421.25, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+        sprintf("%1.2f", seq(0, msThresh, length.out=20)), #round(rev(seq(min(eucBias/ds, na.rm=T), max(eucBias/ds, na.rm=T), length.out=length(show))/5)*5*100)), #length(show)))),
+        fill = eucCols[seq(1, 41, 2)], #adjustcolor(rev(eucCols[show]), alpha.f=0.99), 
+        xpd = NA
+)
+dev.off()
+
+#
+png(sprintf("directionalBiasSchnuteNorm%s.png", mod))
+#
+eg = expand.grid(xiStar, zetaStar)
+ds = matrix(sqrt(eg[,1]^2+eg[,2]^2), nrow=length(xiStar), ncol=length(zetaStar))
+#ms = apply(eg, 1, function(r){ stats::optimize(function(x){ sqrt((r[1]-x)^2 + (r[2]-(1/(x+2)))^2) }, c(0,4))$objective })
+#ms = matrix(ms, nrow=length(xiStar), ncol=length(zetaStar))
+#
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, eucBias/ds,
+        col  = adjustcolor(eucCols, alpha.f=0.99),  #eucCols, #
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = title[contrast+1], #TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop), # c(0, xiTop), #
+        #zlim = (c(1, 15)), #1.71466050), #c(0, 1), #0.95),
+	cex.lab = 1.5,
+        cex.main= 1.5
+)
+points(dotStar[freq,1], dotStar[freq,2], pch='.')
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+curve(1/(x+2), from=0, to=4, lwd=4, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,475)) #125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.065, length=0.175, lwd=2 #scale=0.05, length=0.15 
 )
 #points(D$xiSeed, D$zetaSeed)
 dev.off()
