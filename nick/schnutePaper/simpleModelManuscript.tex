@@ -202,25 +202,193 @@
 
 %
 \section{Introduction\label{int}}
-\begin{itemize}
-	\item introductory concepts (three parameter srr)
-	\item lit review
-	\item response level model $I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2)$
-\end{itemize}
+%\begin{itemize}
+%	\item introductory concepts (three parameter srr)
+%	\item lit review
+%	\item response level model $I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2)$
+%\end{itemize}
+
+%NOTE: we can not observe all fish in the sea, and this rely on an index of abundance 
+%which typically comes from experimental fishing procedure(for example ccfrp).
+Data for a typical surplus-production model comes in the form of an index
+of abundance through time which is assumed to be proportional to the reproducing
+biomass for the population of interest. The index is often observed alongside
+a variety of other known quantities, but at a minimum, each observed index
+will be observed in the presence of some known catch for the period.
+%The index %of abundance is assumed to be proportional to biomass with the 
+%proportionality %constant being a nuisance parameter that is often referred to 
+%as the %catchability parameter
+%the stock. %a time %%series of observations of an index of abundance for some population of interest. 
+
+%{\color{red}Plot Index Series and Catches}
+\begin{figure}[h!]
+        \includegraphics[width=0.5\textwidth]{./plots/hakeIndex.png}
+        \includegraphics[width=0.5\textwidth]{./plots/hakeCatch.png}
+        \caption{\label{hakeData}
+        \textit{left}: An observed series of index of abundance data for Namibian Hake from 1965 to 1987 \protect\shortcite{hilborn_ecological_1997}.
+        \textit{right}: The associated catch data for Namibian Hake over the same time period.
+        }
+\end{figure}
 
 %
-\clearpage
+The observed indices are assumed to have multiplicative log-normal errors, and thus
+the following observation model arises naturally,
+%Pella Tomlinson
+\begin{align}
+I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2).
+\end{align}
+%
+Above $q$ is often referred to as the ``catchability parameter''; it serves as the %represents the %$ is often refered to as the catchability parameter and the catchab
+proportionality constant mapping between the observed index of abundance and biomass.
+$\sigma^2$ models residual variation. Biologically speaking $q$ and $\sigma^2$
+are often treated as nuisance parameters with the ``biological parameters''
+entering the model through a process model on biomass.
+
+% 
+Biomass is assumed to evolve as an ODE; in this case I focus on the following
+form,
+%
+\begin{equation}
+\frac{dB}{dt} = P(B(t); \bm{\theta}) - Z(t)B(t). \label{ode}
+\end{equation}
+%{\color{red}$C=FB$ to set up yield calculations later
+Here biomass is assumed to change in time by two processes, net production of
+biomass into the population, $P(B)$, and various sources of biomass removal, $Z$, from the 
+population. 
+%Generally production appears as a nonlinear function of existing biomass, 
+%and removals are assumed to be linear in biomass.
+
+%  %stock recruitment relationship (SRR). Recruitment 
+Firstly, the population grows through a production function, $P(B)$. Production
+in this setting is defined as the net biomass increase due to all reproduction
+and maturation processes.
+% accounting for all naturally occurring %no mirgration the population is assumed closed. 
+%sources of mortality other than the recorded fishing from humans. 
+The production function is assumed to be a parametric (generally non-linear) function 
+relating the current biomass of the population to an aggregate production 
+of biomass.
+
+%
+Secondly, the population decreases as biomass is removed by various sources that are 
+assumed to remove biomass linearly with biomass. Above, $Z(t)$, is an 
+aggregate rate of removal. When the fishing rate, $F(t)$, is the only source of removal 
+$Z(t)=F(t)$, however often models will also included other linear terms in $Z(t)$. 
+Commonly the rate of ``natural mortality'', $M$, is also included as an additional term 
+so that $Z(t)=M+F(t)$.
+
+%%
+%Secondly, the population decreases as biomass is removed due to catch, $C(t)$.
+%While catches (aka yields) are observable quantities \shortcite{pearson_documentation_1997}, %sen_sampling_1984,  
+%the model assumes that catch is proportional to biomass with the
+%proportionality constant representing the fishing rate, $F(t)$, so that $C(t)=F(t)B(t)$.
+From a management perspective a major goal of modelling is to accurately infer
+a quantity known as \emph{maximum sustainable yield} (MSY). One could maximize
+simple yield at a particular moment in time (and only for that moment) by
+fishing all available biomass in that moment. This strategy is penny-wise but
+pound-foolish (not to mention ecologically devastating) since it doesn't leave
+biomass in the population to reproduce in the future. We seek to fish in a way 
+that allows (or even encourages) future productivity in the population. This is 
+accomplished by maximizing the equilibrium level of catch over time. 
+Equilibrium yield is considered by replacing the steady state biomass ($\bar B$) 
+in the assumed form for catch, so that $\bar Y = F\bar B(F)$, where $\bar~$ 
+indicates a value at steady state.  The steady state biomass is a 
+function of $F$.
+%; we will see a specific example of this in
+%\mbox{Section (\ref{ptRef}).} 
+MSY is found by optimizing $\bar Y(F)$ with respect to
+$F$, and $F^*$ is the fishing rate at MSY. Going forward let $^*$ decorate any
+value derived under the condition of MSY.
+
+%
+Fisheries are very often managed based upon reference points (RPs) which serve as
+simplified heuristic measures of population behavior. The mathematical form of
+RPs depends upon the model assumptions through the production function. %({\color{red} cite}). 
+While a number of different RPs exist which describe the population in different
+(but related) ways, the most common RPs revolve around the concept of MSY (or robust
+ways of measuring MSY \shortcite{hilborn_pretty_2010,punt_management_2016}).
+Here the focus is primarily on the RPs $\frac{B^*}{\bar B(0)}$ and $F^*$ ($\frac{F^*}{M}$ when appropriate)
+for their pervasive use in modern fisheries \shortcite{mangel_perspective_2013,punt_extending_2019}.
+
+%
+$F^*$ is the afore mentioned fishing rate which results in MSY. $\frac{B^*}{\bar B(0)}$
+is the depletion of the stock at MSY. That is to say $\frac{B^*}{\bar B(0)}$ describes
+the fraction of the unfished population biomass that will remain in the equilibrium
+at MSY. In general $F^*\in\mathbb{R}^+$ and \mbox{$\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$,}
+however under the under the assumption of a two parameter production function the model
+will be structurally unable to capture the full theoretical range of RPs 
+\shortcite{mangel_perspective_2013}.
+
+%
+Many of the most commonly used production functions depend only
+on two parameters. For example, the Schaefer model {(\color{red}cite)}
+depends only on the biological parameters $r$ and $K$, and limits RP inference 
+so that under the Schaefer model $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}{2}\right)$. 
+Similarly the Beverton-Holt \shortcite[BH]{beverton_dynamics_1957}
+and Ricker \shortcite{ricker_stock_1954} curves are also two parameter
+production functions that do not model the full theoretical space of
+RPs \shortcite{mangel_perspective_2013}.
+
+%
+The bias-variance trade-off \shortcite{ramasubramanian_machine_2017} makes it
+clear that the addition of a third parameter in the production function will
+necessarily reduce estimation bias. However the utility of this bias reduction
+is still under debate because the particular mechanisms and behavior (direction and magnitude) %over relevant RPs %and mechanisms %behavior 
+of these biases for key management quantities %(and the mechanisms of inducing these biases) 
+are not fully understood or described. \shortciteA{lee_can_2012} provides some
+evidence that estimation of productivity parameters %, and thus RPs via \shortcite{mangel_perspective_2013},
+are dependent on biomass contrast as well as model specification. % as well as contrast in data %lacking contrast in biomass. 
+\shortciteA{conn_when_2010} comes to similar conclusions %about steepness estimation
+via calibration modeling techniques. These studies indicate improtant factors that
+contribute to inferential failure, but they do not offer mechanisms of model 
+failure, nor do they consider how different types of model misspecification 
+interact with the information content of a given biomass series.  
+%Despite this understanding of productivity estimation,
+%the implications have not been extended to a joint description of biases on the scale of
+%management RPs. % biases jointly.
+
+%The particular behaviors of thesie RP biases, 
+%and their relationship to each other, are not fully described.  
+
+%Add GOAL of understanding directionality and mechanism of bias.
+%Add claim of novelty by recognizing that bias is a function of RP, a flexible method of propagating estimation uncertainty and accounting for nonlinear bias patterns.
+
+%Together the general behavior of the PT model and the %pragmatic understandable 
+%simplicity of the Schaefer model make the PT/Schaefer pair an ideal setting for
+%beginning to understand the consequences of model misspecification on the
+%production function. 
+In this study I consider the behavior of inference when index data are simulated 
+from three parameter PT and Schnute production models, but the simulated data are fit 
+using intentionally misspecified two the parameter logistic or BH production models.
+%
+The work begins with a derivation of RPs under the three parameter models. %PT model.
+The parametric forms of RPs under the three parameter models are then inverted to develop a %PT model are then inverted to develop a
+simulation setting for analyzing inference under the two parameter models. % Schaefer model as well as the BH. 
+Finally a Gaussian Process (GP) metamodel \shortcite{gramacy_surrogates_2020} 
+is constructed for exploration and analysis of RP biases.
+
+%
+A key insight of this approach is that bias is considered broadly across RP-space to
+uncover patterns and correlations between RPs. %f bias magnitude and direction. 
+%A flexible Gaussian Process (GP) meta-modeling approach is used to model bias 
+%patterns across RP-space. 
+The GP metamodel is explicit about trade-offs between RPs %to the surface bias tradeoffs to the surface to 
+so as to inform the full utility of reducing bias, as well as to suggest mechanisms for
+understanding what causes bias. Further, the effect of contrast on estimation
+is considered together with model misspecification. %alongside the effect of model misspecification.  
+
+%
+%\clearpage
 \section{Methods \label{meth}}
 
 %
 \subsection{PT/Schaffer Model}
-	\begin{itemize}
-		%\item $\frac{dB}{dt} = P(B(t); \bm{\theta}) - F(t)B(t)$
-		%\item PT: $P(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}$
-		%\item RP's (and analytically invert)
-		%\item fix PT plot
-		\item $\gamma=2$ $\Rightarrow$ Schaffer model (Schaffer RP)
-	\end{itemize}
+	%\begin{itemize}
+	%	%\item $\frac{dB}{dt} = P(B(t); \bm{\theta}) - F(t)B(t)$
+	%	%\item PT: $P(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}$
+	%	%\item RP's (and analytically invert)
+	%	%\item fix PT plot
+	%	\item $\gamma=2$ $\Rightarrow$ Schaffer model (Schaffer RP)
+	%\end{itemize}
 
 %\subsection{PT Model}
 %
@@ -234,13 +402,13 @@ The PT production function plotted across a variety of parameter
 values. The special cases of Logistic production is shown in black, and the 
 left-leaning and right-leaning regiems are shown in blue and red respectively.
 }
-\label{srrPT}
+\label{SrrPT}
 \end{wrapfigure}
 
 %Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
 The three parameter PT family has a convenient form that includes, among 
 others \shortcite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
-logistic production function as a special case to form the Schaefer model. The 
+logistic production function as a special case. %Under logistic production to form the Schaefer model. The 
 Pella-Tomlinson production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$ 
 and the family takes the following form, 
 %Pella Tomlinson
@@ -251,12 +419,26 @@ P(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{(\
 
 %
 $\gamma$ is a parameter which breaks PT out of the restrictive symmetry of the 
-logistic curve. In the special case of $\gamma=2~~$ Eq (\ref{pt}) 
+logistic curve. In the special case of $\gamma=2~$ Eq (\ref{pt}) 
 collapses back to the logistic curve, however in general $\gamma\in(1, \infty)$.
-The parameters $r$ and $K$ maintain the same interpretation as 
-they do in the logistic production function. In Figure (\ref{srrPT}) PT recruitment 
-is shown for a range of parameter values so as to demonstrate the various 
-recruitment shapes that can be achieved by PT recruitment.  
+%The parameters $r$ and $K$ maintain the same interpretation as 
+%they do in the logistic production function. In Figure (\ref{SrrPT}) PT recruitment 
+%is shown for a range of parameter values so as to demonstrate the various 
+%recruitment shapes that can be achieved by PT recruitment.  
+%
+The parameter $r$ controls the maximum reproductive rate of the population
+in the absence of competition for resources (i.e. the slope of production
+function at the origin). $K$ is the so called "carrying capacity" of the
+population. In this context the carrying capacity can be formally stated as
+steady state biomass in the absence of fishing \mbox{(i.e. $\bar B(0)=K$).}
+%
+In Figure (\ref{SrrPT}) PT recruitment is shown for a range of parameter values 
+so as to demonstrate the various recruitment shapes that can be achieved by PT 
+recruitment.  
+
+
+
+
 %{\color{red} And $\gamma$ is a parameter which adds 
 %flexibility to the family by allowing for compensatory or non-compensatory 
 %growth. (break symmetry... get better description) }
@@ -317,9 +499,8 @@ To get an expression for $F^*$, the equilibrium yield is maximized with respect 
 F^* = \argmax_F F\bar B(F).
 \end{equation}
 %
-In the case of PT production this maximization can be done analytically. In this 
-case maximization can proceed by differentiating the equilibrium yield with 
-respect to $F$ as follows,
+In the case of PT production this maximization can be done analytically, %. In this case maximization can proceed 
+by differentiating the equilibrium yield with respect to $F$ as follows,
 %
 \begin{align}
 \frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{FderivPT}\\
@@ -391,29 +572,126 @@ biological model parameters.
 %often be unstable. That said, for the case of PT this relationship is 
 %analytically invertible, and leads to the following relationship
 
+
+\subsection{Simulation}
+
+\begin{itemize}
+	\item introduce metamodeling idea
+	%\item some design details
+\end{itemize}
+
+%
+Indices of abundance are simulated from the three parameter PT production model
+broadly over the space of $F^*$ and $\frac{B^*}{\bar B(0)}$ values. These PT 
+data are then fit with a misspecified two parameter Schaefer model 
+so as to observe the effect of productivity parameter model misspecification 
+upon RP inference.
+
+%speaking it is not possible to analytically invert this  
+Generating simulated indices of abundance from the PT model requires
+inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and
+$(r, \gamma)$. It is not generally possible to analytically invert this
+relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
+Most three parameter production functions lead to RPs that require expensive 
+numerical methods to invert; more over the numerical inversion procedure can %is 
+often be unstable. That said, for the case of PT this relationship is
+analytically invertible, and leads to the following relationship
 %
 \begin{align}
-&r = \gamma F^*
-&\gamma = \frac{W\left(\frac{B^*}{\bar B(0)}\log\left(\frac{B^*}{\bar B(0)}\right)\right)}{\log\left(\frac{B^*}{\bar B(0)}\right)} \label{gammaOfB}
+&r = \gamma F^* 
+&\gamma = \frac{W\left(\frac{B^*}{\bar B(0)}\log\left(\frac{B^*}{\bar B(0)}\right)\right)}{\log\left(\frac{B^*}{\bar B(0)}\right)}. \label{gammaOfB}
 \end{align}
-
 %
 %Above $W_0$ is the principal branch of the Lambert product logarithm function. 
 %Above $W_{-1}$ is the lower branch of the Lambert product logarithm function. 
 Above $W$ is the Lambert product logarithm function. 
 More details about this derivation, and the Lambert product logarithm, are given in \mbox{Appendix (\ref{lambApp}).}
 
-
-%	\begin{itemize}
-%		\item Explicit Natural mortality $\frac{dB}{dt} = P(B(t); \bm{\theta}) - M B(t) - F(t) B(t)$
-%		\item[\checkmark] Schnute: $P(B; [\alpha, \beta, \gamma]) = \alpha B (1-\beta\gamma B)^{\frac{1}{\gamma}}$
-%		\item[\checkmark] RP's
-%		\item $\gamma=-1$ $\Rightarrow$ BH model (as seen in Marc Perspectives)
-%	\end{itemize}
-
+%
+\subsubsection{Latin Hypercube Sampling}
 
 %
-\subsection{Catch \label{catch}}	
+A Latin hypercube sample (LHS) of size $n$, in an $m$ dimensional space, samples
+uniformly among uniform grids of size $n$ in each dimension of the design space. By
+intersecting the grids of each dimension, $n^m$ cells are produced, from which
+a total of $n$ samples are taken. Crutially only one sample is taken from a given element
+of each grid in each dimension so as to reduce clumping of the $n$ samples
+across the design space.
+
+%
+Letting $\mathcal{F}$ and $\mathcal{B}$ be equally spaced grids, of size $n$, on
+\mbox{$F_{MSY}\in(0.1, 0.7)$} and \mbox{$\frac{B_{MSY}}{B_0}\in(0.2, 0.6)$}
+respectively, a LHS samples 1 point in $n$ of the $n^2$ cells produced by
+$\mathcal{F}\times\mathcal{B}$. 
+%
+%If $\mathcal{F}$ is an equally spaced grid of size $n$ for 
+%$\frac{F_{MSY}}{M}\in(0.25, 4)$, and letting $\mathcal{B}$ be an 
+%equally spaced grid of size $n$ for $\frac{B_{MSY}}{B_0} \in (0.15, 0.7)$. 
+%$\mathcal{F}$
+%
+
+%
+Each of the sampled LHS design locations represent a unique PT model with the 
+sampled RP values. The productivity parameters of the PT, at each design location,
+are obtained by applying Eq. (\ref{gammaOfB}). Since $K$ does not enter the RP 
+calculation its value is fixed arbitrarily at 10000. The value of $q$ is fixed 
+at a typically small value of 0.0005. $\sigma$ is fixed at the relatively small 
+value of 0.01 to focus specifically on the behavior of population parameters. 
+These parameters fully specify the PT model for the purposes of generating 
+index data for each $\left(F^*, \frac{B^*}{\bar B(0)}\right)$ pair.
+
+%productivity parameters 
+%of the data generating PT 
+%model are obtained, and PT index of abundance data can be   for the purpose of generating index of abundence 
+%Given the analytical relationship between the RPs and the productivity parameters
+%$r$, $K$, and $\gamma$ for the PT model, obtaining a uniform LHS sample among
+%$\mathcal{F}\times\mathcal{B}$ requires a tactful navigation of the system of
+%equations seen in Eq. (\ref{abgSys}). The LHS grid setup and rough sampling strategy
+%can be seen in Figure (\ref{sudoGrid}).
+
+%%
+%\begin{figure}[h!]
+%%\centering
+%%\begin{minipage}[h!]{0.49\textwidth}
+%        \includegraphics[width=0.96\textwidth]{../gpBias/designGrid.png}
+%%\end{minipage}
+%%\begin{minipage}[h!]{0.49\textwidth}
+%%\begin{itemize}
+%%        \item[] \hspace*{-1cm}Given $B_0$, $M$, and $F_{MSY}$:
+%%        \item[1)] Draw $\gamma^* \sim \gamma|F_{MSY}, M$.
+%%        \item[2)] Compute $\frac{B_{MSY}}{B_0} = \zeta(\gamma^*)$
+%%        \item[3)] Compute $\alpha^* = \alpha(\gamma^*, F_{MSY}, M)$
+%%        \item[4)] Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$
+%%\end{itemize}
+%%\end{minipage}
+%\caption{
+%LHS grids. Intersecting $\mathcal{F}$ and $\mathcal{B}$ produces $n^2$
+%cells; a particular cell $\mathcal{F}_i\times\mathcal{B}_j$ is shown in grey.
+%%($right$) An outline of the sampling proceedure for $\gamma$ (and associated
+%%quantities) given $B_0$, $M$, and $F_{MSY}$. %$\mathcal{F}_i$.
+%\label{sudoGrid}}
+%\end{figure}
+%
+%%
+%Indices are generated under the following conditions. Data are simulated at
+%each point on the grid $\mathcal{F}\times\mathcal{B}$, with $F^*\in\mathcal{F}$
+%and $\frac{B^*}{\bar B(0)}\in\mathcal{B}$, where $\mathcal{F}=\{0.1, 0.2, ..., 0.7\}$
+%and $\mathcal{B}=\{0.2, 0.3, ..., 0.6\}$ as seen in Figure (\ref{rpGrid}).
+%These ranges of values for $F^*$ and $\frac{B^*}{\bar B(0)}$ are selected to
+%include a wide range of values thought to reflect many commonly assessed fisheries.
+%%commonly  of most commonly assessed fish species {\color{red}cite}. 
+%The red X's in Figure (\ref{rpGrid}) show four simulation locations where the
+%Schaefer model is misspecified to a large degree and will be considered in more
+%detail in \mbox{Section(\ref{flat}).} For each $\left(F^*, \frac{B^*}{\bar B(0)}\right)$,
+%the associated pair $(r, \gamma)$ are computed from \mbox{Eq (\ref{rg}).} Since $K$
+%does not enter the RP calculation its value is fixed arbitrarily at 10000.  %A relatively large value of $K$ is selected to allow a full range of population dynamics t
+%The value of $q$ is fixed at a typically small value of 0.0005. $\sigma$ is
+%fixed at the relatively small value of 0.01 to focus specifically on the
+%behavior of population parameters. These parameters fully specify the PT
+%model for the purposes of generating index data for each $\left(F^*, \frac{B^*}{\bar B(0)}\right)$ pair.
+
+%
+\subsubsection{Catch \label{catch}}	
 
 %%
 %For the sake of simulation, catch is parameterized so that $F_t$ can be 
@@ -470,8 +748,7 @@ $\bar B$ can be calculated from Eq (\ref{BsEq}).
 }
 \end{figure}
 
-%
-\clearpage
+%\clearpage
 %
 In practice, catch is determined by a series of observed, assumed known, catches. 
 Catch observations are typically observed on a quarterly (or yearly) basis, so 
@@ -500,12 +777,12 @@ is linearly interpolated between sampled epochs.
 
 
 %
-\subsection{Continuous model formulation}
-	\begin{itemize}
-		\item differential equation theory (uniqueness)
-		\item chaos
-		\item euler vs. Implicate (e.g. lsoda, etc.)		
-	\end{itemize}
+\subsubsection{Continuous model formulation}
+	%\begin{itemize}
+	%	\item differential equation theory (uniqueness)
+	%	\item chaos
+	%	\item euler vs. Implicate (e.g. lsoda, etc.)		
+	%\end{itemize}
 
 %
 %\subsection{integrating ODEs, Stiffness, and Interpolation. Oh my!!}
@@ -517,8 +794,7 @@ is linearly interpolated between sampled epochs.
 a preface to regularity issues: identifiability, stiffness, and continuity.
 }
 
-%
-\subsubsection{Uniqueness, Continuity, and Identifiability}
+%\subsubsection{Uniqueness, Continuity, and Identifiability}
 
 %
 An important (and often overlooked) implementation detail is the solution to the
@@ -719,23 +995,26 @@ derives expressions for $\alpha$ and $\beta$ as a function of RPs and $\gamma$.
 %By working with the expressions $\frac{F_{MSY}}{M}$, $B_0$, $\frac{B_{MSY}}{B_0}$
 Since RPs are left without a closed form expression, computing RPs from 
 productivity parameters amounts to numerically solving the system formed by collecting the 
-expressions (\ref{yeildS}), (\ref{B0S}), and (\ref{BratS}).
+expressions (\ref{FmsyS}), (\ref{B0S}), and (\ref{BratS}).
 
 %
 \subsubsection{Simulation}
 
 %
-For the purposed of simulation, it is not neccessary to completely know either 
-of the precise relationships mapping RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$ 
+For the purposed of simulation, it is not neccessary to completely know 
+%either of 
+the precise relationships mapping RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$ 
 RPs. Simulation only requires enough knowledge of these mappings to gather a list 
 of $(\alpha, \beta, \gamma)$ tuples, for data generation under the Schnute model, 
 and the corresponding RPs in some reasonable spacefilling design over RP space. 
 
 %
-Similarly to \shortcite{schnute_analytical_1998}, solving expressions 
-(\ref{yeildS}) and (\ref{B0S}) for $\alpha$ and $\beta$ as a function of RPs 
-and $\gamma$ yeilds a partial mapping from 
-$\big(F_{MSY}, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$.
+Similarly to \shortciteA{schnute_analytical_1998}, expressions %solving expressions 
+(\ref{FmsyS}) and (\ref{B0S}) are solved for $\alpha$ and $\beta$ respectively, to produce % as a function of RPs 
+the partial mapping $\big(F_{MSY}, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$ 
+in terms of RPs and $\gamma$. 
+% yeilds a partial mapping from 
+%$\big(F_{MSY}, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$.
 By further working with Eq. (\ref{BratS}), to identify $\gamma$, the following 
 system is obtained,
 %
@@ -1034,13 +1313,14 @@ d(\bm{x}, \bm{x'}) &= \sqrt{(\bm{x}-\bm{x'})^T\bm{D}^{-1}(\bm{x}-\bm{x'})}\\
 %
 Above, $d$ is a scaled distance function that defines the distance between 
 points in the differing scales of $\frac{B_{MSY}}{B_0}$ and $\frac{F_{MSY}}{M}$.
-$\bm{D}$ is a diagonal matrix that measures the squared size of each axis of 
-the domain for use normalizing distances to a common scale.
+$\bm{D}$ is a diagonal matrix that measures the squared size of the domain in each 
+axis of so as to normalizing distances to a common scale. 
+%the domain for use normalizing distances to a common scale.
 %Since the scales of $\frac{B_{MSY}}{B_0}$ and $\frac{F_{MSY}}{M}$ differ, the 
 %distance function 
 
 %
-If $\bm{X_n}$ is the initial design, of size $n$, let $\bm{x_a}$ be the 
+If $\bm{X_n}$ is the initial design, computed on $R_{full}$, let $\bm{x_a}$ be the 
 augmenting point which maximizes the minimum distance between all of the existing 
 design points,
 %
@@ -1054,9 +1334,10 @@ design points,
 The point $\bm{x_a}$ is used as an anchor for augmenting $\bm{X_n}$. %by collecting 
 An additional $LHS_{n'}$ (via Algorithm (\ref{lhsAlg})) is collected, adding 
 $n'$ design points, centered around $\bm{x_a}$, to the overall design. %are collected, %$LHS_{n'}$ is collected, using Algorithm (\ref{lhsAlg}). 
-In the LHS $R$ is defined based on the square centered at $\bm{x_a}$ with side 
-length $2d_a$, where \mbox{$d_a = \min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$},
-in the space defined by the metric $d$.
+The augmenting region, $R_{(x_a, d_a)}$, for collecting $LHS_{n'}$ is defined 
+based on the square centered at $\bm{x_a}$ with side length $2d_a$, where 
+\mbox{$d_a = \min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$}, in the space defined 
+by the metric $d$.
 %that circumscribes the circle (in the space, defined by the metric $d$) 
 %at point $\bm{x_a}$ with radius \mbox{$d_a = \min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$}.
 %
@@ -1066,20 +1347,38 @@ in the space defined by the metric $d$.
 %%in the space defined by the metric $d$.
 
 %
-$R_{(x_a, d_a)}$ is truncated by the limits of $R_{full}$.
-Since the design space has a nonlinear constraint. the calculation of $x_a$ is 
-truncated based on a convex hull defined by the existing samples in the overall design.
+Due to the tendency of maximin sampling to cluster augmenting points on the edges 
+of the design space, $R_{(x_a, d_a)}$ is truncated by the outer most limits of 
+$R_{full}$ so as to focus design augmentation within the specified domain of the 
+simulation. Furthermore, since the design space has a nonlinear constraint, the 
+calculation of $x_a$ is further truncated based on a convex hull defined by the 
+existing samples in the overall design.
+
+%%
+%{\color{red}iterate until ....}
+%
+%%
+%\begin{align}
+%X_{n} &= LHS_{n}(R_{full})\\
+%find~&(x_a, d_a)\\
+%X_{n'} &= LHS_{n'}(R_{(x_a, d_a)})\\
+%add~&X_{n'}~to~X_{n}
+%\end{align}
 
 %
-{\color{red}iterate until ....}
+In summary, an initial $X_{n} = LHS_{n}(R_{full})$ design is computed based on 
+an overall simulated region of RPs $R_{full}$. The maximin augmenting point, 
+$x_a$, is computed at a maximin distance of $d_a$ from the existing samples. 
+An augmenting design $X_{n'} = LHS_{n'}(R_{(x_a, d_a)})$ is collected and 
+added to $X_n$. Design refinement carries on recursively collecting augmenting 
+designs in this way until the desired maximin distance falls below the desired 
+level.
+ 
 
-%
-\begin{align}
-X_{n} &= LHS_{n}(R_{full})\\
-find~&(x_a, d_a)\\
-X_{n'} &= LHS_{n'}(R_{(x_a, d_a)})\\
-add~&X_{n'}~to~X_{n}
-\end{align}
+% RPdomain of the 
+%simulation $X_{n} = LHS_{n}(R_{full})$
+
+
 
 %  
 %An augmented design within a square centered on $\bm{x_a}$  
@@ -1104,6 +1403,10 @@ add~&X_{n'}~to~X_{n}
 %
 \subsection{Gaussian Process Metamodel}
 %
+
+\begin{itemize}
+	\item add metamodeling context
+\end{itemize}
 
 %
 A GP is a stochastic process generalizing the multivariate normal distribution 
