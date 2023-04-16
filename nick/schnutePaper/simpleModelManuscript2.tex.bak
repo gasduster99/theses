@@ -262,7 +262,7 @@ population.
 Firstly, the population grows through a production function, $P(B)$. Production
 in this setting is defined as the net biomass increase due to all reproduction
 and maturation processes.
-% accounting for all naturally occurring %no mirgration the population is assumed closed. 
+% accounting for all naturally occurring %no migration the population is assumed closed. 
 %sources of mortality other than the recorded fishing from humans. 
 The production function is assumed to be a parametric (generally non-linear) function 
 relating the current biomass of the population to an aggregate production 
@@ -281,7 +281,7 @@ so that $Z(t)=M+F(t)$.
 %While catches (aka yields) are observable quantities \shortcite{pearson_documentation_1997}, %sen_sampling_1984,  
 %the model assumes that catch is proportional to biomass with the
 %proportionality constant representing the fishing rate, $F(t)$, so that $C(t)=F(t)B(t)$.
-From a management perspective a major goal of modelling is to accurately infer
+From a management perspective a major goal of modeling is to accurately infer
 a quantity known as \emph{maximum sustainable yield} (MSY). One could maximize
 simple yield at a particular moment in time (and only for that moment) by
 fishing all available biomass in that moment. This strategy is penny-wise but
@@ -346,7 +346,7 @@ interact with the information content of a given biomass series.
 %the implications have not been extended to a joint description of biases on the scale of
 %management RPs. % biases jointly.
 
-%The particular behaviors of thesie RP biases, 
+%The particular behaviors of these RP biases, 
 %and their relationship to each other, are not fully described.  
 
 %Add GOAL of understanding directionality and mechanism of bias.
@@ -387,7 +387,7 @@ is considered together with model misspecification. %alongside the effect of mod
 	%	%\item PT: $P(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}$
 	%	%\item RP's (and analytically invert)
 	%	%\item fix PT plot
-	%	\item $\gamma=2$ $\Rightarrow$ Schaffer model (Schaffer RP)
+	%	\item $\gamma=2$ $\Rightarrow$ Schaefer model (Schaefer RP)
 	%\end{itemize}
 
 %\subsection{PT Model}
@@ -400,7 +400,7 @@ is considered together with model misspecification. %alongside the effect of mod
 \caption{
 The PT production function plotted across a variety of parameter
 values. The special cases of Logistic production is shown in black, and the 
-left-leaning and right-leaning regiems are shown in blue and red respectively.
+left-leaning and right-leaning regimes are shown in blue and red respectively.
 }
 \label{SrrPT}
 \end{wrapfigure}
@@ -596,7 +596,7 @@ Above $W$ is the Lambert product logarithm function. More details about this
 derivation, and the Lambert product logarithm, are given in \mbox{Appendix (\ref{lambApp}).}
 
 %
-Using Eq. (\ref{gammaOfB}) to obtain production paramters, a PT production model 
+Using Eq. (\ref{gammaOfB}) to obtain production parameters, a PT production model 
 can be fully defined for any combination of the RPs $F^*$ and $\frac{B^*}{\bar B(0)}$.
 Since $K$ does not enter the RP calculation its value is fixed arbitrarily at 10000.
 
@@ -650,19 +650,19 @@ The BH and Logistic production functions arise when $\gamma$ is fixed to -1 or
 1 respectively, and the Ricker model is a limiting case as $\gamma\rightarrow0$. %\shortcite{schnute_general_1985}.
 
 %
-The behaviour of RP inference under the BH model is of particular interest due 
+The behavior of RP inference under the BH model is of particular interest due 
 to the overwhelming popularity of the BH assumption in fisheries models.
 %% 
 %Inference of BH productivity parameters under a wide variety of data is of particular 
 %interest due to the overwhelming popularity of the BH assumption in fisheries 
 %models. 
-Since Schnute production models can represent a quantifiably wide varienty 
-of possible productivity behaviours, they present an ideal simulation 
-environment for inquiry of the relability of inference under the BH 
+Since Schnute production models can represent a quantifiably wide variety 
+of possible productivity behaviors, they present an ideal simulation 
+environment for inquiry of the reliability of inference under the BH 
 assumption.
 
 %
-Under Schnute production, biomass dynamics evolve accourding to the following ODE, 
+Under Schnute production, biomass dynamics evolve according to the following ODE, 
 %
 \begin{align}
 \frac{dB}{dt} = P_s(B;\theta) - (M+F)B. \label{schnuteSimple}
@@ -670,20 +670,20 @@ Under Schnute production, biomass dynamics evolve accourding to the following OD
 %
 This equation largely takes the same form as previously described, except 
 that $P_s$ is the Schnute production function and natural mortality, $M$, is modeled 
-explicatly here. % as opposed to  inclusion of natural mortality, $M$. 
+explicitly here. % as opposed to  inclusion of natural mortality, $M$. 
 Natural mortality models the instantaneous rate of mortality from all causes 
 outside of fishing. Explicitly modeling natural mortality is not 
 only a typical assumption of fisheries models, but is also key to the making 
-RPs well defined over the relavant domain of $\gamma$.
+RPs well defined over the relevant domain of $\gamma$.
 
 %% matches the assumptions of typical fisheries models and 
 %%
 %In the Schaeffer and PT models
-%$M$ is modeled expliciatly here  and $F$ are instantaneous rates of natural and fishing 
-%mortality respectively. Unlinke the PT model described above 
+%$M$ is modeled explicitly here  and $F$ are instantaneous rates of natural and fishing 
+%mortality respectively. Unlike the PT model described above 
 
 %with Schnute production simulates a
-%wide varienty of possible population productivety behaviours and provides an 
+%wide variety of possible population productivity behaviors and provides an 
 
 %
 The derivation of RPs under Eq. (\ref{schnuteSimple}) follows a similar logic 
@@ -697,7 +697,7 @@ for $B$
 \end{align}
 
 %
-The above expression quickly yeilds $B_0$, $B_{MSY}$ by evaluation at $F=0$ and $F=F_{MSY}$ respectively,
+The above expression quickly yields $B_0$, $B_{MSY}$ by evaluation at $F=0$ and $F=F_{MSY}$ respectively,
 %derive \bar B(F)
 \begin{align}
 B_0 &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{B0S}\\
@@ -706,7 +706,7 @@ B_0 &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right)
 
 %
 Attaining an expression for $F_{MSY}$ requires maximization of equilibrium 
-yeild, \mbox{$\bar{Y}=F\bar{B}(F)$}, with respect to $F$. Analytically maximizing 
+yield, \mbox{$\bar{Y}=F\bar{B}(F)$}, with respect to $F$. Analytically maximizing 
 proceeds by differentiating $\bar{Y}$ to produce
 %
 \begin{align}
@@ -716,7 +716,7 @@ proceeds by differentiating $\bar{Y}$ to produce
 %
 Setting $\frac{d \bar{Y}}{dF}=0$, filling in the expressions for $\bar B(F)$ 
 and $\frac{d \bar B}{dF}$, then rearranging to solve for $F_{MSY}$ is less 
-yeilding here than it was in the case of the PT model. This proceedure falls 
+yielding here than it was in the case of the PT model. This procedure falls 
 short of providing an analytical solution for $F_{MSY}$ directly in terms of 
 $\theta$, % $\alpha$, $\beta$, and $\gamma$, 
 but rather shows that $F_{MSY}$ must respect the following expression,  
@@ -747,17 +747,17 @@ expressions (\ref{FmsyS}), (\ref{B0S}), and (\ref{BratS}).
 %Inference of BH productivity parameters under a wide variety of data is of particular 
 %interest due to the overwhelming popularity of the BH assumption in fisheries 
 %models. Since Schnute production models can represent a quantifiably wide varienty 
-%of possible productivity behaviours, they present an ideal simulation 
-%environment for inquiry of the relability of inference under the BH 
+%of possible productivity behaviors, they present an ideal simulation 
+%environment for inquiry of the reliability of inference under the BH 
 %assumption.
 
 %
-For the purposed of simulation, it is not neccessary to completely know 
+For the purposed of simulation, it is not necessary to completely know 
 %either of 
 the precise relationships mapping RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$ 
 RPs. Simulation only requires enough knowledge of these mappings to gather a list 
 of $(\alpha, \beta, \gamma)$ tuples, for data generation under the Schnute model, 
-and the corresponding RPs in some reasonable spacefilling design over RP space. 
+and the corresponding RPs in some reasonable space-filling design over RP space. 
 
 %
 Similarly to \shortciteA{schnute_analytical_1998}, expressions %solving expressions 
@@ -765,7 +765,7 @@ Similarly to \shortciteA{schnute_analytical_1998}, expressions %solving expressi
 This leads to the partial mapping 
 $\big(F_{MSY}, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$ 
 in terms of RPs and $\gamma$. 
-% yeilds a partial mapping from 
+% yields a partial mapping from 
 %$\big(F_{MSY}, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$.
 By further working with Eq. (\ref{BratS}), to identify $\gamma$, the following 
 system is obtained,
@@ -778,7 +778,7 @@ system is obtained,
 \end{align}
 
 %
-For a population experienceing natural mortality $M$, by fixing $F_{MSY}$, 
+For a population experiencing natural mortality $M$, by fixing $F_{MSY}$, 
 $B_0$, and $\frac{B_{MSY}}{B_0}$ %$B_{MSY}$ % 
 the above system can fully specify $\alpha$ and $\beta$ for a given $\gamma$. % if only $\gamma$ were further isolated
 Notice for a given $\gamma$ a cascade of closed form solutions for $\alpha$ 
@@ -786,13 +786,13 @@ and $\beta$ can be obtained. First $\alpha(\gamma)$ can be computed, and then
 $\beta(\alpha(\gamma), \gamma)$ can be computed. If $\alpha(\gamma)$ is filled 
 back into the expression for $\frac{B_{MSY}}{B_0}$, the system collapses into 
 a single onerous expression for $\frac{B_{MSY}}{B_0}(\alpha(\gamma), \gamma)$. 
-For bevity, define the function \mbox{$\zeta(\gamma)=\frac{B_{MSY}}{B_0}\big(\alpha(\gamma), \gamma, F_{MSY}, M\big)$} based on Eq. (\ref{BratS}). 
+For brevity, define the function \mbox{$\zeta(\gamma)=\frac{B_{MSY}}{B_0}\big(\alpha(\gamma), \gamma, F_{MSY}, M\big)$} based on Eq. (\ref{BratS}). 
 
 % %possible;
 Inverting $\zeta(\gamma)$ for $\gamma$, and computing the cascade of 
 $\alpha(\gamma)$, and then $\beta(\alpha(\gamma), \gamma)$, fully defines the 
 Schnute model for a given $(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{B_0})$. However
-inverting $\zeta$ accuratly is extremely difficult. Inverting $\zeta$ 
+inverting $\zeta$ accurately is extremely difficult. Inverting $\zeta$ 
 analytically is not feasible, and numerical methods for inverting 
 $\zeta$ are unstable and can be computationally expensive. 
 %Numerically inverting $\zeta$ quickly becomes 
@@ -807,7 +807,7 @@ Each design location defines a complete Schnute production model with the given
 RP values. Indices of abundance are simulated from the Schnute model at each design
 location, a small amount of residual variation, $\sigma=0.01$, is added to the 
 simulated index, and the data are then fit with a misspecified BH production model. 
-The design at large captures various degrees of model misspecification realative 
+The design at large captures various degrees of model misspecification relative 
 to the BH model, so as to observe the effect of productivity model misspecification 
 upon RP inference.
 
@@ -829,7 +829,7 @@ upon RP inference.
 %%
 %{\color{red}
 %%
-%Using Eq. (\ref{gammaOfB}) to obtain production paramters, a PT production model 
+%Using Eq. (\ref{gammaOfB}) to obtain production parameters, a PT production model 
 %can be fully defined for any combination of the RPs $F^*$ and $\frac{B^*}{\bar B(0)}$.
 %Since $K$ does not enter the RP calculation its value is fixed arbitrarily at 10000.
 %
@@ -837,7 +837,7 @@ upon RP inference.
 %
 %Indices of abundance are simulated from the three parameter PT production model
 %broadly over the space of $F^*$ and $\frac{B^*}{\bar B(0)}$ via a space filling
-%design as described in Section (\ref{lhs}). These PT indicies are then fit with a
+%design as described in Section (\ref{lhs}). These PT indices are then fit with a
 %Schaefer model, at various degrees of misspecification, so as to observe the 
 %effect of productivity model misspecification upon RP inference. 
 %}
@@ -868,14 +868,14 @@ cells; a particular cell $\mathcal{F}_i\times\mathcal{B}_j$ is shown in grey.
 %A Latin hypercube sample (LHS) of size $n$, in an $m$ dimensional space, samples
 %uniformly among uniform grids of size $n$ in each dimension of the design space. By
 %intersecting the grids of each dimension, $n^m$ cells are produced, from which
-%a total of $n$ samples are taken. Crutially only one sample is taken from a given element
+%a total of $n$ samples are taken. Crucially only one sample is taken from a given element
 %of each grid in each dimension so as to reduce clumping of the $n$ samples
 %across the design space.
 
 %
 A Latin hypercube sample (LHS) of size $n$, in the 2 dimensional space defined 
 by RPs, distributes samples so as to spread points across a design region in a 
-broadly representive way. A LHS design extends the notion of a univariate 
+broadly representative way. A LHS design extends the notion of a univariate 
 random uniform sample across multiple dimensions so that each margin of the design 
 space enjoys a uniform distribution. 
 
@@ -884,7 +884,7 @@ LHS designs achieve this notion of uniformity by first partitioning each dimensi
 of the design space into regular grids of size $n$. By intersecting the grids 
 of each dimension, cells are produced that evenly partition the design space. 
 In two dimensions $n^2$ cells are produced, from which a total of $n$ samples 
-are taken. Crutially only one sample is taken from a given element of each grid 
+are taken. Crucially only one sample is taken from a given element of each grid 
 in each dimension so as to reduce clumping of the $n$ samples across the design space.
 
 
@@ -894,7 +894,7 @@ in each dimension so as to reduce clumping of the $n$ samples across the design 
 %by partitioning the space, and then sampling uniformly within a uniform partitions 
 %so that each.
 %The design region is partitioning by intersecting regular grids of, size $n$, in 
-%each dimension so that $n^m$ cells are produced (where $m$ is the number of dimensions of the design smape) 
+%each dimension so that $n^m$ cells are produced (where $m$ is the number of dimensions of the design shape) 
 %
 %the space of RPs so that 
  
@@ -912,7 +912,7 @@ $\mathcal{F}\times\mathcal{B}$.
 Each of the sampled LHS design locations represent a unique PT model with the 
 sampled RP values. Since the relationship mapping RPs analytically to productivity 
 parameters can be found for the PT model, LHS designs the the PT model are 
-computed driectly in RP space and Eq. (\ref{gammaOfB}) is used to map the 
+computed directly in RP space and Eq. (\ref{gammaOfB}) is used to map the 
 sampled RP design locations to PT productivity parameters. 
 %created by samples 1 point in $n$ of the $n^2$ cells produced by
 %$\mathcal{F}\times\mathcal{B}$. 
@@ -935,7 +935,7 @@ sampled RP design locations to PT productivity parameters.
 
 %productivity parameters 
 %of the data generating PT 
-%model are obtained, and PT index of abundance data can be   for the purpose of generating index of abundence 
+%model are obtained, and PT index of abundance data can be   for the purpose of generating index of abundance 
 %Given the analytical relationship between the RPs and the productivity parameters
 %$r$, $K$, and $\gamma$ for the PT model, obtaining a uniform LHS sample among
 %$\mathcal{F}\times\mathcal{B}$ requires a tactful navigation of the system of
@@ -960,7 +960,7 @@ sampled RP design locations to PT productivity parameters.
 %\caption{
 %LHS grids. Intersecting $\mathcal{F}$ and $\mathcal{B}$ produces $n^2$
 %cells; a particular cell $\mathcal{F}_i\times\mathcal{B}_j$ is shown in grey.
-%%($right$) An outline of the sampling proceedure for $\gamma$ (and associated
+%%($right$) An outline of the sampling procedure for $\gamma$ (and associated
 %%quantities) given $B_0$, $M$, and $F_{MSY}$. %$\mathcal{F}_i$.
 %\label{sudoGrid}}
 %\end{figure}
@@ -990,7 +990,7 @@ sampled RP design locations to PT productivity parameters.
 %A Latin hypercube sample (LHS) of size $n$, in an $m$ dimensional space, samples 
 %uniformly among uniform grids of size $n$ in each dimension of the design space. By 
 %intersecting the grids of each dimension, $n^m$ cells are produced, from which 
-%a total of $n$ samples are taken. Crutially only one sample is taken from a given element 
+%a total of $n$ samples are taken. Crucially only one sample is taken from a given element 
 %of each grid in each dimension so as to reduce clumping of the $n$ samples 
 %across the design space.  
 
@@ -1024,7 +1024,7 @@ sampled RP design locations to PT productivity parameters.
 %\caption{
 %($left$) LHS grids. Intersecting $\mathcal{F}$ and $\mathcal{B}$ produces $n^2$ 
 %cells; a particular cell $\mathcal{F}_i\times\mathcal{B}_j$ is shown in grey. 
-%($right$) An outline of the sampling proceedure for $\gamma$ (and associated 
+%($right$) An outline of the sampling procedure for $\gamma$ (and associated 
 %quantities) given $B_0$, $M$, and $F_{MSY}$. %$\mathcal{F}_i$.
 %\label{sudoGrid}}
 %\end{figure}
@@ -1050,7 +1050,7 @@ Due to the lack of an analytical relationship mapping RPs $\mapsto$ $\theta$,
 analogous to the PT model's Eq. (\ref{gammaOfB}), producing a LHS design 
 over Schnute RPs requires a more tactful approach.
 The structured relationship between the RPs and productivity parameters, 
-described in Section (\ref{sSim}), allows an approximate LHS to be obtaind by 
+described in Section (\ref{sSim}), allows an approximate LHS to be obtained by 
 a careful navigation of the system of equations seen in Eq. (\ref{abgSys}).
 
 %
@@ -1064,7 +1064,7 @@ a careful navigation of the system of equations seen in Eq. (\ref{abgSys}).
         \item[4)] Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$
 \end{itemize}
 \vspace{-0.5cm}
-\caption{ An outline of the sampling proceedure for $\gamma$ 
+\caption{ An outline of the sampling procedure for $\gamma$ 
 %(and associated quantities) 
 given $B_0$, $M$, and $F_{MSY}$.
 }
@@ -1077,11 +1077,11 @@ Under the Schnute model, let $\mathcal{F}$ and $\mathcal{B}$ represent regular g
 respectively which can serve as the scaffolding for computing an approximate LHS
 
 %
-Since it is not practicle to invert $\zeta(\gamma)$, a uniform sample in 
+Since it is not practical to invert $\zeta(\gamma)$, a uniform sample in 
 $\frac{B_{MSY}}{B_0}$ can be obtained by modeling $\gamma$ as a random 
 variable, with realization $\gamma^*$, and thinking of $\zeta(\gamma)$ as its 
-cumulatice distribution function (CDF). The aim is to model $\gamma$ as an 
-easily sampled random varaible with a CDF that closely approximates $\zeta$, so 
+cumulative distribution function (CDF). The aim is to model $\gamma$ as an 
+easily sampled random variable with a CDF that closely approximates $\zeta$, so 
 that $\zeta(\gamma^*)\dot\sim U(\zeta_{min},1)$ as closely as possible. There 
 may be many good models for the distribution of $\gamma$, but in this setting 
 the following distribution is very effective,
@@ -1110,7 +1110,7 @@ Above, $t$ is the density of the three parameter location-scale family Student's
 distribution with location $\mu$, scale $\sigma$, and degrees of freedom $\nu$. 
 $\bm{1}_{\gamma>\gamma_{min}}$ is an indicator function that serves to truncate 
 Student's $t$ distribution at the lower bound $\gamma_{min}$. 
-$\delta(\gamma_{min})$ is the dirac delta function evaluated at $\gamma_{min}$, 
+$\delta(\gamma_{min})$ is the Dirac delta function evaluated at $\gamma_{min}$, 
 which is scaled by the known value $\zeta_{min}$; this places probability mass 
 $\zeta_{min}$ at the point $\gamma_{min}$. Since sampling from Student's $t$ 
 distribution is readily doable, sampling from a truncated Student's $t$ mixture 
@@ -1123,7 +1123,7 @@ at a given RP, full specification of Eq. (\ref{mixT}) only requires determining
 the values for $\mu$, $\sigma$, and $\nu$ which make $T$ best approximate 
 $\zeta(\gamma)$. Thus, the values of $\mu$, $\sigma$, and $\nu$ are chosen by 
 minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
-%Letting $T$ be the CDF of the modeled distribtuion of $\gamma$, the values of $\mu$, $\sigma$, and $\nu$ are chosen by minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
+%Letting $T$ be the CDF of the modeled distribution of $\gamma$, the values of $\mu$, $\sigma$, and $\nu$ are chosen by minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
 %{\gamma_{min}}^{\gamma_{0.9}}
 \begin{align}
 [\hat\mu, \hat\sigma, \hat\nu]=\underset{{[\mu, \sigma, \nu]}}{\arg\min}\int_\Gamma \big(T(\gamma; \mu, \sigma, \nu) - \zeta(\gamma)\big)^2 d\gamma
@@ -1211,7 +1211,7 @@ have been computed for all $i\in[1,...,n]$.
 %	%\\ Otherwise go to 1).%If $\mathcal{B}_j$ is not sampled: save $\zeta^*$.\\ Otherwise go to 3). %
 %\end{itemize}
 %%\end{wrapfigure}
-%\caption{Sudo-code proceedure for LHS sampling in $\mathcal{F}\times\mathcal{B}$.}
+%\caption{Sudo-code procedure for LHS sampling in $\mathcal{F}\times\mathcal{B}$.}
 %\label{sudoCode}
 %\end{minipage}
 %\end{figure}
@@ -1257,12 +1257,12 @@ have been computed for all $i\in[1,...,n]$.
 
 %
 Since the behavior of RP inference, under misspecified models, will vary in 
-yet-unkown ways, the exact sampling design density may be hard to know a'priori. 
+yet-unknown ways, the exact sampling design density may be hard to know a'priori. 
 Several factors, including the particular level of observation uncertainty, 
 high variance (i.e. hard to resolve) features of the response surface, or 
-simply "gappy" instanciations of the initial LHS design may necessitate 
-adaptive design refinement, to accuratly describe RP biases. Given the 
-tempermental relationship between RPs and productivity parameters in the Schnute 
+simply "gappy" instantiations of the initial LHS design may necessitate 
+adaptive design refinement, to accurately describe RP biases. Given the 
+temperamental relationship between RPs and productivity parameters in the Schnute 
 model, a recursive refinement algorithm, that makes use of the previously 
 described LHS routine, is developed. 
 
@@ -1343,14 +1343,14 @@ designs in this way until the desired maximin distance falls below the desired
 level.
  
 
-% RPdomain of the 
+% RP domain of the 
 %simulation $X_{n} = LHS_{n}(R_{full})$
 
 
 
 %  
 %An augmented design within a square centered on $\bm{x_a}$  
-%Letting $S$ be the square that circumscribes the circle certered at $\bm{x_a}$ 
+%Letting $S$ be the square that circumscribes the circle centered at $\bm{x_a}$ 
 %with radius $d_a=\min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$, a $LHS_{n'}$ is collected on i
 %
 %
@@ -1359,37 +1359,45 @@ level.
 %$X_{n'} = LHS_{n'}\big([x_{a1}-d_a, x_{a1}+d_a], [x_{a2}-d_a, x_{a2}+d_a]\big)$
 
 
-%Given the tempermental relationship between RPs and productivity parameters in 
+%Given the temperamental relationship between RPs and productivity parameters in 
 %the Schnute model a recursive refinement algorithm, that identifies sampling 
 %holes based on maximin design distances, and fills those holes by making use of the 
 %previously described LHS routine, is developed.
 
-{\color{red} \Huge START HERE}
+%{\color{red} \Huge START HERE}
 
 %
 \subsection{Gaussian Process Metamodel}
 %
 
 %
-Each design location of the simulation results in an MLE of each of the productivity
-parameters under the restricted two parameter production model (i.e. Schaefer:[$log(r)$, $log(K)$],
-BH:[$log(\alpha)$, $log(\beta)$]).
+For assessing inference of productivity parameters over the simulated design %, as seen in Figure (\ref{rpGrid}), 
+a GP model is used as a flexible metamodel of how inference responds to various 
+degrees of model misspecification of the restricted model. 
 %
-Letting $\textbf{y}$ be a vector collecting the fitted log productivity parameter MLEs under 
-the restricted model, and further letting $\bm{\omega}$ be a vector of the MLE standard error 
-estimates, on the variance scale (via the inverted Fisher information of the production model 
-log likelihood). 
-The simulation produces the following mapping of 
+Design locations, $\bm{X}$, specify the degree of model misspecification relative 
+to the the resictired model.
 %
+At each design location of the simulation fitting the resticted two parameter 
+model results in a MLE of each of the productivity parameters 
+(i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
+%under the restricted two parameter production model 
+%
+Furthermore, since the maximum likelihood estimator is a random variable, 
+MLE standard error estimates, on the variance scale (via the inverted Fisher 
+information) are also outputs of the simulation.
+%
+Let $\textbf{y}$ be a vector collecting the fitted MLEs for one of the 
+productivity parameters, and let $\bm{\omega}$ be a vector of estimates of the 
+estimator variances at each $\textbf{y}$. 
+%
+This simulation can be seen as the following mapping
 \begin{equation}
-\bm{X} \mapsto \textbf{y} \pm \bm{\omega}
+\bm{X} \mapsto \textbf{y} \pm \bm{\omega}.
 \end{equation}
-%
-For assessing the productivity parameters over the full region of simulated RPs %, as seen in Figure (\ref{rpGrid}), 
-a GP model is used as a flexible metamodel for describing the overall 
-behavior of inference under misspecified two parameter productivity models.
-
-
+%Using the simulation to train a GP metamodel of 
+By constructing a metamodel of this mapping, it allows for a full
+characterization of inference under the misspecifed restricted models.
 
 %
 A GP is a stochastic process generalizing the multivariate normal distribution 
@@ -1397,65 +1405,27 @@ to an infinite dimensional analog. GPs are often specified primarily through the
 choice of a covariance (or correlation) function which defines the relationship 
 between locations in an index set. Typically the index set is spatial for GPs, 
 with points closely related in the index set resulting in correlated effects in 
-the model. In this setting the model is over the space of reference points. A GP 
-model implies an $n$ dimensional multivariate normal distribution on the 
+the model. In this setting the model is over the space of reference points. 
+A GP model implies an $n$ dimensional multivariate normal distribution on the 
 observations of the model with a correlated error structure defined by the 
 modeled covariance function.
 
-%%
-%Each design location of the simulation produces estimates of two productivity 
-%parameters under the restricted two parameter production model (i.e. Schaefer:($r$, $K$), 
-%BH:($\alpha$, $\beta$)). 
-
-
-
-%
-For assessing the productivity parameters over the full region of simulated RPs %, as seen in Figure (\ref{rpGrid}), 
-a GP model is used as a flexible metamodel for describing the overall 
-behavior of inference under misspecified two parameter productivity models.
-%
-Each design location of the simulation produces an estimate of each of the productivity   
-parameters under the restricted two parameter production model (i.e. Schaefer:($log(r)$, $log(K)$), 
-BH:($log(\alpha)$, $log(\beta)$)).
-
-%
-\begin{equation}
-\bm{X} \mapsto \textbf{y} \pm \bm{\omega}
-\end{equation}
-
 %
 Each of the fitted productivity parameter estimates are then modeled using 
-independent instances of the following model in Eq (\ref{GPModel}).
-
-%\begin{equation*}
-%\underbrace{\left(F_{MSY}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{PT Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\hat F_{MSY}, \frac{\hat B_{MSY}}{\bar B(0)}\right)}_{\text{Shaefer Estimate}}
-%\end{equation*}
-
-
-
-%
-%As previously established, in Section (\ref{modelFit}), the biological parameters 
-%of interest are the Schaefer model's $log(r)$ and $log(K)$ parameters. Since the 
-%estimates of these parameters are random variables, with variances given by the 
-%inverse of the observed fisher information, interpolation of MLEs requires 
-%paying additional attention to propagating estimates of uncertainty into the 
-%metamodel.
-
-
-%
-Let $\textbf{y}$ be a vector collecting the fitted log productivity parameter MLEs under 
-the restricted two parameter production models. Furthermore, let $\bm{\omega}$ 
-be a vector of the MLE standard error estimates, on the variance scale (via the inverted Fisher 
-information of the production model log likelihood).  
-%
-$\bm{X}$ is the $n$ x 2 LHS design matrix of RPs derived above for each respective 
-three parameter data generating model. 
+independent instances of the following GP metamodel in Eq (\ref{GPModel}). 
 \begin{align} \label{GPModel}
 	\textbf{y} &= \beta_0 + \bm{X}\bm{\beta} + \bm{v} + \bm{\epsilon} \nonumber \\
 	\bm{v} &\sim N_n(\bm{0}, \tau^2 \bm{R_{\ell}}) \\
 	\bm{\epsilon} &\sim N_n(\bm{0}, \bm{\omega}'\bm{I}) \nonumber
 \end{align}
-
+%%
+%Let $\textbf{y}$ be a vector collecting the fitted log productivity parameter MLEs under 
+%the restricted two parameter production models. Furthermore, let $\bm{\omega}$ 
+%be a vector of the MLE standard error estimates, on the variance scale (via the inverted Fisher 
+%information of the production model log likelihood).  
+%%
+$\bm{X}$ is the $n$ x 2 LHS design matrix of RPs derived above for each respective 
+three parameter data generating model. 
 %The GP residual variation
 $\epsilon$ models independent normally distributed error, which provides an 
 ideal mechanism for propagating uncertainty from inference in the simulation 
@@ -1464,9 +1434,9 @@ variance term, $\epsilon$ serves to down weight the influence of each $\text{y}_
 in proportion to the inferred production model sampling distribution 
 uncertainty. This has the effect of smoothing the GP model in a way similar to 
 the nugget effect \shortcite{gramacy_cases_2012}, although the application 
-here models this effect heterogeniously.
+here models this effect heterogeneously.
 
-%Above $\bm{v}$ is a vector of gaussian process effects
+%Above $\bm{v}$ is a vector of Gaussian process effects
 The term, $\bm{v}$, contains spatially correlated GP effects. The correlation 
 matrix, $\bm{R_{\ell}}$ describes how RPs closer in the simulation design are more 
 correlated. This spatial effect is modeled with a squared exponential correlation function,
@@ -1487,6 +1457,8 @@ $\ell_1$ and $\ell_2$ are fit via MLE against the observations $\textbf{y}$, $\b
 and $\bm{\omega}$ from simulation fits.
 
 %
+The fitting the metamodel allows for a full predictive description of inference 
+under the misspecified restricted models.
 Predictive estimates are obtained via kriging {(\color{red}cite)}. 
 %over intermediate values over RP space. 
 %with $\hat~$ decorate any quantity that is derived for metamodel interpolation.
@@ -1503,7 +1475,132 @@ function evaluations for the predictive location $\textbf{x}$ against all observ
 in $\bm{X}$ (i.e. $\textbf{r(x)}=\bm{R}(\textbf{x}, \bm{x}_i)~\forall~\bm{x}_i\in\bm{X}$).
 
 %
-{\color{blue} Maybe a bit of hinting at uses}.
+%{\color{blue} Maybe a bit of hinting at uses}
+{\color{blue} uses}
+
+%Letting $\textbf{y}$ be a vector collecting the fitted log productivity parameter MLEs under
+%the restricted model, and further letting $\bm{\omega}$ be a vector of the MLE standard error
+%estimates, on the variance scale (via the inverted Fisher information of the production model
+%log likelihood).
+%The simulation produces the following mapping of
+%%
+%
+%
+%
+%
+%a full 
+%characterization of inference should To capture the most complete picture of statistical 
+%MLE standard error estimates, on the variance scale (via the inverted Fisher information)
+%
+%
+%
+%The the fartherRP space. 
+%
+%%As previously established, in Section (\ref{modelFit}), the 
+%%biological parameters of interest are the Schaefer model's $log(r)$ and $log(K)$ 
+%parameters. Since the estimates of these parameters are random variables, with 
+%variances given by the inverse of the observed fisher information, 
+%interpolation of MLEs requires paying additional attention to propagating 
+%estimates of uncertainty into the metamodel. 
+
+%%Motivate gaussianity
+%
+%%
+%A GP is a stochastic process generalizing the normal distribution to an
+%infinite dimensional analog. GPs are often specified primarily through the
+%choice of a covariance function which defines the relationship between
+%locations in an index set. Typically the index set is spatial for GPs, and in
+%this setting the model is across the reference point space, 
+%$\left(F^*, \frac{B^*}{\bar B(0)}\right)$, of the three parameter
+%PT data generating model. A GP model implies an $n$ dimensional multivariate 
+%normal distribution on the observations of the model and the covariance function 
+%fills out the covariance matrix for the observations.
+%
+%%Since covariance between $log(r)$ and $log(K)$ are often indistinguishable 
+%%form 0 the interpolator treats
+%Modeling the estimates of $log(r)$ and $log(K)$ with independent GP models is 
+%used to extend analysis of all major biological RP over the simulated grid. 
+%Let $\hat\mu$ be the maximum likelihood estimate (MLE) of either $log(r)$ or 
+%$log(K)$. Additionally let $\hat\omega$ be the inverted Hessian information of 
+%the log likelihood evaluated at $\hat\mu$. 
+%
+%%
+%Each grid location of the simulation produces a single fitted $\hat\mu_i$ at an
+%associate $\left(F^*, \frac{B^*}{\bar B(0)}\right)$ location with 
+%$i\in\{1,...,n\}$. $\bm{\hat\mu}$ is jointly modeled over the space of 
+%reference points as the following GP,
+%%Here the following GP model is used,
+
+
+%%
+%Understanding the effects of productivity model misspecification amounts to 
+%understanding 
+%
+%%
+%Each design location of the simulation results in a MLE of each of the productivity
+%parameters under the restricted two parameter production model (i.e. Schaefer:[$log(r)$, $log(K)$],
+%BH:[$log(\alpha)$, $log(\beta)$]). Since the maximum likelihood estimator is a random 
+%variable a full characterization of inference To capture the most complete picture of statistical 
+%MLE standard error estimates, on the variance scale (via the inverted Fisher information)
+%
+%A full characterization of the behavior of statistical 
+%inference must also account for estimation uncertainty so each MLE,  
+%
+%Further, since the simulated process involves statistical inference
+%%
+%For assessing the productivity parameters over the full region of simulated RPs %, as seen in Figure (\ref{rpGrid}), 
+%a GP model is used as a flexible metamodel for describing the overall 
+%behavior of inference under the restricted model.
+
+
+
+%%
+%Letting $\textbf{y}$ be a vector collecting the fitted log productivity parameter MLEs under 
+%the restricted model, and further letting $\bm{\omega}$ be a vector of the MLE standard error 
+%estimates, on the variance scale (via the inverted Fisher information of the production model 
+%log likelihood). 
+%The simulation produces the following mapping of 
+%%
+%\begin{equation}
+%\bm{X} \mapsto \textbf{y} \pm \bm{\omega}
+%\end{equation}
+
+
+%%
+%Each design location of the simulation produces estimates of two productivity 
+%parameters under the restricted two parameter production model (i.e. Schaefer:($r$, $K$), 
+%BH:($\alpha$, $\beta$)). 
+
+
+
+%%
+%For assessing the productivity parameters over the full region of simulated RPs %, as seen in Figure (\ref{rpGrid}), 
+%a GP model is used as a flexible metamodel for describing the overall 
+%behavior of inference under misspecified two parameter productivity models.
+%%
+%Each design location of the simulation produces an estimate of each of the productivity   
+%parameters under the restricted two parameter production model (i.e. Schaefer:($log(r)$, $log(K)$), 
+%BH:($log(\alpha)$, $log(\beta)$)).
+%
+%%
+%\begin{equation}
+%\bm{X} \mapsto \textbf{y} \pm \bm{\omega}
+%\end{equation}
+
+%\begin{equation*}
+%\underbrace{\left(F_{MSY}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{PT Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\hat F_{MSY}, \frac{\hat B_{MSY}}{\bar B(0)}\right)}_{\text{Schaefer Estimate}}
+%\end{equation*}
+
+
+
+%
+%As previously established, in Section (\ref{modelFit}), the biological parameters 
+%of interest are the Schaefer model's $log(r)$ and $log(K)$ parameters. Since the 
+%estimates of these parameters are random variables, with variances given by the 
+%inverse of the observed fisher information, interpolation of MLEs requires 
+%paying additional attention to propagating estimates of uncertainty into the 
+%metamodel.
+
 
 %
 \subsection{Catch \label{catch}}	
@@ -1514,7 +1611,7 @@ in $\bm{X}$ (i.e. $\textbf{r(x)}=\bm{R}(\textbf{x}, \bm{x}_i)~\forall~\bm{x}_i\i
 
 %
 It is known that the behavior of catch can effect inference on the productivity %biological 
-parameters \shortcite{hilborn_quantitative_1992}. % {\color{red} cite walters}). 
+parameters \shortcite{hilborn_quantitative_1992}. % {\color{red} cite Walters}). 
 %In particular it is thought that catch can induce "contrast" in index data
 %so as to better inform $r$. 
 In this setting contrast refers to changes in the long term trends of index data. 
@@ -1621,7 +1718,7 @@ of the ODE solution is necessary for the identifiability of the statistical mode
 %
 If the form of $\frac{dB}{dt}$ is at least Lipschitz continuous, then the
 Cauchy-Lipschitz-Picard theorem provides local existence and uniqueness of
-$B(t)$.%, on the condition that the form of $\frac{dB}{dt}$ is at least Lipschitz continu
+$B(t)$.%, on the condition that the form of $\frac{dB}{dt}$ is at least Lipschitz continuous
 Recall from Eq(\ref{ode}) that $\frac{dB}{dt}$ is separated into
 a term for recruitment into the population, $R(B)$, and a term for removals via
 catch, $C$. For determining Lipschitz continuity of $\frac{dB}{dt}$,
@@ -1718,13 +1815,13 @@ relatively smaller footprint in system memory.
 %
 While metamodeling occurs on the inferred productivity parameters of the 
 restricted production model, the metamodel can also be used to build 
-metamodeled estimates of major biological RPs. The relavant transformations 
+metamodeled estimates of major biological RPs. The relevant transformations 
 are given Eqs. (\ref{ptRP}, \ref{BratS}, \ref{FmsyS}) with $\gamma$ 
 fixed to the restricting case. 
 %reference points.
 
 %estimate of two productivity pa-
-%225 rameters under the restricted production model. Each of the fitted productivty parameter
+%225 rameters under the restricted production model. Each of the fitted productivity parameter
 %226 estimates are then modeled using independent instances of the following model in Eq (28).
 
 %
@@ -1744,7 +1841,7 @@ and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the
 two parameter restricted cases.
 
 %
-\subsection{PT/Schaffer}
+\subsection{PT/Schaefer}
 \begin{itemize}
 	\item[~] region of chaotic fits due to model misspecification
 	%\item arrow plots 
@@ -1758,7 +1855,7 @@ two parameter restricted cases.
 \hspace*{-1cm}
 \includegraphics[width=0.1\textwidth]{../ptNew/subLegnd.png}
 \caption{
-Joint bias direction for ($F_{MSY}$, $\frac{B_{MSY}}{B_0}$) estimates under the misspecified Schaefer Model. The intesity of color represents the excess bias relative to the shortest possible mapping. 
+Joint bias direction for ($F_{MSY}$, $\frac{B_{MSY}}{B_0}$) estimates under the misspecified Schaefer Model. The intensity of color represents the excess bias relative to the shortest possible mapping. 
 }
 \end{figure}
 
@@ -1874,7 +1971,7 @@ while $K$ does not.
 \includegraphics[width=0.45\textwidth]{../gpBias/directionalBiasSchnuteSubExpT45N150Wide.png}
 \hspace*{-1cm}
 \includegraphics[width=0.1\textwidth]{../gpBias/legendSubSchnute.png}
-\caption{Joint bias direction for $\left(\frac{F_{MSY}}{M}\right.$, $\left.\frac{B_{MSY}}{B_0}\right)$ estimates under the misspecified BH Model. The intesity of color represents the excess bias relative to the shortest possible mapping.}
+\caption{Joint bias direction for $\left(\frac{F_{MSY}}{M}\right.$, $\left.\frac{B_{MSY}}{B_0}\right)$ estimates under the misspecified BH Model. The intensity of color represents the excess bias relative to the shortest possible mapping.}
 %\caption{\color{red} Low Contrast/High Contrast Titles, unify the Legends (Only show one.) Redo the colors relative to minimum distance. Less arrows. Bolder arrows, bolder line}
 \end{figure}
 
@@ -1890,7 +1987,7 @@ while $K$ does not.
 
 %
 \section{Appendix\label{lambApp}: Inverting $\frac{B^*}{\bar B(0)}$ and $\gamma$ for the PT Model}
-For bevity let $\zeta=\frac{B^*}{\bar B(0)}$.
+For brevity let $\zeta=\frac{B^*}{\bar B(0)}$.
 \begin{align*}
 &\zeta=\left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}\\
 %&\zeta^{\gamma-1}=\frac{1}{\gamma}\\
@@ -1904,7 +2001,7 @@ Applying this definition allows for the isolation of $\gamma$.
 &\gamma\log(\zeta)=W\left(\zeta\log(\zeta)\right) \nonumber\\
 &\gamma=\frac{W\left(\zeta\log(\zeta)\right)}{\log(\zeta)} \label{gammaOfZeta}
 \end{align}
-The Lambert product logarithm is a mulivalued function with a branch point at 
+The Lambert product logarithm is a multivalued function with a branch point at 
 $-\frac{1}{e}$. The principal branch, $W_0(z)$, is defined on $z\in\left(-\frac{1}{e}, \infty\right)$, 
 and the lower branch, $W_{-1}(z)$, is defined on $z\in\left(-\frac{1}{e}, 0\right)$. Taken 
 individually, each respective branch is analytic, but cannot be expressed in terms 
@@ -1979,11 +2076,11 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %limited RP-space of two parameter models are a major source of model 
 %misspecification for RPs and thus induce bias in RP estimation. The behavior 
 %of RP estimation bias is not well understood and as a result often 
-%underappreciated. A metamodeling approach is developed here to describe RP 
+%under appreciated. A metamodeling approach is developed here to describe RP 
 %biases and explore mechanisms of model failure in the Schaefer model. 
 %%Additionally Sections (\ref{growth} $\&$ \ref{propCatch}) outline additional 
 %%projects which will be included in my dissertation. Section (\ref{growth}) 
-%%proposes extensions to the immediatly following work which generalize results 
+%%proposes extensions to the immediately following work which generalize results 
 %%to a broader set of dynamics. %production functions, as well as proposes an analyze mechanisms of 
 %%%model failure in the 
 %%%context of simple age structured dynamics. 
@@ -2049,7 +2146,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%  %stock recruitment relationship (SRR). Recruitment 
 %Firstly, the population grows through a production function, $P(B)$. Production 
 %in this setting is defined as the net biomass increase due to all reproduction 
-%and maturation processes accounting for all naturally occurring %no mirgration the population is assumed closed. 
+%and maturation processes accounting for all naturally occurring %no migration the population is assumed closed. 
 %sources of mortality other than the recorded fishing from humans. The 
 %production function is assumed to be a parametric function that relates the 
 %current biomass of the population to an aggregate production of biomass. 
@@ -2128,7 +2225,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %by fishing the stock down to $B^*$, where the stock attains its peak productivity. 
 %By symmetry it is clear that this peak occurs at $B^*=\frac{K}{2}$. The fishing 
 %rate required to hold the stock at MSY is $F^*=\frac{r}{2}$, which is half of the 
-%stock's maximum reproductive rate. \mbox{MSY is then the product of $F^*$ and $B^*$ 
+%stocks maximum reproductive rate. \mbox{MSY is then the product of $F^*$ and $B^*$ 
 %so that $MSY=\frac{rK}{4}$.}
 %%In the absence of fishing $\frac{dB}{dt}$ would be driven entirely by $P$, but at MSY $\frac{dB}{dt}=0$ since the population equilibrates at $B^*$. 
 %
@@ -2205,20 +2302,20 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %
 %%%
 %%{\color{red} add to into}
-%%bias-variance tradeoff schaefer high bias, low variance setting. Bias 
+%%bias-variance tradeoff Schaefer high bias, low variance setting. Bias 
 %%is the dominant source of estimation error. Variance estimates will be 
 %%unrealistically low due to the limited parameter space.
 %%
-%%%and conversly a two parameter production function will have estimation errrosd. 
+%%%and conversely a two parameter production function will have estimation errrosd. 
 %%The argument of \shortciteA{maunder_is_2003} suggests that the two parameter 
 %%Schaefer model overly restricts parameter space so that estimation error is unduly 
 %%dominated by bias.
 %%
-%%as to overly limit estimate varianceso that estimation error is unduly dominated by bias.
+%%as to overly limit estimate variances that estimation error is unduly dominated by bias.
 %%
 %%estimation errors of the two parameter Schaeffer model are unduly dominated by bias
 %%
-%% sincethe limited parameter 
+%% since the limited parameter 
 %%space of the Schaefer model 
 %
 %%
@@ -2235,7 +2332,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %the implications have not been extended to a joint description of biases on the scale of 
 %management RPs. % biases jointly.
 %
-%%The particular behaviors of thesie RP biases, 
+%%The particular behaviors of these RP biases, 
 %%and their relationship to each other, are not fully described.  
 %
 %%Add GOAL of understanding directionality and mechanism of bias.
@@ -2278,7 +2375,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%\item a statement of novelty
 %%	\begin{itemize}
 %%	\item[\checkmark] model misspecification leads to bias
-%%	\item[Sorta] non-constant bias of RP-space (a wholistic summary of model performance.)
+%%	\item[Sorta] non-constant bias of RP-space (a holistic summary of model performance.)
 %%	\item[Sorta] methodology to account for bias in the presence of uncertainty
 %%	\end{itemize}
 %%\end{itemize}
@@ -2345,7 +2442,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%	assessment model correctly specified
 %%Lee 2011
 %%	contrast estimate steepness
-%%Field 2009 Bacaccio BH v. Stanly 2009 Ricker 
+%%Field 2009 Bacaccio BH v. Stanley 2009 Ricker 
 %%zeta=0.39		  zeta=0.5
 %%
 %%%
