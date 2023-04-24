@@ -1393,7 +1393,7 @@ estimator variances at each $\textbf{y}$.
 %
 This simulation can be seen as the following mapping
 \begin{equation}
-\bm{X} \mapsto \textbf{y} \pm \bm{\omega}.
+\bm{X} \mapsto \textbf{y} \pm \sqrt{\bm{\omega}}.
 \end{equation}
 %Using the simulation to train a GP metamodel of 
 By constructing a metamodel of this mapping, it allows for a full
@@ -1412,7 +1412,7 @@ modeled covariance function.
 
 %
 Each of the fitted productivity parameter estimates are then modeled using 
-independent instances of the following GP metamodel in Eq (\ref{GPModel}). 
+independent instances of the following GP metamodel. %in Eq (\ref{GPModel}). 
 \begin{align} \label{GPModel}
 	\textbf{y} &= \beta_0 + \bm{X}\bm{\beta} + \bm{v} + \bm{\epsilon} \nonumber \\
 	\bm{v} &\sim N_n(\bm{0}, \tau^2 \bm{R_{\ell}}) \\
@@ -1424,7 +1424,7 @@ independent instances of the following GP metamodel in Eq (\ref{GPModel}).
 %be a vector of the MLE standard error estimates, on the variance scale (via the inverted Fisher 
 %information of the production model log likelihood).  
 %%
-$\bm{X}$ is the $n$ x 2 LHS design matrix of RPs derived above for each respective 
+$\bm{X}$ is the $n$ x 2 LHS design matrix of RPs, as derived above, for each respective 
 three parameter data generating model. 
 %The GP residual variation
 $\epsilon$ models independent normally distributed error, which provides an 
@@ -1438,8 +1438,9 @@ here models this effect heterogeneously.
 
 %Above $\bm{v}$ is a vector of Gaussian process effects
 The term, $\bm{v}$, contains spatially correlated GP effects. The correlation 
-matrix, $\bm{R_{\ell}}$ describes how RPs closer in the simulation design are more 
-correlated. This spatial effect is modeled with a squared exponential correlation function,
+matrix, $\bm{R_{\ell}}$ describes how RPs close together in the simulation design 
+are more correlated than those that are far away. This spatial effect is modeled 
+with a squared exponential correlation function,
 %
 \begin{align}   \label{corModel}
 R(\bm{x}, \bm{\tilde x}) &= \exp\left( \sum_{i=1}^2 \frac{-(x_{i}-\tilde x_{i})^2}{2\ell_j^2} \right). 
@@ -1457,7 +1458,7 @@ $\ell_1$ and $\ell_2$ are fit via MLE against the observations $\textbf{y}$, $\b
 and $\bm{\omega}$ from simulation fits.
 
 %
-The fitting the metamodel allows for a full predictive description of inference 
+Fitting the metamodel allows for a full predictive description of inference 
 under the misspecified restricted models.
 Predictive estimates are obtained via kriging {(\color{red}cite)}. 
 %over intermediate values over RP space. 
@@ -1797,7 +1798,228 @@ relatively smaller footprint in system memory.
 %RESULTS
 %
 
+%
+\clearpage
+
+%
+\vspace*{-1.5cm}
 \section{Results}
+
+%
+\subsection{PT/Schaefer}
+
+%
+\subsubsection{An $MSY$-Optimal Catch History \label{flat}}
+
+%
+When $F(t)$ is held constant at $F^*$, as it is in the "low contrast" 
+simulation setting, $B(t)$ comes to equilibrium as an exponential decay from 
+$K$ to $B^*$. Understanding model misspecification bias is simplified in this 
+setting due to the relative simplicity that this induces in $B(t)$. However 
+this simplicity is known to poorly inform estimates of $r$, and thus $F^*$, 
+due to the limited range of the production function that is observed 
+\shortcite{hilborn_quantitative_1992}. 
+%This example is a "low contrast" setting.
+
+%%
+%Figure (\ref{flatProd}) shows four of the most misspecified example Schaefer 
+%function fits as compared to the true data generating PT production
+%functions. In the rug plots below each set of curves the observed biomasses
+%demonstrate the exponential decay from $K$ to $B^*$ in each case. In particular,
+%notice how only biomasses greater than the PT $B^*$ are observed. 
+%Due to the
+%leaning of the true PT curves, and the symmetry of the logistic parabola, the
+%logistic curve only observes information about its slope at the origin from
+%data observed on the right portion of the PT curves. Above the Schaefer line
+%PT is steeper on the right of $B^*$ than it is on the left, and so the the
+%logistic curve over-estimates $r$, and thus $F^*$, for data generated above
+%the Schaefer line. Below the Schaefer line the vice versa phenomena occurs.
+%Below the Schaefer line PT is shallower to the right of $B^*$ than it is on the
+%left and so the logistic parabola estimate tends to under estimate $F^*$.
+
+%\begin{figure}[h!]
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-0.5cm}
+%\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.12Z0.573.png}
+\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.674Z0.599.png}\\
+\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.096Z0.22.png}
+\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.699Z0.201.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.116Z0.62.png}
+%%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.702Z0.614.png}\\
+%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.774Z0.586.png}\\
+%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.065Z0.226.png}
+%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.715Z0.17.png}
+%\end{minipage}
+\caption{
+A comparison of the true PT production function (in black) and the estimated logistic curve (in red)
+with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification
+in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves.
+%Fitted logistic production function verses true PT production function. 
+%Observed biomass plotted along x-axis.
+}
+\label{flatProd}
+%\end{figure}
+\end{wrapfigure}
+
+%
+Figure (\ref{flatProd}) shows four of the most misspecified example
+production function fits as compared to the true data generating PT production
+functions. The rug plots below each set of curves show how the observed 
+biomasses decay exponentially from $K$ to $B^*$ in each case. In particular,
+notice how observations only exist where the PT biomass is greater than $B^*$.
+Due to the
+leaning of the true PT curves, and the symmetry of the logistic parabola, the
+logistic curve only observes information about its slope at the origin from
+data observed on the right portion of the PT curves. For PT data generated such that 
+$\frac{B^*}{\bar B(0)}>0.5$, PT is steeper to the right of $B^*$ than it is on the left, 
+and so the the logistic curve over-estimates $r$, and consequently also over-
+estimates $F^*$. %for data generated above the Schaefer line. 
+For PT data generated where $\frac{B^*}{\bar B(0)}<0.5$ the vice versa phenomena occurs;
+%Below the Schaefer line the vice versa phenomena occurs;
+%Below the Schaefer line 
+PT is shallower to the right of $B^*$ than it is on the
+left and so the logistic parabola estimate tends to under estimate $F^*$.
+
+%%
+%Figure (\ref{flatProd}) indicates that the individual biases of $B^*$ and $K$
+%may behave quite differently. $B^*$ appears to be estimated fairly accurately
+%while $K$ does not.
+
+
+
+
+
+
+%\begin{itemize}
+%	\item[~] region of chaotic fits due to model misspecification
+%	%\item arrow plots 
+%	\item RP break out plots with mechanism of failure
+%\end{itemize}
+
+%%
+%Figure (\ref{flatTrio}) shows the biases in $F^*$ and $\frac{B^*}{\bar B(0)}$
+%over the space of simulated RPs. The (\emph{top-right}) panel of Figure (\ref{flatTrio})
+%shows how data generated across a broad space of RPs are mapped onto the
+%limited space of the Schaefer line. Below the Schaefer line, RP estimates are
+%biased by over-estimating $\frac{B^*}{\bar B(0)}$ and under-estimating $F^*$.
+%Above the Schaefer line the vice-versa is true; $\frac{B^*}{\bar B(0)}$ is
+%under-estimated and $F^*$ is over-estimated. In the (\emph{left}) and
+%(\emph{bottom}) panels of Figure (\ref{flatTrio}) the bias in $\frac{B^*}{\bar B(0)}$
+%and $F^*$ are shown component-wise; each panel showing the same patterns, but
+%focusing on only one component of the bias at a time. In these panels red
+%coloring indicates over-estimation of the RP and blue indicates under-estimation.
+%Notice that the region of RPs near the Schaefer line enjoy relatively low bias
+%since model misspecification is minor in this region.
+
+%
+\subsubsection{Metamodeled Trends}
+
+%../ptNew/ptLook.r
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.44\textwidth}
+\includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTFlatT30.png}
+\end{minipage}
+\begin{minipage}[h!]{0.44\textwidth}
+\includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTExpT45.png}
+\end{minipage}
+\begin{minipage}[h!]{0.09\textwidth}
+\hspace{-1cm}
+\includegraphics[width=1.5\textwidth]{../ptNew/subLegnd.png}
+\end{minipage}
+\caption{
+Joint bias direction for ($F_{MSY}$, $\frac{B_{MSY}}{B_0}$) estimates under 
+the misspecified Schaefer Model. The intensity of color represents the excess 
+bias relative to the shortest possible mapping. Results in the low contrast setting 
+are shown $left$, and the high contrast setting is shown $right$.
+}
+\end{figure}
+
+%
+\begin{itemize}
+\item define Schaefer line.
+\item generalize the srr figure above
+\item Point out the geometry Schaeffer RPs, thus $\frac{B_{MSY}}{B_0}$ must simply map vertically. 
+\item Bias in $\frac{B_{MSY}}{B_0}$ estimation entirely defined by the degree of model mispecification.
+\item mapping dirrectly vertically is a minimum distance mapping given the constrained space.
+\item Any biases in $F_{MSY}$ move this mapping further from the mapping with minimum possible distance.
+\item The low contrast simulation indeed demonstrates biased estimation of $F_{MSY}$. (Histogram of high/low contrast bias observations.)
+\item adding information (High contrast) reduces $F_{MSY}$ bias and thus moves the mapping closer to minimum possible distance.  
+\end{itemize}
+
+
+\begin{itemize}
+\item Mechanism plot on SRR LHS Grid plot
+\item some detail views in $B_{MSY}$, $B_0$, $F_{MSY}$, $?F_{SPR?}$, $MSY$
+\end{itemize}
+
+\clearpage
+
+
+%%
+%\clearpage
+%\begin{figure}[h!]
+%%\begin{wrapfigure}{r}{0.5\textwidth}
+%%\hspace*{0.25cm}
+%\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}
+%%\hspace*{0.25cm
+%\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png}
+%\caption{\label{flatRat}
+%MLE Bias surfaces for $B^*$ (\emph{left}) and $K$ (\emph{right}) individually.
+%}
+%\end{figure}
+
+%% the parabolic structures ties their ratio to $\frac{1}{2}$.  
+%Figure (\ref{flatCurves}) also gives some examples of the relative behavior of
+%$B^*$ and $K$. In Figure (\ref{flatTrio}) it is clear that the bias behavior of
+%$\frac{B^*}{\bar B(0)}$ is locked in a fixed pattern under the Schaefer model.
+%Figure (\ref{flatCurves}) indicates that the individual biases of $B^*$ and $K$
+%may behave quite differently. $B^*$ appears to be estimated fairly accurately
+%while $K$ does not.
+
+%
+\subsection{Schnute/BH}
+
+%
+\subsubsection{Design}
+
+%
+\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../gpBias/qqUnif.png}
+\caption{Uniform Q-Q plot for sampled $\zeta$ against theoretical uniform quantiles.}
+\end{figure}
+
+%
+\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../gpBias/designLineColorHHardFlatT30N150WWideN112.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+\caption{\color{red} grid plot of production functions.)}
+\end{figure}
+
+%
+\subsubsection{Metamodeled Trends}
+
+%../gpBias/animFigSchnuteLHS.r 
+\begin{figure}[h!]
+%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN56X3Z0.35.png}
+\begin{minipage}[h!]{0.44\textwidth}
+\includegraphics[width=\textwidth]{../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
+\end{minipage}
+\begin{minipage}[h!]{0.44\textwidth}
+%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN112X3Z0.55.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentExpT45N150WideX3Z0.35.png}
+\includegraphics[width=\textwidth]{../gpBias/directionalBiasSchnuteSubExpT45N150Wide.png}
+%\hspace*{-1cm}
+\end{minipage}
+\begin{minipage}[h!]{0.09\textwidth}
+\hspace{-1cm}
+\includegraphics[width=1.5\textwidth]{../gpBias/legendSubSchnute.png}
+\end{minipage}
+\caption{Joint bias direction for $\left(\frac{F_{MSY}}{M}\right.$, $\left.\frac{B_{MSY}}{B_0}\right)$ estimates under the misspecified BH Model. The intensity of color represents the excess bias relative to the shortest possible mapping.}
+%\caption{\color{red} Low Contrast/High Contrast Titles, unify the Legends (Only show one.) Redo the colors relative to minimum distance. Less arrows. Bolder arrows, bolder line}
+\end{figure}
 
 %%
 %While interpolation occurs in the space of either $\log(r)$ or $\log(K)$, these
@@ -1835,152 +2057,20 @@ measure of bias, similar to a percent error calculation.
 \end{align}
 
 %
-Above $RP$ is a stand in for the the true value of any of the biological
+Above $RP$ is a stand-in for the true value of any of the biological
 reference points under the three parameter data generating production model, 
 and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the 
 two parameter restricted cases.
 
 %
-\subsection{PT/Schaefer}
-\begin{itemize}
-	\item[~] region of chaotic fits due to model misspecification
-	%\item arrow plots 
-	\item RP break out plots with mechanism of failure
-\end{itemize}
-
-%../ptNew/ptLook.r
-\begin{figure}[h!]
-\includegraphics[width=0.45\textwidth]{../ptNew/directionalBiasSubPTFlatT30.png}
-\includegraphics[width=0.45\textwidth]{../ptNew/directionalBiasSubPTExpT45.png}
-\hspace*{-1cm}
-\includegraphics[width=0.1\textwidth]{../ptNew/subLegnd.png}
-\caption{
-Joint bias direction for ($F_{MSY}$, $\frac{B_{MSY}}{B_0}$) estimates under the misspecified Schaefer Model. The intensity of color represents the excess bias relative to the shortest possible mapping. 
-}
-\end{figure}
+\section{Discussion}
 
 \begin{itemize}
-\item Mechanism plot on SRR LHS Grid plot
-\item some detail views in $B_{MSY}$, $B_0$, $F_{MSY}$, $?F_{SPR?}$, $MSY$
+\item model mispecification story as in advancement
+\item inference is oriented to the shape of the constrained space
+\item conjecture that with perfectly informed models mapping would be orthoganal
 \end{itemize}
 
-\clearpage
-
-%
-Figure (\ref{flatProd}) shows four of the most misspecified example
-production function fits as compared to the true data generating PT production
-functions. In the rug plots below each set of curves the observed biomasses
-demonstrate the exponential decay from $K$ to $B^*$ in each case. In particular,
-notice how only biomasses greater than the PT $B^*$ are observed. 
-%Due to the
-%leaning of the true PT curves, and the symmetry of the logistic parabola, the
-%logistic curve only observes information about its slope at the origin from
-%data observed on the right portion of the PT curves. Above the Schaefer line
-%PT is steeper on the right of $B^*$ than it is on the left, and so the the
-%logistic curve over-estimates $r$, and thus $F^*$, for data generated above
-%the Schaefer line. Below the Schaefer line the vice versa phenomena occurs.
-%Below the Schaefer line PT is shallower to the right of $B^*$ than it is on the
-%left and so the logistic parabola estimate tends to under estimate $F^*$.
-
-%\begin{figure}[h!]
-\begin{wrapfigure}{r}{0.5\textwidth}
-%\begin{minipage}[h!]{0.49\textwidth}
-\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.12Z0.573.png}
-\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.674Z0.599.png}\\
-\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.096Z0.22.png}
-\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.699Z0.201.png}
-%\end{minipage}
-%\begin{minipage}[h!]{0.49\textwidth}
-%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.116Z0.62.png}
-%%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.702Z0.614.png}\\
-%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.774Z0.586.png}\\
-%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.065Z0.226.png}
-%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.715Z0.17.png}
-%\end{minipage}
-\caption{
-A comparison of the true PT production function (in black) and the estimated logistic curve (in red)
-with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification
-in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves.
-%Fitted logistic production function verses true PT production function. 
-%Observed biomass plotted along x-axis.
-}
-\label{flatProd}
-%\end{figure}
-\end{wrapfigure}
-
-%%
-%Figure (\ref{flatProd}) shows four of the most misspecified example
-%production function fits as compared to the true data generating PT production
-%functions. In the rug plots below each set of curves the observed biomasses
-%demonstrate the exponential decay from $K$ to $B^*$ in each case. In particular,
-%notice how only biomasses greater than the PT $B^*$ are observed. 
-Due to the
-leaning of the true PT curves, and the symmetry of the logistic parabola, the
-logistic curve only observes information about its slope at the origin from
-data observed on the right portion of the PT curves. Above the Schaefer line
-PT is steeper on the right of $B^*$ than it is on the left, and so the the
-logistic curve over-estimates $r$, and thus $F^*$, for data generated above
-the Schaefer line. Below the Schaefer line the vice versa phenomena occurs.
-Below the Schaefer line PT is shallower to the right of $B^*$ than it is on the
-left and so the logistic parabola estimate tends to under estimate $F^*$.
-
-%
-
-Figure (\ref{flatProd}) indicates that the individual biases of $B^*$ and $K$
-may behave quite differently. $B^*$ appears to be estimated fairly accurately
-while $K$ does not.
-
-%%
-%\clearpage
-%\begin{figure}[h!]
-%%\begin{wrapfigure}{r}{0.5\textwidth}
-%%\hspace*{0.25cm}
-%\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}
-%%\hspace*{0.25cm
-%\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png}
-%\caption{\label{flatRat}
-%MLE Bias surfaces for $B^*$ (\emph{left}) and $K$ (\emph{right}) individually.
-%}
-%\end{figure}
-
-% the parabolic structures ties their ratio to $\frac{1}{2}$.  
-Figure (\ref{flatCurves}) also gives some examples of the relative behavior of
-$B^*$ and $K$. In Figure (\ref{flatTrio}) it is clear that the bias behavior of
-$\frac{B^*}{\bar B(0)}$ is locked in a fixed pattern under the Schaefer model.
-Figure (\ref{flatCurves}) indicates that the individual biases of $B^*$ and $K$
-may behave quite differently. $B^*$ appears to be estimated fairly accurately
-while $K$ does not.
-
-
-
-%
-\subsection{Schnute/BH}
-
-%
-\begin{figure}[h!]
-\includegraphics[width=0.5\textwidth]{../gpBias/qqUnif.png}
-\caption{Uniform Q-Q plot for sampled $\zeta$ against theoretical uniform quantiles.}
-\end{figure}
-
-%../gpBias/animFigSchnuteLHS.r 
-\begin{figure}[h!]
-%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN56X3Z0.35.png}
-\includegraphics[width=0.45\textwidth]{../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
-%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN112X3Z0.55.png}
-%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentExpT45N150WideX3Z0.35.png}
-\includegraphics[width=0.45\textwidth]{../gpBias/directionalBiasSchnuteSubExpT45N150Wide.png}
-\hspace*{-1cm}
-\includegraphics[width=0.1\textwidth]{../gpBias/legendSubSchnute.png}
-\caption{Joint bias direction for $\left(\frac{F_{MSY}}{M}\right.$, $\left.\frac{B_{MSY}}{B_0}\right)$ estimates under the misspecified BH Model. The intensity of color represents the excess bias relative to the shortest possible mapping.}
-%\caption{\color{red} Low Contrast/High Contrast Titles, unify the Legends (Only show one.) Redo the colors relative to minimum distance. Less arrows. Bolder arrows, bolder line}
-\end{figure}
-
-%
-\begin{figure}[h!]
-\includegraphics[width=0.5\textwidth]{../gpBias/designLineColorHHardFlatT30N150WWideN112.png}
-%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
-\caption{\color{red} grid plot of production functions.)}
-\end{figure}
 
 %
 \clearpage
@@ -4090,7 +4180,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 \clearpage
 \bibliographystyle{apacite}
 %\bibliography{./schnuteGPBias.bib}
-\bibliography{./gpBias.bib,./spline.bib,./ageStructure.bib}
+\bibliography{./gpBias.bib,./spline.bib}%,./ageStructure.bib}
 %\thispagestyle{next}
 
 %\end{alphasection}

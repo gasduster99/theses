@@ -17,65 +17,47 @@ Repeated entry---line 65 of file ./spline.bib
  : @article{gramacy_cases_2012
  :                            ,
 I'm skipping whatever remains of this entry
-Database file #3: ./ageStructure.bib
-Repeated entry---line 2 of file ./ageStructure.bib
- : @article{schnute_analytical_1998
- :                                 ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 19 of file ./ageStructure.bib
- : @article{schnute_general_1985
- :                              ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 56 of file ./ageStructure.bib
- : @article{hilborn_quantitative_1992
- :                                   ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 106 of file ./ageStructure.bib
- : @article{schnute_general_1987
- :                              ,
-I'm skipping whatever remains of this entry
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
-Warning--No journal in pearson_documentation_1997
 Warning--No journal in radhakrishnan_description_1993
-You've used 33 entries,
+You've used 19 entries,
             6951 wiz_defined-function locations,
-            1501 strings with 17387 characters,
-and the built_in function-call counts, 62785 in all, are:
-= -- 7739
-> -- 437
-< -- 3118
-+ -- 3220
-- -- 66
-* -- 4182
-:= -- 11842
-add.period$ -- 132
-call.type$ -- 33
-change.case$ -- 581
+            1414 strings with 14844 characters,
+and the built_in function-call counts, 36838 in all, are:
+= -- 4529
+> -- 281
+< -- 1740
++ -- 1893
+- -- 38
+* -- 2438
+:= -- 6764
+add.period$ -- 76
+call.type$ -- 19
+change.case$ -- 339
 chr.to.int$ -- 0
-cite$ -- 68
-duplicate$ -- 1591
-empty$ -- 2459
-format.name$ -- 719
-if$ -- 11770
+cite$ -- 39
+duplicate$ -- 1031
+empty$ -- 1480
+format.name$ -- 479
+if$ -- 6949
 int.to.chr$ -- 0
-int.to.str$ -- 99
+int.to.str$ -- 57
 missing$ -- 0
-newline$ -- 851
-num.names$ -- 264
-pop$ -- 953
+newline$ -- 513
+num.names$ -- 152
+pop$ -- 568
 preamble$ -- 1
-purify$ -- 152
+purify$ -- 92
 quote$ -- 0
-skip$ -- 3983
+skip$ -- 2307
 stack$ -- 0
-substring$ -- 3513
-swap$ -- 950
-text.length$ -- 91
+substring$ -- 2090
+swap$ -- 586
+text.length$ -- 59
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 2704
-warning$ -- 2
-while$ -- 264
+type$ -- 1520
+warning$ -- 1
+while$ -- 178
 width$ -- 0
-write$ -- 1000
-(There were 5 error messages)
+write$ -- 618
+(There was 1 error message)

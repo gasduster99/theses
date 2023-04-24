@@ -87,27 +87,6 @@ Deriso, R\BPBI B.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-DeYoreo%
-}{%
-DeYoreo%
-}{%
-{\protect \APACyear {2012}}%
-}]{%
-deyoreo_integrating_2012}
-\APACinsertmetastar {%
-deyoreo_integrating_2012}%
-\begin{APACrefauthors}%
-DeYoreo, M.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2012}{}{}.
-\newblock
-\APACrefbtitle {Integrating catchability out of the likelihood.} {Integrating
-  catchability out of the likelihood.}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Fox~Jr.%
 }{%
 Fox~Jr.%
@@ -275,32 +254,6 @@ Hilborn, R.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Kingsland%
-}{%
-Kingsland%
-}{%
-{\protect \APACyear {1982}}%
-}]{%
-kingsland_refractory_1982}
-\APACinsertmetastar {%
-kingsland_refractory_1982}%
-\begin{APACrefauthors}%
-Kingsland, S.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{1982}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {The refractory model: the logistic curve and the history
-  of population ecology} {The refractory model: the logistic curve and the
-  history of population ecology}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{The Quarterly Review of Biology}{57}{1}{29--52}.
-\newblock
-\APACrefnote{Publisher: Stony Brook Foundation, Inc.}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Lee%
 , Maunder%
 , Piner%
@@ -338,57 +291,6 @@ Lee, H\BHBI H.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Magnusson%
-\ \BBA {} Hilborn%
-}{%
-Magnusson%
-\ \BBA {} Hilborn%
-}{%
-{\protect \APACyear {2007}}%
-}]{%
-magnusson_what_2007}
-\APACinsertmetastar {%
-magnusson_what_2007}%
-\begin{APACrefauthors}%
-Magnusson, A.%
-\BCBT {}\ \BBA {} Hilborn, R.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2007}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {What makes fisheries data informative?} {What makes
-  fisheries data informative?}{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Fish and Fisheries}{8}{4}{337--358}.
-\newblock
-\APACrefnote{Publisher: Wiley Online Library}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Mangel%
-}{%
-Mangel%
-}{%
-{\protect \APACyear {2006}}%
-}]{%
-mangel_theoretical_2006}
-\APACinsertmetastar {%
-mangel_theoretical_2006}%
-\begin{APACrefauthors}%
-Mangel, M.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2006}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {The {Theoretical} {Biologist}'s {Toolbox}:
-  {Quantitative} {Methods} for {Ecology} and {Evolutionary} {Biology}} {The
-  {Theoretical} {Biologist}'s {Toolbox}: {Quantitative} {Methods} for {Ecology}
-  and {Evolutionary} {Biology}}.{\BBCQ}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Mangel%
 \ \protect \BOthers {.}}{%
 Mangel%
@@ -423,141 +325,6 @@ Mangel, M.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1139/cjfas-2012-0372} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Maunder%
-}{%
-Maunder%
-}{%
-{\protect \APACyear {2003}}%
-}]{%
-maunder_is_2003}
-\APACinsertmetastar {%
-maunder_is_2003}%
-\begin{APACrefauthors}%
-Maunder, M\BPBI N.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2003}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Is it time to discard the {Schaefer} model from the
-  stock assessment scientist’s toolbox?} {Is it time to discard the
-  {Schaefer} model from the stock assessment scientist’s toolbox?}{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Fisheries Research}{61}{1-3}{145--149}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Pearson%
-\ \BBA {} Erwin%
-}{%
-Pearson%
-\ \BBA {} Erwin%
-}{%
-{\protect \APACyear {1997}}%
-}]{%
-pearson_documentation_1997}
-\APACinsertmetastar {%
-pearson_documentation_1997}%
-\begin{APACrefauthors}%
-Pearson, D\BPBI E.%
-\BCBT {}\ \BBA {} Erwin, B.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{1997}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Documentation of {California}'s commercial market
-  sampling data entry and expansion programs} {Documentation of {California}'s
-  commercial market sampling data entry and expansion programs}.{\BBCQ}
-\newblock
-
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Pella%
-\ \BBA {} Tomlinson%
-}{%
-Pella%
-\ \BBA {} Tomlinson%
-}{%
-{\protect \APACyear {1969}}%
-}]{%
-pella_generalized_1969}
-\APACinsertmetastar {%
-pella_generalized_1969}%
-\begin{APACrefauthors}%
-Pella, J\BPBI J.%
-\BCBT {}\ \BBA {} Tomlinson, P\BPBI K.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{1969}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {A generalized stock production model} {A generalized
-  stock production model}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Inter-American Tropical Tuna Commission
-  Bulletin}{13}{3}{416--497}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Prager%
-}{%
-Prager%
-}{%
-{\protect \APACyear {2002}}%
-}]{%
-prager_comparison_2002}
-\APACinsertmetastar {%
-prager_comparison_2002}%
-\begin{APACrefauthors}%
-Prager, M\BPBI H.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2002}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Comparison of logistic and generalized
-  surplus-production models applied to swordfish, {Xiphias} gladius, in the
-  north {Atlantic} {Ocean}} {Comparison of logistic and generalized
-  surplus-production models applied to swordfish, {Xiphias} gladius, in the
-  north {Atlantic} {Ocean}}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Fisheries Research}{58}{1}{41--57}.
-\newblock
-\APACrefnote{Publisher: Elsevier}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Prager%
-}{%
-Prager%
-}{%
-{\protect \APACyear {2003}}%
-}]{%
-prager_reply_2003}
-\APACinsertmetastar {%
-prager_reply_2003}%
-\begin{APACrefauthors}%
-Prager, M\BPBI H.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2003}{{\APACmonth{03}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Reply to the {Letter} to the {Editor} by {Maunder}}
-  {Reply to the {Letter} to the {Editor} by {Maunder}}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Fisheries Research}{61}{1}{151--154}.
-\newblock
-\begin{APACrefURL}
-  [{2022-01-30}]\url{https://www.sciencedirect.com/science/article/pii/S0165783602002746}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.1016/S0165-7836(02)00274-6} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -771,33 +538,6 @@ Schnute, J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-J.~Schnute%
-}{%
-J.~Schnute%
-}{%
-{\protect \APACyear {1987}}%
-}]{%
-schnute_general_1987}
-\APACinsertmetastar {%
-schnute_general_1987}%
-\begin{APACrefauthors}%
-Schnute, J.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{1987}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {A general fishery model for a size-structured fish
-  population} {A general fishery model for a size-structured fish
-  population}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Canadian Journal of Fisheries and Aquatic
-  Sciences}{44}{5}{924--940}.
-\newblock
-\APACrefnote{Publisher: NRC Research Press Ottawa, Canada}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 J\BPBI T.~Schnute%
 \ \BBA {} Richards%
 }{%
@@ -828,121 +568,6 @@ Schnute, J\BPBI T.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1139/f97-212} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Scrucca%
-}{%
-Scrucca%
-}{%
-{\protect \APACyear {2013}}%
-}]{%
-scrucca_ga_2013}
-\APACinsertmetastar {%
-scrucca_ga_2013}%
-\begin{APACrefauthors}%
-Scrucca, L.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2013}{{\APACmonth{04}}}{}.
-\newblock
-{\BBOQ}\APACrefatitle {{GA}: {A} {Package} for {Genetic} {Algorithms} in {R}}
-  {{GA}: {A} {Package} for {Genetic} {Algorithms} in {R}}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Journal of Statistical Software}{53}{}{1--37}.
-\newblock
-\begin{APACrefURL} [{2022-01-17}]\url{https://doi.org/10.18637/jss.v053.i04}
-  \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.18637/jss.v053.i04} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Scrucca%
-}{%
-Scrucca%
-}{%
-{\protect \APACyear {2017}}%
-}]{%
-scrucca_extensions_2017}
-\APACinsertmetastar {%
-scrucca_extensions_2017}%
-\begin{APACrefauthors}%
-Scrucca, L.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2017}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {On {Some} {Extensions} to {GA} {Package}: {Hybrid}
-  {Optimisation}, {Parallelisation} and {Islands} {EvolutionOn} some extensions
-  to {GA} package: hybrid optimisation, parallelisation and islands evolution}
-  {On {Some} {Extensions} to {GA} {Package}: {Hybrid} {Optimisation},
-  {Parallelisation} and {Islands} {EvolutionOn} some extensions to {GA}
-  package: hybrid optimisation, parallelisation and islands evolution}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{The R Journal}{9}{1}{187--206}.
-\newblock
-\begin{APACrefURL}
-  [{2022-01-17}]\url{https://journal.r-project.org/archive/2017/RJ-2017-008/index.html}
-  \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Von~Bertalanffy%
-}{%
-Von~Bertalanffy%
-}{%
-{\protect \APACyear {1938}}%
-}]{%
-von_bertalanffy_quantitative_1938}
-\APACinsertmetastar {%
-von_bertalanffy_quantitative_1938}%
-\begin{APACrefauthors}%
-Von~Bertalanffy, L.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{1938}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {A quantitative theory of organic growth (inquiries on
-  growth laws. {II})} {A quantitative theory of organic growth (inquiries on
-  growth laws. {II})}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Human biology}{10}{2}{181--213}.
-\newblock
-\APACrefnote{Publisher: JSTOR}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Walters%
-\ \BBA {} Ludwig%
-}{%
-Walters%
-\ \BBA {} Ludwig%
-}{%
-{\protect \APACyear {1994}}%
-}]{%
-walters_calculation_1994}
-\APACinsertmetastar {%
-walters_calculation_1994}%
-\begin{APACrefauthors}%
-Walters, C.%
-\BCBT {}\ \BBA {} Ludwig, D.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{1994}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Calculation of {Bayes} posterior probability
-  distributions for key population parameters} {Calculation of {Bayes}
-  posterior probability distributions for key population parameters}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Canadian Journal of Fisheries and Aquatic
-  Sciences}{51}{3}{713--722}.
-\newblock
-\APACrefnote{Publisher: NRC Research Press Ottawa, Canada}
 \PrintBackRefs{\CurrentBib}
 
 \end{thebibliography}
