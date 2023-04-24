@@ -1870,19 +1870,21 @@ production function fits as compared to the true data generating PT production
 functions. The rug plots below each set of curves show how the observed 
 biomasses decay exponentially from $K$ to $B^*$ in each case. In particular,
 notice how observations only exist where the PT biomass is greater than $B^*$.
-Due to the
-leaning of the true PT curves, and the symmetry of the logistic parabola, the
-logistic curve only observes information about its slope at the origin from
-data observed on the right portion of the PT curves. For PT data generated such that 
-$\frac{B^*}{\bar B(0)}>0.5$, PT is steeper to the right of $B^*$ than it is on the left, 
-and so the the logistic curve over-estimates $r$, and consequently also over-
-estimates $F^*$. %for data generated above the Schaefer line. 
-For PT data generated where $\frac{B^*}{\bar B(0)}<0.5$ the vice versa phenomena occurs;
+Due to the leaning of the true PT curves, and the symmetry of the logistic 
+parabola, the logistic curve only observes information about its slope at the 
+origin from data observed on the right portion of the PT curves. The top two 
+panels of Figure (\ref{flatProd}) shows PT data generated such 
+that $\frac{B^*}{\bar B(0)}>0.5$; in these cases PT is steeper to the right of 
+$B^*$ than it is on the left, and so the the logistic curve over-estimates $r$, 
+and consequently also over-estimates $F^*$. %for data generated above the Schaefer line. 
+The bottom two panels of Figure (\ref{flatProd}) show PT data 
+generated with $\frac{B^*}{\bar B(0)}<0.5$ and where the vice versa phenomena 
+occurs. PT is shallower to the right of $B^*$ than it is on the left and so the 
+logistic parabola estimate tends to under estimate $F^*$.
+
+
 %Below the Schaefer line the vice versa phenomena occurs;
 %Below the Schaefer line 
-PT is shallower to the right of $B^*$ than it is on the
-left and so the logistic parabola estimate tends to under estimate $F^*$.
-
 %%
 %Figure (\ref{flatProd}) indicates that the individual biases of $B^*$ and $K$
 %may behave quite differently. $B^*$ appears to be estimated fairly accurately
@@ -1917,6 +1919,73 @@ left and so the logistic parabola estimate tends to under estimate $F^*$.
 %
 \subsubsection{Metamodeled Trends}
 
+%
+Each point in the space of the RPs $F_{MSY}$ and $\frac{B^*}{\bar B(0)}$ uniquely 
+identifies a complete PT model with different combinations of parameters values. 
+Recall that when $\gamma=2$ for the PT model, the PT curve becomes a parabola 
+and is equivalent to the logistic curve of the Schaefer model. Since the 
+logistic curve is symmetric about $B^*$, the Schaefer model must fix the value of 
+$\frac{B^*}{\bar B(0)}$ at the constant $0.5$ for any value of $F_{MSY}$. So 
+the line through RP space defined by $\frac{B^*}{\bar B(0)}=0.5 ~~~ \forall F_{MSY}$, 
+defines the subset of RP space where $\gamma=2$ and where the PT model is 
+equivalent to the Schaefer model. For brevit this subset of RP were $\frac{B^*}{\bar B(0)}=0.5$ 
+will be refered to as the ``Schaefer line''. Thus simulated data that are 
+generated along the Schaefer line will be the only data that are not 
+misspecified relative to the Schaefer model; as PT data are simulated 
+farther and farther away from this line at $\frac{B^*}{\bar B(0)}=0.5$ model 
+misspecification of the Schaeffer model becomes worse and worse.
+
+%
+While Figure (\ref{flatProd}) demonstrates a real trend in simulation results, 
+individual simulation runs will at best show jittery trends due to the stochastic 
+nature of statistical inference. The GP process metamodel accounts for this 
+stochasticity %, filters out jitters, %  and allows for the jitters to be filtered out 
+to focus analysis on signal in the simulation results. Metamodeling occurs on 
+the inferred productivity parameters of the restricted production model (in this 
+case the Schaeffer model when fitting PT data. 
+
+
+
+
+ Additionally the metamodel 
+generalizes the patterns seen in Figure (\ref{flatProd}) across the entire range of RPs. 
+
+the   not neccessarily produce a 
+
+%
+\begin{itemize}
+%\item define Schaefer line.
+%\item reiterate each point in RP space is an entire PT model, on the Schaefer 
+%line moder are schaefer.
+
+\item generalize the srr figure above
+\item individual model fits will have jittery trends; metamodel nonlinearly 
+smooths and pulls information together.
+
+\item
+
+\item Point out the geometry of Schaeffer RPs, thus $\frac{B_{MSY}}{B_0}$ must 
+simply map vertically. 
+\item Bias in $\frac{B_{MSY}}{B_0}$ estimation entirely defined by the degree 
+of model mispecification.
+\item mapping directly vertically is a minimum distance mapping given the 
+constrained space.
+
+\item
+
+\item Any biases in $F_{MSY}$ moves this mapping further from the mapping with 
+minimum possible distance.
+\item The low contrast simulation indeed demonstrates biased estimation of 
+$F_{MSY}$ as observed in other studies (cite). 
+\item Histogram of high/low contrast bias observations.
+\item adding information (High contrast) reduces $F_{MSY}$ bias and thus moves 
+the mapping closer to minimum possible distance.  
+
+\item 
+
+\item summary of $\sigma$ across models to show model breakdown.
+\end{itemize}
+
 %../ptNew/ptLook.r
 \begin{figure}[h!]
 \begin{minipage}[h!]{0.44\textwidth}
@@ -1937,23 +2006,8 @@ are shown $left$, and the high contrast setting is shown $right$.
 }
 \end{figure}
 
-%
-\begin{itemize}
-\item define Schaefer line.
-\item generalize the srr figure above
-\item Point out the geometry Schaeffer RPs, thus $\frac{B_{MSY}}{B_0}$ must simply map vertically. 
-\item Bias in $\frac{B_{MSY}}{B_0}$ estimation entirely defined by the degree of model mispecification.
-\item mapping dirrectly vertically is a minimum distance mapping given the constrained space.
-\item Any biases in $F_{MSY}$ move this mapping further from the mapping with minimum possible distance.
-\item The low contrast simulation indeed demonstrates biased estimation of $F_{MSY}$. (Histogram of high/low contrast bias observations.)
-\item adding information (High contrast) reduces $F_{MSY}$ bias and thus moves the mapping closer to minimum possible distance.  
-\end{itemize}
 
 
-\begin{itemize}
-\item Mechanism plot on SRR LHS Grid plot
-\item some detail views in $B_{MSY}$, $B_0$, $F_{MSY}$, $?F_{SPR?}$, $MSY$
-\end{itemize}
 
 \clearpage
 
@@ -2020,6 +2074,11 @@ are shown $left$, and the high contrast setting is shown $right$.
 \caption{Joint bias direction for $\left(\frac{F_{MSY}}{M}\right.$, $\left.\frac{B_{MSY}}{B_0}\right)$ estimates under the misspecified BH Model. The intensity of color represents the excess bias relative to the shortest possible mapping.}
 %\caption{\color{red} Low Contrast/High Contrast Titles, unify the Legends (Only show one.) Redo the colors relative to minimum distance. Less arrows. Bolder arrows, bolder line}
 \end{figure}
+
+\begin{itemize}
+\item Mechanism plot on SRR LHS Grid plot
+\item some detail views in $B_{MSY}$, $B_0$, $F_{MSY}$, $?F_{SPR?}$, $MSY$
+\end{itemize}
 
 %%
 %While interpolation occurs in the space of either $\log(r)$ or $\log(K)$, these
