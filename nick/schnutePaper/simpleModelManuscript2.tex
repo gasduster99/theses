@@ -1919,6 +1919,10 @@ logistic parabola estimate tends to under estimate $F^*$.
 %
 \subsubsection{Metamodeled Trends}
 
+%\item define Schaefer line.
+%\item reiterate each point in RP space is an entire PT model, on the Schaefer 
+%line moder are schaefer.
+
 %
 Each point in the space of the RPs $F_{MSY}$ and $\frac{B^*}{\bar B(0)}$ uniquely 
 identifies a complete PT model with different combinations of parameters values. 
@@ -1935,56 +1939,29 @@ misspecified relative to the Schaefer model; as PT data are simulated
 farther and farther away from this line at $\frac{B^*}{\bar B(0)}=0.5$ model 
 misspecification of the Schaeffer model becomes worse and worse.
 
+%\item generalize the srr figure above
+%\item individual model fits will have jittery trends; metamodel nonlinearly 
+%smooths and pulls information together.
+
 %
 While Figure (\ref{flatProd}) demonstrates a real trend in simulation results, 
 individual simulation runs will at best show jittery trends due to the stochastic 
 nature of statistical inference. The GP process metamodel accounts for this 
 stochasticity %, filters out jitters, %  and allows for the jitters to be filtered out 
-to focus analysis on signal in the simulation results. Metamodeling occurs on 
-the inferred productivity parameters of the restricted production model (in this 
-case the Schaeffer model when fitting PT data. 
+to focus analysis on the signal in the simulation results. Recall that metamodeling 
+occurs on the scale of the inferred productivity parameters of the restricted 
+production model, 
+%by transforming  %(in this case the Schaeffer model when fitting PT data. 
+by transforming metamodel predictions via Eq. (\ref{ptRP}), metamodeled predictions 
+are obtained for Schaeffer RPs. By further subtracting the true data generating 
+PT RPs from the predicted Schaeffer RPs at each point in RP space a pattern of 
+inferencial RP bias, induced by model misspecification of the Schaefer model, 
+can be seen to be seen in Figure (\ref{arrowsPT}).
 
-
-
-
- Additionally the metamodel 
-generalizes the patterns seen in Figure (\ref{flatProd}) across the entire range of RPs. 
-
-the   not neccessarily produce a 
-
+%using the relevant transformations given in Eq. (\ref{ptRP}) , \ref{BratS}, \ref{FmsyS}) with $\gamma$
+%fixed to the restricting case.
 %
-\begin{itemize}
-%\item define Schaefer line.
-%\item reiterate each point in RP space is an entire PT model, on the Schaefer 
-%line moder are schaefer.
-
-\item generalize the srr figure above
-\item individual model fits will have jittery trends; metamodel nonlinearly 
-smooths and pulls information together.
-
-\item
-
-\item Point out the geometry of Schaeffer RPs, thus $\frac{B_{MSY}}{B_0}$ must 
-simply map vertically. 
-\item Bias in $\frac{B_{MSY}}{B_0}$ estimation entirely defined by the degree 
-of model mispecification.
-\item mapping directly vertically is a minimum distance mapping given the 
-constrained space.
-
-\item
-
-\item Any biases in $F_{MSY}$ moves this mapping further from the mapping with 
-minimum possible distance.
-\item The low contrast simulation indeed demonstrates biased estimation of 
-$F_{MSY}$ as observed in other studies (cite). 
-\item Histogram of high/low contrast bias observations.
-\item adding information (High contrast) reduces $F_{MSY}$ bias and thus moves 
-the mapping closer to minimum possible distance.  
-
-\item 
-
-\item summary of $\sigma$ across models to show model breakdown.
-\end{itemize}
+%Additionally the metamodel generalizes the patterns seen in Figure (\ref{flatProd}) across the entire range of RPs. 
 
 %../ptNew/ptLook.r
 \begin{figure}[h!]
@@ -2004,8 +1981,86 @@ the misspecified Schaefer Model. The intensity of color represents the excess
 bias relative to the shortest possible mapping. Results in the low contrast setting 
 are shown $left$, and the high contrast setting is shown $right$.
 }
+\label{arrowsPT}
 \end{figure}
 
+%
+Figure (\ref{arrowsPT}) shows the pattern of biases the Schaefer model creates when fit 
+to PT data generated at each point of RP space. An equivalent way to think of Figure 
+(\ref{arrowsPT}) is that since the Schaefer model must estimate RPs on the Schaefer line, 
+the metamodel arrows indicate the mapping of RPs that is created by inferring RPs under 
+a misspecified Schaefer model fit to PT data generated at each point over the pictured 
+region.
+
+%
+Since $\frac{B_{MSY}}{B_0}$ must be 0.5 under the Schaefer model, biases in the 
+$\frac{B_{MSY}}{B_0}$ direction must simply map vertically onto the Schaefer line.
+Due to this simplified RP geometry under the Schaefer model, the degree of bias in 
+$\frac{B_{MSY}}{B_0}$ estimation is entirely defined solely by the degree of model 
+misspecification irrespective of $F_{MSY}$. Furthermore, 
+%since the Shaefer line is simply a constant at $\frac{B_{MSY}}{B_0}=0.5$, 
+the closest possible point along the Schaefer line that Schaefer model inference %under a Schaefer model 
+could map RPs would be the perfectly vertical mapping. This pattern only contains the 
+strictly neccessary bias present in $\frac{B_{MSY}}{B_0}$, and zero bias in $F_{MSY}$. 
+Any deviation from this minimal bias pattern neccissarily to be due to added bias in $F_{MSY}$.
+
+%
+The two simulation settings shown in Figure (\ref{arrowsPT}) are identical except 
+for the amount of contrast present in the simulated index. The left panel of 
+Figure (\ref{arrowsPT}) shows RP biases in the low contrast setting, while the 
+right panel shows the high contrast setting. Notice that in the low contrast 
+setting the RP bias pattern is far from the minimum distance mapping, however when 
+contrast is added the mapping becomes much closer to a minimal bias mapping. 
+In the low contrast setting the observed bias is consistent with the pattern 
+and mechanism described in Figure (\ref{flatProd}), where $F_{MSY}$ is underestimated 
+for data generated below the Schaefer line and overestimated above the Schaffer line.
+In the high contrast simulation the mapping is nearly minimal distance with the exception 
+of PT data generated with simulatiously low $\frac{B_{MSY}}{B_0}$ and high $F_{MSY}$. 
+{\color{orange} By including more contrast $F_{MSY}$ bias in this low $\frac{B_{MSY}}{B_0}$, 
+high $F_{MSY}$ region can be further reduce.}
+
+
+%that is induced by the catch series that defines the amount of contrast present in the simulated indicies.
+%On the $left$ 
+%and the bias in the $\frac{B_{MSY}}{B_0}$ direction is simply the distance   
+
+%
+\begin{itemize}
+%\item define Schaefer line.
+%\item reiterate each point in RP space is an entire PT model, on the Schaefer 
+%line moder are schaefer.
+
+%\item generalize the srr figure above
+%\item individual model fits will have jittery trends; metamodel nonlinearly 
+%smooths and pulls information together.
+
+%\item Point out the geometry of Schaeffer RPs, thus $\frac{B_{MSY}}{B_0}$ must 
+%simply map vertically. 
+%\item Bias in $\frac{B_{MSY}}{B_0}$ estimation entirely defined by the degree 
+%of model mispecification.
+%\item mapping directly vertically is a minimum distance mapping given the 
+%constrained space.
+
+%\item Any biases in $F_{MSY}$ moves this mapping further from the mapping with 
+%minimum possible distance.
+\item The low contrast simulation indeed demonstrates biased estimation of 
+$F_{MSY}$ as observed in other studies {\color{red}(cite)}. 
+
+%\item adding information (High contrast) reduces $F_{MSY}$ bias and thus moves 
+%the mapping closer to minimum possible distance.   
+\item {\color{orange}bias in $F_{MSY}$ at a point in the lower right corner as a function of ``contrast''.}
+
+%At some point
+
+\item summary of $\sigma$ over RP space comparing between models (PT, Schnute, Schnute DD) to show areas of model breakdown.
+	\begin{itemize}
+	\item miss-identifying signal for noise. 
+	\item It happens more as the dynamics get more complex. 
+	\item point to the full age structed models.
+	\end{itemize}
+
+\item Histogram of high/low contrast $F_{MSY}$ bias observations??: I don't think this is neccessary unless really pushed by someone
+\end{itemize}
 
 
 
