@@ -138,9 +138,22 @@ n = 100
 minDiff = min((zetaMax-zetaMin)/n, (xiMax-xiMin)/n)
 binTrk = ceiling(abs(log10(minDiff)))
 
-#modsPTFlatT30/fit_xi0.699_zeta0.201.rda
-xiBase = 0.699
-zetaBase = 0.201
+##modsPTFlatT30/fit_xi0.699_zeta0.201.rda	0
+#xiBase = 0.699
+#zetaBase = 0.201
+##modsPTFlatT30/fit_xi0.672_zeta0.323.rda	1
+#xiBase = 0.672
+#zetaBase = 0.323
+##modsPTFlatT30/fit_xi0.602_zeta0.214.rda	2
+#xiBase = 0.602
+#zetaBase = 0.214
+#modsPTFlatT30/fit_xi0.506_zeta0.246.rda	3
+xiBase = 0.506
+zetaBase = 0.246
+##modsPTFlatT30/fit_xi0.588_zeta0.157.rda	4
+#xiBase = 0.588
+#zetaBase = 0.157
+
 baseFitName = sprintf('./modsPTFlatT30/fit_xi%s_zeta%s.rda', round(xiBase, binTrk), round(zetaBase, binTrk))
 #
 baseDatName = gsub("fit", "datGen", baseFitName)
@@ -153,7 +166,7 @@ odeMethod = "lsode"
 
 
 #make new design
-if( F ){
+if( T ){
 	#
 	cons = seq(0, 2, length.out=46)
 	#
@@ -237,7 +250,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
                 c('lsdo', 'lalpha'), #'lq'),
                 lower   = c(log(0.001), log(M)), #log(1e-7)),
                 upper   = c(log(1), log(100)), #log(1e-2)),
-                gaBoost = list(run=10, parallel=FALSE, popSize=10^3),
+                gaBoost = list(run=10, parallel=FALSE, popSize=10^4),
                 persistFor = 5,
                 fitQ    = F
         )
