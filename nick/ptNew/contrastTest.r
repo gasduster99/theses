@@ -147,12 +147,12 @@ binTrk = ceiling(abs(log10(minDiff)))
 ##modsPTFlatT30/fit_xi0.602_zeta0.214.rda	2
 #xiBase = 0.602
 #zetaBase = 0.214
-#modsPTFlatT30/fit_xi0.506_zeta0.246.rda	3
-xiBase = 0.506
-zetaBase = 0.246
-##modsPTFlatT30/fit_xi0.588_zeta0.157.rda	4
-#xiBase = 0.588
-#zetaBase = 0.157
+##modsPTFlatT30/fit_xi0.506_zeta0.246.rda	3
+#xiBase = 0.506
+#zetaBase = 0.246
+#modsPTFlatT30/fit_xi0.588_zeta0.157.rda	4
+xiBase = 0.588
+zetaBase = 0.157
 
 baseFitName = sprintf('./modsPTFlatT30/fit_xi%s_zeta%s.rda', round(xiBase, binTrk), round(zetaBase, binTrk))
 #
@@ -166,7 +166,7 @@ odeMethod = "lsode"
 
 
 #make new design
-if( T ){
+if( F ){
 	#
 	cons = seq(0, 2, length.out=46)
 	#
