@@ -166,7 +166,7 @@ odeMethod = "lsode"
 
 
 #make new design
-if( T ){
+if( F ){
 	#
 	cons = seq(0, 0.8, length.out=46)
 	#

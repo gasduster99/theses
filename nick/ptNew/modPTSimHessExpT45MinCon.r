@@ -165,7 +165,7 @@ datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen
 #
 registerDoParallel(46)
 opts = list(preschedule=F)
-foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
+foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 #for(i in 1:n){
 	#
         #DATA
