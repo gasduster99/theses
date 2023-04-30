@@ -1930,7 +1930,7 @@ Recall that when $\gamma=2$ for the PT model, the PT curve becomes a parabola
 and is equivalent to the logistic curve of the Schaefer model. Since the 
 logistic curve is symmetric about $B^*$, the Schaefer model must fix the value of 
 $\frac{B^*}{\bar B(0)}$ at the constant $0.5$ for any value of $F_{MSY}$. So 
-the line through RP space defined by $\frac{B^*}{\bar B(0)}=0.5 ~~~ \forall F_{MSY}$, 
+the line through RP space defined by $\frac{B^*}{\bar B(0)}=0.5 ~~ \forall ~~ F_{MSY}$, 
 defines the subset of RP space where $\gamma=2$ and where the PT model is 
 equivalent to the Schaefer model. For brevit this subset of RP were $\frac{B^*}{\bar B(0)}=0.5$ 
 will be refered to as the ``Schaefer line''. Thus simulated data that are 
@@ -1954,9 +1954,9 @@ production model,
 %by transforming  %(in this case the Schaeffer model when fitting PT data. 
 by transforming metamodel predictions via Eq. (\ref{ptRP}), metamodeled predictions 
 are obtained for Schaeffer RPs. By further subtracting the true data generating 
-PT RPs from the predicted Schaeffer RPs at each point in RP space a pattern of 
+PT RPs from the predicted Schaefer RPs at each point in RP space a pattern of 
 inferencial RP bias, induced by model misspecification of the Schaefer model, 
-can be seen to be seen in Figure (\ref{arrowsPT}).
+can be seen to be seen. % in Figure (\ref{arrowsPT}).
 
 %using the relevant transformations given in Eq. (\ref{ptRP}) , \ref{BratS}, \ref{FmsyS}) with $\gamma$
 %fixed to the restricting case.
@@ -1988,7 +1988,7 @@ are shown $left$, and the high contrast setting is shown $right$.
 Figure (\ref{arrowsPT}) shows the pattern of biases the Schaefer model creates when fit 
 to PT data generated at each point of RP space. An equivalent way to think of Figure 
 (\ref{arrowsPT}) is that since the Schaefer model must estimate RPs on the Schaefer line, 
-the metamodel arrows indicate the mapping of RPs that is created by inferring RPs under 
+the metamodel arrows indicate the mapping that is created by inferring RPs under 
 a misspecified Schaefer model fit to PT data generated at each point over the pictured 
 region.
 
@@ -2002,7 +2002,7 @@ misspecification irrespective of $F_{MSY}$. Furthermore,
 the closest possible point along the Schaefer line that Schaefer model inference %under a Schaefer model 
 could map RPs would be the perfectly vertical mapping. This pattern only contains the 
 strictly neccessary bias present in $\frac{B_{MSY}}{B_0}$, and zero bias in $F_{MSY}$. 
-Any deviation from this minimal bias pattern neccissarily to be due to added bias in $F_{MSY}$.
+Any deviation from this minimal bias pattern necessarily to be due to added bias in $F_{MSY}$.
 
 %
 The two simulation settings shown in Figure (\ref{arrowsPT}) are identical except 
@@ -2018,6 +2018,37 @@ In the high contrast simulation the mapping is nearly minimal distance with the 
 of PT data generated with simulatiously low $\frac{B_{MSY}}{B_0}$ and high $F_{MSY}$. 
 {\color{orange} By including more contrast $F_{MSY}$ bias in this low $\frac{B_{MSY}}{B_0}$, 
 high $F_{MSY}$ region can be further reduce.}
+
+%
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-0.5cm}
+%\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=0.24\textwidth]{../ptNew/contrastTest.png}
+%\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.674Z0.599.png}\\
+%\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.096Z0.22.png}
+%\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.699Z0.201.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.116Z0.62.png}
+%%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.702Z0.614.png}\\
+%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.774Z0.586.png}\\
+%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.065Z0.226.png}
+%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.715Z0.17.png}
+%\end{minipage}
+\caption{
+Contrast goes up and bias goes down.
+%A comparison of the true PT production function (in black) and the estimated logistic curve (in red)
+%with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification
+%in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves.
+%%Fitted logistic production function verses true PT production function. 
+%%Observed biomass plotted along x-axis.
+}
+\label{conTest}
+%\end{figure}
+\end{wrapfigure}
+
+%
+Figure (\ref{})
 
 
 %that is induced by the catch series that defines the amount of contrast present in the simulated indicies.
