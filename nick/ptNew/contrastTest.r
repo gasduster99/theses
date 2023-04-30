@@ -138,9 +138,9 @@ n = 100
 minDiff = min((zetaMax-zetaMin)/n, (xiMax-xiMin)/n)
 binTrk = ceiling(abs(log10(minDiff)))
 
-##modsPTFlatT30/fit_xi0.699_zeta0.201.rda	0
-#xiBase = 0.699
-#zetaBase = 0.201
+#modsPTFlatT30/fit_xi0.699_zeta0.201.rda	0
+xiBase = 0.699
+zetaBase = 0.201
 ##modsPTFlatT30/fit_xi0.672_zeta0.323.rda	1
 #xiBase = 0.672
 #zetaBase = 0.323
@@ -150,9 +150,9 @@ binTrk = ceiling(abs(log10(minDiff)))
 ##modsPTFlatT30/fit_xi0.506_zeta0.246.rda	3
 #xiBase = 0.506
 #zetaBase = 0.246
-#modsPTFlatT30/fit_xi0.588_zeta0.157.rda	4
-xiBase = 0.588
-zetaBase = 0.157
+##modsPTFlatT30/fit_xi0.588_zeta0.157.rda	4
+#xiBase = 0.588
+#zetaBase = 0.157
 
 baseFitName = sprintf('./modsPTFlatT30/fit_xi%s_zeta%s.rda', round(xiBase, binTrk), round(zetaBase, binTrk))
 #
@@ -166,9 +166,9 @@ odeMethod = "lsode"
 
 
 #make new design
-if( F ){
+if( T ){
 	#
-	cons = seq(0, 2, length.out=46)
+	cons = seq(0, 0.8, length.out=46)
 	#
 	for(c in cons){
 		#fishing
