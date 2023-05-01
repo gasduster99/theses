@@ -27,6 +27,7 @@
 \usepackage{bbm}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{mathtools}
 
 \hypersetup{colorlinks   = true, %Colors links instead of ugly boxes
             urlcolor     = blue, %Color for external hyperlinks
@@ -636,6 +637,7 @@ The Schnute production function plotted across a variety of parameter
 values. The special cases of BH, Ricker, and Logistic production are shown in
 green, blue, and red respectively.
 }
+\label{sRegimes}
 \end{wrapfigure}
 The Schnute production function is a three parameter generalization of many of 
 the most common two parameter production functions \shortcite{deriso_harvesting_1980, schnute_general_1985}. %\shortcit{deriso_harvesting_1980}. 
@@ -678,7 +680,7 @@ RPs well defined over the relevant domain of $\gamma$.
 
 %% matches the assumptions of typical fisheries models and 
 %%
-%In the Schaeffer and PT models
+%In the Schaefer and PT models
 %$M$ is modeled explicitly here  and $F$ are instantaneous rates of natural and fishing 
 %mortality respectively. Unlike the PT model described above 
 
@@ -1933,11 +1935,11 @@ $\frac{B^*}{\bar B(0)}$ at the constant $0.5$ for any value of $F_{MSY}$. So
 the line through RP space defined by $\frac{B^*}{\bar B(0)}=0.5 ~~ \forall ~~ F_{MSY}$, 
 defines the subset of RP space where $\gamma=2$ and where the PT model is 
 equivalent to the Schaefer model. For brevit this subset of RP were $\frac{B^*}{\bar B(0)}=0.5$ 
-will be refered to as the ``Schaefer line''. Thus simulated data that are 
-generated along the Schaefer line will be the only data that are not 
+will be refered to as the ``Schaefer set''. Thus simulated data that are 
+generated along the Schaefer set will be the only data that are not 
 misspecified relative to the Schaefer model; as PT data are simulated 
 farther and farther away from this line at $\frac{B^*}{\bar B(0)}=0.5$ model 
-misspecification of the Schaeffer model becomes worse and worse.
+misspecification of the Schaefer model becomes worse and worse.
 
 %\item generalize the srr figure above
 %\item individual model fits will have jittery trends; metamodel nonlinearly 
@@ -1951,9 +1953,9 @@ stochasticity %, filters out jitters, %  and allows for the jitters to be filter
 to focus analysis on the signal in the simulation results. Recall that metamodeling 
 occurs on the scale of the inferred productivity parameters of the restricted 
 production model, 
-%by transforming  %(in this case the Schaeffer model when fitting PT data. 
+%by transforming  %(in this case the Schaefer model when fitting PT data. 
 by transforming metamodel predictions via Eq. (\ref{ptRP}), metamodeled predictions 
-are obtained for Schaeffer RPs. By further subtracting the true data generating 
+are obtained for Schaefer RPs. By further subtracting the true data generating 
 PT RPs from the predicted Schaefer RPs at each point in RP space a pattern of 
 inferencial RP bias, induced by model misspecification of the Schaefer model, 
 can be seen to be seen. % in Figure (\ref{arrowsPT}).
@@ -1969,7 +1971,7 @@ can be seen to be seen. % in Figure (\ref{arrowsPT}).
 \includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTFlatT30.png}
 \end{minipage}
 \begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTExpT45.png}
+\includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTExpT45MinCon.png}
 \end{minipage}
 \begin{minipage}[h!]{0.09\textwidth}
 \hspace{-1cm}
@@ -1987,19 +1989,19 @@ are shown $left$, and the high contrast setting is shown $right$.
 %
 Figure (\ref{arrowsPT}) shows the pattern of biases the Schaefer model creates when fit 
 to PT data generated at each point of RP space. An equivalent way to think of Figure 
-(\ref{arrowsPT}) is that since the Schaefer model must estimate RPs on the Schaefer line, 
+(\ref{arrowsPT}) is that since the Schaefer model must estimate RPs in the Schaefer set, 
 the metamodel arrows indicate the mapping that is created by inferring RPs under 
 a misspecified Schaefer model fit to PT data generated at each point over the pictured 
 region.
 
 %
 Since $\frac{B_{MSY}}{B_0}$ must be 0.5 under the Schaefer model, biases in the 
-$\frac{B_{MSY}}{B_0}$ direction must simply map vertically onto the Schaefer line.
+$\frac{B_{MSY}}{B_0}$ direction must simply map vertically onto the Schaefer set.
 Due to this simplified RP geometry under the Schaefer model, the degree of bias in 
 $\frac{B_{MSY}}{B_0}$ estimation is entirely defined solely by the degree of model 
 misspecification irrespective of $F_{MSY}$. Furthermore, 
 %since the Shaefer line is simply a constant at $\frac{B_{MSY}}{B_0}=0.5$, 
-the closest possible point along the Schaefer line that Schaefer model inference %under a Schaefer model 
+the closest possible point along the Schaefer set that Schaefer model inference %under a Schaefer model 
 could map RPs would be the perfectly vertical mapping. This pattern only contains the 
 strictly neccessary bias present in $\frac{B_{MSY}}{B_0}$, and zero bias in $F_{MSY}$. 
 Any deviation from this minimal bias pattern necessarily to be due to added bias in $F_{MSY}$.
@@ -2013,111 +2015,80 @@ setting the RP bias pattern is far from the minimum distance mapping, however wh
 contrast is added the mapping becomes much closer to a minimal bias mapping. 
 In the low contrast setting the observed bias is consistent with the pattern 
 and mechanism described in Figure (\ref{flatProd}), where $F_{MSY}$ is underestimated 
-for data generated below the Schaefer line and overestimated above the Schaffer line.
+for data generated below the Schaefer line and overestimated above the Schaefer set.
 In the high contrast simulation the mapping is nearly minimal distance with the exception 
 of PT data generated with simulatiously low $\frac{B_{MSY}}{B_0}$ and high $F_{MSY}$. 
-{\color{orange} By including more contrast $F_{MSY}$ bias in this low $\frac{B_{MSY}}{B_0}$, 
-high $F_{MSY}$ region can be further reduce.}
 
 %
-\begin{wrapfigure}{r}{0.5\textwidth}
-\vspace{-0.5cm}
-%\begin{minipage}[h!]{0.49\textwidth}
-\includegraphics[width=0.24\textwidth]{../ptNew/contrastTest.png}
-%\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.674Z0.599.png}\\
-%\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.096Z0.22.png}
-%\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.699Z0.201.png}
-%\end{minipage}
-%\begin{minipage}[h!]{0.49\textwidth}
-%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.116Z0.62.png}
-%%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.702Z0.614.png}\\
-%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.774Z0.586.png}\\
-%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.065Z0.226.png}
-%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.715Z0.17.png}
-%\end{minipage}
+%\begin{wrapfigure}{r}{0.5\textwidth}
+%\vspace{-0.5cm}
+\begin{figure}
+\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=\textwidth]{../ptNew/contrastTest.png}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
 \caption{
-Contrast goes up and bias goes down.
+Bias in $F_{MSY}$ under the Schaefer model when PT data are generated 
+with increasing contrast so that $F_{MSY}$ and $\frac{B_{MSY}}{B_0}$ are fixed at 
+0.699 and 0.201 respectively. %Bias is shown for the Schaefer models estimation of $F_{MSY}$ as a function of contrast.
 %A comparison of the true PT production function (in black) and the estimated logistic curve (in red)
 %with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification
 %in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves.
 %%Fitted logistic production function verses true PT production function. 
 %%Observed biomass plotted along x-axis.
 }
+\end{minipage}
 \label{conTest}
-%\end{figure}
-\end{wrapfigure}
+\end{figure}
+%\end{wrapfigure}
 
 %
-Figure (\ref{})
-
-
-%that is induced by the catch series that defines the amount of contrast present in the simulated indicies.
-%On the $left$ 
-%and the bias in the $\frac{B_{MSY}}{B_0}$ direction is simply the distance   
-
-%
-\begin{itemize}
-%\item define Schaefer line.
-%\item reiterate each point in RP space is an entire PT model, on the Schaefer 
-%line moder are schaefer.
-
-%\item generalize the srr figure above
-%\item individual model fits will have jittery trends; metamodel nonlinearly 
-%smooths and pulls information together.
-
-%\item Point out the geometry of Schaeffer RPs, thus $\frac{B_{MSY}}{B_0}$ must 
-%simply map vertically. 
-%\item Bias in $\frac{B_{MSY}}{B_0}$ estimation entirely defined by the degree 
-%of model mispecification.
-%\item mapping directly vertically is a minimum distance mapping given the 
-%constrained space.
-
-%\item Any biases in $F_{MSY}$ moves this mapping further from the mapping with 
-%minimum possible distance.
-\item The low contrast simulation indeed demonstrates biased estimation of 
-$F_{MSY}$ as observed in other studies {\color{red}(cite)}. 
-
-%\item adding information (High contrast) reduces $F_{MSY}$ bias and thus moves 
-%the mapping closer to minimum possible distance.   
-\item {\color{orange}bias in $F_{MSY}$ at a point in the lower right corner as a function of ``contrast''.}
-
-%At some point
-
-\item summary of $\sigma$ over RP space comparing between models (PT, Schnute, Schnute DD) to show areas of model breakdown.
-	\begin{itemize}
-	\item miss-identifying signal for noise. 
-	\item It happens more as the dynamics get more complex. 
-	\item point to the full age structed models.
-	\end{itemize}
-
-\item Histogram of high/low contrast $F_{MSY}$ bias observations??: I don't think this is neccessary unless really pushed by someone
-\end{itemize}
-
-
-
-\clearpage
-
+Figure (\ref{conTest}) demonstrates how bias in $F_{MSY}$ estimation %under the Scaaffer model 
+decreases as contrast is added to PT data as generated in the low $\frac{B_{MSY}}{B_0}$ and 
+high $F_{MSY}$ regime. By including additional contrast $F_{MSY}$ bias is decreased, however
+parameterizing contrast so as to fully exstinguish $F_{MSY}$ bias may require a more complex 
+model of fishing.
+%,  in may be By including more contrast $F_{MSY}$ bias  in this low $\frac{B_{MSY}}{B_0}$, 
+%high $F_{MSY}$ region can be further reduce.}
 
 %%
-%\clearpage
-%\begin{figure}[h!]
-%%\begin{wrapfigure}{r}{0.5\textwidth}
-%%\hspace*{0.25cm}
-%\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}
-%%\hspace*{0.25cm
-%\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png}
-%\caption{\label{flatRat}
-%MLE Bias surfaces for $B^*$ (\emph{left}) and $K$ (\emph{right}) individually.
-%}
-%\end{figure}
+%\begin{itemize}
+%%\item define Schaefer line.
+%%\item reiterate each point in RP space is an entire PT model, on the Schaefer 
+%%line moder are schaefer.
+%
+%%\item generalize the srr figure above
+%%\item individual model fits will have jittery trends; metamodel nonlinearly 
+%%smooths and pulls information together.
+%
+%%\item Point out the geometry of Schaefer RPs, thus $\frac{B_{MSY}}{B_0}$ must 
+%%simply map vertically. 
+%%\item Bias in $\frac{B_{MSY}}{B_0}$ estimation entirely defined by the degree 
+%%of model mispecification.
+%%\item mapping directly vertically is a minimum distance mapping given the 
+%%constrained space.
+%
+%%\item Any biases in $F_{MSY}$ moves this mapping further from the mapping with 
+%%minimum possible distance.
+%\item The low contrast simulation indeed demonstrates biased estimation of 
+%$F_{MSY}$ as observed in other studies {\color{red}(cite)}. 
+%
+%%%\item adding information (High contrast) reduces $F_{MSY}$ bias and thus moves 
+%%%the mapping closer to minimum possible distance.   
+%%\item {\color{orange}bias in $F_{MSY}$ at a point in the lower right corner as a function of ``contrast''.}
+%
+%%%At some point
+%%\item summary of $\sigma$ over RP space comparing between models (PT, Schnute, Schnute DD) to show areas of model breakdown.
+%%	\begin{itemize}
+%%	\item miss-identifying signal for noise. 
+%%	\item It happens more as the dynamics get more complex. 
+%%	\item point to the full age structed models.
+%%	\end{itemize}
+%
+%%\item Histogram of high/low contrast $F_{MSY}$ bias observations??: I don't think this is neccessary unless really pushed by someone
+%\end{itemize}
 
-%% the parabolic structures ties their ratio to $\frac{1}{2}$.  
-%Figure (\ref{flatCurves}) also gives some examples of the relative behavior of
-%$B^*$ and $K$. In Figure (\ref{flatTrio}) it is clear that the bias behavior of
-%$\frac{B^*}{\bar B(0)}$ is locked in a fixed pattern under the Schaefer model.
-%Figure (\ref{flatCurves}) indicates that the individual biases of $B^*$ and $K$
-%may behave quite differently. $B^*$ appears to be estimated fairly accurately
-%while $K$ does not.
+%\clearpage
 
 %
 \subsection{Schnute/BH}
@@ -2125,21 +2096,113 @@ $F_{MSY}$ as observed in other studies {\color{red}(cite)}.
 %
 \subsubsection{Design}
 
-%
-\begin{figure}[h!]
-\includegraphics[width=0.5\textwidth]{../gpBias/qqUnif.png}
-\caption{Uniform Q-Q plot for sampled $\zeta$ against theoretical uniform quantiles.}
-\end{figure}
 
 %
-\begin{figure}[h!]
+\begin{wrapfigure}{r}{0.45\textwidth}
+%\vspace{-3cm}
+\vspace{-2cm}
+%\begin{figure}[h!]
+\includegraphics[width=0.45\textwidth]{../gpBias/qqUnif.png}
+\vspace{-1cm} %against theoretical uniform quantiles
+\caption{Uniform Q-Q plot for $\zeta$ plotted for $F_{MSY}=0.1$ and $M=0.2$.}
+\label{qqZeta}
+%\end{figure}
+\end{wrapfigure}
+
+%
+Algorithm (1) enforces uniform marginals in $\frac{F_{MSY}}{M}$ directly, as well
+as the adherence of the overall design to latin squares.  
+Figure (\ref{qqZeta}) shows a uniform Q-Q plot for sampled $\zeta$ using 
+Algorithm (1) against theoretical uniform quantiles. As evidence by the 
+excellent coherence to the theoretical uniform quantiles the approximation
+provided in Section (\ref{sLHS}) for sampling $\gamma$, for the purpose of 
+computing $\zeta(\gamma$), is very effective. 
+Furthermore since numerical inversion of $\zeta(\gamma)$ is costly and 
+unreliable, the relative speed and accuracy that this approximate LHS sampling 
+method provides is pivotal for the rest of the work presented here. %to understanding the relationship between RPs and $\gamma$.
+
+%
+%The space filling design generated by Algorithm (1). The space filling algorithm generates
+%a uniform marginal in $\frac{B_{MSY}}{B_0}$. A uniform marginal in $\frac{F_{MSY}}{M}$ can 
+%be enforced directly. %Algorithm (1) also ensures that the resulting design respects a latin 
+%square. 
+
+%The only apprixmate result is in the uniformity of the $\frac{B_{MSY}}{B_0}$ 
+%marginal which is excelent.
+
+%
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-0.5cm}
+%\begin{figure}[h!]
 \includegraphics[width=0.5\textwidth]{../gpBias/designLineColorHHardFlatT30N150WWideN112.png}
 %\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
-\caption{\color{red} grid plot of production functions.)}
-\end{figure}
+\vspace{-1cm}
+\caption{
+A Schnute RP design. % resulting from design refinement of Algorithm (1). 
+Colors indicate different regimes of Schnute production. % function.
+%Samples are colored by the ranges the $\gamma$ parameter which result in 
+%different regimes of the Schnute production function.
+}
+\label{colorDes}
+%\end{figure}
+\end{wrapfigure}
+
+%
+Similarly to the PT model, the three parameter Schnute model is uniquely 
+identified by each point in the space of $\frac{F_{MSY}}{M}$ 
+and $\frac{B_{MSY}}{B_0}$ RPs. As seen in Figure (\ref{colorDes}), Schnute 
+production has different behaviors in different ranges of RPs space, which 
+are entirely defined by the value of $\gamma$. As shown in Figure (\ref{sRegimes}), 
+as well as the colors of Figure (\ref{colorDes}), when $\gamma\ge1$ there are a family 
+of Logistic-like curves that are increasingly right leaning as $\gamma$ increases. 
+For $1>\gamma\ge0$, Schnute production takes a family of left leaning Ricker-like curves 
+that all, at least, approach the x-axis. For $0>\gamma>-1$ there are a family of BH-like 
+curves that do not approach the x-axis but still have decreasing productivity for large
+biomass stocks. When $\gamma$ is exactly $-1$ Schnute reduces to BH production which has 
+asymptoting production for large biomass. Finally when $-1>\gamma$, Schnute 
+produces a family of increasing curves that do no asymptote, and produce 
+Cushing-like production as $\gamma$ becomes large.
+
+%
+%Under BH production the full theoretical space of 
+%RPs are limited to the curve $\frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}$.
+%Again, for brevity define the BH set as the set of RPs defined by this limited space, 
+%i.e. the curve $\left\{\left(\frac{B_{MSY}}{B_0}, \frac{F_{MSY}}{M}\right) \;\middle|\; \frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}\right\}$.
+%The farther away from this set that Schnute data are simulated, the worse the 
+%BH model is misspecified for those data. 
+%
+%
+%\begin{itemize}
+%\item demonstrate that my space filling design does in fact result in a uniform $\frac{B_{MSY}}{B_0}$ margin.
+%\item Show a dense design.
+%\item comment on how different regions of the Schnute behave differently. 
+%\item compare to Figure (\ref{sRegimes})
+%\item 
+%\end{itemize}
+
+
 
 %
 \subsubsection{Metamodeled Trends}
+
+%%
+%Similarly to the PT model, the three parameter Schnute model is uniquely 
+%identified by each point in the space of $\frac{F_{MSY}}{M}$ 
+%and $\frac{B_{MSY}}{B_0}$ RPs. When $\gamma$ is fixed to $-1$ the Schnute 
+%reduces to BH production. Under BH production the full theoretical space of 
+%RPs are limited to the curve $\frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}$.
+%Again, for brevity define the BH set as the set of RPs defined by this limited space, 
+%i.e. the curve $\left\{\left(\frac{B_{MSY}}{B_0}, \frac{F_{MSY}}{M}\right) \;\middle|\; \frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}\right\}$.
+%The farther away from this set that Schnute data are simulated, the worse the 
+%BH model is misspecified for those data. 
+
+When $\gamma$ is fixed to $-1$  Schnute reduces to BH production. Under BH 
+production the full theoretical space of RPs are limited to the curve $\frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}$.
+Again, for brevity define the BH set as the set of RPs defined by this limited 
+space, i.e. the curve $\left\{\left(\frac{B_{MSY}}{B_0}, \frac{F_{MSY}}{M}\right) \;\middle|\; \frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}\right\}$.
+The farther away from this set that Schnute data are simulated, the worse the 
+BH model is misspecified for those data. 
+
 
 %../gpBias/animFigSchnuteLHS.r 
 \begin{figure}[h!]
@@ -2162,8 +2225,25 @@ $F_{MSY}$ as observed in other studies {\color{red}(cite)}.
 \end{figure}
 
 \begin{itemize}
+\item introduce BH set
+\item reiterate each point in RP space is an entire Schnute model, on the BH set modes are BH.
+
+\item Point out the geometry of BH RPs
+\item under BH Bias in $\frac{B_{MSY}}{B_0}$ is no longer entirely defined entrirely by the degree of model mispecification.
+(still largely)
+\item Best case data result in a minimum distance mapping. 
+\item Due to the shape of the BH RP set this ensures bias in both $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$
+\item Unlike the Schaefer models geometry the BH set has a geometry that will mix bias directions in the best case.
+
+\item Ricker-like break point.
+\item what is going on with SRR when model completely fails.
+%\item mapping directly vertically is a minimum distance mapping given the 
+%constrained space.
 \item Mechanism plot on SRR LHS Grid plot
+
 \item some detail views in $B_{MSY}$, $B_0$, $F_{MSY}$, $?F_{SPR?}$, $MSY$
+
+\item for LHS grid locations show $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$ biases for grids in $M\in(0,0.5)$ For sure in High Contrast, maybe also in Low??.
 \end{itemize}
 
 %%
@@ -2187,9 +2267,8 @@ are given Eqs. (\ref{ptRP}, \ref{BratS}, \ref{FmsyS}) with $\gamma$
 fixed to the restricting case. 
 %reference points.
 
-%estimate of two productivity pa-
-%225 rameters under the restricted production model. Each of the fitted productivity parameter
-%226 estimates are then modeled using independent instances of the following model in Eq (28).
+%estimate of two productivity parameters under the restricted production model. Each of the fitted productivity parameter
+%estimates are then modeled using independent instances of the following model in Eq (28).
 
 %
 Applying the metamodel predictive surfaces to the RP estimate allows for the 
@@ -2206,6 +2285,39 @@ Above $RP$ is a stand-in for the true value of any of the biological
 reference points under the three parameter data generating production model, 
 and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the 
 two parameter restricted cases.
+
+%%
+%\clearpage
+%\begin{figure}[h!]
+%%\begin{wrapfigure}{r}{0.5\textwidth}
+%%\hspace*{0.25cm}
+%\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}
+%%\hspace*{0.25cm
+%\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png}
+%\caption{\label{flatRat}
+%MLE Bias surfaces for $B^*$ (\emph{left}) and $K$ (\emph{right}) individually.
+%}
+%\end{figure}
+
+%% the parabolic structures ties their ratio to $\frac{1}{2}$.  
+%Figure (\ref{flatCurves}) also gives some examples of the relative behavior of
+%$B^*$ and $K$. In Figure (\ref{flatTrio}) it is clear that the bias behavior of
+%$\frac{B^*}{\bar B(0)}$ is locked in a fixed pattern under the Schaefer model.
+%Figure (\ref{flatCurves}) indicates that the individual biases of $B^*$ and $K$
+%may behave quite differently. $B^*$ appears to be estimated fairly accurately
+%while $K$ does not.
+
+%a general list
+\begin{itemize}
+%At some point
+\item summary of $\sigma$ over RP space comparing between models (PT, Schnute, Schnute DD) to show areas of model breakdown.
+	\begin{itemize}
+	\item miss-identifying signal for noise. 
+	\item It happens more as the dynamics get more complex. 
+	\item point to the full age structed models.
+	\end{itemize}
+
+\end{itemize}
 
 %
 \section{Discussion}
@@ -2548,7 +2660,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%
 %%as to overly limit estimate variances that estimation error is unduly dominated by bias.
 %%
-%%estimation errors of the two parameter Schaeffer model are unduly dominated by bias
+%%estimation errors of the two parameter Schaefer model are unduly dominated by bias
 %%
 %% since the limited parameter 
 %%space of the Schaefer model 
@@ -2647,7 +2759,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %
 %%{\color{gray}
 %%%
-%%Schaeffer model clearly insufficient but can be made to estimate some parameters correctly Prager 2002, Prager 2003.
+%%Schaefer model clearly insufficient but can be made to estimate some parameters correctly Prager 2002, Prager 2003.
 %%Francis 2012/Lee 2011
 %%        assessment model correctly specified
 %%Lee 2012
@@ -2661,7 +2773,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%%
 %%Other functions recommended in practice BH Punt 2005 or Ricker. 
 %%Although statistically differentiating the models is difficult Dorn 2002, Brodziak 2002 
-%%BH and Ricker suffer from the similar model deficiencies Mangle 2013 as the Schaeffer does for the PT relating the reduced decrees of freedom in the parameter space.
+%%BH and Ricker suffer from the similar model deficiencies Mangle 2013 as the Schaefer does for the PT relating the reduced decrees of freedom in the parameter space.
 %%
 %%%
 %%Punt 2019 move toward 3 parameter models
@@ -2670,7 +2782,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%Punt 2019 move toward 3 parameter models
 %%Punt 2005 recommends BH and expansion into 3 parameters
 %%Maunder 2003
-%%	PT generalizes and should supplant Schaeffer
+%%	PT generalizes and should supplant Schaefer
 %%	"shape" parameter B*/B0
 %%	Bias variance trade off between PT3 Vup/Bdown and Logistic Vdown/Bup
 %%Francis 2012/Lee 2011

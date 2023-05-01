@@ -40,7 +40,7 @@ SRR = function(B, lalpha, lbeta, gamma){
 #
 EM = 10000
 #
-mod = "ExpT45" #"FlatT30" #
+mod = "FlatT30" #"ExpT45" #
 dir = sprintf("./modsPT%s/", mod)
 P0 = 10000
 

@@ -142,8 +142,9 @@ getData = function(dir, xiRange, zetaRange){
 
 #
 P0 = 10000
-mod="FlatT30"; contrast=F; 
+#mod="FlatT30"; contrast=F; 
 #mod="ExpT45"; contrast=T;
+mod="ExpT45MinCon"; contrast=T;
 place = sprintf("./modsPT%s/", mod)
 
 #
@@ -173,7 +174,7 @@ lFV = diag(D$lFV)
 lFX = cbind(1, D$xiSeed, D$zetaSeed)
 
 #
-xAug = seq(xiBot, xiTop, 0.001) #seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+xAug = seq(xiBot, xiTop, 0.1)#seq(xiBot, xiTop, 0.001) #seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
 aug = cbind(rep(1, length(xAug)), xAug, 1/(2))
 lFX = rbind(lFX, aug)
 lFy = c(lFy, log(xAug))

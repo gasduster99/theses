@@ -138,22 +138,36 @@ n = 100
 minDiff = min((zetaMax-zetaMin)/n, (xiMax-xiMin)/n)
 binTrk = ceiling(abs(log10(minDiff)))
 
+###modsPTFlatT30/fit_xi0.672_zeta0.323.rda	1
+##xiBase = 0.672
+##zetaBase = 0.323
+###modsPTFlatT30/fit_xi0.602_zeta0.214.rda	2
+##xiBase = 0.602
+##zetaBase = 0.214
+###modsPTFlatT30/fit_xi0.506_zeta0.246.rda	3
+##xiBase = 0.506
+##zetaBase = 0.246
+##modsPTFlatT30/fit_xi0.588_zeta0.157.rda	4
+#xiBase = 0.588
+#zetaBase = 0.157
+
 ##modsPTFlatT30/fit_xi0.699_zeta0.201.rda	0
 #xiBase = 0.699
 #zetaBase = 0.201
-##modsPTFlatT30/fit_xi0.672_zeta0.323.rda	1
-#xiBase = 0.672
-#zetaBase = 0.323
-##modsPTFlatT30/fit_xi0.602_zeta0.214.rda	2
-#xiBase = 0.602
-#zetaBase = 0.214
-##modsPTFlatT30/fit_xi0.506_zeta0.246.rda	3
-#xiBase = 0.506
-#zetaBase = 0.246
-#modsPTFlatT30/fit_xi0.588_zeta0.157.rda	4
-xiBase = 0.588
-zetaBase = 0.157
+##modsPTFlatT30/datGen_xi0.096_zeta0.22.rda
+#xiBase = 0.096
+#zetaBase = 0.22
+##modsPTFlatT30/datGen_xi0.12_zeta0.573.rda
+#xiBase = 0.12
+#zetaBase = 0.573
+##modsPTFlatT30/datGen_xi0.674_zeta0.599.rda
+#xiBase = 0.674
+#zetaBase = 0.599
+##modsPTFlatT30/datGen_xi0.415_zeta0.506.rda 
+xiBase = 0.415
+zetaBase = 0.506
 
+#
 baseFitName = sprintf('./modsPTFlatT30/fit_xi%s_zeta%s.rda', round(xiBase, binTrk), round(zetaBase, binTrk))
 #
 baseDatName = gsub("fit", "datGen", baseFitName)

@@ -279,7 +279,8 @@ getData = function(dir, xiRange, zetaRange){
 #
 
 #
-mod = "ExpT45N150Wide"; contrast=T; #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
+mod = "ExpT45N150MinCon"; contrast=T;
+#mod = "ExpT45N150Wide"; contrast=T; #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
 #mod = "HHardFlatT30N150WWideN56"; contrast=F;
 #mod = "HHardFlatT30N150WWideN84"; contrast=F;
 #mod = "HHardFlatT30N150WWideN112"; contrast=F;
