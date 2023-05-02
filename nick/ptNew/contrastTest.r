@@ -163,7 +163,7 @@ binTrk = ceiling(abs(log10(minDiff)))
 ##modsPTFlatT30/datGen_xi0.674_zeta0.599.rda
 #xiBase = 0.674
 #zetaBase = 0.599
-##modsPTFlatT30/datGen_xi0.415_zeta0.506.rda 
+#modsPTFlatT30/datGen_xi0.415_zeta0.506.rda 
 xiBase = 0.415
 zetaBase = 0.506
 
