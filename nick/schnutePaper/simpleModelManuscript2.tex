@@ -1621,7 +1621,7 @@ In this setting contrast refers to changes in the long term trends of index data
 Figure (\ref{catchT45}, \emph{right}) demonstrates an example of biomass that 
 includes contrast induced by catch. It is not well understood how contrast may 
 factor into inferential failure induced by model misspecification. Thus catch 
-parameterized so as to allow for a spectrum of possible contrasting situations.
+is parameterized so as to allow for a spectrum of possible contrast simulation settings.
 %biases induced by model misspecification. 
 %A variety of catches are investigated.
 %To better understand this a variety of catches are investigated.
@@ -1636,8 +1636,8 @@ Recall that catch is assumed to be proportional to biomass, so that $C(t)=F(t)B(
 To control $F(t)$ with respect to $F^*$, $C(t)$ is specified by defining the 
 quantity $\frac{F(t)}{F^*}$ as the relative fishing rate. $B(t)$ is defined 
 by the solution of the ODE, and $F^*$ is defined by the biological parameters 
-of the model, see Eq (\ref{Fmsy}). By defining $\frac{F(t)}{F^*}$, catch 
-can then be written as \mbox{$C(t)=F^*\left(\frac{F(t)}{F^*}\right)B(t)$.}
+of the model. By defining $\frac{F(t)}{F^*}$, catch can then be written as 
+\mbox{$C(t)=F^*\left(\frac{F(t)}{F^*}\right)B(t)$.}
 
 %
 Intuitively $\frac{F(t)}{F^*}$ describes the fraction of $F^*$ that $F(t)$ is  
@@ -1657,11 +1657,11 @@ above and depend upon the specific form of the production function. %Eq (\ref{Bs
 
 %
 For the simulations presented here, a family of fishing behaviors are 
-consideredwhere the fishing rate accelerates as technology and fishing 
+considered where the fishing rate accelerates as technology and fishing 
 techniques improve rapidly until management practices are applied, which 
 ultimatly brings fishing into equilibrium at $F_{MSY}$. %   around the turn of the century, followed by a rapid
 This is parameterized as three distinct phases, over a total of 45 units of 
-time, each phase lasting 15 time units, with the specific form given below. %as seen below in Eq(\ref{relFishing}). 
+time, with each phase lasting 15 time units. The specific form is given below. %as seen below in Eq(\ref{relFishing}). 
 
 %
 \clearpage
@@ -1678,9 +1678,9 @@ the second term is a linear decline in relative fishing as initial management
 practices are applied, and the third term, $\bm{1}_{30\le t \le 45}$, simply 
 holds the fishing rate at $F_{MSY}$ there after. These three phases are 
 controlled by the four parameters $a$, $b$, $c$, and $d$. By enforcing that 
-the interface of the exponential and linear phases meet at the value $\chi_{max}$ 
-and the interface of the linear and constant phase meet at $1$, the 
-relative fishing series is reduced to a two paramter family seen in 
+the interface of the phases meet at $\chi_{max}$ and 1 respectively
+%exponential and linear phases meet at the value $\chi_{max}$; additionally enforcing the interface of the linear and constant phase meet at $1$, 
+the relative fishing series is reduced to a two parameter family seen in 
 Eqs (\ref{relFish2}, \ref{relFish3}). 
 %
 \begin{align}
@@ -1697,7 +1697,7 @@ $\chi_{min}$ can be reduced to the single parameter $\chi$.
 \end{align}
 %By specifying Eq (\ref{relFish4}) the relative fishing series is further reduced to a since parameter family, 
 %By introducing $\chi$, as seen in Eq (\ref{relFish4}), %contrast can be 
-Above the tuning parameter $\chi$ singularly %, as seen in Eq (\ref{relFish4}), singularly
+The tuning parameter $\chi$ singularly %, as seen in Eq (\ref{relFish4}), singularly
 %singularly co 
 controls contrast that appears in time series data. 
 %When $\chi=0$, the relative fishing rate is a constant at 1 to create a low contrast 
@@ -1737,13 +1737,13 @@ $~$
 %
 \clearpage
 %
-When $\chi=0$, the relative fishing rate is a constant at 1 to create a low contrast simulation environment. 
-As $\chi$ increases Eq (\ref{relFish1}) induces more and more contrast in the 
-observed index and catch time series until the $\chi=1$ which is a high contrast
-simualtion environment. Figure (\ref{catch45}) demonstrates a spectrum of 
-contrast simulation environments as well as the time series data they induce. 
-
-
+When $\chi=0$, the relative fishing rate is a constant at 1 to create a low 
+contrast simulation environment. As $\chi$ increases Eq (\ref{relFish1}) 
+induces more and more contrast in the observed index and catch time series 
+until $\chi=1$ which produces a high contrast simualtion environment. 
+Figure (\ref{catch45}) demonstrates a spectrum of contrast simulation 
+environments as well as the time series data they induce in the solution of 
+the production model ODE. 
 
 %%
 %In practice, catch is determined by a series of observed, assumed known, catches. 
@@ -1868,8 +1868,8 @@ difference between implicate solvers is negligible, while most explicit
 methods result in wildly varying solutions to the ODE, and in still regions of
 parameter space explicate methods completely fail to represent the model as
 stated in the stiff regions of parameter space. Results shown here are computed
-using the lsode integration method since it runs relatively quickly and has a
-relatively smaller footprint in system memory.
+using the lsode integration %method 
+since it runs relatively quickly and has a relatively smaller footprint in system memory.
 
 %Too stiff for Euler,
 %avoid chaos, and
@@ -2193,11 +2193,12 @@ model of fishing.
 %
 Algorithm (1) enforces uniform marginals in $\frac{F_{MSY}}{M}$ directly, as well
 as the adherence of the overall design to latin squares.  
-Figure (\ref{qqZeta}) shows a uniform Q-Q plot for sampled $\zeta$ using 
-Algorithm (1) against theoretical uniform quantiles. As evidence by the 
-excellent coherence to the theoretical uniform quantiles the approximation
-provided in Section (\ref{sLHS}) for sampling $\gamma$, for the purpose of 
-computing $\zeta(\gamma$), is very effective. 
+Figure (\ref{qqZeta}) shows a uniform Q-Q plot for sampled $\zeta$, using 
+Algorithm (1), against theoretical uniform quantiles. As evidence by the 
+excellent coherence to the theoretical uniform quantiles, the approximation
+in Section (\ref{sLHS}) for sampling $\gamma$ (and therefore $\zeta(\gamma$)), 
+%for the purpose of computing $\zeta(\gamma$), 
+is very effective. 
 Furthermore since numerical inversion of $\zeta(\gamma)$ is costly and 
 unreliable, the relative speed and accuracy that this approximate LHS sampling 
 method provides is pivotal for the rest of the work presented here. %to understanding the relationship between RPs and $\gamma$.
@@ -2233,9 +2234,10 @@ Similarly to the PT model, the three parameter Schnute model is uniquely
 identified by each point in the space of $\frac{F_{MSY}}{M}$ 
 and $\frac{B_{MSY}}{B_0}$ RPs. As seen in Figure (\ref{colorDes}), Schnute 
 production has different behaviors in different ranges of RPs space, which 
-are entirely defined by the value of $\gamma$. As shown in Figure (\ref{sRegimes}), 
-as well as the colors of Figure (\ref{colorDes}), when $\gamma\ge1$ there are a family 
-of Logistic-like curves that are increasingly right leaning as $\gamma$ increases. 
+are entirely defined by the value of $\gamma$ (shown in Figure (\ref{sRegimes})). 
+%As shown in Figure (\ref{sRegimes}), as well as the colors of Figure (\ref{colorDes}), 
+When $\gamma\ge1$ the Schnute model produces a family of Logistic-like curves that are 
+increasingly right leaning as $\gamma$ increases. 
 For $1>\gamma\ge0$, Schnute production takes a family of left leaning Ricker-like curves 
 that all, at least, approach the x-axis. For $0>\gamma>-1$ there are a family of BH-like 
 curves that do not approach the x-axis but still have decreasing productivity for large
@@ -2268,13 +2270,106 @@ Cushing-like production as $\gamma$ becomes large.
 
 %
 Modeling data that are simulated broadly over the theoretical space of RPs 
-with  misspecified BH prodcution greatly limits the range of possible RPs that 
+with misspecified BH production greatly limits the range of possible RPs that 
 can be inferred. Under BH production the full theoretical space of RPs are 
-limited to the curve $\frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}$. Define the 
-BH set as the set of RPs defined by this limited space, i.e. the curve 
+limited to the curve \mbox{$\frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}$.} Define the 
+``BH set'' as the set of RPs defined by this limited space, i.e. the curve 
 $\left\{\left(\frac{B_{MSY}}{B_0}, \frac{F_{MSY}}{M}\right) \;\middle|\; \frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}\right\}$.
 The farther away from this set that Schnute data are simulated, the worse the 
 BH model is misspecified for those data. 
+%
+Unlike the Schaefer model, the BH set is not a constant in 
+$\frac{B_{MSY}}{B_0}$. Under the BH model bias in $\frac{B_{MSY}}{B_0}$ is no 
+longer entirely defined by the degree of model mispecification, but rather the 
+structure of BH RPs allows bias in both $\frac{B_{MSY}}{B_0}$ and $\frac{F_{MSY}}{M}$ 
+to interact as a function of contrast in the data.
+%This has the effect of allowing the bias in $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$ 
+
+%%
+%While metamodeling occurs on the inferred productivity parameters of the 
+%restricted production model, the metamodel can also be used to build 
+%estimates of major biological RPs. For the BH model the relevant 
+%transformations for relating productivity parameters with RPs are given in 
+%Eqs. (\ref{BratS}, \ref{FmsyS}) with $\gamma$ fixed to -1. 
+%%reference points.
+%
+%%estimate of two productivity parameters under the restricted production model. Each of the fitted productivity parameter
+%%estimates are then modeled using independent instances of the following model in Eq (28).
+%
+%%
+%Applying the metamodel predictive surfaces on the scale of RP estimates allows for the 
+%quantification of RP bias. % induced by fitting a misspecified BH model 
+%%ication of two parameter production functions. 
+%%Below 
+%RP bias is quantified by the following relative measure of bias, similar to a percent error calculation.
+%%
+%\begin{align}
+%\text{Relative Bias} = \frac{\hat{RP}-RP}{RP}
+%\end{align}
+%%
+%Above $RP$ is a stand-in for the true value of any of the biological
+%reference points under the three parameter data generating production model, 
+%and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the 
+%BH model. %two parameter restricted cases.
+
+%
+Unlike the 
+By considering 
+
+\begin{itemize}
+\item Bias present in high contrast $\frac{F_{MSY}}{M}$.
+\item While bias is present in $F_{MSY}$ the BH mapping is similar to the Schaefer simulation in that the overall mapping
+is very near a minimal disance mapping in RP space.
+\item bias present in $\frac{F_{MSY}}{M}$
+\end{itemize}
+
+
+%
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.49\textwidth}
+\hspace*{-0.5cm}
+\includegraphics[width=1.1\textwidth]{../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
+%\hspace*{1cm}
+\caption{\label{flatTrio}
+Heatplots showing the bias in RP estimation induced by model misspecification of 
+the BH model in the high contrast simulation setting. 
+In all cases the restricted RP-space of the BH set is shown as the black curve.  
+(\emph{left}) Relative bias in $\frac{B^*}{\bar B(0)}$.  (\emph{top-right}) 
+Bias in RP-space shown directionally. Arrows point from the location where 
+data is generated, toward the location in the BH set where MLE projects estimated 
+RPs. The intensity of color represents the excess bias relative
+to the shortest possible mapping. (\emph{bottom}) Relative bias in $F^*$.  
+}
+$~$\\$~$\\
+\end{minipage} 
+\begin{minipage}[h!]{0.49\textwidth} 
+\hspace*{1cm}
+\includegraphics[width=1.1\textwidth]{../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png}\\
+\hspace*{1cm}
+\includegraphics[width=1.1\textwidth]{../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
+\end{minipage}
+\end{figure}
+
+
+
+
+%%
+%\begin{wrapfigure}{r}{0.5\textwidth}
+%\vspace{-0.5cm}
+%%\begin{figure}[h!]
+%\includegraphics[width=0.5\textwidth]{../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
+%%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+%\vspace{-1cm}
+%\caption{
+%Relative bias in $F_{MSY}$ in the high contrast simulation setting. The BH set is also shown in black. 
+%}
+%\label{bhFmsy}
+%%\end{figure}
+%\end{wrapfigure}
+
+%
+
+
 
 
 %../gpBias/animFigSchnuteLHS.r 
@@ -2293,9 +2388,24 @@ BH model is misspecified for those data.
 \hspace{-1cm}
 \includegraphics[width=1.5\textwidth]{../gpBias/legendSubSchnute.png}
 \end{minipage}
-\caption{Joint bias direction for $\left(\frac{F_{MSY}}{M}\right.$, $\left.\frac{B_{MSY}}{B_0}\right)$ estimates under the misspecified BH Model. The intensity of color represents the excess bias relative to the shortest possible mapping.}
+\caption{Joint bias direction for $\left(\frac{F_{MSY}}{M}\right.$, $\left.\frac{B_{MSY}}{B_0}\right)$ 
+estimates under the misspecified BH Model. The intensity of color represents the excess bias relative 
+to the shortest possible mapping. The high constrast relative fishing setting is 
+shown $right$; the low contrast setting is shown on the $left$.
+}
 %\caption{\color{red} Low Contrast/High Contrast Titles, unify the Legends (Only show one.) Redo the colors relative to minimum distance. Less arrows. Bolder arrows, bolder line}
+\label{bhArrows}
 \end{figure}
+
+%
+Figure (\ref{bhArrows}, $right$) shows the mapping of RPs under BH inference in 
+the high contrast setting. Unlike RP inference under the Schaefer model, in the high 
+contrast setting the BH model does show  
+
+Similar to RP inference under the Schaefer model, RP 
+inferred under a misspecified BH 
+describe contrast setting.
+
 
 \begin{itemize}
 %\item introduce BH set
@@ -2353,11 +2463,26 @@ measure of bias, similar to a percent error calculation.
 \text{Relative Bias} = \frac{\hat{RP}-RP}{RP}
 \end{align}
 
+%%
+%\begin{wrapfigure}{r}{0.5\textwidth}
+%\vspace{-0.5cm}
+%%\begin{figure}[h!]
+%\includegraphics[width=0.5\textwidth]{../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
+%%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+%\vspace{-1cm}
+%\caption{
+%Relative bias in $F_{MSY}$ in the high contrast simulation setting.  
+%}
+%\label{bhFmsy}
+%%\end{figure}
+%\end{wrapfigure}
+
 %
 Above $RP$ is a stand-in for the true value of any of the biological
 reference points under the three parameter data generating production model, 
 and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the 
 two parameter restricted cases.
+
 
 %%
 %\clearpage
