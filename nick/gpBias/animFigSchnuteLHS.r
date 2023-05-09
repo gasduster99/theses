@@ -279,8 +279,8 @@ getData = function(dir, xiRange, zetaRange){
 #
 
 #
-mod = "ExpT45N150MinCon"; contrast=T;
-#mod = "ExpT45N150Wide"; contrast=T; #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
+#mod = "ExpT45N150MinCon"; contrast=T;
+mod = "ExpT45N150Wide"; contrast=T; #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
 #mod = "HHardFlatT30N150WWideN56"; contrast=F;
 #mod = "HHardFlatT30N150WWideN84"; contrast=F;
 #mod = "HHardFlatT30N150WWideN112"; contrast=F;
@@ -743,6 +743,54 @@ quiver(
 dev.off()
 
 #
+title = c(TeX("Low Contrast"), TeX("High Contrast"))
+png(sprintf("directionalBiasSchnuteSubTitle%s.png", mod))
+#
+eg = expand.grid(xiStar, zetaStar)
+ms = apply(eg, 1, function(r){ stats::optimize(function(x){ sqrt((r[1]-x)^2 + (r[2]-(1/(x+2)))^2) }, c(0,4))$objective })
+ms = matrix(ms, nrow=length(xiStar), ncol=length(zetaStar))
+#
+msThresh = 3.11
+#
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, eucBias-ms,
+        col  = adjustcolor(eucCols, alpha.f=0.99),  #eucCols, #
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop), # c(0, xiTop), #
+        zlim = (c(0, msThresh)), #1.71466050), #c(0, 1), #0.95),
+	cex.lab = 1.5,
+        cex.main= 1.5
+)
+greyRed =  colorRampPalette(c(eucCols[length(eucCols)],'grey10'))(4)[2]
+image(xiStar, zetaStar, (eucBias-ms),
+        col  = greyRed, #eucCols[length(eucCols)], #"grey10", #adjustcolor(xCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}$"),#'Xi',
+        ylab = TeX('$B_{MSY}/B_0$'),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        zlim = c(msThresh, max((eucBias-ms), msThresh, na.rm=T)), #log(c(lmThresh, max(eucBias/ms, mThresh, na.rm=T))),
+        add  = T
+)
+points(dotStar[freq,1], dotStar[freq,2], pch='.')
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+curve(1/(x+2), from=0, to=4, lwd=4, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,475)) #125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.065, length=0.175, lwd=2 #scale=0.05, length=0.15 
+)
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
+
+#
 png(sprintf("legendSubSchnute.png"), width = 150, height = 400)
 show = seq(1, length(eucCols), length.out=20)
 plot.new()
@@ -959,6 +1007,159 @@ show = seq(1, length(eucCols), length.out=20)
 #points(D$xiSeed, D$zetaSeed)
 dev.off()
 
+#zeta bias
+
+
+#nCols = 100
+#maxBias = abs(max(zetaBias, na.rm=T))
+#minBias = abs(min(zetaBias, na.rm=T))
+#posCols = hcl.colors(round(nCols*maxBias/(maxBias+minBias)), "Reds 2", rev=T)
+#negCols = hcl.colors(round(nCols*minBias/(maxBias+minBias)), "Blues 2", rev=F)
+#yCols = c(negCols, "#FFFFFF", posCols)
+#
+#
+png(sprintf("zetaRelBiasSchnute%s.png", mod))
+nCols = 21 #50*2
+maxAbsXBias = 1 #max(abs(xiBias/xiStar), na.rm=T)
+posCols = hcl.colors(nCols/2, "Reds 2", rev=T)
+negCols = hcl.colors(nCols/2, "Blues 2", rev=F)
+yCols = c(negCols, "#FFFFFF", posCols)
+#
+#par(mar=c(5, 4, 4, 5)+0.i)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, t(t(zetaBias)/zetaStar),
+        col  = adjustcolor(yCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'),
+        main = TeX("Relative Bias in Estimated $B_{MSY}/B_0$"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+	zlim = c(-1, 1),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+contour(xiStar[15:16], zetaStar, (t(t(zetaBias)/zetaStar))[15:16,],
+        method = "simple",
+        levels = seq(-1, 1, 0.1),
+        labcex = 1.025,
+        lwd  = eps(),
+        #xlab = TeX("$F_{MSY}/M$"), #'Xi',
+        #ylab = TeX('$B_{MSY}/B_0$'),
+        #main = TeX("Relative Bias in Estimated $F_{MSY}$"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiBot),
+        zlim = c(-1,1), #c(-maxAbsXBias, maxAbsXBias),
+        add  = T
+)
+end = rev(length(xiStar)-c(15:16))
+contour(xiStar[end], zetaStar, (t(t(zetaBias)/zetaStar))[end,],
+        method = "simple",
+        levels = seq(-1, 1, 0.1),
+        labcex = 1.025,
+        lwd  = eps(),
+        #xlab = TeX("$F_{MSY}/M$"), #'Xi',
+        #ylab = TeX('$B_{MSY}/B_0$'),
+        #main = TeX("Relative Bias in Estimated $F_{MSY}$"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiBot),
+        zlim = c(-1, 1), #c(-maxAbsXBias, maxAbsXBias),
+        add  = T
+)
+image(xiStar, zetaStar, t(t(zetaBias)/zetaStar),
+        col  = "grey10", #adjustcolor(xCols, alpha.f=0.6),
+        #xlab = TeX("$F_{MSY}/M$"),#'Xi',
+        #ylab = TeX('$B_{MSY}/B_0$'),
+        #main = TeX("Relative Bias in Estimated $F_{MSY}$"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        zlim = c(1, max(zetaBias/zetaStar, 1, na.rm=T)),
+        add  = T
+)
+#points(D$xiSeed, D$zetaSeed)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+show = seq(1, length(yCols), length.out=20)
+dev.off()
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.2f", rev(seq(min(zetaBias[xiMask, zetaMask], na.rm=T), max(zetaBias[xiMask, zetaMask], na.rm=T), length.out=length(show)))),
+#        fill = rev(yCols[show]), 
+#        xpd = NA
+#)
+#points(D$xiSeed, D$zetaSeed)
+#dev.off()
+
+#
+png(sprintf("fMSYRelBiasSchnute%s.png", mod))
+nCols = 21 #50*2
+maxAbsXBias = 1 #max(abs(xiBias/xiStar), na.rm=T)
+posCols = hcl.colors(nCols/2, "Reds 2", rev=T)
+negCols = hcl.colors(nCols/2, "Blues 2", rev=F)
+xCols = c(negCols, "#FFFFFF", posCols)
+#
+xiMask = xiStar>xiBot & xiStar<xiTop
+zetaMask = zetaStar>zetaBot & zetaStar<zetaTop
+#
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, xiBias/xiStar,
+        col  = adjustcolor(xCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"),#'Xi',
+        ylab = TeX('$B_{MSY}/B_0$'),
+        main = TeX("Relative Bias in Estimated $F_{MSY}/M$"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        zlim = c(-maxAbsXBias, maxAbsXBias),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+contour(xiStar[15:16], zetaStar, (xiBias/xiStar)[15:16,],
+        method = "simple",
+        levels = seq(-1, 1, 0.1),
+        labcex = 1.025,
+        lwd  = eps(),
+        #xlab = TeX("$F_{MSY}/M$"), #'Xi',
+        #ylab = TeX('$B_{MSY}/B_0$'),
+        #main = TeX("Relative Bias in Estimated $F_{MSY}$"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiBot),
+        zlim = c(-maxAbsXBias, maxAbsXBias),
+        add  = T
+)
+end = rev(length(xiStar)-c(15:16))
+contour(xiStar[end], zetaStar, (xiBias/xiStar)[end,],
+        method = "simple",
+        levels = seq(-1, 1, 0.1),
+        labcex = 1.025,
+        lwd  = eps(),
+        #xlab = TeX("$F_{MSY}/M$"), #'Xi',
+        #ylab = TeX('$B_{MSY}/B_0$'),
+        #main = TeX("Relative Bias in Estimated $F_{MSY}$"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiBot),
+        zlim = c(-maxAbsXBias, maxAbsXBias),
+        add  = T
+)
+image(xiStar, zetaStar, xiBias/xiStar,
+        col  = "grey10", #adjustcolor(xCols, alpha.f=0.6),
+        #xlab = TeX("$F_{MSY}/M$"),#'Xi',
+        #ylab = TeX('$B_{MSY}/B_0$'),
+        #main = TeX("Relative Bias in Estimated $F_{MSY}$"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        zlim = c(1, max(xiBias/xiStar, 1, na.rm=T)),
+        add  = T
+)
+#points(D$xiSeed, D$zetaSeed)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+show = seq(1, length(xCols), length.out=nCols) #20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), 
+#        sprintf("%1.2f", rev(seq(-maxAbsXBias, maxAbsXBias, length.out=length(show)))), 
+#        fill = rev(xCols[show]), 
+#        xpd = NA
+#)
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
 
 
 
