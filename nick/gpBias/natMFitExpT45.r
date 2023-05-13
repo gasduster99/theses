@@ -68,12 +68,12 @@ getZeta = function(gamma, ff, M){
 }
 z = Vectorize(getZeta, "gamma")
 
-##
-#getGamma = function(zeta, ff, M){
-#       uniroot.all(function(gamma){z(gamma, ff, M)-zeta}, c(-500, 100))
-#       #uniroot.all(function(gamma){ ((ff/(M+ff))*(1-zeta)/(zeta*gamma)+1)^gamma - (M+ff)/M }, c(
-#       #strongRoot()
-#}
+#
+getGamma = function(zeta, ff, M, bounds=c(-100, 100)){
+       uniroot.all(function(gamma){z(gamma, ff, M)-zeta}, bounds)
+       #uniroot.all(function(gamma){ ((ff/(M+ff))*(1-zeta)/(zeta*gamma)+1)^gamma - (M+ff)/M }, c(
+       #strongRoot()
+}
 
 #
 FMsy = function(alpha, gamma, M){
@@ -88,6 +88,40 @@ FMsy = function(alpha, gamma, M){
         ##
         return(root)
 }
+
+#
+invert = function(zeta, xi, B0, M, alphaStart=1, betaStart=1, gammaStart=1){
+        #
+        alpha = alphaStart
+        beta  = betaStart
+        gamma = gammaStart
+        #
+        xTol = 10^-3
+        zTol = xTol
+        bTol = 10
+        xiHat = xi+xTol*10
+        zetaHat = zeta+zTol*10
+        #
+	i = 1
+        while( abs(xiHat-xi)>=xTol | abs(zetaHat-zeta)>=zTol ){
+                #
+                gamma = getGamma(zeta, xi*M, M, bounds=c(gammaStart/10, gammaStart*10)) 	#, alpha, beta)
+                alpha = getAlpha(gamma, xi*M, M) 	#getAlphaFmsy(xi*M, M, k, w, W, beta, gamma)
+                beta  = getBeta(alpha, gamma, M, B0)	#getBeta(B0, M, k, w, W, alpha, gamma)
+		#
+                BZero = PBar(alpha, beta, gamma, 0, M)	#BBar(0, M, k, w, W, alpha, beta, gamma)
+                xiHat = FMsy(alpha, gamma, M)/M		#FMsy(M, k, w, W, alpha, beta, gamma)/M
+                zetaHat = PBar(alpha, beta, gamma, xiHat*M, M)/PBar(alpha, beta, gamma, 0, M)	#BBar(xiHat*M, M, k, w, W, alpha, beta, gamma)/BBar(0, M, k, w, W, alpha, beta, gamma)
+                #
+                #xis = c(xis, xiHat)
+                #zetas = c(zetas, zetaHat)
+                i = i+1
+        }
+	#print(i)
+        #
+        return( data.frame(alpha=alpha, beta=beta, gamma=gamma) )
+}
+
 
 #
 #INIT
@@ -142,18 +176,39 @@ baseFit = readRDS(baseFitName)
 place = sprintf('./natMTestsX%sZ%s/', round(xiBase, binTrk), round(zetaBase, binTrk))
 odeMethod = "lsode"
 
+
+##TEST
+#
+##
+#ems = seq(0.05, 0.5, length.out=46)
+##
+#for(m in ems){
+#	#
+#	abg = invert(baseDat$zeta, baseDat$xi, P0, m, alphaStart=baseDat$alpha, betaStart=baseDat$beta, gammaStart=baseDat$gamma)
+#	xiHat = FMsy(abg$alpha, abg$gamma, m)/m
+#        zetaHat = PBar(abg$alpha, abg$beta, abg$gamma, xiHat*m, m)/PBar(abg$alpha, abg$beta, abg$gamma, 0, m)
+#	#
+#	print(m)
+#	print(abg)
+#	print(xiHat)
+#	print(zetaHat)
+#	print('')		
+#}
+
 #make new design
-if( F ){
-        #
+if( T ){
+        #NOTE: can do something fancier with the order here and the abgStart values below if neccessary
         ems = seq(0.05, 0.5, length.out=46)
         #
-        for(m in ems){ 
-                #read in data from design locations 
+        for(m in ems){
+       		#
+		abg = invert(baseDat$zeta, baseDat$xi, P0, m, alphaStart=baseDat$alpha, betaStart=baseDat$beta, gammaStart=baseDat$gamma)
+               	#read in data from design locations 
 		datGen = prodModel$new(
                 	dNdt=dPdt, N0Funk=function(lalpha, lbeta, gamma, M){PBar(exp(lalpha), exp(lbeta), gamma, 0, M)}, #model
                 	time=1:TT, catch=FtFmsy, M=m,                        	 	#constants
-                	alpha=baseDat$alpha, beta=baseDat$beta, gamma=baseDat$gamma,	#parameters
-                	lalpha=baseDat$lalpha, lbeta=baseDat$lbeta,      		#reparameterize
+                	alpha=abg$alpha, beta=abg$beta, gamma=abg$gamma,		#parameters
+                	lalpha=log(abg$alpha), lbeta=log(abg$beta),      		#reparameterize
                 	lq=log(0.00049), lsdo=log(0.01160256),          		#nuisance parameters
                 	xi=baseDat$xi, zeta=baseDat$zeta                  		#other incidentals to carry along
         	)
@@ -162,7 +217,7 @@ if( F ){
                 datGen$save( datName )
         }
 }else{
-
+#
 ###a place to store data
 ##place = './modsSchnuteExpT45N150Wide/'
 ##odeMethod = "lsode"
