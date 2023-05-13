@@ -2224,6 +2224,7 @@ A Schnute RP design. % resulting from design refinement of Algorithm (1).
 Colors indicate different regimes of Schnute production. % function.
 %Samples are colored by the ranges the $\gamma$ parameter which result in 
 %different regimes of the Schnute production function.
+The black curve shows the BH set.
 }
 \label{colorDes}
 %\end{figure}
@@ -2263,23 +2264,25 @@ Cushing-like production as $\gamma$ becomes large.
 %\item 
 %\end{itemize}
 
+%
+Modeling index data that are simulated broadly over the theoretical space of RPs 
+with misspecified BH production greatly limits the range of possible RPs that 
+can be inferred. Under BH production the full theoretical space of RPs are 
+limited to the curve \mbox{$\frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}$.} Define the 
+``BH set'' as the set of RPs defined by this limited space, i.e. the curve \\
+$\left\{\left(\frac{B_{MSY}}{B_0}, \frac{F_{MSY}}{M}\right) \;\middle|\; \frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}\right\}$.
+as seen in the black curve in Figure (\ref{colorDes}).
+The farther away from this set that Schnute data are simulated, the worse the 
+BH model is misspecified for those data. 
 
 
 %
 \subsubsection{Metamodeled Trends}
 
-%
-Modeling data that are simulated broadly over the theoretical space of RPs 
-with misspecified BH production greatly limits the range of possible RPs that 
-can be inferred. Under BH production the full theoretical space of RPs are 
-limited to the curve \mbox{$\frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}$.} Define the 
-``BH set'' as the set of RPs defined by this limited space, i.e. the curve 
-$\left\{\left(\frac{B_{MSY}}{B_0}, \frac{F_{MSY}}{M}\right) \;\middle|\; \frac{B_{MSY}}{B_0}=\frac{1}{F_{MSY}/M+2}\right\}$.
-The farther away from this set that Schnute data are simulated, the worse the 
-BH model is misspecified for those data. 
+
 %
 Unlike the Schaefer model, the BH set is not a constant in 
-$\frac{B_{MSY}}{B_0}$. Under the BH model bias in $\frac{B_{MSY}}{B_0}$ is no 
+$\frac{B_{MSY}}{B_0}$. Under the BH model, bias in $\frac{B_{MSY}}{B_0}$ is no 
 longer entirely defined by the degree of model mispecification, but rather the 
 structure of BH RPs allows bias in both $\frac{B_{MSY}}{B_0}$ and $\frac{F_{MSY}}{M}$ 
 to interact as a function of contrast in the data.
@@ -2313,24 +2316,12 @@ to interact as a function of contrast in the data.
 %BH model. %two parameter restricted cases.
 
 %
-Unlike the 
-By considering 
-
-\begin{itemize}
-\item Bias present in high contrast $\frac{F_{MSY}}{M}$.
-\item While bias is present in $F_{MSY}$ the BH mapping is similar to the Schaefer simulation in that the overall mapping
-is very near a minimal disance mapping in RP space.
-\item bias present in $\frac{F_{MSY}}{M}$
-\end{itemize}
-
-
-%
 \begin{figure}[h!]
 \begin{minipage}[h!]{0.49\textwidth}
 \hspace*{-0.5cm}
 \includegraphics[width=1.1\textwidth]{../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
 %\hspace*{1cm}
-\caption{\label{flatTrio}
+\caption{\label{contrastTrio}
 Heatplots showing the bias in RP estimation induced by model misspecification of 
 the BH model in the high contrast simulation setting. 
 In all cases the restricted RP-space of the BH set is shown as the black curve.  
@@ -2352,24 +2343,103 @@ $~$\\$~$\\
 
 
 
-
-%%
-%\begin{wrapfigure}{r}{0.5\textwidth}
-%\vspace{-0.5cm}
-%%\begin{figure}[h!]
-%\includegraphics[width=0.5\textwidth]{../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
-%%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
-%\vspace{-1cm}
-%\caption{
-%Relative bias in $F_{MSY}$ in the high contrast simulation setting. The BH set is also shown in black. 
-%}
-%\label{bhFmsy}
-%%\end{figure}
-%\end{wrapfigure}
+%
+Figure (\ref{contrastTrio}) shows metamodeled RP bias surfaces for inference 
+under the BH model in the high contrast setting. The (\emph{left}) and 
+(\emph{bottom}) panels focus only on the $\frac{B^*}{\bar B(0)}$ and 
+$\frac{F_{MSY}}{M}$ components of bias respectively. In these panels bias is shown
+as relative bias, $\frac{\hat{RP}-RP}{RP}$, similar to a percent error calculation.
+Where $RP$ represents the true value of the three parameter RP, and $\hat{RP}$ 
+refers to the metamodel estimate.
 
 %
+Figure (\ref{contrastTrio}, \emph{top-right}) combines the components of bias to show the 
+overall mapping of RPs under BH inference in the high contrast simulation setting. 
+Unlike RP inference under the Schaefer model in the high contrast setting, the BH 
+model does shows significant bias in both RPs here. Despite the bias in $\frac{B^*}{\bar B(0)}$ 
+and $\frac{F_{MSY}}{M}$ these results are similar to that of the Schaefer 
+model in that the overall mapping of RPs is very near to a minimal 
+distance mapping onto the constrained set of RPs.  
 
 
+%Above $RP$ is a stand-in for the true value of any of the biological
+%reference points under the three parameter data generating production model,
+%and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the
+%two parameter restricted cases.
+%
+%
+%
+%%In the high contrast simulation setting 
+%Unlike the The Schaefer model both RP plays
+%By considering 
+
+%\begin{itemize}
+%\item Bias present in high contrast $\frac{F_{MSY}}{M}$.
+%\item While bias is present in $F_{MSY}$ the BH mapping is similar to the Schaefer simulation in that the overall mapping
+%is very near a minimal disance mapping in RP space.
+%\item bias present in $\frac{F_{MSY}}{M}$
+%\end{itemize}
+
+%
+\begin{wrapfigure}{r}{0.5\textwidth}
+%\vspace{-0.5cm}
+\vspace{-1.25cm}
+%\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+\vspace{-1cm}
+\caption{
+%Relative bias in $F_{MSY}$ in the high contrast simulation setting. The BH set is also shown in black. 
+Joint bias direction of RP infernce in the low contrast simulation setting.
+The intensity of color represents the excess bias relative
+to the shortest possible mapping. 
+}
+\label{bhLowArrows}
+%\end{figure}
+\end{wrapfigure}
+
+%
+Figure (\ref{bhLowArrows}) shows the mapping of RPs in the low contrast 
+simulation setting. Figures (\ref{bhLowArrows}) and (\ref{contrastTrio}, 
+\emph{top-right}) share a common scale for the intensity of color to 
+facilitate comparison. Notice that the mildly misspecified area around the BH set 
+produces mappings onto the BH set which resemble the minimal distance mapping 
+seen in Figure (\ref{contrastTrio}, \emph{top-right}) under the high contrast 
+simulation setting. The primary difference in the low constrast setting, seen 
+here, is the break point around $\frac{B^*}{\bar B(0)}=0.4$ above which $\frac{F_{MSY}}{M}$ 
+is sharply underestimated. By comparison of Figure (\ref{bhLowArrows}), with 
+the location of the BH-Like/Ricker-Like regimes seen in Figure (\ref{colorDes}), 
+this break point coincides with a regime change in the Schnute model. The 
+Ricker model lies along this regime interface, and  represents the first model 
+to approach the x-axis for large biomasses as $\gamma$ increases. However, even 
+in the low contrast setting the BH model manages to recover the minimal distance mapping for
+data generated under the Cushing-like or BH-like regimes.  
+\clearpage
+\begin{itemize}
+%\item introduce BH set
+%\item reiterate each point in RP space is an entire Schnute model, on the BH set modes are BH.
+
+%\item Point out the geometry of BH RPs
+%\item under BH Bias in $\frac{B_{MSY}}{B_0}$ is no longer entirely defined entrirely by the degree of model mispecification.
+%(still largely)
+%
+%\item Best case data result in a minimum distance mapping (discussion?)
+%\item Due to the shape of the BH RP set this ensures bias in both $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$
+%\item Unlike the Schaefer models geometry the BH set has a geometry that will mix bias directions in the best case.
+%
+%\item some detail views in $B_{MSY}$, $B_0$, $F_{MSY}$, $?F_{SPR?}$, $MSY$
+\item ``safe'' regiem similar to the high contrast minimal distance mapping for mild model misspcificaiton.
+\item Ricker-like break point. Complete model failure beyond.
+\item what is going on with SRR when model completely fails.
+%\item mapping directly vertically is a minimum distance mapping given the 
+%constrained space.
+\item Mechanism plot on SRR LHS Grid plot
+
+\item mapping distance as a function of contrast at (3.5, 0.5)
+
+\item for LHS grid locations show $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$ biases for grids in $M\in(0,0.5)$ For sure in High Contrast, maybe also in Low??.
+
+\end{itemize}
 
 
 %../gpBias/animFigSchnuteLHS.r 
@@ -2388,100 +2458,83 @@ $~$\\$~$\\
 \hspace{-1cm}
 \includegraphics[width=1.5\textwidth]{../gpBias/legendSubSchnute.png}
 \end{minipage}
-\caption{Joint bias direction for $\left(\frac{F_{MSY}}{M}\right.$, $\left.\frac{B_{MSY}}{B_0}\right)$ 
-estimates under the misspecified BH Model. The intensity of color represents the excess bias relative 
-to the shortest possible mapping. The high constrast relative fishing setting is 
-shown $right$; the low contrast setting is shown on the $left$.
+\caption{Joint bias direction of RP infernce in the low contrast simulation setting.
+%sfor $\left(\frac{F_{MSY}}{M}\right.$, $\left.\frac{B_{MSY}}{B_0}\right)$ 
+%estimates under the misspecified BH Model. 
+The intensity of color represents the excess bias relative 
+to the shortest possible mapping. 
+%The high constrast relative fishing setting is 
+%shown $right$; the low contrast setting is shown on the $left$.
 }
 %\caption{\color{red} Low Contrast/High Contrast Titles, unify the Legends (Only show one.) Redo the colors relative to minimum distance. Less arrows. Bolder arrows, bolder line}
-\label{bhArrows}
+\label{bhLowArrows}
 \end{figure}
 
+%Figure (\ref{bhLowArrows}) shows the mapping of RPs in the low contrast simulation setting.
+
+%the high contrast setting. Unlike RP inference under the Schaefer model, in the high 
+%contrast setting the BH model does show  
 %
-Figure (\ref{bhArrows}, $right$) shows the mapping of RPs under BH inference in 
-the high contrast setting. Unlike RP inference under the Schaefer model, in the high 
-contrast setting the BH model does show  
-
-Similar to RP inference under the Schaefer model, RP 
-inferred under a misspecified BH 
-describe contrast setting.
+%Similar to RP inference under the Schaefer model, RP 
+%inferred under a misspecified BH 
+%describe contrast setting.
 
 
-\begin{itemize}
-%\item introduce BH set
-%\item reiterate each point in RP space is an entire Schnute model, on the BH set modes are BH.
 
-\item Point out the geometry of BH RPs
-\item under BH Bias in $\frac{B_{MSY}}{B_0}$ is no longer entirely defined entrirely by the degree of model mispecification.
-(still largely)
-\item Best case data result in a minimum distance mapping. 
-\item Due to the shape of the BH RP set this ensures bias in both $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$
-\item Unlike the Schaefer models geometry the BH set has a geometry that will mix bias directions in the best case.
 
-\item Ricker-like break point.
-\item what is going on with SRR when model completely fails.
-%\item mapping directly vertically is a minimum distance mapping given the 
-%constrained space.
-\item Mechanism plot on SRR LHS Grid plot
-
-\item some detail views in $B_{MSY}$, $B_0$, $F_{MSY}$, $?F_{SPR?}$, $MSY$
-
-\item for LHS grid locations show $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$ biases for grids in $M\in(0,0.5)$ For sure in High Contrast, maybe also in Low??.
-\end{itemize}
-
+%%%
+%%While interpolation occurs in the space of either $\log(r)$ or $\log(K)$, these
+%%interpolated values are used to build interpolated estimates of major biological
+%%reference points. Using the interpolated values $\check{\log(r)}$ and $\check{\log(K)}$
+%%the following transformation are applied to interpolate RP quantities under the Schaefer
+%%model,
+%%%
+%%\begin{align}~
+%%        \check B^* = \frac{\check K}{2} ~~~~~~~~
+%%        %\check{MSY} = \frac{\check K \check r}{4} ~~~~~~~
+%%        \check F^* = \frac{\check r}{2}.  %\check r \check B^* \left(1-\frac{\check B^*}{\check K}\right)
+%%\end{align}
+%
 %%
-%While interpolation occurs in the space of either $\log(r)$ or $\log(K)$, these
-%interpolated values are used to build interpolated estimates of major biological
-%reference points. Using the interpolated values $\check{\log(r)}$ and $\check{\log(K)}$
-%the following transformation are applied to interpolate RP quantities under the Schaefer
-%model,
+%While metamodeling occurs on the inferred productivity parameters of the 
+%restricted production model, the metamodel can also be used to build 
+%metamodeled estimates of major biological RPs. The relevant transformations 
+%are given Eqs. (\ref{ptRP}, \ref{BratS}, \ref{FmsyS}) with $\gamma$ 
+%fixed to the restricting case. 
+%%reference points.
+%
+%%estimate of two productivity parameters under the restricted production model. Each of the fitted productivity parameter
+%%estimates are then modeled using independent instances of the following model in Eq (28).
+%
 %%
-%\begin{align}~
-%        \check B^* = \frac{\check K}{2} ~~~~~~~~
-%        %\check{MSY} = \frac{\check K \check r}{4} ~~~~~~~
-%        \check F^* = \frac{\check r}{2}.  %\check r \check B^* \left(1-\frac{\check B^*}{\check K}\right)
+%Applying the metamodel predictive surfaces to the RP estimate allows for the 
+%quantification of RP bias induced by model misspecification of two parameter 
+%production functions. Below RP bias is quantified by the following relative 
+%measure of bias, similar to a percent error calculation.
+%%
+%\begin{align}
+%\text{Relative Bias} = \frac{\hat{RP}-RP}{RP}
 %\end{align}
-
 %
-While metamodeling occurs on the inferred productivity parameters of the 
-restricted production model, the metamodel can also be used to build 
-metamodeled estimates of major biological RPs. The relevant transformations 
-are given Eqs. (\ref{ptRP}, \ref{BratS}, \ref{FmsyS}) with $\gamma$ 
-fixed to the restricting case. 
-%reference points.
-
-%estimate of two productivity parameters under the restricted production model. Each of the fitted productivity parameter
-%estimates are then modeled using independent instances of the following model in Eq (28).
-
+%%%
+%%\begin{wrapfigure}{r}{0.5\textwidth}
+%%\vspace{-0.5cm}
+%%%\begin{figure}[h!]
+%%\includegraphics[width=0.5\textwidth]{../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
+%%%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+%%\vspace{-1cm}
+%%\caption{
+%%Relative bias in $F_{MSY}$ in the high contrast simulation setting.  
+%%}
+%%\label{bhFmsy}
+%%%\end{figure}
+%%\end{wrapfigure}
 %
-Applying the metamodel predictive surfaces to the RP estimate allows for the 
-quantification of RP bias induced by model misspecification of two parameter 
-production functions. Below RP bias is quantified by the following relative 
-measure of bias, similar to a percent error calculation.
-%
-\begin{align}
-\text{Relative Bias} = \frac{\hat{RP}-RP}{RP}
-\end{align}
-
 %%
-%\begin{wrapfigure}{r}{0.5\textwidth}
-%\vspace{-0.5cm}
-%%\begin{figure}[h!]
-%\includegraphics[width=0.5\textwidth]{../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
-%%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
-%\vspace{-1cm}
-%\caption{
-%Relative bias in $F_{MSY}$ in the high contrast simulation setting.  
-%}
-%\label{bhFmsy}
-%%\end{figure}
-%\end{wrapfigure}
-
-%
-Above $RP$ is a stand-in for the true value of any of the biological
-reference points under the three parameter data generating production model, 
-and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the 
-two parameter restricted cases.
+%Above $RP$ is a stand-in for the true value of any of the biological
+%reference points under the three parameter data generating production model, 
+%and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the 
+%two parameter restricted cases.
 
 
 %%
@@ -2505,6 +2558,8 @@ two parameter restricted cases.
 %may behave quite differently. $B^*$ appears to be estimated fairly accurately
 %while $K$ does not.
 
+
+\clearpage
 %a general list
 \begin{itemize}
 %At some point
@@ -2524,6 +2579,12 @@ two parameter restricted cases.
 \item model mispecification story as in advancement
 \item inference is oriented to the shape of the constrained space
 \item conjecture that with perfectly informed models mapping would be orthoganal
+
+\item Best case data result in a minimum distance mapping (discussion?)
+\item Due to the shape of the BH RP set this ensures bias in both $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$
+\item Unlike the Schaefer models geometry the BH set has a geometry that will mix bias directions in the best case.
+
+
 \end{itemize}
 
 
