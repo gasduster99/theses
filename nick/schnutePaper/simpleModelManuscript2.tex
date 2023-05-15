@@ -573,7 +573,7 @@ productivity parameters.
 %often be unstable. That said, for the case of PT this relationship is 
 %analytically invertible, and leads to the following relationship
 
-
+%
 \subsubsection{Simulation}
 
 %speaking it is not possible to analytically invert this  
@@ -2353,14 +2353,16 @@ Where $RP$ represents the true value of the three parameter RP, and $\hat{RP}$
 refers to the metamodel estimate.
 
 %
-Figure (\ref{contrastTrio}, \emph{top-right}) combines the components of bias to show the 
-overall mapping of RPs under BH inference in the high contrast simulation setting. 
-Unlike RP inference under the Schaefer model in the high contrast setting, the BH 
-model does shows significant bias in both RPs here. Despite the bias in $\frac{B^*}{\bar B(0)}$ 
-and $\frac{F_{MSY}}{M}$ these results are similar to that of the Schaefer 
-model in that the overall mapping of RPs is very near to a minimal 
-distance mapping onto the constrained set of RPs.  
-
+Figure (\ref{contrastTrio}, \emph{top-right}) combines the components of bias to 
+show the overall mapping of RPs under BH inference in the high contrast 
+simulation setting. Unlike high contrast RP inference under the Schaefer model, 
+the BH model does shows bias in both RPs here. Despite the bias in 
+$\frac{B^*}{\bar B(0)}$ and $\frac{F_{MSY}}{M}$ these results are similar to 
+that of the Schaefer model in that the overall mapping of RPs is very nearly a 
+minimal distance mapping onto the constrained set of RPs. %In this setting the 
+The primary difference between Schaefer model and BH RP inference is the geometry of 
+their limited RP spaces. Unlike the Schaefer model the BH set encouraces
+bias in both RPs for misspecified models even in very well informed setting.
 
 %Above $RP$ is a stand-in for the true value of any of the biological
 %reference points under the three parameter data generating production model,
@@ -2383,7 +2385,7 @@ distance mapping onto the constrained set of RPs.
 %
 \begin{wrapfigure}{r}{0.5\textwidth}
 %\vspace{-0.5cm}
-\vspace{-1.25cm}
+%%\vspace{-1.25cm}
 %\begin{figure}[h!]
 \includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
 %\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
@@ -2405,16 +2407,16 @@ simulation setting. Figures (\ref{bhLowArrows}) and (\ref{contrastTrio},
 facilitate comparison. Notice that the mildly misspecified area around the BH set 
 produces mappings onto the BH set which resemble the minimal distance mapping 
 seen in Figure (\ref{contrastTrio}, \emph{top-right}) under the high contrast 
-simulation setting. The primary difference in the low constrast setting, seen 
-here, is the break point around $\frac{B^*}{\bar B(0)}=0.4$ above which $\frac{F_{MSY}}{M}$ 
+simulation setting. The primary difference in this low constrast setting, is 
+the break point around $\frac{B^*}{\bar B(0)}=0.4$ above which $\frac{F_{MSY}}{M}$ 
 is sharply underestimated. By comparison of Figure (\ref{bhLowArrows}), with 
 the location of the BH-Like/Ricker-Like regimes seen in Figure (\ref{colorDes}), 
-this break point coincides with a regime change in the Schnute model. The 
-Ricker model lies along this regime interface, and  represents the first model 
-to approach the x-axis for large biomasses as $\gamma$ increases. However, even 
-in the low contrast setting the BH model manages to recover the minimal distance mapping for
-data generated under the Cushing-like or BH-like regimes.  
-
+this break point coincides with a regime change in the data generating Schnute 
+model. The Ricker model lies along this regime interface, which represents the 
+first model to approach the x-axis for large biomasses as $\gamma$ increases. 
+However, even in the low contrast setting the BH model manages to recover the 
+minimal distance mapping for data generated under the Cushing-like or BH-like 
+regimes.  
 
 \begin{wrapfigure}{r}{0.5\textwidth}
 \vspace{-0.5cm}
@@ -2428,6 +2430,7 @@ Yield curves for data generated with $\frac{F_{MSY}}{M}=3.48$ and $\frac{B^*}{\b
 \label{bhFmsy}
 %\end{figure}
 \end{wrapfigure}
+
 
 
 
@@ -2484,7 +2487,7 @@ to the shortest possible mapping.
 %shown $right$; the low contrast setting is shown on the $left$.
 }
 %\caption{\color{red} Low Contrast/High Contrast Titles, unify the Legends (Only show one.) Redo the colors relative to minimum distance. Less arrows. Bolder arrows, bolder line}
-\label{bhLowArrows}
+%\label{bhLowArrows}
 \end{figure}
 
 %Figure (\ref{bhLowArrows}) shows the mapping of RPs in the low contrast simulation setting.

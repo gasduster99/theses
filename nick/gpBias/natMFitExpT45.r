@@ -196,7 +196,7 @@ odeMethod = "lsode"
 #}
 
 #make new design
-if( T ){
+if( F ){
         #NOTE: can do something fancier with the order here and the abgStart values below if neccessary
         ems = seq(0.05, 0.5, length.out=46)
         #
