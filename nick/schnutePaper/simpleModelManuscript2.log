@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.2)  13 MAY 2023 16:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.2)  14 MAY 2023 17:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1283,7 +1283,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.13}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2354 
+l.2355 
         <../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png> <../gpBias/directional
 BiasSchnuteSubTitleExpT45N150Wide.png> <../gpBias/fMSYRelBiasSchnuteExpT45N150W
 ide.png>]
@@ -1293,99 +1293,122 @@ File: ../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png Graphic
 file (type png)
 <use ../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png>
 Package pdftex.def Info: ../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWi
-deN112.png  used on input line 2390.
+deN112.png  used on input line 2393.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
- [28
+
+Underfull \hbox (badness 1721) in paragraph at lines 2408--2417
+[][] []\T1/cmr/bx/n/12 Low Con-trast[] \T1/cmr/m/n/12 Fig-ure ([][]14[][]) show
+s the
+ []
+
+[28
 pdfTeX warning (ext4): destination with the same identifier (name{figure.14}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2420 \clearpage
-                  <../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112
-.png>] [29]
+l.2426 
+        <../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png>]
+<../gpBias/yeildCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png, 
+id=476, 481.8pt x 481.8pt>
+File: ../gpBias/yeildCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.
+png Graphic file (type png)
+<use ../gpBias/yeildCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.p
+ng>
+Package pdftex.def Info: ../gpBias/yeildCurveCompareHHardFlatT30N150WWideN112Pr
+ettyX3.4791Z0.4662.png  used on input line 2431.
+(pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
+
+[29
+pdfTeX warning (ext4): destination with the same identifier (name{figure.15}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2476 
+        <../gpBias/yeildCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.46
+62.png (PNG copy)>] [30]
 File: ../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png Graphic 
 file (type png)
 <use ../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png>
 Package pdftex.def Info: ../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWi
-deN112.png  used on input line 2452.
+deN112.png  used on input line 2516.
 (pdftex.def)             Requested size: 206.69334pt x 206.6921pt.
-<../gpBias/directionalBiasSchnuteSubExpT45N150Wide.png, id=479, 481.8pt x 481.8
+<../gpBias/directionalBiasSchnuteSubExpT45N150Wide.png, id=489, 481.8pt x 481.8
 pt>
 File: ../gpBias/directionalBiasSchnuteSubExpT45N150Wide.png Graphic file (type 
 png)
 <use ../gpBias/directionalBiasSchnuteSubExpT45N150Wide.png>
 Package pdftex.def Info: ../gpBias/directionalBiasSchnuteSubExpT45N150Wide.png 
- used on input line 2457.
+ used on input line 2521.
 (pdftex.def)             Requested size: 206.69334pt x 206.6921pt.
-<../gpBias/legendSubSchnute.png, id=480, 150.5625pt x 401.5pt>
+<../gpBias/legendSubSchnute.png, id=490, 150.5625pt x 401.5pt>
 File: ../gpBias/legendSubSchnute.png Graphic file (type png)
 <use ../gpBias/legendSubSchnute.png>
-Package pdftex.def Info: ../gpBias/legendSubSchnute.png  used on input line 246
-2.
+Package pdftex.def Info: ../gpBias/legendSubSchnute.png  used on input line 252
+6.
 (pdftex.def)             Requested size: 63.41434pt x 169.1067pt.
- [30
+ [31
 
 
-pdfTeX warning (ext4): destination with the same identifier (name{figure.15}) h
+pdfTeX warning (ext4): destination with the same identifier (name{figure.16}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2565 \clearpage
+l.2629 \clearpage
                   <../gpBias/directionalBiasSchnuteSubExpT45N150Wide.png> <../g
-pBias/legendSubSchnute.png>] [31
+pBias/legendSubSchnute.png>] [32
 
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2598.
+(hyperref)                removing `math shift' on input line 2668.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 2598.
+(hyperref)                removing `\begingroup' on input line 2668.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 2598.
+(hyperref)                removing `superscript' on input line 2668.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\endgroup' on input line 2598.
+(hyperref)                removing `\endgroup' on input line 2668.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@over' on input line 2598.
+(hyperref)                removing `\@@over' on input line 2668.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2598.
+(hyperref)                removing `math shift' on input line 2668.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2598.
+(hyperref)                removing `math shift' on input line 2668.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\gamma' on input line 2598.
+(hyperref)                removing `\gamma' on input line 2668.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2598.
+(hyperref)                removing `math shift' on input line 2668.
 
 
-Overfull \hbox (0.78668pt too wide) in paragraph at lines 2647--2649
+Overfull \hbox (0.78668pt too wide) in paragraph at lines 2717--2719
 []\T1/cmr/m/n/12 https://math.stackexchange.com/questions/3004835/is-the-lamber
 t-w-function-analytic-
  []
 
 
-Overfull \hbox (70.28648pt too wide) in paragraph at lines 2647--2649
+Overfull \hbox (70.28648pt too wide) in paragraph at lines 2717--2719
 \T1/cmr/m/n/12 if-not-everywhere-then-on-what-set-is-it-ana https://researchpor
 tal.bath.ac.uk/en/publications/algebraic-
  []
 
-[32
+[33
 
-] [33] (./simpleModelManuscript2.bbl
+] [34] (./simpleModelManuscript2.bbl
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 8
 3.
 
@@ -1428,18 +1451,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 100--124
 /
  []
 
-[34
+[35
 
-] [35]) [36] (./simpleModelManuscript2.aux)
+] [36]) [37] (./simpleModelManuscript2.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `simpleModelManuscript2.out' has not changed.
 
 (rerunfilecheck)             Checksum: DC88CB06AB582E83AFCD83052706A4EC;3569.
  ) 
 Here is how much of TeX's memory you used:
- 27749 strings out of 478268
- 518266 string characters out of 5846348
- 803971 words of memory out of 5000000
- 45294 multiletter control sequences out of 15000+600000
+ 27761 strings out of 478268
+ 518877 string characters out of 5846348
+ 804130 words of memory out of 5000000
+ 45303 multiletter control sequences out of 15000+600000
  496530 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,13n,94p,759b,472s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1471,10 +1497,10 @@ ve/2022/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive
 /2022/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/local/texlive/2
 022/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/202
 2/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on simpleModelManuscript2.pdf (36 pages, 999437 bytes).
+Output written on simpleModelManuscript2.pdf (37 pages, 1028875 bytes).
 PDF statistics:
- 681 PDF objects out of 1000 (max. 8388607)
- 535 compressed objects within 6 object streams
- 131 named destinations out of 1000 (max. 500000)
- 333 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 695 PDF objects out of 1000 (max. 8388607)
+ 547 compressed objects within 6 object streams
+ 133 named destinations out of 1000 (max. 500000)
+ 338 words of extra memory for PDF output out of 10000 (max. 10000000)
 

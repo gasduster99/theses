@@ -2341,7 +2341,8 @@ $~$\\$~$\\
 \end{minipage}
 \end{figure}
 
-
+%
+\paragraph{High Contrast}
 
 %
 Figure (\ref{contrastTrio}) shows metamodeled RP bias surfaces for inference 
@@ -2382,9 +2383,11 @@ bias in both RPs for misspecified models even in very well informed setting.
 %\item bias present in $\frac{F_{MSY}}{M}$
 %\end{itemize}
 
+\paragraph{Low Contrast}
+
 %
 \begin{wrapfigure}{r}{0.5\textwidth}
-%\vspace{-0.5cm}
+\vspace{-0.5cm}
 %%\vspace{-1.25cm}
 %\begin{figure}[h!]
 \includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
@@ -2400,24 +2403,28 @@ to the shortest possible mapping.
 %\end{figure}
 \end{wrapfigure}
 
+
 %
 Figure (\ref{bhLowArrows}) shows the mapping of RPs in the low contrast 
 simulation setting. Figures (\ref{bhLowArrows}) and (\ref{contrastTrio}, 
 \emph{top-right}) share a common scale for the intensity of color to 
-facilitate comparison. Notice that the mildly misspecified area around the BH set 
-produces mappings onto the BH set which resemble the minimal distance mapping 
-seen in Figure (\ref{contrastTrio}, \emph{top-right}) under the high contrast 
-simulation setting. The primary difference in this low constrast setting, is 
-the break point around $\frac{B^*}{\bar B(0)}=0.4$ above which $\frac{F_{MSY}}{M}$ 
-is sharply underestimated. By comparison of Figure (\ref{bhLowArrows}), with 
-the location of the BH-Like/Ricker-Like regimes seen in Figure (\ref{colorDes}), 
-this break point coincides with a regime change in the data generating Schnute 
-model. The Ricker model lies along this regime interface, which represents the 
-first model to approach the x-axis for large biomasses as $\gamma$ increases. 
-However, even in the low contrast setting the BH model manages to recover the 
-minimal distance mapping for data generated under the Cushing-like or BH-like 
-regimes.  
+facilitate comparison. In Figure (\ref{bhLowArrows}) notice that the mildly 
+misspecified area around the BH set produces mappings onto the BH set which 
+resemble the minimal distance mapping seen in Figure (\ref{contrastTrio}, \emph{top-right}). %under the high contrast simulation setting. 
+The primary difference in this low constrast setting, is the break point 
+around $\frac{B^*}{\bar B(0)}=0.4$ above which $\frac{F_{MSY}}{M}$ is sharply 
+underestimated. 
 
+%
+The region of RPs where the BH model manages to recover the minimal distance 
+mapping may be considered a ``safe regime'' of data types that are 
+reasonably well modeled by a BH model. By comparison of Figure (\ref{bhLowArrows}), 
+with Figure (\ref{colorDes}), this safe regime of the BH model occures for data 
+generated for Cushing-like or BH-like production. While bias of the RPs can still become concerning %(as large as $X$ in the worst case) within this region, the region can be considered safe, for the BH model, in the 
+sense that even for extremly poorly informed (i.e. low contrast) data RP estimation 
+recovers the minimal distance mapping.
+
+%
 \begin{wrapfigure}{r}{0.5\textwidth}
 \vspace{-0.5cm}
 %\begin{figure}[h!]
@@ -2425,11 +2432,60 @@ regimes.
 %\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
 \vspace{-1cm}
 \caption{
-Yield curves for data generated with $\frac{F_{MSY}}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.47$. Maybe also show the high contrast curve.
+Yield curves for data generated with $\frac{F_{MSY}}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.47$. 
+Convert into $B/B_0$. Show the high contrast curve.
 }
 \label{bhFmsy}
 %\end{figure}
 \end{wrapfigure}
+
+%
+Outside of this safe regime, RP estimation breaks from the minimal distance mapping 
+at the interface between BH-Like and Ricker-Like regimes, as seen in 
+Figure (\ref{colorDes}). The Ricker model lies along this regime interface, and  
+represents the first model to approach the x-axis for large biomasses as $\gamma$ 
+increases. This markedly unBH-like productivity in the low information simulation 
+setting breaks MLE inference from the minimal distance mapping and instead maps
+RPs
+
+Igoring $F_{MSY}$ to 
+focus on $\frac{B^*}{\bar B(0)}$
+
+BH set converges with Ricker set and Schaeffer set at the trivial point $(0, 0.5)$.
+Outside of the safe regime inference in the absense of informative information. BH inference maps to 
+this common memeber of the Schaeffer-Like, Ricker-Like and BH-Like regimes. 
+This is represents catastrophic inferential failture.
+
+
+low information content
+data 
+
+
+
+
+By comparison of Figure (\ref{bhLowArrows}), with the location 
+of the BH-Like and Ricker-Like regimes seen in Figure (\ref{colorDes}), this 
+break point coincides with the threshold between the BH-Like and Ricker-Like 
+regimes of the data generating Schnute model. The Ricker model lies along 
+this regime interface, representing the first model to approach the x-axis for 
+large biomasses as $\gamma$ increases. 
+
+%
+As evidence by this break point, in the low contrast simulation setting, the approach the x-axis for 
+large biomasses
+
+However, even in the low contrast setting the BH model manages to recover the 
+minimal distance mapping for data generated under the Cushing-like or BH-like 
+regimes. These regimes may be considered a sort of ``safe regime'' of data types 
+that are resonably well modeled by a BH model. 
+
+Even still within this safe regime bias in RP can be as high as $X$ percent. That said 
+the sense in which these regimes are safe is that the RP mapping resemble the 
+minimal distance mapping. geometry of BH mixed RP biases.  
+
+    
+
+
 
 
 
@@ -2448,7 +2504,7 @@ Yield curves for data generated with $\frac{F_{MSY}}{M}=3.48$ and $\frac{B^*}{\b
 %\item Unlike the Schaefer models geometry the BH set has a geometry that will mix bias directions in the best case.
 %
 %\item some detail views in $B_{MSY}$, $B_0$, $F_{MSY}$, $?F_{SPR?}$, $MSY$
-\item ``safe'' regiem similar to the high contrast minimal distance mapping for mild model misspcificaiton.
+\item ``safe'' regime similar to the high contrast minimal distance mapping for mild model misspcificaiton.
 \item Ricker-like break point. Complete model failure beyond.
 \item what is going on with SRR when model completely fails.
 %\item mapping directly vertically is a minimum distance mapping given the 
@@ -2590,13 +2646,19 @@ to the shortest possible mapping.
 	\item point to the full age structed models.
 	\end{itemize}
 
+\item show the constrained BH space over a grid of $M$, $\kappa$, $\omega$, $W_\infty$
+\item Show that the constrained spaces vary only slightly as compared with the consequences 
+of misspecifing the functional form. 
+\item estimating these other quantities (while they can create quite different Biomass series) 
+can only do so much to improve (expand) RP inference as compared with correctly modeling $P$. 
+
 \end{itemize}
 
 %
 \section{Discussion}
 
 \begin{itemize}
-\item model mispecification story as in advancement
+\item model misspecification story as in advancement
 \item inference is oriented to the shape of the constrained space
 \item conjecture that with perfectly informed models mapping would be orthoganal
 
