@@ -286,9 +286,10 @@ fileFit = gsub("datGen", "fit", fileDat)
 #
 dat = readRDS(fileDat)
 fit = readRDS(fileFit)
+fitS = readRDS('fitSingle_xi3.48_zeta0.48.rda')
 
 #
-xMax = max(dat$N0, fit$N0)
+xMax = max(dat$N0, fit$N0, fitS$N0)
 grd = 0:xMax
 #yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), na.rm=T)
 
@@ -298,6 +299,11 @@ who = c('lalpha', 'lbeta')
 C = fit$rsCov[who, who]
 m = c(fit$lalpha, fit$lbeta)
 sam = rmvnorm(MM, m, C)
+#
+CS = fitS$rsCov[who, who]
+mS = c(fitS$lalpha, fitS$lbeta)
+samS = rmvnorm(MM, mS, CS)
+
 #
 #grd = 0:xMax
 #lns = mapply(function(a, b){SRR(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
@@ -336,13 +342,17 @@ curve(yield(x, fit$lalpha, fit$lbeta, fit$gamma), 0, PBar(fit$alpha, fit$beta, f
 ##rug(dat$N, line=0.75)
 ##rug(fit$N, col=cols[1])
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", cols[1]), lwd=3)
+#legend("topright", legend=c("Schnute Truth", "Low Contrast BH Fit", "High Contrast BH Fit"), col=c("black", cols[1:2]), lwd=3)
 dev.off()
 
 #RELATIVE
 
 #
-lns = mapply(function(a, b){yield(grd, fit$lalpha, fit$lbeta, fit$gamma)}, sam[,1], sam[,2])
-qYeild = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
+lns = mapply(function(a, b){yield(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
+qYield = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
+#
+lnsS = mapply(function(a, b){yield(grd, a, b, fitS$gamma)}, samS[,1], samS[,2])
+qYieldS = rowQuantiles(lnsS, probs=c(0.025, 0.5, 0.975))
 #qYield = rowQuantiles(lns-M*grd, probs=c(0.025, 0.5, 0.975))
 ##
 #yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), qSRR, na.rm=T)
@@ -367,13 +377,19 @@ polygon(c(grd/P0Fit, rev(grd/P0Fit)), chop(c(qYield[,1], rev(qYield[,3]))),
         col=adjustcolor(cols[1], alpha.f=0.2),
         border=F
 )
+P0FitS = PBar(fitS$alpha, fitS$beta, fitS$gamma, 0, fitS$M)
+polygon(c(grd/P0FitS, rev(grd/P0FitS)), chop(c(qYieldS[,1], rev(qYieldS[,3]))),
+        col=adjustcolor(cols[2], alpha.f=0.2),
+        border=F
+)
 curve(yield(x*PBar(fit$alpha, fit$beta, fit$gamma, 0, fit$M), fit$lalpha, fit$lbeta, fit$gamma), 0, 1, lwd=3, add=T, col=cols[1])
+curve(yield(x*PBar(fitS$alpha, fitS$beta, fitS$gamma, 0, fitS$M), fitS$lalpha, fitS$lbeta, fitS$gamma), 0, 1, lwd=3, add=T, col=cols[2])
 #rug(PBar(dat$alpha, dat$beta, dat$gamma, FMsy(dat$alpha, dat$gamma, dat$M), dat$M), lwd=3)
 #rug(PBar(fit$alpha, fit$beta, fit$gamma, FMsy(fit$alpha, fit$gamma, fit$M), fit$M), lwd=3, col='red')
 #rug(dat$N, lwd=3, ticksize=0.05)
 ##rug(dat$N, line=0.75)
 ##rug(fit$N, col=cols[1])
-legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", cols[1]), lwd=3)
+legend("topright", legend=c("Schnute Truth", "Low Contrast BH Fit", "High Contrast BH Fit"), col=c("black", cols[1:2]), lwd=3)
 dev.off()
 
 #

@@ -850,7 +850,8 @@ upon RP inference.
 \subsection{Latin Hypercube Sampling \label{lhs}}
 
 \begin{itemize}
-	\item a quick lit review of space filling designs
+	{\color{red}
+	\item a quick lit review of space filling designs}
 	%\item goal of space filling
 \end{itemize}
 
@@ -2410,7 +2411,7 @@ simulation setting. Figures (\ref{bhLowArrows}) and (\ref{contrastTrio},
 \emph{top-right}) share a common scale for the intensity of color to 
 facilitate comparison. In Figure (\ref{bhLowArrows}) notice that the mildly 
 misspecified area around the BH set produces mappings onto the BH set which 
-resemble the minimal distance mapping seen in Figure (\ref{contrastTrio}, \emph{top-right}). %under the high contrast simulation setting. 
+resemble the minimal distance mapping seen in the high contrast setting. % %in Figure (\ref{contrastTrio}, \emph{top-right}). %
 The primary difference in this low constrast setting, is the break point 
 around $\frac{B^*}{\bar B(0)}=0.4$ above which $\frac{F_{MSY}}{M}$ is sharply 
 underestimated. 
@@ -2420,20 +2421,21 @@ The region of RPs where the BH model manages to recover the minimal distance
 mapping may be considered a ``safe regime'' of data types that are 
 reasonably well modeled by a BH model. By comparison of Figure (\ref{bhLowArrows}), 
 with Figure (\ref{colorDes}), this safe regime of the BH model occures for data 
-generated for Cushing-like or BH-like production. While bias of the RPs can still become concerning %(as large as $X$ in the worst case) within this region, the region can be considered safe, for the BH model, in the 
-sense that even for extremly poorly informed (i.e. low contrast) data RP estimation 
-recovers the minimal distance mapping.
+generated for Cushing-like or BH-like production. While bias of the RPs can still become concerningly large, % here, %(as large as $X$ in the worst case) within this region, 
+this region can be considered safe in the sense that even for low contrast data 
+RP estimation under the the BH model recovers the minimal distance mapping.
 
 %
 \begin{wrapfigure}{r}{0.5\textwidth}
-\vspace{-0.5cm}
+\vspace{-0.75cm}
 %\begin{figure}[h!]
-\includegraphics[width=0.5\textwidth]{../gpBias/yeildCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/yeildCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png}
+\includegraphics[width=0.5\textwidth]{../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png}
 %\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
 \vspace{-1cm}
 \caption{
-Yield curves for data generated with $\frac{F_{MSY}}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.47$. 
-Convert into $B/B_0$. Show the high contrast curve.
+Yield curves for data generated with $\frac{F_{MSY}}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$. 
+%Convert into $B/B_0$. Show the high contrast curve.
 }
 \label{bhFmsy}
 %\end{figure}
@@ -2441,119 +2443,153 @@ Convert into $B/B_0$. Show the high contrast curve.
 
 %
 Outside of this safe regime, RP estimation breaks from the minimal distance mapping 
-at the interface between BH-Like and Ricker-Like regimes, as seen in 
-Figure (\ref{colorDes}). The Ricker model lies along this regime interface, and  
+at the interface between BH-Like and Ricker-Like regimes of the Schnute model (again see 
+Figure (\ref{colorDes})). The Ricker model lies along this regime interface, and  
 represents the first model to approach the x-axis for large biomasses as $\gamma$ 
 increases. This markedly unBH-like productivity in the low information simulation 
 setting breaks MLE inference from the minimal distance mapping and instead maps
-RPs
-
-Igoring $F_{MSY}$ to 
-focus on $\frac{B^*}{\bar B(0)}$
-
-BH set converges with Ricker set and Schaeffer set at the trivial point $(0, 0.5)$.
-Outside of the safe regime inference in the absense of informative information. BH inference maps to 
-this common memeber of the Schaeffer-Like, Ricker-Like and BH-Like regimes. 
-This is represents catastrophic inferential failture.
-
-
-low information content
-data 
-
-
-
-
-By comparison of Figure (\ref{bhLowArrows}), with the location 
-of the BH-Like and Ricker-Like regimes seen in Figure (\ref{colorDes}), this 
-break point coincides with the threshold between the BH-Like and Ricker-Like 
-regimes of the data generating Schnute model. The Ricker model lies along 
-this regime interface, representing the first model to approach the x-axis for 
-large biomasses as $\gamma$ increases. 
+RPs to extremely low values of $F_{MSY}$; consequently $\frac{B^*}{\bar B(0)}$ 
+is estimated near the limiting value under the BH (i.e. $\lim_{F_{MSY} \to 0}\frac{1}{F_{MSY}/M+2}=0.5$).
+Similary the set of Ricker RPs (as well as the Schaeffer set) include this 
+trivial limiting point in common ($\frac{F_{MSY}}{M}=0$, $\frac{B^*}{\bar B(0)}=0.5$). 
 
 %
-As evidence by this break point, in the low contrast simulation setting, the approach the x-axis for 
-large biomasses
+Interestingly, in the high contrast setting this trivial mapping for highly 
+misspecified BH models is not present. This suggestes that, under a 
+misspecified BH model, the presence of adequate information in the data to 
+produce reasonable estimates of $\frac{F_{MSY}}{M}$, drives $\frac{B^*}{\bar B(0)}$ 
+below $0.5$ in accourdance with $\frac{B^*}{\bar B(0)}=\frac{1}{F_{MSY}/M+2}$, 
+even when the true $\frac{B^*}{\bar B(0)}>0.5$. 
+%This suggests that in the presence of adequate 
+%information in the data to produce reasonable estimates of $\frac{F_{MSY}}{M}$ 
+%drives $\frac{B^*}{\bar B(0)}$ away from 0.5, even when the true $\frac{B^*}{\bar B(0)}>0.5$. 
+This phenomenia balances RP estimation within the constrained BH set as 
+mediated by the information content of the data and the degree of model 
+misspecification. When the information content in the data is too small to 
+drive a compromised RP estimate, inference completely disregaurds accurate 
+estimation of $F_{MSY}$ in order to better estimate $\frac{B^*}{\bar B(0)}$ 
+by exploiting the common limiting behaviour of the BH set and that of 
+Ricker-like and Logistic-like models. 
 
-However, even in the low contrast setting the BH model manages to recover the 
-minimal distance mapping for data generated under the Cushing-like or BH-like 
-regimes. These regimes may be considered a sort of ``safe regime'' of data types 
-that are resonably well modeled by a BH model. 
+%preserve the  functional similarities
+%of via \frac{B^*}{\bar B(0)}
 
-Even still within this safe regime bias in RP can be as high as $X$ percent. That said 
-the sense in which these regimes are safe is that the RP mapping resemble the 
-minimal distance mapping. geometry of BH mixed RP biases.  
+%may fail by completely disregaurding one RP so the sake of preserving whatever 
+%similarities may exist between the functional forms of the data and misspecified model. 
 
-    
+% Similarly 
+%information driving $\frac{B^*}{\bar B(0)}$
 
-
-
-
-
-
-\clearpage
-\begin{itemize}
-%\item introduce BH set
-%\item reiterate each point in RP space is an entire Schnute model, on the BH set modes are BH.
-
-%\item Point out the geometry of BH RPs
-%\item under BH Bias in $\frac{B_{MSY}}{B_0}$ is no longer entirely defined entrirely by the degree of model mispecification.
-%(still largely)
 %
-%\item Best case data result in a minimum distance mapping (discussion?)
-%\item Due to the shape of the BH RP set this ensures bias in both $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$
-%\item Unlike the Schaefer models geometry the BH set has a geometry that will mix bias directions in the best case.
+%This suggests that in the absense of information
+%and a large degree of model misspecification 
 %
-%\item some detail views in $B_{MSY}$, $B_0$, $F_{MSY}$, $?F_{SPR?}$, $MSY$
-\item ``safe'' regime similar to the high contrast minimal distance mapping for mild model misspcificaiton.
-\item Ricker-like break point. Complete model failure beyond.
-\item what is going on with SRR when model completely fails.
-%\item mapping directly vertically is a minimum distance mapping given the 
-%constrained space.
-\item Mechanism plot on SRR LHS Grid plot
-
-\item mapping distance as a function of contrast at (3.5, 0.5)
-
-\item for LHS grid locations show $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$ biases for grids in $M\in(0,0.5)$ For sure in High Contrast, maybe also in Low??.
-
-\end{itemize}
-
-
-%../gpBias/animFigSchnuteLHS.r 
-\begin{figure}[h!]
-%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN56X3Z0.35.png}
-\begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=\textwidth]{../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
-\end{minipage}
-\begin{minipage}[h!]{0.44\textwidth}
-%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN112X3Z0.55.png}
-%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentExpT45N150WideX3Z0.35.png}
-\includegraphics[width=\textwidth]{../gpBias/directionalBiasSchnuteSubExpT45N150Wide.png}
-%\hspace*{-1cm}
-\end{minipage}
-\begin{minipage}[h!]{0.09\textwidth}
-\hspace{-1cm}
-\includegraphics[width=1.5\textwidth]{../gpBias/legendSubSchnute.png}
-\end{minipage}
-\caption{Joint bias direction of RP infernce in the low contrast simulation setting.
-%sfor $\left(\frac{F_{MSY}}{M}\right.$, $\left.\frac{B_{MSY}}{B_0}\right)$ 
-%estimates under the misspecified BH Model. 
-The intensity of color represents the excess bias relative 
-to the shortest possible mapping. 
-%The high constrast relative fishing setting is 
-%shown $right$; the low contrast setting is shown on the $left$.
-}
-%\caption{\color{red} Low Contrast/High Contrast Titles, unify the Legends (Only show one.) Redo the colors relative to minimum distance. Less arrows. Bolder arrows, bolder line}
-%\label{bhLowArrows}
-\end{figure}
-
-%Figure (\ref{bhLowArrows}) shows the mapping of RPs in the low contrast simulation setting.
-
-%the high contrast setting. Unlike RP inference under the Schaefer model, in the high 
-%contrast setting the BH model does show  
+%Igoring $F_{MSY}$ to 
+%focus on $\frac{B^*}{\bar B(0)}$
 %
-%Similar to RP inference under the Schaefer model, RP 
-%inferred under a misspecified BH 
-%describe contrast setting.
+%BH set converges with Ricker set and Schaeffer set at the trivial point $(0, 0.5)$.
+%Outside of the safe regime inference in the absense of informative information. BH inference maps to 
+%this common memeber of the Schaeffer-Like, Ricker-Like and BH-Like regimes. 
+%This is represents catastrophic inferential failture.
+%
+%
+%low information content
+%data 
+
+
+
+
+%By comparison of Figure (\ref{bhLowArrows}), with the location 
+%of the BH-Like and Ricker-Like regimes seen in Figure (\ref{colorDes}), this 
+%break point coincides with the threshold between the BH-Like and Ricker-Like 
+%regimes of the data generating Schnute model. The Ricker model lies along 
+%this regime interface, representing the first model to approach the x-axis for 
+%large biomasses as $\gamma$ increases. 
+%
+%%
+%As evidence by this break point, in the low contrast simulation setting, the approach the x-axis for 
+%large biomasses
+%
+%However, even in the low contrast setting the BH model manages to recover the 
+%minimal distance mapping for data generated under the Cushing-like or BH-like 
+%regimes. These regimes may be considered a sort of ``safe regime'' of data types 
+%that are resonably well modeled by a BH model. 
+%
+%Even still within this safe regime bias in RP can be as high as $X$ percent. That said 
+%the sense in which these regimes are safe is that the RP mapping resemble the 
+%minimal distance mapping. geometry of BH mixed RP biases.  
+%
+%    
+%
+%
+%
+%
+%
+%
+%\clearpage
+%\begin{itemize}
+%%\item introduce BH set
+%%\item reiterate each point in RP space is an entire Schnute model, on the BH set modes are BH.
+%
+%%\item Point out the geometry of BH RPs
+%%\item under BH Bias in $\frac{B_{MSY}}{B_0}$ is no longer entirely defined entrirely by the degree of model mispecification.
+%%(still largely)
+%%
+%%\item Best case data result in a minimum distance mapping (discussion?)
+%%\item Due to the shape of the BH RP set this ensures bias in both $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$
+%%\item Unlike the Schaefer models geometry the BH set has a geometry that will mix bias directions in the best case.
+%%
+%%\item some detail views in $B_{MSY}$, $B_0$, $F_{MSY}$, $?F_{SPR?}$, $MSY$
+%%\item ``safe'' regime similar to the high contrast minimal distance mapping for mild model misspcificaiton.
+%%\item Ricker-like break point. Complete model failure beyond.
+%%\item what is going on with SRR when model completely fails.
+%%%\item mapping directly vertically is a minimum distance mapping given the 
+%%%constrained space.
+%%\item Mechanism plot on SRR LHS Grid plot
+%
+%\item mapping distance as a function of contrast at (3.5, 0.5)
+%
+%\item for LHS grid locations show $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$ biases for grids in $M\in(0,0.5)$ For sure in High Contrast, maybe also in Low??.
+%
+%\end{itemize}
+%
+%
+%%../gpBias/animFigSchnuteLHS.r 
+%\begin{figure}[h!]
+%%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN56X3Z0.35.png}
+%\begin{minipage}[h!]{0.44\textwidth}
+%\includegraphics[width=\textwidth]{../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.44\textwidth}
+%%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentHHardFlatT30N150WWideN112X3Z0.55.png}
+%%\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteAnimatePrecentExpT45N150WideX3Z0.35.png}
+%\includegraphics[width=\textwidth]{../gpBias/directionalBiasSchnuteSubExpT45N150Wide.png}
+%%\hspace*{-1cm}
+%\end{minipage}
+%\begin{minipage}[h!]{0.09\textwidth}
+%\hspace{-1cm}
+%\includegraphics[width=1.5\textwidth]{../gpBias/legendSubSchnute.png}
+%\end{minipage}
+%\caption{Joint bias direction of RP infernce in the low contrast simulation setting.
+%%sfor $\left(\frac{F_{MSY}}{M}\right.$, $\left.\frac{B_{MSY}}{B_0}\right)$ 
+%%estimates under the misspecified BH Model. 
+%The intensity of color represents the excess bias relative 
+%to the shortest possible mapping. 
+%%The high constrast relative fishing setting is 
+%%shown $right$; the low contrast setting is shown on the $left$.
+%}
+%%\caption{\color{red} Low Contrast/High Contrast Titles, unify the Legends (Only show one.) Redo the colors relative to minimum distance. Less arrows. Bolder arrows, bolder line}
+%%\label{bhLowArrows}
+%\end{figure}
+%
+%%Figure (\ref{bhLowArrows}) shows the mapping of RPs in the low contrast simulation setting.
+%
+%%the high contrast setting. Unlike RP inference under the Schaefer model, in the high 
+%%contrast setting the BH model does show  
+%%
+%%Similar to RP inference under the Schaefer model, RP 
+%%inferred under a misspecified BH 
+%%describe contrast setting.
 
 
 
@@ -2651,14 +2687,61 @@ to the shortest possible mapping.
 of misspecifing the functional form. 
 \item estimating these other quantities (while they can create quite different Biomass series) 
 can only do so much to improve (expand) RP inference as compared with correctly modeling $P$. 
-
 \end{itemize}
+
+\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../ddBias/rpSpace.pdf} 
+
+\vspace{-1cm}
+\caption{
+BH RP-space sensativity to the parmaters $M$, $\kappa$, and $a_0$. The black 
+curve shows the BH set in the simple production model setting.
+%Yield curves for data generated with $\frac{F_{MSY}}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$.
+%Convert into $B/B_0$. Show the high contrast curve.
+}
+\label{ddRPs}
+\end{figure}
+ 
+
+%good ideas
+\begin{itemize}
+\item mapping distance as a function of contrast at (3.5, 0.5)
+
+\item for LHS grid locations show $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$ biases for grids in $M\in(0,0.5)$ For sure in High Contrast, maybe also in Low??.
+\end{itemize}
+
 
 %
 \section{Discussion}
 
 \begin{itemize}
 \item model misspecification story as in advancement
+	\begin{itemize}
+		\item Results presented here generally agree with what is known about estimating 
+		growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
+		\item These studys appreciate that role of contrast for estimating growth rates, 
+		however do not explicately control the degree of model misspecification relative to RPs. 
+		\item In the presence of contrast $F^*$ estimation can enjoy very low bias even 
+		for a wide range of poorly specified models; conversely in the absence of contrast 
+		$F^*$ estimation can suffer very large bias even for slightly misspecified models. 
+		\item In all cases when model misspecification is removed, even with weakly 
+		informative data, $F^*$ estimation is unbiased.  
+		\item Model misspecification is thus a necessary but not sufficient condition for inducing bias. 
+		\item Behavior of bias is mediate by contrast.
+
+		\item Schaefer model underestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}<\frac{1}{2}$, %originate below the Schaefer line 
+		and overestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}>\frac{1}{2}$. % true RPs originate below the Sc
+		\item This is of particular note since these outcomes carry such varied real would implications. 
+		\item Overestimation of $F^*$ carries the severe implication of management 
+		recommedations potentially leading to overfishing, while underestimation of $F^*$ leads to overly conservative management. 
+	
+		\item The geometry of the BH set largely encourages underestiation of RPs
+		\item The only exception in this simulation is for cushing-like data where the BH tends to slightly overestimate RPs, but 
+		largely recovers accurate RP estimates even in the low contrast (low information) simualtion (inferential) setting.
+		\item Assuming BH for all species is likely a conservative assumption for most species (especially when $F_{MSY}$ is high).
+		\item however it presents a warped view of management and likely leaves money on the table for species with high $F_{MSY}$.
+	\end{itemize}
+
 \item inference is oriented to the shape of the constrained space
 \item conjecture that with perfectly informed models mapping would be orthoganal
 
@@ -2666,8 +2749,157 @@ can only do so much to improve (expand) RP inference as compared with correctly 
 \item Due to the shape of the BH RP set this ensures bias in both $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$
 \item Unlike the Schaefer models geometry the BH set has a geometry that will mix bias directions in the best case.
 
+\item show a schnute fit to data and how it fixes issues.
+\item logistic/fox model triangulation (bias correction).
 
 \end{itemize}
+
+%\section{Discussion\label{dis}}
+%
+%%
+%Results presented here generally agree with what is known about estimating 
+%growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}, 
+%in this case $r$, and thus $F^*$.  
+%%These studys appreciate that role of contrast for estimating growth rates, 
+%%however do not explicately control the degree of model misspecification 
+%%relative to RPs.  %present over as wide a range of RPs and how bias 
+%In the presence of contrast $F^*$ estimation can enjoy very low bias even 
+%for a wide range of poorly specified models; conversely in the absence of 
+%contrast $F^*$ estimation can suffer very large bias even for slightly 
+%misspecified models. In all cases when model misspecification is removed, even 
+%with weakly informative data, $F^*$ estimation is unbiased.  Model 
+%misspecification is thus a necessary but not sufficient condition for inducing 
+%bias. 
+%
+%%{\color{red} 
+%%Claim novelty. meta modeling to integrate factors of bias location, direction, magnitude considered along catch.  
+%%}
+%
+%%%
+%%The metamodeling approach presented here indicates that the Schaefer model 
+%%underestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}<\frac{1}{2}$, %originate below the Schaefer line 
+%%and overestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}>\frac{1}{2}$. % true RPs originate below the Schaefer line. 
+%%This is of particular note since these outcomes carry such varied real would 
+%%implications. Overestimation of $F^*$ carries the severe implication of 
+%%management recommedations potentially leading to overfishing, while 
+%%underestimation of $F^*$ leads to overly conservative management.   
+%
+%%considered jointly
+%While it is established that growth rate parameters require contrast to estimate, 
+%the implications of these biases jointly across a variety of RPs have not 
+%received as much attention. 
+%%In particular the joint analysis of RP estimation that this 
+%%metamodeling approach allows 
+%%has not been studied. 
+%When considering $B^*$ alongside $F^*$ in varying contrast environments, it 
+%becomes clear that different data informs different parts of the production 
+%function differently. In low contrast environments $B^*$ is estimation is 
+%remarkably unbiased across all but the most challenging instances of model 
+%misspecification. However in the presence of contrast, while $F^*$ enjoys 
+%better estimation, $B^*$ estimation experiences substantial bias for only 
+%modestly misspecified models. Further, by augmenting contrasting data with an 
+%additional period of low contrast data this pattern begins to reverse with $B^*$ 
+%bias receding toward more poorly specified models and $F^*$ bias encroaching 
+%toward only modestly misspecified models as seen in Figure (\ref{expT90BmFm}).   
+%
+%%
+%The behavior of bias in estimating $B^*$ and $F^*$ suggests that the limited 
+%parameter space of the Schaefer model induces a trade off in estimating these 
+%parameters. In practice, when the true model is not known and the Schaefer 
+%model is unlikely to be correctly specified, one should at best expect to only 
+%estimate either $B^*$ or $F^*$ correctly depending on the particular degree of 
+%model misspecification. The observed contrast then serves to distribute the 
+%available information among $B^*$ and $F^*$. Increasing the flexibility of the 
+%production function by moving toward curves with additional parameters could 
+%release these structural limitations \shortcite{mangel_perspective_2013}. 
+%\shortciteA{punt_extending_2019} considers a suite of possible three parameter
+%curves which could be used instead of current two parameter curves.
+%
+%%
+%This study only explores the compatibility of the possible productivity shapes 
+%exhibited by the PT and Schaefer models. While the PT and Schaefer models are 
+%instructive for a variety of dome shaped production behaviors, %non-compensatory production behaviors, 
+%it is possible that under different modeling assumptions, for example %compensatory 
+%BH production or age structured models, different bias patterns 
+%will emerge. Extending this work to be able to make claims in those settings 
+%is necessary for developing more generally extensible claims. % and my proposal for this extension can be seen in Section(\ref{})
+%
+%%
+%Given the role that catch plays in understanding where the production function 
+%is informed, it is clear that good estimates of catch are important for 
+%contextualizing modeling inferences. While the production model treats catches 
+%as known without uncertainty, upon inspection of Figure (\ref{hakeData}, \emph{right})
+%this assumption is clearly suspect. Results presented here only consider very 
+%deterministic catch histories. More work is needed to understand how jittery catch may 
+%affect RP estimation. A smoothing model of catch may be preferable for estimation, 
+%but results of this study suggest that even improvements to the contextual understanding of 
+%catch will be important for interpreting model inferences correctly.
+%
+%%%
+%%Bias in $K$ is consistently awful.
+%
+%
+%%Bias is clearly more present when model misspecification is very large, 
+%%however even quite
+%%%
+%%By explicatly controlling model misspecification, realative to the Schaefer 
+%%line, and considering a wide region of RPs in aggregate it becomes clear that 
+%%
+%%the directly on the scale of RPs
+%%and simulating widely relavetive to $F^*$the constrained Schaefer line
+%%
+%%\begin{itemize}
+%%%\item Misspecification Causes bias.
+%%%\begin{itemize}
+%%%	\item when the model is specified correctly even very uninformative data provide good inference.
+%%%	\item the more misspecified the model the worse the bias
+%%%	\item for very misspecified settings contrast helps you estimate growth metrics $F^*$, $r$, steepness 
+%%%	\item (cite lee papers)
+%%%\end{itemize}
+%%%\item different data informs the production function differently
+%%%\begin{itemize}
+%%%	\item Estimating steepness type parameters in the presence of severe model misspecification comes at the cost of other parameters/RPs.
+%%%\end{itemize}
+%%\item Even a misspecified model can be made to estimate one RP with the correct data, but depending on the nature of model misspecification we are unlikely to conserve two RPs.
+%%\begin{itemize}
+%%	\item Three parameter curves should add flexibility to increase the number of RPs we can estimate and thus the usefulness of integrated assessment models
+%%	\item punt 2019 
+%%\end{itemize}
+%%\item yet to be able to make claims about the very common BH production function and age structured models
+%%\item the clear dependence of model performance on catch suggests that better models are needed for describing catch.
+%%	\begin{itemize}
+%%	\item A better understanding of catch allows stock assessors to better theorize about which types of quantities are well informed by models. 
+%%	\end{itemize}
+%%\end{itemize}
+%
+%%
+%%• The statistician George Box famously said “All model are wrong, but some
+%%models are useful”
+%%• My question is how useful are our models?, and if our models are useful. How
+%%useful are they? and when are they useful?
+%%
+%%
+%%In the high contrast setting, $F^*$ estimation is largely conserved, 
+%%especially when compared to the dramatic $F^*$ biases observed in Figure(\ref{flatTrio}), 
+%%however this 
+%%
+%%Although the shape of the SRR is important, it is often ambiguous what the 
+%%appropriate SSR is given the available stock assess- ment information. For 
+%%example, Dorn (2002) concluded in a meta-analysis of rockfish (Sebastes spp.) 
+%%stock and recruitment data that neither the R-SRR nor the BH-SRR can be 
+%%distinguished as a preferred model on the basis of statistical goodness of fit
+%%.  Brodziak (2002) reached a similar conclusion in an analysis of USA west 
+%%coast groundfish stock–recruitment data. Alternatively, in a meta-analysis of 
+%%128 diverse fish stocks, Punt et al. (2005) con- cluded that as a general model
+%%, the BH-SRR is strongly preferred over the R-SRR, but that “there are also 
+%%indications that other (more complicated) forms may provide better 
+%%representations of the existing data” (p. 76). This conclusion is not 
+%%unexpected because models with more parameters can approximate 
+%%variability in the observations used to estimate the SRR more accurately than 
+%%models with fewer parameters.  
+%
+
+
 
 
 %
