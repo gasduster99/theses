@@ -18,46 +18,45 @@ Repeated entry---line 65 of file ./spline.bib
  :                            ,
 I'm skipping whatever remains of this entry
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
-Warning--No journal in radhakrishnan_description_1993
 You've used 19 entries,
             6951 wiz_defined-function locations,
-            1414 strings with 14844 characters,
-and the built_in function-call counts, 36838 in all, are:
-= -- 4529
-> -- 281
-< -- 1740
-+ -- 1893
+            1416 strings with 14817 characters,
+and the built_in function-call counts, 36572 in all, are:
+= -- 4501
+> -- 285
+< -- 1695
++ -- 1852
 - -- 38
-* -- 2438
-:= -- 6764
+* -- 2413
+:= -- 6648
 add.period$ -- 76
 call.type$ -- 19
 change.case$ -- 339
 chr.to.int$ -- 0
-cite$ -- 39
-duplicate$ -- 1031
-empty$ -- 1480
-format.name$ -- 479
-if$ -- 6949
+cite$ -- 38
+duplicate$ -- 1041
+empty$ -- 1485
+format.name$ -- 489
+if$ -- 6933
 int.to.chr$ -- 0
 int.to.str$ -- 57
 missing$ -- 0
-newline$ -- 513
+newline$ -- 518
 num.names$ -- 152
-pop$ -- 568
+pop$ -- 571
 preamble$ -- 1
 purify$ -- 92
 quote$ -- 0
-skip$ -- 2307
+skip$ -- 2295
 stack$ -- 0
-substring$ -- 2090
-swap$ -- 586
+substring$ -- 2051
+swap$ -- 596
 text.length$ -- 59
 text.prefix$ -- 0
 top$ -- 1
 type$ -- 1520
-warning$ -- 1
-while$ -- 178
+warning$ -- 0
+while$ -- 180
 width$ -- 0
-write$ -- 618
+write$ -- 627
 (There was 1 error message)

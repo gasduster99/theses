@@ -291,6 +291,34 @@ Lee, H\BHBI H.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Magnusson%
+\ \BBA {} Hilborn%
+}{%
+Magnusson%
+\ \BBA {} Hilborn%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+magnusson_what_2007}
+\APACinsertmetastar {%
+magnusson_what_2007}%
+\begin{APACrefauthors}%
+Magnusson, A.%
+\BCBT {}\ \BBA {} Hilborn, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {What makes fisheries data informative?} {What makes
+  fisheries data informative?}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Fish and Fisheries}{8}{4}{337--358}.
+\newblock
+\APACrefnote{Publisher: Wiley Online Library}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Mangel%
 \ \protect \BOthers {.}}{%
 Mangel%
@@ -396,31 +424,6 @@ Punt, A\BPBI E.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1016/j.fishres.2017.07.007} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Radhakrishnan%
-}{%
-Radhakrishnan%
-}{%
-{\protect \APACyear {1993}}%
-}]{%
-radhakrishnan_description_1993}
-\APACinsertmetastar {%
-radhakrishnan_description_1993}%
-\begin{APACrefauthors}%
-Radhakrishnan, K.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{1993}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Description and {Use} of {LSODE}, the {Livermore}
-  {Solver} for {Ordinary} {Differential} {Equations}} {Description and {Use} of
-  {LSODE}, the {Livermore} {Solver} for {Ordinary} {Differential}
-  {Equations}}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{}{}{}{124}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

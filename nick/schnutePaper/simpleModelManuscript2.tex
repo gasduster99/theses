@@ -2404,7 +2404,6 @@ to the shortest possible mapping.
 %\end{figure}
 \end{wrapfigure}
 
-
 %
 Figure (\ref{bhLowArrows}) shows the mapping of RPs in the low contrast 
 simulation setting. Figures (\ref{bhLowArrows}) and (\ref{contrastTrio}, 
@@ -2470,10 +2469,6 @@ drive a compromised RP estimate, inference completely disregaurds accurate
 estimation of $F_{MSY}$ in order to better estimate $\frac{B^*}{\bar B(0)}$ 
 by exploiting the common limiting behaviour of the BH set and that of 
 Ricker-like and Logistic-like models. 
-
-%preserve the  functional similarities
-%of via \frac{B^*}{\bar B(0)}
-
 %may fail by completely disregaurding one RP so the sake of preserving whatever 
 %similarities may exist between the functional forms of the data and misspecified model. 
 
@@ -2714,16 +2709,86 @@ curve shows the BH set in the simple production model setting.
 %
 \section{Discussion}
 
+%;
+%the simulation design and metamodeling methods presented here further generalize these
+%results of these existing results.
+%Existing
+
+%
+Results presented here generally agree with what is known about estimating
+growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
+These studys appreciate the role of contrast for estimating growth rates, 
+however struggle to make generally extensible conclusions since they focus only 
+on a handful of stocks that fall short of forming a random sample of the greater 
+population of possible stock behaviors. The LHS design methods presents here are 
+designed specifically to simulate a uniform representative sample of stocks broadly 
+across the space of possible stock. Furthermore, the simulation design taken together 
+with the GP metamodel of productivity parmater estimates allows this study to control 
+the degree of model misspecification and generalize conclusions about the behavior 
+of productivity estimation within the prodcution model setting presented. 
+
+%%
+%Unfortunately, we are unable to generalize the relationship because the twelve 
+%assessment examples are not a random sample from the population of all fish 
+%stocks and sample size is small. A more general conclusion may be obtained by 
+%including more assessments
+%%
+%\begin{itemize}
+%\item \shortcite{lee_can_2012} Generalizability via random sample of fisheries, LHS RP explicatly does this.
+%\item multiple starting locations and convergence defined as positive definate hessian.
+%\end{itemize}
+
+%
+In the presence of contrast $F^*$ estimation can enjoy very low bias even
+for a wide range of poorly specified models; conversely in the absence of contrast
+$F^*$ estimation can suffer very large bias even for slightly misspecified models.
+This pattern is particularly true for inference under the Schaefer model where the 
+geometry of the restricted RP set isolates estimation failure of $F^*$ from 
+$\frac{B^*}{\bar B(0)}$. While contrast has a similar impact on $F^*$ estimation 
+under the BH model, the geometry of the BH RP set correlates estimation bias 
+of $F^*$ and $\frac{B^*}{\bar B(0)}$. The GP metamodeling approach reveals a 
+more general pattern that highly informative data sets (high contrast) 
+produces a nearly minimal distance mapping of RPs %that are nearly minimal distance mapping 
+onto the constrained RP set.
+
+%
+In all cases when model misspecification is removed, even with weakly informative 
+data, RP estimation is unbiased and well estimated. Thus contrast alone is 
+not the only factor leading to inferential failure. Model misspecification is a 
+necessary but not sufficient condition for inducing RP estimation bias. The 
+particular RP bias present depends on the RP geometry of the fitted model and 
+how that geometry is misspecified relative to the data. The RP mapping is oriented 
+to the RP geometry of the fitted model. 
+
+%
+%NOTE: BITCH ABOUT NOT BEING ABLE TO PRODUCE A PERFECTLY INFOMATIVE TIME SERIES
+%SPECULATE ABOUT IDEALLY INFORMATION CATCH PATTERNS (DYNAMIC CALIBRATION OF $F^*$)
+While the relative fishing rate parameterized in Section (\ref{catch}) captures a usefully 
+broad spectrum of relavant fishing behaviors, it is still limiting in the amount of information 
+that it can induce. Improved methods for quantifying contrast in fisheries data, and/or methods of 
+discovering more informative fishing behavior, could improve this analysis. In the absence of a 
+maximally informative fishing rate, 
+
+Conjecture that the RP mapping under maximally informative data  
+
+and does not perfectly 
+result in 
+I conjecture that a perfectly informative data se
+
+%inference is oriented to the shape of the constrained space
+%conjecture that with perfectly informed models mapping would be orthoganal
 \begin{itemize}
 \item model misspecification story as in advancement
 	\begin{itemize}
-		\item Results presented here generally agree with what is known about estimating 
-		growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
-		\item These studys appreciate that role of contrast for estimating growth rates, 
-		however do not explicately control the degree of model misspecification relative to RPs. 
+		%\item Results presented here generally agree with what is known about estimating 
+		%growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
+		%\item These studys appreciate that role of contrast for estimating growth rates, 
+		%however do not explicately control the degree of model misspecification relative to RPs. 
+		
 		\item In the presence of contrast $F^*$ estimation can enjoy very low bias even 
 		for a wide range of poorly specified models; conversely in the absence of contrast 
 		$F^*$ estimation can suffer very large bias even for slightly misspecified models. 
+		
 		\item In all cases when model misspecification is removed, even with weakly 
 		informative data, $F^*$ estimation is unbiased.  
 		\item Model misspecification is thus a necessary but not sufficient condition for inducing bias. 
@@ -2744,6 +2809,8 @@ curve shows the BH set in the simple production model setting.
 
 \item inference is oriented to the shape of the constrained space
 \item conjecture that with perfectly informed models mapping would be orthoganal
+%NOTE: BITCH ABOUT NOT BEING ABLE TO PRODUCE A PERFECTLY INFOMATIVE TIME SERIES
+%SPECULATE ABOUT IDEALLY INFORMATION CATCH PATTERNS (DYNAMIC CALIBRATION OF $F^*$)
 
 \item Best case data result in a minimum distance mapping (discussion?)
 \item Due to the shape of the BH RP set this ensures bias in both $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$

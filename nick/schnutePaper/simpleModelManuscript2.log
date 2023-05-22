@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.2)  16 MAY 2023 13:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.2)  21 MAY 2023 17:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1296,7 +1296,7 @@ Package pdftex.def Info: ../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWi
 deN112.png  used on input line 2394.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
 
-Underfull \hbox (badness 1721) in paragraph at lines 2409--2418
+Underfull \hbox (badness 1721) in paragraph at lines 2408--2417
 [][] []\T1/cmr/bx/n/12 Low Con-trast[] \T1/cmr/m/n/12 Fig-ure ([][]14[][]) show
 s the
  []
@@ -1306,7 +1306,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.14}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2427 
+l.2426 
         <../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png>]
 <../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.pn
 g, id=475, 481.8pt x 481.8pt>
@@ -1315,7 +1315,7 @@ File: ../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.46
 <use ../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.466
 2.png>
 Package pdftex.def Info: ../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN11
-2PrettyX3.4791Z0.4662.png  used on input line 2433.
+2PrettyX3.4791Z0.4662.png  used on input line 2432.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
 
 [29
@@ -1323,13 +1323,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.15}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2674 \clearpage
+l.2669 \clearpage
                   <../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112Prett
 yX3.4791Z0.4662.png>]
 <../ddBias/rpSpace.pdf, id=483, 505.89pt x 505.89pt>
 File: ../ddBias/rpSpace.pdf Graphic file (type pdf)
 <use ../ddBias/rpSpace.pdf>
-Package pdftex.def Info: ../ddBias/rpSpace.pdf  used on input line 2693.
+Package pdftex.def Info: ../ddBias/rpSpace.pdf  used on input line 2688.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
  [30
 
@@ -1338,63 +1338,59 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.16}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2715 \section{Discussion}
-                            <../ddBias/rpSpace.pdf>]
-
-LaTeX Warning: Citation `magnusson_what_2007' undefined on input line 2721.
-
-[31] [32]
+l.2710 \section{Discussion}
+                            <../ddBias/rpSpace.pdf>] [31] [32] [33]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2909.
+(hyperref)                removing `math shift' on input line 2976.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 2909.
+(hyperref)                removing `\begingroup' on input line 2976.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 2909.
+(hyperref)                removing `superscript' on input line 2976.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\endgroup' on input line 2909.
+(hyperref)                removing `\endgroup' on input line 2976.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@over' on input line 2909.
+(hyperref)                removing `\@@over' on input line 2976.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2909.
+(hyperref)                removing `math shift' on input line 2976.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2909.
+(hyperref)                removing `math shift' on input line 2976.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\gamma' on input line 2909.
+(hyperref)                removing `\gamma' on input line 2976.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2909.
+(hyperref)                removing `math shift' on input line 2976.
 
 
-Overfull \hbox (0.78668pt too wide) in paragraph at lines 2958--2960
+Overfull \hbox (0.78668pt too wide) in paragraph at lines 3025--3027
 []\T1/cmr/m/n/12 https://math.stackexchange.com/questions/3004835/is-the-lamber
 t-w-function-analytic-
  []
 
 
-Overfull \hbox (70.28648pt too wide) in paragraph at lines 2958--2960
+Overfull \hbox (70.28648pt too wide) in paragraph at lines 3025--3027
 \T1/cmr/m/n/12 if-not-everywhere-then-on-what-set-is-it-ana https://researchpor
 tal.bath.ac.uk/en/publications/algebraic-
  []
 
-[33
+[34
 
-] [34] (./simpleModelManuscript2.bbl
+] [35] (./simpleModelManuscript2.bbl
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 8
 3.
 
@@ -1437,60 +1433,53 @@ Underfull \hbox (badness 10000) in paragraph at lines 100--124
 /
  []
 
-[35
+[36
 
-] [36]) [37] (./simpleModelManuscript2.aux)
-
-LaTeX Warning: There were undefined references.
-
+] [37]) [38] (./simpleModelManuscript2.aux)
 Package rerunfilecheck Info: File `simpleModelManuscript2.out' has not changed.
 
 (rerunfilecheck)             Checksum: DC88CB06AB582E83AFCD83052706A4EC;3569.
  ) 
 Here is how much of TeX's memory you used:
- 27759 strings out of 478268
- 518550 string characters out of 5846348
- 804236 words of memory out of 5000000
- 45300 multiletter control sequences out of 15000+600000
+ 27758 strings out of 478268
+ 518482 string characters out of 5846348
+ 804268 words of memory out of 5000000
+ 45299 multiletter control sequences out of 15000+600000
  496530 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,13n,94p,759b,527s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{cite.magnusson_what_2007} has been referenced but d
-oes not exist, replaced by a fixed one
-
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/
-usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</u
-sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy6.pfb
-></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8
-.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
-pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.p
-fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pf
-b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb>
-</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pf
-b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></u
-sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
-local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
-ocal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/loc
-al/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local
-/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/l
-ocal/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/loc
-al/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local
-/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/t
-exlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/tex
-live/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texli
-ve/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive
-/2022/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2
-022/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/local/texlive/202
-2/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2022/
-texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on simpleModelManuscript2.pdf (37 pages, 2335744 bytes).
+ 99i,13n,94p,759b,472s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy6.p
+fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbs
+y8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
+2.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10
+.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.
+pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pf
+b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
+</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb>
+</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.
+pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pf
+b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us
+r/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
+/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/l
+ocal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loc
+al/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr
+/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/l
+ocal/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/loc
+al/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local
+/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/t
+exlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/tex
+live/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texli
+ve/2022/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive
+/2022/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/local/texlive/2
+022/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/202
+2/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on simpleModelManuscript2.pdf (38 pages, 2338367 bytes).
 PDF statistics:
- 708 PDF objects out of 1000 (max. 8388607)
- 561 compressed objects within 6 object streams
+ 712 PDF objects out of 1000 (max. 8388607)
+ 564 compressed objects within 6 object streams
  134 named destinations out of 1000 (max. 500000)
  333 words of extra memory for PDF output out of 10000 (max. 10000000)
 
