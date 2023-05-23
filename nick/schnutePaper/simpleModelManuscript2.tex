@@ -2586,126 +2586,6 @@ Ricker-like and Logistic-like models.
 %%inferred under a misspecified BH 
 %%describe contrast setting.
 
-
-
-
-%%%
-%%While interpolation occurs in the space of either $\log(r)$ or $\log(K)$, these
-%%interpolated values are used to build interpolated estimates of major biological
-%%reference points. Using the interpolated values $\check{\log(r)}$ and $\check{\log(K)}$
-%%the following transformation are applied to interpolate RP quantities under the Schaefer
-%%model,
-%%%
-%%\begin{align}~
-%%        \check B^* = \frac{\check K}{2} ~~~~~~~~
-%%        %\check{MSY} = \frac{\check K \check r}{4} ~~~~~~~
-%%        \check F^* = \frac{\check r}{2}.  %\check r \check B^* \left(1-\frac{\check B^*}{\check K}\right)
-%%\end{align}
-%
-%%
-%While metamodeling occurs on the inferred productivity parameters of the 
-%restricted production model, the metamodel can also be used to build 
-%metamodeled estimates of major biological RPs. The relevant transformations 
-%are given Eqs. (\ref{ptRP}, \ref{BratS}, \ref{FmsyS}) with $\gamma$ 
-%fixed to the restricting case. 
-%%reference points.
-%
-%%estimate of two productivity parameters under the restricted production model. Each of the fitted productivity parameter
-%%estimates are then modeled using independent instances of the following model in Eq (28).
-%
-%%
-%Applying the metamodel predictive surfaces to the RP estimate allows for the 
-%quantification of RP bias induced by model misspecification of two parameter 
-%production functions. Below RP bias is quantified by the following relative 
-%measure of bias, similar to a percent error calculation.
-%%
-%\begin{align}
-%\text{Relative Bias} = \frac{\hat{RP}-RP}{RP}
-%\end{align}
-%
-%%%
-%%\begin{wrapfigure}{r}{0.5\textwidth}
-%%\vspace{-0.5cm}
-%%%\begin{figure}[h!]
-%%\includegraphics[width=0.5\textwidth]{../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
-%%%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
-%%\vspace{-1cm}
-%%\caption{
-%%Relative bias in $F_{MSY}$ in the high contrast simulation setting.  
-%%}
-%%\label{bhFmsy}
-%%%\end{figure}
-%%\end{wrapfigure}
-%
-%%
-%Above $RP$ is a stand-in for the true value of any of the biological
-%reference points under the three parameter data generating production model, 
-%and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the 
-%two parameter restricted cases.
-
-
-%%
-%\clearpage
-%\begin{figure}[h!]
-%%\begin{wrapfigure}{r}{0.5\textwidth}
-%%\hspace*{0.25cm}
-%\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}
-%%\hspace*{0.25cm
-%\includegraphics[width=0.49\textwidth]{../../../theses/nick/gpBias/kRelBiasPellaFlatNoQ.png}
-%\caption{\label{flatRat}
-%MLE Bias surfaces for $B^*$ (\emph{left}) and $K$ (\emph{right}) individually.
-%}
-%\end{figure}
-
-%% the parabolic structures ties their ratio to $\frac{1}{2}$.  
-%Figure (\ref{flatCurves}) also gives some examples of the relative behavior of
-%$B^*$ and $K$. In Figure (\ref{flatTrio}) it is clear that the bias behavior of
-%$\frac{B^*}{\bar B(0)}$ is locked in a fixed pattern under the Schaefer model.
-%Figure (\ref{flatCurves}) indicates that the individual biases of $B^*$ and $K$
-%may behave quite differently. $B^*$ appears to be estimated fairly accurately
-%while $K$ does not.
-
-
-\clearpage
-%a general list
-\begin{itemize}
-%At some point
-\item summary of $\sigma$ over RP space comparing between models (PT, Schnute, Schnute DD) to show areas of model breakdown.
-	\begin{itemize}
-	\item miss-identifying signal for noise. 
-	\item It happens more as the dynamics get more complex. 
-	\item point to the full age structed models.
-	\end{itemize}
-
-\item show the constrained BH space over a grid of $M$, $\kappa$, $\omega$, $W_\infty$
-\item Show that the constrained spaces vary only slightly as compared with the consequences 
-of misspecifing the functional form. 
-\item estimating these other quantities (while they can create quite different Biomass series) 
-can only do so much to improve (expand) RP inference as compared with correctly modeling $P$. 
-\end{itemize}
-
-\begin{figure}[h!]
-\includegraphics[width=0.5\textwidth]{../ddBias/rpSpace.pdf} 
-
-\vspace{-1cm}
-\caption{
-BH RP-space sensativity to the parmaters $M$, $\kappa$, and $a_0$. The black 
-curve shows the BH set in the simple production model setting.
-%Yield curves for data generated with $\frac{F_{MSY}}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$.
-%Convert into $B/B_0$. Show the high contrast curve.
-}
-\label{ddRPs}
-\end{figure}
- 
-
-%good ideas
-\begin{itemize}
-\item mapping distance as a function of contrast at (3.5, 0.5)
-
-\item for LHS grid locations show $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$ biases for grids in $M\in(0,0.5)$ For sure in High Contrast, maybe also in Low??.
-\end{itemize}
-
-
 %
 \section{Discussion}
 
@@ -2722,8 +2602,8 @@ however struggle to make generally extensible conclusions since they focus only
 on a handful of stocks that fall short of forming a random sample of the greater 
 population of possible stock behaviors. The LHS design methods presents here are 
 designed specifically to simulate a uniform representative sample of stocks broadly 
-across the space of possible stock. Furthermore, the simulation design taken together 
-with the GP metamodel of productivity parmater estimates allows this study to control 
+across the space of possible RPs. Furthermore, the simulation design, taken together 
+with the GP metamodel of productivity parmater estimates, allows this study to control 
 the degree of model misspecification and generalize conclusions about the behavior 
 of productivity estimation within the prodcution model setting presented. 
 
@@ -2757,7 +2637,7 @@ data, RP estimation is unbiased and well estimated. Thus contrast alone is
 not the only factor leading to inferential failure. Model misspecification is a 
 necessary but not sufficient condition for inducing RP estimation bias. The 
 particular RP bias present depends on the RP geometry of the fitted model and 
-how that geometry is misspecified relative to the data. The RP mapping is oriented 
+how that geometry is misspecified relative to the data. The RP mapping is then oriented 
 to the RP geometry of the fitted model. 
 
 %
@@ -2766,58 +2646,119 @@ to the RP geometry of the fitted model.
 While the relative fishing rate parameterized in Section (\ref{catch}) captures a usefully 
 broad spectrum of relavant fishing behaviors, it is still limiting in the amount of information 
 that it can induce. Improved methods for quantifying contrast in fisheries data, and/or methods of 
-discovering more informative fishing behavior, could improve this analysis. In the absence of a 
-maximally informative fishing rate, 
+discovering more informative fishing behavior, could improve this analysis. In the absence of a %Without knowing a 
+maximally informative dataset simulation methods will not fully describe how 
+inference fails, but themethods presented here tell the most complete picture 
+yet, with explicit control of the degree model misspecification, contrast, and 
+a simulation design that allows for uniform representive data generation 
+across biologically meaningful stocks. The results presented here suggest the 
+conjecture that under a maximally informative dataset, RP inference with a two 
+parameter production function will be biased in the direction a shortest distance 
+map from the true RPs onto restricted set of RPs under the two parameter model.    
 
-Conjecture that the RP mapping under maximally informative data  
+%
+Given the potential for model misspecification of RPs, a minimal distance 
+mapping of RPs represents a best-case sceneario where the total bias of RPs, 
+when measured jointly, is minimized. That said, without recognizing the 
+geometry of how 2 parameter models of productivity limit RP space this may 
+lead to unintuitive implications in RP estimation. For example, due to the 
+shape of the BH RP set a minimal distance mapping ensures that if there is 
+bias in one of $\frac{B_{MSY}}{B_0}$ or $F_{MSY}$, there will neccessarily be 
+bias in the other RP. However under the Schaefer model, since the RP set is a 
+constant in $\frac{B_{MSY}}{B_0}$, bias in $F_{MSY}$ is not adulterated in the 
+same way by bias in $\frac{B_{MSY}}{B_0}$ estimation. While models with 
+constant RPs, such as the logistic model $\frac{B_{MSY}}{B_0}=\frac{1}{2}$ or 
+the fox model $\frac{B_{MSY}}{B_0}=\frac{1}{e}$, are extremely limited, they 
+can be valuable tools for developing intuition precisely because they isolate 
+RP estimation in their free RPs from the correlated RP biases present in 
+models like the BH or Ricker model. 
 
-and does not perfectly 
-result in 
-I conjecture that a perfectly informative data se
+%
+When one considers the implications of RP bias, overestimation of RPs carries 
+the severe implication of management recommedations potentially leading to 
+overfishing, while underestimation of RP leads to overly conservative management.
+In this sense, when the true model is not known, the geometry of the BH set together 
+with the metamodeled bias trends makes the BH model a naturally conservative 
+estimator of RPs for most stocks. For most non-BH populations the BH model is 
+likely to make conservative errors in its estimates of $F_{MSY}$ and $\frac{B_{MSY}}{B_0}$. 
+The one notable exception to the conservatism of the BH model stands for data 
+generated in the cushing-like regime of Schnute RPs. In this regiem the BH 
+model tends to be fairly unbiased overall, however the bias that is present 
+for these populations tends to be overestimation in both RPs, leading to much 
+more severe management consequences for those populations.
+
+%
+The RP bias trends of the Schaefer model demonstrate much less conservatism than the BH overall.
+For any population with $\frac{B_{MSY}}{B_0}<0.5$, $\frac{B_{MSY}}{B_0}$ will be overestimated. 
+When the population comes from the regime where $\frac{B_{MSY}}{B_0}>0.5$, $\frac{B_{MSY}}{B_0}$ 
+will be under estimated, but $F_{MSY}$ is likely to be overestimated depending on the degree of 
+contrast present in the data. So while the Schaefer model is an intuitive model, it tends to 
+lead to much less conservative RP estimation. 
+
+%
+While it is important to recognize these limitations of two parameter models 
+of productivity, we should not solely accept conservativism as a rational of 
+choosing a BH model of productivity. %Ultimatly accuracy of RP estimation, 
+%without structural RP biases, %and accurate assement of uncertainty is a better state 
+Increasing the flexibility of the production function by moving toward 
+three parameter models would release the underlying structural limitations 
+\shortcite{mangel_perspective_2013} that cause these RP biases in the first place. 
+\shortciteA{punt_extending_2019} %(Mangel et al., 2013). Punt and Cope (2019) 
+considers a suite of possible three parameter curves which could be used 
+instead of current two parameter curves. For all of their benefits, three 
+parameter production functions have their own complicating factors, and the 
+structure present in the Schnute model explored here makes it an intuitive bridge 
+model for developing three parameter models going forward.
+
+
+
+%In practice, when the true model is not known and the Schaefer model is unlikely to be correctly specified
+
 
 %inference is oriented to the shape of the constrained space
 %conjecture that with perfectly informed models mapping would be orthoganal
 \begin{itemize}
-\item model misspecification story as in advancement
-	\begin{itemize}
-		%\item Results presented here generally agree with what is known about estimating 
-		%growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
-		%\item These studys appreciate that role of contrast for estimating growth rates, 
-		%however do not explicately control the degree of model misspecification relative to RPs. 
-		
-		\item In the presence of contrast $F^*$ estimation can enjoy very low bias even 
-		for a wide range of poorly specified models; conversely in the absence of contrast 
-		$F^*$ estimation can suffer very large bias even for slightly misspecified models. 
-		
-		\item In all cases when model misspecification is removed, even with weakly 
-		informative data, $F^*$ estimation is unbiased.  
-		\item Model misspecification is thus a necessary but not sufficient condition for inducing bias. 
-		\item Behavior of bias is mediate by contrast.
+%\item model misspecification story as in advancement
+	%\begin{itemize}
+	%	%\item Results presented here generally agree with what is known about estimating 
+	%	%growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
+	%	%\item These studys appreciate that role of contrast for estimating growth rates, 
+	%	%however do not explicately control the degree of model misspecification relative to RPs. 
+	%	
+	%	%\item In the presence of contrast $F^*$ estimation can enjoy very low bias even 
+	%	%for a wide range of poorly specified models; conversely in the absence of contrast 
+	%	%$F^*$ estimation can suffer very large bias even for slightly misspecified models. 
+	%	
+	%	%\item In all cases when model misspecification is removed, even with weakly 
+	%	%informative data, $F^*$ estimation is unbiased.  
+	%	%\item Model misspecification is thus a necessary but not sufficient condition for inducing bias. 
+	%	%\item Behavior of bias is mediate by contrast.
 
-		\item Schaefer model underestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}<\frac{1}{2}$, %originate below the Schaefer line 
-		and overestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}>\frac{1}{2}$. % true RPs originate below the Sc
-		\item This is of particular note since these outcomes carry such varied real would implications. 
-		\item Overestimation of $F^*$ carries the severe implication of management 
-		recommedations potentially leading to overfishing, while underestimation of $F^*$ leads to overly conservative management. 
-	
-		\item The geometry of the BH set largely encourages underestiation of RPs
-		\item The only exception in this simulation is for cushing-like data where the BH tends to slightly overestimate RPs, but 
-		largely recovers accurate RP estimates even in the low contrast (low information) simualtion (inferential) setting.
-		\item Assuming BH for all species is likely a conservative assumption for most species (especially when $F_{MSY}$ is high).
-		\item however it presents a warped view of management and likely leaves money on the table for species with high $F_{MSY}$.
-	\end{itemize}
+	%\end{itemize}
 
-\item inference is oriented to the shape of the constrained space
-\item conjecture that with perfectly informed models mapping would be orthoganal
-%NOTE: BITCH ABOUT NOT BEING ABLE TO PRODUCE A PERFECTLY INFOMATIVE TIME SERIES
-%SPECULATE ABOUT IDEALLY INFORMATION CATCH PATTERNS (DYNAMIC CALIBRATION OF $F^*$)
+%\item inference is oriented to the shape of the constrained space
+%\item conjecture that with perfectly informed models mapping would be orthoganal
+%%NOTE: BITCH ABOUT NOT BEING ABLE TO PRODUCE A PERFECTLY INFORMATIVE TIME SERIES
+%%SPECULATE ABOUT IDEALLY INFORMATION CATCH PATTERNS (DYNAMIC CALIBRATION OF $F^*$)
+%
+%\item Best case data result in a minimum distance mapping (discussion?)
+%\item Due to the shape of the BH RP set this ensures bias in both $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$
+%\item Unlike the Schaefer models geometry the BH set has a geometry that will mix bias directions in the best case.
 
-\item Best case data result in a minimum distance mapping (discussion?)
-\item Due to the shape of the BH RP set this ensures bias in both $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$
-\item Unlike the Schaefer models geometry the BH set has a geometry that will mix bias directions in the best case.
+%\item The geometry of the BH set largely encourages underestiation of RPs
+%\item The only exception in this simulation is for cushing-like data where the BH tends to slightly overestimate RPs, but 
+%largely recovers accurate RP estimates even in the low contrast (low information) simualtion (inferential) setting.
+%\item Assuming BH for all species is likely a conservative assumption for most species (especially when $F_{MSY}$ is high).
+%\item however it presents a warped view of management and likely leaves money on the table for species with high $F_{MSY}$.
+%
+%\item Schaefer model underestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}<\frac{1}{2}$, %originate below the Schaefer line 
+%and overestimates $F^*$ when the true $\frac{B^*}{\bar B(0)}>\frac{1}{2}$. % true RPs originate below the Sc
+%\item This is of particular note since these outcomes carry such varied real would implications. 
+%\item Overestimation of $F^*$ carries the severe implication of management 
+%recommedations potentially leading to overfishing, while underestimation of $F^*$ leads to overly conservative management. 
 
 \item show a schnute fit to data and how it fixes issues.
-\item logistic/fox model triangulation (bias correction).
+%\item logistic/fox model triangulation (bias correction).
 
 \end{itemize}
 
@@ -2965,6 +2906,45 @@ I conjecture that a perfectly informative data se
 %%variability in the observations used to estimate the SRR more accurately than 
 %%models with fewer parameters.  
 %
+
+\clearpage
+%a general list
+\begin{itemize}
+%At some point
+\item summary of $\sigma$ over RP space comparing between models (PT, Schnute, Schnute DD) to show areas of model breakdown.
+	\begin{itemize}
+	\item miss-identifying signal for noise. 
+	\item It happens more as the dynamics get more complex. 
+	\item point to the full age structed models.
+	\end{itemize}
+
+\item show the constrained BH space over a grid of $M$, $\kappa$, $\omega$, $W_\infty$
+\item Show that the constrained spaces vary only slightly as compared with the consequences 
+of misspecifing the functional form. 
+\item estimating these other quantities (while they can create quite different Biomass series) 
+can only do so much to improve (expand) RP inference as compared with correctly modeling $P$. 
+\end{itemize}
+
+\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../ddBias/rpSpace.pdf} 
+
+\vspace{-1cm}
+\caption{
+BH RP-space sensativity to the parmaters $M$, $\kappa$, and $a_0$. The black 
+curve shows the BH set in the simple production model setting.
+%Yield curves for data generated with $\frac{F_{MSY}}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$.
+%Convert into $B/B_0$. Show the high contrast curve.
+}
+\label{ddRPs}
+\end{figure}
+ 
+
+%good ideas
+\begin{itemize}
+\item mapping distance as a function of contrast at (3.5, 0.5)
+
+\item for LHS grid locations show $\frac{B_{MSY}}{B_0}$ and $F_{MSY}$ biases for grids in $M\in(0,0.5)$ For sure in High Contrast, maybe also in Low??.
+\end{itemize}
 
 
 
