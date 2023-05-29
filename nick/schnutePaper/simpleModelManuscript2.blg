@@ -17,46 +17,51 @@ Repeated entry---line 65 of file ./spline.bib
  : @article{gramacy_cases_2012
  :                            ,
 I'm skipping whatever remains of this entry
+Database file #3: ./spaceFilling.bib
+Repeated entry---line 2 of file ./spaceFilling.bib
+ : @book{gramacy_surrogates_2020
+ :                              ,
+I'm skipping whatever remains of this entry
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
-You've used 19 entries,
+You've used 28 entries,
             6951 wiz_defined-function locations,
-            1416 strings with 14817 characters,
-and the built_in function-call counts, 36572 in all, are:
-= -- 4501
-> -- 285
-< -- 1695
-+ -- 1852
-- -- 38
-* -- 2413
-:= -- 6648
-add.period$ -- 76
-call.type$ -- 19
-change.case$ -- 339
+            1477 strings with 16377 characters,
+and the built_in function-call counts, 52877 in all, are:
+= -- 6536
+> -- 417
+< -- 2434
++ -- 2593
+- -- 56
+* -- 3439
+:= -- 9521
+add.period$ -- 114
+call.type$ -- 28
+change.case$ -- 497
 chr.to.int$ -- 0
-cite$ -- 38
-duplicate$ -- 1041
-empty$ -- 1485
-format.name$ -- 489
-if$ -- 6933
+cite$ -- 56
+duplicate$ -- 1489
+empty$ -- 2165
+format.name$ -- 699
+if$ -- 10107
 int.to.chr$ -- 0
-int.to.str$ -- 57
+int.to.str$ -- 84
 missing$ -- 0
-newline$ -- 518
-num.names$ -- 152
-pop$ -- 571
+newline$ -- 751
+num.names$ -- 224
+pop$ -- 829
 preamble$ -- 1
-purify$ -- 92
+purify$ -- 132
 quote$ -- 0
-skip$ -- 2295
+skip$ -- 3418
 stack$ -- 0
-substring$ -- 2051
-swap$ -- 596
-text.length$ -- 59
+substring$ -- 2870
+swap$ -- 859
+text.length$ -- 85
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 1520
+type$ -- 2304
 warning$ -- 0
-while$ -- 180
+while$ -- 257
 width$ -- 0
-write$ -- 627
-(There was 1 error message)
+write$ -- 911
+(There were 2 error messages)

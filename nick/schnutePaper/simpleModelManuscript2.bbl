@@ -56,6 +56,28 @@ Conn, P\BPBI B.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Cressie%
+}{%
+Cressie%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+cressie_statistics_2015}
+\APACinsertmetastar {%
+cressie_statistics_2015}%
+\begin{APACrefauthors}%
+Cressie, N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2015}.
+\newblock
+\APACrefbtitle {Statistics for spatial data} {Statistics for spatial data}.
+\newblock
+\APACaddressPublisher{}{John Wiley \& Sons}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Deriso%
 }{%
 Deriso%
@@ -84,6 +106,56 @@ Deriso, R\BPBI B.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1139/f80-034} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Devon~Lin%
+\ \BBA {} Tang%
+}{%
+Devon~Lin%
+\ \BBA {} Tang%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+devon_lin_latin_2015}
+\APACinsertmetastar {%
+devon_lin_latin_2015}%
+\begin{APACrefauthors}%
+Devon~Lin, C.%
+\BCBT {}\ \BBA {} Tang, B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Latin {Hypercubes} and {Space}-filling {Designs}} {Latin
+  {Hypercubes} and {Space}-filling {Designs}}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Handbook of {Design} and {Analysis} of {Experiments}.}
+  {Handbook of {Design} and {Analysis} of {Experiments}.}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Fletcher%
+}{%
+Fletcher%
+}{%
+{\protect \APACyear {1978}}%
+}]{%
+fletcher_restructuring_1978}
+\APACinsertmetastar {%
+fletcher_restructuring_1978}%
+\begin{APACrefauthors}%
+Fletcher, R\BPBI I.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1978}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {On the restructuring of the {Pella}-{Tomlinson} system}
+  {On the restructuring of the {Pella}-{Tomlinson} system}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Fish. Bull}{76}{3}{515--521}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -254,6 +326,36 @@ Hilborn, R.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Johnson%
+, Moore%
+\BCBL {}\ \BBA {} Ylvisaker%
+}{%
+Johnson%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1990}}%
+}]{%
+johnson_minimax_1990}
+\APACinsertmetastar {%
+johnson_minimax_1990}%
+\begin{APACrefauthors}%
+Johnson, M\BPBI E.%
+, Moore, L\BPBI M.%
+\BCBL {}\ \BBA {} Ylvisaker, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1990}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Minimax and maximin distance designs} {Minimax and
+  maximin distance designs}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of statistical planning and
+  inference}{26}{2}{131--148}.
+\newblock
+\APACrefnote{Publisher: Elsevier}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Lee%
 , Maunder%
 , Piner%
@@ -353,6 +455,70 @@ Mangel, M.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1139/cjfas-2012-0372} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+McKay%
+, Beckman%
+\BCBL {}\ \BBA {} Conover%
+}{%
+McKay%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2000}}%
+}]{%
+mckay_comparison_2000}
+\APACinsertmetastar {%
+mckay_comparison_2000}%
+\begin{APACrefauthors}%
+McKay, M\BPBI D.%
+, Beckman, R\BPBI J.%
+\BCBL {}\ \BBA {} Conover, W\BPBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2000}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A comparison of three methods for selecting values of
+  input variables in the analysis of output from a computer code} {A comparison
+  of three methods for selecting values of input variables in the analysis of
+  output from a computer code}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Technometrics}{42}{1}{55--61}.
+\newblock
+\APACrefnote{Publisher: Taylor \& Francis}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Morris%
+\ \BBA {} Mitchell%
+}{%
+Morris%
+\ \BBA {} Mitchell%
+}{%
+{\protect \APACyear {1995}}%
+}]{%
+morris_exploratory_1995}
+\APACinsertmetastar {%
+morris_exploratory_1995}%
+\begin{APACrefauthors}%
+Morris, M\BPBI D.%
+\BCBT {}\ \BBA {} Mitchell, T\BPBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1995}{{\APACmonth{02}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Exploratory designs for computational experiments}
+  {Exploratory designs for computational experiments}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Statistical Planning and
+  Inference}{43}{3}{381--402}.
+\newblock
+\begin{APACrefURL}
+  [{2023-05-28}]\url{https://www.sciencedirect.com/science/article/pii/037837589400035T}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/0378-3758(94)00035-T} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -571,6 +737,91 @@ Schnute, J\BPBI T.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1139/f97-212} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Soetaert%
+, Petzoldt%
+\BCBL {}\ \BBA {} Setzer%
+}{%
+Soetaert%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2010}}%
+}]{%
+soetaert_solving_2010}
+\APACinsertmetastar {%
+soetaert_solving_2010}%
+\begin{APACrefauthors}%
+Soetaert, K.%
+, Petzoldt, T.%
+\BCBL {}\ \BBA {} Setzer, R\BPBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{{\APACmonth{02}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Solving {Differential} {Equations} in {R}: {Package}
+  {deSolve}} {Solving {Differential} {Equations} in {R}: {Package}
+  {deSolve}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Statistical Software}{33}{}{1--25}.
+\newblock
+\begin{APACrefURL} [{2023-05-29}]\url{https://doi.org/10.18637/jss.v033.i09}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.18637/jss.v033.i09} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Stein%
+}{%
+Stein%
+}{%
+{\protect \APACyear {1987}}%
+}]{%
+stein_large_1987}
+\APACinsertmetastar {%
+stein_large_1987}%
+\begin{APACrefauthors}%
+Stein, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1987}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Large sample properties of simulations using {Latin}
+  hypercube sampling} {Large sample properties of simulations using {Latin}
+  hypercube sampling}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Technometrics}{29}{2}{143--151}.
+\newblock
+\APACrefnote{Publisher: Taylor \& Francis}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Wanner%
+\ \BBA {} Hairer%
+}{%
+Wanner%
+\ \BBA {} Hairer%
+}{%
+{\protect \APACyear {1996}}%
+}]{%
+wanner_solving_1996}
+\APACinsertmetastar {%
+wanner_solving_1996}%
+\begin{APACrefauthors}%
+Wanner, G.%
+\BCBT {}\ \BBA {} Hairer, E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1996}.
+\newblock
+\APACrefbtitle {Solving ordinary differential equations {II}} {Solving ordinary
+  differential equations {II}}\ (\BVOL~375).
+\newblock
+\APACaddressPublisher{}{Springer Berlin Heidelberg}.
 \PrintBackRefs{\CurrentBib}
 
 \end{thebibliography}
