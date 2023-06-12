@@ -78,6 +78,35 @@ Cressie, N.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Cushing%
+}{%
+Cushing%
+}{%
+{\protect \APACyear {1971}}%
+}]{%
+cushing_dependence_1971}
+\APACinsertmetastar {%
+cushing_dependence_1971}%
+\begin{APACrefauthors}%
+Cushing, D\BPBI H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1971}{{\APACmonth{05}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The {Dependence} of {Recruitment} on {Parent} {Stock} in
+  {Different} {Groups} of {Fishes}} {The {Dependence} of {Recruitment} on
+  {Parent} {Stock} in {Different} {Groups} of {Fishes}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{ICES Journal of Marine Science}{33}{3}{340--362}.
+\newblock
+\begin{APACrefURL} [{2023-06-03}]\url{https://doi.org/10.1093/icesjms/33.3.340}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1093/icesjms/33.3.340} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Deriso%
 }{%
 Deriso%
@@ -822,6 +851,39 @@ Wanner, G.%
   differential equations {II}}\ (\BVOL~375).
 \newblock
 \APACaddressPublisher{}{Springer Berlin Heidelberg}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Yeakel%
+\ \BBA {} Mangel%
+}{%
+Yeakel%
+\ \BBA {} Mangel%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+yeakel_generalized_2015}
+\APACinsertmetastar {%
+yeakel_generalized_2015}%
+\begin{APACrefauthors}%
+Yeakel, J\BPBI D.%
+\BCBT {}\ \BBA {} Mangel, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{{\APACmonth{02}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A generalized perturbation approach for exploring stock
+  recruitment relationships} {A generalized perturbation approach for exploring
+  stock recruitment relationships}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Theoretical Ecology}{8}{1}{1--13}.
+\newblock
+\begin{APACrefURL}
+  [{2023-06-03}]\url{https://doi.org/10.1007/s12080-014-0230-z}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s12080-014-0230-z} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \end{thebibliography}

@@ -139,7 +139,7 @@ for(g in gs){
 	#abline(0, B0*M, col=cols[sum(g<reg)])
 	#print( c(g, sum(g<reg)) )
 }
-legend("topright", legend=c(TeX(sprintf("$1\\leq\\gamma$")), TeX(sprintf("$%s > \\gamma\\geq %s$",c(1, 0), c(0, -1))), TeX(sprintf("$-1\\geq\\gamma$"))), col=cols[1:4], lwd=3)
+legend("topright", legend=c(TeX(sprintf("$1\\leq\\gamma$")), TeX(sprintf("$%s > \\gamma\\geq %s$",c(1, 0), c(0, -1))), TeX(sprintf("$-1>\\gamma$"))), col=cols[1:4], lwd=3)
 dev.off()
 
 #gs = seq(-1.0-0.1,1.4, 0.2)

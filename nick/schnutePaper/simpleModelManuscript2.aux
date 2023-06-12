@@ -22,15 +22,18 @@
 \citation{hilborn_ecological_1997}
 \newlabel{int}{{1}{2}{Introduction\label {int}}{section.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
-\newlabel{ode}{{2}{2}{Introduction\label {int}}{equation.1.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  \textit  {left}: An observed series of index of abundance data for Namibian Hake from 1965 to 1987 \shortcite {hilborn_ecological_1997}. \textit  {right}: The associated catch data for Namibian Hake over the same time period. }}{3}{figure.1}\protected@file@percent }
-\newlabel{hakeData}{{1}{3}{\textit {left}: An observed series of index of abundance data for Namibian Hake from 1965 to 1987 \protect \shortcite {hilborn_ecological_1997}. \textit {right}: The associated catch data for Namibian Hake over the same time period}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  \textit  {left}: An index of abundance data, catch per unit effort (CPUE), for Namibian Hake from 1965 to 1987 \shortcite {hilborn_ecological_1997}. \textit  {right}: The associated catch data for Namibian Hake over the same time period. }}{2}{figure.1}\protected@file@percent }
+\newlabel{hakeData}{{1}{2}{\textit {left}: An index of abundance data, catch per unit effort (CPUE), for Namibian Hake from 1965 to 1987 \protect \shortcite {hilborn_ecological_1997}. \textit {right}: The associated catch data for Namibian Hake over the same time period}{figure.1}{}}
+\newlabel{ode}{{2}{3}{Introduction\label {int}}{equation.1.2}{}}
 \citation{hilborn_pretty_2010}
 \citation{punt_management_2016}
 \citation{punt_extending_2019}
+\citation{fox_jr_exponential_1970}
+\citation{cushing_dependence_1971}
 \citation{beverton_dynamics_1957}
 \citation{ricker_stock_1954}
 \citation{mangel_perspective_2013}
+\citation{yeakel_generalized_2015}
 \citation{ramasubramanian_machine_2017}
 \citation{lee_can_2012}
 \citation{conn_when_2010}
@@ -59,8 +62,8 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Simulation}{8}{subsubsection.2.1.2}\protected@file@percent }
 \newlabel{gammaOfB}{{12}{8}{Simulation}{equation.2.12}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Schnute Model}{8}{subsection.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  The Schnute production function plotted across a variety of parameter values. The special cases of BH, Ricker, and Logistic production are shown in green, blue, and red respectively. }}{9}{figure.3}\protected@file@percent }
-\newlabel{sRegimes}{{3}{9}{The Schnute production function plotted across a variety of parameter values. The special cases of BH, Ricker, and Logistic production are shown in green, blue, and red respectively}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  The Schnute production function plotted across a variety of parameter values. Regimes of similarly behaving curves are grouped by color. }}{9}{figure.3}\protected@file@percent }
+\newlabel{sRegimes}{{3}{9}{The Schnute production function plotted across a variety of parameter values. Regimes of similarly behaving curves are grouped by color}{figure.3}{}}
 \newlabel{schnuteSimple}{{14}{9}{Schnute Model}{equation.2.14}{}}
 \newlabel{BsEq}{{15}{9}{Schnute Model}{equation.2.15}{}}
 \citation{schnute_analytical_1998}
@@ -92,64 +95,66 @@
 \citation{johnson_minimax_1990}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces LHS of size $n$ on rectangle $R$.}}{15}{algorithm.1}\protected@file@percent }
 \newlabel{lhsAlg}{{1}{15}{Schnute Design \label {sLHS}}{algorithm.1}{}}
+\newlabel{desRef}{{2.3.3}{15}{Design Refinement\label {desRef}}{subsubsection.2.3.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Design Refinement}{15}{subsubsection.2.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Gaussian Process Metamodel}{17}{subsection.2.4}\protected@file@percent }
 \citation{gramacy_cases_2012}
+\newlabel{GPModel}{{26}{18}{Gaussian Process Metamodel}{equation.2.26}{}}
 \citation{cressie_statistics_2015}
-\newlabel{GPModel}{{27}{18}{Gaussian Process Metamodel}{equation.2.27}{}}
-\newlabel{corModel}{{28}{18}{Gaussian Process Metamodel}{equation.2.28}{}}
 \citation{hilborn_quantitative_1992}
-\newlabel{catch}{{2.5}{19}{Catch \label {catch}}{subsection.2.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Catch }{19}{subsection.2.5}\protected@file@percent }
-\newlabel{relFish1}{{30}{20}{Catch \label {catch}}{equation.2.30}{}}
-\newlabel{relFish2}{{31}{20}{Catch \label {catch}}{equation.2.31}{}}
-\newlabel{relFish3}{{32}{20}{Catch \label {catch}}{equation.2.32}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces   ($left$) Relative fishing with low, medium, and high contrast. ($right$) Population biomass and catch at each associated level of contrast. }}{20}{figure.7}\protected@file@percent }
-\newlabel{catchT45}{{7}{20}{($left$) Relative fishing with low, medium, and high contrast. ($right$) Population biomass and catch at each associated level of contrast}{figure.7}{}}
-\newlabel{catch45}{{7}{20}{($left$) Relative fishing with low, medium, and high contrast. ($right$) Population biomass and catch at each associated level of contrast}{figure.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}\color  {blue} Inference details?}{21}{subsection.2.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Continuous model formulation}{21}{subsection.2.7}\protected@file@percent }
+\newlabel{corModel}{{27}{19}{Gaussian Process Metamodel}{equation.2.27}{}}
+\newlabel{catch}{{2.5}{20}{Catch \label {catch}}{subsection.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Catch }{20}{subsection.2.5}\protected@file@percent }
+\newlabel{relFish1}{{29}{20}{Catch \label {catch}}{equation.2.29}{}}
+\newlabel{relFish2}{{30}{21}{Catch \label {catch}}{equation.2.30}{}}
+\newlabel{relFish3}{{31}{21}{Catch \label {catch}}{equation.2.31}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces   ($left$) Relative fishing with low, medium, and high contrast. ($right$) Population biomass and catch at each associated level of contrast. }}{21}{figure.7}\protected@file@percent }
+\newlabel{catchT45}{{7}{21}{($left$) Relative fishing with low, medium, and high contrast. ($right$) Population biomass and catch at each associated level of contrast}{figure.7}{}}
+\newlabel{catch45}{{7}{21}{($left$) Relative fishing with low, medium, and high contrast. ($right$) Population biomass and catch at each associated level of contrast}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}\color  {blue} Inference details?}{22}{subsection.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Continuous model formulation}{22}{subsection.2.7}\protected@file@percent }
 \citation{wanner_solving_1996}
 \citation{soetaert_solving_2010}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.1}Integration and Stiffness}{22}{subsubsection.2.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.1}Integration and Stiffness}{23}{subsubsection.2.7.1}\protected@file@percent }
 \citation{hilborn_quantitative_1992}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{23}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}PT/Schaefer}{23}{subsection.3.1}\protected@file@percent }
-\newlabel{flat}{{3.1.1}{23}{An $MSY$-Optimal Catch History \label {flat}}{subsubsection.3.1.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}An $MSY$-Optimal Catch History }{23}{subsubsection.3.1.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  A comparison of the true PT production function (in black) and the estimated logistic curve (in red) with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves. }}{23}{figure.8}\protected@file@percent }
-\newlabel{flatProd}{{8}{23}{A comparison of the true PT production function (in black) and the estimated logistic curve (in red) with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves}{figure.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Metamodeled Trends}{24}{subsubsection.3.1.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  Joint bias direction for ($F^*$, $\frac  {B^*}{B_0}$) estimates under the misspecified Schaefer Model. The intensity of color represents the excess bias relative to the shortest possible mapping. Results in the low contrast setting are shown $left$, and the high contrast setting is shown $right$. }}{25}{figure.9}\protected@file@percent }
-\newlabel{arrowsPT}{{9}{25}{Joint bias direction for ($F^*$, $\frac {B^*}{B_0}$) estimates under the misspecified Schaefer Model. The intensity of color represents the excess bias relative to the shortest possible mapping. Results in the low contrast setting are shown $left$, and the high contrast setting is shown $right$}{figure.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Bias in $F^*$ under the Schaefer model when PT data are generated with increasing contrast so that $F^*$ and $\frac  {B^*}{B_0}$ are fixed at 0.699 and 0.201 respectively. }}{26}{figure.10}\protected@file@percent }
-\newlabel{conTest}{{3.1.2}{26}{Metamodeled Trends}{figure.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Schnute/BH}{26}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Design}{26}{subsubsection.3.2.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Uniform Q-Q plot for $\zeta $ plotted for $F^*=0.1$ and $M=0.2$.}}{26}{figure.11}\protected@file@percent }
-\newlabel{qqZeta}{{11}{26}{Uniform Q-Q plot for $\zeta $ plotted for $F^*=0.1$ and $M=0.2$}{figure.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  A Schnute RP design. Colors indicate different regimes of Schnute production. The black curve shows the BH set. }}{27}{figure.12}\protected@file@percent }
-\newlabel{colorDes}{{12}{27}{A Schnute RP design. Colors indicate different regimes of Schnute production. The black curve shows the BH set}{figure.12}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Metamodeled Trends}{27}{subsubsection.3.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces  Heatplots showing the bias in RP estimation induced by model misspecification of the BH model in the high contrast simulation setting. In all cases the restricted RP-space of the BH set is shown as the black curve. (\emph  {left}) Relative bias in $\frac  {B^*}{\bar  B(0)}$. (\emph  {top-right}) Bias in RP-space shown directionally. Arrows point from the location where data is generated, toward the location in the BH set where MLE projects estimated RPs. The intensity of color represents the excess bias relative to the shortest possible mapping. (\emph  {bottom}) Relative bias in $F^*$. }}{28}{figure.13}\protected@file@percent }
-\newlabel{contrastTrio}{{13}{28}{Heatplots showing the bias in RP estimation induced by model misspecification of the BH model in the high contrast simulation setting. In all cases the restricted RP-space of the BH set is shown as the black curve. (\emph {left}) Relative bias in $\frac {B^*}{\bar B(0)}$. (\emph {top-right}) Bias in RP-space shown directionally. Arrows point from the location where data is generated, toward the location in the BH set where MLE projects estimated RPs. The intensity of color represents the excess bias relative to the shortest possible mapping. (\emph {bottom}) Relative bias in $F^*$}{figure.13}{}}
-\@writefile{toc}{\contentsline {paragraph}{High Contrast}{28}{figure.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Low Contrast}{29}{figure.13}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces  Joint bias direction of RP inference in the low contrast simulation setting. The intensity of color represents the excess bias relative to the shortest possible mapping. }}{29}{figure.14}\protected@file@percent }
-\newlabel{bhLowArrows}{{14}{29}{Joint bias direction of RP inference in the low contrast simulation setting. The intensity of color represents the excess bias relative to the shortest possible mapping}{figure.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{24}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}PT/Schaefer}{24}{subsection.3.1}\protected@file@percent }
+\newlabel{flat}{{3.1.1}{24}{An $MSY$-Optimal Catch History \label {flat}}{subsubsection.3.1.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}An $MSY$-Optimal Catch History }{24}{subsubsection.3.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  A comparison of the true PT production function (in black) and the estimated logistic curve (in red) with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves. }}{24}{figure.8}\protected@file@percent }
+\newlabel{flatProd}{{8}{24}{A comparison of the true PT production function (in black) and the estimated logistic curve (in red) with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves}{figure.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Metamodeled Trends}{25}{subsubsection.3.1.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  Joint bias direction for ($F^*$, $\frac  {B^*}{B_0}$) estimates under the misspecified Schaefer Model. The intensity of color represents the excess bias relative to the shortest possible mapping. Results in the low contrast setting are shown $left$, and the high contrast setting is shown $right$. }}{26}{figure.9}\protected@file@percent }
+\newlabel{arrowsPT}{{9}{26}{Joint bias direction for ($F^*$, $\frac {B^*}{B_0}$) estimates under the misspecified Schaefer Model. The intensity of color represents the excess bias relative to the shortest possible mapping. Results in the low contrast setting are shown $left$, and the high contrast setting is shown $right$}{figure.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Bias in $F^*$ under the Schaefer model when PT data are generated with increasing contrast so that $F^*$ and $\frac  {B^*}{B_0}$ are fixed at 0.699 and 0.201 respectively. }}{27}{figure.10}\protected@file@percent }
+\newlabel{conTest}{{3.1.2}{27}{Metamodeled Trends}{figure.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Schnute/BH}{27}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Design}{27}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Uniform Q-Q plot for $\zeta $ plotted for $F^*=0.1$ and $M=0.2$.}}{27}{figure.11}\protected@file@percent }
+\newlabel{qqZeta}{{11}{27}{Uniform Q-Q plot for $\zeta $ plotted for $F^*=0.1$ and $M=0.2$}{figure.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  A Schnute RP design. Colors indicate different regimes of Schnute production. The black curve shows the BH set. }}{28}{figure.12}\protected@file@percent }
+\newlabel{colorDes}{{12}{28}{A Schnute RP design. Colors indicate different regimes of Schnute production. The black curve shows the BH set}{figure.12}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Metamodeled Trends}{28}{subsubsection.3.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces  Heatplots showing the bias in RP estimation induced by model misspecification of the BH model in the high contrast simulation setting. In all cases the restricted RP-space of the BH set is shown as the black curve. (\emph  {left}) Relative bias in $\frac  {B^*}{\bar  B(0)}$. (\emph  {top-right}) Bias in RP-space shown directionally. Arrows point from the location where data is generated, toward the location in the BH set where MLE projects estimated RPs. The intensity of color represents the excess bias relative to the shortest possible mapping. (\emph  {bottom}) Relative bias in $F^*$. }}{29}{figure.13}\protected@file@percent }
+\newlabel{contrastTrio}{{13}{29}{Heatplots showing the bias in RP estimation induced by model misspecification of the BH model in the high contrast simulation setting. In all cases the restricted RP-space of the BH set is shown as the black curve. (\emph {left}) Relative bias in $\frac {B^*}{\bar B(0)}$. (\emph {top-right}) Bias in RP-space shown directionally. Arrows point from the location where data is generated, toward the location in the BH set where MLE projects estimated RPs. The intensity of color represents the excess bias relative to the shortest possible mapping. (\emph {bottom}) Relative bias in $F^*$}{figure.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{High Contrast}{29}{figure.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Low Contrast}{30}{figure.13}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces  Joint bias direction of RP inference in the low contrast simulation setting. The intensity of color represents the excess bias relative to the shortest possible mapping. }}{30}{figure.14}\protected@file@percent }
+\newlabel{bhLowArrows}{{14}{30}{Joint bias direction of RP inference in the low contrast simulation setting. The intensity of color represents the excess bias relative to the shortest possible mapping}{figure.14}{}}
 \citation{lee_can_2012}
 \citation{conn_when_2010}
 \citation{magnusson_what_2007}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces  Yield curves for data generated with $\frac  {F^*}{M}=3.48$ and $\frac  {B^*}{\bar  B(0)}=0.48$. }}{30}{figure.15}\protected@file@percent }
-\newlabel{bhFmsy}{{15}{30}{Yield curves for data generated with $\frac {F^*}{M}=3.48$ and $\frac {B^*}{\bar B(0)}=0.48$}{figure.15}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{31}{section.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces  Yield curves for data generated with $\frac  {F^*}{M}=3.48$ and $\frac  {B^*}{\bar  B(0)}=0.48$. }}{31}{figure.15}\protected@file@percent }
+\newlabel{bhFmsy}{{15}{31}{Yield curves for data generated with $\frac {F^*}{M}=3.48$ and $\frac {B^*}{\bar B(0)}=0.48$}{figure.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{32}{section.4}\protected@file@percent }
 \citation{mangel_perspective_2013}
 \citation{punt_extending_2019}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces  BH RP-space sensitivity to the parmaters $M$, $\kappa $, and $a_0$. The black curve shows the BH set in the simple production model setting. }}{34}{figure.16}\protected@file@percent }
-\newlabel{ddRPs}{{16}{34}{BH RP-space sensitivity to the parmaters $M$, $\kappa $, and $a_0$. The black curve shows the BH set in the simple production model setting}{figure.16}{}}
-\newlabel{lambApp}{{5}{35}{Appendix\label {lambApp}: Inverting $\frac {B^*}{\bar B(0)}$ and $\gamma $ for the PT Model}{section.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Appendix: Inverting $\frac  {B^*}{\bar  B(0)}$ and $\gamma $ for the PT Model}{35}{section.5}\protected@file@percent }
-\newlabel{gammaOfZeta}{{33}{35}{Appendix\label {lambApp}: Inverting $\frac {B^*}{\bar B(0)}$ and $\gamma $ for the PT Model}{equation.5.33}{}}
+\citation{yeakel_generalized_2015}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces  BH RP-space sensitivity to the parmaters $M$, $\kappa $, and $a_0$. The black curve shows the BH set in the simple production model setting. }}{35}{figure.16}\protected@file@percent }
+\newlabel{ddRPs}{{16}{35}{BH RP-space sensitivity to the parmaters $M$, $\kappa $, and $a_0$. The black curve shows the BH set in the simple production model setting}{figure.16}{}}
+\newlabel{lambApp}{{5}{36}{Appendix\label {lambApp}: Inverting $\frac {B^*}{\bar B(0)}$ and $\gamma $ for the PT Model}{section.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Appendix: Inverting $\frac  {B^*}{\bar  B(0)}$ and $\gamma $ for the PT Model}{36}{section.5}\protected@file@percent }
+\newlabel{gammaOfZeta}{{32}{36}{Appendix\label {lambApp}: Inverting $\frac {B^*}{\bar B(0)}$ and $\gamma $ for the PT Model}{equation.5.32}{}}
 \bibstyle{apacite}
 \bibdata{./gpBias.bib,./spline.bib,./spaceFilling.bib}
 \bibcite{beverton_dynamics_1957}{\citeauthoryear {Beverton\ \BBA{} Holt}{Beverton\ \BBA{} Holt}{{\APACyear {1957}}}}
@@ -158,6 +163,8 @@
 \APACbibcite{conn_when_2010}{\citeauthoryear {Conn, Williams,{}\ \BBA{} Shertzer}{Conn\ \BOthers {.}}{{\APACyear {2010}}}}
 \bibcite{cressie_statistics_2015}{\citeauthoryear {Cressie}{Cressie}{{\APACyear {2015}}}}
 \APACbibcite{cressie_statistics_2015}{\citeauthoryear {Cressie}{Cressie}{{\APACyear {2015}}}}
+\bibcite{cushing_dependence_1971}{\citeauthoryear {Cushing}{Cushing}{{\APACyear {1971}}}}
+\APACbibcite{cushing_dependence_1971}{\citeauthoryear {Cushing}{Cushing}{{\APACyear {1971}}}}
 \bibcite{deriso_harvesting_1980}{\citeauthoryear {Deriso}{Deriso}{{\APACyear {1980}}}}
 \APACbibcite{deriso_harvesting_1980}{\citeauthoryear {Deriso}{Deriso}{{\APACyear {1980}}}}
 \bibcite{devon_lin_latin_2015}{\citeauthoryear {Devon\nobreakspace  {}Lin\ \BBA{} Tang}{Devon\nobreakspace  {}Lin\ \BBA{} Tang}{{\APACyear {2015}}}}
@@ -170,11 +177,11 @@
 \APACbibcite{gramacy_surrogates_2020}{\citeauthoryear {Gramacy}{Gramacy}{{\APACyear {2020}}}}
 \bibcite{gramacy_cases_2012}{\citeauthoryear {Gramacy\ \BBA{} Lee}{Gramacy\ \BBA{} Lee}{{\APACyear {2012}}}}
 \APACbibcite{gramacy_cases_2012}{\citeauthoryear {Gramacy\ \BBA{} Lee}{Gramacy\ \BBA{} Lee}{{\APACyear {2012}}}}
+\@writefile{toc}{\contentsline {section}{References}{38}{equation.5.33}\protected@file@percent }
 \bibcite{hilborn_pretty_2010}{\citeauthoryear {Hilborn}{Hilborn}{{\APACyear {2010}}}}
 \APACbibcite{hilborn_pretty_2010}{\citeauthoryear {Hilborn}{Hilborn}{{\APACyear {2010}}}}
 \bibcite{hilborn_ecological_1997}{\citeauthoryear {Hilborn\ \BBA{} Mangel}{Hilborn\ \BBA{} Mangel}{{\APACyear {1997}}}}
 \APACbibcite{hilborn_ecological_1997}{\citeauthoryear {Hilborn\ \BBA{} Mangel}{Hilborn\ \BBA{} Mangel}{{\APACyear {1997}}}}
-\@writefile{toc}{\contentsline {section}{References}{37}{equation.5.34}\protected@file@percent }
 \bibcite{hilborn_quantitative_1992}{\citeauthoryear {Hilborn\ \BBA{} Walters}{Hilborn\ \BBA{} Walters}{{\APACyear {1992}}}}
 \APACbibcite{hilborn_quantitative_1992}{\citeauthoryear {Hilborn\ \BBA{} Walters}{Hilborn\ \BBA{} Walters}{{\APACyear {1992}}}}
 \bibcite{johnson_minimax_1990}{\citeauthoryear {Johnson, Moore,{}\ \BBA{} Ylvisaker}{Johnson\ \BOthers {.}}{{\APACyear {1990}}}}
@@ -209,4 +216,6 @@
 \APACbibcite{stein_large_1987}{\citeauthoryear {Stein}{Stein}{{\APACyear {1987}}}}
 \bibcite{wanner_solving_1996}{\citeauthoryear {Wanner\ \BBA{} Hairer}{Wanner\ \BBA{} Hairer}{{\APACyear {1996}}}}
 \APACbibcite{wanner_solving_1996}{\citeauthoryear {Wanner\ \BBA{} Hairer}{Wanner\ \BBA{} Hairer}{{\APACyear {1996}}}}
-\gdef \@abspage@last{39}
+\bibcite{yeakel_generalized_2015}{\citeauthoryear {Yeakel\ \BBA{} Mangel}{Yeakel\ \BBA{} Mangel}{{\APACyear {2015}}}}
+\APACbibcite{yeakel_generalized_2015}{\citeauthoryear {Yeakel\ \BBA{} Mangel}{Yeakel\ \BBA{} Mangel}{{\APACyear {2015}}}}
+\gdef \@abspage@last{41}
