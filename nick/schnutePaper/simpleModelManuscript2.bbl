@@ -769,6 +769,65 @@ Schnute, J\BPBI T.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Scrucca%
+}{%
+Scrucca%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+scrucca_ga_2013}
+\APACinsertmetastar {%
+scrucca_ga_2013}%
+\begin{APACrefauthors}%
+Scrucca, L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{{\APACmonth{04}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{GA}: {A} {Package} for {Genetic} {Algorithms} in {R}}
+  {{GA}: {A} {Package} for {Genetic} {Algorithms} in {R}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Statistical Software}{53}{}{1--37}.
+\newblock
+\begin{APACrefURL} [{2022-01-17}]\url{https://doi.org/10.18637/jss.v053.i04}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.18637/jss.v053.i04} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Scrucca%
+}{%
+Scrucca%
+}{%
+{\protect \APACyear {2017}}%
+}]{%
+scrucca_extensions_2017}
+\APACinsertmetastar {%
+scrucca_extensions_2017}%
+\begin{APACrefauthors}%
+Scrucca, L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {On {Some} {Extensions} to {GA} {Package}: {Hybrid}
+  {Optimisation}, {Parallelisation} and {Islands} {EvolutionOn} some extensions
+  to {GA} package: hybrid optimisation, parallelisation and islands evolution}
+  {On {Some} {Extensions} to {GA} {Package}: {Hybrid} {Optimisation},
+  {Parallelisation} and {Islands} {EvolutionOn} some extensions to {GA}
+  package: hybrid optimisation, parallelisation and islands evolution}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The R Journal}{9}{1}{187--206}.
+\newblock
+\begin{APACrefURL}
+  [{2022-01-17}]\url{https://journal.r-project.org/archive/2017/RJ-2017-008/index.html}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Soetaert%
 , Petzoldt%
 \BCBL {}\ \BBA {} Setzer%
@@ -825,6 +884,36 @@ Stein, M.%
 \APACjournalVolNumPages{Technometrics}{29}{2}{143--151}.
 \newblock
 \APACrefnote{Publisher: Taylor \& Francis}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Walters%
+\ \BBA {} Ludwig%
+}{%
+Walters%
+\ \BBA {} Ludwig%
+}{%
+{\protect \APACyear {1994}}%
+}]{%
+walters_calculation_1994}
+\APACinsertmetastar {%
+walters_calculation_1994}%
+\begin{APACrefauthors}%
+Walters, C.%
+\BCBT {}\ \BBA {} Ludwig, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1994}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Calculation of {Bayes} posterior probability
+  distributions for key population parameters} {Calculation of {Bayes}
+  posterior probability distributions for key population parameters}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Canadian Journal of Fisheries and Aquatic
+  Sciences}{51}{3}{713--722}.
+\newblock
+\APACrefnote{Publisher: NRC Research Press Ottawa, Canada}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

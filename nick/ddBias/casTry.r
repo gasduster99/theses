@@ -31,6 +31,21 @@ FBbar = with_value(FBbar, "B", Bbar)
 FBbar = with_value(FBbar, "F", ysym("FF"))
 #
 dFBdF = deriv(FBbar, "FF")
+dFBdFBot = function(FF, M, k, w, W, alpha, beta, gamma){ eval(as_r(dFBdF)) }
+dFBdFMee = function(FF, M, k, w, W, alpha, beta, gamma){
+	#
+	z = FF+M
+	kr = k*W/w
+	#
+	one = ( (z*(z+k))/(alpha*w*(z+kr)) )^gamma
+	two = (gamma*FF/alpha/w) * ((z*(z+k))/(alpha*w*(z+kr)))^(gamma-1)
+	three = kr*(k-kr)/((z+kr)^2)
+	
+	#
+	return( (1-one-two*(1+three))/beta/gamma )
+} 
+
+#
 FMsy = function(M, k, w, W, alpha, beta, gamma){ 
 	uniroot(function(FF){ eval(as_r(dFBdF)) }, c(0, 10))$root 
 }

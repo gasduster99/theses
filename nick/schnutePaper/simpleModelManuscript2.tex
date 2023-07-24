@@ -931,8 +931,8 @@ upon RP inference.
 %	\item \shortcite{gramacy_surrogates_2020} The goal is to guarantee a certain degree of spread in the design, 
 %	while otherwise enjoying the properties of a random uniform sample.
 %	\item \shortcite{devon_lin_latin_2015}  Construction and properties.
-%	\item \shortcite{stein_large_1987} large smaple props. 
-%	\item Monotinicity: Latin hypercube sampling yields a smaller variance of the sample mean than simple random sampling
+%	\item \shortcite{stein_large_1987} large sample props. 
+%	\item Monotonicity: Latin hypercube sampling yields a smaller variance of the sample mean than simple random sampling
 %	\item \shortcite{owen_central_1992} CLT
 %\end{itemize}
 
@@ -940,7 +940,7 @@ upon RP inference.
 The goal of space filling design in this setting is to extend the notion of the 
 random sample (and its desirable parameter estimation properties) across the 
 simulated RP domain so as to represent the simulated space as well as possible \shortcite{gramacy_surrogates_2020}.
-The simple random sample is the gold standard of classical unbiased parameter 
+The simple random sample is the classical approach to unbiased parameter 
 estimation, however simple randomness is patchy, often sampling some regions 
 of design space quite densely, while leaving other regions of design space empty. 
 Space filling designs aim to preserve (or enhance) parameter estimation properties 
@@ -1171,7 +1171,7 @@ given $B_0$, $M$, and $F^*$.
 Under the Schnute model, let $\mathcal{F}$ and $\mathcal{B}$ represent regular grids on
 %Letting $\mathcal{F}$ and $\mathcal{B}$ be equally spaced grids, of size $n$, on 
 \mbox{$\frac{F^*}{M}\in(0.25, 4)$} and \mbox{$\frac{B^*}{B_0}\in(0.15, 0.7)$}
-respectively which can serve as the scaffolding for computing an approximate LHS
+respectively which can serve as the scaffolding for computing an approximate LHS.
 
 %
 Since it is not practical to invert $\zeta(\gamma)$, a uniform sample in 
@@ -1205,11 +1205,11 @@ value of $\gamma$; below which productivity is negative.}
 %
 Above, $t$ is the density of the three parameter location-scale family Student's $t$ 
 distribution with location $\mu$, scale $\sigma$, and degrees of freedom $\nu$. 
-$\bm{1}_{\gamma>\gamma_{min}}$ is an indicator function that serves to truncate 
+$\bm{1}_{\gamma>\gamma_{min}}$ is an indicator function that serves to truncate the 
 Student's $t$ distribution at the lower bound $\gamma_{min}$. 
 $\delta(\gamma_{min})$ is the Dirac delta function evaluated at $\gamma_{min}$, 
 which is scaled by the known value $\zeta_{min}$; this places probability mass 
-$\zeta_{min}$ at the point $\gamma_{min}$. Since sampling from Student's $t$ 
+$\zeta_{min}$ at the point $\gamma_{min}$. Since sampling from a Student's $t$ 
 distribution is readily doable, sampling from a truncated Student's $t$ mixture 
 only requires slight modification. 
 
@@ -1266,11 +1266,19 @@ minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
 \end{wrapfigure}
 %{\color{red}Connect $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ to overall algorithm.}
 
-Fitting the distribution $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ for 
-use generating $\gamma^*$ values at a specific $F^*$ and $M$ releases the 
-need to invert $\zeta$. $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$, together with 
-the structure in Eq. (\ref{abgSys}), allows for the collection of an approximate
-LHS sample via the algorithm seen in Algorithm (\ref{lhsAlg}).%Figure (\ref{sudoCode}). 
+
+%Fitting the distribution $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ for 
+%use generating $\gamma^*$ values at a specific $F^*$ and $M$ releases the 
+%need to invert $\zeta$. 
+%using $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ 
+%Furthermore, $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$, taken together with 
+The distribution $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ is fit for use in 
+generating $\gamma^*$ random variates at a specific $F^*$ and $M$. This approximation 
+releases the need to invert $\zeta$ w.r.t $\gamma$ by using samples of $\gamma^*$ values to 
+generate approximatly uniform samples of $\zeta(\gamma^*)$. By sampling approximatly 
+uniform $\zeta(\gamma^*)$ random variates in this way, and making use of the structure in Eq. (\ref{abgSys}), 
+%allows for the collection of 
+an approximate LHS sample can be collected via Algorithm (\ref{lhsAlg}). %Figure (\ref{sudoCode}). 
 
 %
 $\frac{F^*}{M}$ is drawn uniformly from $\mathcal{F}_i$. Conditioning on the 
@@ -1382,13 +1390,13 @@ have been computed for all $i\in[1,...,n]$.
 
 %
 Since the behavior of RP inference, under misspecified models, will vary in 
-yet-unknown ways, the exact sampling design density may be hard to know a'priori. 
+yet-unknown ways, the exact sampling design density may be hard to know a priori. 
 Several factors, including the particular level of observation uncertainty, 
 high variance (i.e. hard to resolve) features of the response surface, or 
 simply "gappy" instantiations of the initial LHS design may necessitate 
 adaptive design refinement, to accurately describe RP biases. Given the 
 temperamental relationship between RPs and productivity parameters in the 
-Schnute model, a recursive refinement algorithm, that makes use of the 
+Schnute model, a recursive refinement algorithm that makes use of the 
 previously described LHS routine, is developed. 
 
 %
@@ -1510,12 +1518,15 @@ designs in this way until the maximin distance falls below the desired level.
 %
 
 %
-At its core, a metamodel is simply a model of a mapping of inputs to outputs.
-A metamodel provides a specific representation of an ontology of the modeled 
-mapping. %the mapping %that can be seen to form
-By modeling the mapping as a statistical model, and simulating examples of the 
-mapping, the inferential infrastructure of the statistical model is used to 
-empirically learn an effective ontology of the system. %, based on simulated examples of the mapping. 
+At its core, a metamodel is simply a model of some mapping of inputs to outputs 
+(the mapping itself is typically defined by a computer model). By modeling the 
+mapping with a statistical model (that explicitly defines the relevant features of the 
+mapping) a metamodel defines a specific ontology for the mapping.  
+%representation of an ontology of the modeled mapping. %the mapping %that can be seen to form
+%By modeling the mapping as a statistical model, and 
+By simulating examples of the mapping, the inferential infrastructure of the 
+statistical model is used to empirically learn an effective emulation of the 
+mapping within the ontology defined by the statistical model. %, based on simulated examples of the mapping. 
 The predictive infrastructure of the statistical model is then useful as an 
 approximate abstraction of the system itself to better understand the system
 through further data collection, cheap approximation of the mapping, and/or study 
@@ -1534,7 +1545,7 @@ of the mapping itself.
 %	\item an ontology is a way of showing the properties of a subject area and how they are related, 
 %		by defining a set of concepts and categories that represent the subject. 
 %	\item A valid metamodel is an ontology, but not all ontologies are modeled explicitly as metamodels
-%	\item An explicite ontology.
+%	\item An explicit ontology.
 %\end{itemize}
 %\item what do GPs do
 %\begin{itemize}
@@ -1552,20 +1563,20 @@ of the mapping itself.
 %\end{itemize}
 
 %
-In this setting, the aim of metamodeling is to study how well RPs are infered 
+In this setting, the aim of metamodeling is to study how well RPs are inferred 
 when typical two parameter models of productivity (Logistic and BH) are 
 misspecified for populations that are actually driven by more complicated 
 dynamics. The simulation design, $\bm{X}$, provides a sample of different 
 population dynamics that are driven by three parameter production functions 
 broadly in RP space. By simulating index of abundance data from the three 
 parameter model, and fitting those data with the two parameter production model, we %one can 
-observe particular instances of how well RPs are infered at the given 
-misspecification of the two parameter production model relative to the true three parameter 
+observe particular instances of how well RPs are inferred at the given 
+misspecification of the two parameter model relative to the true three parameter 
 production model. By gathering all of the simulated instances of how RPs are 
-infered (under the two parameter model), %under misspecified two parameter models
+inferred (under the two parameter model), %under misspecified two parameter models
 we form a set of example mappings to train a metamodel which represents the 
 mapping of true RPs (under the three parameter model) to estimates of RPs under the 
-misspecified two parameter production model. The metamodel is essentually a surrogate 
+misspecified two parameter production model. The metamodel is essentially a surrogate 
 for inference under the misspecified two parameter production model that 
 controls for the specific degree of model misspecification. 
 %the way in whthe nature of  
@@ -1583,10 +1594,10 @@ through the choice of a covariance (or correlation) function which defines the
 relationship between locations in the input space. %an index set. Typically the index set is spatial for GPs,
 %with points closely related in the index set resulting in correlated effects in
 %the model. 
-Typically correlation functions are specifed so that points closely related in 
+Typically correlation functions are specified so that points closely related in 
 space result in correlated effects in the model. In this setting the inputs to 
-the GP metamodel are the space of reference points with define the simulated 3 
-parameter production models. 
+the GP metamodel are the space of reference points which define the simulated 
+three parameter production models. 
 %The GP model then implies a multivariate normal response distribution on the
 %observations of the model with a correlated error structure defined by the
 %modeled covariance function.
@@ -1597,7 +1608,7 @@ design location of the simulation, fitting the restricted two parameter model
 results in a maximum likelihood estimate (MLE; and associated estimation 
 uncertainty) of each of the productivity parameters
 (i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
-% as well asestimation uncertainty (via the inverted Fisher information).
+% as well as estimation uncertainty (via the inverted Fisher information).
 %At each design location of the simulation, fitting the restricted two parameter
 %model results in a MLE of each of the productivity parameters
 %(i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
@@ -1687,209 +1698,7 @@ model $\hat B^*=\frac{\hat K}{2}$ and $\hat F^*=\frac{\hat r}{2}$.
 %
 Applying the metamodel predictive surfaces on the scale of RP estimates allows for the 
 quantification of estimation bias that is induced by fitting a misspecified two parameter 
-production model to indcies of abundance generated under three parameter productivity.
-%BH model 
-%%ication of two parameter production functions. 
-%%Below 
-%RP bias is quantified by the following relative measure of bias, similar to a percent error calculation.
-%%
-%\begin{align}
-%\text{Relative Bias} = \frac{\hat{RP}-RP}{RP}
-%\end{align}
-%%
-%Above $RP$ is a stand-in for the true value of any of the biological
-%reference points under the three parameter data generating production model, 
-%and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the 
-%%BH model. %two parameter restricted cases.
-
-
-
-%{\color{blue}
-%\begin{itemize}
-%	\item prod parameter to RP transformation
-%	\item closing statement about uses
-%\end{itemize}
-%}
-
-
-%of RPs %productivity parameters
-%with respect to model misspecification of typical two parameter models of 
-%productivity (Logistic and BH). 
-%
-%relative to the model specification 
-
-%%
-%%For assessing inference of productivity parameters over the simulated design %, as seen in Figure (\ref{rpGrid}), 
-%A GP model is used as a flexible metamodel of how inference responds to various 
-%degrees of model misspecification of the restricted model. 
-%%
-%Design locations, $\bm{X}$, specify the degree of model misspecification relative 
-%to the restricted model.
-%%
-%At each design location of the simulation fitting the restricted two parameter 
-%model results in a MLE of each of the productivity parameters 
-%(i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
-%%under the restricted two parameter production model 
-%%
-%Furthermore, since the maximum likelihood estimator is a random variable, 
-%MLE standard error estimates, on the variance scale (via the inverted Fisher 
-%information) are also outputs of the simulation.
-%%
-%Let $\textbf{y}$ be a vector collecting the fitted MLEs for one of the 
-%productivity parameters, and let $\bm{\omega}$ be a vector of estimates of the 
-%estimator variances at each $\textbf{y}$. 
-%%
-%This simulation can be seen as the following mapping
-%\begin{equation}
-%\bm{X} \mapsto \textbf{y} \pm \sqrt{\bm{\omega}}.
-%\end{equation}
-%%Using the simulation to train a GP metamodel of 
-%By constructing a metamodel of this mapping, it allows for a full
-%characterization of inference under the misspecified restricted models.
-%
-%%
-%A GP is a stochastic process generalizing the multivariate normal distribution 
-%to an infinite dimensional analog. GPs are often specified primarily through the
-%choice of a covariance (or correlation) function which defines the relationship 
-%between locations in an index set. Typically the index set is spatial for GPs, 
-%with points closely related in the index set resulting in correlated effects in 
-%the model. In this setting the model is over the space of reference points. 
-%A GP model implies an $n$ dimensional multivariate normal distribution on the 
-%observations of the model with a correlated error structure defined by the 
-%modeled covariance function.
-
-
-
-
-
-
-
-
-
-
-%Letting $\textbf{y}$ be a vector collecting the fitted log productivity parameter MLEs under
-%the restricted model, and further letting $\bm{\omega}$ be a vector of the MLE standard error
-%estimates, on the variance scale (via the inverted Fisher information of the production model
-%log likelihood).
-%The simulation produces the following mapping of
-%%
-%
-%
-%
-%
-%a full 
-%characterization of inference should To capture the most complete picture of statistical 
-%MLE standard error estimates, on the variance scale (via the inverted Fisher information)
-%
-%
-%
-%The the farther RP space. 
-%
-%%As previously established, in Section (\ref{modelFit}), the 
-%%biological parameters of interest are the Schaefer model's $log(r)$ and $log(K)$ 
-%parameters. Since the estimates of these parameters are random variables, with 
-%variances given by the inverse of the observed fisher information, 
-%interpolation of MLEs requires paying additional attention to propagating 
-%estimates of uncertainty into the metamodel. 
-
-%%Motivate gaussianity
-%
-%%
-%A GP is a stochastic process generalizing the normal distribution to an
-%infinite dimensional analog. GPs are often specified primarily through the
-%choice of a covariance function which defines the relationship between
-%locations in an index set. Typically the index set is spatial for GPs, and in
-%this setting the model is across the reference point space, 
-%$\left(F^*, \frac{B^*}{\bar B(0)}\right)$, of the three parameter
-%PT data generating model. A GP model implies an $n$ dimensional multivariate 
-%normal distribution on the observations of the model and the covariance function 
-%fills out the covariance matrix for the observations.
-%
-%%Since covariance between $log(r)$ and $log(K)$ are often indistinguishable 
-%%form 0 the interpolator treats
-%Modeling the estimates of $log(r)$ and $log(K)$ with independent GP models is 
-%used to extend analysis of all major biological RP over the simulated grid. 
-%Let $\hat\mu$ be the maximum likelihood estimate (MLE) of either $log(r)$ or 
-%$log(K)$. Additionally let $\hat\omega$ be the inverted Hessian information of 
-%the log likelihood evaluated at $\hat\mu$. 
-%
-%%
-%Each grid location of the simulation produces a single fitted $\hat\mu_i$ at an
-%associate $\left(F^*, \frac{B^*}{\bar B(0)}\right)$ location with 
-%$i\in\{1,...,n\}$. $\bm{\hat\mu}$ is jointly modeled over the space of 
-%reference points as the following GP,
-%%Here the following GP model is used,
-
-
-%%
-%Understanding the effects of productivity model misspecification amounts to 
-%understanding 
-%
-%%
-%Each design location of the simulation results in a MLE of each of the productivity
-%parameters under the restricted two parameter production model (i.e. Schaefer:[$log(r)$, $log(K)$],
-%BH:[$log(\alpha)$, $log(\beta)$]). Since the maximum likelihood estimator is a random 
-%variable a full characterization of inference To capture the most complete picture of statistical 
-%MLE standard error estimates, on the variance scale (via the inverted Fisher information)
-%
-%A full characterization of the behavior of statistical 
-%inference must also account for estimation uncertainty so each MLE,  
-%
-%Further, since the simulated process involves statistical inference
-%%
-%For assessing the productivity parameters over the full region of simulated RPs %, as seen in Figure (\ref{rpGrid}), 
-%a GP model is used as a flexible metamodel for describing the overall 
-%behavior of inference under the restricted model.
-
-
-
-%%
-%Letting $\textbf{y}$ be a vector collecting the fitted log productivity parameter MLEs under 
-%the restricted model, and further letting $\bm{\omega}$ be a vector of the MLE standard error 
-%estimates, on the variance scale (via the inverted Fisher information of the production model 
-%log likelihood). 
-%The simulation produces the following mapping of 
-%%
-%\begin{equation}
-%\bm{X} \mapsto \textbf{y} \pm \bm{\omega}
-%\end{equation}
-
-
-%%
-%Each design location of the simulation produces estimates of two productivity 
-%parameters under the restricted two parameter production model (i.e. Schaefer:($r$, $K$), 
-%BH:($\alpha$, $\beta$)). 
-
-
-
-%%
-%For assessing the productivity parameters over the full region of simulated RPs %, as seen in Figure (\ref{rpGrid}), 
-%a GP model is used as a flexible metamodel for describing the overall 
-%behavior of inference under misspecified two parameter productivity models.
-%%
-%Each design location of the simulation produces an estimate of each of the productivity   
-%parameters under the restricted two parameter production model (i.e. Schaefer:($log(r)$, $log(K)$), 
-%BH:($log(\alpha)$, $log(\beta)$)).
-%
-%%
-%\begin{equation}
-%\bm{X} \mapsto \textbf{y} \pm \bm{\omega}
-%\end{equation}
-
-%\begin{equation*}
-%\underbrace{\left(F^*, \frac{B^*}{\bar B(0)}\right)}_{\text{PT Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\hat F^*, \frac{\hat B^*}{\bar B(0)}\right)}_{\text{Schaefer Estimate}}
-%\end{equation*}
-
-
-
-%
-%As previously established, in Section (\ref{modelFit}), the biological parameters 
-%of interest are the Schaefer model's $log(r)$ and $log(K)$ parameters. Since the 
-%estimates of these parameters are random variables, with variances given by the 
-%inverse of the observed fisher information, interpolation of MLEs requires 
-%paying additional attention to propagating estimates of uncertainty into the 
-%metamodel.
-
+production model to indices of abundance generated under three parameter productivity.
 
 %
 \subsection{Catch \label{catch}}	
@@ -2026,8 +1835,7 @@ $~$
 }
 \label{catch45}
 \end{figure}
-%
-\clearpage
+%\clearpage
 %
 When $\chi=0$, the relative fishing rate is a constant at 1 to create a low 
 contrast simulation environment. As $\chi$ increases Eq (\ref{relFish1}) 
@@ -2063,8 +1871,98 @@ the production model ODE.
 %	\item remake picture w/o PT references
 %\end{itemize}
 
+%
+%\clearpage
+\subsection{Two Parameter Production Model Inference\label{modelFit}}
 
-\subsection{\color{blue} Inference details?}
+%
+The simulated mapping results from fitting an intentionally misspecified two 
+parameter production model to index of abundance data that are generated from 
+a more complex three parameter model of productivity. 
+%The simulation results in an intentionally (and controlled) 
+%misspecified two parameter production model. 
+%The goal of model fitting is to assess how the biological parameters of the
+%two parameter production model behave under MLE inference when index of 
+%abundance data are generated from more complex models of productivity. % three parameter models, to PT data.
+Thus, let $I_t$ be an index of abundance simulated from the three parameter PT 
+or Schnute production models at time $t\in\{1,2, 3,..., T\}$. However the 
+fitted model is specified to be intentionally misspecified so that the fitted 
+model is driven by a two parameter Schaefer, or BH production model respectively. %of productivity. 
+
+%
+The observation model for the fitted model is log-normal such that,
+%
+\begin{align}
+I_t| q, \sigma^2, \bm{\theta} \sim LN(qB_t(\bm{\theta}), \sigma^2).
+\end{align}
+%
+$B_t(\bm{\theta})$ is defined by the solution of the ODEs defined by the Schaefer, or BH models.
+%
+For the Schaefer model $\bm{\theta}=[r, K]$, and for the BH model $\bm{\theta}=[\alpha, \beta]$. 
+%%
+%\begin{align}
+%\frac{dB}{dt} = r B \left(1-\frac{B}{K}\right) - FB. \label{odeS}
+%\end{align}
+%
+From the perspective of the fitted model, the observed $I_t$ are assumed independent 
+conditional on $q$, $\sigma^2$, $r$, $K$ and the two parameter ODE model for biomass. 
+Thus the log likelihood can be written as
+%
+\begin{align}
+\log\mathcal{L}(q, \sigma^2, \bm{\theta}; I) = - \frac{T}{2}\log(\sigma^2) - \frac{1}{2\sigma^2}\sum_t \log\left(\frac{I_t}{qB_t(\bm{\theta})}\right)^2. \label{logLike}
+\end{align}
+
+%
+In this setting, $q$ is fixed at the true value of 0.0005 to focus on the
+inferential effects of model misspecification on biological parameters.
+$\sigma^2$ and $\bm{\theta}$ are reparameterized to the log scale and fit via MLE. 
+%$\sigma^2$ is allowed to be fit to assess overall model fit. 
+Reparameterizing the parameters to the log scale improves the reliability 
+of optimization, in addition to facilitating the use of Hessian information 
+for estimating MLE standard errors.
+%$r$ and $K$ are reparameterized as $log(r)$ and $log(K)$ to improve the regularity of 
+
+%
+Given that the biological parameters enter the likelihood via a nonlinear ODE,
+and further the parameters themselves are related to each other nonlinearly,
+the likelihood function can often be difficult to optimize. A hybrid optimization
+scheme is used to maximize the log likelihood to ensure that a global MLE solution
+is found. The R package GA \shortcite{scrucca_ga_2013, scrucca_extensions_2017} is
+used to run a genetic algorithm to explore parameter space globally.
+Optimization periodically jumps into the L-BFGS-B local optimizer to refine
+optima within a local mode. The scheme functions by searching globally, with the genetic
+algorithm, across many initial values for starting the local gradient-based optimizer. 
+The genetic algorithm serves to iteratively improve hot starts for the local 
+gradient-based optimizer. Additionally, optimization is only considered to be converged
+when the optimum results in an invertible Hessian at the found MLE.
+
+%%
+%{\color{blue}
+%
+%%\ref{appMLE}
+%In Appendix A a profile likelihood method for estimating all of the
+%parameters of the model is derived. The profile likelihood technique greatly
+%improves the reliability of local optimizers when fitting the biological parameters
+%alongside additional nuisance parameters. The catchability parameter $q$ has the
+%effect of rescaling biomass which can often function similarly to the role of the
+%carrying capacity parameter $K$. Thus, the structure of the likelihood may
+%confound $q$ and $K$, and for some data these parameters may only be weakly
+%identifiable. Posing the model in a Bayesian context provides a convenient
+%mechanism for managing these weak identifiability issues. In a tactful Bayesian
+%formulation $q$ and $\sigma^2$ may then be marginalized out of the joint posterior
+%to yield fast and reliable inference \shortcite{walters_calculation_1994}. %deyoreo_integrating_2012}. %deyoreo_integrating_nodate}. %({\color{red} Cite Maria DeYorio pdf}).
+
+
+%{\color{red} $q$ procedure}
+%  
+%%
+%By working with the resulting models parameterized in terms of 
+%$\log(\tilde F^*)$ it tends to improve optimization convergence. Furthermore, 
+%the normality this induces on the log scale, via the Laplace approximation, 
+%yields Log-Normality on $\tilde F^*$, as seen in Appendix {\ref{appA}}. 
+
+
+%}
 
 %
 %\clearpage
@@ -2090,8 +1988,8 @@ the production model ODE.
 An important (and often overlooked) implementation detail is the solution to the
 ODE which defines the progression of biomass through time. % (See Eq(\ref{ode})). 
 As a statistical model it is of paramount importance that this ODE not only have a
-solution, but also that the solution be unique. %Of primary concern, uniqueness
-%of the ODE solution is necessary for well conditioned inference. %of identifiability of the statistical model.
+solution, but also that the solution be unique. Of primary concern, uniqueness
+of the ODE solution is necessary for well conditioned inference. %of identifiability of the statistical model.
 
 %
 If the form of $\frac{dB}{dt}$ is at least Lipschitz continuous, then the
@@ -2104,9 +2002,10 @@ the smallest Lipschitz constant of $\frac{dB}{dt}$ will be the sum of the
 constants for each of the terms $P(B)$ and $Z(t)B(t)$ separately. Typically any 
 choice of $P(B)$ will be continuously differentiable, which implies Lipschitz 
 continuity. % (since the set of continuous differentiable functions is a subset of the set of Lipschitz continuous functions).
-At a minimum $Z(t)$ typically contains fishing mortality as a function of time $F(t)$ to model catch in time as $C(t)=F(t)B(t)$.
-$Z(t)$ may or may not contain $M$, but typically $M$ is modeled as stationary in 
-time and does not pose a continuity issue, unlike some potential assumptions for $C(t)$. 
+At a minimum $Z(t)$ typically contains fishing mortality as a function of time 
+$F(t)$ to model catch in time as $C(t)=F(t)B(t)$. $Z(t)$ may or may not contain 
+$M$, but typically $M$ is modeled as stationary in time and does not pose a 
+continuity issue, unlike some potential assumptions for $C(t)$. 
 %However, $Z(t)$ typically models fishing mortality as a function of time which . 
 %(by more strict definition of continuity than Lipschitz continuity, and furthermore cont
 %Thus, the assumed form of $P(B)$ does not typically introduce continuity concerns,
@@ -2115,32 +2014,53 @@ time and does not pose a continuity issue, unlike some potential assumptions for
 %
 In practice $C(t)$ is determined by a series of observed, assumed known, catches. 
 Catch observations are typically observed on a quarterly basis, but
-in practice may not be complete for every quarter of the modeled period. It is
-overwhelmingly common to discretized the ODE via Euler's method with integration
-step sizes to match the observation frequency of the modeled data. This is often
-convenient but can present several issues. This strategy often pushes the
-assumption of catch continuity under the rug, but for regularity of the %identifiability of the
-statistical model an implicit assumption of continuity of the catches is
-required. While mechanistically at the finest scale fishers must only catch
-discrete packets of biomass (i.e. individual fish), it is sensible to consider
-catches as accruing in a continuous way. %at the quarterly (or yearly) scale 
-Furthermore any assumption of continuity will be required to be at least
-Lipschitz continuous for the required regularity of the model.
+in practice may not be complete for every quarter (or year) of the modeled 
+period. It is overwhelmingly common to discretize the ODE in time via Euler's 
+method with integration step sizes to match the observation frequency of the 
+modeled data. This is often computationally convenient when the underlying species 
+dynamics are resonably well behaved, however when the dynamics model is used 
+as a statistical model, with the goal of inferring the behavior of the 
+underlying species dynamics, the regularity of the dynamics are not guaranteed. 
+%general evaluating  can present several issues. 
+%strategy often pushes the assumption of catch continuity under the rug. However, 
+An implicit assumption of continuity of catch in time provides the neccessary 
+regularity for the statistical model. Furthermore a continuous handling of the 
+dynamics provides improved accruacy in evaluating the ODE, particually when 
+inferring productivity parameters which largely control the regularity of the 
+dynamics. 
+
+%evaluation of the assumed dynamics as well as improved accruacy in evaluating the assumed dynamics
+%Furthermore 
+%for regularity of the %identifiability of the
+%statistical model an implicit assumption of continuity of the catches is
+%required. 
+%
+%Fish come in different sizes that vary continuously, right? Is there some 
+%argument to be made that continuity is a reasonable approximation because 
+%catch does not involve single fish, but rather a collection of fish with 
+%non-identical weights?
+%
+%While mechanistically at the finest scale fishers must only catch
+%discrete packets of biomass (i.e. individual fish), it is sensible to consider
+%catches as accruing in a continuous way. %at the quarterly (or yearly) scale 
+%Furthermore any assumption of continuity will be required to be at least
+%Lipschitz continuous for the required regularity of the model.
 
 %
-Here I assume catches accrue linearly between observed catches. This assumption
-defines the catch function as a piecewise linear function of time, with the
-smallest Lipschitz constant for the catch term defined by the steepest segment
-of the catch function. This assumption represents one of the simplest ways of
-handling catch, while retaining Lipschitz continuity overall. Furthermore linearly
-interpolated catch is adequately parsimonious for the typical handling of catches.
+While there are many ways to handle catch continuity, here I assume that catches 
+accrue linearly between observed catches. This assumption defines the catch 
+function as a piecewise linear function of time, with the smallest Lipschitz 
+constant for the catch term defined by the steepest time segment of the catch 
+function. This assumption represents one of the simplest ways of handling catch, 
+while retaining Lipschitz continuity overall. Furthermore linearly interpolated 
+catch is adequately parsimonious for the typical handling of catches.
 
 %
 \subsubsection{Integration and Stiffness}
 
 %
 As previously mentioned, the overwhelming majority of implementations of
-population dynamics models discretized the ODE using Euler's method with the
+stock assessment models discretized the ODE using Euler's method with the
 integration step sized fixed so as to match the observation frequency. In this
 setting we explore model parameterizations that explore the full extent of
 biologically relevant reference points. This exercise produces some
@@ -2150,18 +2070,18 @@ combinations of parameters that result in numerically stiff ODEs.
 The concept of stiffness in ODEs is hard to precisely characterize.
 %({\color{red}cite}). Hairer and Wanner [5, p. 2] 
 \shortciteA[p.2]{wanner_solving_1996} describe stiffness in the
-following pragmatic sense, "Stiff equations are problems for which explicit
-methods don't work". It is hard to make this definition more mathematically
+following pragmatic sense, ``Stiff equations are problems for which explicit
+methods don't work''. It is hard to make this definition more mathematically
 precise, but this a consistent issue for models of fast growing species in 
 the low contrast simulation. 
 % parameterized
 %so that $\zeta$ is greater than about $\frac{1}{2}$. 
 Euler's method, as often implemented, is particularly poorly suited for these 
 stiff regions of parameter space. In these stiff regions it is necessary to 
-integrate the ODE with an implicate integration method.
+integrate the ODE with an implicit integration method.
 
 %
-Several of the most common implicate methods were tried including the
+Several of the most common implicit methods were tried including the
 Livermore Solver for ODEs (lsode), and the Variable Coefficient ODE Solver
 (vode) as implemented in the deSolve package of R \shortcite{soetaert_solving_2010}. 
 The difference between implicit solvers is negligible, while explicit
@@ -2315,7 +2235,7 @@ logistic curve is symmetric about $B^*$, the Schaefer model must fix the value o
 $\frac{B^*}{\bar B(0)}$ at the constant $0.5$ for any value of $F^*$. So 
 the line through RP space defined by $\frac{B^*}{\bar B(0)}=0.5 ~~ \forall ~~ F^*$, 
 defines the subset of RP space where $\gamma=2$ and where the PT model is 
-equivalent to the Schaefer model. For brevity this subset of RP were $\frac{B^*}{\bar B(0)}=0.5$ 
+equivalent to the Schaefer model. For brevity this subset of RP where $\frac{B^*}{\bar B(0)}=0.5$ 
 will be referred to as the ``Schaefer set''. Thus simulated data that are 
 generated along the Schaefer set will be the only data that are not 
 misspecified relative to the Schaefer model; as PT data are simulated 
@@ -2339,7 +2259,7 @@ by transforming metamodel predictions via Eq. (\ref{ptRP}), metamodeled predicti
 are obtained for Schaefer RPs. By further subtracting the true data generating 
 PT RPs from the predicted Schaefer RPs at each point in RP space a pattern of 
 inferential RP bias, induced by model misspecification of the Schaefer model, 
-can be seen to be seen. % in Figure (\ref{arrowsPT}).
+can be seen. %to be seen. % in Figure (\ref{arrowsPT}).
 
 %using the relevant transformations given in Eq. (\ref{ptRP}) , \ref{BratS}, \ref{FmsyS}) with $\gamma$
 %fixed to the restricting case.
@@ -2379,13 +2299,13 @@ region.
 Since $\frac{B^*}{B_0}$ must be 0.5 under the Schaefer model, biases in the 
 $\frac{B^*}{B_0}$ direction must simply map vertically onto the Schaefer set.
 Due to this simplified RP geometry under the Schaefer model, the degree of bias in 
-$\frac{B^*}{B_0}$ estimation is entirely defined solely by the degree of model 
+$\frac{B^*}{B_0}$ estimation is defined solely by the degree of model 
 misspecification irrespective of $F^*$. Furthermore, 
 %since the Schaefer line is simply a constant at $\frac{B^*}{B_0}=0.5$, 
 the closest possible point along the Schaefer set that Schaefer model inference %under a Schaefer model 
 could map RPs would be the perfectly vertical mapping. This pattern only contains the 
 strictly necessary bias present in $\frac{B^*}{B_0}$, and zero bias in $F^*$. 
-Any deviation from this minimal bias pattern necessarily to be due to added bias in $F^*$.
+Any deviation from this minimal bias pattern is necessarily due to added bias in $F^*$.
 
 %
 The two simulation settings shown in Figure (\ref{arrowsPT}) are identical except 
@@ -2649,8 +2569,8 @@ Figure (\ref{contrastTrio}) shows metamodeled RP bias surfaces for inference
 under the BH model in the high contrast setting. The (\emph{left}) and 
 (\emph{bottom}) panels focus only on the $\frac{B^*}{\bar B(0)}$ and 
 $\frac{F^*}{M}$ components of bias respectively. In these panels bias is shown
-as relative bias, $\frac{\hat{RP}-RP}{RP}$, similar to a percent error calculation.
-Where $RP$ represents the true value of the three parameter RP, and $\hat{RP}$ 
+as relative bias, $\frac{\widehat{RP}-RP}{RP}$, similar to a percent error calculation.
+Where $RP$ represents the true value of the three parameter RP, and $\widehat{RP}$ 
 refers to the metamodel estimate.
 
 %
@@ -2834,7 +2754,7 @@ Ricker-like and Logistic-like models.
 %%\item Unlike the Schaefer models geometry the BH set has a geometry that will mix bias directions in the best case.
 %%
 %%\item some detail views in $B^*$, $B_0$, $F^*$, $?F_{SPR?}$, $MSY$
-%%\item ``safe'' regime similar to the high contrast minimal distance mapping for mild model misspcificaiton.
+%%\item ``safe'' regime similar to the high contrast minimal distance mapping for mild model misspecification.
 %%\item Ricker-like break point. Complete model failure beyond.
 %%\item what is going on with SRR when model completely fails.
 %%%\item mapping directly vertically is a minimum distance mapping given the 
@@ -2897,10 +2817,10 @@ Ricker-like and Logistic-like models.
 Results presented here generally agree with what is known about estimating
 growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
 These study's appreciate the role of contrast for estimating growth rates, 
-however struggle to make generally extensible conclusions since they focus only 
+however they struggle to make generally extensible conclusions since they focus only 
 on a handful of stocks that fall short of forming a random sample of the greater 
-population of possible stock behaviors. The LHS design methods presents here are 
-designed specifically to simulate a uniform representative sample of stocks broadly 
+population of possible stock behaviors. The LHS design methods presented here are 
+designed specifically to simulate a representative sample of stocks broadly 
 across the space of possible RPs. Furthermore, the simulation design, taken together 
 with the GP metamodel of productivity parmater estimates, allows this study to control 
 the degree of model misspecification and generalize conclusions about the behavior 
@@ -2918,7 +2838,7 @@ of productivity estimation within the production model setting presented.
 %\end{itemize}
 
 %
-In the presence of contrast $F^*$ estimation can enjoy very low bias even
+In the presence of contrast, $F^*$ estimation can enjoy very low bias even
 for a wide range of poorly specified models; conversely in the absence of contrast
 $F^*$ estimation can suffer very large bias even for slightly misspecified models.
 This pattern is particularly true for inference under the Schaefer model where the 
@@ -2959,7 +2879,7 @@ map from the true RPs onto restricted set of RPs under the two parameter model.
 Given the potential for model misspecification of RPs, a minimal distance 
 mapping of RPs represents a best-case scenario where the total bias of RPs, 
 when measured jointly, is minimized. That said, without recognizing the 
-geometry of how 2 parameter models of productivity limit RP space this may 
+geometry of how two parameter models of productivity limit RP space this may 
 lead to unintuitive implications in RP estimation. For example, due to the 
 shape of the BH RP set a minimal distance mapping ensures that if there is 
 bias in one of $\frac{B^*}{B_0}$ or $F^*$, there will necessarily be 
@@ -2967,7 +2887,7 @@ bias in the other RP. However under the Schaefer model, since the RP set is a
 constant in $\frac{B^*}{B_0}$, bias in $F^*$ is not adulterated in the 
 same way by bias in $\frac{B^*}{B_0}$ estimation. While models with 
 constant RPs, such as the logistic model $\frac{B^*}{B_0}=\frac{1}{2}$ or 
-the fox model $\frac{B^*}{B_0}=\frac{1}{e}$, are extremely limited, they 
+the Fox model $\frac{B^*}{B_0}=\frac{1}{e}$, are extremely limited, they 
 can be valuable tools for developing intuition precisely because they isolate 
 RP estimation in their free RPs from the correlated RP biases present in 
 models like the BH or Ricker model. 
@@ -2981,7 +2901,7 @@ with the metamodeled bias trends makes the BH model a naturally conservative
 estimator of RPs for most stocks. For most non-BH populations the BH model is 
 likely to make conservative errors in its estimates of $F^*$ and $\frac{B^*}{B_0}$. 
 The one notable exception to the conservatism of the BH model stands for data 
-generated in the cushing-like regime of Schnute RPs. In this regime the BH 
+generated in the Cushing-like regime of Schnute RPs. In this regime the BH 
 model tends to be fairly unbiased overall, however the bias that is present 
 for these populations tends to be overestimation in both RPs, leading to much 
 more severe management consequences for those populations.
@@ -3326,6 +3246,214 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%
 %%OLD
 %%
+
+%BH model 
+%%ication of two parameter production functions. 
+%%Below 
+%RP bias is quantified by the following relative measure of bias, similar to a percent error calculation.
+%%
+%\begin{align}
+%\text{Relative Bias} = \frac{\hat{RP}-RP}{RP}
+%\end{align}
+%%
+%Above $RP$ is a stand-in for the true value of any of the biological
+%reference points under the three parameter data generating production model, 
+%and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the 
+%%BH model. %two parameter restricted cases.
+
+
+
+%{\color{blue}
+%\begin{itemize}
+%	\item prod parameter to RP transformation
+%	\item closing statement about uses
+%\end{itemize}
+%}
+
+
+%of RPs %productivity parameters
+%with respect to model misspecification of typical two parameter models of 
+%productivity (Logistic and BH). 
+%
+%relative to the model specification 
+
+%%
+%%For assessing inference of productivity parameters over the simulated design %, as seen in Figure (\ref{rpGrid}), 
+%A GP model is used as a flexible metamodel of how inference responds to various 
+%degrees of model misspecification of the restricted model. 
+%%
+%Design locations, $\bm{X}$, specify the degree of model misspecification relative 
+%to the restricted model.
+%%
+%At each design location of the simulation fitting the restricted two parameter 
+%model results in a MLE of each of the productivity parameters 
+%(i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
+%%under the restricted two parameter production model 
+%%
+%Furthermore, since the maximum likelihood estimator is a random variable, 
+%MLE standard error estimates, on the variance scale (via the inverted Fisher 
+%information) are also outputs of the simulation.
+%%
+%Let $\textbf{y}$ be a vector collecting the fitted MLEs for one of the 
+%productivity parameters, and let $\bm{\omega}$ be a vector of estimates of the 
+%estimator variances at each $\textbf{y}$. 
+%%
+%This simulation can be seen as the following mapping
+%\begin{equation}
+%\bm{X} \mapsto \textbf{y} \pm \sqrt{\bm{\omega}}.
+%\end{equation}
+%%Using the simulation to train a GP metamodel of 
+%By constructing a metamodel of this mapping, it allows for a full
+%characterization of inference under the misspecified restricted models.
+%
+%%
+%A GP is a stochastic process generalizing the multivariate normal distribution 
+%to an infinite dimensional analog. GPs are often specified primarily through the
+%choice of a covariance (or correlation) function which defines the relationship 
+%between locations in an index set. Typically the index set is spatial for GPs, 
+%with points closely related in the index set resulting in correlated effects in 
+%the model. In this setting the model is over the space of reference points. 
+%A GP model implies an $n$ dimensional multivariate normal distribution on the 
+%observations of the model with a correlated error structure defined by the 
+%modeled covariance function.
+
+
+
+
+
+
+
+
+
+
+%Letting $\textbf{y}$ be a vector collecting the fitted log productivity parameter MLEs under
+%the restricted model, and further letting $\bm{\omega}$ be a vector of the MLE standard error
+%estimates, on the variance scale (via the inverted Fisher information of the production model
+%log likelihood).
+%The simulation produces the following mapping of
+%%
+%
+%
+%
+%
+%a full 
+%characterization of inference should To capture the most complete picture of statistical 
+%MLE standard error estimates, on the variance scale (via the inverted Fisher information)
+%
+%
+%
+%The the farther RP space. 
+%
+%%As previously established, in Section (\ref{modelFit}), the 
+%%biological parameters of interest are the Schaefer model's $log(r)$ and $log(K)$ 
+%parameters. Since the estimates of these parameters are random variables, with 
+%variances given by the inverse of the observed fisher information, 
+%interpolation of MLEs requires paying additional attention to propagating 
+%estimates of uncertainty into the metamodel. 
+
+%%Motivate gaussianity
+%
+%%
+%A GP is a stochastic process generalizing the normal distribution to an
+%infinite dimensional analog. GPs are often specified primarily through the
+%choice of a covariance function which defines the relationship between
+%locations in an index set. Typically the index set is spatial for GPs, and in
+%this setting the model is across the reference point space, 
+%$\left(F^*, \frac{B^*}{\bar B(0)}\right)$, of the three parameter
+%PT data generating model. A GP model implies an $n$ dimensional multivariate 
+%normal distribution on the observations of the model and the covariance function 
+%fills out the covariance matrix for the observations.
+%
+%%Since covariance between $log(r)$ and $log(K)$ are often indistinguishable 
+%%form 0 the interpolator treats
+%Modeling the estimates of $log(r)$ and $log(K)$ with independent GP models is 
+%used to extend analysis of all major biological RP over the simulated grid. 
+%Let $\hat\mu$ be the maximum likelihood estimate (MLE) of either $log(r)$ or 
+%$log(K)$. Additionally let $\hat\omega$ be the inverted Hessian information of 
+%the log likelihood evaluated at $\hat\mu$. 
+%
+%%
+%Each grid location of the simulation produces a single fitted $\hat\mu_i$ at an
+%associate $\left(F^*, \frac{B^*}{\bar B(0)}\right)$ location with 
+%$i\in\{1,...,n\}$. $\bm{\hat\mu}$ is jointly modeled over the space of 
+%reference points as the following GP,
+%%Here the following GP model is used,
+
+
+%%
+%Understanding the effects of productivity model misspecification amounts to 
+%understanding 
+%
+%%
+%Each design location of the simulation results in a MLE of each of the productivity
+%parameters under the restricted two parameter production model (i.e. Schaefer:[$log(r)$, $log(K)$],
+%BH:[$log(\alpha)$, $log(\beta)$]). Since the maximum likelihood estimator is a random 
+%variable a full characterization of inference To capture the most complete picture of statistical 
+%MLE standard error estimates, on the variance scale (via the inverted Fisher information)
+%
+%A full characterization of the behavior of statistical 
+%inference must also account for estimation uncertainty so each MLE,  
+%
+%Further, since the simulated process involves statistical inference
+%%
+%For assessing the productivity parameters over the full region of simulated RPs %, as seen in Figure (\ref{rpGrid}), 
+%a GP model is used as a flexible metamodel for describing the overall 
+%behavior of inference under the restricted model.
+
+
+
+%%
+%Letting $\textbf{y}$ be a vector collecting the fitted log productivity parameter MLEs under 
+%the restricted model, and further letting $\bm{\omega}$ be a vector of the MLE standard error 
+%estimates, on the variance scale (via the inverted Fisher information of the production model 
+%log likelihood). 
+%The simulation produces the following mapping of 
+%%
+%\begin{equation}
+%\bm{X} \mapsto \textbf{y} \pm \bm{\omega}
+%\end{equation}
+
+
+%%
+%Each design location of the simulation produces estimates of two productivity 
+%parameters under the restricted two parameter production model (i.e. Schaefer:($r$, $K$), 
+%BH:($\alpha$, $\beta$)). 
+
+
+
+%%
+%For assessing the productivity parameters over the full region of simulated RPs %, as seen in Figure (\ref{rpGrid}), 
+%a GP model is used as a flexible metamodel for describing the overall 
+%behavior of inference under misspecified two parameter productivity models.
+%%
+%Each design location of the simulation produces an estimate of each of the productivity   
+%parameters under the restricted two parameter production model (i.e. Schaefer:($log(r)$, $log(K)$), 
+%BH:($log(\alpha)$, $log(\beta)$)).
+%
+%%
+%\begin{equation}
+%\bm{X} \mapsto \textbf{y} \pm \bm{\omega}
+%\end{equation}
+
+%\begin{equation*}
+%\underbrace{\left(F^*, \frac{B^*}{\bar B(0)}\right)}_{\text{PT Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\hat F^*, \frac{\hat B^*}{\bar B(0)}\right)}_{\text{Schaefer Estimate}}
+%\end{equation*}
+
+
+
+%
+%As previously established, in Section (\ref{modelFit}), the biological parameters 
+%of interest are the Schaefer model's $log(r)$ and $log(K)$ parameters. Since the 
+%estimates of these parameters are random variables, with variances given by the 
+%inverse of the observed fisher information, interpolation of MLEs requires 
+%paying additional attention to propagating estimates of uncertainty into the 
+%metamodel.
+
+
+
+
+
+
 %
 %\clearpage
 %{\color{gray}
@@ -5582,13 +5710,13 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%so that $\frac{B^*}{\bar B(0)}$ is greater than $\frac{1}{2}$. Euler's method, as often 
 %%implemented, is particularly poorly suited for these stiff regions of parameter
 %%space. In these stiff regions it is necessary to integrate the ODE with an 
-%%implicate integration method. 
+%%implicit integration method. 
 %
 %%
-%Several of the most common implicate methods were tried including the 
+%Several of the most common implicit methods were tried including the 
 %Livermore Solver for ODEs (lsode), and the Variable Coefficient ODE Solver 
 %(vode) as implemented in the deSolve package of R ({\color{red}cite}). The 
-%difference between implicate solvers is negligible, while most explicate 
+%difference between implicit solvers is negligible, while most explicate 
 %methods result in wildly varying solutions to the ODE, and in still regions of 
 %parameter space explicate methods completely fail to represent the model as 
 %stated in the stiff regions of parameter space. Results shown here are computed 
