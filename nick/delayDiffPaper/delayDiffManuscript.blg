@@ -1,0 +1,97 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: delayDiffManuscript.aux
+The style file: apacite.bst
+Illegal, another \bibstyle command---line 239 of file delayDiffManuscript.aux
+ : \bibstyle
+ :          {apacite}
+I'm skipping whatever remains of this command
+Illegal, another \bibdata command---line 240 of file delayDiffManuscript.aux
+ : \bibdata
+ :         {./gpBias.bib,./spline.bib,./spaceFilling.bib}
+I'm skipping whatever remains of this command
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: ./gpBias.bib
+Database file #2: ./spline.bib
+Repeated entry---line 65 of file ./spline.bib
+ : @article{gramacy_cases_2012
+ :                            ,
+I'm skipping whatever remains of this entry
+Database file #3: ./ageStructure.bib
+Repeated entry---line 2 of file ./ageStructure.bib
+ : @article{schnute_analytical_1998
+ :                                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 19 of file ./ageStructure.bib
+ : @article{schnute_general_1985
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 49 of file ./ageStructure.bib
+ : @article{walters_continuous_2020
+ :                                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 56 of file ./ageStructure.bib
+ : @article{hilborn_quantitative_1992
+ :                                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 85 of file ./ageStructure.bib
+ : @book{wanner_solving_1996
+ :                          ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "devon_lin_latin_2015"
+Warning--I didn't find a database entry for "stein_large_1987"
+Warning--I didn't find a database entry for "mckay_comparison_2000"
+Warning--I didn't find a database entry for "morris_exploratory_1995"
+Warning--I didn't find a database entry for "johnson_minimax_1990"
+apacite.bst [2013/07/21 v6.03 APA bibliography style]
+Warning--No journal in walters_continuous_2020
+You've used 29 entries,
+            6951 wiz_defined-function locations,
+            1488 strings with 16813 characters,
+and the built_in function-call counts, 55309 in all, are:
+= -- 6770
+> -- 405
+< -- 2699
++ -- 2813
+- -- 58
+* -- 3695
+:= -- 10340
+add.period$ -- 116
+call.type$ -- 29
+change.case$ -- 517
+chr.to.int$ -- 0
+cite$ -- 59
+duplicate$ -- 1465
+empty$ -- 2217
+format.name$ -- 667
+if$ -- 10400
+int.to.chr$ -- 0
+int.to.str$ -- 87
+missing$ -- 0
+newline$ -- 768
+num.names$ -- 232
+pop$ -- 833
+preamble$ -- 1
+purify$ -- 140
+quote$ -- 0
+skip$ -- 3478
+stack$ -- 0
+substring$ -- 3083
+swap$ -- 862
+text.length$ -- 91
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 2320
+warning$ -- 1
+while$ -- 250
+width$ -- 0
+write$ -- 912
+(There were 8 error messages)
