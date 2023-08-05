@@ -195,18 +195,19 @@ of misspecifing the functional form.
 can only do so much to improve (expand) RP inference as compared with correctly modeling $P$. 
 \end{itemize}
 
-\begin{figure}[h!]
-\includegraphics[width=0.5\textwidth]{../ddBias/rpSpace.pdf} 
-
-\vspace{-1cm}
-\caption{
-BH RP-space sensitivity to the parmaters $M$, $\kappa$, and $a_0$. The black 
-curve shows the BH set in the simple production model setting.
-%Yield curves for data generated with $\frac{F^*}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$.
-%Convert into $B/B_0$. Show the high contrast curve.
-}
-\label{ddRPs}
-\end{figure}
+%NOTE: sync rpSpace.pdf from laptop
+%\begin{figure}[h!]
+%\includegraphics[width=0.5\textwidth]{../ddBias/rpSpace.pdf} 
+%
+%\vspace{-1cm}
+%\caption{
+%BH RP-space sensitivity to the parmaters $M$, $\kappa$, and $a_0$. The black 
+%curve shows the BH set in the simple production model setting.
+%%Yield curves for data generated with $\frac{F^*}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$.
+%%Convert into $B/B_0$. Show the high contrast curve.
+%}
+%\label{ddRPs}
+%\end{figure}
 
 %
 \clearpage
@@ -290,6 +291,46 @@ curve shows the BH set in the simple production model setting.
 \subsection{Delay Differential Model}
 
 %
+\begin{itemize}
+\item the delay model: \shortciteA{schnute_general_1985} \shortciteA{schnute_general_1987} \shortciteA{fournier_length-based_1987}.
+\item discrete: \shortciteA[pg. 334]{hilborn_quantitative_1992}
+\item \shortciteA{walters_continuous_2020} 
+\item automatic accounting for cohort cycles
+\end{itemize}
+
+% 
+
+%foundational assumptions
+\begin{itemize}
+\item knife-edge recruitment at age $a_0$.
+\item All fish of at least $a_0$ years old are equally vulnerable to fishing and natural mortality with constant $M$.
+\item Von Bertalanffy individual growth \shortciteA{von_bertalanffy_quantitative_1938}
+\end{itemize}
+
+%
+The foundation of the delay model is the assumption of linear individual growth 
+rate with age. % in individual growth.
+
+%
+\begin{align}
+\frac{dw}{da} &= \kappa(w_\infty-w(a)) \label{wODE}
+\end{align}
+
+%
+$\kappa$ is a parameter that controls the instantaneous rate of individual 
+growth (in weight) with age. $w_\infty$ is the maximum weight of an individual fish in 
+the population, and $w(a)$ is the average weight of an individual at age $a$.
+Solving the above ODE for w(a), leads to an asymptopting exponential growth curve in weight. 
+
+%
+\begin{align}
+w(a) &= w_\infty(1-e^{-\kappa a}) \label{vbGrowth}
+\end{align}
+
+%
+
+
+%
 \begin{align}%\kappa->0 slower than a0->\infty
 %B(a, t) &= w(a, t)N(a, t)\\ 
 %\frac{dB}{dt} &= \overbrace{w(k)R(B(t-k))}^\text{Recruitment Biomass} + \overbrace{\mu w_\infty N(t)}^\text{Growth} - \overbrace{(M+F(t)+\mu)B(t)}^\text{Biomass Loss}\\
@@ -299,9 +340,8 @@ curve shows the BH set in the simple production model setting.
 %&w(a) = w_\infty(1-e^{-\kappa a}) \label{vbGrowth}
 \end{align}
 
-\begin{align}
-w(a) = w_\infty(1-e^{-\kappa a}) \label{vbGrowth}
-\end{align}
+
+
 
 \begin{align}
 R(B;[\alpha, \beta, \gamma]) = \alpha B(t-a_0)(1-\beta\gamma B(t-a_0))^{\frac{1}{\gamma}} \label{srr}
@@ -3290,18 +3330,19 @@ of misspecifing the functional form.
 can only do so much to improve (expand) RP inference as compared with correctly modeling $P$. 
 \end{itemize}
 
-\begin{figure}[h!]
-\includegraphics[width=0.5\textwidth]{../ddBias/rpSpace.pdf} 
-
-\vspace{-1cm}
-\caption{
-BH RP-space sensitivity to the parmaters $M$, $\kappa$, and $a_0$. The black 
-curve shows the BH set in the simple production model setting.
-%Yield curves for data generated with $\frac{F^*}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$.
-%Convert into $B/B_0$. Show the high contrast curve.
-}
-\label{ddRPs}
-\end{figure}
+%NOTE: sync from laptop
+%\begin{figure}[h!]
+%\includegraphics[width=0.5\textwidth]{../ddBias/rpSpace.pdf} 
+%
+%\vspace{-1cm}
+%\caption{
+%BH RP-space sensitivity to the parmaters $M$, $\kappa$, and $a_0$. The black 
+%curve shows the BH set in the simple production model setting.
+%%Yield curves for data generated with $\frac{F^*}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$.
+%%Convert into $B/B_0$. Show the high contrast curve.
+%}
+%\label{ddRPs}
+%\end{figure}
  
 
 %good ideas
