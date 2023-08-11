@@ -2,11 +2,11 @@ This is BibTeX, Version 0.99d (TeX Live 2022)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: delayDiffManuscript.aux
 The style file: apacite.bst
-Illegal, another \bibstyle command---line 239 of file delayDiffManuscript.aux
+Illegal, another \bibstyle command---line 242 of file delayDiffManuscript.aux
  : \bibstyle
  :          {apacite}
 I'm skipping whatever remains of this command
-Illegal, another \bibdata command---line 240 of file delayDiffManuscript.aux
+Illegal, another \bibdata command---line 243 of file delayDiffManuscript.aux
  : \bibdata
  :         {./gpBias.bib,./spline.bib,./spaceFilling.bib}
 I'm skipping whatever remains of this command
@@ -46,6 +46,14 @@ Repeated entry---line 85 of file ./ageStructure.bib
  : @book{wanner_solving_1996
  :                          ,
 I'm skipping whatever remains of this entry
+Repeated entry---line 94 of file ./ageStructure.bib
+ : @article{fournier_length-based_1987
+ :                                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 106 of file ./ageStructure.bib
+ : @article{schnute_general_1987
+ :                              ,
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "devon_lin_latin_2015"
 Warning--I didn't find a database entry for "stein_large_1987"
 Warning--I didn't find a database entry for "mckay_comparison_2000"
@@ -53,45 +61,45 @@ Warning--I didn't find a database entry for "morris_exploratory_1995"
 Warning--I didn't find a database entry for "johnson_minimax_1990"
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
 Warning--No journal in walters_continuous_2020
-You've used 29 entries,
+You've used 31 entries,
             6951 wiz_defined-function locations,
-            1488 strings with 16813 characters,
-and the built_in function-call counts, 55309 in all, are:
-= -- 6770
-> -- 405
-< -- 2699
-+ -- 2813
-- -- 58
-* -- 3695
-:= -- 10340
-add.period$ -- 116
-call.type$ -- 29
-change.case$ -- 517
+            1497 strings with 17064 characters,
+and the built_in function-call counts, 59150 in all, are:
+= -- 7245
+> -- 429
+< -- 2892
++ -- 3016
+- -- 62
+* -- 3952
+:= -- 11071
+add.period$ -- 124
+call.type$ -- 31
+change.case$ -- 551
 chr.to.int$ -- 0
-cite$ -- 59
-duplicate$ -- 1465
-empty$ -- 2217
-format.name$ -- 667
-if$ -- 10400
+cite$ -- 63
+duplicate$ -- 1566
+empty$ -- 2363
+format.name$ -- 709
+if$ -- 11114
 int.to.chr$ -- 0
-int.to.str$ -- 87
+int.to.str$ -- 93
 missing$ -- 0
-newline$ -- 768
-num.names$ -- 232
-pop$ -- 833
+newline$ -- 819
+num.names$ -- 248
+pop$ -- 881
 preamble$ -- 1
-purify$ -- 140
+purify$ -- 148
 quote$ -- 0
-skip$ -- 3478
+skip$ -- 3724
 stack$ -- 0
-substring$ -- 3083
-swap$ -- 862
-text.length$ -- 91
+substring$ -- 3308
+swap$ -- 926
+text.length$ -- 95
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 2320
+type$ -- 2480
 warning$ -- 1
-while$ -- 250
+while$ -- 266
 width$ -- 0
-write$ -- 912
-(There were 8 error messages)
+write$ -- 971
+(There were 10 error messages)

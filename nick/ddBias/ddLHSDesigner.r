@@ -115,9 +115,14 @@ invert = function(zeta, xi, B0, M, k, w, W, alphaStart=1, betaStart=1, gammaStar
 }
 
 #
-getZetaBH = function(x, M, k, W, a0){
+vbGrow = function(a, k, W, a0){
+        W*(1-exp(-k*(a-a0)))
+}
+
+#
+getZetaBH = function(x, M, k, W, aS, a0){
         #
-        w = W*(1-exp(-k*a0))
+        w = vbGrow(aS, k, W, a0) #W*(1-exp(-k*a0))
         #
         gamma = -1
         alpha = getAlphaFmsy(x*M, M, k, w, W, 1, gamma)
@@ -134,7 +139,7 @@ getZetaBH = Vectorize(getZetaBH, "x")
 #DIFFERENTIAL EQUATION 
 
 #
-der = function(t, Y, lalpha, lbeta, gamma, a0, WW, kappa, catch, B0){
+der = function(t, Y, lalpha, lbeta, gamma, aS, a0, WW, kappa, catch, B0){
         #linearly interpolate catches
         ft = floor(t)
         q  = (t-ft)
@@ -146,10 +151,10 @@ der = function(t, Y, lalpha, lbeta, gamma, a0, WW, kappa, catch, B0){
         N = Y[1]
         B = Y[2]
         #
-        if( (t-a0)<1){
+        if( (t-aS)<1){
                 Blag = B0
         }else{
-                Blag = lagvalue(t-a0)[2]
+                Blag = lagvalue(t-aS)[2]
         }
         #
         #R = exp(lalpha)*Blag*(1-exp(lbeta)*gamma*Blag)^(1/gamma)
@@ -157,7 +162,7 @@ der = function(t, Y, lalpha, lbeta, gamma, a0, WW, kappa, catch, B0){
         beta = exp(lbeta)
         R = alpha*Blag*(1-gamma*beta*Blag)^(1/gamma)
         #
-	ww = WW*(1-exp(-kappa*a0))
+	ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 	FF = C*FMsy(M, kappa, ww, WW, alpha, beta, gamma)
         #
         out = c(N=NA, B=NA)
@@ -271,7 +276,7 @@ lhsMake = function(xiLim, zetaLim, n, batch, save=F){
 				        #
 				        alpha = exp(lalpha)
 				        beta  = exp(lbeta)
-					ww = WW*(1-exp(-kappa*a0))
+					ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 				        #
 					BZero = BBar(0, M, kappa, ww, WW, alpha, beta, gamma) 
 				        (alpha*BZero*( 1-beta*gamma*BZero )^(1/gamma))/M
@@ -281,11 +286,11 @@ lhsMake = function(xiLim, zetaLim, n, batch, save=F){
 				        #
 				        alpha = exp(lalpha)
 				        beta = exp(lbeta)
-					ww = WW*(1-exp(-kappa*a0))
+					ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 				        #
 					BBar(0, M, kappa, ww, WW, alpha, beta, gamma) 	
 				},
-				time=1:TT, catch=FtFmsy, a0=a0, M=M, WW=WW, kappa=kappa,#constants
+				time=1:TT, catch=FtFmsy, aS=aS, a0=a0, M=M, WW=WW, kappa=kappa,#constants
 				lalpha=log(as), lbeta=log(bs), gamma=gs, 		#parameters
 				lq=log(0.00049), lsdo=log(0.01160256),	        	#nuisance parameters
 				xi=xi, zeta=zs
@@ -424,11 +429,12 @@ addCircle = function(centerx, centery, radius, length=200){
 odeMethod = "lsode"
 
 #
-a0 = 15 #0.1  #15     #15  #7.5 #15  #1
-M  = 0.05 #0.2
-kappa = 15 #0.2 #0.1 #0.2 #0.2 #10
+aS = 2  #15   #0.1  #15     #15  #7.5 #15  #1
+a0 = -0.5 #-0.25 #-0.5 #-1   #-2
+M  = 0.2 #0.005
+kappa = 1 #15 #0.2 #0.1 #0.2 #0.2 #10
 WW = 1
-ww = WW*(1-exp(-kappa*a0))
+ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 
 #
 B0 = 10000
@@ -461,7 +467,7 @@ ylim = c(0.15, 0.7) #0.6) #
 #
 if( T ){
 #Only run this to start a design
-p = "./modsDDExpT45N150A15M0.05/" #"./modsDDExpT45N150A0.1K15/" #'test'
+p = "./modsDDExpT45N150A-0.5AS2/" #"./modsDDExpT45N150A0.1K15/" #'test'
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
 dir.create(p)
 #
@@ -469,7 +475,7 @@ ll = lhsMake(xlim, ylim, 150, 0, save=p) #(xiLim, zetaLim,
 }else{
 
 #
-inPlace = "./modsDDFlatT30N150A15K0.1/" #"./modsDDExpT45N150A15/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
+inPlace = "./modsDDExpT45N150A0-0.5AS2K1M0.2/" #"./modsDDFlatT30N150A15K0.1/" #"./modsDDExpT45N150A15/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
 outPlace = sprintf("./modsDDFlatT30N150A15K0.1N%d/", n) #sprintf("./modsDDExpT45N150A15N%d/", n) 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
 
 #

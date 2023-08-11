@@ -161,6 +161,36 @@ Fletcher, R\BPBI I.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Fournier%
+\ \BBA {} Doonan%
+}{%
+Fournier%
+\ \BBA {} Doonan%
+}{%
+{\protect \APACyear {1987}}%
+}]{%
+fournier_length-based_1987}
+\APACinsertmetastar {%
+fournier_length-based_1987}%
+\begin{APACrefauthors}%
+Fournier, D\BPBI A.%
+\BCBT {}\ \BBA {} Doonan, I\BPBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1987}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A length-based stock assessment method utilizing a
+  generalized delay-difference model} {A length-based stock assessment method
+  utilizing a generalized delay-difference model}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Canadian Journal of Fisheries and Aquatic
+  Sciences}{44}{2}{422--437}.
+\newblock
+\APACrefnote{Publisher: NRC Research Press Ottawa, Canada}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Fox~Jr.%
 }{%
 Fox~Jr.%
@@ -612,6 +642,33 @@ Schnute, J.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1139/f85-057} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+J.~Schnute%
+}{%
+J.~Schnute%
+}{%
+{\protect \APACyear {1987}}%
+}]{%
+schnute_general_1987}
+\APACinsertmetastar {%
+schnute_general_1987}%
+\begin{APACrefauthors}%
+Schnute, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1987}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A general fishery model for a size-structured fish
+  population} {A general fishery model for a size-structured fish
+  population}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Canadian Journal of Fisheries and Aquatic
+  Sciences}{44}{5}{924--940}.
+\newblock
+\APACrefnote{Publisher: NRC Research Press Ottawa, Canada}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
