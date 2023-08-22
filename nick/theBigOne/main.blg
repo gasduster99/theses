@@ -1,0 +1,98 @@
+This is BibTeX, Version 0.99d (TeX Live 2023)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: apacite.bst
+I couldn't open database file ./spaceFilling.bib
+---line 109 of file main.aux
+ : \bibdata{./gpBias.bib,./spline.bib,./spaceFilling.bib
+ :                                                      }
+I'm skipping whatever remains of this command
+Illegal, another \bibstyle command---line 229 of file main.aux
+ : \bibstyle
+ :          {apacite}
+I'm skipping whatever remains of this command
+Illegal, another \bibdata command---line 230 of file main.aux
+ : \bibdata
+ :         {./gpBias.bib,./spline.bib,./spaceFilling.bib}
+I'm skipping whatever remains of this command
+Illegal, another \bibstyle command---line 309 of file main.aux
+ : \bibstyle
+ :          {apacite}
+I'm skipping whatever remains of this command
+Illegal, another \bibdata command---line 310 of file main.aux
+ : \bibdata
+ :         {./gpBias.bib,./spline.bib,./ageStructure.bib}
+I'm skipping whatever remains of this command
+Illegal, another \bibstyle command---line 480 of file main.aux
+ : \bibstyle
+ :          {apacite}
+I'm skipping whatever remains of this command
+Illegal, another \bibdata command---line 481 of file main.aux
+ : \bibdata
+ :         {./gpBias.bib,./spline.bib,./spaceFilling.bib}
+I'm skipping whatever remains of this command
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: ./gpBias.bib
+Database file #2: ./spline.bib
+Repeated entry---line 65 of file ./spline.bib
+ : @article{gramacy_cases_2012
+ :                            ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "devon_lin_latin_2015"
+Warning--I didn't find a database entry for "stein_large_1987"
+Warning--I didn't find a database entry for "mckay_comparison_2000"
+Warning--I didn't find a database entry for "morris_exploratory_1995"
+Warning--I didn't find a database entry for "johnson_minimax_1990"
+Warning--I didn't find a database entry for "von_bertalanffy_quantitative_1938"
+apacite.bst [2013/07/21 v6.03 APA bibliography style]
+Warning--No journal in walters_continuous_2020
+You've used 30 entries,
+            6951 wiz_defined-function locations,
+            1491 strings with 16898 characters,
+and the built_in function-call counts, 57483 in all, are:
+= -- 7043
+> -- 419
+< -- 2807
++ -- 2938
+- -- 60
+* -- 3841
+:= -- 10751
+add.period$ -- 120
+call.type$ -- 30
+change.case$ -- 534
+chr.to.int$ -- 0
+cite$ -- 61
+duplicate$ -- 1529
+empty$ -- 2294
+format.name$ -- 695
+if$ -- 10800
+int.to.chr$ -- 0
+int.to.str$ -- 90
+missing$ -- 0
+newline$ -- 795
+num.names$ -- 240
+pop$ -- 860
+preamble$ -- 1
+purify$ -- 144
+quote$ -- 0
+skip$ -- 3606
+stack$ -- 0
+substring$ -- 3225
+swap$ -- 899
+text.length$ -- 93
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 2400
+warning$ -- 1
+while$ -- 261
+width$ -- 0
+write$ -- 945
+(There were 8 error messages)
