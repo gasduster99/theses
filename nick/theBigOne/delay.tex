@@ -321,8 +321,8 @@ approximated by VB growth in weight directly.
 \end{wrapfigure}
 
 %
-Age structured fisheries models typically assume Von Bertalanffy (VB) growth 
-\shortciteA{von_bertalanffy_quantitative_1938} in length with age. To model 
+Age structured fisheries models typically assume %Von Bertalanffy (VB) growth 
+\shortciteA[VB]{von_bertalanffy_quantitative_1938} gorwth in length with age. To model 
 weight the assumption of VB growth in length is composed with a power law 
 relating length to weight, $w=al^b$. 
 %The statistical model then assumes observed indicies of abundance are proportional to weight. 
@@ -348,21 +348,22 @@ $\kappa$ is a parameter that controls the instantaneous rate of individual
 growth (in weight) with age. $w_\infty$ is the maximum weight of individuals 
 in the population, and $w(a)$ is the average weight of an individual at 
 age $a$. The parameter $a_0$ controls the age at which individuals are assummed 
-to have zero weight, thus allowing fish of age zero to have positive weight. 
-Rather than taking a sigmoidally increasing function, VB growth directly in 
-weight results in an monotonically inceasing curve that asymptotes with a strictly
-decreasing growth rate with age. 
+to have zero weight; by letting $a_0<0$ this allows fish of age zero to have 
+positive weight. Rather than taking a sigmoidally increasing function, VB growth 
+directly in weight results in an monotonically inceasing curve that asymptotes 
+with a strictly decreasing growth rate with age. 
 {\color{red}(only a good approximation for older ages where growth begins to decline)}
 
 %
 Together with VB growth, the delay model is derived from the assumption that 
 both natural mortality and fishing selectivity are separately propotional 
 %the total mortality rate (from both natural and fishing mortality) is proportional 
-to a common heavyside step function with age. That is to say, before age $a_s$ 
-the population is assumed not to experience any mortality whatsoever, but all 
-fish older then $a_s$ experience the same rate of natural mortaility. Simulaneously 
-all fish older than $a_s$ are equally vulnerable to fishing, although fishing 
-effort may vary from through time. 
+to a common heavyside step function with age. That is to say, before a threshold 
+age of selectivity, $a_s$, the population is assumed not to experience any 
+mortality whatsoever, but all fish older then $a_s$ experience the same rate 
+of natural mortaility. Simulaneously all fish older than $a_s$ are equally 
+vulnerable to fishing (i.e. knife edge selectivity at age $a_s$), although 
+fishing effort may vary from through time. 
 
 %
 \shortciteA{walters_continuous_2020} shows that within these assumptions the 
@@ -388,11 +389,11 @@ This formulation separates the number of individuals in the population from the
 biomass of the population. The dynamics of $N$, as seen in Eq (\ref{nEq}), are
 very similar to that of the {\color{green}production models previously presented}, 
 however the role of the production function is now filled by a "recruitment" 
-function, R(B), which describes the number of new individuals recruiting into the 
+function, $R(B)$, which describes the number of new individuals recruiting into the 
 expoitable population as a function of exploitable biomass. In turn, the biomass 
 dynamics are coupled to the numbers dynamics by the assumption of VB growth with 
-growth parameters appearing in Eq (\ref{bEq}) to convert numbers to biomass and 
-account for the growth of biomass with age. 
+growth parameters appearing in Eq (\ref{bEq}), converting population numbers 
+into biomass and accounting for the growth of biomass with age. 
 
 %
 Eq (\ref{bEq}) of the above model expands the notion of biomass production into the 
@@ -405,30 +406,54 @@ accounts for the net growth of the existing biomass by discounting the limiting 
 growth rate by metabolic weight loss proportional to $B(t)$. This term, together with the delay 
 structure in $R$, provides the major computational savings of the delay differential setting, as 
 compared with full age structured models, by automatically keeping track of changes in the mean 
-size and growth associated with changes in recruitment.    
+size and growth associated with changes in recruitment as cohorts mature into the population.    
 %The framework is likely to perform very well at this task, considering that growth and natural 
 %survival rates tend to be fairly stable over time in fishes.
 
 %
 Often a BH functional form is assumed for the stock recruitment relationship, but any adequatly 
-flexible family of functions may model this relationship. For the sake of evaluating the assumption 
-of BH recruitment the simulation setting below is derived for the delay model under the assumption 
-of a three parameter Schnute recruitment as follows.
+flexible family of functions may model this relationship. For the sake of evaluating the adequacy 
+of assumed BH recruitment the simulation setting below is derived for the delay model under the 
+assumption of the generalized three parameter Schnute recruitment as follows.
 %
 \begin{align}
-R(B;[\alpha, \beta, \gamma]) = \alpha B(t-a_s)(1-\beta\gamma B(t-a_s))^{\frac{1}{\gamma}} \label{srr}
+R(B;[\alpha, \beta, \gamma]') = \alpha B(t-a_s)(1-\beta\gamma B(t-a_s))^{\frac{1}{\gamma}} \label{srr}
 \end{align}
 %
-The parameters $\alpha$, $\beta$, and $\gamma$, function similarly in this setting as previously 
-described in Section (\ref{}). The value of $\gamma$ controls the behavior of recruitment 
-from the special case of BH recruitment at $\gamma=-1$, through the Ricker model as 
-$\gamma\rightarrow0$, to Logistic recruitment when $\gamma=1$.
-%
+The parameters $\bm{\theta}'=[\alpha, \beta, \gamma]$ %\alpha$, $\beta$, and $\gamma$, 
+function similarly in this setting as previously described in Section (\ref{}). 
+That said, since the delay model explicitly parses out growth in it's dynamics, 
+these parameters only describe the net processes of larval production, and maturation 
+into the population, where as the production model used these parameters to 
+also model the net effects of growth on biomass production. %NOTE: production model includes net growth in in the nonlinear form of P, while the delay model used VB Growth params (functional form) on top of this nonlinearity. 
+The $\gamma$ parameter generalizes the family to model varying degrees of 
+decreasing recruitment for large biomasses as $\gamma$ increases. The Schnute 
+function is exactly equivalent to BH recruitment at the special case when 
+$\gamma=-1$, it passes through the Ricker model as $\gamma\rightarrow0$, and 
+Logistic recruitment occurs when $\gamma=1$.
+
+%%the exploitable biomass of the population becomes large
+% controls the behavior of recruitment from the special case of BH recruitment at $\gamma=-1$, 
 %The structure of the Schnute function here is similar to that of the previously described, with $\gamma$ . 
 %
-The delay model's assumption of knife edge maturity introduces a time delay between spawning biomass and the number of recruits produced. 
-Often a BH functional form is assumed here, but any adequatly flexible family of functions may 
-model this relationship and below Schnute recruitment is developed.
+Since the delay model assumes knife edge selectivity, at age $a_s$, the term 
+$B(t-a_s)$ appears in $R$. That is to say fish recruiting into the exploitable 
+population are the result of larval production of biomass $a_s$ time 
+units in the past. This is because fishing selectivity is only assumed to occur 
+for fish that are at least $a_s$ time units old and thus fish younger than $a_s$ 
+are not exploitable. This waiting period requires that new recruits be the 
+result of spawning biomass $a_s$ time units in the past. Modeling maturity in 
+this way results in dynamics equations which are a system of delay differential 
+equations as opposed to the simple ODEs that arrise in the production model 
+setting. 
+%which is where the delay differential equation  
+
+%The delay model's assumption of knife edge maturity 
+%introduces a time delay between spawning biomass and the number of recruits 
+%produced which appears as the $B(t-a_s)$ lag in Eq. (\ref{srr}). 
+
+%Often a BH functional form is assumed here, but any adequatly flexible family of functions may 
+%model this relationship and below Schnute recruitment is developed.
 %
 %the typically non-linear stock-recruitment relationship. 
 %Below the three parameter Schnute recruitment function is developed to further explore the limitations produced by a BH model. 
@@ -436,15 +461,14 @@ model this relationship and below Schnute recruitment is developed.
 
 %
 \begin{itemize}
-	\item parameters $\alpha$, $\beta$, and $\gamma$,
-	\item The BH and Logistic production functions arise when $\gamma$ is fixed to -1 or
-1 respectively. 
-	\item The Ricker model is a limiting case as $\gamma\rightarrow0$. %\shortcite{schnute_general_1985}.
-	\item For $\gamma<-1$ a family of strictly increasing Cushing-like curves arise,
-		culminating in linear production as $\gamma\to-\infty$. These special cases form
-		natural regimes of similarly behaving production functions as seen in Figure (\ref{sRegimes}).
-	\item time delay
-	\item interpretation of recruitment (larval production, recruitment) [growth external] vs. production (larval production, recruitment, growth)
+	%\item parameters $\alpha$, $\beta$, and $\gamma$,
+	%\item The BH and Logistic production functions arise when $\gamma$ is fixed to -1 or 1 respectively. 
+	%\item The Ricker model is a limiting case as $\gamma\rightarrow0$. %\shortcite{schnute_general_1985}.
+	%\item For $\gamma<-1$ a family of strictly increasing Cushing-like curves arise,
+	%	culminating in linear production as $\gamma\to-\infty$. These special cases form
+	%	natural regimes of similarly behaving production functions as seen in Figure (\ref{sRegimes}).
+	%\item time delay
+	\item[$\sim$] interpretation of recruitment (larval production, recruitment) [growth external] vs. production (larval production, recruitment, growth)
 \end{itemize}
 
 
@@ -470,18 +494,43 @@ model this relationship and below Schnute recruitment is developed.
 \subsection{Reference Points}
 
 %
-\begin{align}
-\bar{B}(F) = \frac{1}{\beta\gamma} \left( 1 - \Big(\frac{(F + M) (F + M + \kappa)}{\alpha w(a_s)(F + M + \kr)}\Big)^\gamma\right)
-\end{align}
+Deriving reference points for the delay model under Schnute recruitment is 
+conceptually similar to the production model setting. The additional nonlinear 
+VB growth assumptions along side Schnute recruitment quickly make the 
+expressions look somewhat unweildy, although analytical solutions can still be 
+derived for most of the same quantities (although complicated by growth parameters).
 
 %
+Starting from Eqs. (\ref{bEq}) and (\ref{nEq}), setting both $\frac{dB}{dt}$ 
+and $\frac{dN}{dt}$ simultaneously equal to zero, and solving for $B$ and $N$ 
+as a function of fishing, gives the equilibrium biomass and numbers equations.
+%
 \begin{align}
-\bar{N}(F) = \frac{\alpha\bar{B}(F)(1-\beta\gamma\bar{B}(F))^{1/\gamma}}{F+M}
+\bar{B}(F) &= \frac{1}{\beta\gamma} \left( 1 - \Big(\frac{(F + M) (F + M + \kappa)}{\alpha w(a_s)(F + M + \kr)}\Big)^\gamma\right) \label{BF}\\
+%\end{align}
+%\begin{align}
+\bar{N}(F) &= \frac{\alpha\bar{B}(F)(1-\beta\gamma\bar{B}(F))^{1/\gamma}}{F+M} \label{NF}
 \end{align}
+%
+Eq. (\ref{NF}) is just $\frac{R(\bar{B})}{F+M}$, and is coupled to $\bar{B}(F)$ 
+where most of the dynamics appear. Eq. (\ref{BF}) resembles Eq (\ref{BsEq}) 
+from the simple production model setting although the growth parameters 
+$\kappa$, $w_\infty$ and $w(a_s)$, make slight adjustments to the balance of the 
+maximum rate of recruitment and mortaility rate to give an expression for 
+equilibrium biomass that accounts for the factors of individual growth.
+% for the produce to a more complex expression for equilibirum biomass.
 
-
-$Z=F+M$
-
+%
+Expressions for $B_0$ and $B^*$ are attained by evaluating $\bar{B}(F)$ at 
+$F=0$ and $F=F^*$ respectively. Calculation of $F^*$ typically involves %amounts to %requires %Obtaining an expression for 
+maximization of equilibrium yield, \mbox{$\bar{Y} = F\bar{B}(F)$.} While it was not 
+possible to analytically maximize $\bar{Y}$, stable numerical solutions for 
+calculating $F^*$ were obtained by numerically solving for the roots of the 
+analytical derivative of equilibrium yield with respect to $F$. Below a greatly
+simplifed expression for $\frac{d \bar{Y}}{dF}$ is provided with $Z=F+M$ 
+(representing the total mortality rate) to make a further attempt at brevity in 
+the expression.
+ 
 %
 \begingroup
 \scriptsize
@@ -491,6 +540,10 @@ $Z=F+M$
 %&= ( 1-\Big(\frac{(F+M)(F+M+\kappa)}{\alpha w(a_s)(F+M+\kappa w_\infty/w(a_s))}\Big)^\gamma - ( F*( ((F+M)*(F+M+\kappa))/(\alpha*(F*w(a_s)+M*w(a_s)+\kappa*w_infty)) )^(\gamma-1)*\gamma*(\alpha*(F*w(a_s)+M*w(a_s)+\kappa*w_infty)*(2(F+M)+\kappa)-(F+M)*(F+M+\kappa)*\alpha*w(a_s)) )/( \alpha*(F*w(a_s)+M*w(a_s)+k*w_infty))^2)/(\beta\gamma) \\
 \end{align}
 \endgroup
+%
+Numerical roots of the above expression were calculated using the base R 
+uniroot function which employs a derivative free search given by \shortciteA{brent_chapter_1973}.  
+
 
 %\begin{align}
 %\alpha(\gamma) &= root_\alpha \frac{d \bar{Y}}{dF}\\
@@ -525,10 +578,10 @@ $Z^*=F^*+M$
 \end{itemize}
 
 
-\clearpage
-\bibliographystyle{apacite}
-%\bibliography{./schnuteGPBias.bib}
-\bibliography{./gpBias.bib,./spline.bib,./ageStructure.bib}
+%\clearpage
+%\bibliographystyle{apacite}
+%%\bibliography{./ageStructure.bib}
+%\bibliography{./gpBias.bib,./spline.bib,./ageStructure.bib}
 
 
 
@@ -5779,13 +5832,13 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%\ganttgroup{Write Thesis}{13}{14}
 %%\end{ganttchart}
 
-%
-%\thispagestyle{next}
-\clearpage
-\bibliographystyle{apacite}
-%\bibliography{./schnuteGPBias.bib}
-\bibliography{./gpBias.bib,./spline.bib,./spaceFilling.bib}%,./ageStructure.bib}
-%\thispagestyle{next}
+%%
+%%\thispagestyle{next}
+%\clearpage
+%\bibliographystyle{apacite}
+%%\bibliography{./schnuteGPBias.bib}
+%\bibliography{./gpBias.bib,./spline.bib,./spaceFilling.bib}%,./ageStructure.bib}
+%%\thispagestyle{next}
 
 %\end{alphasection}
 %

@@ -21,12 +21,16 @@
 %\usepackage{natbib}
 \usepackage[]{apacite}
 \usepackage{wrapfig}
-%\usepackage{relsize}
+\usepackage{relsize}
 \usepackage{dsfont}
 \usepackage{pgfgantt}
 \usepackage{bbm}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+%
+%\usepackage[style=alphabetic,backend=bibtex]{biblatex}
+%\usepackage{chapterbib}
+%\usepackage[sectionbib]{chapterbib}
 
 \hypersetup{colorlinks   = true, %Colors links instead of ugly boxes
             urlcolor     = blue, %Color for external hyperlinks
@@ -100,16 +104,24 @@
 
 %
 \chapter{The Pella-Tomlinson Model}
-\input{pt.tex}
+%\input{pt.tex}
+\include{pt.tex}
 
 %
 \chapter{The Schnute Model}
-\input{schnute.tex}
+%\input{schnute.tex}
+\include{schnute.tex}
 
 %
 %\clearpage
 \chapter{A Delay Differential Model}
-\input{delay.tex}
+%\input{delay.tex}
+\include{delay.tex}
+
+\clearpage
+\bibliographystyle{apacite}
+%\bibliography{./ageStructure.bib}
+\bibliography{./gpBias.bib,./spline.bib,./spaceFilling.bib,./ageStructure.bib}
 
 %This is the next chapter and I think it will be a really good one.
 %\input{../delayDiffPaper/delayDiffManuscript.tex}
