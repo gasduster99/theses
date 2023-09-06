@@ -74,9 +74,14 @@ getZeta = function(FF, M, k, w, W, alpha, beta, gamma){
 }
 
 #
-getZetaBH = function(x, M, k, W, a0){
+vbGrow = function(a, k, W, a0){
+	W*(1-exp(-k*(a-a0)))
+}
+
+#
+getZetaBH = function(x, M, k, W, aS, a0){
         #
-        w = W*(1-exp(-k*a0))
+        w = vbGrow(aS, k, W, a0) #W*(1-exp(-k*a0))
         #
         gamma = -1
         alpha = getAlphaFmsy(x*M, M, k, w, W, 1, gamma)
@@ -93,7 +98,7 @@ getZetaBH = Vectorize(getZetaBH, "x")
 #Differential Equation 
 
 #
-der = function(t, Y, lalpha, lbeta, gamma, a0, WW, kappa, catch, B0){
+der = function(t, Y, lalpha, lbeta, gamma, aS, a0, WW, kappa, catch, B0){
         #linearly interpolate catches
         ft = floor(t)
         q  = (t-ft)
@@ -105,10 +110,10 @@ der = function(t, Y, lalpha, lbeta, gamma, a0, WW, kappa, catch, B0){
         N = Y[1]
         B = Y[2]
         #
-        if( (t-a0)<1){
+        if( (t-aS)<1){
                 Blag = B0
         }else{
-                Blag = lagvalue(t-a0)[2]
+                Blag = lagvalue(t-aS)[2]
         }
         #
         #R = exp(lalpha)*Blag*(1-exp(lbeta)*gamma*Blag)^(1/gamma)
@@ -116,7 +121,7 @@ der = function(t, Y, lalpha, lbeta, gamma, a0, WW, kappa, catch, B0){
         beta = exp(lbeta)
         R = alpha*Blag*(1-gamma*beta*Blag)^(1/gamma)
         #
-        ww = WW*(1-exp(-kappa*a0))
+        ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
         FF = C*FMsy(M, kappa, ww, WW, alpha, beta, gamma)
         #
         out = c(N=NA, B=NA)
@@ -134,8 +139,7 @@ der = function(t, Y, lalpha, lbeta, gamma, a0, WW, kappa, catch, B0){
 TT = 31 #length(hake)
 tt = 1
 time = tt:TT
-#
-FtFmsy = rep(1, TT)
+
 ##
 #mid = round(TT/2)
 #cMax = 2 #4*M
@@ -150,14 +154,18 @@ FtFmsy = rep(1, TT)
 #TT = length(FtFmsy)
 #time = tt:TT
 
+#FLAT
+FtFmsy = rep(1, TT)
+
 #DD MODEL STUFF
 
-#
-a0 = 2
+#A-0.5AS15K0.1
+aS = 15 #2 
+a0 = -1 #-0.5 # #-0.25 #-0.5 #-1   #-2
 M  = 0.2
-kappa = 0.2
+kappa = 0.1 #1
 WW = 1
-ww = WW*(1-exp(-kappa*a0))
+ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 #
 B0 = 10000
 
@@ -166,7 +174,10 @@ B0 = 10000
 #
 
 #a place to store data
-place = './modsDDFlatT30N150/' #'./test/'#
+#place = "modsDDFlatT30N150A-0.5AS15K0.1/" #"modsDDExpT45N150A-0.5AS15K0.1/"  #zooid-3
+place = "./modsDDFlatT30N150A-1AS15K0.1/"   #"./modsDDExpT45N150A-1AS15K0.1/" #zooid-4
+#place = "./modsDDExpT45N150A-1AS2/"      #zooid-2
+#place = "./modsDDExpT45N150A-0.5AS2/"    #zooid-1
 odeMethod = "lsode" #"radau" #
 
 #
@@ -185,6 +196,9 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
         #read in data from design locations
         datGen = readRDS(datFiles[i])
         datGen$M = M
+	datGen$a0 = a0
+	datGen$aS = aS
+	datGen$kappa = kappa
         datGen$time = 1:TT
         datGen$catch = FtFmsy
         datGen$iterate(odeMethod)
@@ -219,7 +233,7 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 		        #
 		        alpha = exp(lalpha)
 		        beta  = exp(lbeta)
-		        ww = WW*(1-exp(-kappa*a0))
+		        ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 		        #
 		        BZero = BBar(0, M, kappa, ww, WW, alpha, beta, gamma)
 		        (alpha*BZero*( 1-beta*gamma*BZero )^(1/gamma))/M
@@ -229,11 +243,11 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 		        #
 		        alpha = exp(lalpha)
 		        beta = exp(lbeta)
-		        ww = WW*(1-exp(-kappa*a0))
+		        ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 		        #
 		        BBar(0, M, kappa, ww, WW, alpha, beta, gamma)
 		},
-		time=1:TT, catch=FtFmsy, a0=a0, M=M, WW=WW, kappa=kappa,#constants
+		time=1:TT, catch=FtFmsy, aS=aS, a0=a0, M=M, WW=WW, kappa=kappa,#constants
 		lalpha=datGen$lalpha, lbeta=lbetaBH, gamma=-1,         	#parameters
 		lq=log(0.00049), lsdo=log(0.01160256),                  #nuisance parameters
 		xi=datGen$xi, zeta=datGen$zeta                  	#other incidentals to carry along
