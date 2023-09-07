@@ -126,9 +126,14 @@ invert = function(zeta, xi, B0, M, k, w, W, alphaStart=1, betaStart=1, gammaStar
 }
 
 #
-getZetaBH = function(x, M, k, W, a0){
+vbGrow = function(a, k, W, a0){
+        W*(1-exp(-k*(a-a0)))
+}
+
+#
+getZetaBH = function(x, M, k, W, aS, a0){
         #
-        w = W*(1-exp(-k*a0))
+        w = vbGrow(aS, k, W, a0) #W*(1-exp(-k*a0))
         #
         gamma = -1
         alpha = getAlphaFmsy(x*M, M, k, w, W, 1, gamma)
@@ -145,7 +150,7 @@ getZetaBH = Vectorize(getZetaBH, "x")
 #DIFFERENTIAL EQUATION 
 
 #
-der = function(t, Y, lalpha, lbeta, gamma, a0, WW, kappa, catch, B0){
+der = function(t, Y, lalpha, lbeta, gamma, aS, a0, WW, kappa, catch, B0){
         #linearly interpolate catches
         ft = floor(t)
         q  = (t-ft)
@@ -157,10 +162,10 @@ der = function(t, Y, lalpha, lbeta, gamma, a0, WW, kappa, catch, B0){
         N = Y[1]
         B = Y[2]
         #
-        if( (t-a0)<1){
+        if( (t-aS)<1){
                 Blag = B0
         }else{
-                Blag = lagvalue(t-a0)[2]
+                Blag = lagvalue(t-aS)[2]
         }
         #
         #R = exp(lalpha)*Blag*(1-exp(lbeta)*gamma*Blag)^(1/gamma)
@@ -168,7 +173,7 @@ der = function(t, Y, lalpha, lbeta, gamma, a0, WW, kappa, catch, B0){
         beta = exp(lbeta)
         R = alpha*Blag*(1-gamma*beta*Blag)^(1/gamma)
         #
-	ww = WW*(1-exp(-kappa*a0))
+	ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 	FF = C*FMsy(M, kappa, ww, WW, alpha, beta, gamma)
         #
         out = c(N=NA, B=NA)
@@ -297,7 +302,7 @@ lhsForPlot = function(xiLim, zetaLim, n, batch, save=F){
 				        #
 				        alpha = exp(lalpha)
 				        beta  = exp(lbeta)
-					ww = WW*(1-exp(-kappa*a0))
+					ww = vbGrow(aS, k, W, a0) #WW*(1-exp(-kappa*a0))
 				        #
 					BZero = BBar(0, M, kappa, ww, WW, alpha, beta, gamma) 
 				        (alpha*BZero*( 1-beta*gamma*BZero )^(1/gamma))/M
@@ -307,11 +312,11 @@ lhsForPlot = function(xiLim, zetaLim, n, batch, save=F){
 				        #
 				        alpha = exp(lalpha)
 				        beta = exp(lbeta)
-					ww = WW*(1-exp(-kappa*a0))
+					ww = vbGrow(aS, k, W, a0) #WW*(1-exp(-kappa*a0))
 				        #
 					BBar(0, M, kappa, ww, WW, alpha, beta, gamma) 	
 				},
-				time=1:TT, catch=FtFmsy, a0=a0, M=M, WW=WW, kappa=kappa,#constants
+				time=1:TT, catch=FtFmsy, aS=aS, a0=a0, M=M, WW=WW, kappa=kappa,#constants
 				lalpha=log(as), lbeta=log(bs), gamma=gs, 		#parameters
 				lq=log(0.00049), lsdo=log(0.01160256),	        	#nuisance parameters
 				xi=xi, zeta=zs
@@ -450,38 +455,12 @@ addCircle = function(centerx, centery, radius, length=200){
 #HEAD
 #
 
-#DD MODEL STUFF
-
-#
-odeMethod = "lsode"
-
-#
-a0 = 15     #15  #7.5 #15  #1
-M  = 0.2
-kappa = 0.1 #0.1 #0.2 #0.2 #10
-WW = 1
-ww = WW*(1-exp(-kappa*a0))
-
-#
-B0 = 10000
-
-#just initiating to give alpha, beta, gamma some reasonable values
-xi = 1
-zeta = 0.4
-#
-inv = invert(zeta, xi, B0, M, kappa, ww, WW)
-alpha = inv$alpha
-beta  = inv$beta
-gamma = inv$gamma
-
-#
-TT = 45
-FtFmsy = rep(1, TT) #make faux catch
-
 #DATA STUFF
 
 #
-mod = "FlatT30N150A15K0.1" #"ExpT45N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A15" # "ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
+#mod = "FlatT30N150A15K0.1" #"ExpT45N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A15" # "ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
+#mod = "ExpT45N150A-1AS15K0.1"
+mod = "ExpT45N150A-1AS2"
 place = sprintf("./modsDD%s/", mod)
 
 #
@@ -504,6 +483,56 @@ for(fitF in fitFiles){
 }
 l = as.data.frame(cbind(xiList, zetaList))
 rownames(l) = rn 
+
+#DD MODEL STUFF
+
+#
+odeMethod = "lsode"
+
+#
+i = 1
+C = NULL
+while( is.null(C) ){
+        #
+        f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))[i] )
+        fOne = readRDS(f)
+        C = fOne$rsCov
+        #
+        i = i+1
+}
+
+#
+aS = fOne$aS
+a0 = fOne$a0
+M  = fOne$M
+kappa = fOne$kappa
+WW = fOne$WW
+ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
+#
+B0 = 10000
+
+##
+#aS = 
+#a0 = 15     #15  #7.5 #15  #1
+#M  = 0.2
+#kappa = 0.1 #0.1 #0.2 #0.2 #10
+#WW = 1
+#ww = vbGrow(aS, k, W, a0) #WW*(1-exp(-kappa*a0))
+##
+#B0 = 10000
+
+#just initiating to give alpha, beta, gamma some reasonable values
+xi = 1
+zeta = 0.4
+#
+inv = invert(zeta, xi, B0, M, kappa, ww, WW)
+alpha = inv$alpha
+beta  = inv$beta
+gamma = inv$gamma
+
+#
+TT = 45
+FtFmsy = rep(1, TT) #make faux catch
 
 #LAYOUT STUFF
 
@@ -640,14 +669,14 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
 	fit = readRDS(fWho)
 	#
-	f = function(t, Y, p=NULL){ der(t, Y, fit$lalpha, fit$lbeta, fit$gamma, fit$a0, fit$WW, fit$kappa, fit$catch, fit$B0) }
+	f = function(t, Y, p=NULL){ der(t, Y, fit$lalpha, fit$lbeta, fit$gamma, fit$aS, fit$a0, fit$WW, fit$kappa, fit$catch, fit$B0) }
 	fOut = dede(c(fit$N0, fit$B0), 1:TT, f, parms=NULL, method="lsode")#"radau") # 
 	colnames(fOut) = c('time', 'N', 'B', 'Rec. Biomass', 'Net Growth')
 	#
 	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
 	dat = readRDS(dWho)
 	#
-	d = function(t, Y, p=NULL){ der(t, Y, dat$lalpha, dat$lbeta, dat$gamma, dat$a0, dat$WW, dat$kappa, dat$catch, dat$B0) }
+	d = function(t, Y, p=NULL){ der(t, Y, dat$lalpha, dat$lbeta, dat$gamma, dat$aS, dat$a0, dat$WW, dat$kappa, dat$catch, dat$B0) }
 	dOut = dede(c(dat$N0, dat$B0), 1:TT, d, parms=NULL, method="lsode")#"radau") # 
 	colnames(fOut) = c('time', 'N', 'B', 'Rec. Biomass', 'Net Growth')
 	#
@@ -668,14 +697,14 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
 	fit = readRDS(fWho)
 	#
-	f = function(t, Y, p=NULL){ der(t, Y, fit$lalpha, fit$lbeta, fit$gamma, fit$a0, fit$WW, fit$kappa, fit$catch, fit$B0) }
+	f = function(t, Y, p=NULL){ der(t, Y, fit$lalpha, fit$lbeta, fit$gamma, fit$aS, fit$a0, fit$WW, fit$kappa, fit$catch, fit$B0) }
 	fOut = dede(c(fit$N0, fit$B0), 1:TT, f, parms=NULL, method="lsode")#"radau") # 
 	colnames(fOut) = c('time', 'N', 'B', 'Rec. Biomass', 'Net Growth')
 	#
 	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
 	dat = readRDS(dWho)
 	#
-	d = function(t, Y, p=NULL){ der(t, Y, dat$lalpha, dat$lbeta, dat$gamma, dat$a0, dat$WW, dat$kappa, dat$catch, dat$B0) }
+	d = function(t, Y, p=NULL){ der(t, Y, dat$lalpha, dat$lbeta, dat$gamma, dat$aS, dat$a0, dat$WW, dat$kappa, dat$catch, dat$B0) }
 	dOut = dede(c(dat$N0, dat$B0), 1:TT, d, parms=NULL, method="lsode")#"radau") # 
 	colnames(fOut) = c('time', 'N', 'B', 'Rec. Biomass', 'Net Growth')
 	#
@@ -697,7 +726,7 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
 	fit  = readRDS(fWho)
 	#
-	wwFit = fit$WW*(1-exp(-fit$kappa*fit$a0))
+	wwFit = vbGrow(fit$aS, fit$kappa, fit$WW, fit$a0) #fit$WW*(1-exp(-fit$kappa*fit$a0))
 	FFit = FMsy(fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma)
 	#
 	fFit = function(x){wwFit*SRR(x, fit)-fit$M*x - fit$kappa*x + fit$kappa*fit$WW*NCar(x, 0, fit$M, fit$kappa, wwFit, fit$WW, exp(fit$lalpha), exp(fit$lbeta), fit$gamma) }
@@ -707,7 +736,7 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
 	dat  = readRDS(dWho)
 	#
-	wwDat = dat$WW*(1-exp(-dat$kappa*dat$a0))
+	wwDat = vbGrow(dat$aS, dat$kappa, dat$WW, dat$a0) #dat$WW*(1-exp(-dat$kappa*dat$a0))
 	FDat = FMsy(dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
 	#
 	fDat = function(x){wwDat*SRR(x, dat)-dat$M*x - dat$kappa*x + dat$kappa*dat$WW*NCar(x, 0, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma) }
@@ -756,14 +785,14 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
 	fit  = readRDS(fWho)
 	#
-	wwFit = fit$WW*(1-exp(-fit$kappa*fit$a0))
+	wwFit = vbGrow(fit$aS, fit$kappa, fit$WW, fit$a0) #fit$WW*(1-exp(-fit$kappa*fit$a0))
 	fFit = function(x){SRR(x, fit)} #- fitt$kappa*x + fit$kappa*fit$WW*fit$N0
 	mFit = stats::optimize(fFit, c(0, fit$B0), maximum=T)
 	#
 	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
 	dat  = readRDS(dWho)
 	#
-	wwDat = dat$WW*(1-exp(-dat$kappa*dat$a0))
+	wwDat = vbGrow(dat$aS, dat$kappa, dat$WW, dat$a0) #dat$WW*(1-exp(-dat$kappa*dat$a0))
 	fDat = function(x){SRR(x, dat)} #- dat$kappa*x + dat$kappa*dat$WW*dat$N0}
 	mDat = stats::optimize(fDat, c(0, dat$B0), maximum=T) 
 	#

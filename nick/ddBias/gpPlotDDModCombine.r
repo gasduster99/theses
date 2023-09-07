@@ -61,6 +61,11 @@ FMsy = function(M, k, w, W, alpha, beta, gamma, dFBdFexpr=dFBdF_r){
 	return(out)
 }
 
+#
+vbGrow = function(a, k, W, a0){
+        W*(1-exp(-k*(a-a0)))
+}
+
 #RP Inversion Tools
 
 #beta does not matter for either of getAlphaFmsy or getGammaFmsy
@@ -115,11 +120,9 @@ getZeta = function(FF, M, k, w, W, alpha, beta, gamma){
 }
 
 #
-getZetaBH = function(x, M, k, W, a0){
-	#
-        if( is.na(x) ){ return(NA) }
-	#
-        w = W*(1-exp(-k*a0))
+getZetaBH = function(x, M, k, W, aS, a0){
+        #
+        w = vbGrow(aS, k, W, a0) #W*(1-exp(-k*a0))
         #
         gamma = -1
         alpha = getAlphaFmsy(x*M, M, k, w, W, 1, gamma)
@@ -127,11 +130,30 @@ getZetaBH = function(x, M, k, W, a0){
         #
         BZero = BBar(0, M, k, w, W, alpha, beta, gamma)
         xiHat = FMsy(M, k, w, W, alpha, beta, gamma)/M
-        zetaHat = BBar(x*M, M, k, w, W, alpha, beta, gamma)/BZero #BBar(0, M, k, w, W, alpha, beta, gamma)
+        zetaHat = BBar(x*M, M, k, w, W, alpha, beta, gamma)/BBar(0, M, k, w, W, alpha, beta, gamma)
         #
         return(zetaHat)
 }
 getZetaBH = Vectorize(getZetaBH, "x")
+
+##
+#getZetaBH = function(x, M, k, W, a0){
+#	#
+#        if( is.na(x) ){ return(NA) }
+#	#
+#        w = W*(1-exp(-k*a0))
+#        #
+#        gamma = -1
+#        alpha = getAlphaFmsy(x*M, M, k, w, W, 1, gamma)
+#        beta  = getBeta(B0, M, k, w, W, alpha, gamma)
+#        #
+#        BZero = BBar(0, M, k, w, W, alpha, beta, gamma)
+#        xiHat = FMsy(M, k, w, W, alpha, beta, gamma)/M
+#        zetaHat = BBar(x*M, M, k, w, W, alpha, beta, gamma)/BZero #BBar(0, M, k, w, W, alpha, beta, gamma)
+#        #
+#        return(zetaHat)
+#}
+#getZetaBH = Vectorize(getZetaBH, "x")
 
 #
 invert = function(zeta, xi, B0, M, k, w, W, alphaStart=1, betaStart=1, gammaStart=1){
@@ -167,12 +189,12 @@ invert = function(zeta, xi, B0, M, k, w, W, alphaStart=1, betaStart=1, gammaStar
 #Statistics
 
 #
-myDist = function(x, xi, zeta){ sqrt((xi-x)^2 + (zeta-getZetaBH(x, M, kappa, WW, a0))^2) }
+myDist = function(x, xi, zeta){ sqrt((xi-x)^2 + (zeta-getZetaBH(x, M, kappa, WW, aS, a0))^2) }
 
 #
 getlFV = function(fit, MM=10^4, samples=F){
 	#
-	ww = fit$WW*(1-exp(-fit$kappa*fit$a0))
+	ww = vbGrow(fit$aS, fit$kappa, fit$WW, fit$a0) #fit$WW*(1-exp(-fit$kappa*fit$a0))
 	#
 	who = c('lalpha')
 	C = fit$rsCov[who, who]
@@ -191,7 +213,7 @@ getlFV = function(fit, MM=10^4, samples=F){
 #
 getlV = function(fit, MM=10^4, samples=F){
 	#
-	ww = fit$WW*(1-exp(-fit$kappa*fit$a0))
+	ww = vbGrow(fit$aS, fit$kappa, fit$WW, fit$a0) #fit$WW*(1-exp(-fit$kappa*fit$a0))
 	#
 	who = c('lalpha', 'lbeta')
 	C = fit$rsCov[who, who]
@@ -256,7 +278,7 @@ getData = function(dir, xiRange, zetaRange){
 
 		#
 		#Fs = FMsy(fit$alpha, fit$gamma, M)
-		ww = fit$WW*(1-exp(-fit$kappa*fit$a0))
+		ww = vbGrow(fit$aS, fit$kappa, fit$WW, fit$a0) #fit$WW*(1-exp(-fit$kappa*fit$a0))
 		Fs = FMsy(fit$M, fit$kappa, ww, fit$WW, fit$alpha, fit$beta, fit$gamma)
 		xiHat = Fs/fit$M
 		#
@@ -291,7 +313,20 @@ getData = function(dir, xiRange, zetaRange){
 #
 
 #
-mod = "ExpT45N150K1" #"FlatT30N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150A7.5" # #"ExpT45N150Wide"
+#mod = #"ExpT45N150K1" #"FlatT30N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150A7.5" # #"ExpT45N150Wide"
+#fail
+#mod = "FlatT30N150A-1AS15K0.1"
+#fail
+#mod = "FlatT30N150A-0.5AS15K0.1" 
+##worked w/ F help w/o K help
+#mod = "ExpT45N150A-1AS2" 
+#worked w/ F help w/o K help
+mod = "ExpT45N150A-1AS15K0.1" 
+#royally fucked somehow
+##mod = "ExpT45N150A-0.5AS2" 
+#fail
+#mod = "ExpT45N150A-0.5AS15K0.1" 
+
 place = sprintf("./modsDD%s/", mod)
 
 #
@@ -314,11 +349,12 @@ while( is.null(C) ){
 }
 
 #
+aS = fOne$aS
 a0 = fOne$a0
 M  = fOne$M
 kappa = fOne$kappa
 WW = fOne$WW
-ww = WW*(1-exp(-kappa*a0))
+ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 #
 B0 = 10000
 
@@ -349,10 +385,10 @@ lFV = diag(D$lFV)
 lFX = cbind(1, D$xiSeed, D$zetaSeed)
 
 #
-#xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
-#aug = cbind(rep(1, length(xAug)), xAug, getZetaBH(xAug, M, kappa, WW, a0)) #1/(xAug+2))
-xAug = numeric(0)
-aug = numeric(0)
+xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+aug = cbind(rep(1, length(xAug)), xAug, getZetaBH(xAug, M, kappa, WW, aS, a0)) #1/(xAug+2))
+#xAug = numeric(0)
+#aug = numeric(0)
 lFX = rbind(lFX, aug)
 lFy = c(lFy, log(xAug*M))
 lFVm = mean(D$lFV, na.rm=T)
@@ -403,7 +439,7 @@ lFPred[!mask] = NA
 xiHat = exp(lFPred)/M
 xiBias = sweep(xiHat, 1, xiStar)
 #zbh = BBar(exp(lFPred), M, kappa, ww, WW, fit$alpha, fit$beta, fit$gamma)/BBar(0, M, kappa, ww, WW, fit$alpha, fit$beta, fit$gamma) 
-zbh = matrix(getZetaBH(exp(lFPred)/M, M, kappa, WW, a0), nrow(xiBias), ncol(xiBias))
+zbh = matrix(getZetaBH(exp(lFPred)/M, M, kappa, WW, aS, a0), nrow(xiBias), ncol(xiBias))
 zetaBias = sweep(zbh, 2, zetaStar)
 #zetaBias = sweep(matrix(0.5, nrow(xiHat), ncol(xiHat)), 2, zetaStar)
 zetaBias[!mask] = NA
@@ -424,12 +460,13 @@ lKX = cbind(1, D$xiSeed, D$zetaSeed)
 
 ##
 #xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
-#aug = cbind(rep(1, length(xAug)), xAug, getZetaBH(xAug, M, kappa, WW, a0)) #1/(xAug+2))
+#aug = cbind(rep(1, length(xAug)), xAug, getZetaBH(xAug, M, kappa, WW, aS, a0)) #1/(xAug+2))
 ##xAug = seq(0.75, 4, 0.5) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
 ##aug = cbind(rep(1, length(xAug)), xAug, 1/(xAug+2))
 #lKX = rbind(lKX, aug)
 #lKy = c(lKy, log(B0))
-#lKV = diag(c(D$lB0V, rep(0, length(xAug))))
+#lKVm = mean(D$lB0V, na.rm=T)
+#lKV = diag(c(D$lB0V, rep(lKVm, length(xAug))))
 
 #
 lKaxes = lKX[,2:3]

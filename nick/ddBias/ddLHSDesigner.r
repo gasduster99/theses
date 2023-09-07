@@ -429,10 +429,10 @@ addCircle = function(centerx, centery, radius, length=200){
 odeMethod = "lsode"
 
 #
-aS = 2  #15   #0.1  #15     #15  #7.5 #15  #1
-a0 = -0.5 #-0.25 #-0.5 #-1   #-2
-M  = 0.2 #0.005
-kappa = 1 #15 #0.2 #0.1 #0.2 #0.2 #10
+aS = 0.1	#2  #15   #0.1  #15     #15  #7.5 #15  #1
+a0 = -1 	#-0.25 #-0.5 #-1   #-2
+M  = 0.2 	#0.005
+kappa = 10 	#15 #0.2 #0.1 #0.2 #0.2 #10
 WW = 1
 ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 
@@ -467,11 +467,11 @@ ylim = c(0.15, 0.7) #0.6) #
 #
 if( T ){
 #Only run this to start a design
-p = "./modsDDExpT45N150A-0.5AS2/" #"./modsDDExpT45N150A0.1K15/" #'test'
+p = "./modsDDExpT45N300AS0.1K10/" #"./modsDDExpT45N150A0.1K15/" #'test'
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
 dir.create(p)
 #
-ll = lhsMake(xlim, ylim, 150, 0, save=p) #(xiLim, zetaLim, 
+ll = lhsMake(xlim, ylim, 300, 0, save=p) #(xiLim, zetaLim, 
 }else{
 
 #
@@ -515,7 +515,6 @@ if( dir.exists(outPlace) ){
         system(sprintf("cp -r %s %s", inPlace, outPlace))
         #write.table(t(c('batch', 'modName')), sprintf("%s/appends.csv", outPlace), sep=',', row.names=F, col.names=F, append=F)
 }
-#dir.create(outPlace, showWarnings=FALSE) }
 
 #
 xiList = c()
