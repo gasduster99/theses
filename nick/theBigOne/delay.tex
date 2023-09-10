@@ -527,11 +527,12 @@ maximization of equilibrium yield, \mbox{$\bar{Y} = F\bar{B}(F)$.} While it was 
 possible to analytically maximize $\bar{Y}$, stable numerical solutions for 
 calculating $F^*$ were obtained by numerically solving for the roots of the 
 analytical derivative of equilibrium yield with respect to $F$. Below a greatly
-simplifed expression for $\frac{d \bar{Y}}{dF}$ is provided with $Z=F+M$ 
-(representing the total mortality rate) to make a further attempt at brevity in 
-the expression.
+simplifed expression for $\frac{d \bar{Y}}{dF}$ is shown; the substitution 
+$Z=F+M$ (representing total mortality rate) has been made to produce a more 
+compact expression.
  
 %
+\vspace{-0.75cm}
 \begingroup
 \scriptsize
 \begin{align}
@@ -541,9 +542,74 @@ the expression.
 \end{align}
 \endgroup
 %
-Numerical roots of the above expression were calculated using the base R 
-uniroot function which employs a derivative free search given by \shortciteA{brent_chapter_1973}.  
+$F^*$ is calculated as the numerical root, w.r.t. $F$, of the above expression. 
+The numerical root is calculated using the base R uniroot function which 
+employs a derivative free search given by \shortciteA{brent_chapter_1973}.  
 
+%
+\subsubsection{BH Constraint}
+
+%
+\begin{wrapfigure}{r}{0.50\textwidth} %[17]{r}[0pt]{0pt}%
+%\begin{figure}[h!]
+\vspace{-2.5cm}
+%\includegraphics[width=0.5\textwidth]{plots/derisoSrr.png}
+%\begin{minipage}[h!]{0.64\textwidth}
+\includegraphics[width=0.54\textwidth]{../ddBias/rpSpaceAK.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.3\textwidth}
+\vspace{-1.5cm}
+%\hspace*{-1cm}
+\caption{
+\onehalfspacing
+The space of BH RPs for the delay model as a function of $\kappa$ and $a_s$. 
+The RP space is plotted for $80\times80$ combinations of $\kappa\in[0.01, 10]$ 
+and $a_s\in[0.01, 10]$. The color drawn is the result of mapping $\kappa$ and $a_s$ 
+values to the red and blue components of the RGB color model repsectively (with G=0). 
+$\frac{1}{x+2}$ is plotted in black for reference. 
+%
+% red value to the value of $a_s$ and  mapped to the red, and blue values repsectly. % of the drawn color.
+%$\frac{1}{x+2}$ is plotted in black for reference. Notice that for high $\kappa$ 
+%and small $a_s$ the constrained RP space converges to $\frac{1}{x+2}$. The opposite 
+%limit with low $\kappa$ and high $a_s$ depresses RPs away from $\frac{1}{x+2}$. Notice 
+%that in the simple production model the constrained RP is fixed at $\frac{1}{x+2}$, 
+%but under the delay model the growth parameters $a_s$ and $\kappa$ slightly influence
+%this relationship. That said, the influence of $a_s$ and $\kappa$ on RPs is still 
+%largly limited to a confined region of reference point space bounded above by the 
+%simple model.
+}
+\label{rpSpace}
+%\end{minipage}
+\end{wrapfigure}
+%\end{figure}
+
+%
+In the simple production model the BH constrained RP is fixed at $\frac{1}{x+2}$; 
+under the BH delay model the growth parameters $a_s$ and $\kappa$ slightly 
+influence this relationship as seen in Figure (\ref{rpSpace}). That said, 
+the influence of $a_s$ and $\kappa$ on RPs is still largly limited to a 
+confined region of reference point space which resembles the $\frac{1}{x+2}$ 
+form. In fact the confined region of RPs is bounded above by $\frac{1}{x+2}$. %bounding the region above by $\frac{1}{x+2}$.
+In Figure (\ref{rpSpace}) notice that for high values of $\kappa$ and small 
+values of $a_s$ (red region) the BH RP space converges to $\frac{1}{x+2}$ as 
+derived in the simple production model setting. The opposite limit with low 
+values of $\kappa$ and high values $a_s$ (blue region) depresses RPs away from 
+$\frac{1}{x+2}$. 
+
+
+
+%
+\subsection{Space Filling Design}
+%
+\begin{itemize}
+	\item constrained BH space (method for visualizing)
+	\item layout data generation/space filling problem
+	%\item how far to get the math for inputting into CAS
+	%\item method of CAS.
+	%\item describe and plot $\zeta$.%the space filling alorithm	
+	%\item appendix for RP CAS calculation
+%\item[+] distributional results (Appendix B) for reference point and biological inference
+\end{itemize}
 
 %\begin{align}
 %\alpha(\gamma) &= root_\alpha \frac{d \bar{Y}}{dF}\\
@@ -551,32 +617,112 @@ uniroot function which employs a derivative free search given by \shortciteA{bre
 %\gamma &= root_\gamma \frac{\bar{B}(F^*)}{\bar{B}(0)}
 %\end{align}
 
-$Z^*=F^*+M$
+%
+Similarly as previously described in Section (\ref{sSim}) the relationship 
+between RPs $\mapsto$ $\theta$ cannot be fully expressed analytically for the 
+Schnute delay model. However, just as for the simple production model, 
+simulation only requires enough knowledge of these mappings to gather a list
+of $(\alpha, \beta, \gamma)$ tuples and the corresponding RPs in some reasonable 
+space-filling design over RP space. %for the purposes of simulation 
+
+%
+Similar to the Schnute production model setting a partial mapping for
+$\big(F^*, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$
+can be derived analytically in terms of RPs and $\gamma$. The substition $Z^*=F^*+M$ is 
+made where $F^*$ and $M$ appear together to produce a more compact expression.
 
 %
 \begingroup
 \scriptsize
 \begin{align}
 \alpha & = \left[ \oneA + \twoA \left( 1 + \thrA \right) \right]^{\frac{1}{\gamma}}\\
-\beta &= \frac{1}{\gamma B_0} \left( 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma\right)\\
-\frac{B^*}{B_0} &= \frac{ 1 - \Big(\frac{(F^* + M) (F^* + M + \kappa)}{\alpha w(a_s)(F^* + M + \kr)}\Big)^\gamma }{ 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma }
+\beta &= \frac{1}{\gamma B_0} \left( 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma\right) %\\
+%\frac{B^*}{B_0} &= \frac{ 1 - \Big(\frac{(F^* + M) (F^* + M + \kappa)}{\alpha w(a_s)(F^* + M + \kr)}\Big)^\gamma }{ 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma }
 \end{align}
 \endgroup
 
-\subsection{Space Filling Design}
+%
+While conceputally this proceedure is similar to the Schnute production model, 
+the analytical expression is substantially more complex, with growth parameters 
+appearing explicitly in the expression.
 
+\begin{align}
+\frac{B^*}{B_0} &= \frac{ 1 - \Big(\frac{(F^* + M) (F^* + M + \kappa)}{\alpha w(a_s)(F^* + M + \kr)}\Big)^\gamma }{ 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma }
+\end{align}
+
+{\color{gray}
+%
+For the purposed of simulation, it is not necessary to completely know
+%either of 
+the precise relationships mapping RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$
+RPs. Simulation only requires enough knowledge of these mappings to gather a list
+of $(\alpha, \beta, \gamma)$ tuples, for data generation under the Schnute model,
+and the corresponding RPs in some reasonable space-filling design over RP space.
+
+%
+Similarly to \shortciteA{schnute_analytical_1998}, expressions %solving expressions 
+(\ref{FmsyS}) and (\ref{B0S}) are solved for $\alpha$ and $\beta$ respectively.
+This leads to the partial mapping
+$\big(F^*, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$
+in terms of RPs and $\gamma$.
+% yields a partial mapping from 
+%$\big(F^*, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$.
+By further working with Eq. (\ref{BratS}), to identify $\gamma$, the following
+system is obtained,
+%
+\begin{align}
+%\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
+\alpha &= (M+F^*)\left(1+\frac{\gamma F^*}{M+F^*}\right)^{1/\gamma} \nonumber\\
+\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{abgSys}\\
+\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \nonumber.
+\end{align}
+
+%
+For a population experiencing natural mortality $M$, by fixing $F^*$,
+$B_0$, and $\frac{B^*}{B_0}$ %$B^*$ % 
+the above system can fully specify $\alpha$ and $\beta$ for a given $\gamma$. % if only $\gamma$ were further isolated
+Notice for a given $\gamma$ a cascade of closed form solutions for $\alpha$
+and $\beta$ can be obtained. First $\alpha(\gamma)$ can be computed, and then
+$\beta(\alpha(\gamma), \gamma)$ can be computed. If $\alpha(\gamma)$ is filled
+back into the expression for $\frac{B^*}{B_0}$, the system collapses into
+a single onerous expression for $\frac{B^*}{B_0}(\alpha(\gamma), \gamma)$.
+For brevity, define the function \mbox{$\zeta(\gamma)=\frac{B^*}{B_0}\big(\alpha(\gamma), \gamma, F^*, M\big)$} based on Eq. (\ref{BratS}).
+
+% %possible;
+Inverting $\zeta(\gamma)$ for $\gamma$, and computing the cascade of
+$\alpha(\gamma)$, and then $\beta(\alpha(\gamma), \gamma)$, fully defines the
+Schnute model for a given $(\frac{F^*}{M}, \frac{B^*}{B_0})$. However
+inverting $\zeta$ accurately is extremely difficult. Inverting $\zeta$
+analytically is not feasible, and numerical methods for inverting
+$\zeta$ are unstable and can be computationally expensive.
+%Numerically inverting $\zeta$ quickly becomes 
+%prohibitively expensive, and solutions are often still unreliable. 
+%
+Rather than numerically invert precise values of $\zeta(\gamma)$, $\gamma$ is
+sampled so that the overall simulation design is space filling as described in
+Section (\ref{sLHS}).
+
+%
+Each design location defines a complete Schnute production model with the given
+RP values. Indices of abundance are simulated from the Schnute model at each design
+location, a small amount of residual variation, $\sigma=0.01$, is added to the
+simulated index, and the data are then fit with a misspecified BH production model.
+The design at large captures various degrees of model misspecification relative
+to the BH model, so as to observe the effect of productivity model misspecification
+upon RP inference.
+}
+
+
+%
+\subsection{Parmeter Estimation}
+%
 \begin{itemize}
-	\item state and decribe model
-	\item Reference Point Derivation
-	\item layout data generation/space filling problem
-	\item how far to get the math for inputting into CAS
-	\item method of CAS.
-	\item describe and plot $\zeta$.%the space filling alorithm
-	\item constrained BH space (method for visualizing)
-	\item appendix for RP CAS calculation
-%\item[+] distributional results (Appendix B) for reference point and biological inference
+	\item layout likelihood setup
+	\item mention recreational data numbers likelihood
+	\item point out similarity of B/N solutions
+	\item I use B only here
+	\item quick statement of inference, and reference to previous section
 \end{itemize}
-
 
 %\clearpage
 %\bibliographystyle{apacite}
