@@ -528,8 +528,7 @@ possible to analytically maximize $\bar{Y}$, stable numerical solutions for
 calculating $F^*$ were obtained by numerically solving for the roots of the 
 analytical derivative of equilibrium yield with respect to $F$. Below a greatly
 simplifed expression for $\frac{d \bar{Y}}{dF}$ is shown; the substitution 
-$Z=F+M$ (representing total mortality rate) has been made to produce a more 
-compact expression.
+$Z=F+M$ (total mortality rate) has been made to produce a more compact expression.
  
 %
 \vspace{-0.75cm}
@@ -584,8 +583,10 @@ $\frac{1}{x+2}$ is plotted in black for reference.
 %\end{figure}
 
 %
-In the simple production model the BH constrained RP is fixed at $\frac{1}{x+2}$; 
-under the BH delay model the growth parameters $a_s$ and $\kappa$ slightly 
+In the simple production model the BH constrained RPs are fixed to $\frac{1}{x+2}$.
+In the delay differential modeling setting the constrained BH RP set is 
+complicated the growth parameters $a_s$ and $\kappa$.
+Under BH recruitment these parameters of the delay model slightly %the growth parameters $a_s$ and $\kappa$  
 influence this relationship as seen in Figure (\ref{rpSpace}). That said, 
 the influence of $a_s$ and $\kappa$ on RPs is still largly limited to a 
 confined region of reference point space which resembles the $\frac{1}{x+2}$ 
@@ -599,17 +600,17 @@ $\frac{1}{x+2}$.
 
 
 %
-\subsection{Space Filling Design}
-%
-\begin{itemize}
-	\item constrained BH space (method for visualizing)
-	\item layout data generation/space filling problem
-	%\item how far to get the math for inputting into CAS
-	%\item method of CAS.
-	%\item describe and plot $\zeta$.%the space filling alorithm	
-	%\item appendix for RP CAS calculation
-%\item[+] distributional results (Appendix B) for reference point and biological inference
-\end{itemize}
+\subsection{Simulation Design}
+%%
+%\begin{itemize}
+%	\item constrained BH space (method for visualizing)
+%	\item layout data generation/space filling problem
+%	%\item how far to get the math for inputting into CAS
+%	%\item method of CAS.
+%	%\item describe and plot $\zeta$.%the space filling alorithm	
+%	%\item appendix for RP CAS calculation
+%%\item[+] distributional results (Appendix B) for reference point and biological inference
+%\end{itemize}
 
 %\begin{align}
 %\alpha(\gamma) &= root_\alpha \frac{d \bar{Y}}{dF}\\
@@ -620,109 +621,249 @@ $\frac{1}{x+2}$.
 %
 Similarly as previously described in Section (\ref{sSim}) the relationship 
 between RPs $\mapsto$ $\theta$ cannot be fully expressed analytically for the 
-Schnute delay model. However, just as for the simple production model, 
+Schnute delay model. However, just as in the production model setting, 
 simulation only requires enough knowledge of these mappings to gather a list
 of $(\alpha, \beta, \gamma)$ tuples and the corresponding RPs in some reasonable 
 space-filling design over RP space. %for the purposes of simulation 
 
-%
-Similar to the Schnute production model setting a partial mapping for
+%Like the Schnute production model setting, 
+In the delay model a partial mapping for
 $\big(F^*, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$
-can be derived analytically in terms of RPs and $\gamma$. The substition $Z^*=F^*+M$ is 
-made where $F^*$ and $M$ appear together to produce a more compact expression.
+%in the delay modelling setting 
+can be derived analytically in terms of RPs and $\gamma$. The substitution 
+$Z^*=F^*+M$ is made where $F^*$ and $M$ appear together to produce a more 
+compact expression.
 
 %
 \begingroup
 \scriptsize
 \begin{align}
-\alpha & = \left[ \oneA + \twoA \left( 1 + \thrA \right) \right]^{\frac{1}{\gamma}}\\
-\beta &= \frac{1}{\gamma B_0} \left( 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma\right) %\\
+\alpha & = \left[ \oneA + \twoA \left( 1 + \thrA \right) \right]^{\frac{1}{\gamma}} \label{aDelay}\\
+\beta &= \frac{1}{\gamma B_0} \left( 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma\right) \label{bDelay}%\\
 %\frac{B^*}{B_0} &= \frac{ 1 - \Big(\frac{(F^* + M) (F^* + M + \kappa)}{\alpha w(a_s)(F^* + M + \kr)}\Big)^\gamma }{ 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma }
 \end{align}
 \endgroup
 
 %
-While conceputally this proceedure is similar to the Schnute production model, 
-the analytical expression is substantially more complex, with growth parameters 
-appearing explicitly in the expression.
-
+Above Eq. (\ref{aDelay}) results from setting \mbox{Eq. (\ref{dBdFS})} equal to zero 
+and solving for $\alpha$, and \mbox{Eq. (\ref{bDelay})} results from solving the 
+$\bar{B}(0)$ expression, as derived from \mbox{Eq. (\ref{BF}),} for $\beta$. The system 
+is completed by further working with the $\frac{\bar{B}(F^*)}{\bar{B}(0)}$ expression, 
+as seen below, to identify $\gamma$.
 \begin{align}
 \frac{B^*}{B_0} &= \frac{ 1 - \Big(\frac{(F^* + M) (F^* + M + \kappa)}{\alpha w(a_s)(F^* + M + \kr)}\Big)^\gamma }{ 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma }
-\end{align}
-
-{\color{gray}
-%
-For the purposed of simulation, it is not necessary to completely know
-%either of 
-the precise relationships mapping RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$
-RPs. Simulation only requires enough knowledge of these mappings to gather a list
-of $(\alpha, \beta, \gamma)$ tuples, for data generation under the Schnute model,
-and the corresponding RPs in some reasonable space-filling design over RP space.
-
-%
-Similarly to \shortciteA{schnute_analytical_1998}, expressions %solving expressions 
-(\ref{FmsyS}) and (\ref{B0S}) are solved for $\alpha$ and $\beta$ respectively.
-This leads to the partial mapping
-$\big(F^*, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$
-in terms of RPs and $\gamma$.
-% yields a partial mapping from 
-%$\big(F^*, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$.
-By further working with Eq. (\ref{BratS}), to identify $\gamma$, the following
-system is obtained,
-%
-\begin{align}
-%\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
-\alpha &= (M+F^*)\left(1+\frac{\gamma F^*}{M+F^*}\right)^{1/\gamma} \nonumber\\
-\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{abgSys}\\
-\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \nonumber.
+\label{gDelay}
 \end{align}
 
 %
-For a population experiencing natural mortality $M$, by fixing $F^*$,
-$B_0$, and $\frac{B^*}{B_0}$ %$B^*$ % 
-the above system can fully specify $\alpha$ and $\beta$ for a given $\gamma$. % if only $\gamma$ were further isolated
-Notice for a given $\gamma$ a cascade of closed form solutions for $\alpha$
-and $\beta$ can be obtained. First $\alpha(\gamma)$ can be computed, and then
-$\beta(\alpha(\gamma), \gamma)$ can be computed. If $\alpha(\gamma)$ is filled
-back into the expression for $\frac{B^*}{B_0}$, the system collapses into
-a single onerous expression for $\frac{B^*}{B_0}(\alpha(\gamma), \gamma)$.
-For brevity, define the function \mbox{$\zeta(\gamma)=\frac{B^*}{B_0}\big(\alpha(\gamma), \gamma, F^*, M\big)$} based on Eq. (\ref{BratS}).
-
-% %possible;
-Inverting $\zeta(\gamma)$ for $\gamma$, and computing the cascade of
-$\alpha(\gamma)$, and then $\beta(\alpha(\gamma), \gamma)$, fully defines the
-Schnute model for a given $(\frac{F^*}{M}, \frac{B^*}{B_0})$. However
-inverting $\zeta$ accurately is extremely difficult. Inverting $\zeta$
-analytically is not feasible, and numerical methods for inverting
-$\zeta$ are unstable and can be computationally expensive.
-%Numerically inverting $\zeta$ quickly becomes 
-%prohibitively expensive, and solutions are often still unreliable. 
+The system formed by collecting Eqs. (\ref{aDelay}), (\ref{bDelay}), and 
+(\ref{gDelay}) can be navigated similarly to Eq. (\ref{abgSys}) in the Schnute 
+production model setting. For a population experiencing natural mortality $M$, 
+VB growth with paramters $\kappa$ and $w_\infty$, and age of selectivity $a_s$ 
+the above system can fully specify $\alpha$ and $\beta$ for a given $\gamma$, 
+by fixing $F^*$, $B_0$, and $\frac{B^*}{B_0}$. For a given $\gamma$ a cascade 
+of closed form solutions for $\alpha$ and $\beta$ can be obtained, just as in 
+Section (\ref{sSim}). 
 %
-Rather than numerically invert precise values of $\zeta(\gamma)$, $\gamma$ is
-sampled so that the overall simulation design is space filling as described in
-Section (\ref{sLHS}).
+First $\alpha(\gamma)$ can be computed, and then $\beta(\alpha(\gamma), \gamma)$ 
+can be computed. If $\alpha(\gamma)$ is filled back into the expression for 
+$\frac{B^*}{B_0}$, the system collapses into a single onerous expression for 
+$\frac{B^*}{B_0}(\alpha(\gamma), \gamma)$.For brevity, define the function 
+\mbox{$\zeta(\gamma)=\frac{B^*}{B_0}\big(\alpha(\gamma), \gamma, F^*, M\big)$} 
+based on Eq. (\ref{gDelay}).
 
 %
-Each design location defines a complete Schnute production model with the given
-RP values. Indices of abundance are simulated from the Schnute model at each design
-location, a small amount of residual variation, $\sigma=0.01$, is added to the
-simulated index, and the data are then fit with a misspecified BH production model.
-The design at large captures various degrees of model misspecification relative
-to the BH model, so as to observe the effect of productivity model misspecification
-upon RP inference.
-}
+Again rather than inverting $\zeta(\gamma)$ for $\gamma$, $\gamma$ is the 
+sampled so that the overall simulation design is space filling as described in 
+Section (\ref{sLHS}). Given the sampled $\gamma$, the cascade of $\alpha(\gamma)$, 
+and then $\beta(\alpha(\gamma), \gamma)$, can be computed, and the Schnute 
+delay model is fully defined by a given $(\frac{F^*}{M}, \frac{B^*}{B_0})$.
+%
+While conceputally this framing is similar to the Schnute production model, 
+the analytical expressions are more complex, and numerically trecherous, since 
+growth parameters appear explicitly here. Other ways of navigating the RPs $\mapsto$ $\theta$
+system are possible, but for the sake of numerical stability this strategy has 
+proven the most reliably accurate by limiting exposure to numerical error propogation. 
+
+\begin{itemize}
+	\item $\sigma=0.01$, $q$
+	\item $B_0=10,000$
+	\item fixed $M=0.2$, $a_0=-1$, $w_\infty=1$
+	\item play with $\kappa$ and age of selectivity $a_s$
+\end{itemize}
+
+%%
+%Each design location defines a complete Schnute production model with the given
+%RP values. Indices of abundance are simulated from the Schnute model at each design
+%location, a small amount of residual variation, $\sigma=0.01$, is added to the
+%simulated index, and the data are then fit with a misspecified BH production model.
+%The design at large captures various degrees of model misspecification relative
+%to the BH model, so as to observe the effect of productivity model misspecification
+%upon RP inference.
+
+
+%{\color{gray}
+%%
+%For the purposed of simulation, it is not necessary to completely know
+%%either of 
+%the precise relationships mapping RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$
+%RPs. Simulation only requires enough knowledge of these mappings to gather a list
+%of $(\alpha, \beta, \gamma)$ tuples, for data generation under the Schnute model,
+%and the corresponding RPs in some reasonable space-filling design over RP space.
+%
+%%
+%Similarly to \shortciteA{schnute_analytical_1998}, expressions %solving expressions 
+%(\ref{FmsyS}) and (\ref{B0S}) are solved for $\alpha$ and $\beta$ respectively.
+%This leads to the partial mapping
+%$\big(F^*, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$
+%in terms of RPs and $\gamma$.
+%% yields a partial mapping from 
+%%$\big(F^*, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$.
+%By further working with Eq. (\ref{BratS}), to identify $\gamma$, the following
+%system is obtained,
+%%
+%\begin{align}
+%%\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
+%\alpha &= (M+F^*)\left(1+\frac{\gamma F^*}{M+F^*}\right)^{1/\gamma} \nonumber\\
+%\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{abgSys}\\
+%\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \nonumber.
+%\end{align}
+
+%%
+%For a population experiencing natural mortality $M$, by fixing $F^*$,
+%$B_0$, and $\frac{B^*}{B_0}$ %$B^*$ % 
+%the above system can fully specify $\alpha$ and $\beta$ for a given $\gamma$. % if only $\gamma$ were further isolated
+%Notice for a given $\gamma$ a cascade of closed form solutions for $\alpha$
+%and $\beta$ can be obtained. First $\alpha(\gamma)$ can be computed, and then
+%$\beta(\alpha(\gamma), \gamma)$ can be computed. If $\alpha(\gamma)$ is filled
+%back into the expression for $\frac{B^*}{B_0}$, the system collapses into
+%a single onerous expression for $\frac{B^*}{B_0}(\alpha(\gamma), \gamma)$.
+%For brevity, define the function \mbox{$\zeta(\gamma)=\frac{B^*}{B_0}\big(\alpha(\gamma), \gamma, F^*, M\big)$} based on Eq. (\ref{BratS}).
+%
+%% %possible;
+%Inverting $\zeta(\gamma)$ for $\gamma$, and computing the cascade of
+%$\alpha(\gamma)$, and then $\beta(\alpha(\gamma), \gamma)$, fully defines the
+%Schnute model for a given $(\frac{F^*}{M}, \frac{B^*}{B_0})$. However
+%inverting $\zeta$ accurately is extremely difficult. Inverting $\zeta$
+%analytically is not feasible, and numerical methods for inverting
+%$\zeta$ are unstable and can be computationally expensive.
+%%Numerically inverting $\zeta$ quickly becomes 
+%%prohibitively expensive, and solutions are often still unreliable. 
+%%
+%Rather than numerically invert precise values of $\zeta(\gamma)$, $\gamma$ is
+%sampled so that the overall simulation design is space filling as described in
+%Section (\ref{sLHS}).
+%
+%%
+%Each design location defines a complete Schnute production model with the given
+%RP values. Indices of abundance are simulated from the Schnute model at each design
+%location, a small amount of residual variation, $\sigma=0.01$, is added to the
+%simulated index, and the data are then fit with a misspecified BH production model.
+%The design at large captures various degrees of model misspecification relative
+%to the BH model, so as to observe the effect of productivity model misspecification
+%upon RP inference.
+%}
 
 
 %
 \subsection{Parmeter Estimation}
 %
 \begin{itemize}
-	\item layout likelihood setup
-	\item mention recreational data numbers likelihood
-	\item point out similarity of B/N solutions
+	%\item layout likelihood setup
+	%\item mention recreational data numbers likelihood
+	%\item point out similarity of B/N solutions
 	\item I use B only here
 	\item quick statement of inference, and reference to previous section
 \end{itemize}
+
+%
+Let $I_t$ $t\in\{1,2,3,...,T\}$ be a series of indicies of abundance, 
+proportional to biomass, as simulated from the Schnute Delay model. The fitted 
+model is constrainted to BH recruitment.
+
+Growth parameters: $\bm{\phi}'=[\kappa, w_\infty, a_0, a_s]$
+
+%
+The observation model for the fitted model is log-normal such that, 
+%|q, \sigma^2, \bm{\theta}, \bm{\phi}
+\begin{align}
+I_t \sim LN(q B_t(\bm{\theta}, \bm{\phi}), \sigma^2). \label{bL}
+\end{align}
+%
+$B_t(\bm{\theta}, \bm{\phi})$ is the biomass solution of the DDE system. %of DDE defined in Eq. (\ref{bEq}). 
+For the BH constrainted fitted model $\bm{\theta}'=[\alpha, \beta, \gamma=-1]$. 
+$\bm{\phi}$ is a vector of the fixed growth and maturity parameters, 
+$\bm{\phi}'=[\kappa, w_\infty, a_0, a_s]$. The nuisance parameter $q$ models 
+the proportionality constant of the index with process biomass, and $\sigma^2$ 
+models residual variation of the index.  
+
+%
+While not utilized here, the delay model is also capable of modeling 
+indicies that are proportional to numbers rather than (or simultaiously to) 
+biomass. When solving the DDE, Eq. (\ref{nEq}) points out that the full DDE 
+solution will expose a numbers solution simultaneously with a biomass solution. 
+These solutions are often quite similar since the main driver of process 
+behavior comes from the form of $R$. However, it is common on the west 
+coast of the US that indicies derived from commercial fisheries are measured 
+as weights %biomass Index observations
+while indicies derived from recreational fisheries are often measured as counts.
+%represent indicies that are better modeled as proportional tocounts rather than biomass. 
+If a numbers index, $J_t$, is observed alongside the previously 
+mentioned biomass index, the following likelihood component may be added as a 
+conditionally independent component of the likelihood as follows,
+%|p, \tau^{2}, \bm{\theta}, \bm{\phi}
+\begin{align}
+J_t \sim LN(p N_t(\bm{\theta}, \bm{\phi}), \tau^{2}) \label{nL}.
+\end{align}
+%
+$N_t(\bm{\theta}, \bm{\phi})$ is the numbers solution of the DDE system.
+$\bm{\theta}$ and $\bm{\phi}$ are the productivity and growth parameters shared in 
+common with the biomass component. $p$ and $\tau^2$ are then the analogous 
+proportionality constant and residual variation of the numbers index respectively.
+
+$\bm{\phi}$ fixed, $q$ fixed,\\ 
+MLE $\bm{\theta}$ and $\sigma^2$\\
+Look at values above and adapt from schnute paper.
+
+
+%
+\subsection{Delay Differential Integration}
+
+%
+The delay model belongs to a class of differential equations known as delay 
+differential equations (DDE). The delay arrises from the $B(t-a_s)$ terms 
+found in the recruitment function. DDEs require special care which depends on 
+the nature of the time delay present. The addition of time-varying delays, many 
+different delays, or very small delays results in some of the more challenging 
+settings for solving DDEs. In this setting, the time delay model represents 
+one of the most straight forward DDE structures with a single stationary model 
+of the age of selectivity. The most numerically challenging case presented here
+arrises in the case of the limiting production model when $a_s\to0$ and $\kappa\to\infty$.
+That said the limiting behavior can be approximated for values of $a_s\approx0.1$, and 
+it was straightforward to ensure that the step size of the integrator remained 
+resonable below 0.1. 
+
+Initial value problem. $B_0=10000$, $N_0$
+
+the implicit Livermore Solver lsode as implemented in the dede module of the 
+deSolve package of R (Soetaert et al., 2010)
+
+runs relatively quickly a relatively smaller footprint in system memory with implicit
+properties against any stiff equations that may arise.
+
+
+%The addition of time-varying delays results in among 
+%the worst behaved DDEs when handled as single DDE. Often stock assessment models
+%entertain the time chucked models, which could introduce complications if modeled 
+%as a single DDE. Rather when used as a fisheries model time chucking of data should 
+%model separate DDE in the distinct chucks with initial values  
+%straight forward, but  when integrating 
+%for a solution  
+
+delays are on the order of the step size (vanishing delays) are difficult to solve. (dde CRAN)
+
+https://cran.r-project.org/web/packages/dde/vignettes/dde.html
+
 
 %\clearpage
 %\bibliographystyle{apacite}
