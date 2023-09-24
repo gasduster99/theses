@@ -296,7 +296,7 @@ lhsMake = function(xiLim, zetaLim, n, batch, save=F){
 				xi=xi, zeta=zs
 			)
 			dat$iterate(odeMethod)
-			dat$plotQuan(main=sprintf("%s, %s", xi, zs))
+			#dat$plotQuan(main=sprintf("%s, %s", xi, zs))
 			#writeLines(sprintf("\n\n%s, %s", xi, zs))
 			#dat$printSelf()
 			
@@ -429,10 +429,10 @@ addCircle = function(centerx, centery, radius, length=200){
 odeMethod = "lsode"
 
 #
-aS = 0.1	#2  #15   #0.1  #15     #15  #7.5 #15  #1
+aS = 0.1	#10 0.1		#2  #15   #0.1  #15     #15  #7.5 #15  #1
 a0 = -1 	#-0.25 #-0.5 #-1   #-2
 M  = 0.2 	#0.005
-kappa = 10 	#15 #0.2 #0.1 #0.2 #0.2 #10
+kappa = 10 	#10 0.1		#15 #0.2 #0.1 #0.2 #0.2 #10
 WW = 1
 ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 
@@ -456,8 +456,8 @@ FtFmsy = rep(1, TT) #make faux catch
 
 #
 thresh = 0.02
-n = 28 #about 3 flushes all of the thialacia ranks
-#n = 56
+#n = 28 #about 3 flushes all of the thialacia ranks
+n = 56
 
 #
 xlim = c(0.25, 3.75)
@@ -465,7 +465,7 @@ ylim = c(0.15, 0.7) #0.6) #
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
 #
-if( T ){
+if( F ){
 #Only run this to start a design
 p = "./modsDDExpT45N300AS0.1K10/" #"./modsDDExpT45N150A0.1K15/" #'test'
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
@@ -475,8 +475,8 @@ ll = lhsMake(xlim, ylim, 300, 0, save=p) #(xiLim, zetaLim,
 }else{
 
 #
-inPlace = "./modsDDExpT45N150A0-0.5AS2K1M0.2/" #"./modsDDFlatT30N150A15K0.1/" #"./modsDDExpT45N150A15/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
-outPlace = sprintf("./modsDDFlatT30N150A15K0.1N%d/", n) #sprintf("./modsDDExpT45N150A15N%d/", n) 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
+inPlace = "./modsDDExpT45N300AS0.1K10/" #"./modsDDFlatT30N150A15K0.1/" #"./modsDDExpT45N150A15/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
+outPlace = sprintf("./modsDDExpT45N300AS0.1K10N%d/", n) #sprintf("./modsDDExpT45N150A15N%d/", n) 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
 
 #
 #MAIN
@@ -533,7 +533,7 @@ l = cbind(xiList, zetaList)
 
 #
 #png("adaptDesignSquare.png")
-if( !is.null(l) ){ plot(l[,1], l[,2]) }
+if( !is.null(l) ){ plot(l[,1], l[,2], xlim=xlim, ylim=ylim) }
 
 #
 ii = 1

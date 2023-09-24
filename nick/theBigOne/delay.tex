@@ -597,6 +597,43 @@ derived in the simple production model setting. The opposite limit with low
 values of $\kappa$ and high values $a_s$ (blue region) depresses RPs away from 
 $\frac{1}{x+2}$. 
 
+%
+\subsection{Delay Differential Integration}
+
+%
+The delay model belongs to a class of differential equations known as delay 
+differential equations (DDE). The delay arrises from the $B(t-a_s)$ terms 
+found in the recruitment function. Solving DDEs require special care which 
+depends on the nature of the time delay. The addition of time-varying delays, 
+many different delays, or very small delays (delays below the step size of the 
+numerical integrator) results in some of the more challenging settings for 
+solving DDEs. However with a single stationary model of the age of selectivity, 
+the delay model in this setting represents one of the most straight forward 
+DDE structures. The most numerically challenging case presented here arrises 
+in the case of the limiting production model when $a_s\to0$ while $\kappa\to\infty$. 
+That said the limiting production model can be approximated for values of 
+$a_s\approx0.1$, and it was straightforward to ensure that the step size of 
+the integrator remained reasonably below 0.1. 
+
+%
+The DDE presented here is integrated with the initial values fixed at $B_0$ 
+and $N_0$ as given by Eqs. (\ref{BF}) and (\ref{NF}) with $F=0$ at any given 
+configuration of $\bm{\theta}$ and growth parameters. %$\kappa$, $w_\infty$ and $a_s$. 
+The system given in Eqs. (\ref{bEq}) and (\ref{nEq}) are then solved 
+numerically using the implicit Livermore Solver (lsode) as implemented in the 
+\verb|dede| function of the R package \verb|deSolve| \shortcite{soetaert_solving_2010}. 
+The \verb|dede| solver provides many methods for integrating DDEs, but lsode 
+was chosen because it is an implicit method that runs relatively quickly with 
+a relatively smaller footprint in system memory as compared with other methods. 
+The radau method was also tried in more computationally challenging settings 
+with good results (albeit running more slowly that lsode). Ultimatly the 
+simulated parameter space did not produce DDEs that require the more expensive 
+radau integrator to solve accurately.
+ 
+%delays are on the order of the step size (vanishing delays) are difficult to solve. (dde CRAN)
+%
+%https://cran.r-project.org/web/packages/dde/vignettes/dde.html
+
 
 
 %
@@ -825,52 +862,15 @@ $\bm{\phi}$ fixed, $q$ fixed,\\
 MLE $\bm{\theta}$ and $\sigma^2$\\
 Look at values above and adapt from schnute paper.
 
-
 %
-\subsection{Delay Differential Integration}
-
-%
-The delay model belongs to a class of differential equations known as delay 
-differential equations (DDE). The delay arrises from the $B(t-a_s)$ terms 
-found in the recruitment function. DDEs require special care which depends on 
-the nature of the time delay present. The addition of time-varying delays, many 
-different delays, or very small delays results in some of the more challenging 
-settings for solving DDEs. In this setting, the time delay model represents 
-one of the most straight forward DDE structures with a single stationary model 
-of the age of selectivity. The most numerically challenging case presented here
-arrises in the case of the limiting production model when $a_s\to0$ and $\kappa\to\infty$.
-That said the limiting behavior can be approximated for values of $a_s\approx0.1$, and 
-it was straightforward to ensure that the step size of the integrator remained 
-resonable below 0.1. 
-
-Initial value problem. $B_0=10000$, $N_0$
-
-the implicit Livermore Solver lsode as implemented in the dede module of the 
-deSolve package of R (Soetaert et al., 2010)
-
-runs relatively quickly a relatively smaller footprint in system memory with implicit
-properties against any stiff equations that may arise.
-
-
-%The addition of time-varying delays results in among 
-%the worst behaved DDEs when handled as single DDE. Often stock assessment models
-%entertain the time chucked models, which could introduce complications if modeled 
-%as a single DDE. Rather when used as a fisheries model time chucking of data should 
-%model separate DDE in the distinct chucks with initial values  
-%straight forward, but  when integrating 
-%for a solution  
-
-delays are on the order of the step size (vanishing delays) are difficult to solve. (dde CRAN)
-
-https://cran.r-project.org/web/packages/dde/vignettes/dde.html
-
+\subsection{GP Metamodel}
 
 %\clearpage
 %\bibliographystyle{apacite}
 %%\bibliography{./ageStructure.bib}
 %\bibliography{./gpBias.bib,./spline.bib,./ageStructure.bib}
 
-
+\section{Results}
 
 
 
