@@ -462,7 +462,8 @@ addCircle = function(centerx, centery, radius, length=200){
 #mod = "ExpT45N150A-1AS15K0.1"
 #mod = "ExpT45N150A-1AS2"
 #
-mod = "ExpT45N300AS0.1K10"
+#mod = "FlatT45N300A0-1AS10K0.1" 
+mod = "FlatT45N300A0-1AS0.1K10" #"ExpT45N300A0-1AS0.1K10" #
 place = sprintf("./modsDD%s/", mod)
 
 #
@@ -485,6 +486,34 @@ for(fitF in fitFiles){
 }
 l = as.data.frame(cbind(xiList, zetaList))
 rownames(l) = rn 
+
+#CATCH
+
+#
+isExp = grepl("Exp", mod) #T
+#
+TT = 46
+FtFmsy = rep(1, TT)
+if( isExp ){
+	#
+	print(isExp)
+	TT = 31 #length(hake)
+	tt = 1
+	time = tt:TT
+	#
+	mid = round(TT/2)
+	cMax = 2 #4*M
+	cMin = 0.2 #M/4
+	bb = log(cMin/cMax)/(tt-mid)
+	aa = exp(log(cMax)-bb*mid)
+	rSlope = (cMax-1)/(mid-1)
+	rb = 2*rSlope*mid + cMax-rSlope*mid
+	FtFmsy = (aa*exp(bb*time))*(time<=mid) + (-rSlope*time+rb)*(time>mid)
+	#
+	FtFmsy = c(FtFmsy, rep(1, 15))
+	TT = length(FtFmsy)
+	time = tt:TT
+}
 
 #DD MODEL STUFF
 
@@ -532,9 +561,9 @@ alpha = inv$alpha
 beta  = inv$beta
 gamma = inv$gamma
 
-#
-TT = 45
-FtFmsy = rep(1, TT) #make faux catch
+##
+#TT = 45
+#FtFmsy = rep(1, TT) #make faux catch
 
 #LAYOUT STUFF
 
@@ -603,6 +632,8 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	#fit = readRDS(fWho)
 	dWho = rownames(l)[i] #sprintf('%sdatGen_%s', place, rownames(l)[i])
 	dat = readRDS(dWho)
+	dat$catch = FtFmsy 
+	dat$iterate()
 	#
 	par(mar=c(1,1,1,0))
 	dat$plotMean() #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )

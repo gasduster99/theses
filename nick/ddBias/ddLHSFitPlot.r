@@ -460,7 +460,9 @@ addCircle = function(centerx, centery, radius, length=200){
 #
 #mod = "FlatT30N150A15K0.1" #"ExpT45N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A15" # "ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
 #mod = "ExpT45N150A-1AS15K0.1"
-mod = "ExpT45N150A-1AS2"
+#mod = "ExpT45N300AS0.1K10N56" #"ExpT45N150A-1AS2"
+#mod = "ExpT45N300AS10K10" #"ExpT45N300AS1K1N28"
+mod = "ExpT45N300AS10K0.1"
 place = sprintf("./modsDD%s/", mod)
 
 #

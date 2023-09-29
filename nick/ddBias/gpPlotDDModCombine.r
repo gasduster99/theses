@@ -329,10 +329,11 @@ getData = function(dir, xiRange, zetaRange){
 #mod = "ExpT45N300AS1K1" 
 ##failed
 #mod = "ExpT45N300AS10K0.1"
-##kinda worked but no xi<1
+#kinda worked but no xi<1
 #mod = "ExpT45N300AS0.1K10"
+mod = "ExpT45N300AS0.1K10N56"
 #kinda worked
-mod = "ExpT45N300AS10K10"
+#mod = "ExpT45N300AS10K10"
 
 #
 place = sprintf("./modsDD%s/", mod)

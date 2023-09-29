@@ -551,7 +551,7 @@ employs a derivative free search given by \shortciteA{brent_chapter_1973}.
 %
 \begin{wrapfigure}{r}{0.50\textwidth} %[17]{r}[0pt]{0pt}%
 %\begin{figure}[h!]
-\vspace{-2.5cm}
+\vspace{-2.75cm}
 %\includegraphics[width=0.5\textwidth]{plots/derisoSrr.png}
 %\begin{minipage}[h!]{0.64\textwidth}
 \includegraphics[width=0.54\textwidth]{../ddBias/rpSpaceAK.png}
@@ -722,12 +722,21 @@ growth parameters appear explicitly here. Other ways of navigating the RPs $\map
 system are possible, but for the sake of numerical stability this strategy has 
 proven the most reliably accurate by limiting exposure to numerical error propogation. 
 
-\begin{itemize}
-	\item $\sigma=0.01$, $q$
-	\item $B_0=10,000$
-	\item fixed $M=0.2$, $a_0=-1$, $w_\infty=1$
-	\item play with $\kappa$ and age of selectivity $a_s$
-\end{itemize}
+%
+Each design location defines a complete Schnute delay differential model with 
+the given RP values. Indices of abundance are simulated from the Schnute model 
+at each design location, a small amount of residual variation, $\sigma = 0.01$, 
+is added to the simulated index, and the data are then fit with a misspecified 
+BH model. The design captures various degrees of model misspecification 
+relative to the BH model, so as to observe the effect of recruitment 
+misspecification upon RP inference.
+
+%\begin{itemize}
+%	\item $\sigma=0.01$, $q$
+%	\item $B_0=10,000$
+%	\item fixed $M=0.2$, $a_0=-1$, $w_\infty=1$
+%	\item play with $\kappa$ and age of selectivity $a_s$
+%\end{itemize}
 
 %%
 %Each design location defines a complete Schnute production model with the given
@@ -801,6 +810,10 @@ proven the most reliably accurate by limiting exposure to numerical error propog
 %upon RP inference.
 %}
 
+%
+{\color{red}
+point to catch, and LHS design, and Metamodel.
+}
 
 %
 \subsection{Parmeter Estimation}
@@ -814,40 +827,84 @@ proven the most reliably accurate by limiting exposure to numerical error propog
 \end{itemize}
 
 %
-Let $I_t$ $t\in\{1,2,3,...,T\}$ be a series of indicies of abundance, 
-proportional to biomass, as simulated from the Schnute Delay model. The fitted 
-model is constrainted to BH recruitment.
-
-Growth parameters: $\bm{\phi}'=[\kappa, w_\infty, a_0, a_s]$
-
+Let $I_t$, $t\in\{1,2,3,...,T\}$, be a series of indicies of abundance, 
+proportional to biomass, as simulated from the Schnute Delay model. These data 
+are modelled with the following log-normal observation model that has been 
+intentionally constrained to BH recruitment,
+%is then intentially constrainted to BH recruitment and a log-normal observation model as follows, % by fixing $\gamma=-1$.
+%Growth parameters: $\bm{\phi}'=[\kappa, w_\infty, a_0, a_s]$
 %
-The observation model for the fitted model is log-normal such that, 
+%The observation model for the fitted model is log-normal such that, 
 %|q, \sigma^2, \bm{\theta}, \bm{\phi}
 \begin{align}
 I_t \sim LN(q B_t(\bm{\theta}, \bm{\phi}), \sigma^2). \label{bL}
 \end{align}
 %
-$B_t(\bm{\theta}, \bm{\phi})$ is the biomass solution of the DDE system. %of DDE defined in Eq. (\ref{bEq}). 
-For the BH constrainted fitted model $\bm{\theta}'=[\alpha, \beta, \gamma=-1]$. 
-$\bm{\phi}$ is a vector of the fixed growth and maturity parameters, 
+$B_t(\bm{\theta}, \bm{\phi})$ is the biomass solution of the BH constrained DDE system. %of DDE defined in Eq. (\ref{bEq}). 
+The BH constraint isimplemented by fixing $\gamma=-1$ so that $\bm{\theta}'=[\alpha, \beta, \gamma=-1]$. 
+$\bm{\phi}$ is a vector of growth and maturity parameters, 
 $\bm{\phi}'=[\kappa, w_\infty, a_0, a_s]$. The nuisance parameter $q$ models 
 the proportionality constant of the index with process biomass, and $\sigma^2$ 
 models residual variation of the index.  
 
 %
-While not utilized here, the delay model is also capable of modeling 
-indicies that are proportional to numbers rather than (or simultaiously to) 
+In this setting, $\bm{\phi}$ and $q$ are fixed %at the true value of 0.0005 
+to focus on the inferential affects of model misspecification on recruitment 
+parameters and RPs. Without an explicite mechanism for the delay model to incorporate 
+age data, under the BH model $\bm{\phi}$ is not well informed and would 
+tyically be estimated externally for data limted stocks. Under BH recruitment 
+$\phi$ can only slightly impact RPs as seen in Figure (\ref{rpSpace}). 
+%the BH model only contributes largly unimportant for the mapping of RPs since  
+%{\color{red} $\bm{\phi}$ tyically estimated externally; 
+%the components of $\phi$ only slightly impact RPs as seen in Figure (\ref{rpSpace})}.
+
+%
+$\sigma^2$ and $\theta$ are reparameterized to the log scale and fit via MLE. 
+Reparameterizing the parameters to the log scale improves the reliability of 
+optimization, in addition to facilitating the use of Hessian information for 
+estimating MLE standard errors. Given that the biological parameters enter the 
+likelihood via a nonlinear differential equation, and further the parameters 
+themselves are related to each other nonlinearly, the likelihood function can 
+often be difficult to optimize. A hybrid optimization scheme is used to 
+maximize the log likelihood to ensure that a global MLE solution is found. The 
+R package GA \shortcite{scrucca_ga_2013, scrucca_extensions_2017} is used to 
+run a genetic algorithm to explore parameter space globally. Optimization 
+periodically jumps into the L-BFGS-B local optimizer to refine optima within a 
+local mode. The scheme functions by searching globally, with the genetic 
+algorithm, across many initial values for starting the local gradient-based 
+optimizer. The genetic algorithm serves to iteratively improve hot starts for 
+the local gradient-based optimizer. Additionally, optimization is only 
+considered to be converged when the optimum results in an invertible Hessian at 
+the found MLE.
+
+
+\begin{itemize}
+%$\bm{\phi}$ fixed, $q$ fixed,\\ 
+%MLE $\bm{\theta}$ and $\sigma^2$\\
+\item fixed $M=0.2$, $a_0=-1$, $w_\infty=1$
+\item play with $\kappa$ and age of selectivity $a_s$
+%Look at values above and adapt from schnute paper.
+\end{itemize}
+
+%
+\subsubsection{Numbers Indicies}
+
+%
+While not utilized here, age structured models may commonly model 
+%the delay model is also capable of modeling 
+indicies as proportional to numbers rather than (or simultaiously to) 
 biomass. When solving the DDE, Eq. (\ref{nEq}) points out that the full DDE 
-solution will expose a numbers solution simultaneously with a biomass solution. 
-These solutions are often quite similar since the main driver of process 
-behavior comes from the form of $R$. However, it is common on the west 
-coast of the US that indicies derived from commercial fisheries are measured 
-as weights %biomass Index observations
+solution will expose a numbers solution simultaneously with a biomass solution 
+that may be used for these purposes. These solutions are often quite similar 
+since the main driver of process behavior comes from the form of $R$ which is 
+shared among $N$ and $B$. 
+However, it is common on the west coast of the US that indicies derived from commercial 
+fisheries are measured as weights %biomass Index observations
 while indicies derived from recreational fisheries are often measured as counts.
 %represent indicies that are better modeled as proportional tocounts rather than biomass. 
 If a numbers index, $J_t$, is observed alongside the previously 
-mentioned biomass index, the following likelihood component may be added as a 
-conditionally independent component of the likelihood as follows,
+mentioned biomass index, the following likelihood component is often added as a 
+conditionally independent component of the likelihood, %as follows,
 %|p, \tau^{2}, \bm{\theta}, \bm{\phi}
 \begin{align}
 J_t \sim LN(p N_t(\bm{\theta}, \bm{\phi}), \tau^{2}) \label{nL}.
@@ -858,12 +915,13 @@ $\bm{\theta}$ and $\bm{\phi}$ are the productivity and growth parameters shared 
 common with the biomass component. $p$ and $\tau^2$ are then the analogous 
 proportionality constant and residual variation of the numbers index respectively.
 
-$\bm{\phi}$ fixed, $q$ fixed,\\ 
-MLE $\bm{\theta}$ and $\sigma^2$\\
-Look at values above and adapt from schnute paper.
-
 %
 \subsection{GP Metamodel}
+
+%
+{\color{red}
+point to catch, and LHS design, and Metamodel.
+}
 
 %\clearpage
 %\bibliographystyle{apacite}
