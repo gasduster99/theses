@@ -140,26 +140,28 @@ TT = 31 #length(hake)
 tt = 1
 time = tt:TT
 #
-mid = round(TT/2)
-cMax = 2 #4*M
-cMin = 0.2 #M/4
-bb = log(cMin/cMax)/(tt-mid)
-aa = exp(log(cMax)-bb*mid)
-rSlope = (cMax-1)/(mid-1)
-rb = 2*rSlope*mid + cMax-rSlope*mid
-FtFmsy = (aa*exp(bb*time))*(time<=mid) + (-rSlope*time+rb)*(time>mid)
-#
-FtFmsy = c(FtFmsy, rep(1, 15))
-TT = length(FtFmsy)
-time = tt:TT
+FtFmsy = rep(1, TT)
+##
+#mid = round(TT/2)
+#cMax = 2 #4*M
+#cMin = 0.2 #M/4
+#bb = log(cMin/cMax)/(tt-mid)
+#aa = exp(log(cMax)-bb*mid)
+#rSlope = (cMax-1)/(mid-1)
+#rb = 2*rSlope*mid + cMax-rSlope*mid
+#FtFmsy = (aa*exp(bb*time))*(time<=mid) + (-rSlope*time+rb)*(time>mid)
+##
+#FtFmsy = c(FtFmsy, rep(1, 15))
+#TT = length(FtFmsy)
+#time = tt:TT
 
 #DD MODEL STUFF
 
 #A-0.5AS15K0.1
-aS = 10 	#10 #0.1
+aS = 0.1 	#10 #0.1
 a0 = -1		#-0.25 #-0.5 #-1   #-2
 M  = 0.2
-kappa = 0.1	#10 #0.1
+kappa = 10	#10 #0.1
 WW = 1
 ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 #
@@ -170,10 +172,10 @@ B0 = 10000
 #
 
 #a place to store data
-#place = "./modsDDExpT45N300AS0.1K10N56/"	#zooid-3  #"./modsDDExpT45N150A-0.5AS15K0.1/"
-##place = "./modsDDExpT45N300AS0.1K10/" 		#zooid-4  #"./modsDDExpT45N300AS10K0.1/" #"./modsDDExpT45N150A-1AS15K0.1/"
-##place = "./modsDDExpT45N300AS10K10/"  		#zooid-2  #"./modsDDExpT45N150A-1AS2/"     
-#place = "./modsDDExpT45N300AS1K1N28/"    	#zooid-1  #"./modsDDExpT45N150A-0.5AS2/"   
+##place = "./modsDDExpT45N300AS0.1K10N56/"	#zooid-3  #"./modsDDExpT45N150A-0.5AS15K0.1/"
+#place = "./modsDDFlatT45N300A0-1AS10K0.1/"	#zooid-4  #"./modsDDExpT45N300AS10K0.1/" #"./modsDDExpT45N150A-1AS15K0.1/"
+place = "./modsDDFlatT45N300A0-1AS0.1K10/"  	#zooid-2  #"./modsDDExpT45N150A-1AS2/"     
+##place = "./modsDDExpT45N300AS1K1N28/"    	#zooid-1  #"./modsDDExpT45N150A-0.5AS2/"   
 odeMethod = "lsode" #"radau" #
 
 #
