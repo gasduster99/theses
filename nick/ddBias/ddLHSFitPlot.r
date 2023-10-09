@@ -458,11 +458,12 @@ addCircle = function(centerx, centery, radius, length=200){
 #DATA STUFF
 
 #
+mod = "FlatT45N300A0-1AS0.1K10"
 #mod = "FlatT30N150A15K0.1" #"ExpT45N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A15" # "ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
 #mod = "ExpT45N150A-1AS15K0.1"
 #mod = "ExpT45N300AS0.1K10N56" #"ExpT45N150A-1AS2"
 #mod = "ExpT45N300AS10K10" #"ExpT45N300AS1K1N28"
-mod = "ExpT45N300AS10K0.1"
+#mod = "ExpT45N300AS10K0.1"
 place = sprintf("./modsDD%s/", mod)
 
 #
@@ -539,7 +540,7 @@ FtFmsy = rep(1, TT) #make faux catch
 #LAYOUT STUFF
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
-N = 4 #4#20
+N = 3 #4#20
 
 #
 xiLim = c(0.5, 3.5)   #c(0.25, 3.75)
@@ -601,6 +602,9 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	if( !i%in%tops ){next}
 	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
 	fit = readRDS(fWho)
+	print(fWho)
+	print( FMsy(M, fit$kappa, vbGrow(fit$aS, fit$kappa, fit$WW, fit$a0), fit$WW, fit$alpha, fit$beta, fit$gamma) )
+	fit$printSelf()
 	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
 	dat = readRDS(dWho)
 	#

@@ -327,13 +327,19 @@ getData = function(dir, xiRange, zetaRange){
 
 ## worked but no xi<1
 #mod = "ExpT45N300AS1K1" 
-##failed
+#kinda worked
+#mod = "ExpT45N300AS10K10"
+
+#failed
 #mod = "ExpT45N300AS10K0.1"
 #kinda worked but no xi<1
 #mod = "ExpT45N300AS0.1K10"
 mod = "ExpT45N300AS0.1K10N56"
-#kinda worked
-#mod = "ExpT45N300AS10K10"
+
+##failed Fmsy overestimated
+#mod = "FlatT45N300A0-1AS10K0.1"
+#
+#mod = "FlatT45N300A0-1AS0.1K10"
 
 #
 place = sprintf("./modsDD%s/", mod)
@@ -372,8 +378,9 @@ outlFV = getlFV(fOne)
 outlV = getlV(fOne)
 
 #
-D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
-D = D[D$lFV>0 & D$lB0V>0,]
+Dall = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
+D = Dall[Dall$lFV>0 & Dall$lB0V>0,]
+D = D[complete.cases(D),]
 #D = D[c(rep(T, 1), F),]
 #D = D[seq(1, nrow(D), 2),]
 #D = Dall[Dall$lF<4,]

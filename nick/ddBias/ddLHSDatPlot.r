@@ -462,8 +462,8 @@ addCircle = function(centerx, centery, radius, length=200){
 #mod = "ExpT45N150A-1AS15K0.1"
 #mod = "ExpT45N150A-1AS2"
 #
-#mod = "FlatT45N300A0-1AS10K0.1" 
-mod = "FlatT45N300A0-1AS0.1K10" #"ExpT45N300A0-1AS0.1K10" #
+mod = "ExpT45N300AS10K0.1" #"FlatT45N300A0-1AS10K0.1" 
+#mod = "ExpT45N300A0-1AS0.1K10" #"FlatT45N300A0-1AS0.1K10" #
 place = sprintf("./modsDD%s/", mod)
 
 #
@@ -496,7 +496,7 @@ TT = 46
 FtFmsy = rep(1, TT)
 if( isExp ){
 	#
-	print(isExp)
+	#print(isExp)
 	TT = 31 #length(hake)
 	tt = 1
 	time = tt:TT
@@ -628,19 +628,237 @@ layout(lay)
 for(i in 1:nrow(l)){ #nrow(out$ll)){
 	#
 	if( !i%in%tops ){next}
-	#fWho = sprintf('%sfit_%s', place, rownames(l)[i])
-	#fit = readRDS(fWho)
+	fWho = sub('datGen', 'fit', rownames(l)[i]) #sprintf('%sfit_%s', place, rownames(l)[i])
+	fit = readRDS(fWho)
 	dWho = rownames(l)[i] #sprintf('%sdatGen_%s', place, rownames(l)[i])
 	dat = readRDS(dWho)
 	dat$catch = FtFmsy 
-	dat$iterate()
+	dat$iterate()	
 	#
 	par(mar=c(1,1,1,0))
 	dat$plotMean() #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
-	#fit$plotMean( add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
-	#fit$plotBand( col='red' )
+	fit$plotMean( add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+	fit$plotBand( col='red' )
 }
 dev.off()
+
+##
+#png(sprintf('indexGrid%sBoth.png', mod), width=2000, height=2000)
+#layout(lay)
+##
+#j=0
+#logM = matrix(F, N, N)
+#for(i in 1:nrow(l)){ #nrow(out$ll)){
+#	#
+#	if( !i%in%tops ){next}
+#	#fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+#	#fit = readRDS(fWho)
+#	dWho = rownames(l)[i] #sprintf('%sdatGen_%s', place, rownames(l)[i])
+#	dat = readRDS(dWho)
+#	dat$catch = FtFmsy 
+#	dat$iterate()
+#	print(dWho)
+#	#
+#	par(mar=c(1,1,1,0))
+#	dat$plotMean() #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
+#	#, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+#	#fit$plotBand( col='red' )
+#	#
+#        logM[(j%/%N)+1, (j%%N)+1] = T
+#        j = j+1
+#}
+##dev.off()
+#
+#
+##
+##mod = "ExpT45N300A0-1AS10K0.1" #"FlatT45N300A0-1AS10K0.1" 
+#mod = "ExpT45N300A0-1AS0.1K10" #"FlatT45N300A0-1AS0.1K10" #
+#place = sprintf("./modsDD%s/", mod)
+#
+##
+#datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
+#fitFiles = datFiles #sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda")))
+#
+##
+#rn = c()
+#xiList = c()
+#zetaList = c()
+#for(fitF in fitFiles){
+#        #
+#        fit = readRDS(fitF)
+#        #check rsCOV
+#        #if(length(fit$rsCov)==0){ next }
+#        #
+#	rn = c(rn, gsub(sprintf('%sfit_', place), '', fitF))
+#        xiList = c(xiList, fit$xi)
+#        zetaList = c(zetaList, fit$zeta)	
+#}
+#l = as.data.frame(cbind(xiList, zetaList))
+#rownames(l) = rn 
+#
+##CATCH
+#
+##
+#isExp = grepl("Exp", mod) #T
+##
+#TT = 46
+#FtFmsy = rep(1, TT)
+#if( isExp ){
+#	#
+#	#print(isExp)
+#	TT = 31 #length(hake)
+#	tt = 1
+#	time = tt:TT
+#	#
+#	mid = round(TT/2)
+#	cMax = 2 #4*M
+#	cMin = 0.2 #M/4
+#	bb = log(cMin/cMax)/(tt-mid)
+#	aa = exp(log(cMax)-bb*mid)
+#	rSlope = (cMax-1)/(mid-1)
+#	rb = 2*rSlope*mid + cMax-rSlope*mid
+#	FtFmsy = (aa*exp(bb*time))*(time<=mid) + (-rSlope*time+rb)*(time>mid)
+#	#
+#	FtFmsy = c(FtFmsy, rep(1, 15))
+#	TT = length(FtFmsy)
+#	time = tt:TT
+#}
+#
+##DD MODEL STUFF
+#
+##
+#odeMethod = "lsode"
+#
+##
+#i = 1
+#C = NULL
+#while( is.null(C) ){
+#        #
+#        f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("dat*.rda"))[i] )
+#        fOne = readRDS(f)
+#        C = 0#fOne$rsCov
+#        #
+#        i = i+1
+#}
+#
+##
+#aS = fOne$aS
+#a0 = fOne$a0
+#M  = fOne$M
+#kappa = fOne$kappa
+#WW = fOne$WW
+#ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
+##
+#B0 = 10000
+#
+####
+###aS = 
+###a0 = 15     #15  #7.5 #15  #1
+###M  = 0.2
+###kappa = 0.1 #0.1 #0.2 #0.2 #10
+###WW = 1
+###ww = vbGrow(aS, k, W, a0) #WW*(1-exp(-kappa*a0))
+####
+###B0 = 10000
+#
+##just initiating to give alpha, beta, gamma some reasonable values
+#xi = 1
+#zeta = 0.4
+##
+#inv = invert(zeta, xi, B0, M, kappa, ww, WW)
+#alpha = inv$alpha
+#beta  = inv$beta
+#gamma = inv$gamma
+#
+###
+##TT = 45
+##FtFmsy = rep(1, TT) #make faux catch
+#
+##LAYOUT STUFF
+#
+##NOTE:high zeta and high xi lets the initial drop get below Bmsy
+#N = 4 #4#20
+#
+##
+#xiLim = c(0.5, 3.5)   #c(0.25, 3.75)
+#zetaLim = c(0.2, 0.65) #c(0.15, 0.7) #0.6) #
+#
+##LHS boundaries
+#xiMin = xiLim[1]        #0.25 #3.25 #0.5
+#xiMax = xiLim[2]        #3.75 #3.5 
+#zetaMin = zetaLim[1]    #0.15 #0.32 #0.15 
+#zetaMax = zetaLim[2]    #0.7  #0.43 #0.7 
+##zeta range should not be too small
+#
+##xi and zeta Bins (bin defined by left edge right egde not used) [n+1 used to give n left 
+#xiL = seq(xiMin, xiMax, length.out=N+1)
+#zetaL = seq(zetaMin, zetaMax, length.out=N+1)
+#
+##if sampled bin not yet sampled, then save
+#l = l[	l$xiList>=xiLim[1] & 
+#	l$xiList<=xiLim[2] &
+#	l$zetaList>=zetaLim[1] &
+#	l$zetaList<=zetaLim[2]
+#,]
+#Lay = matrix(0, N, N)
+#for( i in 1:nrow(l) ){
+#	#
+#	xi = l[i,1]
+#	zs = l[i,2]
+#        #find left edge of bin sampled
+#	xBin = max(which(xiL<=xi))
+#	zBin = max(which(zetaL<=zs))
+#	#
+#	Lay[xBin, zBin] = i
+#}
+##
+#tops = unique(sort(Lay))
+#
+##
+#lay = Lay
+#j = 1
+#for(i in 1:nrow(l)){
+#	#
+#	if( !i%in%tops ){next}
+#	#
+#	lay[lay==i] = j
+#	j = j+1
+#}
+#lay = lay[seq(N,1),] #matrix(lay[seq(N^2,1)], N, N) #
+##anti-transpose
+#P = diag(N)[seq(N,1),]
+#lay = P%*%t(lay)%*%P
+#
+##PLOT
+#
+##
+##png(sprintf('indexGrid%s.png', mod), width=2000, height=2000)
+##layout(lay)
+#j = 0
+#for(i in 1:nrow(l)){ #nrow(out$ll)){
+#	#
+#	if( !i%in%tops ){next}
+#	#fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+#	#fit = readRDS(fWho)
+#	dWho = rownames(l)[i] #sprintf('%sdatGen_%s', place, rownames(l)[i])
+#	dat = readRDS(dWho)
+#	dat$catch = FtFmsy 
+#	dat$iterate()
+#	print(dWho)
+#	#
+#	if( !logM[(j%/%N)+1, (j%%N)+1] ){ j=j+1; next }
+#
+#	#par(mar=c(1,1,1,0))
+#	par(mfg = c((j%/%N)+1, (j%%N)+1)) #c((j%%N)+1, (j%/%N)+1))
+#	dat$plotMean( add=T, col='red' ) #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
+#	#fit$plotMean( add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+#	#fit$plotBand( col='red' )
+#	j = j+1
+#}
+#dev.off()
+
+
+
 
 ##
 #png(sprintf('bioGrid%s.png', mod), width=2000, height=2000)
