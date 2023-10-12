@@ -462,14 +462,14 @@ addCircle = function(centerx, centery, radius, length=200){
 #mod = "ExpT45N150A-1AS15K0.1"
 #mod = "ExpT45N150A-1AS2"
 #
-mod = "ExpT45N300AS0.1K10N56" #
+#mod = "ExpT45N300AS0.1K10N56" #
 #mod = "ExpT45N300AS10K0.1"
 #mod = "FlatT45N300A0-1AS0.1K10"
-#mod = "FlatT45N300A0-1AS10K0.1"
+mod = "FlatT45N300A0-1AS10K0.1"
 place = sprintf("./modsDD%s/", mod)
 
 #
-listFile = "./listKA.csv"
+listFile = "./flatTester.csv"
 #safely append
 app = F
 if( file.exists(listFile) ){
@@ -483,7 +483,7 @@ if( file.exists(listFile) ){
 
 #
 datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
-fitFiles = datFiles #sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda")))
+fitFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))) #datFiles #
 
 #
 rn = c()
@@ -583,7 +583,7 @@ gamma = inv$gamma
 #LAYOUT STUFF
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
-N = 4 #4#20
+N = 3 #4#20
 
 #
 xiLim = c(0.5, 3.5)   #c(0.25, 3.75)
@@ -642,7 +642,8 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
         if( !i%in%tops ){ next }
         
 	#
-	dWho = rownames(l)[i] #sprintf('%sdatGen_%s', place, rownames(l)[i])
+	#dWho = rownames(l)[i] 
+	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
 	write.table(dWho, listFile, append=app, quote=F, sep = ",", row.names=F, col.names=F)
 	
 	#
