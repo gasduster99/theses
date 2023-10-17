@@ -458,7 +458,7 @@ addCircle = function(centerx, centery, radius, length=200){
 #DATA STUFF
 
 #
-mod = "FlatT45N300A0-1AS10K0.1"
+mod = "FlatT45N300A0-1AS10K0.1SDO"
 #mod = "FlatT30N150A15K0.1" #"ExpT45N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A15" # "ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
 #mod = "ExpT45N150A-1AS15K0.1"
 #mod = "ExpT45N300AS0.1K10N56" #"ExpT45N150A-1AS2"
@@ -634,7 +634,7 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	#
 	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
         dat = readRDS(dWho)
-	cpue = rlnorm(length(dat$B), dat$lq+log(dat$B), exp(dat$lsdo))
+	cpue = rlnorm(length(dat$B), dat$lq+log(dat$B), exp(dat$lsdo)*10)
         #
         par(mar=c(1,1,1,0))
         plot(cpue, cex=2, pch=19)
@@ -653,6 +653,7 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	}else{
 		print(f3KAWho)
 	}
+	dat$plotMean( add=T )
 	
 	##
 	#dat$plotMean(add=T)
