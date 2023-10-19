@@ -237,7 +237,7 @@ getData = function(dir, xiRange, zetaRange){
 	#
 	
 	#
-	fitFiles = sprintf( "%s%s", dir, list.files(path=dir, pattern=glob2rx("fit*.rda")) )
+	fitFiles = sprintf( "%s%s", dir, list.files(path=dir, pattern=glob2rx("fit_*.rda")) )
 	#
 	i = 1
 	D = data.frame(
@@ -332,9 +332,8 @@ getData = function(dir, xiRange, zetaRange){
 
 #failed
 #mod = "ExpT45N300AS10K0.1"
-#kinda worked but no xi<1
-#mod = "ExpT45N300AS0.1K10"
-mod = "ExpT45N300AS0.1K10N56"
+#WORKED 
+mod = "ExpT45N300AS0.1K10"
 
 ##failed Fmsy overestimated
 #mod = "FlatT45N300A0-1AS10K0.1"
@@ -356,7 +355,7 @@ i = 1
 C = NULL
 while( is.null(C) ){
 	#
-	f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))[i] )
+	f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit_*.rda"))[i] )
 	fOne = readRDS(f)
 	C = fOne$rsCov
 	#
