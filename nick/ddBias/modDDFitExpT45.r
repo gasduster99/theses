@@ -176,11 +176,11 @@ B0 = 10000
 #place = "./modsDDExpT45N300AS10K10/"  		#zooid-2  #"./modsDDExpT45N150A-1AS2/"     
 
 #recreate this
-place = "./modsDDExpT45N300AS0.1K10/"; rv=F; 	#zooid1
+#place = "./modsDDExpT45N300AS0.1K10/"; rv=F; 	#zooid1
 #place = "./modsDDExpT45N300AS0.1K10/"; rv=T; 	#zooid2
 #then do this
-#place = "./modsDDExpT45N300AS10K0.1/"; rv=F; 	#zooid3
-#place = "./modsDDExpT45N300AS10K0.1/"; rv=T; 	#zooid4
+place = "./modsDDExpT45N300AS10K0.1/"; rv=F; 	#zooid1
+#place = "./modsDDExpT45N300AS10K0.1/"; rv=T; 	#zooid2
 
 odeMethod = "lsode" #"radau" #
 
