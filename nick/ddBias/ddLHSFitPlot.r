@@ -616,11 +616,17 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 dev.off()
 
 #
+il = c()
+ll = c()
 png(sprintf('indexGridKA%s.png', mod), width=2000, height=2000)
 layout(lay)
 for(i in 1:nrow(l)){ #nrow(out$ll)){
         #
         if( !i%in%tops ){next}
+	#
+	il = c(il, i)
+	ll = c(ll, rownames(l)[i])
+	#
         fWho = sprintf('%sfit_%s', place, rownames(l)[i])
         fit = readRDS(fWho)
         #
@@ -634,10 +640,11 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	#
 	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
         dat = readRDS(dWho)
-	cpue = rlnorm(length(dat$B), dat$lq+log(dat$B), exp(dat$lsdo))#*10)
+	cpue = rlnorm(length(dat$B), dat$lq+log(dat$B), exp(dat$lsdo)*10)
         #
         par(mar=c(1,1,1,0))
         plot(cpue, cex=2, pch=19)
+	#plot(fitBHKA$cpue, cex=2, pch=19)
 	#dat$plotMean() #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
         #fit$plotMean( add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$
         #fit$plotBand( col='red' )

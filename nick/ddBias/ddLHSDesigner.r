@@ -475,8 +475,8 @@ ll = lhsMake(xlim, ylim, 300, 0, save=p) #(xiLim, zetaLim,
 }else{
 
 #
-inPlace = "./modsDDFlatT45N300A0-1AS10K0.1/" #"./modsDDExpT45N300AS0.1K10/" #"./modsDDFlatT30N150A15K0.1/" #"./modsDDExpT45N150A15/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
-outPlace = sprintf("./modsDDFlatT45N300A0-1AS10K0.1N%d/", n) #sprintf("./modsDDExpT45N150A15N%d/", n) 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
+inPlace = "./modsDDFlatT45N300A0-1AS10K0.1N56/" #"./modsDDExpT45N300AS0.1K10/" #"./modsDDFlatT30N150A15K0.1/" #"./modsDDExpT45N150A15/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
+outPlace = sprintf("./modsDDFlatT45N300A0-1AS10K0.1N%d/", 3*n) #sprintf("./modsDDExpT45N150A15N%d/", n) 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
 
 #
 #MAIN

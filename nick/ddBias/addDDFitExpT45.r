@@ -173,7 +173,7 @@ B0 = 10000
 served = "./expFitters.csv"
 #a place to store data
 #place = "./modsDDExpT45N150A-0.5AS2/" #'./modsDDExpT45N150Wide/' #'./test/'#
-odeMethod = "lsode" #"radau" #
+odeMethod = "radau" #"lsode" #
 
 #NOTE: should the server list fits? or datGen?
 datFiles = unlist(read.csv(served, header=F))
@@ -190,12 +190,12 @@ job12 = seq(1, floor(length(datFiles)/2))
 job22 = seq(length(datFiles), floor(length(datFiles)/2)+1)
 jobsh = c(rbind(job12, job22))
 
-##
-#registerDoParallel(8) #46)
-#opts = list(preschedule=F)
-#foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
+#
+registerDoParallel(8) #46)
+opts = list(preschedule=F)
+foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 #foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
-for(i in (1:length(datFiles))[1]){
+#for(i in (1:length(datFiles))){
 	#
         #DATA
         #
@@ -244,14 +244,14 @@ for(i in (1:length(datFiles))[1]){
 	#
         fileFitBH = gsub("datGen", "fit", datFiles[i])
         if( !file.exists(fileFitBH) ){
-                #writeLines(sprintf('\nSKIP Xi: %s, Zeta: %s\n', xiSims[j], zetaSims[i]))
+                writeLines(sprintf('\nSKIP BH Xi: %s, Zeta: %s\n', xiSims[j], zetaSims[i]))
                 next
         }
 	
 	#
 	fileFit3KA = gsub("datGen", "fit3KA", datFiles[i])
 	if( file.exists(fileFit3KA) ){
-                #writeLines(sprintf('\nSKIP Xi: %s, Zeta: %s\n', xiSims[j], zetaSims[i]))
+                writeLines(sprintf('\nSKIP 3KA Xi: %s, Zeta: %s\n', xiSims[j], zetaSims[i]))
                 next
         }
 	
@@ -299,27 +299,27 @@ for(i in (1:length(datFiles))[1]){
 	)
 	fitBHKA$iterate(odeMethod)	
 	
-	#
-        optAns = fitBHKA$optimize(cpue,
-                c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS'),
-                lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1),
-                upper   = c(log(1), log(10), -2, 100, 100),       #log(getBeta(100, -1, M, P0))
-                #gaBoost = list(run=10, parallel=T, popSize=10^3), 
-                #gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
-                #persistFor = 5,
-                fitQ    = F
-        )
+	##
+        #optAns = fitBHKA$optimize(cpue,
+        #        c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS'),
+        #        lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1),
+        #        upper   = c(log(1), log(10), -2, 100, 100),       #log(getBeta(100, -1, M, P0))
+        #        #gaBoost = list(run=10, parallel=T, popSize=10^3), 
+        #        #gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
+        #        #persistFor = 5,
+        #        fitQ    = F
+        #)
 	#get hessian if possible
         tryCatch({
                 optAns = fitBHKA$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS'),
                         lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1),
                         upper   = c(log(1), log(10), -2, 100, 100),
-                        cov     = T,
+                        cov     = F,#T,
                         fitQ    = F
                 )
         }, error=function(err){
-                writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
+                writeLines( sprintf("\nNO HESSIAN AT BHKA xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
                 optAns = fitBHKA$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS'),
                         lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1),
@@ -478,61 +478,71 @@ for(i in (1:length(datFiles))[1]){
 	
 	#
         optAns = fit3KA$optimize(cpue,
-                c('kappa', 'aS'),
-                lower   = c(0.1, 0.1),
-                upper   = c(100, 100),      #log(getBeta(100, -1, M, P0))
-                gaBoost = list(run=10, parallel=T, popSize=10^3),#10^4),
+                c('kappa', 'aS', 'gamma'),
+                lower   = c(0.1, 0.1, -2),
+                upper   = c(100, 100, 2),      #log(getBeta(100, -1, M, P0))
+                #gaBoost = list(run=10, parallel=T, popSize=10^3),#10^4),
 		#gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
-                persistFor = 5,
+                #persistFor = 5,
                 fitQ    = F
         )
 	
-	#
-	plot(cpue)
-	fit3KA$plotMean(add=T, col='cyan')
-	fit3KA$printSelf()
+	##
+	#plot(cpue)
+	#fit3KA$plotMean(add=T, col='cyan')
+	#fit3KA$printSelf()
+	##
+	#optAns = fit3KA$optimize(cpue,
+	#        c('lsdo', 'lalpha', 'lbeta', 'gamma', 'kappa', 'aS'),
+	#        lower   = c(log(0.001), log(M+0.1), -10, -2, 0.1, 0.1),
+	#        upper   = c(log(1), log(10), -2, 2, 100, 100),
+	#        gaBoost = list(run=10, parallel=T, popSize=10^3), #10^4),
+	#	cov     = T,
+	#        fitQ    = F
+	#)
+
+	##
+        #optAns = fit3KA$optimize(cpue,
+        #        c('lsdo', 'lalpha', 'gamma'),
+        #        lower   = c(log(0.001), log(M+0.1), -2),
+        #        upper   = c(log(1), log(10), 2),      #log(getBeta(100, -1, M, P0))
+        #        #gaBoost = list(run=10, parallel=T, popSize=10^3),#10^4),
+	#	#gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
+        #        persistFor = 5,
+        #        fitQ    = F
+        #)
 	
-	#
-        optAns = fit3KA$optimize(cpue,
-                c('lsdo', 'lalpha', 'lbeta', 'gamma', 'kappa'),
-                lower   = c(log(0.001), log(M+0.1), -10, -2, 0.1),
-                upper   = c(log(1), log(10), -2, 2, 100),      #log(getBeta(100, -1, M, P0))
-                gaBoost = list(run=10, parallel=T, popSize=10^3),#10^4),
-		#gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
-                persistFor = 5,
-                fitQ    = F
-        )
 	#get hessian if possible
         tryCatch({
                 optAns = fit3KA$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta', 'gamma', 'kappa', 'aS'),
                         lower   = c(log(0.001), log(M+0.1), -10, -2, 0.1, 0.1),
-                        upper   = c(log(1), log(10), -2, 2, 100, 100),
-                        cov     = T,
+                        upper   = c(log(1), log(exp(1)), -2, 2, 100, 100),
+                        cov     = F,#T,
                         fitQ    = F
                 )
         }, error=function(err){
-                writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
+                writeLines( sprintf("\nNO HESSIAN AT 3KA xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
                 optAns = fit3KA$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta', 'gamma', 'kappa', 'aS'),
                         lower   = c(log(0.001), log(M+0.1), -10, -2, 0.1, 0.1),
-                        upper   = c(log(1), log(10), -2, 2, 100, 100),
+                        upper   = c(log(1), log(exp(1)), -2, 2, 100, 100),
                         cov     = F,
                         fitQ    = F
                 )
         })
 	
-	###
-	##fit$plotMean(add=T, col='blue')
-	##fit$printSelf()
+	##
+	#fit3KA$plotMean(add=T, col='blue')
+	#fit3KA$printSelf()
 
-	##convenience
-	#fit3KA$alpha = exp(fit3KA$lalpha)
-        #fit3KA$beta  = exp(fit3KA$lbeta)
-        #fit3KA$sdo   = exp(fit3KA$lsdo)
-        #fit3KA$q     = exp(fit3KA$lq)
-        ##save
-        #fit3KA$save( fileFit3KA ) 
+	#convenience
+	fit3KA$alpha = exp(fit3KA$lalpha)
+        fit3KA$beta  = exp(fit3KA$lbeta)
+        fit3KA$sdo   = exp(fit3KA$lsdo)
+        fit3KA$q     = exp(fit3KA$lq)
+        #save
+        fit3KA$save( fileFit3KA ) 
 }
 
 
