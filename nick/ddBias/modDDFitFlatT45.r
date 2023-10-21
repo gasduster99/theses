@@ -181,8 +181,8 @@ B0 = 10000
 #place = "./modsDDFlatT45N300A0-1AS0.1K10/"; rv=F;   #zooid1
 #place = "./modsDDFlatT45N300A0-1AS0.1K10/"; rv=T;   #zooid2
 ##most interesting start here
-#place = "./modsDDFlatT45N300A0-1AS10K0.1N28/"; rv=F;   #zooid3
-place = "./modsDDFlatT45N300A0-1AS10K0.1N28/"; rv=T;   #zooid4
+place = "./modsDDFlatT45N300A0-1AS10K0.1N56/"; rv=F;   #zooid3
+#place = "./modsDDFlatT45N300A0-1AS10K0.1N56/"; rv=T;   #zooid4
 
 odeMethod = "lsode" #"radau" #
 
