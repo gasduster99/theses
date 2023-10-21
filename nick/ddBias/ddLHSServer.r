@@ -462,15 +462,15 @@ addCircle = function(centerx, centery, radius, length=200){
 #mod = "ExpT45N150A-1AS15K0.1"
 #mod = "ExpT45N150A-1AS2"
 #
-mod = "ExpT45N300AS0.1K10"
+#mod = "ExpT45N300AS0.1K10"
 #mod = "ExpT45N300AS0.1K10N56" #
-#mod = "ExpT45N300AS10K0.1"
+mod = "ExpT45N300AS10K0.1"
 #mod = "FlatT45N300A0-1AS0.1K10"
 #mod = "FlatT45N300A0-1AS10K0.1"
 place = sprintf("./modsDD%s/", mod)
 
 #
-listFile = "./expFitters.csv"
+listFile = "./expGrowFitters.csv"
 #safely append
 app = F
 if( file.exists(listFile) ){

@@ -156,10 +156,10 @@ time = tt:TT
 #DD MODEL STUFF
 
 #A-0.5AS15K0.1
-aS = 0.1 	#10 #0.1
+aS = 10	#10 #0.1
 a0 = -1		#-0.25 #-0.5 #-1   #-2
 M  = 0.2
-kappa = 10	#10 #0.1
+kappa = 0.10	#10 #0.1
 WW = 1
 ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 #
@@ -179,8 +179,8 @@ B0 = 10000
 #place = "./modsDDExpT45N300AS0.1K10/"; rv=F; 	#zooid1
 #place = "./modsDDExpT45N300AS0.1K10/"; rv=T; 	#zooid2
 #then do this
-place = "./modsDDExpT45N300AS10K0.1/"; rv=F; 	#zooid1
-#place = "./modsDDExpT45N300AS10K0.1/"; rv=T; 	#zooid2
+place = "./modsDDExpT45N300A0-1AS10K0.1/"; rv=F; 	#zooid1
+#place = "./modsDDExpT45N300A0-1AS10K0.1/"; rv=T; 	#zooid2
 
 odeMethod = "lsode" #"radau" #
 

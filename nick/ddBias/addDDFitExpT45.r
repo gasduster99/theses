@@ -170,7 +170,7 @@ B0 = 10000
 #
 
 #NOTE: should the server list fits? or datGen?
-served = "./expFitters.csv"
+served = "./expGrowFitters.csv" #"./expFitters.csv"
 #a place to store data
 #place = "./modsDDExpT45N150A-0.5AS2/" #'./modsDDExpT45N150Wide/' #'./test/'#
 odeMethod = "radau" #"lsode" #
