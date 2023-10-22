@@ -461,11 +461,11 @@ n = 28 #about 3 flushes all of the thialacia ranks
 
 #
 xlim = c(0.25, 3.75)
-ylim = c(0.15, 0.7) #0.6) #
+ylim = c(0.15, 0.6) #0.7) #0.6) #
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
 #
-if( T ){
+if( F ){
 #Only run this to start a design
 p = "./modsDDExpT45N300A0-1AS10K0.1/" 
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
