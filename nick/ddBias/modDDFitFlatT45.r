@@ -181,7 +181,7 @@ B0 = 10000
 #place = "./modsDDFlatT45N300A0-1AS0.1K10/"; rv=F;   #zooid1
 #place = "./modsDDFlatT45N300A0-1AS0.1K10/"; rv=T;   #zooid2
 ##most interesting start here
-place = "./modsDDFlatT45N300A0-1AS10K0.1N56/"; rv=F;   #zooid3
+place = "./modsDDFlatT45N300A0-1AS10K0.1N84/"; rv=F;   #zooid3
 #place = "./modsDDFlatT45N300A0-1AS10K0.1N56/"; rv=T;   #zooid4
 
 odeMethod = "lsode" #"radau" #
@@ -190,10 +190,17 @@ odeMethod = "lsode" #"radau" #
 datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
 
 #
+jobis = 1:length(datFiles)
+#
+job12 = seq(1, floor(length(datFiles)/2))
+job22 = seq(length(datFiles), floor(length(datFiles)/2)+1)
+jobsh = c(rbind(job12, job22))
+
+#
 registerDoParallel(46)
 opts = list(preschedule=F)
-foreach(i=sort(1:length(datFiles), decreasing=rv), .options.multicore = opts) %dopar% {
-#foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
+foreach(i=rev(jobsh)*rv + jobsh*(1-rv), .options.multicore = opts) %dopar% {
+#foreach(i=sort(1:length(datFiles), decreasing=rv), .options.multicore = opts) %dopar% {
 #for(i in 1:length(datFiles)){
 	#
         #DATA
