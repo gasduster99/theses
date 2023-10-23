@@ -465,7 +465,7 @@ ylim = c(0.15, 0.6) #0.7) #0.6) #
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
 #
-if( F ){
+if( T ){
 #Only run this to start a design
 p = "./modsDDExpT45N300A0-1AS10K0.1/" 
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
