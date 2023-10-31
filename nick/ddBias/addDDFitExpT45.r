@@ -369,7 +369,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 		},
 		time=fitBH$time, catch=fitBH$catch, a0=fitBH$a0, M=fitBH$M, 	#constants 
 		aS=fitBH$aS, WW=fitBH$WW, kappa=fitBH$kappa,			#growth
-		lalpha=fitBH$lalpha, lbeta=lbeta3, gamma=datGen$gamma,  #-1, 	#recruitment
+		lalpha=datGen$lalpha, lbeta=lbeta3, gamma=datGen$gamma,  #-1, 	#recruitment
 		lq=fitBH$lq, lsdo=fitBH$lsdo,                  			#nuisance
 		xi=fitBH$xi, zeta=fitBH$zeta, cpue=cpue               	#other incidentals to carry along
 	)

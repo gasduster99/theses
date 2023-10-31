@@ -464,7 +464,8 @@ addCircle = function(centerx, centery, radius, length=200){
 #
 #mod = "ExpT45N300AS0.1K10"
 #mod = "ExpT45N300AS0.1K10N56" #
-mod = "ExpT45N300AS10K0.1"
+#mod = "ExpT45N300AS10K0.1"
+mod = "ExpT45N300A0-1AS10K0.1"
 #mod = "FlatT45N300A0-1AS0.1K10"
 #mod = "FlatT45N300A0-1AS10K0.1"
 place = sprintf("./modsDD%s/", mod)
@@ -483,8 +484,8 @@ if( file.exists(listFile) ){
 } 
 
 #
-datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
-fitFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))) #datFiles #
+datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen_*.rda")))
+fitFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("fit_*.rda"))) #datFiles #
 
 #
 rn = c()

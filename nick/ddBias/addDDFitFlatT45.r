@@ -173,10 +173,10 @@ B0 = 10000
 #
 
 #NOTE: should the server list fits? or datGen?
-served = "./flatTesterSDO.csv" #"./listKA.csv"
+served = "./flatTesterSDORAND.csv" #"./listKA.csv"
 #a place to store data
 #place = "./modsDDExpT45N150A-0.5AS2/" #'./modsDDExpT45N150Wide/' #'./test/'#
-odeMethod = "lsode" #"radau" #
+odeMethod = "radau" #"lsode" #
 
 #NOTE: should the server list fits? or datGen?
 datFiles = unlist(read.csv(served, header=F))
@@ -275,7 +275,9 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	#FIT BHKA
 	#
 	
-	#	
+	#
+	aR = runif(1, 0.1, 10)
+	kR = runif(1, 0.1, 10)	
 	#lbetaBH = log(getBeta(B0, M, kappa, ww, WW, exp(datGen$lalpha), -1))
 	fitBHKA = ddModel$new( derivs=der,
 		N0Funk=function(lalpha, lbeta, gamma, M, WW, kappa, a0, aS){#virgin numbers
@@ -297,7 +299,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 		        BBar(0, M, kappa, ww, WW, alpha, beta, gamma)
 		},
 		time=fitBH$time, catch=fitBH$catch, a0=fitBH$a0, M=fitBH$M, 	#constants 
-		aS=fitBH$aS, WW=fitBH$WW, kappa=fitBH$kappa,			#growth
+		aS=aR, WW=fitBH$WW, kappa=kR, #fitBH$kappa,	fitBH$aS, 		#growth
 		lalpha=fitBH$lalpha, lbeta=fitBH$lbeta, gamma=-1,         	#recruitment
 		lq=fitBH$lq, lsdo=fitBH$lsdo,                  			#nuisance
 		xi=fitBH$xi, zeta=fitBH$zeta, cpue=cpue               	#other incidentals to carry along
@@ -383,115 +385,118 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 		        BBar(0, M, kappa, ww, WW, alpha, beta, gamma)
 		},
 		time=fitBH$time, catch=fitBH$catch, a0=fitBH$a0, M=fitBH$M, 	#constants 
-		aS=fitBH$aS, WW=fitBH$WW, kappa=fitBH$kappa,			#growth
+		aS=aR, WW=fitBH$WW, kappa=kR,
+		#aS=fitBHKA$aS, WW=fitBH$WW, kappa=fitBHKA$kappa,			#growth
 		lalpha=fitBH$lalpha, lbeta=lbeta3, gamma=datGen$gamma,  #-1, 	#recruitment
 		lq=fitBH$lq, lsdo=fitBH$lsdo,                  			#nuisance
 		xi=fitBH$xi, zeta=fitBH$zeta, cpue=cpue               	#other incidentals to carry along
 	)
 	fit3$iterate(odeMethod)
 
+	###
+        ##optAns = fit3$optimize(cpue,
+        ##        c('gamma'),
+        ##        lower   = c(-2),
+        ##        upper   = c(2),      #log(getBeta(100, -1, M, P0))
+        ##        gaBoost = list(run=10, parallel=T, popSize=10^3),#10^4),
+        ##        persistFor = 5,
+        ##        fitQ    = F
+        ##)
+
 	##
         #optAns = fit3$optimize(cpue,
-        #        c('gamma'),
-        #        lower   = c(-2),
-        #        upper   = c(2),      #log(getBeta(100, -1, M, P0))
-        #        gaBoost = list(run=10, parallel=T, popSize=10^3),#10^4),
+        #        c('lsdo', 'lalpha'),
+        #        lower   = c(log(0.001), log(M+0.1)),
+        #        upper   = c(log(1), log(10)),      #log(getBeta(100, -1, M, P0))
+        #        #gaBoost = list(run=10, parallel=F, popSize=10^3)
+	#	gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
         #        persistFor = 5,
         #        fitQ    = F
         #)
 
-	#
-        optAns = fit3$optimize(cpue,
-                c('lsdo', 'lalpha'),
-                lower   = c(log(0.001), log(M+0.1)),
-                upper   = c(log(1), log(10)),      #log(getBeta(100, -1, M, P0))
-                #gaBoost = list(run=10, parallel=F, popSize=10^3)
-		gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
-                persistFor = 5,
-                fitQ    = F
-        )
-
-	#
-        optAns = fit3$optimize(cpue,
-                c('lsdo', 'lalpha', 'lbeta', 'gamma'),
-                lower   = c(log(0.001), log(M+0.1), -10, -2),
-                upper   = c(log(1), log(10), -2, 2),      #log(getBeta(100, -1, M, P0))
-                #gaBoost = list(run=100, parallel=F, popSize=10^3),#10^4),
-                gaBoost = list(run=10, parallel=F, popSize=10^3),
-		persistFor = 5,
-                fitQ    = F
-        )
-	#get hessian if possible
-        tryCatch({
-                optAns = fit3$optimize(cpue,
-                        c('lsdo', 'lalpha', 'lbeta', 'gamma'),
-                        lower   = c(log(0.001), log(M+0.1), -10, -2),
-                        upper   = c(log(1), log(10), -2, 2),
-                        cov     = T,
-                        fitQ    = F
-                )
-        }, error=function(err){
-                writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
-                optAns = fit3$optimize(cpue,
-                        c('lsdo', 'lalpha', 'lbeta', 'gamma'),
-                        lower   = c(log(0.001), log(M+0.1), -10, -2),
-                        upper   = c(log(1), log(10), -2, 2),
-                        cov     = F,
-                        fitQ    = F
-                )
-        })
-	
 	##
-        #fit3$plotMean(add=T, col='blue')
-        #fit3$printSelf()
+        #optAns = fit3$optimize(cpue,
+        #        c('lsdo', 'lalpha', 'lbeta', 'gamma'),
+        #        lower   = c(log(0.001), log(M+0.1), -10, -2),
+        #        upper   = c(log(1), log(10), -2, 2),      #log(getBeta(100, -1, M, P0))
+        #        #gaBoost = list(run=100, parallel=F, popSize=10^3),#10^4),
+        #        gaBoost = list(run=10, parallel=F, popSize=10^3),
+	#	persistFor = 5,
+        #        fitQ    = F
+        #)
+	##get hessian if possible
+        #tryCatch({
+        #        optAns = fit3$optimize(cpue,
+        #                c('lsdo', 'lalpha', 'lbeta', 'gamma'),
+        #                lower   = c(log(0.001), log(M+0.1), -10, -2),
+        #                upper   = c(log(1), log(10), -2, 2),
+        #                cov     = T,
+        #                fitQ    = F
+        #        )
+        #}, error=function(err){
+        #        writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
+        #        optAns = fit3$optimize(cpue,
+        #                c('lsdo', 'lalpha', 'lbeta', 'gamma'),
+        #                lower   = c(log(0.001), log(M+0.1), -10, -2),
+        #                upper   = c(log(1), log(10), -2, 2),
+        #                cov     = F,
+        #                fitQ    = F
+        #        )
+        #})
+	#
+	###
+        ##fit3$plotMean(add=T, col='blue')
+        ##fit3$printSelf()
 
-        #convenience
-        fit3$alpha = exp(fit3$lalpha)
-        fit3$beta  = exp(fit3$lbeta)
-        fit3$sdo   = exp(fit3$lsdo)
-        fit3$q     = exp(fit3$lq)
-        #save
-        fit3$save( fileFit3 ) 
+        ##convenience
+        #fit3$alpha = exp(fit3$lalpha)
+        #fit3$beta  = exp(fit3$lbeta)
+        #fit3$sdo   = exp(fit3$lsdo)
+        #fit3$q     = exp(fit3$lq)
+        ##save
+        #fit3$save( fileFit3 ) 
 
 	#
 	#FIT 3KA
 	#
-	
-	#
-	#fitBH = readRDS(fileFitBH)
-	#lbetaBH = log(getBeta(B0, M, datGen$kappa, ww, WW, exp(datGen$lalpha), -1))
-	fit3KA = ddModel$new( derivs=der,
-		N0Funk=function(lalpha, lbeta, gamma, M, WW, kappa, a0, aS){#virgin numbers
-		        #
-		        alpha = exp(lalpha)
-		        beta  = exp(lbeta)
-		        ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
-		        #
-		        BZero = BBar(0, M, kappa, ww, WW, alpha, beta, gamma)
-		        (alpha*BZero*( 1-beta*gamma*BZero )^(1/gamma))/M
-		
-		},
-		B0Funk=function(lalpha, lbeta, gamma, M, WW, kappa, a0, aS){#virgin biomass
-		        #
-		        alpha = exp(lalpha)
-		        beta = exp(lbeta)
-		        ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
-		        #
-		        BBar(0, M, kappa, ww, WW, alpha, beta, gamma)
-		},
-		time=fit3$time, catch=fit3$catch, a0=fit3$a0, M=fit3$M, 	#constants 
-		aS=fit3$aS, WW=fit3$WW, kappa=fit3$kappa,			#growth
-		lalpha=fit3$lalpha, lbeta=fit3$lbeta, gamma=fit3$gamma,         	#recruitment
-		lq=fit3$lq, lsdo=fit3$lsdo,                  			#nuisance
-		xi=fit3$xi, zeta=fit3$zeta, cpue=cpue               	#other incidentals to carry along
-	)
-	fit3KA$iterate(odeMethod)	
+
+	#	
+	fit3KA = fit3
+	##
+	##fitBH = readRDS(fileFitBH)
+	##lbetaBH = log(getBeta(B0, M, datGen$kappa, ww, WW, exp(datGen$lalpha), -1))
+	#fit3KA = ddModel$new( derivs=der,
+	#	N0Funk=function(lalpha, lbeta, gamma, M, WW, kappa, a0, aS){#virgin numbers
+	#	        #
+	#	        alpha = exp(lalpha)
+	#	        beta  = exp(lbeta)
+	#	        ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
+	#	        #
+	#	        BZero = BBar(0, M, kappa, ww, WW, alpha, beta, gamma)
+	#	        (alpha*BZero*( 1-beta*gamma*BZero )^(1/gamma))/M
+	#	
+	#	},
+	#	B0Funk=function(lalpha, lbeta, gamma, M, WW, kappa, a0, aS){#virgin biomass
+	#	        #
+	#	        alpha = exp(lalpha)
+	#	        beta = exp(lbeta)
+	#	        ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
+	#	        #
+	#	        BBar(0, M, kappa, ww, WW, alpha, beta, gamma)
+	#	},
+	#	time=fit3$time, catch=fit3$catch, a0=fit3$a0, M=fit3$M, 	#constants 
+	#	aS=fit3$aS, WW=fit3$WW, kappa=fit3$kappa,			#growth
+	#	lalpha=fit3$lalpha, lbeta=fit3$lbeta, gamma=fit3$gamma,         	#recruitment
+	#	lq=fit3$lq, lsdo=fit3$lsdo,                  			#nuisance
+	#	xi=fit3$xi, zeta=fit3$zeta, cpue=cpue               	#other incidentals to carry along
+	#)
+	#fit3KA$iterate(odeMethod)	
 	
 	#
         optAns = fit3KA$optimize(cpue,
-                c('kappa', 'aS'),
-                lower   = c(0.1, 0.1),
-                upper   = c(100, 100),      #log(getBeta(100, -1, M, P0))
+                c('kappa', 'aS', 'gamma'),
+                lower   = c(0.1, 0.1, -2),
+                upper   = c(100, 100, 2),      #log(getBeta(100, -1, M, P0))
                 #gaBoost = list(run=10, parallel=F, popSize=10^3)
 		gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
                 persistFor = 5,
@@ -500,9 +505,9 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	
 	#
         optAns = fit3KA$optimize(cpue,
-                c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS'),
-                lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1),
-                upper   = c(log(1), log(10), -2, 100, 100),      #log(getBeta(100, -1, M, P0))
+                c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS', 'gamma'),
+                lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1, -2),
+                upper   = c(log(1), log(10), -2, 100, 100, 2),      #log(getBeta(100, -1, M, P0))
                 #gaBoost = list(run=100, parallel=F, popSize=10^3),
 		gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
                 persistFor = 5,
@@ -511,18 +516,18 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	#get hessian if possible
         tryCatch({
                 optAns = fit3KA$optimize(cpue,
-                        c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS'),
-                        lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1),
-                        upper   = c(log(1), log(10), -2, 100, 100),
+                        c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS', 'gamma'),
+                        lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1, -2),
+                        upper   = c(log(1), log(10), -2, 100, 100, 2),
                         cov     = T,
                         fitQ    = F
                 )
         }, error=function(err){
                 writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
                 optAns = fit3KA$optimize(cpue,
-                        c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS'),
-                        lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1),
-                        upper   = c(log(1), log(10), -2, 100, 100),
+                        c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS', 'gamma'),
+                        lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1, -2),
+                        upper   = c(log(1), log(10), -2, 100, 100, 2),
                         cov     = F,
                         fitQ    = F
                 )

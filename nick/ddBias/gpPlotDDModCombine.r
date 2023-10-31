@@ -332,12 +332,16 @@ getData = function(dir, xiRange, zetaRange){
 
 ##failed
 #mod = "ExpT45N300AS10K0.1"
+#WORKED
+mod = "ExpT45N300A0-1AS10K0.1"
 ##WORKED 
 #mod = "ExpT45N300AS0.1K10"
 
 ##failed Fmsy overestimated
 #mod = "FlatT45N300A0-1AS10K0.1"
-mod = "FlatT45N300A0-1AS10K0.1N56"
+#bumpy 
+#mod = "FlatT45N300A0-1AS10K0.1N56"
+#mod = "FlatT45N300A0-1AS10K0.1N84"
 #
 #mod = "FlatT45N300A0-1AS0.1K10"
 

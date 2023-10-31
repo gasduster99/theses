@@ -429,10 +429,10 @@ addCircle = function(centerx, centery, radius, length=200){
 odeMethod = "lsode"
 
 #
-aS = 10		#10 0.1		#2  #15   #0.1  #15     #15  #7.5 #15  #1
+aS = 2		#10 0.1		#2  #15   #0.1  #15     #15  #7.5 #15  #1
 a0 = -1 	#-0.25 #-0.5 #-1   #-2
 M  = 0.2 	#0.005
-kappa = 0.1 	#10 0.1		#15 #0.2 #0.1 #0.2 #0.2 #10
+kappa = 0.2 	#10 0.1		#15 #0.2 #0.1 #0.2 #0.2 #10
 WW = 1
 ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 
@@ -442,11 +442,12 @@ B0 = 10000
 #just initiating to give alpha, beta, gamma some reasonable values
 xi = 1
 zeta = 0.4
-#
+#print('hi')
 inv = invert(zeta, xi, B0, M, kappa, ww, WW)
 alpha = inv$alpha
 beta  = inv$beta
 gamma = inv$gamma
+#print('ho')
 
 #
 TT = 45
@@ -465,18 +466,18 @@ ylim = c(0.15, 0.6) #0.7) #0.6) #
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
 #
-if( T ){
+if( F ){
 #Only run this to start a design
-p = "./modsDDExpT45N300A0-1AS10K0.1/" 
+p = "./modsDDFlatT45N300A0-1AS2K0.2/" 
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
 dir.create(p)
 #
-ll = lhsMake(xlim, ylim, 300, 0, save=p) #(xiLim, zetaLim, 
+ll = lhsMake(xlim, ylim, 150, 0, save=p) #(xiLim, zetaLim, 
 }else{
 
 #
-inPlace = "./modsDDFlatT45N300A0-1AS10K0.1N56/" #"./modsDDExpT45N300AS0.1K10/" #"./modsDDFlatT30N150A15K0.1/" #"./modsDDExpT45N150A15/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
-outPlace = sprintf("./modsDDFlatT45N300A0-1AS10K0.1N%d/", 3*n) #sprintf("./modsDDExpT45N150A15N%d/", n) 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
+inPlace = "./modsDDExpT45N300A0-1AS10K0.1/" #"./modsDDFlatT45N300A0-1AS10K0.1N56/" #"./modsDDExpT45N300AS0.1K10/" #"./modsDDFlatT30N150A15K0.1/" #"./modsDDExpT45N150A15/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
+outPlace = sprintf("./modsDDExpT45N300A0-1AS10K0.1N%d/", n) #sprintf("./modsDDExpT45N150A15N%d/", n) 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
 
 #
 #MAIN

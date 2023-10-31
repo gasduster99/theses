@@ -114,6 +114,7 @@ rectDist = function(x, y){
 
 #
 l1a=2; l1b=10 #0.1
+#l1a=2; l1b=30 
 l1Prior = function(l1, log=T){
         #
         out = dinvgamma(l1, l1a, l1b, log=T)
@@ -127,6 +128,7 @@ l1Prior = function(l1, log=T){
 
 #
 l2a=2; l2b=1
+#l2a=4; l2b=30
 l2Prior = function(l2, log=T){
         #
         out = dinvgamma(l2, l2a, l2b, log=T)
