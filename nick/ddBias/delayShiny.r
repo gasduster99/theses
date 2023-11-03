@@ -236,7 +236,7 @@ ui = dashboardPage(
 		sliderInput("sliderAS","aS", min=0.1, max=10., step=0.1, value=dat$aS),
 		sliderInput("sliderKappa","kappa", min=0.1, max=10, step=0.1, value=dat$kappa),
 		#Recruitment
-		sliderInput("sliderAlpha", "alpha", min=dat$M, max=exp(dat$lalpha)*1.5, step=0.05, value=exp(dat$lalpha)),
+		sliderInput("sliderAlpha", "alpha", min=dat$M+0.1, max=exp(dat$lalpha)*1.5, step=0.05, value=exp(dat$lalpha)),
 		sliderInput("sliderBeta" , "beta" , min=0, max=exp(dat$lbeta)*1.5, step=10^(floor(log10(exp(dat$lbeta)))-1), value=exp(dat$lbeta)),
 		sliderInput("sliderGamma", "gamma", min=-2, max=2, step=0.10001, value=dat$gamma)
 		
@@ -326,7 +326,7 @@ server = function(input, output, session){
 		#RPs = NULL
 		#RPs = rbind(RPs, c(dat$FMsy/dat$M, dat$zeta))
 		#
-		greys = seq(90, 2, -2)
+		greys = rev(81-round(logseq(80, 1, 50))) #seq(60, 2, -1)
 		howMany = length(dat$xi)	
 		nWhite = max(howMany-length(greys)+1, 0)
 		#
@@ -340,3 +340,7 @@ server = function(input, output, session){
 
 #
 #source(delayShiny); shinyApp(ui, server)
+
+#run app on host machine as below.
+#connect via a web browser on LAN with host's IP:5050 in address bar
+#runApp(shinyApp(ui, server), host="0.0.0.0", port=5050)
