@@ -338,7 +338,7 @@ server = function(input, output, session){
 		BMsy = BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
 		f = function(x){surplus(x, dat)/surplus(BMsy, dat)*BMsy*dat$FMsy}
 		#
-		curve(f(x), 0, dat$B0, lwd=3, xlab="Biomass", ylab="Equilibrium Yeild", main="Yeild Curve", n=1000)
+		curve(f(x), 0, dat$B0, lwd=3, xlab="Biomass", ylab="Equilibrium Yield", main="Yield Curve", n=1000)
 		segments(BMsy, 0, BMsy, BMsy*dat$FMsy)
 		points(BMsy, BMsy*dat$FMsy, pch=19)
 		#rug( BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma), lwd=3 )
