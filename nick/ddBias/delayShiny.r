@@ -187,6 +187,28 @@ SRR = function(B, mod){
 }
 SRR = Vectorize(SRR, 'B')
 
+#
+surplus = function(B, mod){
+        #
+        alpha = exp(mod$lalpha)
+        beta = exp(mod$lbeta)
+        gamma = mod$gamma
+        #
+	ww = vbGrow(mod$aS, mod$kappa, mod$WW, mod$a0)
+	#
+	FF = 0 #dat$FMsy
+        R = alpha*B*(1-gamma*beta*B)^(1/gamma)
+	N = R/(mod$M+FF)
+	#Y = ww*R + mod$kappa*(mod$WW*N-B) - (M+FF)*B
+	#Y = ww*R + mod$kappa*(mod$WW*R/(M+FF)-B) - (M+FF)*B
+	Y = ww*R + mod$kappa*mod$WW*N - mod$kappa*B - mod$M*B - FF*B
+        #fDat = function(x){ wwDat*SRR(x, dat) -dat$M*x-dat$kappa*x + 
+	#	dat$kappa*dat$WW*NCar(x, 0, dat$M, dat$kappa, wwDat, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma) }
+        # (alpha*x*( 1-beta*gamma*x )^(1/gamma))/(M+FF)
+	return(Y)
+}
+surplus = Vectorize(surplus, 'B')
+
 #CATCH
 
 #
@@ -219,8 +241,12 @@ fContrast = function(con){
 #startWho = "./modsDDExpT45N300A0-1AS10K0.1/fit3KA_xi3.493_zeta0.264.rda"
 #startWho = "./modsDDExpT45N300A0-1AS10K0.1/fit3KA_xi3.225_zeta0.502.rda"
 #startWho = "./modsDDExpT45N300A0-1AS10K0.1/fit3KA_xi2.478_zeta0.457.rda"
-startWho = "./modsDDExpT45N300A0-1AS10K0.1/fit3KA_xi2.467_zeta0.538.rda"
+path = "./modsDDExpT45N300A0-1AS10K0.1/"
+startWho = sprintf("%s/fit3KA_xi2.467_zeta0.538.rda", path)
+whoMight = as.data.frame(t(list.files(path=path, pattern=glob2rx("fit3KA*.rda"))))
+colnames(whoMight)=whoMight
 dat = readRDS(startWho)
+dat$whoAmI = startWho
 #aS = dat$aS
 M = dat$M
 dat$xi = NULL
@@ -230,6 +256,9 @@ dat$zeta = NULL
 ui = dashboardPage(
 	dashboardHeader(),
 	dashboardSidebar(
+		#Base Model NOTE: need to figure out how to update sliders to the new selected model
+		#varSelectInput("who", "Base Model", whoMight, selected=startWho),
+		
 		#Contrast
 		sliderInput("sliderChi", "chi", min=0, max=1, step=0.05, value=1),
 		#Growth & Maturity
@@ -242,10 +271,11 @@ ui = dashboardPage(
 		
 	),
 	dashboardBody(
-		fluidRow(column(12, plotOutput('bionum'))),
-		fluidRow(column(12, plotOutput('nonlinear'))),
-		fluidRow(column(12, plotOutput('catchsize'))),
-		fluidRow(column(12,  plotOutput('refPlot')))
+		fluidRow(column(12, plotOutput('rowOne'))),
+		fluidRow(column(12, plotOutput('rowTwo'))),
+		fluidRow(column(12, plotOutput('rowThree'))),
+		fluidRow(column(12, plotOutput('rowFour'))),
+		fluidRow(column(12, plotOutput('rowFive')))
 	)
 )
 
@@ -253,8 +283,14 @@ ui = dashboardPage(
 server = function(input, output, session){
 	#
 	reactiveDat = reactive({
-		#aS = input$sliderA
-		
+	
+		##
+		#if(input$who!=dat$whoAmI){
+		#	whoNew = sprintf("%s/%s", path, as.character(input$who))
+		#	dat = readRDS(whoNew)
+		#	dat$whoAmI = whoNew 
+		#}
+			
                 #Contrast
 		con = input$sliderChi
 		#Growth
@@ -265,7 +301,7 @@ server = function(input, output, session){
 		dat$lalpha= log(input$sliderAlpha)
 		dat$beta  = input$sliderBeta
 		dat$lbeta = log(input$sliderBeta)
-		dat$gamma = input$sliderGamma
+		dat$gamma = input$sliderGamma	
 		
 		#
                 ww = vbGrow(dat$aS, dat$kappa, dat$WW, dat$a0) #WW*(1-exp(-kappa*a0))
@@ -280,7 +316,7 @@ server = function(input, output, session){
 		dat
 	})	
 	#
-	output$bionum = renderPlot({
+	output$rowOne = renderPlot({
 		#	
 		dat = reactiveDat()
 		layout(t(1:2))
@@ -288,51 +324,75 @@ server = function(input, output, session){
 		dat$plotQuan( function(N){N}, main="Numbers", ylim=c(0,max(dat$N)), xlab="Time", ylab="Numbers")
 	})
 	#
-	output$nonlinear = renderPlot({
+	output$rowTwo = renderPlot({
 		#
 		dat = reactiveDat()
 		#
-		layout(t(1:2))
-		#
-		curve(SRR(x, dat), 0, 3*dat$B0, lwd=3, xlab="Biomass", ylab="Recruitment", main="Stock-Recruitment", n=1000)
-		abline(0, dat$M, col='red')
-		#
 		ww = vbGrow(dat$aS, dat$kappa, dat$WW, dat$a0)
+		#
+		layout(t(1:2))
+		##
+		#curve(SRR(x, dat), 0, 3*dat$B0, lwd=3, xlab="Biomass", ylab="Recruitment", main="Stock-Recruitment", n=1000)
+		#abline(0, dat$M, col='red')
+		#
+		BMsy = BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
+		f = function(x){surplus(x, dat)/surplus(BMsy, dat)*BMsy*dat$FMsy}
+		#
+		curve(f(x), 0, dat$B0, lwd=3, xlab="Biomass", ylab="Equilibrium Yeild", main="Yeild Curve", n=1000)
+		segments(BMsy, 0, BMsy, BMsy*dat$FMsy)
+		points(BMsy, BMsy*dat$FMsy, pch=19)
+		#rug( BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma), lwd=3 )
+		#rug( BBar(0, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma), lwd=3 )
+		#abline(h=BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)*dat$FMsy)
+		#
 		curve(vbGrow(x, dat$kappa, dat$WW, dat$a0), 0, 15, lwd=3, xlab="Age", ylab="Biomass", main="VB Growth", ylim=c(0, dat$WW))
                 segments(dat$aS, 0, dat$aS, ww)
 		segments(0, ww, dat$aS, ww)
 		points(dat$aS, ww, pch=19)
 	})
 	#
-        output$catchsize = renderPlot({
+        output$rowThree = renderPlot({
                 #       
                 dat = reactiveDat()
-                layout(cbind(c(1,2), 3))
+                #layout(cbind(c(1,2), 3))
 		#
 		#ww = vbGrow(dat$aS, dat$kappa, dat$WW, dat$a0) #WW*(1-exp(-kappa*a0))
 		#dat$FMsy = FMsy(dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
 		#
-		par(mar=c(4,5,2,3))
-		dat$plotQuan( function(catch, FMsy){catch*FMsy}, main="Fishing", ylim=c(0,1.5), xlab="Time", ylab="F")
-		dat$plotQuan( function(B, catch, FMsy){B*catch*FMsy}, ylim=c(0,max(dat$B*dat$catch*dat$FMsy)*1.1), xlab="Time", ylab="Catch") 
-        	par(mar=c(5,5,5,3))
+		#par(mar=c(4,5,2,3))
+		#dat$plotQuan( function(catch, FMsy){catch*FMsy}, main="Fishing", ylim=c(0,1.5), xlab="Time", ylab="F")
+		#dat$plotQuan( function(B, catch, FMsy){B*catch*FMsy}, ylim=c(0,max(dat$B*dat$catch*dat$FMsy)*1.1), xlab="Time", ylab="Catch") 
+        	#par(mar=c(5,5,5,3))
+		#
+		layout(t(1:2))
+		#
+		curve(SRR(x, dat), 0, 3*dat$B0, lwd=3, xlab="Biomass", ylab="Recruitment #s", main="Stock-Recruitment", n=1000)
+		#abline(0, dat$M, col='red')
+		#
 		dat$plotQuan( function(B, N){B/N}, main="Average Size", ylim=c(0,max(dat$B/dat$N)), xlab="Time", ylab="Biomass Per Individual")
 	})
 	#
-	output$refPlot = renderPlot({
+	output$rowFour = renderPlot({
 		#
 		dat = reactiveDat()
-		##
-		#RPs = NULL
-		#RPs = rbind(RPs, c(dat$FMsy/dat$M, dat$zeta))
 		#
-		greys = rev(81-round(logseq(80, 1, 50))) #seq(60, 2, -1)
-		howMany = length(dat$xi)	
-		nWhite = max(howMany-length(greys)+1, 0)
+		layout(t(1:2))
+		dat$plotQuan( function(catch, FMsy){catch*FMsy}, main="Fishing", ylim=c(0,1.5), xlab="Time", ylab="F")
+                dat$plotQuan( function(B, catch, FMsy){B*catch*FMsy}, ylim=c(0,max(dat$B*dat$catch*dat$FMsy)*1.1), xlab="Time", ylab="Catch", main="Catch")
+	})
+	#
+	output$rowFive = renderPlot({
+		#
+		dat = reactiveDat()
+		#
+		howManyRP = length(dat$xi)
+		howManyGrey = min(howManyRP, 50)
+		greys = rev(81-round(logseq(80, 1, howManyGrey))) #seq(60, 2, -1)
+		nWhite = max(howManyRP-howManyGrey+1, 0)
 		#
 		plot(dat$xi, dat$zeta, pch=19, col=c(rep("white", nWhite), sprintf("grey%d",greys), "black"), xlab="Fmsy/M", ylab="Bmsy/B0", main="Reference Points")
-		points(dat$xi[howMany], dat$zeta[howMany], pch=19, col='black')
-		points(dat$xi[howMany], dat$zeta[howMany], col='red')
+		points(dat$xi[howManyRP], dat$zeta[howManyRP], pch=19, col='black')
+		points(dat$xi[howManyRP], dat$zeta[howManyRP], col='red')
 	})
 }
 #NOTE: Add varied contrast
