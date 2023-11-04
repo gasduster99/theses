@@ -429,10 +429,10 @@ addCircle = function(centerx, centery, radius, length=200){
 odeMethod = "lsode"
 
 #
-aS = 2		#10 0.1		#2  #15   #0.1  #15     #15  #7.5 #15  #1
+aS = 3		#10 0.1		#2  #15   #0.1  #15     #15  #7.5 #15  #1
 a0 = -1 	#-0.25 #-0.5 #-1   #-2
 M  = 0.2 	#0.005
-kappa = 0.2 	#10 0.1		#15 #0.2 #0.1 #0.2 #0.2 #10
+kappa = 0.1 	#10 0.1		#15 #0.2 #0.1 #0.2 #0.2 #10
 WW = 1
 ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 
@@ -466,13 +466,13 @@ ylim = c(0.15, 0.6) #0.7) #0.6) #
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
 #
-if( F ){
+if( T ){
 #Only run this to start a design
-p = "./modsDDFlatT45N300A0-1AS2K0.2/" 
+p = "./modsDDFlatT45N300A0-1AS3K0.1/" 
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
 dir.create(p)
 #
-ll = lhsMake(xlim, ylim, 150, 0, save=p) #(xiLim, zetaLim, 
+ll = lhsMake(xlim, ylim, 300, 0, save=p) #(xiLim, zetaLim, 
 }else{
 
 #
