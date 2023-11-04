@@ -265,7 +265,7 @@ ui = dashboardPage(
 		sliderInput("sliderAS","aS", min=0.1, max=10., step=0.1, value=dat$aS),
 		sliderInput("sliderKappa","kappa", min=0.1, max=10, step=0.1, value=dat$kappa),
 		#Recruitment
-		sliderInput("sliderAlpha", "alpha", min=dat$M+0.1, max=exp(dat$lalpha)*1.5, step=0.05, value=exp(dat$lalpha)),
+		sliderInput("sliderAlpha", "alpha", min=dat$M+0.1, max=exp(dat$lalpha)*3, step=0.05, value=exp(dat$lalpha)),
 		sliderInput("sliderBeta" , "beta" , min=0, max=exp(dat$lbeta)*1.5, step=10^(floor(log10(exp(dat$lbeta)))-1), value=exp(dat$lbeta)),
 		sliderInput("sliderGamma", "gamma", min=-2, max=2, step=0.10001, value=dat$gamma)
 		
@@ -338,7 +338,7 @@ server = function(input, output, session){
 		BMsy = BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
 		f = function(x){surplus(x, dat)/surplus(BMsy, dat)*BMsy*dat$FMsy}
 		#
-		curve(f(x), 0, dat$B0, lwd=3, xlab="Biomass", ylab="Equilibrium Yield", main="Yield Curve", n=1000)
+		curve(f(x), 0, dat$B0, lwd=3, xlab="Biomass", ylab="Equilibrium Surplus Biomass", main="Yield Curve", n=1000)
 		segments(BMsy, 0, BMsy, BMsy*dat$FMsy)
 		points(BMsy, BMsy*dat$FMsy, pch=19)
 		#rug( BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma), lwd=3 )
@@ -378,7 +378,7 @@ server = function(input, output, session){
 		#
 		layout(t(1:2))
 		dat$plotQuan( function(catch, FMsy){catch*FMsy}, main="Fishing", ylim=c(0,1.5), xlab="Time", ylab="F")
-                dat$plotQuan( function(B, catch, FMsy){B*catch*FMsy}, ylim=c(0,max(dat$B*dat$catch*dat$FMsy)*1.1), xlab="Time", ylab="Catch", main="Catch")
+                dat$plotQuan( function(B, catch, FMsy){B*catch*FMsy}, ylim=c(0,max(dat$B*dat$catch*dat$FMsy)*1.1), xlab="Time", ylab="Biomass", main="Catch")
 	})
 	#
 	output$rowFive = renderPlot({
