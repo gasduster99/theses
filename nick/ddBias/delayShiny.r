@@ -339,8 +339,8 @@ server = function(input, output, session){
 #NOTE: plot R
 
 #
-#source(delayShiny); shinyApp(ui, server)
+#source('delayShiny.r'); shinyApp(ui, server)
 
 #run app on host machine as below.
 #connect via a web browser on LAN with host's IP:5050 in address bar
-#runApp(shinyApp(ui, server), host="0.0.0.0", port=5050)
+#source('delayShiny.r'); runApp(shinyApp(ui, server), host="0.0.0.0", port=5050)

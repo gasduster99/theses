@@ -179,8 +179,8 @@ B0 = 10000
 #place = "./modsDDExpT45N300AS0.1K10/"; rv=F; 	#zooid1
 #place = "./modsDDExpT45N300AS0.1K10/"; rv=T; 	#zooid2
 #then do this
-#place = "./modsDDExpT45N300A0-1AS10K0.1/"; rv=F; 	#zooid1
-place = "./modsDDExpT45N300A0-1AS10K0.1/"; rv=T; 	#zooid2
+#place = "./modsDDExpT45N300A0-1AS10K0.1N28/"; rv=F; 	#zooid1
+place = "./modsDDExpT45N300A0-1AS10K0.1N28/"; rv=T; 	#zooid2
 
 odeMethod = "lsode" #"radau" #
 
