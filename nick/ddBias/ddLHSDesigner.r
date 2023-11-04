@@ -468,11 +468,11 @@ ylim = c(0.15, 0.6) #0.7) #0.6) #
 #
 if( T ){
 #Only run this to start a design
-p = "./modsDDFlatT45N300A0-1AS3K0.1/" 
+p = "./modsDDFlatT45N150A0-1AS3K0.1/" 
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
 dir.create(p)
 #
-ll = lhsMake(xlim, ylim, 300, 0, save=p) #(xiLim, zetaLim, 
+ll = lhsMake(xlim, ylim, 150, 0, save=p) #(xiLim, zetaLim, 
 }else{
 
 #
