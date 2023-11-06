@@ -153,7 +153,7 @@ der = function(t, Y, lalpha, lbeta, gamma, aS, a0, WW, kappa, catch, B0){
         N = Y[1]
         B = Y[2]
         #
-        if( (t-aS)<1){
+        if( (t-aS)<1){ #0.1
                 Blag = B0
         }else{
                 Blag = lagvalue(t-aS)[2]
@@ -389,7 +389,7 @@ server = function(input, output, session){
 		dat = reactiveDat()
 		#
 		layout(t(1:2))
-		dat$plotQuan( function(catch, FMsy){catch*FMsy}, main="Fishing", ylim=c(0,1.5), xlab="Time", ylab="F")
+		dat$plotQuan( function(catch, FMsy){catch*FMsy}, main="Fishing", ylim=c(0,max(dat$catch*dat$FMsy)), xlab="Time", ylab="F")
                 dat$plotQuan( function(B, catch, FMsy){B*catch*FMsy}, ylim=c(0,max(dat$B*dat$catch*dat$FMsy)*1.1), xlab="Time", ylab="Biomass", main="Catch")
 	})
 	#
