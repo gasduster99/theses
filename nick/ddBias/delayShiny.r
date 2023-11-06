@@ -337,8 +337,10 @@ server = function(input, output, session){
 		#
 		BMsy = BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
 		f = function(x){surplus(x, dat)/surplus(BMsy, dat)*BMsy*dat$FMsy}
+		g = function(x){dat$M*(dat$M+dat$kappa)/dat$kappa/dat$WW/(1+dat$M*ww/dat$kappa/dat$WW)}
 		#
 		curve(f(x), 0, dat$B0, lwd=3, xlab="Biomass", ylab="Equilibrium Surplus Biomass", main="Yield Curve", n=1000)
+		#curve(g(x), 0, dat$B0, lwd=3, xlab="Biomass", ylab="Equilibrium Surplus Biomass", main="Yield Curve", n=1000)
 		segments(BMsy, 0, BMsy, BMsy*dat$FMsy)
 		points(BMsy, BMsy*dat$FMsy, pch=19)
 		#rug( BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma), lwd=3 )
@@ -366,8 +368,14 @@ server = function(input, output, session){
 		#
 		layout(t(1:2))
 		#
+		ww = vbGrow(dat$aS, dat$kappa, dat$WW, dat$a0)
+		#
 		curve(SRR(x, dat), 0, 3*dat$B0, lwd=3, xlab="Biomass", ylab="Recruitment #s", main="Stock-Recruitment", n=1000)
-		#abline(0, dat$M, col='red')
+		abline(0, dat$M*(dat$M+dat$kappa)/dat$kappa/dat$WW/(1+dat$M*ww/dat$kappa/dat$WW), col='red')
+		#abline(v=dat$B0)
+		segments(dat$B0, 0, dat$B0, SRR(dat$B0, dat))
+                #segments(0, SRR(dat$B0, dat), dat$B0, SRR(dat$B0, dat))
+		points(dat$B0, SRR(dat$B0, dat), pch=19)
 		#
 		dat$plotQuan( function(B, N){B/N}, main="Average Size", ylim=c(0,max(dat$B/dat$N)), xlab="Time", ylab="Biomass Per Individual")
 	})
