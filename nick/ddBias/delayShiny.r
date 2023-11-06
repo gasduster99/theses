@@ -34,7 +34,7 @@ FBbar = with_value(FBbar, "F", ysym("FF"))
 dFBdF = deriv(FBbar, "FF")
 dFBdF_r = as_r(dFBdF)
 FMsy = function(M, k, w, W, alpha, beta, gamma, dFBdFexpr=dFBdF_r){
-        uniroot(function(FF){ eval(dFBdFexpr) }, c(0, 10))$root
+        uniroot(function(FF){ eval(dFBdFexpr) }, c(0, 10), tol=.Machine$double.eps)$root
 }
 #
 NBar = function(FF, M, k, w, W, alpha, beta, gamma){
@@ -326,23 +326,27 @@ server = function(input, output, session){
 	#
 	output$rowTwo = renderPlot({
 		#
-		dat = reactiveDat()
-		#
-		ww = vbGrow(dat$aS, dat$kappa, dat$WW, dat$a0)
+		dat = reactiveDat()	
 		#
 		layout(t(1:2))
 		##
 		#curve(SRR(x, dat), 0, 3*dat$B0, lwd=3, xlab="Biomass", ylab="Recruitment", main="Stock-Recruitment", n=1000)
 		#abline(0, dat$M, col='red')
 		#
-		BMsy = BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
-		f = function(x){surplus(x, dat)/surplus(BMsy, dat)*BMsy*dat$FMsy}
-		g = function(x){dat$M*(dat$M+dat$kappa)/dat$kappa/dat$WW/(1+dat$M*ww/dat$kappa/dat$WW)}
-		#
-		curve(f(x), 0, dat$B0, lwd=3, xlab="Biomass", ylab="Equilibrium Surplus Biomass", main="Yield Curve", n=1000)
-		#curve(g(x), 0, dat$B0, lwd=3, xlab="Biomass", ylab="Equilibrium Surplus Biomass", main="Yield Curve", n=1000)
+		ww = vbGrow(dat$aS, dat$kappa, dat$WW, dat$a0)
+		BMsy = BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)	
+		g = function(x){BBar(x, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)}
+		g = Vectorize(g, 'x')
+		maxF = uniroot(g, c(dat$FMsy, exp(dat$lalpha)))$root
+		#print(maxF)
+		FFs = seq(0, maxF, length.out=1000)
+		#f = function(x){surplus(x, dat)/surplus(BMsy, dat)*BMsy*dat$FMsy}
+		#curve(f(x), 0, dat$B0, lwd=3, xlab="Biomass", ylab="Equilibrium Surplus Biomass", main="Yield Curve", n=1000)
+		plot(g(FFs), FFs*g(FFs), type='l', lwd=3, xlab="Biomass", ylab="Equilibrium Surplus Biomass", main="Yield Curve")
 		segments(BMsy, 0, BMsy, BMsy*dat$FMsy)
 		points(BMsy, BMsy*dat$FMsy, pch=19)
+		#abline(0, dat$FMsy)
+		#curve(BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma))
 		#rug( BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma), lwd=3 )
 		#rug( BBar(0, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma), lwd=3 )
 		#abline(h=BBar(dat$FMsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)*dat$FMsy)
@@ -412,3 +416,40 @@ server = function(input, output, session){
 #run app on host machine as below.
 #connect via a web browser on LAN with host's IP:5050 in address bar
 #source('delayShiny.r'); runApp(shinyApp(ui, server), host="0.0.0.0", port=5050)
+
+
+#dFBdF_stable = 
+#expression((
+#	1 - 
+#	#(((FF + M) * (FF + k + M))/(alpha * (FF * w + k * W + M * w)))^gamma -
+#	exp( gamma*( log(FF + M) + log(FF + k + M) )-(log(alpha)+log(FF * w + k * W + M * w)) ) -
+#	(
+#		#FF * (((FF + M) * (FF + k + M))/(alpha * (FF * w + k * W + M * w)))^(gamma - 1) * gamma * (alpha * (FF * w + k * W + M * w) * (FF + M + FF + k + M) - 
+#		exp( log(FF) + (gamma - 1)*( log(FF+M)+log(FF+k+M)-log(alpha)-log(FF * w + k * W + M * w) ) + log(gamma) ) * 
+#		#(alpha * (FF * w + k * W + M * w) * (FF + M + FF + k + M) -
+#		exp( log(alpha) + log(FF * w + k * W + M * w) + log(2*FF+2*M+k) ) - 
+#		#(FF + M) * (FF + k + M) * alpha * w)
+#		exp( log(FF + M) + log(FF + k + M) + log(alpha) + log(w) )
+#	) / (alpha * (FF * w + k * W + M * w))^2
+#	) / (beta * gamma)
+#)
+#expression((
+#	1 - 
+#	(((FF + M) * (FF + k + M))/(alpha * (FF * w + k * W + M * w)))^gamma - 
+#	(FF * (((FF + M) * (FF + k + M))/(alpha * (FF * w + k * W + M * w)))^(gamma - 1) * gamma * 
+#	(alpha * (FF * w + k * W + M * w) * (FF + M + FF + k + M) - 
+#	(FF + M) * (FF + k + M) * alpha * w)) / 
+#	(alpha * (FF * w + k * W + M * w))^2
+#	) / (beta * gamma)
+#)
+#NOTE: wrong
+#expression(
+#	1 - 
+#	exp(gamma*( (log(FF+M)+log(FF+M+k)))-(log(alpha)+log(w)+log(FF+M+k*W/w))) - 
+#	exp(
+#		log(gamma)+log(FF)-log(alpha)-log(w) +
+#		(gamma-1)*( (log(FF+M)+log(FF+M+k)))-(log(alpha)+log(w)+log(FF+M+k*W/w)) + 
+#		log( 1 + (k*W/w)*(k-(k*W/w))/(FF+M+(k*W/w))^2 )
+#	)
+#)
+
