@@ -333,7 +333,8 @@ getData = function(dir, xiRange, zetaRange){
 ##failed
 #mod = "ExpT45N300AS10K0.1"
 #WORKED
-mod = "ExpT45N300A0-1AS10K0.1N28/"
+#mod = "ExpT45N300A0-1AS10K0.1"
+mod = "ExpT45N300A0-1AS10K0.1N28"
 ##WORKED 
 #mod = "ExpT45N300AS0.1K10"
 
@@ -342,8 +343,11 @@ mod = "ExpT45N300A0-1AS10K0.1N28/"
 #bumpy 
 #mod = "FlatT45N300A0-1AS10K0.1N56"
 #mod = "FlatT45N300A0-1AS10K0.1N84"
+#failed		
+#mod = "FlatT45N150A0-1AS3K0.1"
 #
 #mod = "FlatT45N300A0-1AS0.1K10"
+
 
 #
 place = sprintf("./modsDD%s/", mod)
@@ -458,6 +462,7 @@ lFPred[!mask] = NA
 #bias
 xiHat = exp(lFPred)/M
 xiBias = sweep(xiHat, 1, xiStar)
+xiBias[is.infinite(xiBias)] = NA
 #zbh = BBar(exp(lFPred), M, kappa, ww, WW, fit$alpha, fit$beta, fit$gamma)/BBar(0, M, kappa, ww, WW, fit$alpha, fit$beta, fit$gamma) 
 zbh = matrix(getZetaBH(exp(lFPred)/M, M, kappa, WW, aS, a0), nrow(xiBias), ncol(xiBias))
 zetaBias = sweep(zbh, 2, zetaStar)
@@ -540,8 +545,8 @@ png(sprintf("fMSYBiasDD%s.png", mod))
 nCols = 100
 maxBias = abs(max(xiBias, na.rm=T))
 minBias = abs(min(xiBias, na.rm=T))
-posCols = hcl.colors(round(nCols*maxBias/(maxBias+minBias)), "Reds 2", rev=T)
-negCols = hcl.colors(round(nCols*minBias/(maxBias+minBias)), "Blues 2", rev=F)
+posCols = hcl.colors(round(nCols*(maxBias/(maxBias+minBias))), "Reds 2", rev=T)
+negCols = hcl.colors(round(nCols*(minBias/(maxBias+minBias))), "Blues 2", rev=F)
 xCols = c(negCols, "#FFFFFF", posCols)
 #
 xiMask = xiStar>xiBot & xiStar<xiTop

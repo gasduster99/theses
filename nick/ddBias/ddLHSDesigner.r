@@ -429,25 +429,34 @@ addCircle = function(centerx, centery, radius, length=200){
 odeMethod = "lsode"
 
 #
-aS = 3		#10 0.1		#2  #15   #0.1  #15     #15  #7.5 #15  #1
+aS = 0.1	#2 #10 0.1		#2  #15   #0.1  #15     #15  #7.5 #15  #1
 a0 = -1 	#-0.25 #-0.5 #-1   #-2
 M  = 0.2 	#0.005
-kappa = 0.1 	#10 0.1		#15 #0.2 #0.1 #0.2 #0.2 #10
+kappa = 10 	#10 0.1		#15 #0.2 #0.1 #0.2 #0.2 #10
 WW = 1
 ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 
 #
 B0 = 10000
 
-#just initiating to give alpha, beta, gamma some reasonable values
-xi = 1
-zeta = 0.4
-#print('hi')
-inv = invert(zeta, xi, B0, M, kappa, ww, WW)
-alpha = inv$alpha
-beta  = inv$beta
-gamma = inv$gamma
-#print('ho')
+##just initiating to give alpha, beta, gamma some reasonable values
+#xi = 1
+#zeta = 0.4
+##print('hi')
+#inv = invert(zeta, xi, B0, M, kappa, ww, WW)
+#alpha = inv$alpha
+#beta  = inv$beta
+#gamma = inv$gamma
+##print('ho')
+
+#
+xi = 3
+zeta = 0.65
+#
+#inv = invert(zeta, xi, B0, M, kappa, ww, WW)
+alpha = 3.75#inv$alpha
+beta  = 0.000072#inv$beta
+gamma = 2 #inv$gamma
 
 #
 TT = 45
@@ -462,13 +471,13 @@ n = 28 #about 3 flushes all of the thialacia ranks
 
 #
 xlim = c(0.25, 3.75)
-ylim = c(0.15, 0.6) #0.7) #0.6) #
+ylim = c(0.15, 0.7) #0.6) #
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
 #
 if( T ){
 #Only run this to start a design
-p = "./modsDDFlatT45N150A0-1AS3K0.1/" 
+p = "./modsDDFlatT45N150A0-1AS0.1K10/" 
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
 dir.create(p)
 #
