@@ -126,7 +126,7 @@ dev.off()
 
 #
 png('g3.png')
-curve(SRR(x*B0, a, b, gs[1])/SRR(B0, a, b, gs[1]), 0, 2/b, lwd=3, ylim=c(0, 2.5), ylab="R/R0", xlab="B/B0", main="Schnute Production", col='white', n=10000)
+curve(SRR(x*B0, a, b, gs[1])/SRR(B0, a, b, gs[1]), 0, 2/b, lwd=3, ylim=c(0, 2.5), ylab=TeX("$P(B)$ / $P(B_0)$"), xlab=TeX("B / $B_0$"), main="Schnute Production", col='white', n=10000)
 #curve(SRR(x*B0, a, b, -1), 0, 5/b, lwd=3, n=10000, add=T)
 for(g in gs){
 	#

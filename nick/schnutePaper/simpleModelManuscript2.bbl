@@ -451,6 +451,29 @@ Magnusson, A.%
 
 \bibitem [\protect \citeauthoryear {%
 Mangel%
+}{%
+Mangel%
+}{%
+{\protect \APACyear {2006}}%
+}]{%
+mangel_theoretical_2006}
+\APACinsertmetastar {%
+mangel_theoretical_2006}%
+\begin{APACrefauthors}%
+Mangel, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2006}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The {Theoretical} {Biologist}'s {Toolbox}:
+  {Quantitative} {Methods} for {Ecology} and {Evolutionary} {Biology}} {The
+  {Theoretical} {Biologist}'s {Toolbox}: {Quantitative} {Methods} for {Ecology}
+  and {Evolutionary} {Biology}}.{\BBCQ}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Mangel%
 \ \protect \BOthers {.}}{%
 Mangel%
 \ \protect \BOthers {.}}{%
@@ -548,6 +571,32 @@ Morris, M\BPBI D.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1016/0378-3758(94)00035-T} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Punt%
+}{%
+Punt%
+}{%
+{\protect \APACyear {1988}}%
+}]{%
+punt_model_1988}
+\APACinsertmetastar {%
+punt_model_1988}%
+\begin{APACrefauthors}%
+Punt, A\BPBI E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1988}.
+\unskip\
+\newblock
+\APACrefbtitle {Model selection for the dynamics of southern {African} hake
+  resources} {Model selection for the dynamics of southern {African} hake
+  resources}\ \APACtypeAddressSchool {{PhD} {Thesis}}{}{}.
+\unskip\
+\newblock
+\APACaddressSchool {}{University of Cape Town}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -884,36 +933,6 @@ Stein, M.%
 \APACjournalVolNumPages{Technometrics}{29}{2}{143--151}.
 \newblock
 \APACrefnote{Publisher: Taylor \& Francis}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Walters%
-\ \BBA {} Ludwig%
-}{%
-Walters%
-\ \BBA {} Ludwig%
-}{%
-{\protect \APACyear {1994}}%
-}]{%
-walters_calculation_1994}
-\APACinsertmetastar {%
-walters_calculation_1994}%
-\begin{APACrefauthors}%
-Walters, C.%
-\BCBT {}\ \BBA {} Ludwig, D.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{1994}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Calculation of {Bayes} posterior probability
-  distributions for key population parameters} {Calculation of {Bayes}
-  posterior probability distributions for key population parameters}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Canadian Journal of Fisheries and Aquatic
-  Sciences}{51}{3}{713--722}.
-\newblock
-\APACrefnote{Publisher: NRC Research Press Ottawa, Canada}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

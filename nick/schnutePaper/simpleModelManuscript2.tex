@@ -236,22 +236,25 @@ parametric ordinary differential equations (ODE). Key management quantities
 called reference points (RPs) are commonly derived from the ODE equilibrium
 equations and depend upon the parameterization of biomass production.
 Two-parameter forms of the production function have been shown to
-limit the theoretical domain of RPs \shortcite{mangel_perspective_2013}. The
-limited RP-space of two parameter models are a major source of model
-misspecification for RPs and thus induce bias in RP estimation. The behavior
-of RP estimation bias is not well understood and as a result often
-underappreciated. A metamodeling approach is developed here to describe RP
-biases and explore mechanisms of model failure under the most common two parameter models. %in the Schaefer model.
+limit the theoretical domain of RPs \shortcite{mangel_perspective_2013}. 
+The limited RP-space of two-parameter models makes these models vulnerable to 
+model misspecification with respect to RPs, and thus the limiting stucture of 
+two-parameter models may in and of itself induce bias in RP estimation using 
+these models. The behavior of RP estimation is not well understood and as a 
+result patterns of bias in RP estimation may easily go unnoticed. A 
+metamodeling approach is developed here to describe RP biases and explore 
+mechanisms of model failure under the most common two-parameter models. %in the Schaefer model.
 
 %NOTE: we can not observe all fish in the sea, and this rely on an index of abundance 
 %which typically comes from experimental fishing procedure(for example ccfrp).
 Data for a typical surplus-production model comes in the form of an index
 of abundance through time which is assumed to be proportional to the reproducing
-biomass for the population of interest. The index is often observed alongside
-a variety of other known quantities, but at a minimum, each observed index
-will be observed in the presence of some known catch for the period. 
-Figure (\ref{hakeData}) shows the classic Namibian Hake dataset exemplifying 
-the form. 
+biomass for the modelled population that is vulnerable to fishing. The index 
+is often observed alongside a variety of other known quantities, but at a 
+minimum, each index will be observed in the presence of some known catch for 
+the period. Figure (\ref{hakeData}) shows the classic Namibian Hake dataset 
+\shortcite{punt_model_1988, hilborn_ecological_1997, mangel_theoretical_2006} 
+exemplifying the form. 
 % from the classic Namibian Hake data set. 
 %The index %of abundance is assumed to be proportional to biomass with the 
 %proportionality %constant being a nuisance parameter that is often referred to 
@@ -262,9 +265,9 @@ the form.
 \begin{figure}[h!]
         \includegraphics[width=0.45\textwidth]{./plots/hakeIndex.png}
         \includegraphics[width=0.45\textwidth]{./plots/hakeCatch.png}
-        \vspace{-1cm}
+        %\vspace{-1cm}
 	\caption{\label{hakeData}
-        \textit{left}: An index of abundance data, catch per unit effort (CPUE), for Namibian Hake from 1965 to 1987 \protect\shortcite{hilborn_ecological_1997}.
+        \textit{left}: An index of abundance data, catch per unit effort (CPUE), for Namibian Hake from 1965 to 1987. % \protect\shortcite{hilborn_ecological_1997}
         \textit{right}: The associated catch data for Namibian Hake over the same time period.
         }
 \end{figure}
@@ -311,7 +314,7 @@ of biomass.
 Secondly, the population decreases as biomass is removed by various sources that are 
 assumed to remove biomass linearly with biomass. Above, $Z(t)$, is an 
 aggregate rate of removal. When the fishing rate, $F(t)$, is the only source of removal 
-$Z(t)=F(t)$, however often models will also included other linear terms in $Z(t)$. 
+$Z(t)=F(t)$, however some models will also included other linear terms in $Z(t)$. 
 Commonly the rate of ``natural mortality'', $M$, is also included as an additional term 
 so that $Z(t)=M+F(t)$.
 
@@ -354,17 +357,17 @@ $F^*$ is the afore mentioned fishing rate which results in MSY. $\frac{B^*}{\bar
 is the depletion of the stock at MSY. That is to say $\frac{B^*}{\bar B(0)}$ describes
 the fraction of the unfished population biomass that will remain in the equilibrium
 at MSY. In general $F^*\in\mathbb{R}^+$ and \mbox{$\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$,}
-however under the under the assumption of a two parameter production function production 
+however under the assumption of two-parameter production, %function production 
 models will be structurally unable to capture the full theoretical range of RPs. 
 %\shortcite{mangel_perspective_2013}.
 
 %
 Many of the most commonly used production functions depend only
-on two parameters. For example, the Schaefer model %{(\color{red}cite)}
+on two-parameters. For example, the Schaefer model %{(\color{red}cite)}
 depends only on the biological parameters $r$ and $K$, and limits RP inference 
 so that under the Schaefer model $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}{2}\right)$. 
-The two parameter Fox model \shortcite{fox_jr_exponential_1970} limits $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}{e}\right)$. 
-Similarly the two parameter Cushing \shortcite{cushing_dependence_1971}, Beverton-Holt \shortcite[BH]{beverton_dynamics_1957}
+The two-parameter Fox model \shortcite{fox_jr_exponential_1970} limits $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}{e}\right)$. 
+Similarly the two-parameter Cushing \shortcite{cushing_dependence_1971}, Beverton-Holt \shortcite[BH]{beverton_dynamics_1957}
 and Ricker \shortcite{ricker_stock_1954} production functions do not model the full theoretical space of
 RPs \shortcite{mangel_perspective_2013, yeakel_generalized_2015}.
 %curves are also two parameter
@@ -379,8 +382,8 @@ is still under debate because the particular mechanisms and behavior (direction 
 of these biases for key management quantities %(and the mechanisms of inducing these biases) 
 are not fully understood or described. \shortciteA{lee_can_2012} provides some
 evidence that estimation of productivity parameters %, and thus RPs via \shortcite{mangel_perspective_2013},
-are dependent on biomass contrast as well as model specification. % as well as contrast in data %lacking contrast in biomass. 
-\shortciteA{conn_when_2010} comes to similar conclusions %about steepness estimation
+are dependent on changes in biomass trend through time (i.e. contrast) as well % as well as contrast in data %lacking contrast in biomass. 
+as model specification. \shortciteA{conn_when_2010} comes to similar conclusions %about steepness estimation
 via calibration modeling techniques. These studies indicate important factors that
 contribute to inferential failure. However they do not offer mechanisms of model 
 failure, nor do their experimental designs allow for the control of different 
@@ -402,10 +405,10 @@ types of model misspecification.
 %beginning to understand the consequences of model misspecification on the
 %production function. 
 In this study I consider the behavior of inference when index data are simulated 
-from three parameter PT and Schnute production models, but the simulated data are fit 
-using intentionally misspecified two parameter logistic or BH production models.
+from three-parameter PT and Schnute production models, but the simulated data are fit 
+using intentionally misspecified two-parameter logistic or BH production models.
 %
-The work begins with a derivation of RPs under the three parameter models. %PT model.
+The work begins with a derivation of RPs under the three-parameter models. %PT model.
 A method is then presented for generating simulation designs based on the parametric 
 form of RPs which serves as a control on the nature of simulated model misspecification.
 % for analyzing inference under the two parameter model.
@@ -440,7 +443,7 @@ is considered together with model misspecification. %alongside the effect of mod
 
 %
 %Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
-The three parameter Pella-Tomlinson (PT) family has a convenient form that includes, among 
+The three-parameter Pella-Tomlinson (PT) family has a convenient form that includes, among 
 others \shortcite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
 logistic production function as a special case. %Under logistic production to form the Schaefer model. The 
 PT production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$ 
@@ -486,16 +489,16 @@ a limiting case as $\gamma\to1$.
 %they do in the logistic production function. In Figure (\ref{SrrPT}) PT recruitment 
 %is shown for a range of parameter values so as to demonstrate the various 
 %recruitment shapes that can be achieved by PT recruitment.  
-%
-The parameter $r$ controls the maximum reproductive rate of the population
+%reproductivei (biomass accumulation)
+The parameter $r$ controls the maximum per-capita growth rate of the population
 in the absence of competition for resources (i.e. the slope of production
 function at the origin). $K$ is the so called "carrying capacity" of the
 population. In this context the carrying capacity can be formally stated as
 steady state biomass in the absence of fishing \mbox{(i.e. $\bar B(0)=K$).}
 %
-In Figure (\ref{SrrPT}) PT recruitment is shown for a range of parameter values 
-so as to demonstrate the various recruitment shapes that can be achieved by PT 
-recruitment.  
+In Figure (\ref{SrrPT}) PT production is shown for a range of parameter values 
+so as to demonstrate the various productivity shapes that can be achieved under 
+PT.  
 
 %{\color{red} And $\gamma$ is a parameter which adds 
 %flexibility to the family by allowing for compensatory or non-compensatory 
@@ -637,8 +640,8 @@ productivity parameters.
 Generating simulated indices of abundance from the PT model requires
 inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and
 $(r, \gamma)$. It is not generally possible to analytically invert this
-relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
-Most three parameter production functions lead to RPs that require expensive 
+relationship for many three-parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
+Most three-parameter production functions lead to RPs that require expensive 
 numerical methods to invert; more over the numerical inversion procedure can %is 
 often be unstable. That said, for the case of PT this relationship is
 analytically invertible, and leads to the following relationship
@@ -673,7 +676,7 @@ Since $K$ does not enter the RP calculation its value is fixed arbitrarily at 10
 %small value of 0.01 to focus specifically on the behavior of productivity 
 %parameters.
 
-Indices of abundance are simulated from the three parameter PT production model
+Indices of abundance are simulated from the three-parameter PT production model
 broadly over the space of $F^*$ and $\frac{B^*}{\bar B(0)}$ via a space filling
 design as described in Section (\ref{lhs}). A small amount of residual variation, 
 $\sigma=0.01$, is added to the simulated index, and these data are then fit with a
@@ -684,8 +687,8 @@ effect of productivity model misspecification upon RP inference.
 \subsection{Schnute Model}
 
 %
-The Schnute production function is a three parameter generalization of many of 
-the most common two parameter production functions \shortcite{deriso_harvesting_1980, schnute_general_1985}. %\shortcit{deriso_harvesting_1980}. 
+The Schnute production function is a three-parameter generalization of many of 
+the most common two-parameter production functions \shortcite{deriso_harvesting_1980, schnute_general_1985}. %\shortcit{deriso_harvesting_1980}. 
 It can be written in the following form, with parameters $\alpha$, $\beta$, and $\gamma$,
 %
 \begin{align}
@@ -1203,7 +1206,7 @@ value of $\gamma$; below which productivity is negative.}
 \end{wrapfigure}
  
 %
-Above, $t$ is the density of the three parameter location-scale family Student's $t$ 
+Above, $t$ is the density of the three-parameter location-scale family Student's $t$ 
 distribution with location $\mu$, scale $\sigma$, and degrees of freedom $\nu$. 
 $\bm{1}_{\gamma>\gamma_{min}}$ is an indicator function that serves to truncate the 
 Student's $t$ distribution at the lower bound $\gamma_{min}$. 
@@ -1564,20 +1567,20 @@ of the mapping itself.
 
 %
 In this setting, the aim of metamodeling is to study how well RPs are inferred 
-when typical two parameter models of productivity (Logistic and BH) are 
+when typical two-parameter models of productivity (Logistic and BH) are 
 misspecified for populations that are actually driven by more complicated 
 dynamics. The simulation design, $\bm{X}$, provides a sample of different 
-population dynamics that are driven by three parameter production functions 
+population dynamics that are driven by three-parameter production functions 
 broadly in RP space. By simulating index of abundance data from the three 
-parameter model, and fitting those data with the two parameter production model, we %one can 
+parameter model, and fitting those data with the two-parameter production model, we %one can 
 observe particular instances of how well RPs are inferred at the given 
-misspecification of the two parameter model relative to the true three parameter 
+misspecification of the two-parameter model relative to the true three-parameter 
 production model. By gathering all of the simulated instances of how RPs are 
-inferred (under the two parameter model), %under misspecified two parameter models
+inferred (under the two-parameter model), %under misspecified two parameter models
 we form a set of example mappings to train a metamodel which represents the 
-mapping of true RPs (under the three parameter model) to estimates of RPs under the 
-misspecified two parameter production model. The metamodel is essentially a surrogate 
-for inference under the misspecified two parameter production model that 
+mapping of true RPs (under the three-parameter model) to estimates of RPs under the 
+misspecified two-parameter production model. The metamodel is essentially a surrogate 
+for inference under the misspecified two-parameter production model that 
 controls for the specific degree of model misspecification. 
 %the way in whthe nature of  
 %specific misspecification of RP. 
@@ -1587,7 +1590,7 @@ controls for the specific degree of model misspecification.
 
 %
 A flexible GP model is assumed for the structure of the metamodel to describe the mapping 
-of RPs under misspecified two parameter models of productivity. A GP is a 
+of RPs under misspecified two-parameter models of productivity. A GP is a 
 stochastic process generalizing the multivariate normal distribution
 to an infinite dimensional analog. GP models are often specified primarily 
 through the choice of a covariance (or correlation) function which defines the 
@@ -1597,14 +1600,14 @@ relationship between locations in the input space. %an index set. Typically the 
 Typically correlation functions are specified so that points closely related in 
 space result in correlated effects in the model. In this setting the inputs to 
 the GP metamodel are the space of reference points which define the simulated 
-three parameter production models. 
+three-parameter production models. 
 %The GP model then implies a multivariate normal response distribution on the
 %observations of the model with a correlated error structure defined by the
 %modeled covariance function.
 
 %
-While index of abundance data are generated from three parameter models, at each 
-design location of the simulation, fitting the restricted two parameter model 
+While index of abundance data are generated from three-parameter models, at each 
+design location of the simulation, fitting the restricted two-parameter model 
 results in a maximum likelihood estimate (MLE; and associated estimation 
 uncertainty) of each of the productivity parameters
 (i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
@@ -1633,7 +1636,7 @@ independent instances of the following GP metamodel. %in Eq (\ref{GPModel}).
 
 %, as derived above,
 $\bm{X}$ is the $n$ x 2 LHS design matrix of RPs for each simulated %respective 
-three parameter data generating model as described in Section (\ref{desRef}). 
+three-parameter data generating model as described in Section (\ref{desRef}). 
 %The GP residual variation
 $\epsilon$ models independent normally distributed error, which provides an 
 ideal mechanism for propagating uncertainty from inference in the simulation 
@@ -1679,8 +1682,8 @@ Predictive estimates are obtained via kriging \shortcite{cressie_statistics_2015
 
 %
 $\hat y(\textbf{x})$ is the predicted value of the modeled productivity parameter 
-MLE under the two parameter production model, when the index of abundance %the metamodel at the 
-is generated from the three parameter production model at RP location $\textbf{x}$. 
+MLE under the two-parameter production model, when the index of abundance %the metamodel at the 
+is generated from the three-parameter production model at RP location $\textbf{x}$. 
 $\textbf{r(x)}$ is a vector-valued function of correlation function evaluations for the 
 predictive location $\textbf{x}$ against all observations in $\bm{X}$ 
 (i.e. $\textbf{r(x)}=\bm{R}(\textbf{x}, \bm{x}_i)~\forall~\bm{x}_i\in\bm{X}$).
@@ -1697,8 +1700,8 @@ model $\hat B^*=\frac{\hat K}{2}$ and $\hat F^*=\frac{\hat r}{2}$.
 %%estimates are then modeled using independent instances of the following model in Eq (28).
 %
 Applying the metamodel predictive surfaces on the scale of RP estimates allows for the 
-quantification of estimation bias that is induced by fitting a misspecified two parameter 
-production model to indices of abundance generated under three parameter productivity.
+quantification of estimation bias that is induced by fitting a misspecified two-parameter 
+production model to indices of abundance generated under three-parameter productivity.
 
 %
 \subsection{Catch \label{catch}}	
@@ -1773,7 +1776,7 @@ holds the fishing rate at $F^*$ there after. These three phases are
 controlled by the four parameters $a$, $b$, $c$, and $d$. By enforcing that 
 the interface of the phases meet at $\chi_{max}$ and 1 respectively
 %exponential and linear phases meet at the value $\chi_{max}$; additionally enforcing the interface of the linear and constant phase meet at $1$, 
-the relative fishing series is reduced to a two parameter family. %below.
+the relative fishing series is reduced to a two-parameter family. %below.
 %seen in Eqs (\ref{relFish2}, \ref{relFish3}). 
 %
 %\vspace*{-1cm}
@@ -1783,7 +1786,7 @@ the relative fishing series is reduced to a two parameter family. %below.
 \end{align}
 %
 By further specifying $\chi_{max} = 1.6^\chi$ and $\chi_{min} = 0.4^\chi$
-the two parameters $\chi_{max}$, and $\chi_{min}$ can be reduced to the single 
+the two-parameters $\chi_{max}$, and $\chi_{min}$ can be reduced to the single 
 parameter $\chi$. The tuning parameter $\chi$ then singularly controls contrast 
 that appears in time series data.
 %Other choices of the bases of exponentiation for $\chi_{max}$ and $\chi_{min}$ may be used so long as the base for 
@@ -1878,13 +1881,13 @@ the production model ODE.
 %
 The simulated mapping results from fitting an intentionally misspecified two 
 parameter production model to index of abundance data that are generated from 
-a more complex three parameter model of productivity. 
+a more complex three-parameter model of productivity. 
 %The simulation results in an intentionally (and controlled) 
 %misspecified two parameter production model. 
 %The goal of model fitting is to assess how the biological parameters of the
 %two parameter production model behave under MLE inference when index of 
 %abundance data are generated from more complex models of productivity. % three parameter models, to PT data.
-Thus, let $I_t$ be an index of abundance simulated from the three parameter PT 
+Thus, let $I_t$ be an index of abundance simulated from the three-parameter PT 
 or Schnute production models at time $t\in\{1,2, 3,..., T\}$. However the 
 fitted model is specified to be intentionally misspecified so that the fitted 
 model is driven by a two parameter Schaefer, or BH production model respectively. %of productivity. 
@@ -1905,7 +1908,7 @@ For the Schaefer model $\bm{\theta}=[r, K]$, and for the BH model $\bm{\theta}=[
 %\end{align}
 %
 From the perspective of the fitted model, the observed $I_t$ are assumed independent 
-conditional on $q$, $\sigma^2$, $r$, $K$ and the two parameter ODE model for biomass. 
+conditional on $q$, $\sigma^2$, $r$, $K$ and the two-parameter ODE model for biomass. 
 Thus the log likelihood can be written as
 %
 \begin{align}
@@ -2451,7 +2454,7 @@ The black curve shows the BH set.
 \end{wrapfigure}
 
 %
-Similarly to the PT model, the three parameter Schnute model is uniquely 
+Similarly to the PT model, the three-parameter Schnute model is uniquely 
 identified by each point in the space of $\frac{F^*}{M}$ 
 and $\frac{B^*}{B_0}$ RPs. As seen in Figure (\ref{colorDes}), Schnute 
 production has different behaviors in different ranges of RPs space, which 
@@ -2570,7 +2573,7 @@ under the BH model in the high contrast setting. The (\emph{left}) and
 (\emph{bottom}) panels focus only on the $\frac{B^*}{\bar B(0)}$ and 
 $\frac{F^*}{M}$ components of bias respectively. In these panels bias is shown
 as relative bias, $\frac{\widehat{RP}-RP}{RP}$, similar to a percent error calculation.
-Where $RP$ represents the true value of the three parameter RP, and $\widehat{RP}$ 
+Where $RP$ represents the true value of the three-parameter RP, and $\widehat{RP}$ 
 refers to the metamodel estimate.
 
 %
@@ -2873,13 +2876,13 @@ a simulation design that allows for uniform representative data generation
 across biologically meaningful stocks. The results presented here suggest the 
 conjecture that under a maximally informative dataset, RP inference with a two 
 parameter production function will be biased in the direction a shortest distance 
-map from the true RPs onto restricted set of RPs under the two parameter model.    
+map from the true RPs onto restricted set of RPs under the two-parameter model.    
 
 %
 Given the potential for model misspecification of RPs, a minimal distance 
 mapping of RPs represents a best-case scenario where the total bias of RPs, 
 when measured jointly, is minimized. That said, without recognizing the 
-geometry of how two parameter models of productivity limit RP space this may 
+geometry of how two-parameter models of productivity limit RP space this may 
 lead to unintuitive implications in RP estimation. For example, due to the 
 shape of the BH RP set a minimal distance mapping ensures that if there is 
 bias in one of $\frac{B^*}{B_0}$ or $F^*$, there will necessarily be 
@@ -2915,19 +2918,19 @@ contrast present in the data. So while the Schaefer model is an intuitive model,
 lead to much less conservative RP estimation. 
 
 %
-While it is important to recognize these limitations of two parameter models 
+While it is important to recognize these limitations of two-parameter models 
 of productivity, we should not solely accept conservativism as a rational of 
 choosing a BH model of productivity. %Ultimately accuracy of RP estimation, 
 %without structural RP biases, %and accurate assessment of uncertainty is a better state 
 Increasing the flexibility of the production function by moving toward 
-three parameter models would release the underlying structural limitations 
+three-parameter models would release the underlying structural limitations 
 \shortcite{mangel_perspective_2013} that cause these RP biases in the first place. 
 \shortciteA{punt_extending_2019} %(Mangel et al., 2013). Punt and Cope (2019) 
-considers a suite of possible three parameter curves which could be used 
-instead of current two parameter curves. For all of their benefits, three 
+considers a suite of possible three-parameter curves which could be used 
+instead of current two-parameter curves. For all of their benefits, three 
 parameter production functions have their own complicating factors, and the 
 structure present in the Schnute model explored here makes it an intuitive bridge 
-model for developing three parameter models going forward.
+model for developing three-parameter models going forward.
 
 
 
