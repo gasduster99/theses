@@ -158,14 +158,16 @@ FtFmsy = rep(1, TT)
 #DD MODEL STUFF
 
 #A-0.5AS15K0.1
-aS = 10 	#10 #0.1
+aS = 2	#2 #10 #0.1
 a0 = -1		#-0.25 #-0.5 #-1   #-2
 M  = 0.2
-kappa = 0.1	#10 #0.1
+kappa = 0.10	#10 #0.1
 WW = 1
 ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 #
 B0 = 10000
+#
+aMin = M*(M+kappa)/kappa/WW/(1+M*ww/kappa/WW)
 
 #
 #SIM
@@ -178,11 +180,11 @@ B0 = 10000
 ##place = "./modsDDExpT45N300AS1K1N28/"    	#zooid-1  #"./modsDDExpT45N150A-0.5AS2/"   
 
 ##maybe I'll fit this later
-#place = "./modsDDFlatT45N300A0-1AS0.1K10/"; rv=F;   #zooid1
-#place = "./modsDDFlatT45N300A0-1AS0.1K10/"; rv=T;   #zooid2
-##most interesting start here
-place = "./modsDDFlatT45N150A0-1AS3K0.1/"; rv=F;   #zooid3
-#place = "./modsDDFlatT45N300A0-1AS10K0.1N84/"; rv=T;   #zooid4
+#place = "./modsDDFlatT45N150A0-1AS0.1K10/"; rv=F;   #zooid1
+place = "./modsDDFlatT45N150A0-1AS2K0.1/"; rv=T;   #zooid2
+###most interesting start here
+##place = "./modsDDFlatT45N150A0-1AS3K0.1/"; rv=F;   #zooid3
+##place = "./modsDDFlatT45N300A0-1AS10K0.1N84/"; rv=T;   #zooid4
 
 odeMethod = "lsode" #"radau" #
 
@@ -261,7 +263,7 @@ foreach(i=rev(jobsh)*rv + jobsh*(1-rv), .options.multicore = opts) %dopar% {
 		        BBar(0, M, kappa, ww, WW, alpha, beta, gamma)
 		},
 		time=1:TT, catch=FtFmsy, aS=aS, a0=a0, M=M, WW=WW, kappa=kappa,#constants
-		lalpha=datGen$lalpha, lbeta=lbetaBH, gamma=-1,         	#parameters
+		lalpha=log(exp(datGen$lalpha)), lbeta=lbetaBH, gamma=-1,         	#parameters
 		lq=log(0.00049), lsdo=log(0.01160256),                  #nuisance parameters
 		xi=datGen$xi, zeta=datGen$zeta                  	#other incidentals to carry along
 	)
@@ -276,7 +278,7 @@ foreach(i=rev(jobsh)*rv + jobsh*(1-rv), .options.multicore = opts) %dopar% {
 	#optimization   
         optAns = fit$optimize(cpue,
                 c('lsdo', 'lalpha'),
-                lower   = c(log(0.001), log(M+0.1)),
+                lower   = c(log(0.001), log(aMin)),
                 upper   = c(log(1), log(10)),
                 gaBoost = list(run=10, parallel=F, popSize=10^3), #10^4),
                 persistFor = 5,
@@ -290,7 +292,7 @@ foreach(i=rev(jobsh)*rv + jobsh*(1-rv), .options.multicore = opts) %dopar% {
 	#
         optAns = fit$optimize(cpue,
                 c('lsdo', 'lalpha', 'lbeta'),
-                lower   = c(log(0.001), log(M+0.1), -10),
+                lower   = c(log(0.001), log(aMin), -10),
                 upper   = c(log(1), log(10), -2),      #log(getBeta(100, -1, M, P0))
                 gaBoost = list(run=100, parallel=F, popSize=10^3),#10^4),
                 persistFor = 5,
@@ -300,7 +302,7 @@ foreach(i=rev(jobsh)*rv + jobsh*(1-rv), .options.multicore = opts) %dopar% {
         tryCatch({
                 optAns = fit$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta'),
-                        lower   = c(log(0.001), log(M+0.1), -10),
+                        lower   = c(log(0.001), log(aMin), -10),
                         upper   = c(log(1), log(10), -2),
                         cov     = T,
                         fitQ    = F
@@ -309,7 +311,7 @@ foreach(i=rev(jobsh)*rv + jobsh*(1-rv), .options.multicore = opts) %dopar% {
                 writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
                 optAns = fit$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta'),
-                        lower   = c(log(0.001), log(M+0.1), -10),
+                        lower   = c(log(0.001), log(aMin), -10),
                         upper   = c(log(1), log(10), -2),
                         cov     = F,
                         fitQ    = F
