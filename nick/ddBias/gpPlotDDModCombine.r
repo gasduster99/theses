@@ -334,8 +334,8 @@ getData = function(dir, xiRange, zetaRange){
 #mod = "ExpT45N300AS10K0.1"
 #WORKED
 #mod = "ExpT45N300A0-1AS10K0.1"
-#
-mod = "ExpT45N150A0-1AS2K0.1"
+#GOOD START: add a bit of refinement
+#mod = "ExpT45N150A0-1AS2K0.1"
 #failed
 #mod = "ExpT45N300A0-1AS10K0.1N28"
 ##WORKED 
@@ -350,8 +350,10 @@ mod = "ExpT45N150A0-1AS2K0.1"
 #mod = "FlatT45N150A0-1AS3K0.1"
 #GOOD START: add refinement
 #mod = "FlatT45N150A0-1AS0.1K10"
+#mod = "FlatT45N150A0-1AS0.1K10N28"
 #GOOD START: add refinment
 #mod = "FlatT45N150A0-1AS2K0.1"
+mod = "FlatT45N150A0-1AS2K0.1N28"
 
 #
 place = sprintf("./modsDD%s/", mod)
