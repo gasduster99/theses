@@ -158,10 +158,10 @@ FtFmsy = rep(1, TT)
 #DD MODEL STUFF
 
 #A-0.5AS15K0.1
-aS = 0.1	#2 #10 #0.1
+aS = 2	#2 #10 #0.1
 a0 = -1		#-0.25 #-0.5 #-1   #-2
 M  = 0.2
-kappa = 10	#10 #0.1
+kappa = 0.10	#10 #0.1
 WW = 1
 ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
 #
@@ -180,11 +180,11 @@ aMin = M*(M+kappa)/kappa/WW/(1+M*ww/kappa/WW)
 ##place = "./modsDDExpT45N300AS1K1N28/"    	#zooid-1  #"./modsDDExpT45N150A-0.5AS2/"   
 
 ##maybe I'll fit this later
-place = "./modsDDFlatT45N150A0-1AS0.1K10N28/"; rv=F; #z4 #rv=T;   #zooid1
-#place = "./modsDDFlatT45N150A0-1AS2K0.1N28/"; rv=T;   #zooid2
-###most interesting start here
-##place = "./modsDDFlatT45N150A0-1AS3K0.1/"; rv=F;   #zooid3
-##place = "./modsDDFlatT45N300A0-1AS10K0.1N84/"; rv=T;   #zooid4
+#place = "./modsDDFlatT45N150A0-1AS0.1K10N56/"; rv=F;   #zooid1
+#place = "./modsDDFlatT45N150A0-1AS0.1K10N56/"; rv=T;   #zooid2
+##most interesting start here
+#place = "./modsDDFlatT45N150A0-1AS2K0.1N56/"; rv=F;    #zooid3
+place = "./modsDDFlatT45N150A0-1AS2K0.1N56/"; rv=T;    #zooid4
 
 odeMethod = "lsode" #"radau" #
 
