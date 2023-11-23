@@ -747,9 +747,15 @@ This equation largely takes the same form as previously described, except
 that $P_s$ is the Schnute production function and natural mortality, $M$, is modeled 
 explicitly here. % as opposed to  inclusion of natural mortality, $M$. 
 Natural mortality models the instantaneous rate of mortality from all causes 
-outside of fishing. Explicitly modeling natural mortality is not 
-only a typical assumption of fisheries models, but is also key to the making 
-RPs well defined over the relevant domain of $\gamma$.
+outside of fishing. While Eq. (\ref{schnuteSimple}) models $M$ explicitly, 
+natural mortality is implicit to the structure of the previously decribed 
+Schaefer, Fox, and PT production models. Explicitly modeling natural mortality 
+allows for the production function not to approach (or intersect) 0 for large 
+biomasses (e.g. BH production). In turn, the Schunte model requires the addition 
+of the term $-MB$ to form an interpretable yeild curve and make RPs well defined 
+over the relevant domain of $\gamma$.
+%is not only a typical assumption of fisheries models, but is also key to the making 
+%RPs well defined over the relevant domain of $\gamma$.
 
 %% matches the assumptions of typical fisheries models and 
 %%
@@ -802,11 +808,11 @@ but rather shows that $F^*$ must respect the following expression,
 
 %, although parameterizing slightly differently,
 The lack of an analytical solution here is understood. 
-\citeA[pg. 519]{schnute_analytical_1998} specifically points out that 
+\citeA[pg. 519]{schnute_analytical_1998} specifically point out that 
 $F^*$ cannot be expressed analytically in terms of productivity parameters, 
 but rather gives a partial analytical expression for the inverse relationship. 
 Although parameterized slightly differently, \citeA{schnute_analytical_1998} 
-derives expressions for $\alpha$ and $\beta$ as a function of RPs and $\gamma$. 
+derive expressions for $\alpha$ and $\beta$ as a function of RPs and $\gamma$. 
 %rather suggests that a numerical solution 
 
 %
@@ -827,7 +833,7 @@ expressions (\ref{FmsyS}), (\ref{B0S}), and (\ref{BratS}).
 %assumption.
 
 %
-For the purposed of simulation, it is not necessary to completely know 
+For the purpose of simulation, it is not necessary to completely know 
 %either of 
 the precise relationships mapping RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$ 
 RPs. Simulation only requires enough knowledge of these mappings to gather a list 
@@ -956,11 +962,13 @@ foundational of space filling designs used in computer experiments.
 %\begin{figure}[h!]
 %\centering [width=0.96\textwidth]
 \begin{wrapfigure}{r}{0.5\textwidth}
-%\vspace{-2.9cm}
+\vspace{-1cm}
 \includegraphics[width=0.49\textwidth]{../gpBias/designGrid.png}
+\vspace{-0.5cm}
 \caption{ LHS grids. Intersecting $\mathcal{F}$ and $\mathcal{B}$ produces $n^2$
 cells; a particular cell $\mathcal{F}_i\times\mathcal{B}_j$ is shown in grey. 
-{\color{red} Maybe just show points.}
+One point is in each of the marginal $\mathcal{F}_i$ and $\mathcal{B}_j$ grid 
+elements.
 }
 \end{wrapfigure}
 
@@ -984,8 +992,9 @@ LHS designs achieve this notion of uniformity by first partitioning each dimensi
 of the design space into regular grids of size $n$. By intersecting the grids 
 of each dimension, cells are produced that evenly partition the design space. 
 In two dimensions $n^2$ cells are produced, from which a total of $n$ samples 
-are taken. Crucially only one sample is taken from a given element of each grid 
-in each dimension so as to reduce clumping of the $n$ samples across the design space.
+are taken. Crucially only one point is randomly sampled from a given element of 
+each grid in each dimension so as to reduce clumping of the $n$ samples across 
+the design space.
 
 
 

@@ -351,9 +351,11 @@ getData = function(dir, xiRange, zetaRange){
 #GOOD START: add refinement
 #mod = "FlatT45N150A0-1AS0.1K10"
 #mod = "FlatT45N150A0-1AS0.1K10N28"
+#mod = "FlatT45N150A0-1AS0.1K10N56"
 #GOOD START: add refinment
 #mod = "FlatT45N150A0-1AS2K0.1"
-mod = "FlatT45N150A0-1AS2K0.1N28"
+#mod = "FlatT45N150A0-1AS2K0.1N28"
+mod = "FlatT45N150A0-1AS2K0.1N56"
 
 #
 place = sprintf("./modsDD%s/", mod)
@@ -395,6 +397,8 @@ outlV = getlV(fOne)
 Dall = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
 D = Dall[Dall$lFV>0 & Dall$lB0V>0,]
 D = D[complete.cases(D),]
+#
+D$lFV = D$lFV*100 #[D$lF>-3] = D$lFV[D$lF>-3]*10
 #D = D[c(rep(T, 1), F),]
 #D = D[seq(1, nrow(D), 2),]
 #D = Dall[Dall$lF<4,]
@@ -415,7 +419,7 @@ lFV = diag(D$lFV)
 lFX = cbind(1, D$xiSeed, D$zetaSeed)
 
 #
-xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+xAug = seq(0.5, 4, 0.1) #0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
 aug = cbind(rep(1, length(xAug)), xAug, getZetaBH(xAug, M, kappa, WW, aS, a0)) #1/(xAug+2))
 #xAug = numeric(0)
 #aug = numeric(0)
@@ -439,7 +443,7 @@ xiStar   = seq(min(D$xiSeed), max(D$xiSeed), 0.01) #length.out=)  	#seq(1, 3.5, 
 lFXStar = cbind(1, expand.grid(xiStar, zetaStar))
 mask = sapply(1:nrow(lFXStar), function(i){
 		#
-		win = 0.3
+		win = 0.2#0.3
 		#
 		xi = lFXStar[i,2]
 		zeta = lFXStar[i,3]

@@ -1,6 +1,7 @@
 rm(list=ls())
 
 #
+library(tgp)
 library(latex2exp)
 
 #
@@ -29,41 +30,53 @@ i = 7
 j = 6
 polygon(c(FF[i], FF[i+1], FF[i+1], FF[i]), c(BB[j], BB[j], BB[j+1], BB[j+1]), col='grey', lwd=3)
 text(mean(c(FF[i], FF[i+1])), mean(c(BB[j], BB[j+1])), TeX("$\\textit{F}_i\\times\\textit{B}_j$"))
-##
-#i = 1
-#j = 9
+#points(runif(1, FF[i], FF[i+1]), runif(1, BB[j], BB[j+1]))
+points(3, 0.5)
+#
+i = 1
+j = 9
 #polygon(c(FF[i], FF[i+1], FF[i+1], FF[i]), c(BB[j], BB[j], BB[j+1], BB[j+1]), lwd=3)
-##
-#i = 2
-#j = 2
+points(runif(1, FF[i], FF[i+1]), runif(1, BB[j], BB[j+1]))
+#
+i = 2
+j = 2
 #polygon(c(FF[i], FF[i+1], FF[i+1], FF[i]), c(BB[j], BB[j], BB[j+1], BB[j+1]), lwd=3)
-##
-#i = 4
-#j = 3
+points(runif(1, FF[i], FF[i+1]), runif(1, BB[j], BB[j+1]))
+#
+i = 4
+j = 3
 #polygon(c(FF[i], FF[i+1], FF[i+1], FF[i]), c(BB[j], BB[j], BB[j+1], BB[j+1]), lwd=3)
-##
-#i = 3
-#j = 1
+points(runif(1, FF[i], FF[i+1]), runif(1, BB[j], BB[j+1]))
+#
+i = 3
+j = 1
 #polygon(c(FF[i], FF[i+1], FF[i+1], FF[i]), c(BB[j], BB[j], BB[j+1], BB[j+1]), lwd=3)
-##
-#i = 5
-#j = 8
+points(runif(1, FF[i], FF[i+1]), runif(1, BB[j], BB[j+1]))
+#
+i = 5
+j = 8
 #polygon(c(FF[i], FF[i+1], FF[i+1], FF[i]), c(BB[j], BB[j], BB[j+1], BB[j+1]), lwd=3)
-##
-#i = 6
-#j = 4
+points(runif(1, FF[i], FF[i+1]), runif(1, BB[j], BB[j+1]))
+#
+i = 6
+j = 4
 #polygon(c(FF[i], FF[i+1], FF[i+1], FF[i]), c(BB[j], BB[j], BB[j+1], BB[j+1]), lwd=3)
-##
-#i = 8
-#j = 5
+points(runif(1, FF[i], FF[i+1]), runif(1, BB[j], BB[j+1]))
+#
+i = 8
+j = 5
 #polygon(c(FF[i], FF[i+1], FF[i+1], FF[i]), c(BB[j], BB[j], BB[j+1], BB[j+1]), lwd=3)
-##
-#i = 9
-#j = 7
+points(runif(1, FF[i], FF[i+1]), runif(1, BB[j], BB[j+1]))
+#
+i = 9
+j = 7
 #polygon(c(FF[i], FF[i+1], FF[i+1], FF[i]), c(BB[j], BB[j], BB[j+1], BB[j+1]), lwd=3)
+points(runif(1, FF[i], FF[i+1]), runif(1, BB[j], BB[j+1]))
 
-
-
+#
+#rect = rbind(c(min(FF), max(FF)), c(min(BB), max(BB)))
+#pp = lhs(n, rect)
+#points(pp)
 
 
 
