@@ -355,7 +355,8 @@ getData = function(dir, xiRange, zetaRange){
 #GOOD START: add refinment
 #mod = "FlatT45N150A0-1AS2K0.1"
 #mod = "FlatT45N150A0-1AS2K0.1N28"
-mod = "FlatT45N150A0-1AS2K0.1N56"
+#mod = "FlatT45N150A0-1AS2K0.1N56"
+mod = "FlatT45N150A0-1AS2K0.1N84"; fv=100
 
 #
 place = sprintf("./modsDD%s/", mod)
@@ -398,7 +399,7 @@ Dall = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
 D = Dall[Dall$lFV>0 & Dall$lB0V>0,]
 D = D[complete.cases(D),]
 #
-D$lFV = D$lFV*100 #[D$lF>-3] = D$lFV[D$lF>-3]*10
+D$lFV = D$lFV*fv #[D$lF>-3] = D$lFV[D$lF>-3]*10
 #D = D[c(rep(T, 1), F),]
 #D = D[seq(1, nrow(D), 2),]
 #D = Dall[Dall$lF<4,]
