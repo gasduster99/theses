@@ -470,8 +470,8 @@ n = 28 #about 3 flushes all of the thialacia ranks
 #n = 56
 
 #
-xlim = c(2.5, 3.75) #c(0.25, 3.75)
-ylim = c(0.15, 0.4) #c(0.15, 0.7) #0.6) #
+xlim = c(2.8, 3.6) #c(0.25, 3.75)
+ylim = c(0.25, 0.45) #c(0.15, 0.7) #0.6) #
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
 #
@@ -485,8 +485,8 @@ ll = lhsMake(xlim, ylim, 150, 0, save=p) #(xiLim, zetaLim,
 }else{
 
 #
-inPlace = "./modsDDFlatT45N150A0-1AS2K0.1N84/" #K10/"#"ExpT45N300A0-1AS10K0.1/" #"./modsDDFlatT45N300A0-1AS10K0.1N56/" #"./modsDDExpT45N300AS0.1K10/" #"./modsDDFlatT30N150A15K0.1/" #"./modsDDExpT45N150A15/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
-outPlace = sprintf("./modsDDFlatT45N150A0-1AS2K0.1N%dCorner/", 84) #sprintf("./modsDDExpT45N150A15N%d/", n) 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
+inPlace = "./modsDDFlatT45N150A0-1AS2K0.1N84Corner/" #K10/"#"ExpT45N300A0-1AS10K0.1/" #"./modsDDFlatT45N300A0-1AS10K0.1N56/" #"./modsDDExpT45N300AS0.1K10/" #"./modsDDFlatT30N150A15K0.1/" #"./modsDDExpT45N150A15/" 		#"./modsSchnuteHHardFlatT30N150WWideN84/"#"./modsSchnuteExpT30L3N150Wide/" #"./modsSchnuteHHardExpT45N150M0.1Wide/" #"./modsSchnuteHHardFlatT30
+outPlace = sprintf("./modsDDFlatT45N150A0-1AS2K0.1N%dEdge/", 84) #sprintf("./modsDDExpT45N150A15N%d/", n) 	#sprintf('./modsSchnuteHHardFlatT30N150WWideN%s/', 4*n) #sprintf('./modsSchnuteHHardFlatT30N150WWideAdapt%s/', thresh)
 
 #
 #MAIN
@@ -534,6 +534,7 @@ for(fitF in fitFiles){
         fit = readRDS(fitF)
         #check rsCOV
         if(length(fit$rsCov)==0){ next }
+	if(fit$zeta>0.31 & fit$zeta<0.4 & fit$xi>3.3){ next }
         #
         xiList = c(xiList, fit$xi)
         zetaList = c(zetaList, fit$zeta)
