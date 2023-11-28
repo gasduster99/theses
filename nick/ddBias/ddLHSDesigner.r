@@ -534,7 +534,7 @@ for(fitF in fitFiles){
         fit = readRDS(fitF)
         #check rsCOV
         if(length(fit$rsCov)==0){ next }
-	if(fit$zeta>0.31 & fit$zeta<0.4 & fit$xi>3.3){ next }
+	#if(fit$zeta>0.31 & fit$zeta<0.4 & fit$xi>3.3){ next }
         #
         xiList = c(xiList, fit$xi)
         zetaList = c(zetaList, fit$zeta)
