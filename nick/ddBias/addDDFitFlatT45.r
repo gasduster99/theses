@@ -173,7 +173,7 @@ B0 = 10000
 #
 
 #NOTE: should the server list fits? or datGen?
-served = "./flatTesterSDORAND.csv" #"./listKA.csv"
+served = "./flatModestGrow.csv" #"./flatTesterSDORAND.csv" #"./listKA.csv"
 #a place to store data
 #place = "./modsDDExpT45N150A-0.5AS2/" #'./modsDDExpT45N150Wide/' #'./test/'#
 odeMethod = "radau" #"lsode" #
@@ -205,7 +205,9 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 
         #read in data from design locations
         datGen = readRDS(datFiles[i])
-        #datGen$M = M
+	ww = vbGrow(datGen$aS, datGen$kappa, datGen$WW, datGen$a0)
+        aMin = datGen$M*(datGen$M+datGen$kappa)/datGen$kappa/datGen$WW/(1+datGen$M*ww/datGen$kappa/datGen$WW)
+	#datGen$M = M
 	#datGen$a0 = a0
 	#datGen$aS = aS
 	#datGen$kappa = kappa
@@ -319,7 +321,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	#
         optAns = fitBHKA$optimize(cpue,
                 c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS'),
-                lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1),
+                lower   = c(log(0.001), log(aMin), -10, 0.1, 0.1),
                 upper   = c(log(1), log(10), -2, 100, 100),       #log(getBeta(100, -1, M, P0))
                 #gaBoost = list(run=100, parallel=F, popSize=10^3), 
 		gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
@@ -330,7 +332,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
         tryCatch({
                 optAns = fitBHKA$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS'),
-                        lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1),
+                        lower   = c(log(0.001), log(aMin), -10, 0.1, 0.1),
                         upper   = c(log(1), log(10), -2, 100, 100),
                         cov     = T,
                         fitQ    = F
@@ -339,7 +341,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
                 writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
                 optAns = fitBHKA$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS'),
-                        lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1),
+                        lower   = c(log(0.001), log(aMin), -10, 0.1, 0.1),
                         upper   = c(log(1), log(10), -2, 100, 100),
                         cov     = F,
                         fitQ    = F
@@ -506,7 +508,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	#
         optAns = fit3KA$optimize(cpue,
                 c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS', 'gamma'),
-                lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1, -2),
+                lower   = c(log(0.001), log(aMin), -10, 0.1, 0.1, -2),
                 upper   = c(log(1), log(10), -2, 100, 100, 2),      #log(getBeta(100, -1, M, P0))
                 #gaBoost = list(run=100, parallel=F, popSize=10^3),
 		gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
@@ -517,7 +519,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
         tryCatch({
                 optAns = fit3KA$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS', 'gamma'),
-                        lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1, -2),
+                        lower   = c(log(0.001), log(aMin), -10, 0.1, 0.1, -2),
                         upper   = c(log(1), log(10), -2, 100, 100, 2),
                         cov     = T,
                         fitQ    = F
@@ -526,7 +528,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
                 writeLines( sprintf("\nNO HESSIAN AT xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
                 optAns = fit3KA$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS', 'gamma'),
-                        lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1, -2),
+                        lower   = c(log(0.001), log(aMin), -10, 0.1, 0.1, -2),
                         upper   = c(log(1), log(10), -2, 100, 100, 2),
                         cov     = F,
                         fitQ    = F
@@ -543,7 +545,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
         fit3KA$sdo   = exp(fit3KA$lsdo)
         fit3KA$q     = exp(fit3KA$lq)
         #save
-        fit3KA$save( fileFit3KA )	
+        fit3KA$save( fileFit3KA )
 }
 
 

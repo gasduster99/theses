@@ -465,13 +465,14 @@ addCircle = function(centerx, centery, radius, length=200){
 #mod = "ExpT45N300AS0.1K10"
 #mod = "ExpT45N300AS0.1K10N56" #
 #mod = "ExpT45N300AS10K0.1"
-mod = "ExpT45N300A0-1AS10K0.1"
+#mod = "ExpT45N300A0-1AS10K0.1"
 #mod = "FlatT45N300A0-1AS0.1K10"
 #mod = "FlatT45N300A0-1AS10K0.1"
+mod = "FlatT45N150A0-1AS2K0.1N84Edge"
 place = sprintf("./modsDD%s/", mod)
 
 #
-listFile = "./expGrowFitters.csv"
+listFile = "./flatModestGrow.csv" #"./expGrowFitters.csv"
 #safely append
 app = F
 if( file.exists(listFile) ){
@@ -569,14 +570,23 @@ B0 = 10000
 ###
 ##B0 = 10000
 
-#just initiating to give alpha, beta, gamma some reasonable values
-xi = 1
-zeta = 0.4
+##just initiating to give alpha, beta, gamma some reasonable values
+#xi = 1
+#zeta = 0.4
+##
+#inv = invert(zeta, xi, B0, M, kappa, ww, WW)
+#alpha = inv$alpha
+#beta  = inv$beta
+#gamma = inv$gamma
+
 #
-inv = invert(zeta, xi, B0, M, kappa, ww, WW)
-alpha = inv$alpha
-beta  = inv$beta
-gamma = inv$gamma
+xi = 3
+zeta = 0.65
+#
+#inv = invert(zeta, xi, B0, M, kappa, ww, WW)
+alpha = 3.75#inv$alpha
+beta  = 0.000072#inv$beta
+gamma = 2 #inv$gamma
 
 ##
 #TT = 45
