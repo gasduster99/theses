@@ -155,22 +155,34 @@ time = tt:TT
 
 #DD MODEL STUFF
 
-#
-aS = 2
-a0 = -0.5 #-0.25 #-0.5 #-1   #-2
-M  = 0.2
-kappa = 1 #0.2
-WW = 1
-ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
-#
+##
+#aS = 2
+#a0 = -0.5 #-0.25 #-0.5 #-1   #-2
+#M  = 0.2
+#kappa = 1 #0.2
+#WW = 1
+#ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
+##
+#B0 = 10000
+
+##
+#aS = 2
+#a0 = -0.5 #-0.25 #-0.5 #-1   #-2
+#M  = 0.2
+#kappa = 1 #0.2
+#WW = 1
+#ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
+##
+M = 0.2
 B0 = 10000
+
 
 #
 #SIM
 #
 
 #NOTE: should the server list fits? or datGen?
-served = "./expGrowFitters.csv" #"./expFitters.csv"
+served = "./expModestGrow.csv" #"./expGrowFitters.csv" #"./expFitters.csv"
 #a place to store data
 #place = "./modsDDExpT45N150A-0.5AS2/" #'./modsDDExpT45N150Wide/' #'./test/'#
 odeMethod = "radau" #"lsode" #
@@ -202,6 +214,8 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 
         #read in data from design locations
         datGen = readRDS(datFiles[i])
+	ww = vbGrow(datGen$aS, datGen$kappa, datGen$WW, datGen$a0)
+        aMin = datGen$M*(datGen$M+datGen$kappa)/datGen$kappa/datGen$WW/(1+datGen$M*ww/datGen$kappa/datGen$WW)
         #datGen$M = M
 	#datGen$a0 = a0
 	#datGen$aS = aS
@@ -313,7 +327,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
         tryCatch({
                 optAns = fitBHKA$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS'),
-                        lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1),
+                        lower   = c(log(0.001), log(aMin), -10, 0.1, 0.1),
                         upper   = c(log(1), log(10), -2, 100, 100),
                         cov     = F,#T,
                         fitQ    = F
@@ -322,7 +336,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
                 writeLines( sprintf("\nNO HESSIAN AT BHKA xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
                 optAns = fitBHKA$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta', 'kappa', 'aS'),
-                        lower   = c(log(0.001), log(M+0.1), -10, 0.1, 0.1),
+                        lower   = c(log(0.001), log(aMin), -10, 0.1, 0.1),
                         upper   = c(log(1), log(10), -2, 100, 100),
                         cov     = F,
                         fitQ    = F
@@ -481,7 +495,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
                 c('kappa', 'aS', 'gamma'),
                 lower   = c(0.1, 0.1, -2),
                 upper   = c(100, 100, 2),      #log(getBeta(100, -1, M, P0))
-                #gaBoost = list(run=10, parallel=T, popSize=10^3),#10^4),
+                gaBoost = list(run=10, parallel=T, popSize=10^3),#10^4),
 		#gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
                 #persistFor = 5,
                 fitQ    = F
@@ -491,15 +505,16 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	#plot(cpue)
 	#fit3KA$plotMean(add=T, col='cyan')
 	#fit3KA$printSelf()
-	##
-	#optAns = fit3KA$optimize(cpue,
-	#        c('lsdo', 'lalpha', 'lbeta', 'gamma', 'kappa', 'aS'),
-	#        lower   = c(log(0.001), log(M+0.1), -10, -2, 0.1, 0.1),
-	#        upper   = c(log(1), log(10), -2, 2, 100, 100),
-	#        gaBoost = list(run=10, parallel=T, popSize=10^3), #10^4),
-	#	cov     = T,
-	#        fitQ    = F
-	#)
+
+	#
+	optAns = fit3KA$optimize(cpue,
+	        c('lsdo', 'lalpha', 'lbeta', 'gamma', 'kappa', 'aS'),
+	        lower   = c(log(0.001), log(aMin), -10, -2, 0.1, 0.1),
+	        upper   = c(log(1), log(10), -2, 2, 100, 100),
+	        gaBoost = list(run=10, parallel=T, popSize=10^3), #10^4),
+		cov     = T,
+	        fitQ    = F
+	)
 
 	##
         #optAns = fit3KA$optimize(cpue,
@@ -516,7 +531,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
         tryCatch({
                 optAns = fit3KA$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta', 'gamma', 'kappa', 'aS'),
-                        lower   = c(log(0.001), log(M+0.1), -10, -2, 0.1, 0.1),
+                        lower   = c(log(0.001), log(aMin), -10, -2, 0.1, 0.1),
                         upper   = c(log(1), log(exp(1)), -2, 2, 100, 100),
                         cov     = F,#T,
                         fitQ    = F
@@ -525,7 +540,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
                 writeLines( sprintf("\nNO HESSIAN AT 3KA xi: %s | zeta:%s", datGen$xi, datGen$zeta) )
                 optAns = fit3KA$optimize(cpue,
                         c('lsdo', 'lalpha', 'lbeta', 'gamma', 'kappa', 'aS'),
-                        lower   = c(log(0.001), log(M+0.1), -10, -2, 0.1, 0.1),
+                        lower   = c(log(0.001), log(aMin), -10, -2, 0.1, 0.1),
                         upper   = c(log(1), log(exp(1)), -2, 2, 100, 100),
                         cov     = F,
                         fitQ    = F
