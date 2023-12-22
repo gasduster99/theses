@@ -241,8 +241,10 @@ fContrast = function(con){
 #startWho = "./modsDDExpT45N300A0-1AS10K0.1/fit3KA_xi3.493_zeta0.264.rda"
 #startWho = "./modsDDExpT45N300A0-1AS10K0.1/fit3KA_xi3.225_zeta0.502.rda"
 #startWho = "./modsDDExpT45N300A0-1AS10K0.1/fit3KA_xi2.478_zeta0.457.rda"
-path = "./modsDDExpT45N300A0-1AS10K0.1/"
-startWho = sprintf("%s/fit3KA_xi2.467_zeta0.538.rda", path)
+#path = "./modsDDExpT45N300A0-1AS10K0.1/"
+#startWho = sprintf("%s/fit3KA_xi2.467_zeta0.538.rda", path)
+path = "./modsDDExpT45N150A0-1AS2K0.1/"
+startWho = sprintf("%s/fit3KA_xi1.463_zeta0.418.rda", path)
 whoMight = as.data.frame(t(list.files(path=path, pattern=glob2rx("fit3KA*.rda"))))
 colnames(whoMight)=whoMight
 dat = readRDS(startWho)
@@ -263,7 +265,7 @@ ui = dashboardPage(
 		sliderInput("sliderChi", "chi", min=0, max=1, step=0.05, value=1),
 		#Growth & Maturity
 		sliderInput("sliderAS","aS", min=0.1, max=10., step=0.1, value=dat$aS),
-		sliderInput("sliderKappa","kappa", min=0.1, max=10, step=0.1, value=dat$kappa),
+		sliderInput("sliderKappa","kappa", min=0.1, max=5, step=0.1, value=dat$kappa),
 		#Recruitment
 		sliderInput("sliderAlpha", "alpha", min=dat$M+0.1, max=exp(dat$lalpha)*3, step=0.05, value=exp(dat$lalpha)),
 		sliderInput("sliderBeta" , "beta" , min=0, max=exp(dat$lbeta)*1.5, step=10^(floor(log10(exp(dat$lbeta)))-1), value=exp(dat$lbeta)),

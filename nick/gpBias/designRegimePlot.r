@@ -255,6 +255,7 @@ points(D$xiSeed[D$gSeed>=0 & D$gSeed<1], D$zetaSeed[D$gSeed>=0 & D$gSeed<1], col
 points(D$xiSeed[D$gSeed<0 & D$gSeed>=-1], D$zetaSeed[D$gSeed<0 & D$gSeed>=-1], col=cols[3], pch=19, cex=1.5)
 points(D$xiSeed[D$gSeed< -1], D$zetaSeed[D$gSeed< -1], col=cols[4], pch=19, cex=1.5)
 curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+#curve()
 #legend('bottomleft', legend=c('Super-Logistic', 'Super-Ricker', 'Super-BH', 'Super-Cushing'), col=cols[1:4], pch=19)
 legend('bottomleft', legend=c('Logistic-Like', 'Ricker-Like', 'BH-Like', 'Cushing-Like'), col=cols[1:4], pch=19)
 #dotX = lFXStar[!mask,2][freq]

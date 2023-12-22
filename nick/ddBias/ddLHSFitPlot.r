@@ -459,7 +459,7 @@ addCircle = function(centerx, centery, radius, length=200){
 
 #
 #mod = "FlatT45N150A0-1AS2K0.1N84Edge"
-#mod = "FlatT45N300A0-1AS10K0.1SDORAND"
+mod = "FlatT45N300A0-1AS10K0.1SDORAND"
 #mod = "FlatT45N300A0-1AS10K0.1SDO"
 #mod = "FlatT30N150A15K0.1" #"ExpT45N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A15" # "ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
 #mod = "ExpT45N150A-1AS15K0.1"
@@ -468,7 +468,7 @@ addCircle = function(centerx, centery, radius, length=200){
 #mod = "ExpT45N300AS0.1K10"
 #mod = "ExpT45N300AS10K0.1"
 #mod = "ExpT45N300A0-1AS10K0.1"
-mod = "ExpT45N150A0-1AS2K0.1"
+#mod = "ExpT45N150A0-1AS2K0.1"
 place = sprintf("./modsDD%s/", mod)
 
 #
@@ -609,6 +609,32 @@ lay = P%*%t(lay)%*%P
 #PLOT
 
 #
+png(sprintf('indexGridData%s.png', mod), width=2000, height=2000)
+layout(lay)
+for(i in 1:nrow(l)){ #nrow(out$ll)){
+	#
+	if( !i%in%tops ){next}
+	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+	fit = readRDS(fWho)
+	#print(fWho)
+	#print( FMsy(M, fit$kappa, vbGrow(fit$aS, fit$kappa, fit$WW, fit$a0), fit$WW, fit$alpha, fit$beta, fit$gamma) )
+	fit$printSelf()
+	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
+	dat = readRDS(dWho)
+	#
+	set.seed(1)
+	cpue = rlnorm(length(dat$B), dat$lq+log(dat$B), exp(dat$lsdo)*10)
+	#
+	par(mar=c(1,1,1,0))
+	plot(cpue, cex=2, pch=19)
+	dat$plotMean( add=T ) #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
+	#fit$plotMean( add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
+	#fit$plotBand( col='red' )
+}
+dev.off()
+
+
+#
 png(sprintf('indexGrid%s.png', mod), width=2000, height=2000)
 layout(lay)
 for(i in 1:nrow(l)){ #nrow(out$ll)){
@@ -622,10 +648,65 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
 	dat = readRDS(dWho)
 	#
+	set.seed(1)
+	cpue = rlnorm(length(dat$B), dat$lq+log(dat$B), exp(dat$lsdo)*10)
+	#
 	par(mar=c(1,1,1,0))
-	dat$plotMean() #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
+	plot(cpue, cex=2, pch=19)
+	dat$plotMean( add=T ) #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
 	fit$plotMean( add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
 	fit$plotBand( col='red' )
+}
+dev.off()
+
+#
+png(sprintf('indexGridBHKA%s.png', mod), width=2000, height=2000)
+layout(lay)
+for(i in 1:nrow(l)){ #nrow(out$ll)){
+        #
+        if( !i%in%tops ){next}
+	##
+	#il = c(il, i)
+	#ll = c(ll, rownames(l)[i])
+	#
+        fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+        fit = readRDS(fWho)
+        #
+	fBHKAWho = sprintf('%sfitBHKA_%s', place, rownames(l)[i])
+        fitBHKA = readRDS(fBHKAWho)
+	
+	#print(fWho)
+        #print( FMsy(M, fit$kappa, vbGrow(fit$aS, fit$kappa, fit$WW, fit$a0), fit$WW, fit$alpha, fit$beta, fit$gamma) )
+        #fit$printSelf()
+        
+	#
+	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
+        dat = readRDS(dWho)
+	set.seed(1)
+	cpue = rlnorm(length(dat$B), dat$lq+log(dat$B), exp(dat$lsdo)*10)
+        #
+        par(mar=c(1,1,1,0))
+        plot(cpue, cex=2, pch=19)
+	#plot(fitBHKA$cpue, cex=2, pch=19)
+	#dat$plotMean() #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
+        #fit$plotMean( add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$
+        #fit$plotBand( col='red' )
+	fitBHKA$plotMean( add=T, col='blue')
+	fitBHKA$plotBand( col='blue' )
+	
+	##
+	#f3KAWho = sprintf('%sfit3KA_%s', place, rownames(l)[i])
+        #if( file.exists(f3KAWho) ){ 
+	#	fit3KA = readRDS(f3KAWho)
+	#	fit3KA$plotMean( add=T, col='green')
+        #	fit3KA$plotBand( col='green' )
+	#}else{
+	#	print(f3KAWho)
+	#}
+	dat$plotMean( add=T )
+	
+	##
+	#dat$plotMean(add=T)
 }
 dev.off()
 
@@ -654,6 +735,7 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	#
 	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
         dat = readRDS(dWho)
+	set.seed(1)
 	cpue = rlnorm(length(dat$B), dat$lq+log(dat$B), exp(dat$lsdo)*10)
         #
         par(mar=c(1,1,1,0))
@@ -678,6 +760,53 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	
 	##
 	#dat$plotMean(add=T)
+}
+dev.off()
+
+#
+png(sprintf('vbGridKA%s.png', mod), width=2000, height=2000)
+layout(lay)
+for(i in 1:nrow(l)){ #nrow(out$ll)){
+        #
+        if( !i%in%tops ){next}
+	#
+        fWho = sprintf('%sfit_%s', place, rownames(l)[i])
+        fit = readRDS(fWho)
+        #
+	fBHKAWho = sprintf('%sfitBHKA_%s', place, rownames(l)[i])
+        fitBHKA = readRDS(fBHKAWho)	
+        
+	#
+	dWho = sprintf('%sdatGen_%s', place, rownames(l)[i])
+        dat = readRDS(dWho)
+	cpue = rlnorm(length(dat$B), dat$lq+log(dat$B), exp(dat$lsdo)*10)
+        #
+        par(mar=c(1,1,1,0))
+	#
+	grow = function(x){ vbGrow(x, fitBHKA$kappa, fitBHKA$WW, fitBHKA$a0) }
+	ww = grow(fitBHKA$aS)
+	#
+	curve(grow(x), lwd=3, col='blue', xlim=c(0,max(10, fitBHKA$aS)), ylim=c(0,1))	
+	segments(fitBHKA$aS, 0, fitBHKA$aS, ww, col='blue')
+        points(fitBHKA$aS, ww, pch=19, col='blue')
+	
+	#
+	f3KAWho = sprintf('%sfit3KA_%s', place, rownames(l)[i])
+        if( file.exists(f3KAWho) ){ 
+		#
+		grow = function(x){ vbGrow(x, fit3KA$kappa, fit3KA$WW, fit3KA$a0) }
+		ww = grow(fit3KA$aS)
+		#
+		curve(grow(x), lwd=3, col='green', xlim=c(0,max(10, fitBHKA$aS)), ylim=c(0,1), add=T)	
+		segments(fit3KA$aS, 0, fit3KA$aS, ww, col='green')
+        	points(fit3KA$aS, ww, pch=19, col='green')
+		#
+		#grow = function(x){ vbGrow(x, fit3KA$kappa, fit3KA$aS) }
+		#curve(grow(x), cex=2, pch=19, col='green', xlim=c(0,10), ylim=c(0,10))
+		#print(fit3KA$aS/fit3KA$kappa)
+	}else{
+		print(f3KAWho)
+	}
 }
 dev.off()
 

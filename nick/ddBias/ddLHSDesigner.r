@@ -429,7 +429,7 @@ addCircle = function(centerx, centery, radius, length=200){
 odeMethod = "lsode"
 
 #
-aS = 2	#2 #10 0.1		#2  #15   #0.1  #15     #15  #7.5 #15  #1
+aS = 0.1	#2 #10 0.1		#2  #15   #0.1  #15     #15  #7.5 #15  #1
 a0 = -1 	#-0.25 #-0.5 #-1   #-2
 M  = 0.2 	#0.005
 kappa = 0.10 	#10 0.1		#15 #0.2 #0.1 #0.2 #0.2 #10
@@ -470,18 +470,18 @@ n = 28 #about 3 flushes all of the thialacia ranks
 #n = 56
 
 #
-xlim = c(2.8, 3.6) #c(0.25, 3.75)
-ylim = c(0.25, 0.45) #c(0.15, 0.7) #0.6) #
+xlim = c(0.25, 3.75) #c(2.8, 3.6) #c(0.25, 3.75)
+ylim = c(0.15, 0.7)  #c(0.25, 0.45) #c(0.15, 0.7) #0.6) #
 
 #NOTE:high zeta and high xi lets the initial drop get below Bmsy
 #
-if( F ){
+if( T ){
 #Only run this to start a design
-p = "./modsDDFlatT45N150A0-1AS0.1K10/" 
+p = "./modsDDExpT45N300A0-1AS0.1K0.1/" 
 if(dir.exists(p)){ unlink(p, recursive=TRUE) }
 dir.create(p)
 #
-ll = lhsMake(xlim, ylim, 150, 0, save=p) #(xiLim, zetaLim, 
+ll = lhsMake(xlim, ylim, 300, 0, save=p) #(xiLim, zetaLim, 
 }else{
 
 #
