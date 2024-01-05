@@ -180,7 +180,7 @@ aMin = M*(M+kappa)/kappa/WW/(1+M*ww/kappa/WW)
 ##place = "./modsDDExpT45N300AS1K1N28/"    	#zooid-1  #"./modsDDExpT45N150A-0.5AS2/"   
 
 ##maybe I'll fit this later
-place = "./modsDDFlatT45N300A0-1AS0.1K0.1/"; rv=F;   #zooid1
+place = "./modsDDFlatT45N300A0-1AS0.1K0.1N28/"; rv=F;   #zooid1
 #place = "./modsDDFlatT45N150A0-1AS0.1K10N56/"; rv=T;   #zooid2
 ##most interesting start here
 #place = "./modsDDFlatT45N150A0-1AS2K0.1N84Edge/"; rv=F;    #zooid3
