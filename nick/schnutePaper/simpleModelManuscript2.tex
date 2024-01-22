@@ -122,7 +122,7 @@
 %\item ?discussion?
 %\item Proposal (<6 pages)
 %	\begin{itemize}
-%	\item challenges of filling out response space with three parameter SRR (numerical methods)
+%	\item challenges of filling out response space with three-parameter SRR (numerical methods)
 %	\item embedded simulator space filling (output space-filling)
 %		\begin{itemize}
 %		\item Shepherd-BH, Derizo-BH?
@@ -137,7 +137,7 @@
 %	%\item Appendix A: SRR exposition and examples
 %	\item Appendix A: SRR exposition and examples (reference to proposal section) 
 %		\begin{itemize}
-%		\item two v. three parameter
+%		\item two v. three-parameter
 %		\item Pella v. Schaefer
 %		\item ?Derizo Model?
 %		\item Shepherd v. BH
@@ -198,7 +198,7 @@ three-dimensional parameter space into two dimensions.
 %%edification of this type 
 %%that biases are catch dependent the reduced
 %%Index data are generated using production 
-%%models with three parameter production functions and  subsequently fit using 
+%%models with three-parameter production functions and  subsequently fit using 
 %%two-parameter relationships.  %My findings suggest that even modest model misspecification can induce large 
 %%RP bias and can easily place naive model discretizations into regimes of 
 %%chaotic dynamics.
@@ -224,7 +224,7 @@ three-dimensional parameter space into two dimensions.
 %
 \section{Introduction\label{int}}
 %\begin{itemize}
-%	\item introductory concepts (three parameter srr)
+%	\item introductory concepts (three-parameter srr)
 %	\item lit review
 %	\item response level model $I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2)$
 %\end{itemize}
@@ -370,7 +370,7 @@ The two-parameter Fox model \shortcite{fox_jr_exponential_1970} limits $\left(F^
 Similarly the two-parameter Cushing \shortcite{cushing_dependence_1971}, Beverton-Holt \shortcite[BH]{beverton_dynamics_1957}
 and Ricker \shortcite{ricker_stock_1954} production functions do not model the full theoretical space of
 RPs \shortcite{mangel_perspective_2013, yeakel_generalized_2015}.
-%curves are also two parameter
+%curves are also two-parameter
 %production functions that do not model the full theoretical space of
 %RPs \shortcite{mangel_perspective_2013}.
 
@@ -411,9 +411,9 @@ using intentionally misspecified two-parameter logistic or BH production models.
 The work begins with a derivation of RPs under the three-parameter models. %PT model.
 A method is then presented for generating simulation designs based on the parametric 
 form of RPs which serves as a control on the nature of simulated model misspecification.
-% for analyzing inference under the two parameter model.
-%The parametric forms of RPs under the three parameter models are then inverted to develop a %PT model are then inverted to develop a
-%simulation setting for analyzing inference under the two parameter models. % Schaefer model as well as the BH. 
+% for analyzing inference under the two-parameter model.
+%The parametric forms of RPs under the three-parameter models are then inverted to develop a %PT model are then inverted to develop a
+%simulation setting for analyzing inference under the two-parameter models. % Schaefer model as well as the BH. 
 Finally a Gaussian Process (GP) metamodel \shortcite{gramacy_surrogates_2020} 
 is constructed for exploration and analysis of RP biases.
 
@@ -442,7 +442,7 @@ is considered together with model misspecification. %alongside the effect of mod
 %\subsection{PT Model}
 
 %
-%Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
+%Below I present the three-parameter Pella-Tomlinson (PT) family, which has a 
 The three-parameter Pella-Tomlinson (PT) family has a convenient form that includes, among 
 others \shortcite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
 logistic production function as a special case. %Under logistic production to form the Schaefer model. The 
@@ -608,9 +608,9 @@ productivity parameters.
 %\subsection{Simulation Study \label{sim}}
 %
 %%
-%Indices of abundance are simulated from the three parameter PT production model 
+%Indices of abundance are simulated from the three-parameter PT production model 
 %over a grid of $F^*$ and $\frac{B^*}{\bar B(0)}$ values. These PT data are then 
-%fit with a two parameter Schaefer model. 
+%fit with a two-parameter Schaefer model. 
 %%$\gamma$ is then fixed to two so that the PT SRR reduces to the special case of logistic recruitment. 
 %%The restricted Schaefer model is then fit to the 
 %%simulated PT indices. 
@@ -627,8 +627,8 @@ productivity parameters.
 %Generating simulated indices of abundance from the PT model requires 
 %inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and 
 %$(r, \gamma)$. It is not generally possible to analytically invert this 
-%relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
-%Most three parameter production functions lead to RPs that require expensive 
+%relationship for many three-parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
+%Most three-parameter production functions lead to RPs that require expensive 
 %numerical methods to invert; more over the numerical inversion procedure can %is 
 %often be unstable. That said, for the case of PT this relationship is 
 %analytically invertible, and leads to the following relationship
@@ -900,7 +900,7 @@ upon RP inference.
 %small value of 0.01 to focus specifically on the behavior of productivity 
 %parameters.
 
-%Indices of abundance are simulated from the three parameter PT production model
+%Indices of abundance are simulated from the three-parameter PT production model
 %broadly over the space of $F^*$ and $\frac{B^*}{\bar B(0)}$ via a space filling
 %design as described in Section (\ref{lhs}). A small amount of residual variation, 
 %$\sigma=0.01$, is added to the simulated index, and these data are then fit with a
@@ -916,7 +916,7 @@ upon RP inference.
 %
 %
 %
-%Indices of abundance are simulated from the three parameter PT production model
+%Indices of abundance are simulated from the three-parameter PT production model
 %broadly over the space of $F^*$ and $\frac{B^*}{\bar B(0)}$ via a space filling
 %design as described in Section (\ref{lhs}). These PT indices are then fit with a
 %Schaefer model, at various degrees of misspecification, so as to observe the 
@@ -1285,15 +1285,15 @@ minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
 %using $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ 
 %Furthermore, $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$, taken together with 
 The distribution $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ is fit for use in 
-generating $\gamma^*$ random variates at a specific $F^*$ and $M$. This approximation 
-releases the need to invert $\zeta$ w.r.t $\gamma$ by using samples of $\gamma^*$ values to 
-generate approximatly uniform samples of $\zeta(\gamma^*)$. By sampling approximatly 
-uniform $\zeta(\gamma^*)$ random variates in this way, and making use of the structure in Eq. (\ref{abgSys}), 
-%allows for the collection of 
+generating $\gamma^*$ random variates at a specific $F^*$ and $M$. This 
+approximation releases the need to invert $\zeta$ w.r.t. $\gamma$ by using 
+samples of $\gamma^*$ values to generate approximatly uniform samples of 
+$\zeta(\gamma^*)$. By sampling approximatly uniform $\zeta(\gamma^*)$ random 
+variates in this way, and making use of the structure in Eq. (\ref{abgSys}), %allows for the collection of 
 an approximate LHS sample can be collected via Algorithm (\ref{lhsAlg}). %Figure (\ref{sudoCode}). 
 
 %
-$\frac{F^*}{M}$ is drawn uniformly from $\mathcal{F}_i$. Conditioning on the 
+For a given $i$, $\frac{F^*}{M}$ is drawn uniformly from within $\mathcal{F}_i$. Conditioning on the 
 sample of $F^*$, and $M$, $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ is fit and 
 $\gamma^*$ is sampled. $\zeta^*$ is then computed and placed into the appropriate
 grid element $\mathcal{B}_j$. Given $\gamma^*$, the cascade $\alpha(\gamma^*)$, 
@@ -1585,7 +1585,7 @@ parameter model, and fitting those data with the two-parameter production model,
 observe particular instances of how well RPs are inferred at the given 
 misspecification of the two-parameter model relative to the true three-parameter 
 production model. By gathering all of the simulated instances of how RPs are 
-inferred (under the two-parameter model), %under misspecified two parameter models
+inferred (under the two-parameter model), %under misspecified two-parameter models
 we form a set of example mappings to train a metamodel which represents the 
 mapping of true RPs (under the three-parameter model) to estimates of RPs under the 
 misspecified two-parameter production model. The metamodel is essentially a surrogate 
@@ -1594,7 +1594,7 @@ controls for the specific degree of model misspecification.
 %the way in whthe nature of  
 %specific misspecification of RP. 
 %to how poorly the
-%when two parameter production models infer RPs relative to how poorly the %the degree of RP 
+%when two-parameter production models infer RPs relative to how poorly the %the degree of RP 
 %model is specification. %more generally.
 
 %
@@ -1621,7 +1621,7 @@ results in a maximum likelihood estimate (MLE; and associated estimation
 uncertainty) of each of the productivity parameters
 (i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
 % as well as estimation uncertainty (via the inverted Fisher information).
-%At each design location of the simulation, fitting the restricted two parameter
+%At each design location of the simulation, fitting the restricted two-parameter
 %model results in a MLE of each of the productivity parameters
 %(i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
 To simplify the specification of the metamodel, let $\textbf{y}$ be a vector 
@@ -1638,7 +1638,7 @@ independent instances of the following GP metamodel. %in Eq (\ref{GPModel}).
 \end{align}
 %%
 %Let $\textbf{y}$ be a vector collecting the fitted log productivity parameter MLEs under 
-%the restricted two parameter production models. Furthermore, let $\bm{\omega}$ 
+%the restricted two-parameter production models. Furthermore, let $\bm{\omega}$ 
 %be a vector of the MLE standard error estimates, on the variance scale (via the inverted Fisher 
 %information of the production model log likelihood).  
 %
@@ -1801,7 +1801,7 @@ that appears in time series data.
 %Other choices of the bases of exponentiation for $\chi_{max}$ and $\chi_{min}$ may be used so long as the base for 
 
 %%
-%By further specifying the following, the two parameters $\chi_{max}$, and
+%By further specifying the following, the two-parameters $\chi_{max}$, and
 %$\chi_{min}$ can be reduced to the single parameter $\chi$.
 %%\vspace*{-1cm}
 %\begin{align}
@@ -1885,21 +1885,21 @@ the production model ODE.
 
 %
 %\clearpage
-\subsection{Two Parameter Production Model Inference\label{modelFit}}
+\subsection{Two-Parameter Production Model Inference\label{modelFit}}
 
 %
 The simulated mapping results from fitting an intentionally misspecified two 
 parameter production model to index of abundance data that are generated from 
 a more complex three-parameter model of productivity. 
 %The simulation results in an intentionally (and controlled) 
-%misspecified two parameter production model. 
+%misspecified two-parameter production model. 
 %The goal of model fitting is to assess how the biological parameters of the
-%two parameter production model behave under MLE inference when index of 
-%abundance data are generated from more complex models of productivity. % three parameter models, to PT data.
+%two-parameter production model behave under MLE inference when index of 
+%abundance data are generated from more complex models of productivity. % three-parameter models, to PT data.
 Thus, let $I_t$ be an index of abundance simulated from the three-parameter PT 
 or Schnute production models at time $t\in\{1,2, 3,..., T\}$. However the 
 fitted model is specified to be intentionally misspecified so that the fitted 
-model is driven by a two parameter Schaefer, or BH production model respectively. %of productivity. 
+model is driven by a two-parameter Schaefer, or BH production model respectively. %of productivity. 
 
 %
 The observation model for the fitted model is log-normal such that,
@@ -1925,9 +1925,10 @@ Thus the log likelihood can be written as
 \end{align}
 
 %
-In this setting, $q$ is fixed at the true value of 0.0005 to focus on the
-inferential effects of model misspecification on biological parameters.
-$\sigma^2$ and $\bm{\theta}$ are reparameterized to the log scale and fit via MLE. 
+In this setting, $q$ is fixed at 0.0005 and $M$ is fixed at 0.2, to focus on 
+the inferential effects of model misspecification on biological parameters. 
+$\sigma^2$ and $\bm{\theta}$ are reparameterized to the log scale 
+and fit via MLE. 
 %$\sigma^2$ is allowed to be fit to assess overall model fit. 
 Reparameterizing the parameters to the log scale improves the reliability 
 of optimization, in addition to facilitating the use of Hessian information 
@@ -2084,7 +2085,7 @@ The concept of stiffness in ODEs is hard to precisely characterize.
 \shortciteA[p.2]{wanner_solving_1996} describe stiffness in the
 following pragmatic sense, ``Stiff equations are problems for which explicit
 methods don't work''. It is hard to make this definition more mathematically
-precise, but this a consistent issue for models of fast growing species in 
+precise, but this a consistent issue for models of very productive species in 
 the low contrast simulation. 
 % parameterized
 %so that $\zeta$ is greater than about $\frac{1}{2}$. 
@@ -2325,7 +2326,7 @@ for the amount of contrast present in the simulated index. The left panel of
 Figure (\ref{arrowsPT}) shows RP biases in the low contrast setting, while the 
 right panel shows the high contrast setting. Notice that in the low contrast 
 setting the RP bias pattern is far from the minimum distance mapping, however when 
-contrast is added the mapping becomes much closer to a minimal bias mapping. 
+contrast is added the mapping becomes much closer to a minimal vertical bias mapping. 
 In the low contrast setting the observed bias is consistent with the pattern 
 and mechanism described in Figure (\ref{flatProd}), where $F^*$ is underestimated 
 for data generated below the Schaefer line and overestimated above the Schaefer set.
@@ -2349,9 +2350,8 @@ with increasing contrast so that $F^*$ and $\frac{B^*}{B_0}$ are fixed at
 %in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves.
 %%Fitted logistic production function verses true PT production function. 
 %%Observed biomass plotted along x-axis.
-}
+}\label{conTest}
 \end{minipage}
-\label{conTest}
 \end{figure}
 %\end{wrapfigure}
 
@@ -2448,7 +2448,8 @@ method provides is pivotal for the rest of the work presented here. %to understa
 \begin{wrapfigure}{r}{0.5\textwidth}
 \vspace{-0.5cm}
 %\begin{figure}[h!]
-\includegraphics[width=0.5\textwidth]{../gpBias/designLineColorHHardFlatT30N150WWideN112.png}
+\includegraphics[width=0.5\textwidth]{../ddBias/designLineColorHHardFlatT30N150WWideN112.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/designLineColorHHardFlatT30N150WWideN112.png}
 %\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
 \vspace{-1cm}
 \caption{
@@ -2504,7 +2505,7 @@ limited to the curve \mbox{$\frac{B^*}{B_0}=\frac{1}{F^*/M+2}$.} Define the
 ``BH set'' as the set of RPs defined by this limited space, i.e. the curve \\
 $\left\{\left(\frac{F^*}{M}, \frac{B^*}{B_0}\right) \;\middle|\; \frac{B^*}{B_0}=\frac{1}{F^*/M+2}\right\}$.
 as seen in the black curve in Figure (\ref{colorDes}).
-The farther away from this set that Schnute data are simulated, the worse the 
+The farther away from this set that Schnute data are simulated, the more the 
 BH model is misspecified for those data. 
 
 
@@ -2534,7 +2535,7 @@ to interact as a function of contrast in the data.
 %%
 %Applying the metamodel predictive surfaces on the scale of RP estimates allows for the 
 %quantification of RP bias. % induced by fitting a misspecified BH model 
-%%ication of two parameter production functions. 
+%%ication of two-parameter production functions. 
 %%Below 
 %RP bias is quantified by the following relative measure of bias, similar to a percent error calculation.
 %%
@@ -2543,9 +2544,9 @@ to interact as a function of contrast in the data.
 %\end{align}
 %%
 %Above $RP$ is a stand-in for the true value of any of the biological
-%reference points under the three parameter data generating production model, 
+%reference points under the three-parameter data generating production model, 
 %and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the 
-%BH model. %two parameter restricted cases.
+%BH model. %two-parameter restricted cases.
 
 %
 \begin{figure}[h!]
@@ -2589,18 +2590,20 @@ refers to the metamodel estimate.
 Figure (\ref{contrastTrio}, \emph{top-right}) combines the components of bias to 
 show the overall mapping of RPs under BH inference in the high contrast 
 simulation setting. Unlike high contrast RP inference under the Schaefer model, 
-the BH model does shows bias in both RPs here. Despite the bias in 
-$\frac{B^*}{\bar B(0)}$ and $\frac{F^*}{M}$ these results are similar to 
-that of the Schaefer model in that the overall mapping of RPs is very nearly a 
-minimal distance mapping onto the constrained set of RPs. %In this setting the 
-The primary difference between Schaefer model and BH RP inference is the geometry of 
-their limited RP spaces. Unlike the Schaefer model the BH set encourages
-bias in both RPs for misspecified models even in very well informed setting.
+where maily bias in $\frac{B^*}{\bar B(0)}$ occured, the BH model does shows 
+bias in both RPs here. Despite the bias in $\frac{B^*}{\bar B(0)}$ and 
+$\frac{F^*}{M}$ these results are similar to that of the Schaefer model in 
+that the overall mapping of RPs is very nearly a minimal distance mapping onto 
+the constrained set of RPs. %In this setting the 
+The primary difference between Schaefer model and BH RP inference is the 
+geometry of their limited RP spaces. Unlike the Schaefer model the BH set 
+encouragesbias in both RPs for misspecified models even in very well informed 
+setting.
 
 %Above $RP$ is a stand-in for the true value of any of the biological
-%reference points under the three parameter data generating production model,
+%reference points under the three-parameter data generating production model,
 %and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the
-%two parameter restricted cases.
+%two-parameter restricted cases.
 %
 %
 %
@@ -2826,9 +2829,9 @@ Ricker-like and Logistic-like models.
 %Existing
 
 %
-Results presented here generally agree with what is known about estimating
+Results presented here generally agree with what is known about estimating population 
 growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
-These study's appreciate the role of contrast for estimating growth rates, 
+These studyies appreciate the role of contrast for estimating growth rates, 
 however they struggle to make generally extensible conclusions since they focus only 
 on a handful of stocks that fall short of forming a random sample of the greater 
 population of possible stock behaviors. The LHS design methods presented here are 
@@ -2853,7 +2856,7 @@ of productivity estimation within the production model setting presented.
 In the presence of contrast, $F^*$ estimation can enjoy very low bias even
 for a wide range of poorly specified models; conversely in the absence of contrast
 $F^*$ estimation can suffer very large bias even for slightly misspecified models.
-This pattern is particularly true for inference under the Schaefer model where the 
+This pattern is particularly true for low-contrast inference under the Schaefer model where the 
 geometry of the restricted RP set isolates estimation failure of $F^*$ from 
 $\frac{B^*}{\bar B(0)}$. While contrast has a similar impact on $F^*$ estimation 
 under the BH model, the geometry of the BH RP set correlates estimation bias 
@@ -3051,8 +3054,8 @@ model for developing three-parameter models going forward.
 %available information among $B^*$ and $F^*$. Increasing the flexibility of the 
 %production function by moving toward curves with additional parameters could 
 %release these structural limitations \shortcite{mangel_perspective_2013}. 
-%\shortciteA{punt_extending_2019} considers a suite of possible three parameter
-%curves which could be used instead of current two parameter curves.
+%\shortciteA{punt_extending_2019} considers a suite of possible three-parameter
+%curves which could be used instead of current two-parameter curves.
 %
 %%
 %This study only explores the compatibility of the possible productivity shapes 
@@ -3260,7 +3263,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%
 
 %BH model 
-%%ication of two parameter production functions. 
+%%ication of two-parameter production functions. 
 %%Below 
 %RP bias is quantified by the following relative measure of bias, similar to a percent error calculation.
 %%
@@ -3269,9 +3272,9 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %\end{align}
 %%
 %Above $RP$ is a stand-in for the true value of any of the biological
-%reference points under the three parameter data generating production model, 
+%reference points under the three-parameter data generating production model, 
 %and $\hat{RP}$ refers to the metamodel estimate of each RP quantity under the 
-%%BH model. %two parameter restricted cases.
+%%BH model. %two-parameter restricted cases.
 
 
 
@@ -3284,7 +3287,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 
 
 %of RPs %productivity parameters
-%with respect to model misspecification of typical two parameter models of 
+%with respect to model misspecification of typical two-parameter models of 
 %productivity (Logistic and BH). 
 %
 %relative to the model specification 
@@ -3297,10 +3300,10 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %Design locations, $\bm{X}$, specify the degree of model misspecification relative 
 %to the restricted model.
 %%
-%At each design location of the simulation fitting the restricted two parameter 
+%At each design location of the simulation fitting the restricted two-parameter 
 %model results in a MLE of each of the productivity parameters 
 %(i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
-%%under the restricted two parameter production model 
+%%under the restricted two-parameter production model 
 %%
 %Furthermore, since the maximum likelihood estimator is a random variable, 
 %MLE standard error estimates, on the variance scale (via the inverted Fisher 
@@ -3371,7 +3374,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %choice of a covariance function which defines the relationship between
 %locations in an index set. Typically the index set is spatial for GPs, and in
 %this setting the model is across the reference point space, 
-%$\left(F^*, \frac{B^*}{\bar B(0)}\right)$, of the three parameter
+%$\left(F^*, \frac{B^*}{\bar B(0)}\right)$, of the three-parameter
 %PT data generating model. A GP model implies an $n$ dimensional multivariate 
 %normal distribution on the observations of the model and the covariance function 
 %fills out the covariance matrix for the observations.
@@ -3398,7 +3401,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %
 %%
 %Each design location of the simulation results in a MLE of each of the productivity
-%parameters under the restricted two parameter production model (i.e. Schaefer:[$log(r)$, $log(K)$],
+%parameters under the restricted two-parameter production model (i.e. Schaefer:[$log(r)$, $log(K)$],
 %BH:[$log(\alpha)$, $log(\beta)$]). Since the maximum likelihood estimator is a random 
 %variable a full characterization of inference To capture the most complete picture of statistical 
 %MLE standard error estimates, on the variance scale (via the inverted Fisher information)
@@ -3428,7 +3431,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 
 %%
 %Each design location of the simulation produces estimates of two productivity 
-%parameters under the restricted two parameter production model (i.e. Schaefer:($r$, $K$), 
+%parameters under the restricted two-parameter production model (i.e. Schaefer:($r$, $K$), 
 %BH:($\alpha$, $\beta$)). 
 
 
@@ -3436,10 +3439,10 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%
 %For assessing the productivity parameters over the full region of simulated RPs %, as seen in Figure (\ref{rpGrid}), 
 %a GP model is used as a flexible metamodel for describing the overall 
-%behavior of inference under misspecified two parameter productivity models.
+%behavior of inference under misspecified two-parameter productivity models.
 %%
 %Each design location of the simulation produces an estimate of each of the productivity   
-%parameters under the restricted two parameter production model (i.e. Schaefer:($log(r)$, $log(K)$), 
+%parameters under the restricted two-parameter production model (i.e. Schaefer:($log(r)$, $log(K)$), 
 %BH:($log(\alpha)$, $log(\beta)$)).
 %
 %%
@@ -3479,7 +3482,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %equations and depend upon the parameterization of biomass production. 
 %Two-parameter parameterizations of the production function have been shown to 
 %limit the theoretical domain of RPs \shortcite{mangel_perspective_2013}. The 
-%limited RP-space of two parameter models are a major source of model 
+%limited RP-space of two-parameter models are a major source of model 
 %misspecification for RPs and thus induce bias in RP estimation. The behavior 
 %of RP estimation bias is not well understood and as a result often 
 %under appreciated. A metamodeling approach is developed here to describe RP 
@@ -3687,10 +3690,10 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %
 %%
 %In current practice, production functions are typically chosen to depend only 
-%on two parameters. The Schaefer model as presented depends only on
-%the biological parameters $r$ and $K$, but other common two parameter choices
+%on two-parameters. The Schaefer model as presented depends only on
+%the biological parameters $r$ and $K$, but other common two-parameter choices
 %of the production function are the Beverton-Holt \shortcite[BH]{beverton_dynamics_1957} 
-%and Ricker \shortcite{ricker_stock_1954} curves. All of these two parameter 
+%and Ricker \shortcite{ricker_stock_1954} curves. All of these two-parameter 
 %production functions struggle similarly to model the full theoretical space of 
 %RPs \shortcite{mangel_perspective_2013}.
 %
@@ -3699,7 +3702,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %and the debate continues within modern fisheries modeling \shortcite{prager_comparison_2002}. 
 %On the one hand, \shortciteA{maunder_is_2003} argues that the Schaefer model is 
 %insufficient in large part due to the restriction it places on $\frac{B^*}{\bar B(0)}$, 
-%at $\frac{1}{2}$, and further argues that the three parameter Pella-Tomlinson 
+%at $\frac{1}{2}$, and further argues that the three-parameter Pella-Tomlinson 
 %(PT) model \shortcite{pella_generalized_1969} should replace the Schaefer model to avoid biased parameter 
 %estimates. On the other hand, while \shortciteA{prager_reply_2003} appreciates 
 %the limitations of the Schaefer model, he argues its usefulness as a well 
@@ -3712,14 +3715,14 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%is the dominant source of estimation error. Variance estimates will be 
 %%unrealistically low due to the limited parameter space.
 %%
-%%%and conversely a two parameter production function will have estimation errrosd. 
-%%The argument of \shortciteA{maunder_is_2003} suggests that the two parameter 
+%%%and conversely a two-parameter production function will have estimation errrosd. 
+%%The argument of \shortciteA{maunder_is_2003} suggests that the two-parameter 
 %%Schaefer model overly restricts parameter space so that estimation error is unduly 
 %%dominated by bias.
 %%
 %%as to overly limit estimate variances that estimation error is unduly dominated by bias.
 %%
-%%estimation errors of the two parameter Schaefer model are unduly dominated by bias
+%%estimation errors of the two-parameter Schaefer model are unduly dominated by bias
 %%
 %% since the limited parameter 
 %%space of the Schaefer model 
@@ -3747,13 +3750,13 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %simplicity of the Schaefer model make the PT/Schaefer pair an ideal setting for 
 %beginning to understand the consequences of model misspecification on the 
 %production function. In this study I consider the behavior of inference when 
-%data are simulated from the three parameter PT production model but fit with 
-%the two parameter Schaefer model. 
+%data are simulated from the three-parameter PT production model but fit with 
+%the two-parameter Schaefer model. 
 %
 %%
-%The work begins with a derivation of RPs under the three parameter PT model. 
+%The work begins with a derivation of RPs under the three-parameter PT model. 
 %The parametric forms of RPs under the PT model are then inverted to develop a 
-%simulation setting for analyzing inference under the two parameter Schaefer 
+%simulation setting for analyzing inference under the two-parameter Schaefer 
 %model. Finally a Gaussian Process (GP) metamodel \shortcite{gramacy_surrogates_2020} is constructed for exploration 
 %and analysis of RP biases. 
 %
@@ -3787,13 +3790,13 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%\end{itemize}
 %%}
 %
-%%using the two parameter Schaefer model to fit data that are generated from 
+%%using the two-parameter Schaefer model to fit data that are generated from 
 %
 %
 %
 %%Since the Schaefer model is more restrictive than the PT model, estimates of RPs 
 %%arrived at from the Schaefer model must necessarily be biased relative to the 
-%%true PT RPs. Given the ubiquity of two parameter productions functions in 
+%%true PT RPs. Given the ubiquity of two-parameter productions functions in 
 %%management it is of paramount importance to understand the biasing lens 
 %%through which we've come to understand our fisheries.
 %
@@ -3802,16 +3805,16 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%only a slightly more complex production function which can full accommodate RP space. 
 %%Namely data are simulated from the %can full  the full space of RPs. I consider data 
 %%simulated from the 
-%%three parameter Pella-Tomlinson (PT) production model. 
+%%three-parameter Pella-Tomlinson (PT) production model. 
 %
 %
 %
 %%%
 %%In practice, at this time, the production function is typically chosen to depend 
-%%only on two parameters. The Schaefer model as presented depends only on 
-%%the biological parameters $r$ and $K$, but other common two parameter choices 
+%%only on two-parameters. The Schaefer model as presented depends only on 
+%%the biological parameters $r$ and $K$, but other common two-parameter choices 
 %%of the production function are the Beverton-Holt (BH) and Ricker curves. All
-%%of these two parameter production functions struggle similarly to model the full 
+%%of these two-parameter production functions struggle similarly to model the full 
 %%theoretical space of RPs \shortcite{mangel_perspective_2013}.
 %
 %
@@ -3868,7 +3871,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %
 %
 %%and subsequently fit these 
-%%data using the two parameter Schaefer model to observe the consequences of 
+%%data using the two-parameter Schaefer model to observe the consequences of 
 %%SRR model-misspecification with special interest on RP management quantities.  
 %
 %%%than the most commonly used in practice but
@@ -3877,20 +3880,20 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%{\color{red}
 %%Nature does not generate data from a simple model. However, what would happen if 
 %%nature were even just slightly more complex than the most commonly used fisheries 
-%%models? I consider data simulated from the three parameter Pella-Tomlinson (PT) 
-%%SRR model, and subsequently fit these data using the two parameter Schaefer 
+%%models? I consider data simulated from the three-parameter Pella-Tomlinson (PT) 
+%%SRR model, and subsequently fit these data using the two-parameter Schaefer 
 %%model to observe the consequences of SRR model-misspecification with special 
 %%interest on RP management quantities.  
 %%}
 %
 %%What would happen if 
-%%data were to truly be generated from a three parameter SRR model and further 
-%%what would be the consequence of misspecifying a two parameter model only as a 
-%%special case of the true three parameter model? 
+%%data were to truly be generated from a three-parameter SRR model and further 
+%%what would be the consequence of misspecifying a two-parameter model only as a 
+%%special case of the true three-parameter model? 
 %%
 %%%
-%%Data are simulated from the three parameter Pella-Tomlinson SRR model, and 
-%%subsequently fit using the two parameter Schaefer model. RP 
+%%Data are simulated from the three-parameter Pella-Tomlinson SRR model, and 
+%%subsequently fit using the two-parameter Schaefer model. RP 
 %%%
 %%{\color{red} Outline simulation goal, end introduction, and start methods.}
 %
@@ -3915,8 +3918,8 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %\subsection{PT Model}
 %
 %{\color{gray}
-%%Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
-%The three parameter PT family has a convenient form that includes, among 
+%%Below I present the three-parameter Pella-Tomlinson (PT) family, which has a 
+%The three-parameter PT family has a convenient form that includes, among 
 %others \shortcite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
 %logistic production function as a special case to form the Schaefer model. The 
 %Pella-Tomlinson production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$ 
@@ -4019,7 +4022,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %\end{equation}
 %%
 %In the case of PT production this maximization can be done analytically (however 
-%many three parameter production functions do not result in tractable analytical 
+%many three-parameter production functions do not result in tractable analytical 
 %solutions). In this case maximization can proceed by differentiating the 
 %equilibrium yield with respect to $F$ as follows,
 %
@@ -4067,9 +4070,9 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %\subsection{Simulation Study \label{sim}}
 %
 %%
-%Indices of abundance are simulated from the three parameter PT production model 
+%Indices of abundance are simulated from the three-parameter PT production model 
 %over a grid of $F^*$ and $\frac{B^*}{\bar B(0)}$ values. These PT data are then 
-%fit with a two parameter Schaefer model. 
+%fit with a two-parameter Schaefer model. 
 %%$\gamma$ is then fixed to two so that the PT SRR reduces to the special case of logistic recruitment. 
 %%The restricted Schaefer model is then fit to the 
 %%simulated PT indices. 
@@ -4086,8 +4089,8 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %Generating simulated indices of abundance from the PT model requires 
 %inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and 
 %$(r, \gamma)$. It is not generally possible to analytically invert this 
-%relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
-%Most three parameter production functions lead to RPs that require expensive 
+%relationship for many three-parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
+%Most three-parameter production functions lead to RPs that require expensive 
 %numerical methods to invert; more over the numerical inversion procedure can %is 
 %often be unstable. That said, for the case of PT this relationship is 
 %analytically invertible, and leads to the following relationship
@@ -4227,7 +4230,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %
 %%
 %The goal of model fitting is to assess how the biological parameters of the 
-%two parameter Schaefer model behave under MLE inference when fit to PT data. 
+%two-parameter Schaefer model behave under MLE inference when fit to PT data. 
 %Thus, let $I_t$ be an observation of PT index data at time $t\in\{1,2, 3,..., T\}$. The observation 
 %model is log-normal such that,
 %%
@@ -4315,7 +4318,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %choice of a covariance function which defines the relationship between
 %locations in an index set. Typically the index set is spatial for GPs, and in
 %this setting the model is across the reference point space, 
-%$\left(F^*, \frac{B^*}{\bar B(0)}\right)$, of the three parameter
+%$\left(F^*, \frac{B^*}{\bar B(0)}\right)$, of the three-parameter
 %PT data generating model. A GP model implies an $n$ dimensional multivariate 
 %normal distribution on the observations of the model and the covariance function 
 %fills out the covariance matrix for the observations.
@@ -4829,8 +4832,8 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %available information among $B^*$ and $F^*$. Increasing the flexibility of the 
 %production function by moving toward curves with additional parameters could 
 %release these structural limitations \shortcite{mangel_perspective_2013}. 
-%\shortciteA{punt_extending_2019} considers a suite of possible three parameter
-%curves which could be used instead of current two parameter curves.
+%\shortciteA{punt_extending_2019} considers a suite of possible three-parameter
+%curves which could be used instead of current two-parameter curves.
 %
 %%
 %This study only explores the compatibility of the possible productivity shapes 
@@ -4921,8 +4924,8 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %\section{Proposal: Productivity $\&$ Growth Extensions \label{growth}}
 %
 %%
-%The Deriso production function presents a convenient three parameter form 
-%that is capable of representing many of the most common two parameter production 
+%The Deriso production function presents a convenient three-parameter form 
+%that is capable of representing many of the most common two-parameter production 
 %functions as special cases \shortcite{deriso_harvesting_1980}. The BH and 
 %Logistic production functions arise when $\gamma$ is fixed to -1 or 1 
 %respectively, and the Ricker model is a \mbox{limiting case as $\gamma\rightarrow0$ \shortcite{schnute_general_1985}.}
@@ -4990,7 +4993,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%While the Deriso model generalizes many common models, inference under 
 %Inference under the BH model is of particular interest due to its overwhelming 
 %popularity in stock assessment. Similar to the limited RP-space of the 
-%Schaefer model the two parameter BH model also has a limited RP-space as shown 
+%Schaefer model the two-parameter BH model also has a limited RP-space as shown 
 %in Figure (\ref{bhRP}).  While the BH constrained RP space is more complicated 
 %than the Schaefer model, analogy to the results obtained under the 
 %PT-Schaefer simulation setting, and the flexible GP metamodel, should expedite 
@@ -6336,7 +6339,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %The focus is to further explore how model misspecification in a variety of 
 %commonly used forms of the stock recruitment relationship (SRR) can affect 
 %inference on key reference points. In particular, if data are generated under 
-%a three parameter true SRR but fit using a two parameter analog how does 
+%a three-parameter true SRR but fit using a two-parameter analog how does 
 %this affect inference on $\frac{F^*}{M}$ and $\frac{B^*}{B_0}$. What bias is 
 %induced by the choice of SRR? 
 %%how is any bias induced by the SRR. % produce reference point bias. 
@@ -6354,8 +6357,8 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%%
 %%The surrogate modeling focus is to explore how model misspecification in the 
 %%stock recruitment relationship (SRR) can affect inference on key reference 
-%%points. In particular, if data are generated under a three parameter true SRR, 
-%%but fit using a two parameter SRR how does this affect inference on major
+%%points. In particular, if data are generated under a three-parameter true SRR, 
+%%but fit using a two-parameter SRR how does this affect inference on major
 %%reference points, such as $\frac{F^*}{M}$ and $\frac{B^*}{B_0}$.
 %
 %%
@@ -6367,21 +6370,21 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %$\frac{F^*}{M}$ and $\frac{B^*}{B_0}$ are known to be fixed when steepness and natural 
 %mortality are a'priori fixed constants \shortcite{mangel_perspective_2013, maunder_is_2003}. 
 %%Similarly, the Schaefer model 
-%%is widely know to feature the two parameter logistic SRR {\color{red} (CITE)}.
+%%is widely know to feature the two-parameter logistic SRR {\color{red} (CITE)}.
 %An additional degree of freedom can be added to these models by adding a third 
 %parameter ($\gamma$) to the SRR of these models respectively.  
 %% Beverton-Holt model by adding a third parameter ($\gamma$) to the SRR. 
-%Several formulations of these expanded three parameter SRR have 
+%Several formulations of these expanded three-parameter SRR have 
 %been studied \shortcite{punt_extending_2019}. 
 %
 %%
-%The focus here is on three parameter SRRs which have the Beverton-Holt or 
+%The focus here is on three-parameter SRRs which have the Beverton-Holt or 
 %Schaefer models as a special case \shortcite{shepherd_family_1982, pella_generalized_1969}.
 %%\shortcite{deriso_harvesting_1980, schnute_general_1985, shepherd_family_1982}. 
 %%At this stage of research the particular choice of SRR 
 %%is still flexible, with some experimentation across several formulations. 
 %%Although some preliminary figures have been generated under,
-%Exploration continues across many different choices of three parameter SRRs, 
+%Exploration continues across many different choices of three-parameter SRRs, 
 %although the new results presented here focus on the Shepherd and Pella-Tomlinson SRRs  
 %% since they are the most commonly used
 %%the most commonly used SRRs. In particular 
@@ -6454,7 +6457,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %\subsection{Simulation}
 %
 %%For each data set
-%Indices of abundance are simulated from each three parameter SRR over an 
+%Indices of abundance are simulated from each three-parameter SRR over an 
 %unrestricted grid of $\xi$ and $\zeta$ values. After data are 
 %generated, $\gamma$ is then fixed so that the SRR reduces to the special cases 
 %previously described under each model, and the restricted model is subsequently 
@@ -6770,7 +6773,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %		as a set of R6 classes. Further, I have a completed a class for fitting, and efficiently 
 %		managing, a large class of Gaussian Process models. In future work, these classes will serve 
 %		as the basis of the entire line of research. We have begun substantial analysis of two verse 
-%		three parameter stock recruitment relationships, although results are too preliminary to 
+%		three-parameter stock recruitment relationships, although results are too preliminary to 
 %		release substantial findings.
 %
 %	\item What opportunities for training and professional development has the project provided? *

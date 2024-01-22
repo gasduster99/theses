@@ -114,6 +114,10 @@ zetas = unlist(sapply(datFiles, function(fn){
         })
 )
 
+#
+cex = 2.5
+mar = c(5, 4.5, 4, 2)+0.1
+
 ###############################################################################################
 ##
 ##MAX, MAX
@@ -155,14 +159,16 @@ yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$
 #
 png(sprintf("srrCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
 cols = brewer.pal(9, "Set1")
+par(mar=mar)
 curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
         lwd=3,
         ylim=c(0, yMax),
-        ylab="Production",
+        ylab="Production\n",
         xlab="B",
-        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", round(xi, binTrk), round(zeta,binTrk))),
-        cex.lab = 1.5,
-        cex.main= 1.5
+        main=TeX(sprintf("$F_{MSY}$=%s    $B_{MSY}/B_0$=%s", round(xi, binTrk), round(zeta,binTrk))),
+        cex.lab  = cex,  #1.5,
+        cex.main = cex,  #1.5
+	cex.axis = cex
 )
 polygon(c(grd, rev(grd)), c(qSRR[,1], rev(qSRR[,3])),
         col=adjustcolor(cols[1], alpha.f=0.2),
@@ -217,14 +223,16 @@ yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$
 #
 png(sprintf("srrCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
 cols = brewer.pal(9, "Set1")
+par(mar=mar)
 curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
         lwd=3,
         ylim=c(0, yMax),
         ylab="Production",
         xlab="B",
-        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", round(xi, binTrk), round(zeta,binTrk))),
-        cex.lab = 1.5,
-        cex.main= 1.5
+        main=TeX(sprintf("$F_{MSY}$=%s    $B_{MSY}/B_0$=%s", round(xi, binTrk), round(zeta,binTrk))),
+        cex.lab  = cex, #1.5,
+        cex.main = cex, #1.5
+	cex.axis = cex
 )
 polygon(c(grd, rev(grd)), c(qSRR[,1], rev(qSRR[,3])),
         col=adjustcolor(cols[1], alpha.f=0.2),
@@ -279,14 +287,16 @@ yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$
 #
 png(sprintf("srrCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
 cols = brewer.pal(9, "Set1")
+par(mar=mar)
 curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
         lwd=3,
         ylim=c(0, yMax),
         ylab="Production",
         xlab="B",
-        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", round(xi, binTrk), round(zeta,binTrk))),
-        cex.lab = 1.5,
-        cex.main= 1.5
+        main=TeX(sprintf("$F_{MSY}$=%s    $B_{MSY}/B_0$=%s", round(xi, binTrk), round(zeta,binTrk))),
+        cex.lab  = cex,  #1.5,
+        cex.main = cex,  #1.5
+	cex.axis = cex
 )
 polygon(c(grd, rev(grd)), c(qSRR[,1], rev(qSRR[,3])),
         col=adjustcolor(cols[1], alpha.f=0.2),
@@ -341,14 +351,16 @@ yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$
 #
 png(sprintf("srrCompare%sX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
 cols = brewer.pal(9, "Set1")
+par(mar=mar)
 curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
         lwd=3,
         ylim=c(0, yMax),
-        ylab="Production",
+        ylab="Production\n",
         xlab="B",
-        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", round(xi, binTrk), round(zeta,binTrk))),
-        cex.lab = 1.5,
-        cex.main= 1.5
+        main=TeX(sprintf("$F_{MSY}$=%s    $B_{MSY}/B_0$=%s", round(xi, binTrk), round(zeta,binTrk))),
+        cex.lab  = cex,  #1.5,
+        cex.main = cex,  #1.5
+	cex.axis = cex
 )
 polygon(c(grd, rev(grd)), c(qSRR[,1], rev(qSRR[,3])),
         col=adjustcolor(cols[1], alpha.f=0.2),

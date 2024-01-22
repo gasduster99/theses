@@ -554,7 +554,7 @@ employs a derivative free search given by \shortciteA{brent_chapter_1973}.
 \vspace{-2.75cm}
 %\includegraphics[width=0.5\textwidth]{plots/derisoSrr.png}
 %\begin{minipage}[h!]{0.64\textwidth}
-\includegraphics[width=0.54\textwidth]{../ddBias/rpSpaceAK.png}
+\includegraphics[width=0.54\textwidth]{../ddBias/rpSpaceww.png}
 %\end{minipage}
 %\begin{minipage}[h!]{0.3\textwidth}
 \vspace{-1.5cm}
@@ -562,9 +562,10 @@ employs a derivative free search given by \shortciteA{brent_chapter_1973}.
 \caption{
 \onehalfspacing
 The space of BH RPs for the delay model as a function of $\kappa$ and $a_s$. 
-The RP space is plotted for $80\times80$ combinations of $\kappa\in[0.01, 10]$ 
-and $a_s\in[0.01, 10]$. The color drawn is the result of mapping $\kappa$ and $a_s$ 
-values to the red and blue components of the RGB color model repsectively (with G=0). 
+The RP space is plotted for $80\times80$ combinations of $\kappa\in[0.1, 2]$ 
+and $a_s\in[0.1, 10]$. The color drawn is the resulting value of $w(a_s)$ 
+mapped between blue and red. 
+%the result of mapping $\kappa$ and $a_s$ values to the red and blue components of the RGB color model repsectively (with G=0). 
 $\frac{1}{x+2}$ is plotted in black for reference. 
 %
 % red value to the value of $a_s$ and  mapped to the red, and blue values repsectly. % of the drawn color.
@@ -933,6 +934,118 @@ point to catch, and LHS design, and Metamodel.
 
 %
 \section{Results}
+
+%
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{../ddBias/growthTriptic.png}
+\caption{
+Biomass dynamics of BH ($left$), Ricker ($center$), and Logistic ($right$) 
+delay differential models in the low contrast simulation setting. In all cases 
+$\alpha=1.2$ and $\beta$ is chosen so that each model shares the same 
+$B_{MSY}$ within each given $\gamma$.
+}\label{delayTriptic}
+\end{figure}
+
+%
+Figure (\ref{delayTriptic}) demonstrates a range of behaviors that the Schnute 
+delay model can display. The three special cases of $\gamma=-1$ (BH), $\gamma\to0$ 
+(Ricker), and $\gamma=1$ (Logistic) recruitment are shown with varying configurations 
+of growth ranging from the simple (no growth) production model setting when 
+$a_s\rightarrow0$ and $\kappa\rightarrow\infty$, to an opposing case ($a_s=10$ 
+and $\kappa=0.1$) representing extremely lagged selectivity and slow indivdual-growth. 
+By reference with Figure (\ref{rpSpace}), notice that the latter individual-growth/maturity 
+configuration represents a RP set in the deep blue regiem, thus this case represents 
+dynamics where RPs are heavily influenced by individual-growth/maturity, 
+rather than solely determined by the assumed functional form of recruitment as is 
+the case with the simple production model. The case $a_s=2$ and $\kappa=0.1$ is 
+shown as an example of dynamics where RPs are more moderatly influenced by 
+individual-growth/maturity. 
+%The shortened selectivity lag allows oscillatory individual-growth/maturity 
+%dynamics to quickly equilibrate towards a more purely 
+%recruitment driven dynamics more quickly than the $a_s=10$ example.
+
+%
+Notice under the extreme $a_s=10$ and $\kappa=0.1$ setting, biomass %the Ricker and Logistic models 
+comes into equilibrium at $B_{MSY}$ as oscillating curves. This effect is most 
+noticable in the Logistic model here due to its steeply right leaning yeild curve 
+interacting with the large lag in selectivity as the sudden onset of fishing 
+produces a shock that oscillates over the steepest regions of the yeild curve. 
+One may exagerate the oscillations of a BH model similarly, in this heavily lagged setting, by 
+shocking the population over the steepest portion of its yeild curve (a sudden 
+release in fishing applied to a heavily fished population at low equilibrium biomass). 
+
+%
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{../ddBias/rpTriptic.png}
+\caption{
+Biomass dynamics of BH ($left$), Ricker ($center$), and Logistic ($right$)
+delay differential models in the low contrast simulation setting. In all cases
+$\alpha=1.2$ and $\beta$ is chosen so that each model shares the same
+$B_{MSY}$ within each given $\gamma$.
+}\label{delayTriptic}
+\end{figure}
+
+
+\begin{itemize}
+\item RP curve triptic (BH, Ricker, Logistic) each at the three examples
+\end{itemize}
+
+%and steeply increasing recruitment for large biomass 
+%populations interacting with the shock of the onset of fishing from the initially 
+%unfished population.
+
+%opposing slow indivdual growth represents 
+
+%
+\subsection{Simple Production Model Limit}
+
+%
+\begin{figure}[h!]
+\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56.png} 
+\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N300AS0.1K10.png}
+\caption{}
+\end{figure}
+
+%
+\clearpage
+\subsection{Dramatic Growth}
+
+%
+\begin{figure}[h!]
+\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84Edge.png}
+\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1.png}
+\caption{}
+\end{figure}
+
+%
+\clearpage
+\subsection{Ocillatory Growth Influence}
+
+%
+\begin{figure}[h!]
+\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N300A0-1AS10K0.1.png}
+\caption{}
+\end{figure}
+
+%
+\begin{figure}[h!]
+\includegraphics[width=0.49\textwidth]{../ddBias/indexGridExpT45N300A0-1AS10K0.1.png}
+\caption{}
+\end{figure}
+
+%
+\begin{figure}[h!]
+\includegraphics[width=0.49\textwidth]{../ddBias/indexGridKAExpT45N300A0-1AS10K0.1.png}
+\caption{}
+\end{figure}
+
+%
+\begin{itemize}
+%
+\item Selectivity and Growth cannot account for misspecification of Recruitment. 
+%
+\item Selectivity and Growth are influenced by the propper specification of recruitment. If properly specified Selectivity and Growth can be estimated, along with all three parameters of the Schnute model.
+\end{itemize}
 
 %
 \begin{itemize}

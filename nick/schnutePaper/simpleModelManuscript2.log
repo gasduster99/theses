@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.2)  20 NOV 2023 15:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.2)  8 JAN 2024 14:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1069,35 +1069,35 @@ l.1903
         <../ptNew/relFish.png> <../ptNew/relSeries.png>] [22] [23] [24]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2127.
+(hyperref)                removing `math shift' on input line 2128.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2127.
+(hyperref)                removing `math shift' on input line 2128.
 
 <../ptNew/srrCompareFlatT30X0.12Z0.573.png, id=457, 481.8pt x 481.8pt>
 File: ../ptNew/srrCompareFlatT30X0.12Z0.573.png Graphic file (type png)
 <use ../ptNew/srrCompareFlatT30X0.12Z0.573.png>
 Package pdftex.def Info: ../ptNew/srrCompareFlatT30X0.12Z0.573.png  used on inp
-ut line 2159.
+ut line 2160.
 (pdftex.def)             Requested size: 112.74377pt x 112.7378pt.
 <../ptNew/srrCompareFlatT30X0.674Z0.599.png, id=458, 481.8pt x 481.8pt>
 File: ../ptNew/srrCompareFlatT30X0.674Z0.599.png Graphic file (type png)
 <use ../ptNew/srrCompareFlatT30X0.674Z0.599.png>
 Package pdftex.def Info: ../ptNew/srrCompareFlatT30X0.674Z0.599.png  used on in
-put line 2160.
+put line 2161.
 (pdftex.def)             Requested size: 112.74377pt x 112.7378pt.
 <../ptNew/srrCompareFlatT30X0.096Z0.22.png, id=459, 481.8pt x 481.8pt>
 File: ../ptNew/srrCompareFlatT30X0.096Z0.22.png Graphic file (type png)
 <use ../ptNew/srrCompareFlatT30X0.096Z0.22.png>
 Package pdftex.def Info: ../ptNew/srrCompareFlatT30X0.096Z0.22.png  used on inp
-ut line 2161.
+ut line 2162.
 (pdftex.def)             Requested size: 112.74377pt x 112.7378pt.
 <../ptNew/srrCompareFlatT30X0.699Z0.201.png, id=460, 481.8pt x 481.8pt>
 File: ../ptNew/srrCompareFlatT30X0.699Z0.201.png Graphic file (type png)
 <use ../ptNew/srrCompareFlatT30X0.699Z0.201.png>
 Package pdftex.def Info: ../ptNew/srrCompareFlatT30X0.699Z0.201.png  used on in
-put line 2162.
+put line 2163.
 (pdftex.def)             Requested size: 112.74377pt x 112.7378pt.
 [25
 
@@ -1106,7 +1106,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2199 
+l.2200 
         <../ptNew/srrCompareFlatT30X0.12Z0.573.png> <../ptNew/srrCompareFlatT30
 X0.674Z0.599.png> <../ptNew/srrCompareFlatT30X0.096Z0.22.png> <../ptNew/srrComp
 areFlatT30X0.699Z0.201.png>]
@@ -1114,18 +1114,18 @@ areFlatT30X0.699Z0.201.png>]
 File: ../ptNew/directionalBiasSubPTFlatT30.png Graphic file (type png)
 <use ../ptNew/directionalBiasSubPTFlatT30.png>
 Package pdftex.def Info: ../ptNew/directionalBiasSubPTFlatT30.png  used on inpu
-t line 2284.
+t line 2285.
 (pdftex.def)             Requested size: 206.69334pt x 206.6921pt.
 <../ptNew/directionalBiasSubPTExpT45MinCon.png, id=477, 481.8pt x 481.8pt>
 File: ../ptNew/directionalBiasSubPTExpT45MinCon.png Graphic file (type png)
 <use ../ptNew/directionalBiasSubPTExpT45MinCon.png>
 Package pdftex.def Info: ../ptNew/directionalBiasSubPTExpT45MinCon.png  used on
- input line 2287.
+ input line 2288.
 (pdftex.def)             Requested size: 206.69334pt x 206.6921pt.
 <../ptNew/subLegnd.png, id=478, 150.5625pt x 401.5pt>
 File: ../ptNew/subLegnd.png Graphic file (type png)
 <use ../ptNew/subLegnd.png>
-Package pdftex.def Info: ../ptNew/subLegnd.png  used on input line 2291.
+Package pdftex.def Info: ../ptNew/subLegnd.png  used on input line 2292.
 (pdftex.def)             Requested size: 63.41434pt x 169.1067pt.
 
 
@@ -1135,7 +1135,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <../ptNew/contrastTest.png, id=489, 481.8pt x 481.8pt>
 File: ../ptNew/contrastTest.png Graphic file (type png)
 <use ../ptNew/contrastTest.png>
-Package pdftex.def Info: ../ptNew/contrastTest.png  used on input line 2340.
+Package pdftex.def Info: ../ptNew/contrastTest.png  used on input line 2341.
 (pdftex.def)             Requested size: 230.18253pt x 230.18066pt.
  [27
 pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
@@ -1150,12 +1150,12 @@ File: ../gpBias/qqUnif.png Graphic file (type png)
 <use ../gpBias/qqUnif.png>
 Package pdftex.def Info: ../gpBias/qqUnif.png  used on input line 2418.
 (pdftex.def)             Requested size: 211.38832pt x 211.38246pt.
-<../gpBias/designLineColorHHardFlatT30N150WWideN112.png, id=502, 481.8pt x 481.
+<../ddBias/designLineColorHHardFlatT30N150WWideN112.png, id=502, 481.8pt x 481.
 8pt>
-File: ../gpBias/designLineColorHHardFlatT30N150WWideN112.png Graphic file (type
+File: ../ddBias/designLineColorHHardFlatT30N150WWideN112.png Graphic file (type
  png)
-<use ../gpBias/designLineColorHHardFlatT30N150WWideN112.png>
-Package pdftex.def Info: ../gpBias/designLineColorHHardFlatT30N150WWideN112.png
+<use ../ddBias/designLineColorHHardFlatT30N150WWideN112.png>
+Package pdftex.def Info: ../ddBias/designLineColorHHardFlatT30N150WWideN112.png
   used on input line 2451.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
  [28
@@ -1163,35 +1163,35 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2466 S
+l.2467 S
         imilarly to the PT model, the three-parameter Schnute model is uniquely
 
 pdfTeX warning (ext4): destination with the same identifier (name{figure.11}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2466 S
+l.2467 S
         imilarly to the PT model, the three-parameter Schnute model is uniquely
  <../ptNew/contrastTest.png> <../gpBias/qqUnif.png (PNG copy)>] [29
 pdfTeX warning (ext4): destination with the same identifier (name{figure.12}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2522 
-        <../gpBias/designLineColorHHardFlatT30N150WWideN112.png>]
+l.2523 
+        <../ddBias/designLineColorHHardFlatT30N150WWideN112.png>]
 <../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png, id=518, 481.8pt x 481.8pt>
 File: ../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png Graphic file (type png)
 <use ../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png>
 Package pdftex.def Info: ../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png  used o
-n input line 2554.
+n input line 2555.
 (pdftex.def)             Requested size: 253.20218pt x 253.19873pt.
 
-Overfull \hbox (11.40378pt too wide) in paragraph at lines 2553--2565
+Overfull \hbox (11.40378pt too wide) in paragraph at lines 2554--2566
 []|  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2566--2567
+Underfull \hbox (badness 10000) in paragraph at lines 2567--2568
 
  []
 
@@ -1201,21 +1201,21 @@ File: ../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png Graphic file (
 type png)
 <use ../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png>
 Package pdftex.def Info: ../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide
-.png  used on input line 2570.
+.png  used on input line 2571.
 (pdftex.def)             Requested size: 253.20218pt x 253.19873pt.
 <../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png, id=520, 481.8pt x 481.8pt>
 File: ../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png Graphic file (type png)
 <use ../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png>
 Package pdftex.def Info: ../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png  used o
-n input line 2572.
+n input line 2573.
 (pdftex.def)             Requested size: 253.20218pt x 253.19873pt.
 
-Overfull \hbox (54.08289pt too wide) in paragraph at lines 2569--2573
+Overfull \hbox (54.08289pt too wide) in paragraph at lines 2570--2574
 []|  [] 
  []
 
 
-Overfull \hbox (54.08289pt too wide) in paragraph at lines 2569--2573
+Overfull \hbox (54.08289pt too wide) in paragraph at lines 2570--2574
 |  [] 
  []
 
@@ -1224,7 +1224,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.13}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2587 
+l.2588 
         <../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png> <../gpBias/directional
 BiasSchnuteSubTitleExpT45N150Wide.png> <../gpBias/fMSYRelBiasSchnuteExpT45N150W
 ide.png>]
@@ -1234,10 +1234,10 @@ File: ../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png Graphic
 file (type png)
 <use ../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png>
 Package pdftex.def Info: ../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWi
-deN112.png  used on input line 2625.
+deN112.png  used on input line 2628.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
 
-Underfull \hbox (badness 1721) in paragraph at lines 2639--2648
+Underfull \hbox (badness 1721) in paragraph at lines 2642--2651
 [][] []\T1/cmr/bx/n/12 Low Con-trast[] \T1/cmr/m/n/12 Fig-ure ([][]14[][]) show
 s the
  []
@@ -1247,7 +1247,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.14}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2657 
+l.2660 
         <../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png>]
 <../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.pn
 g, id=546, 481.8pt x 481.8pt>
@@ -1256,7 +1256,7 @@ File: ../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.46
 <use ../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.466
 2.png>
 Package pdftex.def Info: ../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN11
-2PrettyX3.4791Z0.4662.png  used on input line 2663.
+2PrettyX3.4791Z0.4662.png  used on input line 2666.
 (pdftex.def)             Requested size: 234.8775pt x 234.87839pt.
 
 [32
@@ -1264,13 +1264,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.15}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.2840 
+l.2843 
         <../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0
 .4662.png>] [33] [34] [35]
 <../ddBias/rpSpace.pdf, id=581, 505.89pt x 505.89pt>
 File: ../ddBias/rpSpace.pdf Graphic file (type pdf)
 <use ../ddBias/rpSpace.pdf>
-Package pdftex.def Info: ../ddBias/rpSpace.pdf  used on input line 3160.
+Package pdftex.def Info: ../ddBias/rpSpace.pdf  used on input line 3163.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
  [36
 
@@ -1279,52 +1279,52 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.16}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.3184 \clearpage
+l.3187 \clearpage
                   <../ddBias/rpSpace.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3187.
+(hyperref)                removing `math shift' on input line 3190.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 3187.
+(hyperref)                removing `\begingroup' on input line 3190.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 3187.
+(hyperref)                removing `superscript' on input line 3190.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\endgroup' on input line 3187.
+(hyperref)                removing `\endgroup' on input line 3190.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@over' on input line 3187.
+(hyperref)                removing `\@@over' on input line 3190.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3187.
+(hyperref)                removing `math shift' on input line 3190.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3187.
+(hyperref)                removing `math shift' on input line 3190.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\gamma' on input line 3187.
+(hyperref)                removing `\gamma' on input line 3190.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3187.
+(hyperref)                removing `math shift' on input line 3190.
 
 
-Overfull \hbox (0.78668pt too wide) in paragraph at lines 3236--3238
+Overfull \hbox (0.78668pt too wide) in paragraph at lines 3239--3241
 []\T1/cmr/m/n/12 https://math.stackexchange.com/questions/3004835/is-the-lamber
 t-w-function-analytic-
  []
 
 
-Overfull \hbox (70.28648pt too wide) in paragraph at lines 3236--3238
+Overfull \hbox (70.28648pt too wide) in paragraph at lines 3239--3241
 \T1/cmr/m/n/12 if-not-everywhere-then-on-what-set-is-it-ana https://researchpor
 tal.bath.ac.uk/en/publications/algebraic-
  []
@@ -1379,12 +1379,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 201--225
 ] [40] [41]) [42] (./simpleModelManuscript2.aux)
 Package rerunfilecheck Info: File `simpleModelManuscript2.out' has not changed.
 
-(rerunfilecheck)             Checksum: 7FEC9F980C1EF5474D42C856285A720B;3904.
+(rerunfilecheck)             Checksum: 7E66420336BB2748DDBE162732D74905;3901.
  ) 
 Here is how much of TeX's memory you used:
  27226 strings out of 478268
  508696 string characters out of 5846348
- 791838 words of memory out of 5000000
+ 791981 words of memory out of 5000000
  44755 multiletter control sequences out of 15000+600000
  500551 words of font info for 112 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1420,7 +1420,7 @@ e/2022/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/
 2022/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/local/texlive/20
 22/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2022
 /texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on simpleModelManuscript2.pdf (42 pages, 2413965 bytes).
+Output written on simpleModelManuscript2.pdf (42 pages, 2435854 bytes).
 PDF statistics:
  825 PDF objects out of 1000 (max. 8388607)
  668 compressed objects within 7 object streams
