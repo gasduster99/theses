@@ -935,6 +935,23 @@ point to catch, and LHS design, and Metamodel.
 %
 \section{Results}
 
+%\begin{figure}[h!]
+\begin{wrapfigure}{r}{0.50\textwidth}
+\vspace{-1.5cm}
+\includegraphics[width=0.49\textwidth]{../ddBias/vbCurves.png}
+\vspace{-1cm}
+\caption{Three hypothetical individual-growth curves, showing $w(a_s)$ on each curve.}\label{vbCurves}
+\end{wrapfigure}
+%
+Figure (\ref{vbCurves}) shows three hypothetical individual-growth/maturity curves 
+that span a wide range of RPs. As seen in Figure (\ref{rpSpace}), the larger values of 
+$w(a_s)$ corresond to less dramatic growth with the red curve demonstrating the 
+simle (no growth) production model limit ($a_s\rightarrow0$ and $\kappa\rightarrow\infty$). 
+The cases with smaller $w(a_s)$ values (blue and purple curves) correspond to more dramatic 
+growth behaviors, with the blue curve where $a_s=2$ and $\kappa=0.1$ representing the most 
+dramatic growth shown here.
+%a more lagged selectivity and slow indivdual-growth.
+
 %
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{../ddBias/growthTriptic.png}
@@ -945,50 +962,65 @@ $\alpha=1.2$ and $\beta$ is chosen so that each model shares the same
 $B_{MSY}$ within each given $\gamma$.
 }\label{delayTriptic}
 \end{figure}
-
 %
-Figure (\ref{delayTriptic}) demonstrates a range of behaviors that the Schnute 
-delay model can display. The three special cases of $\gamma=-1$ (BH), $\gamma\to0$ 
-(Ricker), and $\gamma=1$ (Logistic) recruitment are shown with varying configurations 
-of growth ranging from the simple (no growth) production model setting when 
-$a_s\rightarrow0$ and $\kappa\rightarrow\infty$, to an opposing case ($a_s=10$ 
-and $\kappa=0.1$) representing extremely lagged selectivity and slow indivdual-growth. 
-By reference with Figure (\ref{rpSpace}), notice that the latter individual-growth/maturity 
-configuration represents a RP set in the deep blue regiem, thus this case represents 
-dynamics where RPs are heavily influenced by individual-growth/maturity, 
-rather than solely determined by the assumed functional form of recruitment as is 
-the case with the simple production model. The case $a_s=2$ and $\kappa=0.1$ is 
-shown as an example of dynamics where RPs are more moderatly influenced by 
-individual-growth/maturity. 
+Figure (\ref{delayTriptic}) demonstrates a range of biomass dynamics that the Schnute 
+delay model can display under a spectrum of growth behaviors with fishing held consistent 
+at $F_{MSY}$. The three special cases of $\gamma=-1$ (BH), $\gamma\to0$ 
+(Ricker), and $\gamma=1$ (Logistic) recruitment are shown in each of the above 
+shown growth configurations.
+%of growth ranging from the simple (no growth) production model setting when 
+%$a_s\rightarrow0$ and $\kappa\rightarrow\infty$, to an opposing case ($a_s=10$ 
+%and $\kappa=0.1$) representing extremely lagged selectivity and slow indivdual-growth. 
+%By reference with Figure (\ref{rpSpace}), notice that the latter individual-growth/maturity 
+%configuration represents a RP set in the deep blue regiem, thus 
+%this case represents 
+%dynamics where RPs are heavily influenced by individual-growth/maturity, 
+%rather than solely determined by the assumed functional form of recruitment as is 
+%the case with the simple production model. The case $a_s=2$ and $\kappa=0.1$ is 
+%shown as an example of dynamics where RPs are more moderatly influenced by 
+%individual-growth/maturity. 
 %The shortened selectivity lag allows oscillatory individual-growth/maturity 
 %dynamics to quickly equilibrate towards a more purely 
 %recruitment driven dynamics more quickly than the $a_s=10$ example.
+%
+Notice under the most dramatic growth ($a_s=2$ and $\kappa=0.1$) setting, biomass 
+of the Logistic model comes into equilibrium at $B_{MSY}$ as an oscillating 
+curve. This effect occures here due to the Logistic model's steeply right 
+leaning yeild curve interacting with the lag in selectivity upon the sudden 
+onset of fishing; this produces a shock that oscillates over the steepest 
+regions of the yeild curve. One may also observe these oscillations under the 
+Ricker model by exaggerating the $a_s$ lag as well as the steepness of the 
+Ricker curve. The BH model may also demonstrate these ocillations, in a 
+heavily lagged setting, by shocking the population over the steepest portion 
+of its yeild curve (a sudden release in fishing applied to a heavily fished 
+population at low equilibrium biomass). 
 
 %
-Notice under the extreme $a_s=10$ and $\kappa=0.1$ setting, biomass %the Ricker and Logistic models 
-comes into equilibrium at $B_{MSY}$ as oscillating curves. This effect is most 
-noticable in the Logistic model here due to its steeply right leaning yeild curve 
-interacting with the large lag in selectivity as the sudden onset of fishing 
-produces a shock that oscillates over the steepest regions of the yeild curve. 
-One may exagerate the oscillations of a BH model similarly, in this heavily lagged setting, by 
-shocking the population over the steepest portion of its yeild curve (a sudden 
-release in fishing applied to a heavily fished population at low equilibrium biomass). 
-
+\begin{wrapfigure}{r}{0.50\textwidth}
+\vspace{-1.5cm}
+\includegraphics[width=0.49\textwidth]{../ddBias/rpTriptic.png}
+\vspace{-0.75cm}
+\caption{Restricted RP-space under each recruitment models, 
+%The dotted lines show the RP-space of each recruitment model
+with each growth curve.}\label{rpTriptic}
+\end{wrapfigure}
 %
-\begin{figure}[h!]
-\includegraphics[width=\textwidth]{../ddBias/rpTriptic.png}
-\caption{
-Biomass dynamics of BH ($left$), Ricker ($center$), and Logistic ($right$)
-delay differential models in the low contrast simulation setting. In all cases
-$\alpha=1.2$ and $\beta$ is chosen so that each model shares the same
-$B_{MSY}$ within each given $\gamma$.
-}\label{delayTriptic}
-\end{figure}
+Figure (\ref{rpTriptic}) shows the range of RPs that can be modeled with each 
+of the BH, Ricker, and Logistic recruitments over the spectrum of 
+individual-growth/maturitymodels simulated here. Notice that the more dramatic 
+the growth, the further the RP curve lies from the simple production model, 
+but each recruitment model reacts differently under each of the given growth 
+parameters. The Ricker and BH RP-spaces are qualitatively similar in shape 
+with more dramatic growth settings decreasing $\frac{B_{MSY}}{B_0}$ relative to the 
+simple production model setting. The Logistic model on the other hand increases 
+$\frac{B_{MSY}}{B_0}$ relative to the simple production model setting as growth 
+parameters become more dramatic. It is also worth noting that the Ricker model's 
+RPs are much less influenced by growth parameters as compared with that of the BH or Logistic model. 
 
-
-\begin{itemize}
-\item RP curve triptic (BH, Ricker, Logistic) each at the three examples
-\end{itemize}
+%The Logistic model on the other hand ct some what similarly
+%\begin{itemize}
+%\item RP curve triptic (BH, Ricker, Logistic) each at the three examples
+%\end{itemize}
 
 %and steeply increasing recruitment for large biomass 
 %populations interacting with the shock of the onset of fishing from the initially 
@@ -996,6 +1028,8 @@ $B_{MSY}$ within each given $\gamma$.
 
 %opposing slow indivdual growth represents 
 
+%
+\clearpage
 %
 \subsection{Simple Production Model Limit}
 
@@ -1005,6 +1039,14 @@ $B_{MSY}$ within each given $\gamma$.
 \includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N300AS0.1K10.png}
 \caption{}
 \end{figure}
+
+\begin{itemize}
+\item Reiterate from simple case
+\end{itemize}
+
+%
+\clearpage
+\subsection{Moderate Growth}
 
 %
 \clearpage
@@ -1020,6 +1062,8 @@ $B_{MSY}$ within each given $\gamma$.
 %
 \clearpage
 \subsection{Ocillatory Growth Influence}
+
+{\color{red} maybe an appendix}
 
 %
 \begin{figure}[h!]
