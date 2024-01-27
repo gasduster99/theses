@@ -181,8 +181,8 @@ aMin = M*(M+kappa)/kappa/WW/(1+M*ww/kappa/WW)
 #place = "./modsDDExpT45N300AS0.1K10/"; rv=F; 		#zooid1
 #place = "./modsDDExpT45N300A0-1AS0.1K0.1N28/"; rv=T; 	#zooid2
 ##then do this
-#place = "./modsDDExpT45N150A0-1AS4K0.2/"; rv=F; 	#zooid3
-place = "./modsDDExpT45N150A0-1AS4K0.2/"; rv=T; 	#zooid4
+place = "./modsDDExpT45N150A0-1AS4K0.2N28/"; rv=F; 	#zooid3
+#place = "./modsDDExpT45N150A0-1AS4K0.2N28/"; rv=T; 	#zooid4
 
 odeMethod = "lsode" #"radau" #
 
