@@ -1059,20 +1059,25 @@ $Right:$ Low contrast simulation.
 %%Just as seen in Chapter (\ref{schnuteChapter}), Figure (\ref{prodLimit}, $left$)
 %how RP mapping
 
-
-Again under the high contrast setting, Figure (\ref{prodLimit}, $left$) shows 
-how the BH model induces bias in both RPs, in accordance with the 
-$\frac{B^*}{\bar B(0)}=\frac{1}{F^*/M+2}$ RP-set, so as to produce a nearly 
+%Again under
+Indeed in the high contrast setting, Figure (\ref{prodLimit}, $left$) shows 
+how the BH model induces the same pattern of bias as seen in Chapter 
+(\ref{schnuteChapter}). There is bias in both RPs (in accordance with the 
+$\frac{B^*}{\bar B(0)}=\frac{1}{F^*/M+2}$ RP-set) so as to produce a nearly 
 minimal distance mapping of RPs onto the constrained BH set of RPs. 
 %\subsubsection{low}
-Similarly in the low contrast setting, Figure (\ref{prodLimit}, $right$) shows 
-how two regiems of inference are present. Firstly, there is a region of 
-relatively small RP model misspecification where the minimal distance mapping 
+Similarly, in the low contrast setting, Figure (\ref{prodLimit}, $right$) again 
+shows the same two regiems pattern of RP inference. Firstly, there is a region of 
+relatively small model misspecification where the minimal distance mapping 
 is preserved. Secondly, as model misspecification becomes greater (around the 
 Ricker set) $\frac{F^*}{M}$ begins to be sharply underestimated. Above this 
 break point in RP estimation inference appears to be driven to the trivial RP 
 $\frac{F^*}{M}=0$, $\frac{B^*}{\bar B(0)}=0.5$) that is shared in common 
 amoung all of the two-parameter models described here.
+
+%
+These results merely confirm that the theoretical limiting dynamics do indeed 
+replicate expected RP inference patterns as previously observed in Chapter (\ref{schnuteChapter}).
     
 %mildly
 %misspecified area around the BH set produces mappings onto the BH set which
@@ -1099,16 +1104,43 @@ amoung all of the two-parameter models described here.
 %\end{itemize}
 
 %
-\clearpage
+%\clearpage
 \subsection{Moderate Growth}
 
 %
+Moving past verification of the simple production model, other values of $a_s$ 
+and $\kappa$ provide a probe into the effects individual growth dynamics may 
+have on RP inference. 
+%
+Individual growth is a multifaceted phenomena that is not easily reduced 
+to a single number, but for the purposes of this model $w(a_s)$ serves as a decent 
+proxy for the extent of the model dynamics that are due to individual growth. % displayed by the model. 
+%
+This follows from the intuition that individuals maturing at a smaller fraction 
+of $w_\infty$ demonstrate the dynamics of growth during an observable (to the model) %being fished (observable) 
+phase rather than growth occuring prior to selection. % by the fishery.
+
+%
+That said, $w(a_s)$ is not a one-to-one map of $\kappa$ and $a_s$.
+%
+A level curve of $w(a_s; \kappa)=c$ is attained by increasing the value of $a_s$ 
+and decreasing $\kappa$ corrispondingly, or vice versa.
+%
+The case where $a_s=4$ and $\kappa=0.2$ (resulting in $w(a_s)\approx0.63$) 
+respresents a plausibly biological example of moderate growth. 
+%
+Similar examples of the $w(a_s)=0.6$ level curve result in much larger lags 
+(discussed in Section (\ref{ocillation})) or larger $\kappa$'s which quickly 
+tend toward behaviors previously described in the simple production model 
+setting.
+
+%
 \begin{figure}[h!]
-\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDExpT45N150A0-1AS4K0.2.png}
-\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDFlatT45N150A0-1AS4K0.2N28.png}
+\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N150A0-1AS4K0.2.png} %directionalBiasDDExpT45N150A0-1AS4K0.2.png}
+\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS4K0.2N56.png} %directionalBiasDDFlatT45N150A0-1AS4K0.2N28.png}
 \caption{
 RP mapping of BH delay model fit to Schnute delay data under moderate growth ($a_s=4$ and $\kappa=0.2$). 
-$left:$ High contrast simulation.
+$Left:$ High contrast simulation.
 $Right:$ Low contrast simulation.
 }\label{prodLimit}
 \end{figure}
@@ -1119,14 +1151,14 @@ $Right:$ Low contrast simulation.
 
 %
 \begin{figure}[h!]
-\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84Edge.png}
 \includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1.png}
+\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84Edge.png}
 \caption{}
 \end{figure}
 
 %
 \clearpage
-\subsection{Ocillatory Growth Influence}
+\subsection{Ocillatory Growth Influence\label{ocillation}}
 
 {\color{red} maybe an appendix}
 
