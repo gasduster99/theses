@@ -180,11 +180,11 @@ aMin = M*(M+kappa)/kappa/WW/(1+M*ww/kappa/WW)
 ##place = "./modsDDExpT45N300AS1K1N28/"    	#zooid-1  #"./modsDDExpT45N150A-0.5AS2/"   
 
 ##maybe I'll fit this later
-place = "./modsDDFlatT45N150A0-1AS4K0.2N56/"; rv=F;   #zooid1
+#place = "./modsDDFlatT45N150A0-1AS4K0.2N56/"; rv=F;   #zooid1
 #place = "./modsDDFlatT45N150A0-1AS4K0.2N56/"; rv=T;   #zooid2
 ##most interesting start here
-#place = "./modsDDFlatT45N150A0-1AS2K0.1N84Edge/"; rv=F;    #zooid3
-#place = "./modsDDFlatT45N150A0-1AS2K0.1N84Edge/"; rv=T;    #zooid4
+place = "./modsDDFlatT45N150A0-1AS4K0.2N94/"; rv=F;    #zooid3
+#place = "./modsDDFlatT45N150A0-1AS4K0.2N94/"; rv=T;    #zooid4
 
 odeMethod = "lsode" #"radau" #
 
@@ -199,7 +199,7 @@ job22 = seq(length(datFiles), floor(length(datFiles)/2)+1)
 jobsh = c(rbind(job12, job22))
 
 #
-registerDoParallel(46)
+registerDoParallel(46)#31)#46)
 opts = list(preschedule=F)
 foreach(i=rev(jobsh)*rv + jobsh*(1-rv), .options.multicore = opts) %dopar% {
 #foreach(i=sort(1:length(datFiles), decreasing=rv), .options.multicore = opts) %dopar% {
