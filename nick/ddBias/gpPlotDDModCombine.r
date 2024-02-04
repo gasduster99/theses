@@ -333,18 +333,18 @@ getData = function(dir, xiRange, zetaRange){
 ##failed
 #mod = "ExpT45N300AS10K0.1"
 #WORKED
-#mod = "ExpT45N300A0-1AS10K0.1"
+#mod = "ExpT45N300A0-1AS10K0.1"; fv=1
 #GOOD START: add a bit of refinement
 #mod = "ExpT45N150A0-1AS2K0.1"
 #failed
 #mod = "ExpT45N300A0-1AS10K0.1N28"
 ##WORKED 
-#mod = "ExpT45N300AS0.1K10"
+#mod = "ExpT45N300AS0.1K10"; fv=1
 #
 #mod = "ExpT45N300A0-1AS0.1K0.1"; fv=10
 #
 #mod = "ExpT45N150A0-1AS4K0.2"; fv=1
-mod = "ExpT45N150A0-1AS4K0.2N28"; fv=1
+#mod = "ExpT45N150A0-1AS4K0.2N28"; fv=1
 
 
 ##failed Fmsy overestimated
@@ -357,7 +357,7 @@ mod = "ExpT45N150A0-1AS4K0.2N28"; fv=1
 #GOOD START: add refinement
 #mod = "FlatT45N150A0-1AS0.1K10"
 #mod = "FlatT45N150A0-1AS0.1K10N28"
-#mod = "FlatT45N150A0-1AS0.1K10N56"
+#mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100
 #GOOD START: add refinment
 #mod = "FlatT45N150A0-1AS2K0.1"
 #mod = "FlatT45N150A0-1AS2K0.1N28"
@@ -370,7 +370,8 @@ mod = "ExpT45N150A0-1AS4K0.2N28"; fv=1
 #
 #mod = "FlatT45N150A0-1AS4K0.2"; fv=1
 #mod = "FlatT45N150A0-1AS4K0.2N28"; fv=10
-#mod = "FlatT45N150A0-1AS4K0.2N56"; fv=1
+#mod = "FlatT45N150A0-1AS4K0.2N56"; fv=100
+mod = "FlatT45N150A0-1AS4K0.2N94"; fv=100
 
 #
 place = sprintf("./modsDD%s/", mod)
@@ -412,6 +413,8 @@ outlV = getlV(fOne)
 Dall = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
 D = Dall[Dall$lFV>0 & Dall$lB0V>0,]
 D = D[complete.cases(D),]
+#who = (1/(D$xiHat+2)+0.001)>D$zetaHat & D$zetaHat>(1/(D$xiHat+2)-0.001) 
+#D = D[!who,]
 #
 D$lFV = D$lFV*fv #[D$lF>-3] = D$lFV[D$lF>-3]*10
 #D = D[c(rep(T, 1), F),]
@@ -747,6 +750,124 @@ show = seq(1, length(eucCols), length.out=20)
 #        xpd = NA
 #)
 #points(D$xiSeed, D$zetaSeed)
+dev.off()
+
+#cluster
+
+#
+bh = function(x){getZetaBH(x, M, kappa, WW, aS, a0)}
+
+#
+eg = expand.grid(xiStar, zetaStar)
+ms = apply(eg, 1, function(r){ stats::optimize(function(x){ sqrt((r[1]-x)^2 + (r[2]-bh(x))^2) }, c(0,4))$objective })
+ms = matrix(ms, nrow=length(xiStar), ncol=length(zetaStar))
+
+#
+cols = brewer.pal(5, 'Set1')
+
+#
+library(GauPro)
+gp = GauPro(D$xiHat, D$xiSeed)
+gpThresh = ga( type='real-valued',
+        fitness=function(x){ -gp$predict(x) },
+        lower=0, upper=1, optim=T
+)@solution[1] 
+#optim(0.3, gp$predict, method="L-BFGS-B")$par  #stats::optimize(gp$predict, c(0,3.5))$minimum  #0.4175116 
+gpse = function(x) gp$predict(x)+2*gp$predict(x, se=T)$se
+#stats::optimize(gpse, c(0,3.5))$minimum
+metaMean = na.omit(rowMeans(xiHat, na.rm=T))[1]
+metaSE = sqrt(na.omit(rowVars(xiHat, na.rm=T))[1])
+metaThresh = metaMean-2*metaSE
+#metaThresh = na.omit(rowMeans(xiHat, na.rm=T))[1]
+#zbih
+
+#
+xiThresh = 0.5
+zetaThresh = 0.4
+
+#
+png(sprintf("threshmetaMeanDD%s.png", mod))
+image(xiStar, zetaStar, xiHat>metaMean, #0.25,
+        col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("BH Inference Failure"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+curve(bh(x), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+dev.off()
+#
+png(sprintf("threshmetaDD%s.png", mod))
+image(xiStar, zetaStar, xiHat>metaThresh, #0.25,
+        col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("BH Inference Failure"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+curve(bh(x), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+dev.off()
+
+
+#
+png(sprintf("threshgpDD%s.png", mod))
+image(xiStar, zetaStar, xiHat>gpThresh, #0.25,
+        col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("BH Inference Failure"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+curve(bh(x), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+dev.off()
+
+#
+png(sprintf("threshxiDD%s.png", mod))
+image(xiStar, zetaStar, xiHat>xiThresh, #0.25,
+        col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("BH Inference Failure"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+curve(bh(x), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+dev.off()
+
+#
+png(sprintf("threshzetaDD%s.png", mod))
+image(xiStar, zetaStar, zbh<=zetaThresh, #0.445,
+        col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("BH Inference Failure"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+curve(bh(x), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+dev.off()
+
+# 
+png(sprintf('pairs%s.png', mod))
+pairs(D[,c('xiSeed', 'zetaSeed', 'xiHat', 'zetaHat')])
 dev.off()
 
 #K bias
