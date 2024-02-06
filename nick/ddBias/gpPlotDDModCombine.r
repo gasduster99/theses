@@ -10,6 +10,7 @@ library(graphics)
 library(parallel)
 library(latex2exp)
 library(rootSolve)
+library(matrixStats)
 library(plot.matrix)
 library(RColorBrewer)
 library(scatterplot3d)
@@ -357,13 +358,13 @@ getData = function(dir, xiRange, zetaRange){
 #GOOD START: add refinement
 #mod = "FlatT45N150A0-1AS0.1K10"
 #mod = "FlatT45N150A0-1AS0.1K10N28"
-#mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100
+mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100
 #GOOD START: add refinment
 #mod = "FlatT45N150A0-1AS2K0.1"
 #mod = "FlatT45N150A0-1AS2K0.1N28"
-#mod = "FlatT45N150A0-1AS2K0.1N56"
+#mod = "FlatT45N150A0-1AS2K0.1N56"; fv=100
 #mod = "FlatT45N150A0-1AS2K0.1N84"; fv=100
-#mod = "FlatT45N150A0-1AS2K0.1N84Edge"; fv=100
+#mod = "FlatT45N150A0-1AS2K0.1N84Edge"; fv=200
 #
 #mod = "FlatT45N300A0-1AS0.1K0.1"; fv=100
 #mod = "FlatT45N300A0-1AS0.1K0.1N28"; fv=100
@@ -371,7 +372,7 @@ getData = function(dir, xiRange, zetaRange){
 #mod = "FlatT45N150A0-1AS4K0.2"; fv=1
 #mod = "FlatT45N150A0-1AS4K0.2N28"; fv=10
 #mod = "FlatT45N150A0-1AS4K0.2N56"; fv=100
-mod = "FlatT45N150A0-1AS4K0.2N94"; fv=100
+#mod = "FlatT45N150A0-1AS4K0.2N94"; fv=100
 
 #
 place = sprintf("./modsDD%s/", mod)
@@ -776,15 +777,51 @@ gpThresh = ga( type='real-valued',
 gpse = function(x) gp$predict(x)+2*gp$predict(x, se=T)$se
 #stats::optimize(gpse, c(0,3.5))$minimum
 metaMean = na.omit(rowMeans(xiHat, na.rm=T))[1]
-metaSE = sqrt(na.omit(rowVars(xiHat, na.rm=T))[1])
-metaThresh = metaMean-2*metaSE
+metaMedian = na.omit(rowMedians(xiHat, na.rm=T))[1]
+#
+lFXSSmall = lFXStar[lFXStar[,2]==min(lFXStar[,2]),]
+seTry = sqrt(gpPredictVar(lFXSSmall, lFXSSmall[,2:3], tg=0, lFFit))
+xiHatLower = exp(lFPred[1,]-1.96*seTry)/M
+metaLower = mean(xiHatLower, na.rm=T)
+metaLowerMedian = median(xiHatLower, na.rm=T)
+#metaLower = (exp(lFPred[1,]-1.96*seTry)/M)()
+#var = SIGStar%*%strongInv(SIG)%*%
+#maternCor(anisoNorm(axeStar, axeStar, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] -
+#       ( maternCor(anisoNorm(axeStar, axes, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] ) %*%
+#        strongInv( maternCor(anisoNorm(axes, axes, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] ) %*%
+#       ( maternCor(anisoNorm(axes, axeStar, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] ) + 
+#       Tg
+
+#metaSE = sqrt(na.omit(rowVars(xiHat, na.rm=T))[1])
+#metaThresh = metaMean-2*metaSE
 #metaThresh = na.omit(rowMeans(xiHat, na.rm=T))[1]
 #zbih
 
 #
-xiThresh = 0.5
-zetaThresh = 0.4
+zetaThresh0.5 = bh(0.5)
+diffs0.5 = abs(zetaStar-zetaThresh0.5)
+zetaThresh0.25 = bh(0.25)
+diffs = abs(zetaStar-zetaThresh0.25)
+metaLowerZetaThresh = xiHatLower[diffs==min(diffs)] #xiiHatLower[ zetaStar[diffs==min(diffs)] ]
+metaLowerZeta1SEThresh = (exp(lFPred[1,]-1*seTry)/M)[diffs==min(diffs)]
+metaLowerZetaThresh0.5 = (exp(lFPred[1,]-1.96*seTry)/M)[diffs0.5==min(diffs0.5)]
+metaLowerZeta1SEThresh0.5 = (exp(lFPred[1,]-1*seTry)/M)[diffs0.5==min(diffs0.5)]
 
+#
+png(sprintf("threshmetaMedianDD%s.png", mod))
+image(xiStar, zetaStar, xiHat>metaMedian, #0.25,
+        col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("BH Inference Failure"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+curve(bh(x), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+dev.off()
 #
 png(sprintf("threshmetaMeanDD%s.png", mod))
 image(xiStar, zetaStar, xiHat>metaMean, #0.25,
@@ -801,8 +838,8 @@ curve(bh(x), from=0, to=4, lwd=3, add=T)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 dev.off()
 #
-png(sprintf("threshmetaDD%s.png", mod))
-image(xiStar, zetaStar, xiHat>metaThresh, #0.25,
+png(sprintf("threshmetaLowerDD%s.png", mod))
+image(xiStar, zetaStar, xiHat>metaLower, #0.25,
         col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
         xlab = TeX("$F_{MSY}/M$"),
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
@@ -815,6 +852,22 @@ image(xiStar, zetaStar, xiHat>metaThresh, #0.25,
 curve(bh(x), from=0, to=4, lwd=3, add=T)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 dev.off()
+#
+png(sprintf("threshmetaLowerMedianDD%s.png", mod))
+image(xiStar, zetaStar, xiHat>metaLower, #0.25,
+        col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("BH Inference Failure"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+curve(bh(x), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+dev.off()
+
 
 
 #
@@ -833,9 +886,25 @@ curve(bh(x), from=0, to=4, lwd=3, add=T)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 dev.off()
 
+##
+#png(sprintf("threshxi0.5DD%s.png", mod))
+#image(xiStar, zetaStar, xiHat>xiThresh0.5, #0.25,
+#        col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+#        xlab = TeX("$F_{MSY}/M$"),
+#        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+#        main = TeX("BH Inference Failure"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+#        ylim = c(zetaBot, zetaTop),
+#        xlim = c(xiBot, xiTop),
+#        cex.lab = 1.5,
+#        cex.main= 1.5
+#)
+#curve(bh(x), from=0, to=4, lwd=3, add=T)
+#points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+#dev.off()
+
 #
-png(sprintf("threshxiDD%s.png", mod))
-image(xiStar, zetaStar, xiHat>xiThresh, #0.25,
+png(sprintf("metaLowerZetaThreshDD%s.png", mod))
+image(xiStar, zetaStar, xiHat>metaLowerZetaThresh, #zbh<=zetaThresh, #0.445,
         col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
         xlab = TeX("$F_{MSY}/M$"),
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
@@ -850,8 +919,40 @@ points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 dev.off()
 
 #
-png(sprintf("threshzetaDD%s.png", mod))
-image(xiStar, zetaStar, zbh<=zetaThresh, #0.445,
+png(sprintf("metaLowerZetaThresh0.5DD%s.png", mod))
+image(xiStar, zetaStar, xiHat>metaLowerZetaThresh0.5, #zbh<=zetaThresh, #0.445,
+        col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("BH Inference Failure"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+curve(bh(x), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+dev.off()
+
+#
+png(sprintf("metaLowerZeta1SEThreshDD%s.png", mod))
+image(xiStar, zetaStar, xiHat>metaLowerZeta1SEThresh, #zbh<=zetaThresh, #0.445,
+        col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("BH Inference Failure"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+curve(bh(x), from=0, to=4, lwd=3, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+dev.off()
+
+#
+png(sprintf("metaLowerZeta1SEThresh0.5DD%s.png", mod))
+image(xiStar, zetaStar, xiHat>metaLowerZeta1SEThresh0.5, #zbh<=zetaThresh, #0.445,
         col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
         xlab = TeX("$F_{MSY}/M$"),
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',

@@ -241,6 +241,36 @@ gpPredict = function(XStar, axeStar, gpFit, asMat=T){
 	return( out )
 }
 
+#
+gpPredictVar = function(XStar, axeStar, gpFit, tg=Tg, asMat=T){
+        #
+        XStar = as.matrix(XStar)
+        #
+	SIGStar = powExpCor(rectDist(as.matrix(axeStar[,1]), as.matrix(axes[,1])), gpFit$psi['l1'])
+        SIGStar = SIGStar * powExpCor(rectDist(as.matrix(axeStar[,2]), as.matrix(axes[,2])), gpFit$psi['l2'])
+        #
+	SIGStarStar = powExpCor(rectDist(as.matrix(axeStar[,1]), as.matrix(axeStar[,1])), gpFit$psi['l1'])
+	SIGStarStar = SIGStarStar*powExpCor(rectDist(as.matrix(axeStar[,2]), as.matrix(axeStar[,2])), gpFit$psi['l2'])
+	#
+        SIG = powExpCor(dMat1, gpFit$psi['l1'])*powExpCor(dMat2, gpFit$psi['l2'])
+        #
+        out = SIGStarStar + SIGStar%*%strongInv(SIG)%*%t(SIGStar) + tg
+        #
+        if( asMat ){
+                out = matrix(out, nrow=length(unique(axeStar[,1])), ncol=length(unique(axeStar[,2])))
+        }
+        #
+        return( out )
+}
+
+#var = SIGStar%*%strongInv(SIG)%*%
+#maternCor(anisoNorm(axeStar, axeStar, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] -
+#       ( maternCor(anisoNorm(axeStar, axes, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] ) %*%
+#        strongInv( maternCor(anisoNorm(axes, axes, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] ) %*%
+#       ( maternCor(anisoNorm(axes, axeStar, gpFit$psi['l1'], gpFit$psi['l2'], gpFit$psi['th']), gpFit$psi['nu'])*gpFit$psi['s2'] ) + 
+#       Tg
+
+
 ##
 ##Test
 ##
