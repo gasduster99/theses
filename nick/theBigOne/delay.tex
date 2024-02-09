@@ -586,17 +586,19 @@ $\frac{1}{x+2}$ is plotted in black for reference.
 %
 In the simple production model the BH constrained RPs are fixed to $\frac{1}{x+2}$.
 In the delay differential modeling setting the constrained BH RP set is 
-complicated the growth parameters $a_s$ and $\kappa$.
+complicated by the growth parameters $a_s$ and $\kappa$.
 Under BH recruitment these parameters of the delay model slightly %the growth parameters $a_s$ and $\kappa$  
 influence this relationship as seen in Figure (\ref{rpSpace}). That said, 
 the influence of $a_s$ and $\kappa$ on RPs is still largly limited to a 
 confined region of reference point space which resembles the $\frac{1}{x+2}$ 
 form. In fact the confined region of RPs is bounded above by $\frac{1}{x+2}$. %bounding the region above by $\frac{1}{x+2}$.
-In Figure (\ref{rpSpace}) notice that for high values of $\kappa$ and small 
-values of $a_s$ (red region) the BH RP space converges to $\frac{1}{x+2}$ as 
-derived in the simple production model setting. The opposite limit with low 
-values of $\kappa$ and high values $a_s$ (blue region) depresses RPs away from 
-$\frac{1}{x+2}$. 
+In Figure (\ref{rpSpace}) notice that for values of $a_s$ and $\kappa$ that 
+result in high $w(a_s)$ (high values of $\kappa$ and small values of $a_s$ seen 
+in red) the BH RP space converges to $\frac{1}{x+2}$ as derived in the simple 
+production model setting. In opposition to the simple production model limit, 
+when $w(a_s)$ is low (as seen in the more blue region of Figure(\ref{rpSpace})), RPs 
+decrease as the influence of growth in the dynamics increases. 
+%The opposite limit with low values of $\kappa$ and high values $a_s$ (blue region) depresses RPs away from $\frac{1}{x+2}$. 
 
 %
 \subsection{Delay Differential Integration}
@@ -1189,24 +1191,42 @@ just above 0.4.
 %\end{itemize}
 
 %\clearpage
-\subsection{Dramatic Growth Dynamics}
+\subsection{Emphatic Growth Dynamics}
 
 %
-The dramatic growth setting fixes $a_s=2$ and $\kappa=0.1$, to simulate a 
-species that grows quite slowly and yet matures into the reproducing  
-stock at a relatively early age. This combination has the effect of 
-exaggerating the components of the model dynamics which are related to 
-individual growth since individuals recruit at a small size and slowly grow
-over the extent of the modeled period. Furthremore by analysis of RPs this 
-simulated setting produces that largest deviation of RPs from that of the 
-simple (no growth) production model, as seen in Figure (\ref{rpTriptic}).
+The emphatic growth setting simulated here fixes $a_s=2$ and $\kappa=0.1$, to 
+simulate a species that grows quite slowly and yet matures into the 
+reproducing  stock at a relatively early age. This combination has the effect 
+of exaggerating the components of the model dynamics which are related to 
+individual growth since individuals recruit at a small size and slowly 
+grow over the extent of the modeled period. 
 
 %
-{\color{red} another paragraph}
+The slow growth of these dynamics oppose the simple production model setting 
+in the sense that they move the constrained RP set a large distance (largest 
+amoung the spectrum of decreasing $w(a_s)$ populations simulated here) 
+away from the $\frac{1}{x+2}$ limiting case. It is interesting to note that 
+this is true for all of the two parameter constrained constrained RP sets as 
+seen in Figure (\ref{rpTriptic}). 
 
+%can also be seen in the effect they 
+%have on RPs. Reducing 
+%Furthremore, by observation of the 
+%constrained RP sets in Figure (\ref{rpTriptic}), this simulated setting 
+%produces a large deviation from the simple (no growth) production model;
+%emphasizes the effect of growth on RPs.
+%% of the constrained RP set under the 
+%%simple (no growth) production model, as seen in Figure (\ref{rpTriptic}).
+%
+%{\color{red} another paragraph}
 
 %
-\clearpage
+Despite the emphaticly growth driven dynamics in this setting, the RP mappings 
+seen in Figure (\ref{dramaticGrowth}) obviously bare a huge resemblance to the 
+previously seen RP mappings. Again the biggest differences in the RP mappings 
+occur around the location of the break point where the low contrast model 
+begins to dramatically underestimate $\frac{F^*}{M}$.
+%\clearpage
 \begin{figure}[h!]
 \includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1.png}
 \includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84Edge.png}
@@ -1216,12 +1236,6 @@ $Left:$ High contrast simulation.
 $Right:$ Low contrast simulation.
 }\label{dramaticGrowth}
 \end{figure}
-
-%
-The RP mappings seen in Figure (\ref{dramaticGrowth}) obviously bare a huge 
-resemblance to the previously seen RP mappings. Again the biggest differences 
-in the RP mappings occur around the location of the break point where the low 
-contrast model begins to dramatically underestimate $\frac{F^*}{M}$.
 %
 In this low contrast setting the break point in RP estimation occures around values of 
 $\frac{B^*}{\bar B(0)}$ well below 0.4 with the behaviour extending as far down as 
@@ -1253,14 +1267,14 @@ these models.
 %to the simple production model where the break point occurs at $\frac{B^*}{\bar B(0)}$
 %just above 0.4.
 
-\begin{itemize}
-\item introduce dramatic growth setting.
-
-\item extremely similar to the production model limit.
-\item contrast is identical
-\item no contrast demonstrates the same general pattern, execept that the break point moves down so that less model misspecification is tolerated.
-\item break well below zeta=0.4 as far down as 0.3
-\end{itemize}
+%\begin{itemize}
+%\item introduce dramatic growth setting.
+%
+%\item extremely similar to the production model limit.
+%\item contrast is identical
+%\item no contrast demonstrates the same general pattern, execept that the break point moves down so that less model misspecification is tolerated.
+%\item break well below zeta=0.4 as far down as 0.3
+%\end{itemize}
 
 \subsection{Clustering?}
 %
