@@ -491,6 +491,12 @@ setting.
 %
 
 %
+%\subsection{The Yeild Curve \& The Rate of Replacement}
+
+%
+
+
+%
 \subsection{Reference Points}
 
 %
@@ -819,7 +825,7 @@ point to catch, and LHS design, and Metamodel.
 }
 
 %
-\subsection{Parmeter Estimation}
+\subsection{Parameter Estimation}
 %
 \begin{itemize}
 	%\item layout likelihood setup
@@ -926,6 +932,12 @@ proportionality constant and residual variation of the numbers index respectivel
 point to catch, and LHS design, and Metamodel.
 }
 
+%
+\subsection{Clustering Catastrophic Model Failure}
+
+%
+When 
+
 %\clearpage
 %\bibliographystyle{apacite}
 %%\bibliography{./ageStructure.bib}
@@ -984,18 +996,21 @@ shown growth configurations.
 %The shortened selectivity lag allows oscillatory individual-growth/maturity 
 %dynamics to quickly equilibrate towards a more purely 
 %recruitment driven dynamics more quickly than the $a_s=10$ example.
-%
+%% right leaning yeild curve
 Notice under the most dramatic growth ($a_s=2$ and $\kappa=0.1$) setting, biomass 
 of the Logistic model comes into equilibrium at $B_{MSY}$ as an oscillating 
-curve. This effect occures here due to the Logistic model's steeply right 
-leaning yeild curve interacting with the lag in selectivity upon the sudden 
-onset of fishing; this produces a shock that oscillates over the steepest 
-regions of the yeild curve. One may also observe these oscillations under the 
-Ricker model by exaggerating the $a_s$ lag as well as the steepness of the 
-Ricker curve. The BH model may also demonstrate these ocillations, in a 
-heavily lagged setting, by shocking the population over the steepest portion 
-of its yeild curve (a sudden release in fishing applied to a heavily fished 
-population at low equilibrium biomass). 
+curve. This effect occures here due to the Logistic model's relatively high $\frac{B^*}{B_0}$
+%steep yeild curve for high biomasses 
+interacting with the lag in selectivity upon the sudden onset of fishing; this 
+produces a shock that pushes biomass past $B_{MSY}$ setting up an oscillatory
+pattern of recruitment.  
+%over the steepest regions of the yeild curve. 
+One may also observe these oscillations under the Ricker model by exaggerating 
+the $a_s$ lag as well as the steepness of the Ricker curve. The BH model may 
+also demonstrate these ocillations, in a heavily lagged setting, by shocking 
+the population past its relatively low $B_{MSY}$ as a sudden release in fishing applied to a 
+%over the steepest portion of its yeild curve (a sudden release 
+heavily fished population at low equilibrium biomass. 
 
 %
 \begin{wrapfigure}{r}{0.50\textwidth}
@@ -1283,39 +1298,286 @@ these models.
 \item compare clustering thresholds on one figure
 \end{itemize}
 
+%\clearpage
+\begin{wrapfigure}{r}{0.50\textwidth}
+\vspace{-0.75cm}
+\includegraphics[width=0.49\textwidth]{../ddBias/metaLowerZetaLinesDDFlatT45N150A0-1AS2K0.1N84Edge.png}
+\vspace{-0.95cm}
+\caption{BH RP estimation failure threasholds with increasingly emphatic individual growth dynamics.
+}\label{breaks}
+\end{wrapfigure}
+
+
 %
 \clearpage
 \subsection{Ocillatory Growth Influence\label{ocillation}}
 
-{\color{red} maybe an appendix}
+%
+While the above patterns of RP estimation follow for biological regiems 
+of the $w(a_s; \kappa)=c$ level curve, as $a_s$ increases an ocillatory 
+regiem also exists within these dynamics. While RP estimation behaves 
+similarly in this ocillatory regiem there are unique features in this 
+setting that are not present in the more biological regiems. Below 
+consider the ocillatory example of a logistic delay model with $a_s=10$ fixing 
+fishing at $F_{MSY}$. 
+%Moderate w(a_s)\approx0.6
+
+%{\color{red} maybe an appendix}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{../ddBias/shockBiomassYeild.png}
+\vspace{-0.5cm}
+\caption{$top~left:$ Logistic biomass over 30 epochs of time with $a_s=10$. 
+Green, red, and blue colors indicate three 10 epoch long windows of biomass. 
+v indicates local biomass ocillation maxima. 
+$top~right:$ Yield plotted over the range of biomasses shown. 
+The biomass range of each 10 epoch window is shown in the vertical colored lines.
+$bottom~left:$ Yield plotted through time. Colors correspond to the 
+lagged biomass region that results in the evaluated yield. The black horizontal 
+line demonstrates the pre-model assumption of biomass fixed at $B_0$. 
+}
+\label{shock}
+\end{figure}
 
 %
-\begin{figure}[h!]
+Figure (\ref{shock}) demonstrates the mechanism of how these oscillatory 
+dynamics form. Oscillatory dynamics appear when fishing pushes biomass past 
+$B_{MSY}$ within the lagged $a_s$ window of recruitment. The delay model assumes that 
+biomass is fixed in equilibrium at $B_0$, for $t\le0$. Therefore in the green region of 
+the biomass series, $0<t<10$, the population recruits at $R(B0)$. Figure (\ref{shock}) 
+shows that in this initial period $R(B0)$ results in zero yield for that 
+period, and biomass falls as a result. 
+
+%
+Once $t$ exceeds $a_s$, the lagged recruitment refers to the integrated 
+biomass series to evaltuate recruitment based on $R(B_{t-a_s})$. The red 
+region of the biomass series is the result of yield over the initial 
+green biomasses. Figure (\ref{shock}) shows that the yield over the green biomass 
+series first increases, as biomass aproaches $B_{MSY}$ and then decreases as biomass 
+passes $B_{MSY}$. This creates the local maximum in the red biomass series.
+
+%
+Furthermore, the blue region of the biomass series is then based on yield 
+over the red biomasses. Notice that since the red biomasses first increase and 
+then decrease, yield increases as the red biomass increases toward 
+$B_{MSY}$, and yield subsequently decreases following the descending leg 
+of the red biomass series. %in the ocillation of the red biomass series. 
+This yield pattern carries the ocillation of the red biomass region 
+forward into the blue region. 
+
+%
+This process of biomass ocillation carries on in this manner nonetheless 
+approaching equilibrium at $B_{MSY}$. Equilibrium is reached in an ocillatory 
+manner setoff by the green biomass series crossing over from above $B_{MSY}$ 
+to below it. The example shown in Figure (\ref{shock}) exemplifies the oscillatory 
+phenomena simulated here, but the mechanism that produces these oscillations may 
+occur with other forms of recruitment outside of logistic recruitment whenever 
+fishing cases biomass to cross over $B_{MSY}$ within the lagged recruitment window.  
+
+%
+\subsubsection{RP Estimation}
+
+%
+Statistical inference in the oscillatory regiem can be challenging. Depending on 
+the parameters inferred, the likelihood can have multiple local modes which 
+require global optimization techniques to distiguish. Furthermore, parameter 
+estimation is more uncertain in this setting as the likelihood may confuse 
+oscillations with residual noise. 
+%This uncertainty extends to RP estimation, high contrast setting, $w\approx0.6$ $a_s=10$
+
+%
+Figure (\ref{ocillationArrow}) shows the BH RP mapping fixing $w(10;0.1)\approx0.6$ 
+in the high contrast simulation setting. This places the dynamics firmly in the 
+ocillatory regiem, but the 
+high %contrast setting provides significant information for inferring recruitment parameters.
+%
+%\clearpage
+\begin{wrapfigure}{r}{0.50\textwidth}
+\vspace{-0.75cm}
 \includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N300A0-1AS10K0.1.png}
-\caption{}
-\end{figure}
+\vspace{-0.95cm}
+\caption{RP mapping of BH delay model fit to high contrast Schnute delay data under ocillatory growth ($a_s=10$ and $\kappa=0.1$).
+}\label{ocillationArrow}
+\end{wrapfigure}
+%high 
+contrast setting provides significant information for inferring recruitment parameters.  
 
 %
-\begin{figure}[h!]
-\includegraphics[width=0.49\textwidth]{../ddBias/indexGridExpT45N300A0-1AS10K0.1.png}
-\caption{}
-\end{figure}
+Interestingly in this high contrast setting, a very similar two regiem pattern 
+of RP inference is observed as previously seen in low contrast settings. 
+That said the boundary between the regiems in this setting is much smoother 
+%DISCUSISON: due to more uncertain modes smoothly changing 
+and the location of the break between these regiems appears around higher values of 
+$\frac{B^*}{\bar B(0)}$. %of HIGHER values.
 
 %
-\begin{figure}[h!]
+\begin{wrapfigure}{r}{0.50\textwidth} 
+\vspace{-1cm}
+\centering
+\includegraphics[width=0.45\textwidth]{../ddBias/indexGridExpT45N300A0-1AS10K0.1.png}
+\vspace{-0.45cm}
+%\begin{tikzpicture}[overlay]
+%\node at (5,-0.5) {\includegraphics[width=0.49\textwidth]{../ddBias/indexGridKAExpT45N300A0-1AS10K0.1.png}};
+%\node[minimum size=7, inner sep=-2] at (5,-3.5){Time};
+%\node[minimum size=7, inner sep=-2, rotate=90] at (2,-0.5){Biomass};
+%}
+%\end{tikzpicture}
+\caption{Example BH fits ($red$) to Schnute data ($black$). Each example plot is arranged to mirror its location in RP space.
+%Higher $\frac{B^*}{\bar B(0)}$
+%is arranged higher veritically, and higher $\frac{F^*}{M}$ is arranged farther 
+%to the right horizontally so as to mirror the RP space domain. 
+}\label{bhGrid}
+\end{wrapfigure}
+
+%
+This higher $\frac{B^*}{\bar B(0)}$ break point, hovering around 0.5, is 
+consistent with the mechanism which induces ocillation. Starting the biomass 
+at $\bar B(0)$ in the ocillatory regiem, increased $\frac{B^*}{\bar B(0)}$ 
+will tend to exasterbate oscillatory behavior by increasing $B_{MSY}$ so that 
+biomass is more easily pushed past $B_{MSY}$ within the initial lagged as 
+window of recruitment. This produces more dramatic oscillations in the higher 
+$\frac{B^*}{\bar B(0)}$ region of RP space. 
+
+%\begin{itemize}
+%\item RP estimation is harder when ocilations are present
+%\item Ocillations may be confused with noise.
+%\item $w\approx0.6$ $a_s=10$
+%\item Here the high contrast simulation setting is shown.
+%\end{itemize}
+%
+
+%
+The fitted BH model does not produce significant ocillations because 
+under the BH model $\frac{B^*}{\bar B(0)}$ is constrained below 0.5 with the 
+majority of the simulation BH $\frac{B^*}{\bar B(0)}$ RPs falling between 0.4 and 0.2. % in the simulated RP domain. 
+Therefore, the fitted BH model will not tend to push biomass past $B_{MSY}$ and 
+thus is incapable of modeling oscillatory biomass series. Figure (\ref{bhGrid}) 
+shows a subset of example BH fits, which demonstrats the limited oscillatory 
+capacity of the BH fits. Furthermore, since the BH model has a limited 
+oscillatory capacity in this setting, the BH model tends to explain the 
+oscillations with artificailly high residual variation and artifically low 
+steepness focusing on overly simplistic trends in the data.
+ 
+%\begin{itemize}
+%\item RP inference breaks in a simplifing manner as previously described
+%\item breaks for high $\frac{B_{MSY}}{B_0}$, max model misspecification, also more ocilation due to mechanism.
+%\item modeling with BH forces a low $\frac{B_{MSY}}{B_0}$ which cannot produce ocilations over the simualated biomass range.
+%\item Thus when oscilations become a dominant effect the BH model focuses on fitting the overall trend with low steepness  
+%\end{itemize}
+
+
+
+
+%%PROD
+%Indeed in the high contrast setting, Figure (3.6, left) shows how the BH model induces
+%1193 the same pattern of bias as seen in Chapter (2). There is bias in both RPs (in accordance
+%1194 with the B∗ = 1 RP-set) so as to produce a nearly minimal distance mapping of B ̄ (0) F ∗ /M +2
+%1195 RPs onto the constrained BH set of RPs. Similarly, in the low contrast setting, Figure (3.6,
+%1196 right) again shows the same two regiems pattern of RP inference. 
+%
+%Firstly, there is a region
+%1197 of relatively small model misspecification where the minimal distance mapping is preserved.
+%1198 Secondly, as model misspecification becomes greater (around the Ricker set) F∗ begins to M
+%1199 be sharply underestimated. Above this break point in RP estimation inference appears to
+%1200 be driven to the trivial RP F ∗ = 0, B∗ = 0.5) that is shared in common amoung all of the
+%
+%%MODERATE
+%The RP mappings seen in Figure (3.7) show very similar RP mappings to that of the
+%1219 simple production model, with the biggest differences occuring around the location of the
+%1220 break point where the low contrast model begins to dramatically underestimate F ∗ . In the M
+%1221 high contrast simulation setting Figure (3.7; left), the RP mappings again demonstrate a
+%1222 nearly identical minimal distance mapping of RPs onto the constrained BH RP set. In the
+%
+%1223 low contrast setting Figure (3.7; right) a very similar two regiem pattern of RP inference is
+%1224 observed, however the location of the break between these regiems appears at lower values
+%1225 of B∗ . In this moderate growth setting the break point occures around values of B∗ just B ̄ (0) B ̄ (0)
+%1226 below 0.4. as opposed to the simple production model where the break point occurs at B∗ B ̄ (0)
+%1227 just above 0.4.
+%
+%%EMPHATIC
+%Despite the emphaticly growth driven dynamics in this setting, the RP mappings seen
+%1240 in Figure (3.8) obviously bare a huge resemblance to the previously seen RP mappings.
+%1241 Again the biggest differences in the RP mappings occur around the location of the break
+%1242 point where the low contrast model begins to dramatically underestimate F ∗ . In this low M
+%1243 contrast setting the break point in RP estimation occures around values of B∗ well below B ̄ (0)
+%1244 0.4 with the behaviour extending as far down as B∗ = 0.3. This regiem shift occurs well B ̄ (0)
+%1245 below that of the Ricker set, as initially observed in the production model setting. This
+%1246 reduced range of acceptible RP inference indicates that under increasingly dramatic growth
+%the model misspecification issue of the BH model becomes an increasingly brittle assumption with respect ot RPs.
+%
+%Interestingly this pattern only follows for the low contrast setting. In the 
+%high contrast setting inference returns to a pattern resmbleing the minimal 
+%distance mapping onto BH RP set. Further pointing to the importance of 
+%contrast for informing these models.%
+
+%The ocillatory regiem introduces some unique inferential challenges
+%Considering RP estimation in the ocillatory regiem 
+
+%%\begin{figure}[h!]
+%\begin{wrapfigure}{r}{0.50\textwidth}
+%\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N300A0-1AS10K0.1.png}
+%\caption{}\label{ocillationArrow}
+%\end{wrapfigure}
+
+%
+\subsubsection{Estimating More}
+
+%\begin{figure}[h!]
+\begin{wrapfigure}{r}{0.50\textwidth}
+%\vspace{-1cm}
 \includegraphics[width=0.49\textwidth]{../ddBias/indexGridKAExpT45N300A0-1AS10K0.1.png}
-\caption{}
-\end{figure}
+%\vspace{-0.5cm}
+\caption{
+$\kappa$ and $a_s$ estimation under BH ($blue$) and Schnute ($green$) fits to 
+Schnute data ($black$) arranged to mirror RP space. %Each model additionally estimates $\kappa$ and $a_s$.
+%Higher $\frac{B^*}{\bar B(0)}$ is arranged higher veritically, and higher $\frac{F^*}{M}$ is arranged farther
+%to the right horizontally so as to mirror the RP space domain.
+}\label{estAK}
+%\end{figure}
+\end{wrapfigure}
 
 %
-\begin{itemize}
-%
-\item Selectivity and Growth cannot account for misspecification of Recruitment. 
-%
-\item Selectivity and Growth are influenced by the propper specification of recruitment. If properly specified Selectivity and Growth can be estimated, along with all three parameters of the Schnute model.
-\end{itemize}
+Figure (\ref{estAK}) shows a subset of example model fits broadly over RP space. 
+Model fits are shown both under the two-parameter BH model as well as under the 
+three parameter Schnute model, each model estimating all of its recruitment 
+parameters as well as the growth and maturity parameters $\kappa$ and $a_s$. 
+Notice that the BH model, even when additionally estimating $\kappa$ and $a_s$, 
+does not gain the flexibility to properly model Schnute data. 
 
 %
+The lack of oscillatory dynamics produced by the BH model causes the misspecified 
+BH fits in Figure (\ref{estAK}) to largely estimates $\kappa$ and $a_s$ so as to 
+approximate the production model limiting case. The fitted Schnute model can 
+produce the oscillatory dynamics and thus the information in the oscillatory data 
+well inform estimates of $\kappa$ and $a_s$ under the Schnute model. Furthermore, 
+the Schnute model has no issue learning its $\gamma$ parameter.
+%for largely misspecified BH models.Figure (\ref{bhGrid}).  
+%%
+%\begin{itemize}
+%\item Estimate $a_s$, $\kappa$ with BH => still results in the same inferential pattern (cannot learn $a_s$, $\kappa$)
+%\item Estimate $a_s$, $\kappa$ with Schnute => not only fixed the inferential patter (can learn $\gamma$) but also can learn $a_s$, $\kappa$
+%\item 
+%\end{itemize} 
+
+%
+While Statistical inference in the oscillatory regiem can be challenging in 
+the highly constrained BH model, the Schnute model can easily estimate its extra 
+$\gamma$ parameter. The flexibility of estimating $\gamma$ simplifies inference by 
+correctly specifying RPs, and also by opening up the model dynamics to reveal 
+additional information about $\kappa$ and $a_s$ in the data. %that make estimating 
+%DISCUSSION:This difficulty may be self-imposed by a tendancy of the field to over constrain dynamics.  
+
+%%
+%\begin{itemize}
+%%
+%\item Selectivity and Growth cannot account for misspecification of Recruitment. 
+%%
+%\item Selectivity and Growth are influenced by the propper specification of recruitment. 
+%\item If properly specified Selectivity and Growth can be estimated, along with all three parameters of the Schnute model.
+%\end{itemize}
+
+%
+\clearpage
 \section{Discussion}
 
 \begin{itemize}
@@ -4392,24 +4654,128 @@ $W_{-1}$. For the use case presented here, Eq. (\ref{gammaOfB}) is to be interpr
 \end{cases}. 
 \end{equation} 
 
+%%
+%Prager 2002, Figure(2).
 %
-Prager 2002, Figure(2).
-
-%goes from $0$ to $1$ the solution of interest starts on the principal branch,
-%and runs toward the 
-%The solution of interest, for the use cases here, come from the 
-%principal branch, often denoted $W_0(z)$. The principal branch of the Lambert 
-%lower branch, often denoted $W_{-1}(z)$.
-%The product logarithm is analytic for $z>-\frac{1}{e}$ , but cannot be expressed 
-%in terms of elementary functions.
-
-
-%principal branch
-https://math.stackexchange.com/questions/3004835/is-the-lambert-w-function-analytic-if-not-everywhere-then-on-what-set-is-it-ana
-https://researchportal.bath.ac.uk/en/publications/algebraic-properties-of-the-lambert-w-function-from-a-result-of-r
+%%goes from $0$ to $1$ the solution of interest starts on the principal branch,
+%%and runs toward the 
+%%The solution of interest, for the use cases here, come from the 
+%%principal branch, often denoted $W_0(z)$. The principal branch of the Lambert 
+%%lower branch, often denoted $W_{-1}(z)$.
+%%The product logarithm is analytic for $z>-\frac{1}{e}$ , but cannot be expressed 
+%%in terms of elementary functions.
+%
+%
+%%principal branch
+%https://math.stackexchange.com/questions/3004835/is-the-lambert-w-function-analytic-if-not-everywhere-then-on-what-set-is-it-ana
+%https://researchportal.bath.ac.uk/en/publications/algebraic-properties-of-the-lambert-w-function-from-a-result-of-r
+%
+%%
+%https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 
 %
-https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
+\clearpage
+
+%
+\section{Appendix\label{delayLine}: The Replacement Line for the Delay Model}
+
+%
+The replacement line is the rate of productivity which exactly balances 
+biomass loss in the absence of fishing. In the simple production model, %productivity of the popuplation. 
+productivity must simply balance biomass loss due to $M$. Thus when 
+$R(B;\theta)>MB$ there will be some surplus productivity to enable 
+fishing.    
+
+%
+In the delay model, productivity is complicated by biomass changing, both 
+with the recruitment of young into the reproducing population, as well as 
+biomass accumulation due to the growth of existing individuals in the 
+population. To derive the replacement line in the case of the delay model 
+the equilibrium equations in the absence of fishing are considered and 
+the $R(B)$ that this implies is then isolated.  
+%
+\begin{align}
+&0=\frac{dB}{dt} = w(a_s)R(B) + \kappa \left[w_\infty N-B\right] - MB \label{bBar}\\
+&0=\frac{dN}{dt} = R(B) - MN. \label{nBar}
+\end{align}
+%
+Eq(\ref{nBar}) quickly gives $\bar{N} = R(B)/M$. Substituting this equilibrium 
+value into Eq(\ref{bBar}) to rewrite $N$ in terms of $B$,
+%At equilibrium 
+%$\frac{dB}{dt}=\frac{dN}{dt}=0$, and thus %moving forward  equationsSince both equations are in equilibrium equate 
+%\begin{align}
+%w(a_s)R(B) + \kappa \left[w_\infty N-B\right] - MB = R(B) - MN.
+%\end{align}
+%
+%Making use of the equlibrium value $\bar{N} = R(B)/M$ to rewrite $N$ in terms of $B$, %and collecting like terms gives, %by making use of $\bar{N} = R(B)/M$,  
+\begin{align}
+0 = w(a_s)R(B) + \kappa \left[w_\infty \frac{R(B)}{M}-B\right] - MB. %R(B) - M \frac{R(B)}{M}.
+\end{align}
+Collecting like terms, 
+\begin{align}
+R(B)\left[w(a_s)+\frac{\kappa w_\infty}{M}\right] = \left[M+\kappa\right]B. %
+\end{align}
+Finally solving for $R(B)$, and simplifying, gives the equation of the replacement line as,  
+\begin{align}
+R(B) = \left[\frac{M(M+\kappa)}{w(a_s)M+\kappa w_\infty}\right]B. %
+\end{align}
+
+%%
+%\begin{equation}
+%\frac{dN}{dt} = R(B)-MN.
+%\end{equation}
+%Setting $\frac{dN}{dt}=0$ gives the numbers equilibrium equation, $\bar{N} = R(B;\theta)/M$.
+%%
+%Simultaneously, consider the biomass equation in the absence of fishing,
+%\begin{equation}
+%\frac{dB}{dt} = w(a_s)R(B;\theta) + \kappa w_\infty N - \kappa B - MB. %\label{bEq}
+%\end{equation}
+%Setting $\frac{dB}{dt}=0$, and solving for $N$ further implies,
+%%
+%\begin{equation}
+%N = \frac{1}{\kappa w_\infty}\left[(M+\kappa)B + w(a_s)R(B;\theta)\right] \label{nBarB}.
+%\end{equation} 
+%
+%%
+%\begin{align}
+%&\frac{dB}{dt} = w(a_s)R(B) + \kappa \left[w_\infty N-B\right] - (M+F)B \\
+%&\frac{dN}{dt} = R(B) - (M+F)N 
+%\end{align}
+%
+%
+%
+%%
+%\begin{align}
+%R(B;\theta) - MN = w(a_s)R(B) + \kappa \left[w_\infty N-B\right] - MB \\
+%\end{align}
+%
+%\begin{align}
+%&N = \frac{1}{\kappa w_\infty}\left[(M+\kappa)B - w(a_s)R(B;\theta)\right] \\
+%&N = R(B;\theta)/M 
+%\end{align}
+%
+%\begin{equation}
+%
+%\end{equation}
+%
+%With numbers at equilibrium, now further restrict consider the equilibrium biomass equation. 
+%
+%\begin{align}
+%0 = w(a_s)R(B;\theta) + \kappa \left[\frac{w_\infty}{M}R(B;\theta)-B\right] - MB \label{bEq}
+%\end{align}
+%
+%\begin{equation}
+%0 = \frac{R(B)}{M}
+%\end{equation}
+%
+%% 
+%In the simple production model $M$
+%
+%%
+%Maximum recruitment: $\alpha$
+%$F=\alpha$ pushes recruitment to 0.
+%$\alpha$ below replacement line means fishing pushes population to extinction.
+
 
 %{\color{blue}
 %%

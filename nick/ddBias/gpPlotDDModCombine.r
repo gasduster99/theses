@@ -358,7 +358,7 @@ getData = function(dir, xiRange, zetaRange){
 #GOOD START: add refinement
 #mod = "FlatT45N150A0-1AS0.1K10"
 #mod = "FlatT45N150A0-1AS0.1K10N28"
-mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100
+#mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100
 #GOOD START: add refinment
 #mod = "FlatT45N150A0-1AS2K0.1"
 #mod = "FlatT45N150A0-1AS2K0.1N28"
@@ -371,7 +371,7 @@ mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100
 #
 #mod = "FlatT45N150A0-1AS4K0.2"; fv=1
 #mod = "FlatT45N150A0-1AS4K0.2N28"; fv=10
-#mod = "FlatT45N150A0-1AS4K0.2N56"; fv=100
+mod = "FlatT45N150A0-1AS4K0.2N56"; fv=100
 #mod = "FlatT45N150A0-1AS4K0.2N94"; fv=100
 
 #
@@ -418,6 +418,7 @@ D = D[complete.cases(D),]
 #D = D[!who,]
 #
 D$lFV = D$lFV*fv #[D$lF>-3] = D$lFV[D$lF>-3]*10
+D$lB0V = D$lB0V*fv/2/2/2 #/10#2/2/2/2 
 #D = D[c(rep(T, 1), F),]
 #D = D[seq(1, nrow(D), 2),]
 #D = Dall[Dall$lF<4,]
@@ -485,6 +486,9 @@ mask = sapply(1:nrow(lFXStar), function(i){
 		#return(T)
 	}
 )
+#saveRDS(mask, file="mask.rds")
+#mask = readRDS("mask.rds")
+#
 lFPred = gpPredict(lFXStar, lFXStar[,2:3], lFFit)
 lFPred[!mask] = NA
 
@@ -545,6 +549,9 @@ bMSYBias = sweep(bMSYHat, 2, zetaStar*B0)
 #MSY bias
 bMSYStar = zetaStar*B0
 fMSYStar = xiStar*M
+msyStar = outer(fMSYStar, bMSYStar)
+#
+msyHat = bMSYHat*xiHat*M
 ##SRR(Bmsy, a, b, g)
 #alpHat = getAlpha(-1, exp(lFPred), M)
 #betHat = getBeta(alpHat, -1, M, exp(lKPred))
@@ -766,15 +773,15 @@ ms = matrix(ms, nrow=length(xiStar), ncol=length(zetaStar))
 #
 cols = brewer.pal(5, 'Set1')
 
-#
-library(GauPro)
-gp = GauPro(D$xiHat, D$xiSeed)
-gpThresh = ga( type='real-valued',
-        fitness=function(x){ -gp$predict(x) },
-        lower=0, upper=1, optim=T
-)@solution[1] 
-#optim(0.3, gp$predict, method="L-BFGS-B")$par  #stats::optimize(gp$predict, c(0,3.5))$minimum  #0.4175116 
-gpse = function(x) gp$predict(x)+2*gp$predict(x, se=T)$se
+##
+#library(GauPro)
+#gp = GauPro(D$xiHat, D$xiSeed)
+#gpThresh = ga( type='real-valued',
+#        fitness=function(x){ -gp$predict(x) },
+#        lower=0, upper=1, optim=T
+#)@solution[1] 
+##optim(0.3, gp$predict, method="L-BFGS-B")$par  #stats::optimize(gp$predict, c(0,3.5))$minimum  #0.4175116 
+#gpse = function(x) gp$predict(x)+2*gp$predict(x, se=T)$se
 #stats::optimize(gpse, c(0,3.5))$minimum
 metaMean = na.omit(rowMeans(xiHat, na.rm=T))[1]
 metaMedian = na.omit(rowMedians(xiHat, na.rm=T))[1]
@@ -870,21 +877,21 @@ dev.off()
 
 
 
-#
-png(sprintf("threshgpDD%s.png", mod))
-image(xiStar, zetaStar, xiHat>gpThresh, #0.25,
-        col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),
-        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-        main = TeX("BH Inference Failure"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
-        ylim = c(zetaBot, zetaTop),
-        xlim = c(xiBot, xiTop),
-        cex.lab = 1.5,
-        cex.main= 1.5
-)
-curve(bh(x), from=0, to=4, lwd=3, add=T)
-points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
-dev.off()
+##
+#png(sprintf("threshgpDD%s.png", mod))
+#image(xiStar, zetaStar, xiHat>gpThresh, #0.25,
+#        col = cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+#        xlab = TeX("$F_{MSY}/M$"),
+#        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+#        main = TeX("BH Inference Failure"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+#        ylim = c(zetaBot, zetaTop),
+#        xlim = c(xiBot, xiTop),
+#        cex.lab = 1.5,
+#        cex.main= 1.5
+#)
+#curve(bh(x), from=0, to=4, lwd=3, add=T)
+#points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+#dev.off()
 
 ##
 #png(sprintf("threshxi0.5DD%s.png", mod))
@@ -1196,7 +1203,65 @@ show = seq(1, length(xCols), length.out=nCol) #20)
 dev.off()
 
 ##MSY bias
+
 #
+png(sprintf("msyRelBias%s.png", mod))
+#
+nCols = 21 #2*15
+maxAbsXBias = 1 #max(abs(t(bMSYBias)/(P0*zetaStar)), na.rm=T)
+posCols = hcl.colors(nCols/2, "Reds 2", rev=T)
+negCols = hcl.colors(nCols/2, "Blues 2", rev=F)
+xCols = c(negCols, "#FFFFFF", posCols)
+##
+#xiMask = xiStar>xiBot & xiStar<xiTop
+#zetaMask = zetaStar>zetaBot & zetaStar<zetaTop
+image(xiStar, zetaStar, (msyHat-msyStar)/msyStar,
+        col  = adjustcolor(xCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'),
+        main = TeX("Relative Bias in Estimated MSY"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+	zlim = c(-maxAbsXBias, maxAbsXBias)
+)
+contour(xiStar[15:16], zetaStar, ((msyHat-msyStar)/msyStar)[15:16,],
+        method = "simple",
+        levels = seq(-1, 1, 0.1),
+        labcex = 1.025,
+        lwd  = eps(),
+        xlab = TeX("$F_{MSY}/M$"), #'Xi',
+        ylab = TeX('$B_{MSY}/B_0$'),
+        main = TeX("Relative Bias in Estimated MSY"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiBot),
+        zlim = c(-maxAbsXBias, maxAbsXBias),
+        add  = T
+)
+end = rev(length(xiStar)-c(15:16))
+contour(xiStar[end], zetaStar, ((msyHat-msyStar)/msyStar)[end,],
+        method = "simple",
+        levels = seq(-1, 1, 0.1),
+        labcex = 1.025,
+        lwd  = eps(),
+        xlab = TeX("$F_{MSY}/M$"), #'Xi',
+        ylab = TeX('$B_{MSY}/B_0$'),
+        main = TeX("Relative Bias in Estimated MSY"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiBot),
+        zlim = c(-maxAbsXBias, maxAbsXBias),
+        add  = T
+)
+curve(bh(x), from=0, to=4, lwd=3, add=T)
+#curve(0.5, from=0, to=12, lwd=3, add=T) #col=map2color(0, hcl.colors(41, "RdBu", rev=T)),
+#abline(h=0.5, lwd=3)
+#show = seq(1, length(msyCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(580, "device"), grconvertY(150, "device"), 
+#        sprintf("%1.0f", round(rev(seq(min(msyBias[xiMask, zetaMask], na.rm=T)*M, max(msyBias[xiMask, zetaMask], na.rm=T)*M, length.
+#        fill = rev(msyCols[show]),
+#        xpd = NA
+#)
+dev.off()
+
 ##
 #png(sprintf("msyBiasSchnute%s.png", mod))
 ##

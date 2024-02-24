@@ -459,7 +459,7 @@ addCircle = function(centerx, centery, radius, length=200){
 
 #
 #mod = "FlatT45N150A0-1AS2K0.1N84Edge"
-mod = "FlatT45N300A0-1AS10K0.1SDORAND"
+#mod = "FlatT45N300A0-1AS10K0.1SDORAND"
 #mod = "FlatT45N300A0-1AS10K0.1SDO"
 #mod = "FlatT30N150A15K0.1" #"ExpT45N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150K1" #"ExpT45N150A15" # "ExpT45N150Wide" #"ExpT45N150A15K0.1" #"ExpT45N150K1" #
 #mod = "ExpT45N150A-1AS15K0.1"
@@ -467,7 +467,7 @@ mod = "FlatT45N300A0-1AS10K0.1SDORAND"
 #mod = "ExpT45N300AS10K10" #"ExpT45N300AS1K1N28"
 #mod = "ExpT45N300AS0.1K10"
 #mod = "ExpT45N300AS10K0.1"
-#mod = "ExpT45N300A0-1AS10K0.1"
+mod = "ExpT45N300A0-1AS10K0.1"
 #mod = "ExpT45N150A0-1AS2K0.1"
 place = sprintf("./modsDD%s/", mod)
 
@@ -637,7 +637,9 @@ dev.off()
 #
 png(sprintf('indexGrid%s.png', mod), width=2000, height=2000)
 layout(lay)
+j = 1
 for(i in 1:nrow(l)){ #nrow(out$ll)){
+	#par(c(5, 4, 4, 2) +0.1)
 	#
 	if( !i%in%tops ){next}
 	fWho = sprintf('%sfit_%s', place, rownames(l)[i])
@@ -651,12 +653,19 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	set.seed(1)
 	cpue = rlnorm(length(dat$B), dat$lq+log(dat$B), exp(dat$lsdo)*10)
 	#
-	par(mar=c(1,1,1,0))
-	plot(cpue, cex=2, pch=19)
+	par(mar=c(10,10,1,0))
+	plot(cpue, cex=2, pch=19, ann=F, xaxt="n", yaxt="n")
 	dat$plotMean( add=T ) #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
 	fit$plotMean( add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$ll[i,2]), ylim=c(0,out$mod[[i]]$B0) )
 	fit$plotBand( col='red' )
+	#
+	if(j==5){mtext("Time", side=1, line=6, cex=7)}
+	if(j==3){mtext("Biomass", side=2, line=1, cex=7)}
+	#
+	j = j+1
 }
+#mtext("Time", side=1, line=1)
+#mtext("Biomass", side=2, line=1)
 dev.off()
 
 #
@@ -715,6 +724,7 @@ il = c()
 ll = c()
 png(sprintf('indexGridKA%s.png', mod), width=2000, height=2000)
 layout(lay)
+j=1
 for(i in 1:nrow(l)){ #nrow(out$ll)){
         #
         if( !i%in%tops ){next}
@@ -738,8 +748,9 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 	set.seed(1)
 	cpue = rlnorm(length(dat$B), dat$lq+log(dat$B), exp(dat$lsdo)*10)
         #
-        par(mar=c(1,1,1,0))
-        plot(cpue, cex=2, pch=19)
+        #par(mar=c(1,1,1,0))
+        par(mar=c(10,10,1,0))
+	plot(cpue, cex=2, pch=19, ann=F, xaxt="n", yaxt="n")
 	#plot(fitBHKA$cpue, cex=2, pch=19)
 	#dat$plotMean() #main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,dat$B0) )
         #fit$plotMean( add=T, col='red') #, main=sprintf("%1.2f, %1.2f", l[i,1], l[i,2]), ylim=c(0,fit$B0) ) #out$ll[i,1], out$
@@ -757,6 +768,13 @@ for(i in 1:nrow(l)){ #nrow(out$ll)){
 		print(f3KAWho)
 	}
 	dat$plotMean( add=T )
+	
+	#
+        if(j==5){mtext("Time", side=1, line=6, cex=7)}
+        if(j==3){mtext("Biomass", side=2, line=1, cex=7)}
+	
+	#
+	j = j+1
 	
 	##
 	#dat$plotMean(add=T)
