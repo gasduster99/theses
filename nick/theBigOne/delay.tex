@@ -936,17 +936,137 @@ point to catch, and LHS design, and Metamodel.
 \subsection{Clustering Catastrophic Model Failure}
 
 %
-When 
+Considering the behavior observed in Section (\ref{schnuteLowResults}), where 
+$\frac{F_{MSY}}{M}$ is dramatically underestimated, it is very natural to ask 
+where specifically in RP space we might see this catastrophic failure of the 
+BH model. 
+%
+The structure of RPs under the BH model suggests several natural avenues for 
+forming hypotheses to identify this misspecified RP region. The single clearest 
+feature to identify are cases where $\frac{F_{MSY}}{M}$ is estimated well below the 
+minimum values simulated. In the follow section this idea is formally stated in a 
+hypothesis testing structure that uses the GP metamodel as a surrogate for the 
+sampling distribution of $\frac{F_{MSY}}{M}$ under the misspecified BH model. 
+This allows for a rejection threshold to be derived in terms of the GP 
+predictive structures that defines a classifier for identifying BH inference 
+break points broadly over RP space.
 
-%\clearpage
-%\bibliographystyle{apacite}
-%%\bibliography{./ageStructure.bib}
-%\bibliography{./gpBias.bib,./spline.bib,./ageStructure.bib}
+%
+For simplicity in outlining the hypothesis testing framework, let $\theta$ be the
+metamodeled population parameter, corresponding with $\frac{F_{MSY}}{M}$, under 
+the two parameter BH model and let $\theta_{min}$ its minimum simulated value.
+% of the corresponding quantity. %
+In this parlance, the idea of dramatic under estimation of $\theta$ may be formally 
+represented by the following hypothesis.
+%
+\begin{equation}
+H_0~:~\theta\ge\theta_{min}~~~~~H_a~:~\theta<\theta_{min} \label{hyp}
+\end{equation}
+%%
+%These hypotheses effectively simplify the separation of the two major RP regiems 
+%based on the metamodeled behavior of $\frac{F_{MSY}}{M}$ relative to the 
+%region of RPs simulated. 
+
+%%
+%Given the behavior observed in Section (\ref{schnuteLowResults})
+%BH model has the biggest effect on $\frac{F_{MSY}}{M}$ is the single biggest impact RP
+
+%Thus observing simulations where  
+
+%
+For evaluating the hypothesis test, the metamodel prediction serves as a 
+descriptor of RP estimation using kriging to provide both a measure of mean 
+behavior as well as propogating estimate uncertainty via the kriging predictive 
+variance. The metamodeled quantity is then predicted by $N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
+%$\hat y$ (a measure of mean behavior), but also propogastes estimate uncertainty.
+% ed uncertainty serves to 
+where $\hat y(\textbf{x})$ is as previously described in Eq. (\ref{gpYHat}) and 
+$\hat \sigma^2(\textbf{x})$ propogates estimate uncertainty via the kriging 
+predictive variance given by,%
+\begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+	\hat \sigma^2(\textbf{x}) = \textbf{R(x, x)} - \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x)}.
+\end{equation}
+
+%
+For evaluating the hypotheses given in Eq. (\ref{hyp}) %, $\hat y(\textbf{x})$ is considered as a test statistic, and 
+$H_0$ is then rejected when $\hat y(\textbf{x})$ is small in the following sense 
+%
+\begin{align}
+%\hat y(\textbf{x})
+R &= \{ \textbf{x}:~\hat y(\textbf{x})<C \}. \label{rejC}
+%\alpha_0 &= Pr( \hat y(\textbf{x})<c )
+\end{align}
+
+%
+To calibrate exacly how small the constant $C$ should be the false positve 
+rate, $\alpha_0$, is considered. For evaluating $R$ under the null hypothesis, 
+the domain of the metamodel is limited along the axis of $\theta$ as, 
+$\textbf{x}_{min} = [\theta_{min}, \textbf{x}_{(-\theta)}]$. Thinking of 
+$\hat y(\textbf{x})$ as an estimator of $\theta$, via kriging, the following 
+test statistic distibution follows naturally under the null,
+%
+\begin{equation}
+\frac{\hat y(\textbf{x}_{min}) - \theta_{min}}{\hat \sigma(\textbf{x}_{min})} \sim N(0,1).
+\end{equation}
+%
+This stratforwardly implies $\alpha_0 = \Phi \left( \frac{C - \theta_{min}}{\hat \sigma(\textbf{x}_{min})} \right)$, 
+and rearranging for $C$ gives $C=\theta_{min}+\Phi^{-1}(\alpha_0)\hat \sigma(\textbf{x}_{min})$. 
+Replacing $C$ into Eq. (\ref{rejC}), the rejection region can be made specific as
+%
+\begin{equation}
+%\hat y(\textbf{x})
+R = \{ \textbf{x}:~\hat y(\textbf{x})<\theta_{min}+\Phi^{-1}(\alpha_0)\hat \sigma(\textbf{x}_{min}) \}.
+\end{equation}
+
+%
+Other hypotheses may be formed using a similar structure (or added to this 
+structure) to fine tune the rejection threshold, although a point of 
+deminishing returns will quickly set in for describing the catestophic model 
+failure under low contrast BH inference. By simple inspection of Figure (\ref{bhLowArrows}), 
+clearly the under estimation of $\frac{F_{MSY}}{M}$ is a very powerful 
+classifer for describing BH inference trends. 
+
+
+%%
+%\begin{itemize}
+%	\item Refer to previous section for failure behaviour (form hypothesis out of this)
+%	\item adressing this hypothesis requires a complete handling of metamodel uncertainty 	
+%	\item state Rejection region philosophy
+%	\item calculate $c$
+%	\begin{itemize}
+%		\item note that clustering problem reduces to discerning behaviour at $\textbf{x}_{min}$ 
+%			since $\theta\in\textbf{x}$ and $\theta_{min}$ ia the case of interest under the null
+%		\item $\hat \sigma^2(\textbf{x})$ only needs to be comuted for $\textbf{x}_{min}$
+%	\end{itemize}
+%	\item state complete Rejection region
+%	%\item layout math
+%	%\item GP Mean: \verb|XStar%*%gpFit$beta + SIGStar%*%strongInv(SIG)%*%(y-X%*%gpFit$beta)|
+%	%\item GP Variance: SIGStarStar + SIGStar%*%strongInv(SIG)%*%t(SIGStar) + tg|
+%	%\item \verb|seTry = sqrt(gpPredictVar(lFXSSmall, lFXSSmall[,2:3], tg=0, lFFit))|
+%	%\item \verb|metaLowerZetaThresh0.5 = (exp(lFPred[1,]-1.96*seTry)/M)[diffs0.5==min(diffs0.5)]|
+%\end{itemize}
+
+
+
+%%The kriging preditive distribution forms a complete repeated sampling theory across RP space as 
+%\begin{equation}
+%	\text{Kriging Prediction:~} N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x})).
+%\end{equation}
+
+%%Under The Null:
+%\begin{align}
+%%\textbf{x}_{min} &= [\theta_{min}, \textbf{x}_{(-\theta)}]\\
+%\frac{\hat y(\textbf{x}_{min}) - \theta_{min}}{\hat \sigma(\textbf{x}_{min})} &\sim N(0,1) \\
+%\alpha_0 &= \Phi \left( \frac{C - \theta_{min}}{\hat \sigma(\textbf{x}_{min})} \right) \\
+%c&=\theta_{min}+\Phi^{-1}(\alpha_0)\hat \sigma(\textbf{x}_{min})
+%\end{align}
+
 
 %
 %
 
 %
+\clearpage
 \section{Results}
 
 %\begin{figure}[h!]
@@ -1291,12 +1411,9 @@ these models.
 %\item break well below zeta=0.4 as far down as 0.3
 %\end{itemize}
 
-\subsection{Clustering?}
 %
-\begin{itemize}
-\item validity of clusting method?
-\item compare clustering thresholds on one figure
-\end{itemize}
+\clearpage
+\subsection{Clustering Catastrophic Model Failure}
 
 %\clearpage
 \begin{wrapfigure}{r}{0.50\textwidth}
@@ -1306,7 +1423,35 @@ these models.
 \caption{BH RP estimation failure threasholds with increasingly emphatic individual growth dynamics.
 }\label{breaks}
 \end{wrapfigure}
+%
+Figure (\ref{breaks}) shows the rejection thresholds for the low contrast 
+simulations of each of the emphatic, moderate, and no growth settings. %, moderate growth, and emphatic growth 
+The dark lines represent the rejection threshold with a false positive rate 
+of about 15\%, and the light shaded regions show how the rejection threshold 
+changes as the false positvie rate rages from 50\% to 2.25\%. 
+When applied to the high contrast simulations the rejection threshold falls 
+outside of the simulated RP range as expected by inspection of the 
+high contrast RP mappings. 
+%Figures (\ref{}) is outside the range of  The rejection threshold as applied to the high contrast models does not  
 
+%
+Notice in Figure (\ref{breaks}) that the rejection threshold is subject to two 
+axese of sensativity. Firstly, for each simulated growth the rejection 
+threshold is more sensative for small values of $\frac{F_{MSY}}{M}$ than for 
+large values. This is a natural result since discerning $\hat y(x)$ below the 
+minimum simulated RP becomes more difficult as those values $\hat y(x)$ from $\theta_{min}$ has maximum overlap at $\theta_{min}$
+
+For large $\frac{F_{MSY}}{M}$ the minimum distance mapping results in $\hat y(x)$ well above the minimum simulated RP
+but for small $\frac{F_{MSY}}{M}$ even the minimum distance mapping is may be close to the rejection threshold.
+
+The second axis of sensativity is between individual growth simulations. The no growth  
+
+\begin{itemize}
+\item $\alpha_0\approx0.16$$\alpha_0\in[0.5, 0.0225]$ shows
+\item clustering is more uncertain for small $F_{MSY}/M$ since differentiating $\hat y(x)$ from $\theta_{min}$ has maximum overlap at $\theta_{min}$.
+\item no growth is more certain than emphtic growth, since estimates under the emphatic growth setting are more uncertain leading to more overlap between infence classes.
+\item a general statement about the range of the rejection threshold
+\end{itemize}
 
 %
 \clearpage
@@ -1727,8 +1872,6 @@ additional information about $\kappa$ and $a_s$ in the data. %that make estimati
 %
 %%The observed 
 %Indices are assumed to have multiplicative log-normal errors, and thus
-%the following observation model arises naturally,
-%%Pella Tomlinson
 %\begin{align}
 %I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2).
 %\end{align}

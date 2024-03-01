@@ -1694,10 +1694,11 @@ Predictive estimates are obtained via kriging \shortcite{cressie_statistics_2015
 %under the metamodel prediction.}
 \begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
 	\hat y(\textbf{x}) = \beta_0 + \textbf{x}\bm{\beta} + \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\Big(\textbf{y}-\big(\beta_0+\bm{X}\bm{\beta}\big)\Big)
+	\label{gpYHat}
 \end{equation}
 
 %
-$\hat y(\textbf{x})$ is the predicted value of the modeled productivity parameter 
+$\hat y(\textbf{x})$ is the predicted value of the {\color{red}modeled productivity parameter} 
 MLE under the two parameter production model, when the index of abundance %the metamodel at the 
 is generated from the three parameter production model at RP location $\textbf{x}$. 
 $\textbf{r(x)}$ is a vector-valued function of correlation function evaluations for the 
@@ -2622,7 +2623,7 @@ bias in both RPs for misspecified models even in very well informed setting.
 %\item bias present in $\frac{F^*}{M}$
 %\end{itemize}
 
-\paragraph{Low Contrast}
+\paragraph{Low Contrast\label{schnuteLowResults}}
 
 %
 \begin{wrapfigure}{r}{0.5\textwidth}
