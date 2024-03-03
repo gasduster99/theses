@@ -1296,10 +1296,11 @@ RPs onto the constrained BH RP set. In the low contrast setting Figure (\ref{mod
 a very similar two regiem pattern of RP inference is observed, however the 
 location of the break between these regiems appears at lower values of 
 $\frac{B^*}{\bar B(0)}$. In this moderate growth setting the break point 
-occures around values of $\frac{B^*}{\bar B(0)}$ just below 0.4. as opposed 
-to the simple production model where the break point occurs at $\frac{B^*}{\bar B(0)}$ 
+occures around values of $\frac{B^*}{\bar B(0)}$ just below 0.4 where in %as opposed 
+\mbox{
+the simple production model the break point occurs at $\frac{B^*}{\bar B(0)}$ 
 just above 0.4. 
-
+}
 
 %%Again under High Contrast
 %Indeed in the high contrast setting, Figure (\ref{prodLimit}, $left$) shows
@@ -1363,21 +1364,26 @@ occur around the location of the break point where the low contrast model
 begins to dramatically underestimate $\frac{F^*}{M}$.
 %\clearpage
 \begin{figure}[h!]
+\vspace{-1.1cm}
 \includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1.png}
 \includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84Edge.png}
+\vspace{-0.5cm}
 \caption{
 RP mapping of BH delay model fit to Schnute delay data under dramatic growth ($a_s=2$ and $\kappa=0.1$).
 $Left:$ High contrast simulation.
 $Right:$ Low contrast simulation.
 }\label{dramaticGrowth}
 \end{figure}
+%\vspace{-0.5cm}
 %
 In this low contrast setting the break point in RP estimation occures around values of 
 $\frac{B^*}{\bar B(0)}$ well below 0.4 with the behaviour extending as far down as 
 $\frac{B^*}{\bar B(0)}=0.3$. This regiem shift occurs well below that of the Ricker 
 set, as initially observed in the production model setting. 
 This reduced range of acceptible RP inference indicates that under increasingly 
-dramatic growth the model misspecification issue of the BH model becomes an 
+emphatic growth 
+%\vspace{0.5cm}
+the model misspecification issue of the BH model becomes an 
 increasingly brittle assumption with respect ot RPs.
 %to the simple production model where the break point occurs at $\frac{B^*}{\bar B(0)}$
 %just above 0.4.
@@ -1412,13 +1418,13 @@ these models.
 %\end{itemize}
 
 %
-\clearpage
+%\clearpage
 \subsection{Clustering Catastrophic Model Failure}
 
 %\clearpage
 \begin{wrapfigure}{r}{0.50\textwidth}
-\vspace{-0.75cm}
-\includegraphics[width=0.49\textwidth]{../ddBias/metaLowerZetaLinesDDFlatT45N150A0-1AS2K0.1N84Edge.png}
+\vspace{-1.1cm}
+\includegraphics[width=0.45\textwidth]{../ddBias/metaLowerZetaLinesDDFlatT45N150A0-1AS2K0.1N84Edge.png}
 \vspace{-0.95cm}
 \caption{BH RP estimation failure threasholds with increasingly emphatic individual growth dynamics.
 }\label{breaks}
@@ -1431,7 +1437,7 @@ of about 15\%, and the light shaded regions show how the rejection threshold
 changes as the false positvie rate rages from 50\% to 2.25\%. 
 When applied to the high contrast simulations the rejection threshold falls 
 outside of the simulated RP range as expected by inspection of the 
-high contrast RP mappings. 
+\mbox{high contrast RP mappings.}
 %Figures (\ref{}) is outside the range of  The rejection threshold as applied to the high contrast models does not  
 
 %
@@ -1439,19 +1445,39 @@ Notice in Figure (\ref{breaks}) that the rejection threshold is subject to two
 axese of sensativity. Firstly, for each simulated growth the rejection 
 threshold is more sensative for small values of $\frac{F_{MSY}}{M}$ than for 
 large values. This is a natural result since discerning $\hat y(x)$ below the 
-minimum simulated RP becomes more difficult as those values $\hat y(x)$ from $\theta_{min}$ has maximum overlap at $\theta_{min}$
+minimum simulated RP becomes more difficult when the data are truely generated 
+near the minimum simulated $\frac{F_{MSY}}{M}$. 
+%as those values $\hat y(x)$ from $\theta_{min}$ has maximum overlap at $\theta_{min}$
+For large $\frac{F_{MSY}}{M}$ the minimum distance mapping results in $\hat y(x)$ 
+well above the minimum simulated RP but for small $\frac{F_{MSY}}{M}$ even the 
+minimum distance mapping may be close to the rejection threshold.
 
-For large $\frac{F_{MSY}}{M}$ the minimum distance mapping results in $\hat y(x)$ well above the minimum simulated RP
-but for small $\frac{F_{MSY}}{M}$ even the minimum distance mapping is may be close to the rejection threshold.
+%
+The second axis of sensativity is between individual growth simulations. 
+The no growth setting produces a very clear threshold of model failure, while
+the failure threshold for emphatic growth is much more varied, especially near 
+the minimum simulated $\frac{F_{MSY}}{M}$. % setting appears to be less certain about     
+This is largely due to the increased RP estimate uncertainty as growth becomes 
+more emphatic in the dynamics. 
 
-The second axis of sensativity is between individual growth simulations. The no growth  
+%
+Model misspecification of the BH model is compounded for the more emphatic growth settings
+as recruitment can interact with growth dynamics to produce unique behaviors as exemplified 
+in Section (\ref{ocillation}).
 
-\begin{itemize}
-\item $\alpha_0\approx0.16$$\alpha_0\in[0.5, 0.0225]$ shows
-\item clustering is more uncertain for small $F_{MSY}/M$ since differentiating $\hat y(x)$ from $\theta_{min}$ has maximum overlap at $\theta_{min}$.
-\item no growth is more certain than emphtic growth, since estimates under the emphatic growth setting are more uncertain leading to more overlap between infence classes.
-\item a general statement about the range of the rejection threshold
-\end{itemize}
+
+%more uncertain as the model misspecification of the BH model compounds with   
+
+%as growth becomes more emphatic under the 
+
+%\begin{itemize}
+%%\item $\alpha_0\approx0.16$$\alpha_0\in[0.5, 0.0225]$ shows
+%%\item clustering is more uncertain for small $F_{MSY}/M$ since differentiating 
+%%$\hat y(x)$ from $\theta_{min}$ has maximum overlap at $\theta_{min}$.
+%%\item no growth is more certain than emphtic growth, since estimates under the 
+%emphatic growth setting are more uncertain leading to more overlap between infence classes.
+%\item a general statement about the range of the rejection threshold
+%\end{itemize}
 
 %
 \clearpage

@@ -347,7 +347,7 @@ getData = function(dir, xiRange, zetaRange){
 #mod = "ExpT45N150A0-1AS4K0.2"; fv=1
 #mod = "ExpT45N150A0-1AS4K0.2N28"; fv=1
 #
-mod = "ExpT45N150A0-1AS1K0.5"; fv=1
+#mod = "ExpT45N150A0-1AS1K0.5"; fv=1
 
 ##failed Fmsy overestimated
 #mod = "FlatT45N300A0-1AS10K0.1"
@@ -376,7 +376,7 @@ mod = "ExpT45N150A0-1AS1K0.5"; fv=1
 #mod = "FlatT45N150A0-1AS4K0.2N94"; fv=100
 #
 #mod = "FlatT45N150A0-1AS1K0.5"; fv=100
-
+mod = "FlatT45N150A0-1AS1K0.5N28"; fv=100
 
 #
 place = sprintf("./modsDD%s/", mod)
