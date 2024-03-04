@@ -368,13 +368,13 @@ edge = function(HS){
 #mod = "FlatT45N300A0-1AS10K0.1N56"
 #mod = "FlatT45N300A0-1AS10K0.1N84"
 
-#GOOD START: add refinement
+##GOOD START: add refinement
 mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100
 
-#GOOD START: add refinment
+##GOOD START: add refinment
 #mod = "FlatT45N150A0-1AS2K0.1N84Edge"; fv=200
 
-#
+##
 #mod = "FlatT45N150A0-1AS4K0.2N56"; fv=100
 
 #
@@ -634,9 +634,9 @@ lFStar = apply(t(lFStar), 2, rep, ncol(lFPred))
 #
 m = (lFPred-t(lFStar))/t(lFStar)
 var = gpPredictVar(lFXStar, lFXStar[,2:3], tg=0, lFFit)
-se = sqrt(t(var))/lFStar
+se = sqrt(var/t(lFStar^2))
 #
-metaRel0SEThresh = exp(m-0*se)/M
+metaRel0SEThresh = exp(m)/M
 metaRel1SEThresh = exp(m-1*se)/M
 metaRel2SEThresh = exp(m-2*se)/M
 
