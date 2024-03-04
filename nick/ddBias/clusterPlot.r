@@ -369,13 +369,14 @@ edge = function(HS){
 #mod = "FlatT45N300A0-1AS10K0.1N84"
 
 ##GOOD START: add refinement
-mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100
+#mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100
 
 ##GOOD START: add refinment
 #mod = "FlatT45N150A0-1AS2K0.1N84Edge"; fv=200
 
 ##
 #mod = "FlatT45N150A0-1AS4K0.2N56"; fv=100
+mod = "FlatT45N150A0-1AS1K0.5N56"; fv=100
 
 #
 place = sprintf("./modsDD%s/", mod)
