@@ -834,30 +834,43 @@ edge = function(HS){
 #
 #dev.off()
 
+##
+#howBad = 0.1
 #
-howBad = 0.1
-
+##
+#load('FlatT45N150A0-1AS2K0.1N84Edge.RData')
 #
-load('FlatT45N150A0-1AS2K0.1N84Edge.RData')
-
+###
+##heavySide = (xiHat<metaLowerZeta0SEThresh0.5) 
+##lineMat = edge(heavySide)
+##bound = ksmooth(xiStar, ksmooth(xiStar,apply(lineMat, 1, function(x)zetaStar[x]))$y)$y
+###
+##heavySide = (xiHat<metaLowerZeta2SEThresh0.5) 
+##lineMat = edge(heavySide)
+##bound = c(bound, rev( ksmooth(xiStar, ksmooth(xiStar,apply(lineMat, 1, function(x)zetaStar[x]))$y)$y ))
+###
+##heavySide = (xiHat<metaLowerZeta1SEThresh0.5) # & xiHat>metaLowerZeta2SEThresh0.5 & m) #xiHat>metaLowerZeta2SEThresh0.5 & m
+##lineMat = edge(heavySide)
+##line = apply(lineMat, 1, function(x)zetaStar[x])
+###
+##png(sprintf("metaLowerZetaLinesDD%s.png", mod))
+##plot( ksmooth(xiStar, ksmooth(xiStar, line)$y), 
+##	type = 'l', 
+##	lwd  = 3, 
+##	col  = cols[3], #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+##        xlab = TeX("$F_{MSY}/M$"),
+##        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+##        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+##        ylim = c(zetaBot, zetaTop),
+##        xlim = c(xiBot, xiTop),
+##        cex.lab = 1.5,
+##        cex.main= 1.5
+##)
+##polygon( c(xiStar, rev(xiStar)), bound, col=makeTransparent(cols[3]), border=NA)
+#
 ##
-#heavySide = (xiHat<metaLowerZeta0SEThresh0.5) 
-#lineMat = edge(heavySide)
-#bound = ksmooth(xiStar, ksmooth(xiStar,apply(lineMat, 1, function(x)zetaStar[x]))$y)$y
-##
-#heavySide = (xiHat<metaLowerZeta2SEThresh0.5) 
-#lineMat = edge(heavySide)
-#bound = c(bound, rev( ksmooth(xiStar, ksmooth(xiStar,apply(lineMat, 1, function(x)zetaStar[x]))$y)$y ))
-##
-#heavySide = (xiHat<metaLowerZeta1SEThresh0.5) # & xiHat>metaLowerZeta2SEThresh0.5 & m) #xiHat>metaLowerZeta2SEThresh0.5 & m
-#lineMat = edge(heavySide)
-#line = apply(lineMat, 1, function(x)zetaStar[x])
-##
-#png(sprintf("metaLowerZetaLinesDD%s.png", mod))
-#plot( ksmooth(xiStar, ksmooth(xiStar, line)$y), 
-#	type = 'l', 
-#	lwd  = 3, 
-#	col  = cols[3], #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+#image(xiStar, zetaStar, m-2*se>howBad,
+#        col = c(NA,cols[3]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
 #        xlab = TeX("$F_{MSY}/M$"),
 #        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
 #        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
@@ -866,94 +879,118 @@ load('FlatT45N150A0-1AS2K0.1N84Edge.RData')
 #        cex.lab = 1.5,
 #        cex.main= 1.5
 #)
-#polygon( c(xiStar, rev(xiStar)), bound, col=makeTransparent(cols[3]), border=NA)
-
 #
-image(xiStar, zetaStar, m-2*se>howBad,
-        col = c(NA,cols[3]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),
-        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
-        ylim = c(zetaBot, zetaTop),
-        xlim = c(xiBot, xiTop),
-        cex.lab = 1.5,
-        cex.main= 1.5
-)
-
+##
+#load('FlatT45N150A0-1AS4K0.2N56.RData')
+#image(xiStar, zetaStar, (m-2*se)>howBad,
+#        col = c(NA,cols[2]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
+#        xlab = TeX("$F_{MSY}/M$"),
+#        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+#        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
+#        ylim = c(zetaBot, zetaTop),
+#        xlim = c(xiBot, xiTop),
+#        cex.lab = 1.5,
+#        cex.main= 1.5,
+#	add = T
+#)
 #
-load('FlatT45N150A0-1AS4K0.2N56.RData')
-image(xiStar, zetaStar, (m-2*se)>howBad,
-        col = c(NA,cols[2]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
-        xlab = TeX("$F_{MSY}/M$"),
-        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
-        ylim = c(zetaBot, zetaTop),
-        xlim = c(xiBot, xiTop),
-        cex.lab = 1.5,
-        cex.main= 1.5,
-	add = T
-)
-
+##
+#load('FlatT45N150A0-1AS0.1K10N56.RData')
+##
+#var[var<0]=eps()
+#var = fv*var
+#se = sqrt(var/t(lFStar^2))
+##
+#image(xiStar, zetaStar, (m-2*se)>howBad,
+#        col = c(NA,cols[1]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
+#        xlab = TeX("$F_{MSY}/M$"),
+#        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+#        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
+#        ylim = c(zetaBot, zetaTop),
+#        xlim = c(xiBot, xiTop),
+#        cex.lab = 1.5,
+#        cex.main= 1.5,
+#	add = T
+#)
 #
-load('FlatT45N150A0-1AS0.1K10N56.RData')
+###
+##load('FlatT45N150A0-1AS1K0.5N56.RData')
+###
+##image(xiStar, zetaStar, (m-2*se)>howBad,
+##        col = c(NA,cols[1]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
+##        xlab = TeX("$F_{MSY}/M$"),
+##        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+##        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
+##        ylim = c(zetaBot, zetaTop),
+##        xlim = c(xiBot, xiTop),
+##        cex.lab = 1.5,
+##        cex.main= 1.5,
+##	add = T
+##)
 #
-image(xiStar, zetaStar, (m-8*se)>howBad,
-        col = c(NA,cols[1]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
-        xlab = TeX("$F_{MSY}/M$"),
-        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
-        ylim = c(zetaBot, zetaTop),
-        xlim = c(xiBot, xiTop),
-        cex.lab = 1.5,
-        cex.main= 1.5,
-	add = T
-)
-
-
 #
-howBad = 0.5
-
-dev.new()
+##
+#howBad = 0.5
 #
-load('FlatT45N150A0-1AS2K0.1N84Edge.RData')
-image(xiStar, zetaStar, m-2*se>howBad,
-        col = c(NA,cols[3]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
-        xlab = TeX("$F_{MSY}/M$"),
-        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
-        ylim = c(zetaBot, zetaTop),
-        xlim = c(xiBot, xiTop),
-        cex.lab = 1.5,
-        cex.main= 1.5
-)
-
+#dev.new()
+##
+#load('FlatT45N150A0-1AS2K0.1N84Edge.RData')
+#image(xiStar, zetaStar, m-2*se>howBad,
+#        col = c(NA,cols[3]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), #col  = adjustcolor(eucCols, alpha.f=0.6),
+#        xlab = TeX("$F_{MSY}/M$"),
+#        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+#        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{MSY}/B_0) Jointly"),
+#        ylim = c(zetaBot, zetaTop),
+#        xlim = c(xiBot, xiTop),
+#        cex.lab = 1.5,
+#        cex.main= 1.5
+#)
 #
-load('FlatT45N150A0-1AS4K0.2N56.RData')
-image(xiStar, zetaStar, (m-2*se)>howBad,
-        col = c(NA,cols[2]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
-        xlab = TeX("$F_{MSY}/M$"),
-        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
-        ylim = c(zetaBot, zetaTop),
-        xlim = c(xiBot, xiTop),
-        cex.lab = 1.5,
-        cex.main= 1.5,
-	add = T
-)
-
+##
+#load('FlatT45N150A0-1AS4K0.2N56.RData')
+#image(xiStar, zetaStar, (m-2*se)>howBad,
+#        col = c(NA,cols[2]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
+#        xlab = TeX("$F_{MSY}/M$"),
+#        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+#        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
+#        ylim = c(zetaBot, zetaTop),
+#        xlim = c(xiBot, xiTop),
+#        cex.lab = 1.5,
+#        cex.main= 1.5,
+#	add = T
+#)
 #
-load('FlatT45N150A0-1AS0.1K10N56.RData')
-image(xiStar, zetaStar, (m-8*se)>howBad,
-        col = c(NA,cols[1]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
-        xlab = TeX("$F_{MSY}/M$"),
-        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
-        ylim = c(zetaBot, zetaTop),
-        xlim = c(xiBot, xiTop),
-        cex.lab = 1.5,
-        cex.main= 1.5,
-	add = T
-)
+##
+#load('FlatT45N150A0-1AS0.1K10N56.RData')
+#var[var<0]=eps()
+#var = fv*var
+#se = sqrt(var/t(lFStar^2))
+#image(xiStar, zetaStar, (m-2*se)>howBad,
+#        col = c(NA,cols[1]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
+#        xlab = TeX("$F_{MSY}/M$"),
+#        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+#        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
+#        ylim = c(zetaBot, zetaTop),
+#        xlim = c(xiBot, xiTop),
+#        cex.lab = 1.5,
+#        cex.main= 1.5,
+#	add = T
+#)
+#
+###
+##load('FlatT45N150A0-1AS1K0.5N56.RData')
+###
+##image(xiStar, zetaStar, (m-2*se)>howBad,
+##        col = c(NA,cols[1]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
+##        xlab = TeX("$F_{MSY}/M$"),
+##        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+##        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
+##        ylim = c(zetaBot, zetaTop),
+##        xlim = c(xiBot, xiTop),
+##        cex.lab = 1.5,
+##        cex.main= 1.5,
+##	add = T
+##)
 
 ##
 #lFStar = log(xiStar*M)
@@ -968,24 +1005,35 @@ image(xiStar, zetaStar, (m-8*se)>howBad,
 #metaRel2SEThresh = exp(m-2*se)/M
 
 #
-howBad = 0.5
-
-dev.new()
+howBad = 0.5 #0.5 #0.1
 #
-load('FlatT45N150A0-1AS2K0.1N84Edge.RData')
-
-#
-FPred = exp(lFPred+var/2)
-FVar = (exp(var)-1)*FPred^2
-#
-xiPred = FPred/M
-xiVar = FVar/(M^2)
-#
-m = (xiPred-t(exp(lFStar)/M))/t(exp(lFStar)/M)
-se = sqrt(xiVar/t(exp(lFStar)/M)^2)
+#dev.new()
+#load('FlatT45N150A0-1AS4K0.2N56.RData')
+#load('FlatT45N150A0-1AS2K0.1N84Edge.RData')
+#load('FlatT45N150A0-1AS0.1K10N56.RData')
+load('FlatT45N150A0-1AS1K0.5N56.RData')
 
 #
-image(xiStar, zetaStar, qlnorm(0.025, lFPred, sqrt(var))<(howBad*t(exp(lFStar))+t(exp(lFStar))), #(m+2*se)<howBad,
+##
+#FPred = exp(lFPred+var/2)
+#FVar = (exp(var)-1)*FPred^2
+##
+#xiPred = FPred/M
+#xiVar = FVar/(M^2)
+###
+##m = (xiPred-t(exp(lFStar)/M))/t(exp(lFStar)/M)
+##se = sqrt(xiVar/t(exp(lFStar)/M)^2)
+#se = sqrt(var)
+
+#
+var[var<0]=eps()
+var = var/fv/fv
+se = sqrt(var)
+#var = fv*var
+#se = sqrt(var/t(lFStar^2))
+
+#
+image(xiStar, zetaStar, qlnorm(0.025, lFPred, se)<(1-howBad)*t(exp(lFStar)), #(m-2*se)>log(-howBad*t(exp(lFStar))+t(exp(lFStar))),
         col = c(NA,cols[3]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
         xlab = TeX("$F_{MSY}/M$"),
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
@@ -996,20 +1044,32 @@ image(xiStar, zetaStar, qlnorm(0.025, lFPred, sqrt(var))<(howBad*t(exp(lFStar))+
         cex.main= 1.5
 )
 
-#
-howBad = 0.2
-#
-image(xiStar, zetaStar, qlnorm(0.025, lFPred, sqrt(var))<(howBad*t(exp(lFStar))+t(exp(lFStar))), #qlnorm(0.025, lFPred, sqrt(var))>howBad, #(m+2*se)<howBad,
-        col = c(NA,cols[2]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
-        xlab = TeX("$F_{MSY}/M$"),
-        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
-        ylim = c(zetaBot, zetaTop),
-        xlim = c(xiBot, xiTop),
-        cex.lab = 1.5,
-        cex.main= 1.5,
-	add=T
-)
+##
+#image(xiStar, zetaStar, (m-2*se)>log(-howBad*t(exp(lFStar))+t(exp(lFStar))),
+#        col = c(NA,cols[3]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
+#        xlab = TeX("$F_{MSY}/M$"),
+#        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+#        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
+#        ylim = c(zetaBot, zetaTop),
+#        xlim = c(xiBot, xiTop),
+#        cex.lab = 1.5,
+#        cex.main= 1.5
+#)
+
+##
+#howBad = 0.2
+##
+#image(xiStar, zetaStar, qlnorm(0.025, lFPred, sqrt(var))>(-howBad*t(exp(lFStar))+t(exp(lFStar))), #qlnorm(0.025, lFPred, sqrt(var))>howBad, #(m+2*se)<howBad,
+#        col = c(NA,cols[2]), #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), 
+#        xlab = TeX("$F_{MSY}/M$"),
+#        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+#        main = TeX("BH Inference Failure Thresholds"), #"Bias Direction for ($F_{MSY}/M$, B_{
+#        ylim = c(zetaBot, zetaTop),
+#        xlim = c(xiBot, xiTop),
+#        cex.lab = 1.5,
+#        cex.main= 1.5,
+#	add=T
+#)
 
 
 
