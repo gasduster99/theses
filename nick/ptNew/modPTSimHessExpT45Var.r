@@ -163,10 +163,10 @@ if( F ){
 datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
 
 #
-#registerDoParallel(8) #46)
-#opts = list(preschedule=F)
-#foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
-for(i in 1:n){
+registerDoParallel(46)
+opts = list(preschedule=F)
+foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
+#for(i in 1:n){
 	#
         #DATA
         #
