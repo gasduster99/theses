@@ -1,0 +1,413 @@
+%https://github.com/adamnovak/ucscthesis
+\documentclass[11pt]{ucscthesis}
+\def\dsp{\def\baselinestretch{2.0}\large\normalsize}
+\dsp
+
+%My packages
+\usepackage{graphicx}
+%\usepackage[margin=1in, top=1in, footskip=0.2in]{geometry}%big footskip brings number down, small footskip brings number up
+%\usepackage[left=1in, right=1in, top=1in, footskip=0.2in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{bm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\usepackage[usenames]{color}
+\usepackage[utf8]{inputenc}
+\usepackage{psfrag}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{lineno}
+\usepackage{physics}
+%\usepackage{natbib}
+%\usepackage[]{apacite}
+\usepackage{wrapfig}
+\usepackage{relsize}
+\usepackage{dsfont}
+\usepackage{pgfgantt}
+\usepackage{bbm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%\usepackage{newclude}
+
+%
+%\usepackage[style=alphabetic,backend=bibtex]{biblatex}
+%\usepackage{chapterbib}
+%\usepackage[sectionbib]{chapterbib}
+
+%\hypersetup{colorlinks   = true, %Colors links instead of ugly boxes
+%            urlcolor     = blue, %Color for external hyperlinks
+%	    citecolor    = blue,
+%	    linkcolor    = black
+%}
+
+%CLASS PACKS
+% package geometry should override the various margin settings from .clo and .cls
+% and also eliminates issues where the default papersize is A4
+\usepackage[letterpaper, left=1.5in, right=1.25in, top=1.25in, bottom=1.25in, includefoot]{geometry}
+% Use PostScript fonts as required by UCSC Dissertation Preparation Guidelines
+\usepackage{pslatex}
+
+%
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+
+%line spacing
+\renewcommand{\baselinestretch}{1.5}%{2.5}%
+
+
+% Declarations for Front Matter
+
+\title{A Metamodeling Approach for Bias estimation of Biological Reference Points}
+\author{Nicholas Grunloh}
+\degreeyear{2024}
+\degreemonth{June}
+\degree{DOCTOR OF PHILOSOPHY}
+\chair{Professor Herbert Lee}
+\committeememberone{Edward J. Dick Ph.D.}
+\committeemembertwo{Professor Paul Parker}
+\committeememberthree{Professor Bruno Sanso}
+\numberofmembers{4} %% (including chair) possible: 3, 4, 5, 6
+\deanlineone{Dean Peter F. Biehl}
+\deanlinetwo{Vice Provost and Dean of Graduate Studies}
+\deanlinethree{}
+\field{Statistical Science}
+\campus{Santa Cruz}
+
+%
+\begin{document}
+
+%
+\begin{frontmatter}
+
+%
+\maketitle
+\copyrightpage
+%
+\tableofcontents
+\listoffigures
+%\listoftables
+
+%
+\begin{abstract}
+Stock assessments often assume a two-parameter functional form
+(e.g., Beverton-Holt or Ricker) for the expected recruitment produced by a
+given level of spawning output. Mangel et al. \cite{mangel_perspective_2013} %Mangel et al. (2013) 
+and others have shown that biological reference points such as $\frac{F^*}{M}$
+and $\frac{B^*}{\bar{B}(0)}$ are largely determined by a single parameter
+(steepness) when using two-parameter relationships. These functions introduce
+strong correlations between reference points (RP) that are pre-determined by
+the functional form, rather than a biological characteristic of the stock.
+Mangel et al. note that use of a three-parameter stock-recruitment
+relationship allows for independent estimation of these reference points. This
+research seeks to understand the nature of biases in reference points
+resulting from fitting a two-parameter logistic functional form when the true
+relationship follows a three-parameter stock-recruitment relationship (SRR). This  %study's findings suggest the
+work demonstrates the useful limits of the misspecified Schaefer model, and
+the mechanisms of model failure which arise from mapping a three-dimensional
+parameter space into two dimensions.
+\end{abstract}
+
+%
+\begin{dedication}
+\null\vfil
+{\large \color{red}
+\begin{center}
+To myself,\\\vspace{12pt}
+Perry H. Disdainful,\\\vspace{12pt}
+the only person worthy of my company.
+\end{center}}
+\vfil\null
+\end{dedication}
+
+%
+\begin{acknowledgements}
+\color{red}
+I want to ``thank'' my committee, without whose ridiculous demands, I
+would have graduated so, so, very much faster.
+\end{acknowledgements}
+
+\end{frontmatter}
+
+%\part{First Part}
+
+%
+\linenumbers
+
+%
+\chapter{\color{blue}Introduction \label{intro}}
+\clearpage
+
+{\color{blue} {\it Generalize beyond production model}\\
+
+%\textit{set the context for my question}
+The most fundamental model in modern fisheries management is the surplus-production
+model. These models focus on modeling population growth via nonlinear
+parametric ordinary differential equations (ODE). Key management quantities
+called reference points (RPs) are commonly derived from the ODE equilibrium
+equations and depend upon the parameterization of biomass production.
+Two-parameter forms of the production function have been shown to
+limit the theoretical domain of RPs \cite{mangel_perspective_2013}.
+The limited RP-space of two-parameter models makes these models vulnerable to
+model misspecification with respect to RPs, and thus the limiting stucture of
+two-parameter models may in and of itself induce bias in RP estimation using
+these models. The behavior of RP estimation is not well understood and as a
+result patterns of bias in RP estimation may easily go unnoticed. A
+metamodeling approach is developed here to describe RP biases and explore
+mechanisms of model failure under the most common two-parameter models. %in the Schaefer model.
+
+%NOTE: we can not observe all fish in the sea, and this rely on an index of abundance 
+%which typically comes from experimental fishing procedure(for example ccfrp).
+Data for a typical surplus-production model comes in the form of an index
+of abundance through time which is assumed to be proportional to the reproducing
+biomass for the modelled population that is vulnerable to fishing. The index
+is often observed alongside a variety of other known quantities, but at a
+minimum, each index will be observed in the presence of some known catch for
+the period. Figure (\ref{hakeData}) shows the classic Namibian Hake dataset
+\cite{punt_model_1988, hilborn_ecological_1997, mangel_theoretical_2006}
+exemplifying the form.
+% from the classic Namibian Hake data set. 
+%The index %of abundance is assumed to be proportional to biomass with the 
+%proportionality %constant being a nuisance parameter that is often referred to 
+%as the %catchability parameter
+%the stock. %a time %%series of observations of an index of abundance for some population of interest. 
+
+%{\color{red}Plot Index Series and Catches}
+\begin{figure}[h!]
+        \includegraphics[width=0.45\textwidth]{./plots/hakeIndex.png}
+        \includegraphics[width=0.45\textwidth]{./plots/hakeCatch.png}
+        %\vspace{-1cm}
+        \caption{\label{hakeData}
+        \textit{left}: An index of abundance data, catch per unit effort (CPUE), for Namibian Hake from 1965 to 1987. % \protect\shortcite{hilborn_ecological_1997}
+        \textit{right}: The associated catch data for Namibian Hake over the same time period.
+        }
+\end{figure}
+
+%The observed 
+Indices are assumed to have multiplicative log-normal errors, and thus
+the following observation model arises naturally,
+%Pella Tomlinson
+\begin{align}
+I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2).
+\end{align}
+%
+Above $q$ is often referred to as the ``catchability parameter''; it serves as the %represents the %$ is often refered to as the catchability parameter and the catchab
+proportionality constant mapping between the observed index of abundance and biomass.
+$\sigma^2$ models residual variation. Biologically speaking $q$ and $\sigma^2$
+are often treated as nuisance parameters with the ``biological parameters''
+entering the model through a process model on biomass.
+
+% 
+Biomass is assumed to evolve as an ODE; in this case I focus on the following
+form
+%
+\begin{equation}
+\frac{dB}{dt} = P(B(t); \bm{\theta}) - Z(t)B(t). \label{ode}
+\end{equation}
+%{\color{red}$C=FB$ to set up yield calculations later
+Here biomass is assumed to change in time by two processes, net production of
+biomass into the population, $P(B)$, and various sources of biomass removal, $Z$, from the
+population.
+%Generally production appears as a nonlinear function of existing biomass, 
+%and removals are assumed to be linear in biomass.
+
+%  %stock recruitment relationship (SRR). Recruitment 
+Firstly, the population grows through a production function, $P(B)$. Production
+in this setting is defined as the net biomass increase due to all reproduction
+and maturation processes.
+% accounting for all naturally occurring %no migration the population is assumed closed. 
+%sources of mortality other than the recorded fishing from humans. 
+The production function is assumed to be a parametric (generally non-linear) function
+relating the current biomass of the population to an aggregate production
+of biomass.
+
+%
+Secondly, the population decreases as biomass is removed by various sources that are
+assumed to remove biomass linearly with biomass. Above, $Z(t)$, is an
+aggregate rate of removal. When the fishing rate, $F(t)$, is the only source of removal
+$Z(t)=F(t)$, however some models will also included other linear terms in $Z(t)$.
+Commonly the rate of ``natural mortality'', $M$, is also included as an additional term
+so that $Z(t)=M+F(t)$.
+
+%%
+%Secondly, the population decreases as biomass is removed due to catch, $C(t)$.
+%While catches (aka yields) are observable quantities \shortcite{pearson_documentation_1997}, %sen_sampling_1984,  
+%the model assumes that catch is proportional to biomass with the
+%proportionality constant representing the fishing rate, $F(t)$, so that $C(t)=F(t)B(t)$.
+From a management perspective a major goal of modeling is to accurately infer
+a quantity known as \emph{maximum sustainable yield} (MSY). One could maximize
+simple yield at a particular moment in time (and only for that moment) by
+fishing all available biomass in that moment. This strategy is penny-wise but
+pound-foolish (not to mention ecologically devastating) since it doesn't leave
+biomass in the population to reproduce in the future. We seek to fish in a way
+that allows (or even encourages) future productivity in the population. This is
+accomplished by maximizing the equilibrium level of catch over time.
+Equilibrium yield is considered by replacing the steady state biomass ($\bar B$)
+in the assumed form for catch, so that $\bar Y = F\bar B(F)$, where $\bar~$
+indicates a value at steady state.
+%The steady state biomass is a function of $F$.
+%; we will see a specific example of this in
+%\mbox{Section (\ref{ptRef}).} 
+MSY is found by maximizing $\bar Y(F)$ with respect to
+$F$, and $F^*$ is the fishing rate at MSY. Going forward let $^*$ decorate any
+value derived under the condition of MSY.
+
+%
+Fisheries are very often managed based upon reference points %(RPs) 
+which serve as simplified heuristic measures of population behavior. The
+mathematical form of RPs depends upon the model assumptions through the
+production function. %({\color{red} cite}). 
+While a number of different RPs exist which describe the population in different
+(but related) ways, the most common RPs revolve around the concept of MSY (or robust
+ways of measuring MSY \cite{hilborn_pretty_2010,punt_management_2016}).
+Here the focus is primarily on the RPs $\frac{B^*}{\bar B(0)}$ and $F^*$ ($\frac{F^*}{M}$ when appropriate)
+for their pervasive use in modern fisheries \cite{punt_extending_2019}. %mangel_perspective_2013,
+
+%
+$F^*$ is the afore mentioned fishing rate which results in MSY. $\frac{B^*}{\bar B(0)}$
+is the depletion of the stock at MSY. That is to say $\frac{B^*}{\bar B(0)}$ describes
+the fraction of the unfished population biomass that will remain in the equilibrium
+at MSY. In general $F^*\in\mathbb{R}^+$ and \mbox{$\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$,}
+however under the assumption of two-parameter production, %function production 
+models will be structurally unable to capture the full theoretical range of RPs.
+%\shortcite{mangel_perspective_2013}.
+
+%
+Many of the most commonly used production functions depend only
+on two-parameters. For example, the Schaefer model %{(\color{red}cite)}
+depends only on the biological parameters $r$ and $K$, and limits RP inference
+so that under the Schaefer model $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}{2}\right)$.
+The two-parameter Fox model \cite{fox_jr_exponential_1970} limits $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}{e}\right)$.
+Similarly the two-parameter Cushing \cite{cushing_dependence_1971}, Beverton-Holt \cite[BH]{beverton_dynamics_1957}
+and Ricker \cite{ricker_stock_1954} production functions do not model the full theoretical space of
+RPs \cite{mangel_perspective_2013, yeakel_generalized_2015}.
+%curves are also two-parameter
+%production functions that do not model the full theoretical space of
+%RPs \shortcite{mangel_perspective_2013}.
+
+%
+The bias-variance trade-off \cite{ramasubramanian_machine_2017} makes it
+clear that the addition of a third parameter in the production function will
+necessarily reduce estimation bias. However the utility of this bias reduction
+is still under debate because the particular mechanisms and behavior (direction and magnitude) %over relevant RPs %and mechanisms %behavior 
+of these biases for key management quantities %(and the mechanisms of inducing these biases) 
+are not fully understood or described. Lee et al. \cite{lee_can_2012} provides some
+evidence that estimation of productivity parameters %, and thus RPs via \shortcite{mangel_perspective_2013},
+are dependent on changes in biomass trend through time (i.e. contrast) as well % as well as contrast in data %lacking contrast in biomass. 
+as model specification. Conn et al. \cite{conn_when_2010} comes to similar conclusions %about steepness estimation
+via calibration modeling techniques. These studies indicate important factors that
+contribute to inferential failure. However they do not offer mechanisms of model
+failure, nor do their experimental designs allow for the control of different
+types of model misspecification.
+% as those effects interact with the information content of a given biomass series.  
+
+
+%Despite this understanding of productivity estimation,
+%the implications have not been extended to a joint description of biases on the scale of
+%management RPs. % biases jointly.
+
+%The particular behaviors of these RP biases, 
+%and their relationship to each other, are not fully described.  
+
+%Add GOAL of understanding directionality and mechanism of bias.
+%Add claim of novelty by recognizing that bias is a function of RP, a flexible method of propagating estimation uncertainty and accounting for nonlinear bias patterns.
+
+%Together the general behavior of the PT model and the %pragmatic understandable 
+%simplicity of the Schaefer model make the PT/Schaefer pair an ideal setting for
+%beginning to understand the consequences of model misspecification on the
+%production function. 
+In this study I consider the behavior of inference when index data are simulated
+from three-parameter PT and Schnute production models, but the simulated data are fit
+using intentionally misspecified two-parameter logistic or BH production models.
+%
+The work begins with a derivation of RPs under the three-parameter models. %PT model.
+A method is then presented for generating simulation designs based on the parametric
+form of RPs which serves as a control on the nature of simulated model misspecification.
+% for analyzing inference under the two-parameter model.
+%The parametric forms of RPs under the three-parameter models are then inverted to develop a %PT model are then inverted to develop a
+%simulation setting for analyzing inference under the two-parameter models. % Schaefer model as well as the BH. 
+Finally a Gaussian Process (GP) metamodel \cite{gramacy_surrogates_2020}
+is constructed for exploration and analysis of RP biases.
+
+%
+A key insight of this approach is that bias is considered broadly across RP-space to
+uncover patterns and correlations between RPs. %f bias magnitude and direction. 
+%A flexible Gaussian Process (GP) meta-modeling approach is used to model bias 
+%patterns across RP-space. 
+The GP metamodel is explicit about trade-offs between RPs %to the surface bias tradeoffs to the surface to 
+so as to inform the full utility of reducing bias, as well as to suggest mechanisms for
+understanding what causes bias. Further, the effect of contrast on estimation
+is considered together with model misspecification. %alongside the effect of model misspecification.  
+
+}
+
+%
+\chapter{Pella-Tomlinson Model}
+\include{pt2.tex}
+
+%
+\chapter{Schnute Model \label{schnuteChapter}}
+%\include{schnute.tex}
+\include{schnute2.tex}
+
+
+%%
+%\chapter{A Delay Differential Model}
+%%\input{delay.tex}
+%\include{delay.tex}
+
+%
+\chapter{\color{red} Conclusion}
+
+%
+\appendix
+
+%
+\chapter{Inverting $\frac{B^*}{\bar B(0)}$ and $\gamma$ for the PT Model \label{lambApp}}
+\begingroup
+%\let\clearpage\relax
+\include{lambApp.tex}
+%\endgroup
+
+% if \nocite is specified, all entries in the bib file are included,
+% probably not what you want, so comment out the \nocite and only get the cited references.
+%\nocite{*}
+
+% 2010june01 sol katzman:
+% this makes the bibliography single spaced, with double spacing between entries
+\def\baselinestretch{1.0}\large\normalsize
+
+\bibliographystyle{plain}
+\bibliography{./gpBias.bib,./spline.bib,./spaceFilling.bib,./ageStructure.bib}
+
+
+%%
+%\linenumbers
+%
+%%
+%\chapter{The Pella-Tomlinson Model}
+%%\input{pt.tex}
+%\include{pt.tex}
+%
+%%
+%\chapter{The Schnute Model \label{schnuteChapter}}
+%%\input{schnute.tex}
+%\include{schnute.tex}
+%
+%%
+%%\clearpage
+%\chapter{A Delay Differential Model}
+%%\input{delay.tex}
+%\include{delay.tex}
+%
+%\clearpage
+%\bibliographystyle{apacite}
+%%\bibliography{./ageStructure.bib}
+%\bibliography{./gpBias.bib,./spline.bib,./spaceFilling.bib,./ageStructure.bib}
+
+%This is the next chapter and I think it will be a really good one.
+%\input{../delayDiffPaper/delayDiffManuscript.tex}
+
+\end{document}

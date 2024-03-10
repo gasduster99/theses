@@ -1,0 +1,12 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces \textit {left}: An index of abundance data, catch per unit effort (CPUE), for Namibian Hake from 1965 to 1987. \textit {right}: The associated catch data for Namibian Hake over the same time period. }}{3}{figure.1.1}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces The Pella-Tomlinson production function plotted across a variety of parameter values. The special cases of Logistic production is shown in black, and the left-leaning and right-leaning regimes are shown in blue and red respectively. }}{7}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces ($left$) Relative fishing with low, medium, and high contrast. ($right$) Population biomass and catch at each associated level of contrast. }}{15}{figure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces A comparison of the true PT production function (in black) and the estimated logistic curve (in red) with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves. }}{19}{figure.2.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Joint bias direction for ($F^*$, $\frac {B^*}{B_0}$) estimates under the misspecified Schaefer Model. The intensity of color represents the excess bias relative to the shortest possible mapping. Results in the low contrast setting are shown $left$, and the high contrast setting is shown $right$. }}{21}{figure.2.4}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Bias in $F^*$ under the Schaefer model when PT data are generated with increasing contrast so that $F^*$ and $\frac {B^*}{B_0}$ are fixed at 0.699 and 0.201 respectively. }}{22}{figure.2.5}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces The Schnute production function plotted across a variety of parameter values. Regimes of similarly behaving curves are grouped by color. }}{27}{figure.3.1}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }

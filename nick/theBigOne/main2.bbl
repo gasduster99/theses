@@ -1,0 +1,156 @@
+\begin{thebibliography}{10}
+
+\bibitem{beverton_dynamics_1957}
+Raymond~JH Beverton and Sidney~J. Holt.
+\newblock {\em On the dynamics of exploited fish populations}, volume~11.
+\newblock Springer Science \& Business Media, 1957.
+
+\bibitem{conn_when_2010}
+Paul~B. Conn, Erik~H. Williams, and Kyle~W. Shertzer.
+\newblock When can we reliably estimate the productivity of fish stocks?
+\newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
+  67(3):511--523, 2010.
+
+\bibitem{cressie_statistics_2015}
+Noel Cressie.
+\newblock {\em Statistics for spatial data}.
+\newblock John Wiley \& Sons, 2015.
+
+\bibitem{cushing_dependence_1971}
+D.~H. Cushing.
+\newblock The {Dependence} of {Recruitment} on {Parent} {Stock} in {Different}
+  {Groups} of {Fishes}.
+\newblock {\em ICES Journal of Marine Science}, 33(3):340--362, May 1971.
+
+\bibitem{fletcher_restructuring_1978}
+R.~I. Fletcher.
+\newblock On the restructuring of the {Pella}-{Tomlinson} system.
+\newblock {\em Fish. Bull}, 76(3):515--521, 1978.
+
+\bibitem{fox_jr_exponential_1970}
+William~W. Fox~Jr.
+\newblock An {Exponential} {Surplus}-{Yield} {Model} for {Optimizing}
+  {Exploited} {Fish} {Populations}.
+\newblock {\em Transactions of the American Fisheries Society}, 99(1):80--88,
+  1970.
+\newblock \_eprint:
+  https://onlinelibrary.wiley.com/doi/pdf/10.1577/1548-8659\%281970\%2999\%3C80\%3AAESMFO\%3E2.0.CO\%3B2.
+
+\bibitem{gramacy_surrogates_2020}
+Robert~B. Gramacy.
+\newblock {\em Surrogates: {Gaussian} process modeling, design, and
+  optimization for the applied sciences}.
+\newblock Chapman and Hall/CRC, 2020.
+
+\bibitem{gramacy_cases_2012}
+Robert~B. Gramacy and Herbert~KH Lee.
+\newblock Cases for the nugget in modeling computer experiments.
+\newblock {\em Statistics and Computing}, 22(3):713--722, 2012.
+\newblock Publisher: Springer.
+
+\bibitem{hilborn_quantitative_1992}
+R.~Hilborn and C.~J. Walters.
+\newblock Quantitative {Fisheries}, {Stock} {Assessment}: {Choice} {Dynamics},
+  and {Uncertainty} {Chapman} and {Hall}.
+\newblock {\em New York}, 1992.
+
+\bibitem{hilborn_pretty_2010}
+Ray Hilborn.
+\newblock Pretty good yield and exploited fishes.
+\newblock {\em Marine Policy}, 34(1):193--196, 2010.
+\newblock Publisher: Elsevier.
+
+\bibitem{hilborn_ecological_1997}
+Ray Hilborn and Marc Mangel.
+\newblock {\em The {Ecological} {Detective}: {Confronting} {Models} with
+  {Data}}.
+\newblock Princeton University Press, March 1997.
+
+\bibitem{lee_can_2012}
+Hui-Hua Lee, Mark~N. Maunder, Kevin~R. Piner, and Richard~D. Methot.
+\newblock Can steepness of the stock–recruitment relationship be estimated in
+  fishery stock assessment models?
+\newblock {\em Fisheries Research}, 125-126:254--261, August 2012.
+
+\bibitem{mangel_theoretical_2006}
+Marc Mangel.
+\newblock The {Theoretical} {Biologist}'s {Toolbox}: {Quantitative} {Methods}
+  for {Ecology} and {Evolutionary} {Biology}.
+\newblock 2006.
+
+\bibitem{mangel_perspective_2013}
+Marc Mangel, Alec~D. MacCall, Jon Brodziak, E.j. Dick, Robyn~E. Forrest,
+  Roxanna Pourzand, and Stephen Ralston.
+\newblock A perspective on steepness, reference points, and stock assessment.
+\newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
+  70(6):930--940, April 2013.
+
+\bibitem{punt_model_1988}
+André~E. Punt.
+\newblock {\em Model selection for the dynamics of southern {African} hake
+  resources}.
+\newblock {PhD} {Thesis}, University of Cape Town, 1988.
+
+\bibitem{punt_management_2016}
+André~E. Punt, Doug~S. Butterworth, Carryn L.~de Moor, José A. A.~De
+  Oliveira, and Malcolm Haddon.
+\newblock Management strategy evaluation: best practices.
+\newblock {\em Fish and Fisheries}, 17(2):303--334, 2016.
+
+\bibitem{punt_extending_2019}
+André~E. Punt and Jason~M. Cope.
+\newblock Extending integrated stock assessment models to use non-depensatory
+  three-parameter stock-recruitment relationships.
+\newblock {\em Fisheries Research}, 217:46--57, September 2019.
+
+\bibitem{ramasubramanian_machine_2017}
+Karthik Ramasubramanian and Abhishek Singh.
+\newblock {\em Machine learning using {R}}.
+\newblock Number~1. Springer, 2017.
+
+\bibitem{rankin_alternative_2015}
+Peter~Sheldon Rankin and Ricardo~T. Lemos.
+\newblock An alternative surplus production model.
+\newblock {\em Ecological Modelling}, 313:109--126, October 2015.
+
+\bibitem{ricker_stock_1954}
+William~Edwin Ricker.
+\newblock Stock and recruitment.
+\newblock {\em Journal of the Fisheries Board of Canada}, 11(5):559--623, 1954.
+\newblock Publisher: NRC Research Press Ottawa, Canada.
+
+\bibitem{schnute_analytical_1998}
+Jon~T Schnute and Laura~J Richards.
+\newblock Analytical models for fishery reference points.
+\newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
+  55(2):515--528, February 1998.
+
+\bibitem{scrucca_ga_2013}
+Luca Scrucca.
+\newblock {GA}: {A} {Package} for {Genetic} {Algorithms} in {R}.
+\newblock {\em Journal of Statistical Software}, 53:1--37, April 2013.
+
+\bibitem{scrucca_extensions_2017}
+Luca Scrucca.
+\newblock On {Some} {Extensions} to {GA} {Package}: {Hybrid} {Optimisation},
+  {Parallelisation} and {Islands} {EvolutionOn} some extensions to {GA}
+  package: hybrid optimisation, parallelisation and islands evolution.
+\newblock {\em The R Journal}, 9(1):187--206, 2017.
+
+\bibitem{soetaert_solving_2010}
+Karline Soetaert, Thomas Petzoldt, and R.~Woodrow Setzer.
+\newblock Solving {Differential} {Equations} in {R}: {Package} {deSolve}.
+\newblock {\em Journal of Statistical Software}, 33:1--25, February 2010.
+
+\bibitem{wanner_solving_1996}
+Gerhard Wanner and Ernst Hairer.
+\newblock {\em Solving ordinary differential equations {II}}, volume 375.
+\newblock Springer Berlin Heidelberg, 1996.
+
+\bibitem{yeakel_generalized_2015}
+Justin~D. Yeakel and Marc Mangel.
+\newblock A generalized perturbation approach for exploring stock recruitment
+  relationships.
+\newblock {\em Theoretical Ecology}, 8(1):1--13, February 2015.
+
+\end{thebibliography}

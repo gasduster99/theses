@@ -161,7 +161,7 @@
 \begin{abstract}
 Stock assessments often assume a two-parameter functional form
 (e.g., Beverton-Holt or Ricker) for the expected recruitment produced by a
-given level of spawning output. \shortciteA{mangel_perspective_2013} %Mangel et al. (2013) 
+given level of spawning output. \cite{mangel_perspective_2013} %Mangel et al. (2013) 
 and others have shown that biological reference points such as $\frac{F^*}{M}$
 and $\frac{B^*}{\bar{B}(0)}$ are largely determined by a single parameter
 (steepness) when using two-parameter relationships. These functions introduce
@@ -236,7 +236,7 @@ parametric ordinary differential equations (ODE). Key management quantities
 called reference points (RPs) are commonly derived from the ODE equilibrium
 equations and depend upon the parameterization of biomass production.
 Two-parameter forms of the production function have been shown to
-limit the theoretical domain of RPs \shortcite{mangel_perspective_2013}. The
+limit the theoretical domain of RPs \cite{mangel_perspective_2013}. The
 limited RP-space of two parameter models are a major source of model
 misspecification for RPs and thus induce bias in RP estimation. The behavior
 of RP estimation bias is not well understood and as a result often
@@ -264,7 +264,7 @@ the form.
         \includegraphics[width=0.45\textwidth]{./plots/hakeCatch.png}
         \vspace{-1cm}
 	\caption{\label{hakeData}
-        \textit{left}: An index of abundance data, catch per unit effort (CPUE), for Namibian Hake from 1965 to 1987 \protect\shortcite{hilborn_ecological_1997}.
+        \textit{left}: An index of abundance data, catch per unit effort (CPUE), for Namibian Hake from 1965 to 1987 \protect\cite{hilborn_ecological_1997}.
         \textit{right}: The associated catch data for Namibian Hake over the same time period.
         }
 \end{figure}
@@ -345,9 +345,9 @@ mathematical form of RPs depends upon the model assumptions through the
 production function. %({\color{red} cite}). 
 While a number of different RPs exist which describe the population in different
 (but related) ways, the most common RPs revolve around the concept of MSY (or robust
-ways of measuring MSY \shortcite{hilborn_pretty_2010,punt_management_2016}).
+ways of measuring MSY \cite{hilborn_pretty_2010,punt_management_2016}).
 Here the focus is primarily on the RPs $\frac{B^*}{\bar B(0)}$ and $F^*$ ($\frac{F^*}{M}$ when appropriate)
-for their pervasive use in modern fisheries \shortcite{punt_extending_2019}. %mangel_perspective_2013,
+for their pervasive use in modern fisheries \cite{punt_extending_2019}. %mangel_perspective_2013,
 
 %
 $F^*$ is the afore mentioned fishing rate which results in MSY. $\frac{B^*}{\bar B(0)}$
@@ -356,31 +356,31 @@ the fraction of the unfished population biomass that will remain in the equilibr
 at MSY. In general $F^*\in\mathbb{R}^+$ and \mbox{$\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$,}
 however under the under the assumption of a two parameter production function production 
 models will be structurally unable to capture the full theoretical range of RPs. 
-%\shortcite{mangel_perspective_2013}.
+%\cite{mangel_perspective_2013}.
 
 %
 Many of the most commonly used production functions depend only
 on two parameters. For example, the Schaefer model %{(\color{red}cite)}
 depends only on the biological parameters $r$ and $K$, and limits RP inference 
 so that under the Schaefer model $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}{2}\right)$. 
-The two parameter Fox model \shortcite{fox_jr_exponential_1970} limits $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}{e}\right)$. 
-Similarly the two parameter Cushing \shortcite{cushing_dependence_1971}, Beverton-Holt \shortcite[BH]{beverton_dynamics_1957}
-and Ricker \shortcite{ricker_stock_1954} production functions do not model the full theoretical space of
-RPs \shortcite{mangel_perspective_2013, yeakel_generalized_2015}.
+The two parameter Fox model \cite{fox_jr_exponential_1970} limits $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}{e}\right)$. 
+Similarly the two parameter Cushing \cite{cushing_dependence_1971}, Beverton-Holt \cite{beverton_dynamics_1957} %\cite[BH]{beverton_dynamics_1957} %
+and Ricker \cite{ricker_stock_1954} production functions do not model the full theoretical space of
+RPs \cite{mangel_perspective_2013, yeakel_generalized_2015}.
 %curves are also two parameter
 %production functions that do not model the full theoretical space of
-%RPs \shortcite{mangel_perspective_2013}.
+%RPs \cite{mangel_perspective_2013}.
 
 %
-The bias-variance trade-off \shortcite{ramasubramanian_machine_2017} makes it
+The bias-variance trade-off \cite{ramasubramanian_machine_2017} makes it
 clear that the addition of a third parameter in the production function will
 necessarily reduce estimation bias. However the utility of this bias reduction
 is still under debate because the particular mechanisms and behavior (direction and magnitude) %over relevant RPs %and mechanisms %behavior 
 of these biases for key management quantities %(and the mechanisms of inducing these biases) 
-are not fully understood or described. \shortciteA{lee_can_2012} provides some
-evidence that estimation of productivity parameters %, and thus RPs via \shortcite{mangel_perspective_2013},
+are not fully understood or described. \cite{lee_can_2012} provides some
+evidence that estimation of productivity parameters %, and thus RPs via \cite{mangel_perspective_2013},
 are dependent on biomass contrast as well as model specification. % as well as contrast in data %lacking contrast in biomass. 
-\shortciteA{conn_when_2010} comes to similar conclusions %about steepness estimation
+\cite{conn_when_2010} comes to similar conclusions %about steepness estimation
 via calibration modeling techniques. These studies indicate important factors that
 contribute to inferential failure. However they do not offer mechanisms of model 
 failure, nor do their experimental designs allow for the control of different 
@@ -411,7 +411,7 @@ form of RPs which serves as a control on the nature of simulated model misspecif
 % for analyzing inference under the two parameter model.
 %The parametric forms of RPs under the three parameter models are then inverted to develop a %PT model are then inverted to develop a
 %simulation setting for analyzing inference under the two parameter models. % Schaefer model as well as the BH. 
-Finally a Gaussian Process (GP) metamodel \shortcite{gramacy_surrogates_2020} 
+Finally a Gaussian Process (GP) metamodel \cite{gramacy_surrogates_2020} 
 is constructed for exploration and analysis of RP biases.
 
 %
@@ -441,7 +441,7 @@ is considered together with model misspecification. %alongside the effect of mod
 %
 %Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
 The three parameter Pella-Tomlinson (PT) family has a convenient form that includes, among 
-others \shortcite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
+others \cite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
 logistic production function as a special case. %Under logistic production to form the Schaefer model. The 
 PT production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$ 
 and the family takes the following form, 
@@ -517,7 +517,7 @@ recruitment.
 %\clearpage
 
 %
-While the form of the PT curve produces some limitations \shortcite{fletcher_restructuring_1978}, %{(\color{red}cite)}, 
+While the form of the PT curve produces some limitations \cite{fletcher_restructuring_1978}, %{(\color{red}cite)}, 
 importantly the % how $\gamma$ appears in PT still produces some limitations to the form of the production function 
 introduction of a third parameter allows enough flexibility to fully describe 
 the space of reference points used in management. To see this, the reference 
@@ -624,7 +624,7 @@ productivity parameters.
 %Generating simulated indices of abundance from the PT model requires 
 %inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and 
 %$(r, \gamma)$. It is not generally possible to analytically invert this 
-%relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
+%relationship for many three parameter production functions \cite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
 %Most three parameter production functions lead to RPs that require expensive 
 %numerical methods to invert; more over the numerical inversion procedure can %is 
 %often be unstable. That said, for the case of PT this relationship is 
@@ -637,7 +637,7 @@ productivity parameters.
 Generating simulated indices of abundance from the PT model requires
 inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and
 $(r, \gamma)$. It is not generally possible to analytically invert this
-relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
+relationship for many three parameter production functions \cite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
 Most three parameter production functions lead to RPs that require expensive 
 numerical methods to invert; more over the numerical inversion procedure can %is 
 often be unstable. That said, for the case of PT this relationship is
@@ -695,7 +695,7 @@ effect of productivity model misspecification upon RP inference.
 %
 %%
 %The Schnute production function is a three parameter generalization of many of 
-%the most common two parameter production functions \shortcite{deriso_harvesting_1980, schnute_general_1985}. %\shortcit{deriso_harvesting_1980}. 
+%the most common two parameter production functions \cite{deriso_harvesting_1980, schnute_general_1985}. %\shortcit{deriso_harvesting_1980}. 
 %It can be written in the following form, with parameters $\alpha$, $\beta$, and $\gamma$,
 %%
 %\begin{align}
@@ -726,7 +726,7 @@ effect of productivity model misspecification upon RP inference.
 %
 %%
 %The BH and Logistic production functions arise when $\gamma$ is fixed to -1 or 
-%1 respectively. The Ricker model is a limiting case as $\gamma\rightarrow0$. %\shortcite{schnute_general_1985}.
+%1 respectively. The Ricker model is a limiting case as $\gamma\rightarrow0$. %\cite{schnute_general_1985}.
 %For $\gamma<-1$ a family of strictly increasing Cushing-like curves arise, 
 %culminating in linear production as $\gamma\to-\infty$. These special cases form
 %natural regimes of similarly behaving production functions as seen in Figure (\ref{sRegimes}).
@@ -842,7 +842,7 @@ effect of productivity model misspecification upon RP inference.
 %and the corresponding RPs in some reasonable space-filling design over RP space. 
 %
 %%
-%Similarly to \shortciteA{schnute_analytical_1998}, expressions %solving expressions 
+%Similarly to \citeA{schnute_analytical_1998}, expressions %solving expressions 
 %(\ref{FmsyS}) and (\ref{B0S}) are solved for $\alpha$ and $\beta$ respectively. 
 %This leads to the partial mapping 
 %$\big(F^*, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$ 
@@ -938,25 +938,25 @@ effect of productivity model misspecification upon RP inference.
 %%	\item maximin designs are often concentrated in the corners (edges) of the design region
 %%
 %%	%\item goal of space filling
-%%	\item \shortcite{gramacy_surrogates_2020} The goal is to guarantee a certain degree of spread in the design, 
+%%	\item \cite{gramacy_surrogates_2020} The goal is to guarantee a certain degree of spread in the design, 
 %%	while otherwise enjoying the properties of a random uniform sample.
-%%	\item \shortcite{devon_lin_latin_2015}  Construction and properties.
-%%	\item \shortcite{stein_large_1987} large sample props. 
+%%	\item \cite{devon_lin_latin_2015}  Construction and properties.
+%%	\item \cite{stein_large_1987} large sample props. 
 %%	\item Monotonicity: Latin hypercube sampling yields a smaller variance of the sample mean than simple random sampling
-%%	\item \shortcite{owen_central_1992} CLT
+%%	\item \cite{owen_central_1992} CLT
 %%\end{itemize}
 %
 %%
 %The goal of space filling design in this setting is to extend the notion of the 
 %random sample (and its desirable parameter estimation properties) across the 
-%simulated RP domain so as to represent the simulated space as well as possible \shortcite{gramacy_surrogates_2020}.
+%simulated RP domain so as to represent the simulated space as well as possible \cite{gramacy_surrogates_2020}.
 %The simple random sample is the classical approach to unbiased parameter 
 %estimation, however simple randomness is patchy, often sampling some regions 
 %of design space quite densely, while leaving other regions of design space empty. 
 %Space filling designs aim to preserve (or enhance) parameter estimation properties 
-%across the simulated domain \shortcite{devon_lin_latin_2015, stein_large_1987}, 
+%across the simulated domain \cite{devon_lin_latin_2015, stein_large_1987}, 
 %while constraining samples to be spaced in some notion of spread over the entire space.
-%Latin hypercube sampling \shortcite[LHS]{mckay_comparison_2000} is among the most 
+%Latin hypercube sampling \cite[LHS]{mckay_comparison_2000} is among the most 
 %foundational of space filling designs used in computer experiments.
 %
 %%
@@ -1383,7 +1383,7 @@ sampled RP design locations to PT productivity parameters.
 %%\item good projective properties
 %%\item maximin designs are often concentrated in the corners (edges) of the design region
 %%
-%%\item \shortcite{johnson_minimax_1990}
+%%\item \cite{johnson_minimax_1990}
 %%\item Johnson et al. (1990) showed that as the correlation parameter goes to 
 %%infinity, a maximin design maximizes the determinant of the correlation matrix, 
 %%where the correlation matrix refers to that of the outputs from running the 
@@ -1391,7 +1391,7 @@ sampled RP design locations to PT productivity parameters.
 %%D-optimal under the model in (19.8) as the correlations become weak. Thus, a 
 %%maximin design is also asymptotically optimal with respect to the maximum entropy 
 %%criterion (Shewry and Wynn 1987)
-%%\item \shortcite{morris_exploratory_1995}
+%%\item \cite{morris_exploratory_1995}
 %%\item maximin designs of moderate size are often concentrated in the corners 
 %%of the cuboidal design region, i.e. each input is represented at only two 
 %%levels. Here we will examine some maximin distance designs constructed within 
@@ -1420,13 +1420,13 @@ sampled RP design locations to PT productivity parameters.
 %While LHS ensures uniformity in the design margins, and a certain degree of spread, 
 %it is widely recognized that particular LHS instantiations may leave substantive gaps 
 %in the simulation design. To correct this, LHS is often paired with design elements 
-%of maximin design \shortcite{morris_exploratory_1995,devon_lin_latin_2015}. Maximin designs sample 
+%of maximin design \cite{morris_exploratory_1995,devon_lin_latin_2015}. Maximin designs sample 
 %the design space by maximizing the minimum distance between sampled points. 
-%This has the advantage of definitionally filling holes in the design, %\shortcite{johnson_minimax_1990}, %in a way that has been %shown to have asymtoptically optimal characteristics for Gaussian process models \shortcite{johnson_minimax_1990}
+%This has the advantage of definitionally filling holes in the design, %\cite{johnson_minimax_1990}, %in a way that has been %shown to have asymtoptically optimal characteristics for Gaussian process models \cite{johnson_minimax_1990}
 %however because no points are ever drawn outside of the design domain, samples tend to 
 %clump around edges (particularly corners) of the design domain. Since LHS ensures 
 %uniformity in the margins and maximin designs enjoys a certain sense of optimality 
-%in how they define and fill gaps \shortcite{johnson_minimax_1990}, the methods are 
+%in how they define and fill gaps \cite{johnson_minimax_1990}, the methods are 
 %quite complimentary when combined. 
 %
 %%Thus 
@@ -1658,7 +1658,7 @@ step into the metamodel. By matching each $\text{y}_i$ with an observed $\omega_
 variance term, $\epsilon$ serves to down weight the influence of each $\text{y}_i$ 
 in proportion to the inferred production model sampling distribution 
 uncertainty. This has the effect of smoothing the GP model in a way similar to 
-the nugget effect \shortcite{gramacy_cases_2012}, although the application 
+the nugget effect \cite{gramacy_cases_2012}, although the application 
 here models this effect heterogeneously.
 
 %Above $\bm{v}$ is a vector of Gaussian process effects
@@ -1685,7 +1685,7 @@ and $\bm{\omega}$ from simulation fits.
 %
 Fitting the metamodel allows for a full predictive description of inference 
 under the misspecified restricted models.
-Predictive estimates are obtained via kriging \shortcite{cressie_statistics_2015} %{(\color{red}cite)}. 
+Predictive estimates are obtained via kriging \cite{cressie_statistics_2015} %{(\color{red}cite)}. 
 %over intermediate values over RP space. 
 %with $\hat~$ decorate any quantity that is derived for metamodel interpolation.
 %{\color{red}Let $\tilde~$ decorate any quantity that is derived 
@@ -1726,7 +1726,7 @@ production model to indices of abundance generated under three parameter product
 
 %
 It is known that contrast in the observed index and catch time series %a behavior of catch 
-can effect inference on the productivity parameters \shortcite{hilborn_quantitative_1992}. % {\color{red} cite Walters}). 
+can effect inference on the productivity parameters \cite{hilborn_quantitative_1992}. % {\color{red} cite Walters}). 
 %In particular it is thought that catch can induce "contrast" in index data
 %so as to better inform $r$. 
 In this setting contrast refers to changes in the long term trends of index data. 
@@ -1869,7 +1869,7 @@ the production model ODE.
 %to match the observation frequency of the modeled data. In this case, catch is sampled 
 %as would be done in practice however, the simulation can encounter a variety of issues 
 %working with the naively discretized ODE. As a result the ODE is integrated implicitly 
-%via the Livermore Solver \shortcite[lsode]{radhakrishnan_description_1993}, and catch 
+%via the Livermore Solver \cite[lsode]{radhakrishnan_description_1993}, and catch 
 %is linearly interpolated between sampled epochs. 
 %More detail about issues of continuity and ODE integration are described in 
 %Appendix (\ref{appODE}).
@@ -1944,7 +1944,7 @@ Given that the biological parameters enter the likelihood via a nonlinear ODE,
 and further the parameters themselves are related to each other nonlinearly,
 the likelihood function can often be difficult to optimize. A hybrid optimization
 scheme is used to maximize the log likelihood to ensure that a global MLE solution
-is found. The R package GA \shortcite{scrucca_ga_2013, scrucca_extensions_2017} is
+is found. The R package GA \cite{scrucca_ga_2013, scrucca_extensions_2017} is
 used to run a genetic algorithm to explore parameter space globally.
 Optimization periodically jumps into the L-BFGS-B local optimizer to refine
 optima within a local mode. The scheme functions by searching globally, with the genetic
@@ -1967,7 +1967,7 @@ when the optimum results in an invertible Hessian at the found MLE.
 %identifiable. Posing the model in a Bayesian context provides a convenient
 %mechanism for managing these weak identifiability issues. In a tactful Bayesian
 %formulation $q$ and $\sigma^2$ may then be marginalized out of the joint posterior
-%to yield fast and reliable inference \shortcite{walters_calculation_1994}. %deyoreo_integrating_2012}. %deyoreo_integrating_nodate}. %({\color{red} Cite Maria DeYorio pdf}).
+%to yield fast and reliable inference \cite{walters_calculation_1994}. %deyoreo_integrating_2012}. %deyoreo_integrating_nodate}. %({\color{red} Cite Maria DeYorio pdf}).
 
 
 %{\color{red} $q$ procedure}
@@ -2086,7 +2086,7 @@ combinations of parameters that result in numerically stiff ODEs.
 %
 The concept of stiffness in ODEs is hard to precisely characterize.
 %({\color{red}cite}). Hairer and Wanner [5, p. 2] 
-\shortciteA[p.2]{wanner_solving_1996} describe stiffness in the
+\cite[p.2]{wanner_solving_1996} describe stiffness in the
 following pragmatic sense, ``Stiff equations are problems for which explicit
 methods don't work''. It is hard to make this definition more mathematically
 precise, but this a consistent issue for models of fast growing species in 
@@ -2100,7 +2100,7 @@ integrate the ODE with an implicit integration method.
 %
 Several of the most common implicit methods were tried including the
 Livermore Solver for ODEs (lsode), and the Variable Coefficient ODE Solver
-(vode) as implemented in the deSolve package of R \shortcite{soetaert_solving_2010}. 
+(vode) as implemented in the deSolve package of R \cite{soetaert_solving_2010}. 
 The difference between implicit solvers is negligible, while explicit
 methods result in wildly varying solutions to the ODE in stiff regions of
 parameter space. %explicate methods completely fail to represent the model as
@@ -2138,7 +2138,7 @@ $K$ to $B^*$. Understanding model misspecification bias is simplified in this
 setting due to the relative simplicity that this induces in $B(t)$. However 
 this simplicity is known to poorly inform estimates of $r$, and thus $F^*$, 
 due to the limited range of the production function that is observed 
-\shortcite{hilborn_quantitative_1992}. 
+\cite{hilborn_quantitative_1992}. 
 %This example is a "low contrast" setting.
 
 %%
@@ -2843,7 +2843,7 @@ model of fishing.
 
 %
 Results presented here generally agree with what is known about estimating
-growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
+growth rate parameters \cite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
 These study's appreciate the role of contrast for estimating growth rates, 
 however they struggle to make generally extensible conclusions since they focus only 
 on a handful of stocks that fall short of forming a random sample of the greater 
@@ -2861,7 +2861,7 @@ of productivity estimation within the production model setting presented.
 %including more assessments
 %%
 %\begin{itemize}
-%\item \shortcite{lee_can_2012} Generalizability via random sample of fisheries, LHS RP explicitly does this.
+%\item \cite{lee_can_2012} Generalizability via random sample of fisheries, LHS RP explicitly does this.
 %\item multiple starting locations and convergence defined as positive definite Hessian.
 %\end{itemize}
 
@@ -2949,8 +2949,8 @@ choosing a BH model of productivity. %Ultimately accuracy of RP estimation,
 %without structural RP biases, %and accurate assessment of uncertainty is a better state 
 Increasing the flexibility of the production function by moving toward 
 three parameter models would release the underlying structural limitations 
-\shortcite{mangel_perspective_2013} that cause these RP biases in the first place. 
-\shortciteA{punt_extending_2019} %(Mangel et al., 2013). Punt and Cope (2019) 
+\cite{mangel_perspective_2013} that cause these RP biases in the first place. 
+\cite{punt_extending_2019} %(Mangel et al., 2013). Punt and Cope (2019) 
 considers a suite of possible three parameter curves which could be used 
 instead of current two parameter curves. For all of their benefits, three 
 parameter production functions have their own complicating factors, and the 
@@ -2968,7 +2968,7 @@ model for developing three parameter models going forward.
 %\item model misspecification story as in advancement
 	%\begin{itemize}
 	%	%\item Results presented here generally agree with what is known about estimating 
-	%	%growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
+	%	%growth rate parameters \cite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
 	%	%\item These study's appreciate that role of contrast for estimating growth rates, 
 	%	%however do not explicately control the degree of model misspecification relative to RPs. 
 	%	
@@ -3004,7 +3004,7 @@ model for developing three parameter models going forward.
 %\item Overestimation of $F^*$ carries the severe implication of management 
 %recommendations potentially leading to overfishing, while underestimation of $F^*$ leads to overly conservative management. 
 
-\item {\color{blue}show a schnute fit to data? \shortcite{yeakel_generalized_2015} Prior} % and how it fixes issues.}
+\item {\color{blue}show a schnute fit to data? \cite{yeakel_generalized_2015} Prior} % and how it fixes issues.}
 %\item logistic/fox model triangulation (bias correction).
 
 \end{itemize}
@@ -3013,7 +3013,7 @@ model for developing three parameter models going forward.
 %
 %%
 %Results presented here generally agree with what is known about estimating 
-%growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}, 
+%growth rate parameters \cite{lee_can_2012, conn_when_2010, magnusson_what_2007}, 
 %in this case $r$, and thus $F^*$.  
 %%These study's appreciate that role of contrast for estimating growth rates, 
 %%however do not explicately control the degree of model misspecification 
@@ -3066,8 +3066,8 @@ model for developing three parameter models going forward.
 %model misspecification. The observed contrast then serves to distribute the 
 %available information among $B^*$ and $F^*$. Increasing the flexibility of the 
 %production function by moving toward curves with additional parameters could 
-%release these structural limitations \shortcite{mangel_perspective_2013}. 
-%\shortciteA{punt_extending_2019} considers a suite of possible three parameter
+%release these structural limitations \cite{mangel_perspective_2013}. 
+%\citeA{punt_extending_2019} considers a suite of possible three parameter
 %curves which could be used instead of current two parameter curves.
 %
 %%
@@ -3494,7 +3494,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %called reference points (RP) are commonly derived from the ODE equilibrium 
 %equations and depend upon the parameterization of biomass production. 
 %Two-parameter parameterizations of the production function have been shown to 
-%limit the theoretical domain of RPs \shortcite{mangel_perspective_2013}. The 
+%limit the theoretical domain of RPs \cite{mangel_perspective_2013}. The 
 %limited RP-space of two parameter models are a major source of model 
 %misspecification for RPs and thus induce bias in RP estimation. The behavior 
 %of RP estimation bias is not well understood and as a result often 
@@ -3535,7 +3535,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %	\includegraphics[width=0.5\textwidth]{./plots/hakeIndex.png}
 %	\includegraphics[width=0.5\textwidth]{./plots/hakeCatch.png}
 %	\caption{\label{hakeData}
-%	\textit{left}: An observed series of index of abundance data for Namibian Hake from 1965 to 1987 \protect\shortcite{hilborn_ecological_1997}.
+%	\textit{left}: An observed series of index of abundance data for Namibian Hake from 1965 to 1987 \protect\cite{hilborn_ecological_1997}.
 %	\textit{right}: The associated catch data for Namibian Hake over the same time period.
 %	}
 %\end{figure}
@@ -3575,7 +3575,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %
 %%
 %Secondly, the population decreases as biomass is removed due to catch, $C(t)$. 
-%While catches (aka yields) are observable quantities \shortcite{pearson_documentation_1997}, %sen_sampling_1984,  
+%While catches (aka yields) are observable quantities \cite{pearson_documentation_1997}, %sen_sampling_1984,  
 %the model assumes that catch is proportional to biomass with the 
 %proportionality constant representing the fishing rate, $F(t)$, so that $C(t)=F(t)B(t)$. 
 %From a management perspective a major goal of the model is to accurately infer 
@@ -3601,7 +3601,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %
 %%
 %The canonical production model in fisheries is the Schaefer model. The 
-%Schaefer model is formed by choosing $P$ to be logistic growth \shortcite{mangel_theoretical_2006} %({\color{red} cite}) 
+%Schaefer model is formed by choosing $P$ to be logistic growth \cite{mangel_theoretical_2006} %({\color{red} cite}) 
 %parameterized by $\bm{\theta} = [r, K]$ so that the family of production 
 %functions takes the following form,  
 %%
@@ -3671,9 +3671,9 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %RPs depends upon the model assumptions through the production function. %({\color{red} cite}). 
 %While a number of different RPs exist which describe the population in different 
 %(but related) ways, the most common RPs revolve around the concept of MSY (or robust 
-%ways of measuring MSY \shortcite{hilborn_pretty_2010,punt_management_2016}).
+%ways of measuring MSY \cite{hilborn_pretty_2010,punt_management_2016}).
 %Here the focus is primarily on the RPs $F^*$ and $\frac{B^*}{\bar B(0)}$ for their 
-%pervasive use in modern fisheries \shortcite{mangel_perspective_2013,punt_extending_2019}.
+%pervasive use in modern fisheries \cite{mangel_perspective_2013,punt_extending_2019}.
 %
 %%%
 %%Here the focus is on two RPs that will be denoted by $\xi$ and $\zeta$ going forward.  
@@ -3705,19 +3705,19 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %In current practice, production functions are typically chosen to depend only 
 %on two parameters. The Schaefer model as presented depends only on
 %the biological parameters $r$ and $K$, but other common two parameter choices
-%of the production function are the Beverton-Holt \shortcite[BH]{beverton_dynamics_1957} 
-%and Ricker \shortcite{ricker_stock_1954} curves. All of these two parameter 
+%of the production function are the Beverton-Holt \cite[BH]{beverton_dynamics_1957} 
+%and Ricker \cite{ricker_stock_1954} curves. All of these two parameter 
 %production functions struggle similarly to model the full theoretical space of 
-%RPs \shortcite{mangel_perspective_2013}.
+%RPs \cite{mangel_perspective_2013}.
 %
 %%The Schaefer model is a much loved and argued over model
-%The basis of the Schaefer model is ripe with debate \shortcite{kingsland_refractory_1982}, 
-%and the debate continues within modern fisheries modeling \shortcite{prager_comparison_2002}. 
-%On the one hand, \shortciteA{maunder_is_2003} argues that the Schaefer model is 
+%The basis of the Schaefer model is ripe with debate \cite{kingsland_refractory_1982}, 
+%and the debate continues within modern fisheries modeling \cite{prager_comparison_2002}. 
+%On the one hand, \citeA{maunder_is_2003} argues that the Schaefer model is 
 %insufficient in large part due to the restriction it places on $\frac{B^*}{\bar B(0)}$, 
 %at $\frac{1}{2}$, and further argues that the three parameter Pella-Tomlinson 
-%(PT) model \shortcite{pella_generalized_1969} should replace the Schaefer model to avoid biased parameter 
-%estimates. On the other hand, while \shortciteA{prager_reply_2003} appreciates 
+%(PT) model \cite{pella_generalized_1969} should replace the Schaefer model to avoid biased parameter 
+%estimates. On the other hand, while \citeA{prager_reply_2003} appreciates 
 %the limitations of the Schaefer model, he argues its usefulness as a well 
 %understood and simple model that has the ability to reasonably 
 %approximate dynamics in many data poor stocks. %productivity shapes. 
@@ -3729,7 +3729,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%unrealistically low due to the limited parameter space.
 %%
 %%%and conversely a two parameter production function will have estimation errrosd. 
-%%The argument of \shortciteA{maunder_is_2003} suggests that the two parameter 
+%%The argument of \citeA{maunder_is_2003} suggests that the two parameter 
 %%Schaefer model overly restricts parameter space so that estimation error is unduly 
 %%dominated by bias.
 %%
@@ -3741,15 +3741,15 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%space of the Schaefer model 
 %
 %%
-%The bias-variance trade-off \shortcite{ramasubramanian_machine_2017} makes it 
+%The bias-variance trade-off \cite{ramasubramanian_machine_2017} makes it 
 %clear that the addition of a third parameter in the production function will 
 %necessarily reduce estimation bias. However the utility of this bias reduction 
 %is still under debate because the particular mechanisms and behavior (direction and magnitude) %over relevant RPs %and mechanisms %behavior 
 %of these biases for key management quantities %(and the mechanisms of inducing these biases) 
-%are not fully understood or described. \shortciteA{lee_can_2012} provides some 
-%evidence that estimation of productivity parameters, and thus RPs via \shortcite{mangel_perspective_2013}, 
+%are not fully understood or described. \citeA{lee_can_2012} provides some 
+%evidence that estimation of productivity parameters, and thus RPs via \cite{mangel_perspective_2013}, 
 %are dependent on biomass contrast as well as model specification. % as well as contrast in data %lacking contrast in biomass. 
-%\shortciteA{conn_when_2010} comes to similar conclusions %about steepness estimation
+%\citeA{conn_when_2010} comes to similar conclusions %about steepness estimation
 %via calibration modeling techniques. Despite this understanding of productivity estimation, 
 %the implications have not been extended to a joint description of biases on the scale of 
 %management RPs. % biases jointly.
@@ -3770,7 +3770,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %The work begins with a derivation of RPs under the three parameter PT model. 
 %The parametric forms of RPs under the PT model are then inverted to develop a 
 %simulation setting for analyzing inference under the two parameter Schaefer 
-%model. Finally a Gaussian Process (GP) metamodel \shortcite{gramacy_surrogates_2020} is constructed for exploration 
+%model. Finally a Gaussian Process (GP) metamodel \cite{gramacy_surrogates_2020} is constructed for exploration 
 %and analysis of RP biases. 
 %
 %%
@@ -3828,7 +3828,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%the biological parameters $r$ and $K$, but other common two parameter choices 
 %%of the production function are the Beverton-Holt (BH) and Ricker curves. All
 %%of these two parameter production functions struggle similarly to model the full 
-%%theoretical space of RPs \shortcite{mangel_perspective_2013}.
+%%theoretical space of RPs \cite{mangel_perspective_2013}.
 %
 %
 %
@@ -3933,7 +3933,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %{\color{gray}
 %%Below I present the three parameter Pella-Tomlinson (PT) family, which has a 
 %The three parameter PT family has a convenient form that includes, among 
-%others \shortcite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
+%others \cite{fox_jr_exponential_1970,rankin_alternative_2015}, the 
 %logistic production function as a special case to form the Schaefer model. The 
 %Pella-Tomlinson production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$ 
 %and the family takes the following form, 
@@ -4102,7 +4102,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %Generating simulated indices of abundance from the PT model requires 
 %inverting the relationship between $\left(F^*, \frac{B^*}{\bar B(0)}\right)$, and 
 %$(r, \gamma)$. It is not generally possible to analytically invert this 
-%relationship for many three parameter production functions \shortcite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
+%relationship for many three parameter production functions \cite{punt_extending_2019, schnute_analytical_1998}. %{(\color{red}cite Derizo paper)}. 
 %Most three parameter production functions lead to RPs that require expensive 
 %numerical methods to invert; more over the numerical inversion procedure can %is 
 %often be unstable. That said, for the case of PT this relationship is 
@@ -4183,7 +4183,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %
 %%
 %It is known that the behavior of catch can effect inference on the biological 
-%parameters \shortcite{hilborn_quantitative_1992}. % {\color{red} cite walters}). 
+%parameters \cite{hilborn_quantitative_1992}. % {\color{red} cite walters}). 
 %In particular it is thought that catch can induce "contrast" in index data
 %so as to better inform $r$. In this setting contrast refers to changes in the 
 %long term trends of index data. Figure (\ref{expCatchT45}, \emph{right}) demonstrates an 
@@ -4224,7 +4224,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %to match the observation frequency of the modeled data. In this case, catch is sampled 
 %as would be done in practice however, the simulation can encounter a variate of issues 
 %working with the naively discretized ODE. As a result the ODE is integrated implicitly 
-%via the Livermore Solver \shortcite[lsode]{radhakrishnan_description_1993}, and catch 
+%via the Livermore Solver \cite[lsode]{radhakrishnan_description_1993}, and catch 
 %is linearly interpolated between sampled epochs. 
 %%More detail about issues of continuity and ODE integration are described in 
 %%Appendix (\ref{appODE}).
@@ -4281,7 +4281,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %and further the parameters themselves are related to each other nonlinearly, 
 %the likelihood function can often be difficult to optimize. A hybrid optimization 
 %scheme is used to maximize the log likelihood to ensure that a global MLE solution 
-%is found. The R package GA \shortcite{scrucca_ga_2013, scrucca_extensions_2017} is 
+%is found. The R package GA \cite{scrucca_ga_2013, scrucca_extensions_2017} is 
 %used to run a genetic algorithm to explore parameter space globally. 
 %Optimization occasionally jumps into the L-BFGS-B local optimizer to refine 
 %optima within a local mode. The scheme functions by searching globally to 
@@ -4298,7 +4298,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %identifiable. Posing the model in a Bayesian context provides a convenient 
 %mechanism for managing these weak identifiability issues. In a tactful Bayesian 
 %formulation $q$ and $\sigma^2$ may then be marginalized out of the joint posterior 
-%to yield fast and reliable inference \shortcite{walters_calculation_1994}. %deyoreo_integrating_2012}. %deyoreo_integrating_nodate}. %({\color{red} Cite Maria DeYorio pdf}).
+%to yield fast and reliable inference \cite{walters_calculation_1994}. %deyoreo_integrating_2012}. %deyoreo_integrating_nodate}. %({\color{red} Cite Maria DeYorio pdf}).
 %
 %
 %% $q$ procedure
@@ -4362,7 +4362,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %observed residual variation for the inferred value, $\hat\mu_i$. This mechanism 
 %down weights the influence of each $\hat\mu_i$ in proportion to the inferred 
 %sampling distribution uncertainty. This has the effect of smoothing the GP 
-%model in a way similar to the nugget effect \shortcite{gramacy_cases_2012}. %({\color{red} cite nugget paper})
+%model in a way similar to the nugget effect \cite{gramacy_cases_2012}. %({\color{red} cite nugget paper})
 %% from inference in the simulation step. 
 %%This allows for the full propagation of inferred information 
 %%from the simulation step to be propagated into the reference point meta-model.
@@ -4463,7 +4463,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %exponential decay from $K$ to $B^*$. Understanding model misspecification bias 
 %is simplified in this setting due to the relative simplicity of $B(t)$. 
 %However this simplicity is known to poorly inform estimates of $r$, and thus $F^*$, 
-%due to the limited range of the production function that is observed \shortcite{hilborn_quantitative_1992}. 
+%due to the limited range of the production function that is observed \cite{hilborn_quantitative_1992}. 
 %This example is a "low contrast" setting.
 %
 %%
@@ -4791,7 +4791,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %
 %%
 %Results presented here generally agree with what is known about estimating 
-%growth rate parameters \shortcite{lee_can_2012, conn_when_2010, magnusson_what_2007}, 
+%growth rate parameters \cite{lee_can_2012, conn_when_2010, magnusson_what_2007}, 
 %in this case $r$, and thus $F^*$.  
 %%These studys appreciate that role of contrast for estimating growth rates, 
 %%however do not explicately control the degree of model misspecification 
@@ -4844,8 +4844,8 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %model misspecification. The observed contrast then serves to distribute the 
 %available information among $B^*$ and $F^*$. Increasing the flexibility of the 
 %production function by moving toward curves with additional parameters could 
-%release these structural limitations \shortcite{mangel_perspective_2013}. 
-%\shortciteA{punt_extending_2019} considers a suite of possible three parameter
+%release these structural limitations \cite{mangel_perspective_2013}. 
+%\citeA{punt_extending_2019} considers a suite of possible three parameter
 %curves which could be used instead of current two parameter curves.
 %
 %%
@@ -4939,9 +4939,9 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%
 %The Deriso production function presents a convenient three parameter form 
 %that is capable of representing many of the most common two parameter production 
-%functions as special cases \shortcite{deriso_harvesting_1980}. The BH and 
+%functions as special cases \cite{deriso_harvesting_1980}. The BH and 
 %Logistic production functions arise when $\gamma$ is fixed to -1 or 1 
-%respectively, and the Ricker model is a \mbox{limiting case as $\gamma\rightarrow0$ \shortcite{schnute_general_1985}.}
+%respectively, and the Ricker model is a \mbox{limiting case as $\gamma\rightarrow0$ \cite{schnute_general_1985}.}
 %
 %%
 %\vspace{-0.5cm}
@@ -4971,7 +4971,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %presents an ideal setting for extending the above study of RP biases across a 
 %broad range of productivity assumptions. Under the Deriso model inverting the 
 %relationship between RPs and model parameters is not fully analytically possible 
-%\shortcite{schnute_analytical_1998}. Numerical inversion of the nonlinear system 
+%\cite{schnute_analytical_1998}. Numerical inversion of the nonlinear system 
 %seen in Eq (\ref{system}) is required for determining parameter values for data 
 %generation. Notice for a given $\gamma$ value, $\alpha$ and $\beta$ can be 
 %solved analytically.
@@ -5030,7 +5030,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%%A further important modeling extension is to include the dynamics of 
 %%%age-structure in the population. 
 %The Deriso-Schnute delay-difference (DD) model provides a compact 
-%representation of simple age-structured dynamics \shortcite{deriso_harvesting_1980, schnute_general_1985, schnute_general_1987}. %\color{red} cite equivalnece}. 
+%representation of simple age-structured dynamics \cite{deriso_harvesting_1980, schnute_general_1985, schnute_general_1987}. %\color{red} cite equivalnece}. 
 %While various modeling strategies may be considered for including effects of 
 %age-structure in the population, the Deriso-Schnute DD model presents an ideal 
 %model for the simulation setting presented here. The compact representation of 
@@ -5039,7 +5039,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %computation.  %while accounting for the effects of individual growth and maturity.  %and parsimonious parameterization of growth   for the simulation setting presented here.
 %
 %%
-%The DD model is derived directly from an assumption of Von Bertalanffy growth \shortcite{von_bertalanffy_quantitative_1938} %{\color{red} cite } 
+%The DD model is derived directly from an assumption of Von Bertalanffy growth \cite{von_bertalanffy_quantitative_1938} %{\color{red} cite } 
 %in weight, as seen in Eq (\ref{vbGrowth}). In this setting Von Bertalanffy 
 %growth relates individual age to individual weight by assuming linear 
 %instantaneous growth (as parameterized by the growth parameters $\kappa$ and 
@@ -5150,7 +5150,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%	\item The delay differential setting is fast an efficient compared to the full
 %%		age structured model. Self accounting. learns similar (if not the same) 
 %%		infmornation about the stock as the full age structed model 
-%%	\item Equilibrium calcutions are avilable \shortcite{schnute_analytical_1998}
+%%	\item Equilibrium calcutions are avilable \cite{schnute_analytical_1998}
 %%\end{itemize}
 %%
 %%
@@ -5163,9 +5163,9 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %% individual growth 
 %%}
 %%
-%%\shortcite{deriso_harvesting_1980}
-%%\shortcite{schnute_general_1985, schnute_general_1987}
-%%\shortcite{walters_continuous_2020}
+%%\cite{deriso_harvesting_1980}
+%%\cite{schnute_general_1985, schnute_general_1987}
+%%\cite{walters_continuous_2020}
 %%
 %%
 %%
@@ -5178,8 +5178,8 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%
 %%
 %%
-%%%\shortciteA{punt_extending_2019} formulated this way; mathematically equivalent 
-%%%to formulations in \shortcite{schnute_general_1985, schnute_analytical_1998} which 
+%%%\citeA{punt_extending_2019} formulated this way; mathematically equivalent 
+%%%to formulations in \cite{schnute_general_1985, schnute_analytical_1998} which 
 %%%has Schaefer, Ricker, and BH models as special cases. %when $gamma$ takes the values
 %%%In particular I focus on the case when $gamma=1$, when Eq (\ref{schunte}) reduces to
 %%%the BH production model. 
@@ -5265,11 +5265,11 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%%Historical 
 %%Current, and historical, databases of commercial groundfish landings have not 
 %%reported (or calculated) uncertainty associated with the estimation of catch 
-%%in the northeastern pacific \shortcite{narita_pacfin_1988,calcom_california_2006}. 
+%%in the northeastern pacific \cite{narita_pacfin_1988,calcom_california_2006}. 
 %%Often stock assessments assume that landings taken from these databases are 
 %%known without uncertainty, and regulatory agencies seldom consider catch as a 
 %%source of uncertainty. However, uncertainty in catch estimation is present, and 
-%%methods for quantifying catch uncertainty have been developed \shortcite{shelton_estimating_2012}. 
+%%methods for quantifying catch uncertainty have been developed \cite{shelton_estimating_2012}. 
 %%Figure (\ref{hakeData}, \emph{right}) demonstrates a classic fisheries example 
 %%in which catch is almost always assumed known. While there may be a biological 
 %%explanation for year to year jitters in catch, a statistical explanation 
@@ -5279,25 +5279,25 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%primary modeling objectives of stock assessment. % in process dynamics.   
 %%
 %%%should at the very least be bu. While 
-%%%methods for quantifying catch uncertainty have been developed \shortcite{shelton_estimating_2012}, 
+%%%methods for quantifying catch uncertainty have been developed \cite{shelton_estimating_2012}, 
 %%%the effect of uncertainty in catch has not been yet been incorporated in stock 
-%%%assessment models \shortcite{methot_stock_2013}.
+%%%assessment models \cite{methot_stock_2013}.
 %%
-%%%Improved methods of quantfying catch uncertainty exists \shortcite{shelton_estimating_2012}, 
+%%%Improved methods of quantfying catch uncertainty exists \cite{shelton_estimating_2012}, 
 %%%but stock assessments se.
 %%% Given the availability of assessment 
 %%%models do not account for uncertainty in catch estimates.  The assumption of 
 %%%known catch without uncertainty is suspect, see Figure 
 %%%(\ref{hakeData}, \emph{right}).  While methods for quantifying catch 
-%%%uncertainty have been developed \shortcite{shelton_estimating_2012}, the 
+%%%uncertainty have been developed \cite{shelton_estimating_2012}, the 
 %%%effect of uncertainty in catch has not been incorporated in stock assessment 
-%%%models \shortcite{methot_stock_2013}.    
+%%%models \cite{methot_stock_2013}.    
 %%
 %%%
 %%The theoretical use of splines for smoothly and accurately approximating the 
-%%solution of initial value problems has been well established \shortcite{ahlberg_theory_1967}. %\shortcite{ahlberg_convergence_1963, ahlberg_cubic_1968, ahlberg_collocation_1975}.  
+%%solution of initial value problems has been well established \cite{ahlberg_theory_1967}. %\cite{ahlberg_convergence_1963, ahlberg_cubic_1968, ahlberg_collocation_1975}.  
 %%As a statistical model splines are also well established as a nonparametric 
-%%(or semiparametric) regression technique \shortcite{green_nonparametric_1993, hastie_elements_2009}. %\shortcite{de_boor_practical_1978, wahba_spline_1990, green_nonparametric_1993, hastie_elements_2009}.
+%%(or semiparametric) regression technique \cite{green_nonparametric_1993, hastie_elements_2009}. %\cite{de_boor_practical_1978, wahba_spline_1990, green_nonparametric_1993, hastie_elements_2009}.
 %%The use of splines in these two settings, along with the advent of estimates of 
 %%uncertainty in catch, suggests splines as a useful modeling paradigm for 
 %%incorporating elements of catch uncertainty into single species stock 
@@ -5575,7 +5575,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %$\sigma^2$ may be marginalized out of the joint posterior to yield a direct 
 %sampling scheme for $q$ and $\sigma^2$ which factors the posterior into the 
 %form $p(q, \sigma^2, \bm{\theta}|I) = N(\log(q)| \sigma^2, \bm{\theta}, I) IG(\sigma^2|\bm{\theta}, I) p(\bm{\theta}|I)$ 
-%\shortcite{walters_calculation_1994, deyoreo_integrating_2012} %({\color{red} Cite Maria DeYorio pdf??}).
+%\cite{walters_calculation_1994, deyoreo_integrating_2012} %({\color{red} Cite Maria DeYorio pdf??}).
 %
 %%
 %The joint likelihood on the log scale can be written as, 
@@ -5848,7 +5848,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%
 %By working with expressions (\ref{yeildS}) and (\ref{B0S}) aiming toward 
 %deriving expressions for $\alpha$ and $\beta$ as a function of RPs and $\gamma$, 
-%similarly to \shortcite{schnute_analytical_1998} and (\ref{BratS}) 
+%similarly to \cite{schnute_analytical_1998} and (\ref{BratS}) 
 %respectively, and solv
 %
 %
@@ -6310,7 +6310,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%in the relationship between $(\xi, \zeta)$ and 
 %%$(\tilde\xi, \tilde\zeta)$ 
 %The previously used squared exponential correlation function has been replaced with the 
-%Matern correlation function \shortcite{matern_spatial_1960}. The updated correlation structure 
+%Matern correlation function \cite{matern_spatial_1960}. The updated correlation structure 
 %for filling out $\bm{\textbf{K}}$ can be summarized as follows, %this updated correlation structure fills out $\bm{\textbf{K}}$ as,
 %%In summary the correlation structure of this model is, 
 %\begin{align}   \label{corModel}
@@ -6381,19 +6381,19 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%
 %Under both the Beverton-Holt and Schaefer production models, 
 %$\frac{F^*}{M}$ and $\frac{B^*}{B_0}$ are known to be fixed when steepness and natural 
-%mortality are a'priori fixed constants \shortcite{mangel_perspective_2013, maunder_is_2003}. 
+%mortality are a'priori fixed constants \cite{mangel_perspective_2013, maunder_is_2003}. 
 %%Similarly, the Schaefer model 
 %%is widely know to feature the two parameter logistic SRR {\color{red} (CITE)}.
 %An additional degree of freedom can be added to these models by adding a third 
 %parameter ($\gamma$) to the SRR of these models respectively.  
 %% Beverton-Holt model by adding a third parameter ($\gamma$) to the SRR. 
 %Several formulations of these expanded three parameter SRR have 
-%been studied \shortcite{punt_extending_2019}. 
+%been studied \cite{punt_extending_2019}. 
 %
 %%
 %The focus here is on three parameter SRRs which have the Beverton-Holt or 
-%Schaefer models as a special case \shortcite{shepherd_family_1982, pella_generalized_1969}.
-%%\shortcite{deriso_harvesting_1980, schnute_general_1985, shepherd_family_1982}. 
+%Schaefer models as a special case \cite{shepherd_family_1982, pella_generalized_1969}.
+%%\cite{deriso_harvesting_1980, schnute_general_1985, shepherd_family_1982}. 
 %%At this stage of research the particular choice of SRR 
 %%is still flexible, with some experimentation across several formulations. 
 %%Although some preliminary figures have been generated under,
@@ -6537,7 +6537,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%in the relationship between $(\xi, \zeta)$ and 
 %%$(\tilde\xi, \tilde\zeta)$ 
 %The previously used squared exponential correlation function has been replaced with the 
-%Matern correlation function \shortcite{matern_spatial_1960}. The updated correlation structure 
+%Matern correlation function \cite{matern_spatial_1960}. The updated correlation structure 
 %for filling out $\bm{\textbf{K}}$ can be summarized as follows, %this updated correlation structure fills out $\bm{\textbf{K}}$ as,
 %%In summary the correlation structure of this model is, 
 %\begin{align}   \label{corModel}
@@ -6861,7 +6861,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %Modern stock assessments tie many different sources of data together into a 
 %single integrated stock assessment model. When different data sources bring 
 %conflicting information into the model, the weighting of each 
-%\mbox{source may greatly influence stock status \shortcite{fr2011}.} 
+%\mbox{source may greatly influence stock status \cite{fr2011}.} 
 %%Furthermore, consistent management of as well as our management of the system at large. 
 %
 %%
@@ -6872,7 +6872,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %age, sex, or length compositions. Among the most straight forward, and common, 
 %models for bringing data of this type into the integrated assessment is the 
 %multinomial model on composition sampling counts. As discussed in 
-%\shortciteA{fr2014, tj2017} the multinomial integrating model is often poorly 
+%\citeA{fr2014, tj2017} the multinomial integrating model is often poorly 
 %suited for modeling fisheries composition data, due to the lack of independence 
 %among samples and the overdispersion this induces with respect to the 
 %multinomial distribution.
@@ -6888,8 +6888,8 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%
 %Recently we have seen modeling approaches for compositional data that alleviate 
 %some of the overdispersion issues seen in the multinomial integrating model. 
-%Namely \shortciteA{fr2014} proposes replacing the multinomial distribution with the 
-%more flexible logit-normal \mbox{distribution and \shortciteA{tj2017} proposes the 
+%Namely \citeA{fr2014} proposes replacing the multinomial distribution with the 
+%more flexible logit-normal \mbox{distribution and \citeA{tj2017} proposes the 
 %Dirichlet-multinomial distribution (D-M)}
 %%a short description of the setting for DM likelihood
 %\begin{equation}
@@ -6915,21 +6915,21 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %exacerbate optimizer tuning, and introduce considerable uncertainty about 
 %the scope of attained solutions. Global optimizers, such as genetic algorithms or 
 %simulated annealing, show promise in application to these problems, but they 
-%are typically slower than local optimizers \shortcite{mp2013}.
+%are typically slower than local optimizers \cite{mp2013}.
 %
 %%Bayesian optimization of computer simulation/computer experiment calibration
 %Bayesian optimization is a computationally efficient global optimization 
-%technique \shortcite{gl2015} that has seen a wide variety of applications, but
+%technique \cite{gl2015} that has seen a wide variety of applications, but
 %of notable success in the realm of computer simulation experiments 
-%\shortcite{jo1998, gr2016}. Bayesian optimization gets its name from the 
+%\cite{jo1998, gr2016}. Bayesian optimization gets its name from the 
 %Bayesian Gaussian Process (GP) meta-model at its core. The primary motivation 
 %is to manage a computationally challenging function with a fast, and relatively 
 %simple, functional working model of the function to be optimized (the objective 
 %function). A relatively small amount of time is spent building and updating 
 %the meta-model, and in return the meta-model guides a global, and efficient, 
 %search of parameter space. Bayesian optimization has been used to calibrate 
-%models while accounting for model uncertainty \shortcite{oh1998} as well as to
-%correct model inadequacy problems \shortcite{ko2001}.
+%models while accounting for model uncertainty \cite{oh1998} as well as to
+%correct model inadequacy problems \cite{ko2001}.
 %% “even though it may be highly computer intensive and expensive to run, it is still
 %%much cheaper to compute η(x) than to ‘compute’ α(x).”
 %
@@ -6945,11 +6945,11 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %(HC), but the management procedure is also largely a function of 
 %the stock assessment model (SA). In fact, most decisions about the 
 %science-management process can, and should, be tested against uncertainty by 
-%MSE \shortcite{ly2018}. MSEs balance trade-offs across multiple management 
+%MSE \cite{ly2018}. MSEs balance trade-offs across multiple management 
 %objectives, and they can be used to define optimal sets of `decisions' (called 
 %the Pareto Set) among uncertain values. MSEs have been used extensively to 
 %evaluate model effectiveness of management strategies across a wide range 
-%different stocks \shortcite{pu2014}, and they are widely acknowledged to be the 
+%different stocks \cite{pu2014}, and they are widely acknowledged to be the 
 %most appropriate way to determine the `best' MP among a set. 
 %
 %
@@ -6976,7 +6976,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%identify optimal sets of `decisions' (called the Pareto Set) among 
 %%uncertain values. MSEs have been used extensively to evaluate model 
 %%effectiveness of management strategies across a wide range different stocks 
-%%\shortcite{pu2014}, and are widely acknowledged to be the most appropriate way to 
+%%\cite{pu2014}, and are widely acknowledged to be the most appropriate way to 
 %%compare management strategies to determine the `best' among a set. 
 %
 %\thispagestyle{next}
@@ -7016,7 +7016,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %\subsubsection*{Multi-objective Generalizations}
 %Thirdly I hope to generalize the optimization procedure into the case of a 
 %multi-objective analysis of MSE. Optimal data weighting schemes are likely to 
-%be a function of subjective value systems \shortcite{fr2011}. Without fully 
+%be a function of subjective value systems \cite{fr2011}. Without fully 
 %specifying a value system for jointly measuring MSE defined utilities, this 
 %multivariate extension will allow us to find Pareto efficient solutions using 
 %objective methodology.
@@ -7036,7 +7036,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %%
 %Although analogies of the following methods are extensible to any 
 %compositional model, we consider the D-M model here for its well 
-%defined analytical properties \shortcite{gc2013}.
+%defined analytical properties \cite{gc2013}.
 %%  for the integration of compositional data in to	Stock assessment models.
 %	%
 %	\begin{equation}
@@ -7046,7 +7046,7 @@ https://cs.uwaterloo.ca/research/tr/1993/03/W.pdf
 %Consider a conditional analysis of the D-M model given the rest of the MP. The 
 %MP is itself a function of the HC and SA. In turn, the SA is a function of the 
 %D-M model. By simulating from an appropriate OM, a well constructed MSE 
-%\shortcite{dlm2018, ch2018} defines a set of utilities ($\bm{\Omega}$) associated 
+%\cite{dlm2018, ch2018} defines a set of utilities ($\bm{\Omega}$) associated 
 %with the MP. By considering a linear combination of the elements in $\bm{\Omega}$ 
 %we can define a joint measure of model utility ($\omega$) with respect to OM 
 %uncertainties. Expressing this idea as a composition of functions results in 

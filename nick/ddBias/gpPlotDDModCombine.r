@@ -376,7 +376,8 @@ getData = function(dir, xiRange, zetaRange){
 #mod = "FlatT45N150A0-1AS4K0.2N94"; fv=100
 #
 #mod = "FlatT45N150A0-1AS1K0.5"; fv=100
-mod = "FlatT45N150A0-1AS1K0.5N28"; fv=100
+#mod = "FlatT45N150A0-1AS1K0.5N28"; fv=100
+mod = "FlatT45N150A0-1AS1K0.5N56"; fv=100
 
 #
 place = sprintf("./modsDD%s/", mod)

@@ -933,133 +933,182 @@ point to catch, and LHS design, and Metamodel.
 }
 
 %
-\subsection{Clustering Catastrophic Model Failure}
+\subsection{Clustering Model Failure}
 
 %
 Considering the behavior observed in Section (\ref{schnuteLowResults}), where 
-$\frac{F_{MSY}}{M}$ is dramatically underestimated, it is very natural to ask 
+$\frac{F_{MSY}}{M}$ is dramatically underestimated, it is natural to ask 
 where specifically in RP space we might see this catastrophic failure of the 
 BH model. 
 %
 The structure of RPs under the BH model suggests several natural avenues for 
-forming hypotheses to identify this misspecified RP region. The single clearest 
-feature to identify are cases where $\frac{F_{MSY}}{M}$ is estimated well below the 
-minimum values simulated. In the follow section this idea is formally stated in a 
-hypothesis testing structure that uses the GP metamodel as a surrogate for the 
-sampling distribution of $\frac{F_{MSY}}{M}$ under the misspecified BH model. 
-This allows for a rejection threshold to be derived in terms of the GP 
-predictive structures that defines a classifier for identifying BH inference 
-break points broadly over RP space.
+forming hypotheses to identify highly misspecified RP regions. The single 
+clearest feature to identify are cases where $\frac{F_{MSY}}{M}$ is 
+heavily under-estimated. Here this idea is expressed by a hypothesis testing 
+inspired framework that uses the GP metamodel to proprogate estimate 
+uncertainty across the simulated space of misspecified BH RPs. 
+%as a surrogate for the distribution of 
+%$\frac{F_{MSY}}{M}$ across degrees of misspecified BH models. 
+This allows for a rejection threshold (against the null hypothesis that BH RP 
+estimates are unbiased) to be derived in terms of the GP predictive structures 
+to define a classifier for identifying where BH inference breaks down 
+broadly over RP space.
+
 
 %
-For simplicity in outlining the hypothesis testing framework, let $\theta$ be the
-metamodeled population parameter, corresponding with $\frac{F_{MSY}}{M}$, under 
-the two parameter BH model and let $\theta_{min}$ its minimum simulated value.
-% of the corresponding quantity. %
-In this parlance, the idea of dramatic under estimation of $\theta$ may be formally 
-represented by the following hypothesis.
+\clearpage
 %
-\begin{equation}
-H_0~:~\theta\ge\theta_{min}~~~~~H_a~:~\theta<\theta_{min} \label{hyp}
-\end{equation}
-%%
-%These hypotheses effectively simplify the separation of the two major RP regiems 
-%based on the metamodeled behavior of $\frac{F_{MSY}}{M}$ relative to the 
-%region of RPs simulated. 
-
-%%
-%Given the behavior observed in Section (\ref{schnuteLowResults})
-%BH model has the biggest effect on $\frac{F_{MSY}}{M}$ is the single biggest impact RP
-
-%Thus observing simulations where  
-
-%
-For evaluating the hypothesis test, the metamodel prediction serves as a 
-descriptor of RP estimation using kriging to provide both a measure of mean 
-behavior as well as propogating estimate uncertainty via the kriging predictive 
-variance. The metamodeled quantity is then predicted by $N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
-%$\hat y$ (a measure of mean behavior), but also propogastes estimate uncertainty.
-% ed uncertainty serves to 
-where $\hat y(\textbf{x})$ is as previously described in Eq. (\ref{gpYHat}) and 
-$\hat \sigma^2(\textbf{x})$ propogates estimate uncertainty via the kriging 
-predictive variance given by,%
+Recall that the metamodel models MLE estimates of $log(F_{MSY})$ under the misspecified BH model. 
+%is a metamodeled quantity, 
+%corresponding to $$, $log(F_{MSY})$, corresponding to is the metamodeled 
+Thus, for a given set of RPs, $\textbf{x}$, of the BH metamodeled 
+quantity is given by kriging prediction as $N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$, 
+where $\hat y(\textbf{x})$ is the kriging mean (as previously described in 
+Eq. (\ref{gpYHat})) and $\hat \sigma^2(\textbf{x})$ provides estimate 
+uncertainty via the kriging predictive variance given by,
 \begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
-	\hat \sigma^2(\textbf{x}) = \textbf{R(x, x)} - \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x)}.
+       \hat \sigma^2(\textbf{x}) = \textbf{R(x, x)} - \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x)}.
 \end{equation}
 
 %
-For evaluating the hypotheses given in Eq. (\ref{hyp}) %, $\hat y(\textbf{x})$ is considered as a test statistic, and 
-$H_0$ is then rejected when $\hat y(\textbf{x})$ is small in the following sense 
-%
-\begin{align}
-%\hat y(\textbf{x})
-R &= \{ \textbf{x}:~\hat y(\textbf{x})<C \}. \label{rejC}
-%\alpha_0 &= Pr( \hat y(\textbf{x})<c )
-\end{align}
+Model failure with respect to estimating $\frac{F_{MSY}}{M}$ under the BH 
+model is measured by the percent error as previously described in Section (\ref{highConRes}).
+When the BH model estimates $\frac{F_{MSY}}{M}$ well the percent error is 
+expected to be small in the following sense,
+%In this setting to define the degree of model failure the percent error of the 
+%estimate is capped at no more than $P$ 
+%with respect to $\frac{F_{MSY}}{M}$ 
+%the percent error is capped to 
 
-%
-To calibrate exacly how small the constant $C$ should be the false positve 
-rate, $\alpha_0$, is considered. For evaluating $R$ under the null hypothesis, 
-the domain of the metamodel is limited along the axis of $\theta$ as, 
-$\textbf{x}_{min} = [\theta_{min}, \textbf{x}_{(-\theta)}]$. Thinking of 
-$\hat y(\textbf{x})$ as an estimator of $\theta$, via kriging, the following 
-test statistic distibution follows naturally under the null,
 %
 \begin{equation}
-\frac{\hat y(\textbf{x}_{min}) - \theta_{min}}{\hat \sigma(\textbf{x}_{min})} \sim N(0,1).
-\end{equation}
-%
-This stratforwardly implies $\alpha_0 = \Phi \left( \frac{C - \theta_{min}}{\hat \sigma(\textbf{x}_{min})} \right)$, 
-and rearranging for $C$ gives $C=\theta_{min}+\Phi^{-1}(\alpha_0)\hat \sigma(\textbf{x}_{min})$. 
-Replacing $C$ into Eq. (\ref{rejC}), the rejection region can be made specific as
-%
-\begin{equation}
-%\hat y(\textbf{x})
-R = \{ \textbf{x}:~\hat y(\textbf{x})<\theta_{min}+\Phi^{-1}(\alpha_0)\hat \sigma(\textbf{x}_{min}) \}.
+\frac{\frac{F_{MSY}}{M}-\frac{\hat{F}_{MSY}}{M}}{\frac{F_{MSY}}{M}}<P. \label{pError}
 \end{equation}
 
 %
-Other hypotheses may be formed using a similar structure (or added to this 
-structure) to fine tune the rejection threshold, although a point of 
-deminishing returns will quickly set in for describing the catestophic model 
-failure under low contrast BH inference. By simple inspection of Figure (\ref{bhLowArrows}), 
-clearly the under estimation of $\frac{F_{MSY}}{M}$ is a very powerful 
-classifer for describing BH inference trends. 
+$P$ defines the extent of model failure on the scale of percent error. For 
+measuring catestrophic model failure $P$ was chosen to be $0.5$, but smaller values 
+of $P$ may be chosen to emphasize regions of more subtle model failure. %subtle regions 
+%
+Thus when the percent error is statistically greater than $P$ the notion that 
+the BH model estimates $\frac{F_{MSY}}{M}$ well (in $P$-sense) is rejected.
 
+%
+For statistical evaluation, it is convienient to rearrange Eq. (\ref{pError}) 
+as \mbox{$\hat{F}_{MSY}>(1-P)F_{MSY}$}. $\hat{F}_{MSY}$ is then distributed as $LN(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$, 
+and the rejection region is then defined as the RP's for which the $5^{th}$ percentile 
+from the Log-normal distribution falls below \mbox{$(1-P)F_{MSY}$.}
 
 %%
-%\begin{itemize}
-%	\item Refer to previous section for failure behaviour (form hypothesis out of this)
-%	\item adressing this hypothesis requires a complete handling of metamodel uncertainty 	
-%	\item state Rejection region philosophy
-%	\item calculate $c$
-%	\begin{itemize}
-%		\item note that clustering problem reduces to discerning behaviour at $\textbf{x}_{min}$ 
-%			since $\theta\in\textbf{x}$ and $\theta_{min}$ ia the case of interest under the null
-%		\item $\hat \sigma^2(\textbf{x})$ only needs to be comuted for $\textbf{x}_{min}$
-%	\end{itemize}
-%	\item state complete Rejection region
-%	%\item layout math
-%	%\item GP Mean: \verb|XStar%*%gpFit$beta + SIGStar%*%strongInv(SIG)%*%(y-X%*%gpFit$beta)|
-%	%\item GP Variance: SIGStarStar + SIGStar%*%strongInv(SIG)%*%t(SIGStar) + tg|
-%	%\item \verb|seTry = sqrt(gpPredictVar(lFXSSmall, lFXSSmall[,2:3], tg=0, lFFit))|
-%	%\item \verb|metaLowerZetaThresh0.5 = (exp(lFPred[1,]-1.96*seTry)/M)[diffs0.5==min(diffs0.5)]|
-%\end{itemize}
-
-
-
-%%The kriging preditive distribution forms a complete repeated sampling theory across RP space as 
+%For simplicity in outlining the hypothesis testing framework, let $\theta$ be the
+%metamodeled population parameter, corresponding with $\frac{F_{MSY}}{M}$, under 
+%the two parameter BH model. 
+%%let $\theta_{min}$ its minimum simulated value.
+%%% of the corresponding quantity. %
+%In this parlance, the idea of under estimation of $\theta$ may be formally 
+%represented by the following hypothesis.
+%%
 %\begin{equation}
-%	\text{Kriging Prediction:~} N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x})).
+%H_0~:~\theta\ge\theta_{min}~~~~~H_a~:~\theta<\theta_{min} \label{hyp}
 %\end{equation}
-
-%%Under The Null:
+%%%
+%%These hypotheses effectively simplify the separation of the two major RP regiems 
+%%based on the metamodeled behavior of $\frac{F_{MSY}}{M}$ relative to the 
+%%region of RPs simulated. 
+%
+%%%
+%%Given the behavior observed in Section (\ref{schnuteLowResults})
+%%BH model has the biggest effect on $\frac{F_{MSY}}{M}$ is the single biggest impact RP
+%
+%%Thus observing simulations where  
+%
+%%
+%For evaluating the hypothesis test, the metamodel prediction serves as a 
+%descriptor of RP estimation using kriging to provide both a measure of mean 
+%behavior as well as propogating estimate uncertainty via the kriging predictive 
+%variance. The metamodeled quantity is then predicted by $N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
+%%$\hat y$ (a measure of mean behavior), but also propogastes estimate uncertainty.
+%% ed uncertainty serves to 
+%where $\hat y(\textbf{x})$ is as previously described in Eq. (\ref{gpYHat}) and 
+%$\hat \sigma^2(\textbf{x})$ propogates estimate uncertainty via the kriging 
+%predictive variance given by,%
+%\begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+%	\hat \sigma^2(\textbf{x}) = \textbf{R(x, x)} - \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x)}.
+%\end{equation}
+%
+%%
+%For evaluating the hypotheses given in Eq. (\ref{hyp}) %, $\hat y(\textbf{x})$ is considered as a test statistic, and 
+%$H_0$ is then rejected when $\hat y(\textbf{x})$ is small in the following sense 
+%%
 %\begin{align}
-%%\textbf{x}_{min} &= [\theta_{min}, \textbf{x}_{(-\theta)}]\\
-%\frac{\hat y(\textbf{x}_{min}) - \theta_{min}}{\hat \sigma(\textbf{x}_{min})} &\sim N(0,1) \\
-%\alpha_0 &= \Phi \left( \frac{C - \theta_{min}}{\hat \sigma(\textbf{x}_{min})} \right) \\
-%c&=\theta_{min}+\Phi^{-1}(\alpha_0)\hat \sigma(\textbf{x}_{min})
+%%\hat y(\textbf{x})
+%R &= \{ \textbf{x}:~\hat y(\textbf{x})<C \}. \label{rejC}
+%%\alpha_0 &= Pr( \hat y(\textbf{x})<c )
 %\end{align}
+%
+%%
+%To calibrate exacly how small the constant $C$ should be the false positve 
+%rate, $\alpha_0$, is considered. For evaluating $R$ under the null hypothesis, 
+%the domain of the metamodel is limited along the axis of $\theta$ as, 
+%$\textbf{x}_{min} = [\theta_{min}, \textbf{x}_{(-\theta)}]$. Thinking of 
+%$\hat y(\textbf{x})$ as an estimator of $\theta$, via kriging, the following 
+%test statistic distibution follows naturally under the null,
+%%
+%\begin{equation}
+%\frac{\hat y(\textbf{x}_{min}) - \theta_{min}}{\hat \sigma(\textbf{x}_{min})} \sim N(0,1).
+%\end{equation}
+%%
+%This stratforwardly implies $\alpha_0 = \Phi \left( \frac{C - \theta_{min}}{\hat \sigma(\textbf{x}_{min})} \right)$, 
+%and rearranging for $C$ gives $C=\theta_{min}+\Phi^{-1}(\alpha_0)\hat \sigma(\textbf{x}_{min})$. 
+%Replacing $C$ into Eq. (\ref{rejC}), the rejection region can be made specific as
+%%
+%\begin{equation}
+%%\hat y(\textbf{x})
+%R = \{ \textbf{x}:~\hat y(\textbf{x})<\theta_{min}+\Phi^{-1}(\alpha_0)\hat \sigma(\textbf{x}_{min}) \}.
+%\end{equation}
+%
+%%
+%Other hypotheses may be formed using a similar structure (or added to this 
+%structure) to fine tune the rejection threshold, although a point of 
+%deminishing returns will quickly set in for describing the catestophic model 
+%failure under low contrast BH inference. By simple inspection of Figure (\ref{bhLowArrows}), 
+%clearly the under estimation of $\frac{F_{MSY}}{M}$ is a very powerful 
+%classifer for describing BH inference trends. 
+%
+%
+%%%
+%%\begin{itemize}
+%%	\item Refer to previous section for failure behaviour (form hypothesis out of this)
+%%	\item adressing this hypothesis requires a complete handling of metamodel uncertainty 	
+%%	\item state Rejection region philosophy
+%%	\item calculate $c$
+%%	\begin{itemize}
+%%		\item note that clustering problem reduces to discerning behaviour at $\textbf{x}_{min}$ 
+%%			since $\theta\in\textbf{x}$ and $\theta_{min}$ ia the case of interest under the null
+%%		\item $\hat \sigma^2(\textbf{x})$ only needs to be comuted for $\textbf{x}_{min}$
+%%	\end{itemize}
+%%	\item state complete Rejection region
+%%	%\item layout math
+%%	%\item GP Mean: \verb|XStar%*%gpFit$beta + SIGStar%*%strongInv(SIG)%*%(y-X%*%gpFit$beta)|
+%%	%\item GP Variance: SIGStarStar + SIGStar%*%strongInv(SIG)%*%t(SIGStar) + tg|
+%%	%\item \verb|seTry = sqrt(gpPredictVar(lFXSSmall, lFXSSmall[,2:3], tg=0, lFFit))|
+%%	%\item \verb|metaLowerZetaThresh0.5 = (exp(lFPred[1,]-1.96*seTry)/M)[diffs0.5==min(diffs0.5)]|
+%%\end{itemize}
+%
+%
+%
+%%%The kriging preditive distribution forms a complete repeated sampling theory across RP space as 
+%%\begin{equation}
+%%	\text{Kriging Prediction:~} N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x})).
+%%\end{equation}
+%
+%%%Under The Null:
+%%\begin{align}
+%%%\textbf{x}_{min} &= [\theta_{min}, \textbf{x}_{(-\theta)}]\\
+%%\frac{\hat y(\textbf{x}_{min}) - \theta_{min}}{\hat \sigma(\textbf{x}_{min})} &\sim N(0,1) \\
+%%\alpha_0 &= \Phi \left( \frac{C - \theta_{min}}{\hat \sigma(\textbf{x}_{min})} \right) \\
+%%c&=\theta_{min}+\Phi^{-1}(\alpha_0)\hat \sigma(\textbf{x}_{min})
+%%\end{align}
 
 
 %

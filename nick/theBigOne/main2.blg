@@ -1,0 +1,74 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main2.aux
+A level-1 auxiliary file: pt2.aux
+A level-1 auxiliary file: lambApp.aux
+The style file: plain.bst
+Database file #1: ./gpBias.bib
+Database file #2: ./spline.bib
+Repeated entry---line 65 of file ./spline.bib
+ : @article{gramacy_cases_2012
+ :                            ,
+I'm skipping whatever remains of this entry
+Database file #3: ./spaceFilling.bib
+Repeated entry---line 2 of file ./spaceFilling.bib
+ : @book{gramacy_surrogates_2020
+ :                              ,
+I'm skipping whatever remains of this entry
+Database file #4: ./ageStructure.bib
+Repeated entry---line 19 of file ./ageStructure.bib
+ : @article{schnute_analytical_1998
+ :                                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 56 of file ./ageStructure.bib
+ : @article{hilborn_quantitative_1992
+ :                                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 89 of file ./ageStructure.bib
+ : @book{wanner_solving_1996
+ :                          ,
+I'm skipping whatever remains of this entry
+Warning--empty booktitle in mangel_theoretical_2006
+Warning--there's a number but no series in ramasubramanian_machine_2017
+You've used 26 entries,
+            2118 wiz_defined-function locations,
+            661 strings with 8401 characters,
+and the built_in function-call counts, 7875 in all, are:
+= -- 789
+> -- 332
+< -- 3
++ -- 139
+- -- 106
+* -- 564
+:= -- 1351
+add.period$ -- 83
+call.type$ -- 26
+change.case$ -- 125
+chr.to.int$ -- 0
+cite$ -- 28
+duplicate$ -- 291
+empty$ -- 631
+format.name$ -- 106
+if$ -- 1594
+int.to.chr$ -- 0
+int.to.str$ -- 26
+missing$ -- 31
+newline$ -- 137
+num.names$ -- 52
+pop$ -- 118
+preamble$ -- 1
+purify$ -- 105
+quote$ -- 0
+skip$ -- 184
+stack$ -- 0
+substring$ -- 523
+swap$ -- 29
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 92
+warning$ -- 2
+while$ -- 86
+width$ -- 28
+write$ -- 290
+(There were 5 error messages)
