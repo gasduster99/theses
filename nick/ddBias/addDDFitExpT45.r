@@ -495,8 +495,8 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
                 c('kappa', 'aS', 'gamma'),
                 lower   = c(0.1, 0.1, -2),
                 upper   = c(100, 100, 2),      #log(getBeta(100, -1, M, P0))
-                gaBoost = list(run=10, parallel=T, popSize=10^3),#10^4),
-		#gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
+                #gaBoost = list(run=10, parallel=T, popSize=10^3),#10^4),
+		gaBoost = list(run=10, parallel=F, popSize=10^3),#10^4),
                 #persistFor = 5,
                 fitQ    = F
         )
@@ -511,7 +511,7 @@ foreach(i=(1:length(datFiles)), .options.multicore = opts) %dopar% {
 	        c('lsdo', 'lalpha', 'lbeta', 'gamma', 'kappa', 'aS'),
 	        lower   = c(log(0.001), log(aMin), -10, -2, 0.1, 0.1),
 	        upper   = c(log(1), log(10), -2, 2, 100, 100),
-	        gaBoost = list(run=10, parallel=T, popSize=10^3), #10^4),
+	        gaBoost = list(run=10, parallel=F, popSize=10^3), #10^4),
 		cov     = T,
 	        fitQ    = F
 	)

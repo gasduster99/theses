@@ -149,6 +149,429 @@ expressions (\ref{FmsyS}), (\ref{B0S}), and (\ref{BratS}).
 \subsection{Simulation \label{sSim}}
 
 %
+For the purpose of simulation, it is not necessary to completely know
+%either of 
+the precise relationships mapping RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$
+RPs. Simulation only requires enough knowledge of these mappings to gather a list
+of $(\alpha, \beta, \gamma)$ tuples, for data generation under the Schnute model,
+and the corresponding RPs in some reasonable space-filling design over RP space.
+
+%
+Similarly to Schnute \& Richards \cite{schnute_analytical_1998}, expressions %solving expressions 
+(\ref{FmsyS}) and (\ref{B0S}) are solved for $\alpha$ and $\beta$ respectively.
+This leads to the partial mapping 
+$\big(F^*, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$ 
+in terms of RPs and $\gamma$. 
+% yields a partial mapping from 
+%$\big(F^*, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$.
+By further working with Eq. (\ref{BratS}), to identify $\gamma$, the following
+system is obtained,
+%
+\begin{align}
+%\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
+\alpha &= (M+F^*)\left(1+\frac{\gamma F^*}{M+F^*}\right)^{1/\gamma} \nonumber\\
+\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{abgSys}\\
+\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \nonumber.
+\end{align}
+
+%
+For a population experiencing natural mortality $M$, by fixing $F^*$, 
+$B_0$, and $\frac{B^*}{B_0}$ %$B^*$ % 
+the above system can fully specify $\alpha$ and $\beta$ for a given $\gamma$. % if only $\gamma$ were further isolated
+Notice for a given $\gamma$ a cascade of closed form solutions for $\alpha$
+and $\beta$ can be obtained. First $\alpha(\gamma)$ can be computed, and then
+$\beta(\alpha(\gamma), \gamma)$ can be computed. If $\alpha(\gamma)$ is filled
+back into the expression for $\frac{B^*}{B_0}$, the system collapses into
+a single onerous expression for $\frac{B^*}{B_0}(\alpha(\gamma), \gamma)$.
+For brevity, define the function \mbox{$\zeta(\gamma)=\frac{B^*}{B_0}\big(\alpha(\gamma), \gamma, F^*, M\big)$} based on Eq. (\ref{BratS}). 
+
+% %possible;
+Inverting $\zeta(\gamma)$ for $\gamma$, and computing the cascade of
+$\alpha(\gamma)$, and then $\beta(\alpha(\gamma), \gamma)$, fully defines the
+Schnute model for a given $(\frac{F^*}{M}, \frac{B^*}{B_0})$. However
+inverting $\zeta$ accurately is extremely difficult. Inverting $\zeta$
+analytically is not feasible, and numerical methods for inverting
+$\zeta$ are unstable and can be computationally expensive.
+%Numerically inverting $\zeta$ quickly becomes  
+%prohibitively expensive, and solutions are often still unreliable.  
+%
+Rather than numerically invert precise values of $\zeta(\gamma)$, $\gamma$ is 
+sampled so that the overall simulation design is space filling as described in 
+Section (\ref{sLHS}).
+
+%
+Each design location defines a complete Schnute production model with the given
+RP values. Indices of abundance are simulated from the Schnute model at each design
+location, a small amount of residual variation, $\sigma=0.01$, is added to the
+simulated index, and the data are then fit with a misspecified BH production model.
+The design at large captures various degrees of model misspecification relative
+to the BH model, so as to observe the effect of productivity model misspecification
+upon RP inference.
+
+%
+\clearpage
+\subsection{Latin Hypercube Sampling \label{lhs}}
+
+%
+The goal of space filling design in this setting is to extend the notion of the
+random sample (and its desirable parameter estimation properties) across the
+simulated RP domain so as to represent the simulated space as well as possible \cite{gramacy_surrogates_2020}.
+The simple random sample is the classical approach to unbiased parameter
+estimation, however simple randomness is patchy, often sampling some regions
+of design space quite densely, while leaving other regions of design space empty.
+Space filling designs aim to preserve (or enhance) parameter estimation properties 
+across the simulated domain \cite{devon_lin_latin_2015, stein_large_1987},
+while constraining samples to be spaced in some notion of spread over the entire space.
+Latin hypercube sampling \cite[LHS]{mckay_comparison_2000} is among the most
+foundational of space filling designs used in computer experiments.
+
+%
+%\begin{figure}[h!]
+%\centering [width=0.96\textwidth]
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-1cm}
+\includegraphics[width=0.49\textwidth]{../gpBias/designGrid.png}
+\vspace{-0.5cm}
+\caption{ LHS grids. Intersecting $\mathcal{F}$ and $\mathcal{B}$ produces $n^2$
+cells; a particular cell $\mathcal{F}_i\times\mathcal{B}_j$ is shown in grey.
+One point is in each of the marginal $\mathcal{F}_i$ and $\mathcal{B}_j$ grid
+elements.
+}
+\end{wrapfigure}
+
+%
+A LHS of size $n$, in the 2 dimensional space defined
+by RPs, distributes samples so as to spread points across a design region in a
+broadly representative way. A LHS design extends the notion of a univariate
+random uniform sample across multiple dimensions so that each margin of the design 
+space enjoys a uniform distribution.
+
+%
+LHS designs achieve this notion of uniformity by first partitioning each dimension 
+of the design space into regular grids of size $n$. By intersecting the grids
+of each dimension, cells are produced that evenly partition the design space.
+In two dimensions $n^2$ cells are produced, from which a total of $n$ samples
+are taken. Crucially only one point is randomly sampled from a given element of
+each grid in each dimension so as to reduce clumping of the $n$ samples across
+the design space.
+
+%
+\subsection{Design \label{sLHS}}
+
+%RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$RPs
+Due to the lack of an analytical relationship mapping RPs $\mapsto$ $\theta$,
+analogous to the PT model's Eq. (\ref{gammaOfB}), producing a LHS design
+over Schnute RPs requires a more tactful approach.
+The structured relationship between the RPs and productivity parameters,
+described in Section (\ref{sSim}), allows an approximate LHS to be obtained by
+a careful navigation of the system of equations seen in Eq. (\ref{abgSys}).
+
+%
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-0.5cm}
+\begin{itemize}
+        \item[] \hspace*{-1cm}Given $B_0$, $M$, and $F^*$:
+        \item[1)] Draw $\gamma^* \sim \gamma|F^*, M$.
+        \item[2)] Compute $\frac{B^*}{B_0} = \zeta(\gamma^*)$
+        \item[3)] Compute $\alpha^* = \alpha(\gamma^*, F^*, M)$
+        \item[4)] Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$
+\end{itemize}
+\vspace{-0.5cm}
+\caption{ An outline of the sampling procedure for $\gamma$
+%(and associated quantities) 
+given $B_0$, $M$, and $F^*$.
+}
+\end{wrapfigure}
+
+%
+Under the Schnute model, let $\mathcal{F}$ and $\mathcal{B}$ represent regular grids on
+%Letting $\mathcal{F}$ and $\mathcal{B}$ be equally spaced grids, of size $n$, on 
+\mbox{$\frac{F^*}{M}\in(0.25, 4)$} and \mbox{$\frac{B^*}{B_0}\in(0.15, 0.7)$}
+respectively which can serve as the scaffolding for computing an approximate LHS.
+
+%
+Since it is not practical to invert $\zeta(\gamma)$, a uniform sample in
+$\frac{B^*}{B_0}$ can be obtained by modeling $\gamma$ as a random
+variable, with realization $\gamma^*$, and thinking of $\zeta(\gamma)$ as its
+cumulative distribution function (CDF). The aim is to model $\gamma$ as an
+easily sampled random variable with a CDF that closely approximates $\zeta$, so
+that $\zeta(\gamma^*)\dot\sim U(\zeta_{min},1)$ as closely as possible. There
+may be many good models for the distribution of $\gamma$, but in this setting
+the following distribution is very effective,
+%
+\begin{align}
+\gamma \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}. \label{mixT}
+\end{align}
+
+%
+%\clearpage
+
+%
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace*{-1cm}
+%\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../gpBias/zeta.png}
+\vspace*{-1.3cm}
+\caption{$\zeta(\gamma)$ Plotted for $F^*=0.1$ and $M=0.2$. The point
+$(\gamma_{min}, \zeta_{min})$ shows the lowest biologically meaningful
+value of $\gamma$; below which productivity is negative.}
+%\end{figure}
+\end{wrapfigure}
+
+%
+Above, $t$ is the density of the three-parameter location-scale family Student's $t$
+distribution with location $\mu$, scale $\sigma$, and degrees of freedom $\nu$.
+$\bm{1}_{\gamma>\gamma_{min}}$ is an indicator function that serves to truncate the
+Student's $t$ distribution at the lower bound $\gamma_{min}$.
+$\delta(\gamma_{min})$ is the Dirac delta function evaluated at $\gamma_{min}$,
+which is scaled by the known value $\zeta_{min}$; this places probability mass
+$\zeta_{min}$ at the point $\gamma_{min}$. Since sampling from a Student's $t$
+distribution is readily doable, sampling from a truncated Student's $t$ mixture
+only requires slight modification.
+
+%$~$\\$~$\\
+Let $T$ be the CDF of the modeled distribution of $\gamma$. Since the point
+$(\gamma_{min}, \zeta_{min})$ is known from the dynamics of the Schnute model
+at a given RP, full specification of Eq. (\ref{mixT}) only requires determining
+the values for $\mu$, $\sigma$, and $\nu$ which make $T$ best approximate
+$\zeta(\gamma)$. Thus, the values of $\mu$, $\sigma$, and $\nu$ are chosen by
+minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
+%Letting $T$ be the CDF of the modeled distribution of $\gamma$, the values of $\mu$, $\sigma$, and $\nu$ are chosen by minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
+%{\gamma_{min}}^{\gamma_{0.9}}
+\begin{align}
+[\hat\mu, \hat\sigma, \hat\nu]=\underset{{[\mu, \sigma, \nu]}}{\arg\min}\int_\Gamma \big(T(\gamma; \mu, \sigma, \nu) - \zeta(\gamma)\big)^2 d\gamma
+\end{align}
+
+%
+\clearpage
+%
+\begin{wrapfigure}{R}{0.5\textwidth}
+        %\vspace{-0.5cm}
+        \vspace{-1cm}
+        \begin{minipage}{0.5\textwidth}
+                \begin{algorithm}[H]
+                        \caption{LHS of size $n$ on rectangle $R$.}
+                        \label{lhsAlg}
+                        \begin{algorithmic}[1]
+                        \Procedure{$LHS_n(R)$}{}
+                        \State Define $n$-grids $\mathcal{F}, \mathcal{B}\in R$
+                        \For{each grid element $i$}
+                        \State Draw $\frac{F^*}{M} \sim Unif(\mathcal{F}_i)$
+                        \State Compute $[\hat\mu, \hat\sigma, \hat\nu]$ given $F^*~\&~M$
+                        \While {$\mathcal{B}_j$ not sampled}
+                                \State Draw $\gamma^* \sim T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$
+                                \State Compute $\zeta^* = \zeta(\gamma^*)$
+                                \State Compute $j$ such that $\zeta^*\in\mathcal{B}_j$
+                                %\State Compute $\alpha^* = \alpha(\gamma^*, F^*, M)$ 
+                                %\State Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$   
+                                %\State \mbox{Save $(\frac{F^*}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$ in $\mathcal{F}_i\times\mathcal{B}_j$} 
+                        \EndWhile
+                        \State Compute $\alpha^* = \alpha(\gamma^*, F^*, M)$
+                        \State Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$
+                        \State \mbox{Save $(\frac{F^*}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$ in $\mathcal{F}_i\times\mathcal{B}_j$}
+                        \EndFor
+                        \EndProcedure
+                        \end{algorithmic}
+                \end{algorithm}
+        \end{minipage}
+\end{wrapfigure}
+%{\color{red}Connect $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ to overall algorithm.}
+
+%Furthermore, $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$, taken together with 
+The distribution $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ is fit for use in
+generating $\gamma^*$ random variates at a specific $F^*$ and $M$. This
+approximation releases the need to invert $\zeta$ w.r.t. $\gamma$ by using
+samples of $\gamma^*$ values to generate approximatly uniform samples of
+$\zeta(\gamma^*)$. By sampling approximatly uniform $\zeta(\gamma^*)$ random
+variates in this way, and making use of the structure in Eq. (\ref{abgSys}), %allows for the collection of 
+an approximate LHS sample can be collected via Algorithm (\ref{lhsAlg}). %Figure (\ref{sudoCode}). 
+
+%
+For a given $i$, $\frac{F^*}{M}$ is drawn uniformly from within $\mathcal{F}_i$. Conditioning on the
+sample of $F^*$, and $M$, $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ is fit and
+$\gamma^*$ is sampled. $\zeta^*$ is then computed and placed into the appropriate
+grid element $\mathcal{B}_j$. Given $\gamma^*$, the cascade $\alpha(\gamma^*)$,
+and $\beta(\alpha(\gamma^*), \gamma^*)$, can be computed. The algorithm
+continues until all of the design elements, $(\frac{F^*}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$,
+have been computed for all $i\in[1,...,n]$.
+
+%
+\subsubsection{Design Refinement\label{desRef}}
+
+%
+Since the behavior of RP inference, under misspecified models, will vary in
+yet-unknown ways, the exact sampling design density may be hard to know a priori.
+Several factors, including the particular level of observation uncertainty,
+high variance (i.e. hard to resolve) features of the response surface, or
+simply "gappy" instantiations of the initial LHS design may necessitate
+adaptive design refinement, to accurately describe RP biases. Given the
+temperamental relationship between RPs and productivity parameters in the
+Schnute model, a recursive refinement algorithm that makes use of the
+previously described LHS routine, is developed.
+
+%
+While LHS ensures uniformity in the design margins, and a certain degree of spread,
+it is widely recognized that particular LHS instantiations may leave substantive gaps
+in the simulation design. To correct this, LHS is often paired with design elements
+of maximin design \cite{morris_exploratory_1995,devon_lin_latin_2015}. Maximin designs sample
+the design space by maximizing the minimum distance between sampled points.
+This has the advantage of definitionally filling holes in the design, %\shortcite{johnson_minimax_1990}, %in a way that has been %shown to have asymtoptically optimal characteristics for Gaussian process models \shortcite{johnson_minimax_1990}
+however because no points are ever drawn outside of the design domain, samples tend to
+clump around edges (particularly corners) of the design domain. Since LHS ensures
+uniformity in the margins and maximin designs enjoys a certain sense of optimality 
+in how they define and fill gaps \cite{johnson_minimax_1990}, the methods are 
+quite complimentary when combined.
+
+%Thus 
+Making use of this complimentary relationship, holes in the existing LHS design
+of RPs are identified based on maximin design principles.
+%Holes in the existing design are identified based on maximin design principles.
+%That is to say,
+New design points are collected based on areas of the RP design
+space which maximizes the minimum distance between all pairs of points in the
+\mbox{current design, based on the following distance function}
+%$\mathcal{F}$ and $\mathcal{B}$
+\begin{align}
+d(\bm{x}, \bm{x'}) &= \sqrt{(\bm{x}-\bm{x'})^T\bm{D}^{-1}(\bm{x}-\bm{x'})}\\
+\bm{D} &= \bm{\mbox{diag}\left[} \big(max(\mathcal{F})-min(\mathcal{F})\big)^2, ~\big(max(\mathcal{B})-min(\mathcal{B})\big)^2 \bm{\right]}. \nonumber
+\end{align}
+
+%
+Above, $d$ is a scaled distance function that defines the distance between
+points in the differing scales of $\frac{B^*}{B_0}$ and $\frac{F^*}{M}$.
+$\bm{D}$ is a diagonal matrix that measures the squared size of the domain in each 
+axis of so as to normalize distances to a common scale.
+%the domain for use normalizing distances to a common scale.
+%Since the scales of $\frac{B^*}{B_0}$ and $\frac{F^*}{M}$ differ, the 
+%distance function 
+
+%
+If $\bm{X_n}$ is the initial design, computed on $R_{full}$, let $\bm{x_a}$ be the 
+augmenting point which maximizes the minimum distance between all of the existing
+design points,
+%
+\begin{align}
+        %x_a = \argmax_{x'} ~\min\{ ||x_i-x'||^2: i=1,...,n \}
+        \bm{x_a} = \argmax_{\bm{x'}} ~\min\{ d(\bm{x_i}, \bm{x'}): i=1,...,n \}.
+\end{align}
+%
+
+%
+The point $\bm{x_a}$ is used as an anchor for augmenting $\bm{X_n}$. %by collecting 
+An additional $LHS_{n'}$ (via Algorithm (\ref{lhsAlg})) is collected, adding
+$n'$ design points, centered around $\bm{x_a}$, to the overall design. %are collected, %$LHS_{n'}$ is collected, using Algorithm (\ref{lhsAlg}). 
+The augmenting region, $R_{(x_a, d_a)}$, for collecting $LHS_{n'}$ is defined
+based on the square centered at $\bm{x_a}$ with side length $2d_a$, where
+\mbox{$d_a = \min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$}, in the space defined
+by the metric $d$.
+%that circumscribes the circle (in the space, defined by the metric $d$) 
+%at point $\bm{x_a}$ with radius \mbox{$d_a = \min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$}.
+%
+%A $LHS_{n'}$ is collected, using Algorithm (\ref{lhsAlg}), on the rectangle in 
+%RP-space that circumscribes the circle (in the space, defined by the metric $d$) 
+%at point $\bm{x_a}$ with radius \mbox{$d_a = \min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$}.
+%%in the space defined by the metric $d$.
+
+%
+Due to the tendency of maximin sampling to cluster augmenting points on the edges
+of the design space, $R_{(x_a, d_a)}$ is truncated by the outer most limits of
+$R_{full}$ so as to focus design augmentation within the specified domain of the
+simulation. Furthermore, since the design space has a nonlinear constraint at low
+values of $\frac{B^*}{B_0}$, the calculation of $x_a$ is further truncated
+based on a convex hull defined by the existing samples in the overall design.
+
+%
+Design refinement then proceeds as follows. An initial design is computed, $X_{n} = LHS_{n}(R_{full})$, % design is computed 
+based on an overall simulated region of RPs $R_{full}$. The maximin augmenting
+point, $x_a$, is computed at a maximin distance of $d_a$ from the existing samples.
+An augmenting design $X_{n'} = LHS_{n'}(R_{(x_a, d_a)})$ is collected and
+added to $X_n$. Design refinement carries on recursively collecting augmenting
+designs in this way until the maximin distance falls below the desired level.
+
+%
+\subsection{\color{red}refer back to GP?}
+
+%
+\section{Results}
+
+%
+\subsection{Design}
+
+%
+\begin{wrapfigure}{r}{0.45\textwidth}
+%\vspace{-3cm}
+\vspace{-2cm}
+%\begin{figure}[h!]
+\includegraphics[width=0.45\textwidth]{../gpBias/qqUnif.png}
+\vspace{-1cm} %against theoretical uniform quantiles
+\caption{Uniform Q-Q plot for $\zeta$ plotted for $F^*=0.1$ and $M=0.2$.}
+\label{qqZeta}
+%\end{figure}
+\end{wrapfigure}
+
+%
+Algorithm (1) enforces uniform marginals in $\frac{F^*}{M}$ directly, as well
+as the adherence of the overall design to latin squares.
+Figure (\ref{qqZeta}) shows a uniform Q-Q plot for sampled $\zeta$, using
+Algorithm (1), against theoretical uniform quantiles. As evidence by the
+excellent coherence to the theoretical uniform quantiles, the approximation
+in Section (\ref{sLHS}) for sampling $\gamma$ (and therefore $\zeta(\gamma$)),
+%for the purpose of computing $\zeta(\gamma$), 
+is very effective.
+Furthermore since numerical inversion of $\zeta(\gamma)$ is costly and
+unreliable, the relative speed and accuracy that this approximate LHS sampling
+method provides is pivotal for the rest of the work presented here. %to understanding the relationship between RPs and $\gamma$.
+
+%
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-0.5cm}
+%\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../ddBias/designLineColorHHardFlatT30N150WWideN112.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/designLineColorHHardFlatT30N150WWideN112.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+\vspace{-1cm}
+\caption{
+A Schnute RP design. % resulting from design refinement of Algorithm (1). 
+Colors indicate different regimes of Schnute production. % function.
+%Samples are colored by the ranges the $\gamma$ parameter which result in 
+%different regimes of the Schnute production function.
+The black curve shows the BH set.
+}
+\label{colorDes}
+%\end{figure}
+\end{wrapfigure}
+
+%
+Similarly to the PT model, the three-parameter Schnute model is uniquely
+identified by each point in the space of $\frac{F^*}{M}$
+and $\frac{B^*}{B_0}$ RPs. As seen in Figure (\ref{colorDes}), Schnute
+production has different behaviors in different ranges of RPs space, which
+are entirely defined by the value of $\gamma$ (shown in Figure (\ref{sRegimes})).
+%As shown in Figure (\ref{sRegimes}), as well as the colors of Figure (\ref{colorDes}), 
+When $\gamma\ge1$ the Schnute model produces a family of Logistic-like curves that are
+increasingly right leaning as $\gamma$ increases.
+For $1>\gamma\ge0$, Schnute production takes a family of left leaning Ricker-like curves
+that all, at least, approach the x-axis. For $0>\gamma>-1$ there are a family of BH-like
+curves that do not approach the x-axis but still have decreasing productivity for large
+biomass stocks. When $\gamma$ is exactly $-1$ Schnute reduces to BH production which has
+asymptoting production for large biomass. Finally when $-1>\gamma$ Schnute
+produces a family of increasing Cushing-like curves that do not asymptote, and produces
+linear production as $\gamma\to-\infty$.
+
+%
+Modeling index data that are simulated broadly over the theoretical space of RPs
+with misspecified BH production greatly limits the range of possible RPs that
+can be inferred. Under BH production the full theoretical space of RPs are
+limited to the curve \mbox{$\frac{B^*}{B_0}=\frac{1}{F^*/M+2}$.} Define the
+``BH set'' as the set of RPs defined by this limited space, i.e. the curve \\
+$\left\{\left(\frac{F^*}{M}, \frac{B^*}{B_0}\right) \;\middle|\; \frac{B^*}{B_0}=\frac{1}{F^*/M+2}\right\}$.
+as seen in the black curve in Figure (\ref{colorDes}).
+The farther away from this set that Schnute data are simulated, the more the
+BH model is misspecified for those data.
+
+
+%
+\clearpage
 \section{Discussion}
 
 %;
