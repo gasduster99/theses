@@ -565,9 +565,164 @@ can be inferred. Under BH production the full theoretical space of RPs are
 limited to the curve \mbox{$\frac{B^*}{B_0}=\frac{1}{F^*/M+2}$.} Define the
 ``BH set'' as the set of RPs defined by this limited space, i.e. the curve \\
 $\left\{\left(\frac{F^*}{M}, \frac{B^*}{B_0}\right) \;\middle|\; \frac{B^*}{B_0}=\frac{1}{F^*/M+2}\right\}$.
-as seen in the black curve in Figure (\ref{colorDes}).
+as seen in the {\color{red}black curve} in Figure (\ref{colorDes}).
 The farther away from this set that Schnute data are simulated, the more the
 BH model is misspecified for those data.
+
+%
+\subsection{Metamodeled Trends}
+
+
+%
+Unlike the Schaefer model, the BH set is not a constant in
+$\frac{B^*}{B_0}$. Under the BH model, bias in $\frac{B^*}{B_0}$ is no
+longer entirely defined by the degree of model misspecification, but rather the
+structure of BH RPs allows bias in both $\frac{B^*}{B_0}$ and $\frac{F^*}{M}$
+to interact as a function of contrast in the data.
+%This has the effect of allowing the bias in $\frac{B^*}{B_0}$ and $F^*$ 
+
+%
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.49\textwidth}
+\hspace*{-0.5cm}
+\includegraphics[width=1.1\textwidth]{../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
+%\hspace*{1cm}
+\caption{\label{contrastTrio}
+Heatplots showing the bias in RP estimation induced by model misspecification of
+the BH model in the high contrast simulation setting.
+In all cases the restricted RP-space of the BH set is shown as the black curve.
+(\emph{left}) Relative bias in $\frac{B^*}{\bar B(0)}$.  (\emph{top-right})
+Bias in RP-space shown directionally. Arrows point from the location where
+data is generated, toward the location in the BH set where MLE projects estimated
+RPs. The intensity of color represents the excess bias relative
+to the shortest possible mapping. (\emph{bottom}) Relative bias in $F^*$.
+}
+$~$\\$~$\\
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+\hspace*{1cm}
+\includegraphics[width=1.1\textwidth]{../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png}\\
+\hspace*{1cm}
+\includegraphics[width=1.1\textwidth]{../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
+\end{minipage}
+\end{figure}
+
+%\paragraph{High Contrast}
+\subsubsection{High Contrast}
+
+%
+Figure (\ref{contrastTrio}) shows metamodeled RP bias surfaces for inference
+under the BH model in the high contrast setting. The (\emph{left}) and
+(\emph{bottom}) panels focus only on the $\frac{B^*}{\bar B(0)}$ and
+$\frac{F^*}{M}$ components of bias respectively. In these panels bias is shown
+as relative bias, $\frac{\widehat{RP}-RP}{RP}$, similar to a percent error calculation.
+Where $RP$ represents the true value of the three-parameter RP, and $\widehat{RP}$ 
+refers to the metamodel estimate.
+
+%
+Figure (\ref{contrastTrio}, \emph{top-right}) combines the components of bias to
+show the overall mapping of RPs under BH inference in the high contrast
+simulation setting. Unlike high contrast RP inference under the Schaefer model,
+where maily bias in $\frac{B^*}{\bar B(0)}$ occured, the BH model does shows
+bias in both RPs here. Despite the bias in $\frac{B^*}{\bar B(0)}$ and
+$\frac{F^*}{M}$ these results are similar to that of the Schaefer model in
+that the overall mapping of RPs is very nearly a minimal distance mapping onto
+the constrained set of RPs. %In this setting the 
+The primary difference between Schaefer model and BH RP inference is the
+geometry of their limited RP spaces. Unlike the Schaefer model the BH set
+encouragesbias in both RPs for misspecified models even in very well informed
+setting.
+
+\subsubsection{Low Contrast}
+
+%
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-0.5cm}
+%%\vspace{-1.25cm}
+%\begin{figure}[h!]
+\includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+\vspace{-1cm}
+\caption{
+%Relative bias in $F^*$ in the high contrast simulation setting. The BH set is also shown in black. 
+Joint bias direction of RP inference in the low contrast simulation setting.
+The intensity of color represents the excess bias relative
+to the shortest possible mapping.
+}
+\label{bhLowArrows}
+%\end{figure}
+\end{wrapfigure}
+
+%
+Figure (\ref{bhLowArrows}) shows the mapping of RPs in the low contrast
+simulation setting. Figures (\ref{bhLowArrows}) and (\ref{contrastTrio},
+\emph{top-right}) share a common scale for the intensity of color to
+facilitate comparison. In Figure (\ref{bhLowArrows}) notice that the mildly
+misspecified area around the BH set produces mappings onto the BH set which
+resemble the minimal distance mapping seen in the high contrast setting. % %in Figure (\ref{contrastTrio}, \emph{top-right}). %
+The primary difference in this low contrast setting, is the break point
+around $\frac{B^*}{\bar B(0)}=0.4$ above which $\frac{F^*}{M}$ is sharply
+underestimated.
+
+%
+The region of RPs where the BH model manages to recover the minimal distance
+mapping may be considered a ``safe regime'' of data types that are
+reasonably well modeled by a BH model. By comparison of Figure (\ref{bhLowArrows}),
+with Figure (\ref{colorDes}), this safe regime of the BH model occurs for data
+generated for Cushing-like or BH-like production. While bias of the RPs can still become concerningly large, % here, %(as large as $X$ in the worst case) within this region, 
+this region can be considered safe in the sense that even for low contrast data
+RP estimation under the the BH model recovers the minimal distance mapping.
+
+%
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-0.75cm}
+%\begin{figure}[h!]
+%\includegraphics[width=0.5\textwidth]{../gpBias/yeildCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png}
+\includegraphics[width=0.5\textwidth]{../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+\vspace{-1cm}
+\caption{
+Yield curves for data generated with $\frac{F^*}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$.
+%Convert into $B/B_0$. Show the high contrast curve.
+}
+\label{bhFmsy}
+%\end{figure}
+\end{wrapfigure}
+
+%
+Outside of this safe regime, RP estimation breaks from the minimal distance mapping
+at the interface between BH-Like and Ricker-Like regimes of the Schnute model (again see
+Figure (\ref{colorDes})). The Ricker model lies along this regime interface, and
+represents the first model to approach the x-axis for large biomasses as $\gamma$
+increases. This markedly unBH-like productivity in the low information simulation
+setting breaks MLE inference from the minimal distance mapping and instead maps
+RPs to extremely low values of $F^*$; consequently $\frac{B^*}{\bar B(0)}$
+is estimated near the limiting value under the BH (i.e. $\lim_{F^* \to 0}\frac{1}{F^*/M+2}=0.5$).
+Similarly the set of Ricker RPs (as well as the Schaeffer set) include this
+trivial limiting point in common ($\frac{F^*}{M}=0$, $\frac{B^*}{\bar B(0)}=0.5$). 
+
+%
+Interestingly, in the high contrast setting this trivial mapping for highly
+misspecified BH models is not present. This suggests that, under a
+misspecified BH model, the presence of adequate information in the data to
+produce reasonable estimates of $\frac{F^*}{M}$, drives $\frac{B^*}{\bar B(0)}$
+below $0.5$ in accordance with $\frac{B^*}{\bar B(0)}=\frac{1}{F^*/M+2}$,
+even when the true $\frac{B^*}{\bar B(0)}>0.5$.
+%This suggests that in the presence of adequate 
+%information in the data to produce reasonable estimates of $\frac{F^*}{M}$ 
+%drives $\frac{B^*}{\bar B(0)}$ away from 0.5, even when the true $\frac{B^*}{\bar B(0)}>0.5$. 
+This phenomena balances RP estimation within the constrained BH set as
+mediated by the information content of the data and the degree of model
+misspecification. When the information content in the data is too small to
+drive a compromised RP estimate, inference completely disregards accurate
+estimation of $F^*$ in order to better estimate $\frac{B^*}{\bar B(0)}$
+by exploiting the common limiting behavior of the BH set and that of
+Ricker-like and Logistic-like models.
+%may fail by completely disregarding one RP so the sake of preserving whatever 
+%similarities may exist between the functional forms of the data and misspecified model. 
+
+%
+{\color{red}Add MSY plot}
 
 
 %
