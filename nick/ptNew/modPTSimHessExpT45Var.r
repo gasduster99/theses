@@ -135,7 +135,7 @@ minDiff = min((zetaMax-zetaMin)/n, (xiMax-xiMin)/n)
 binTrk = ceiling(abs(log10(minDiff)))
 
 #make new design
-if( F ){
+if( T ){
         #
         des = lhs(n, rbind(c(xiMin, xiMax),c(zetaMin, zetaMax)))
         colnames(des) = c('xi', 'zeta')
@@ -163,10 +163,10 @@ if( F ){
 datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
 
 #
-registerDoParallel(46)
-opts = list(preschedule=F)
-foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
-#for(i in 1:n){
+#registerDoParallel(46)
+#opts = list(preschedule=F)
+#foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
+for(i in 1:n){
 	#
         #DATA
         #
@@ -213,7 +213,7 @@ foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
         )
         #fit = readRDS('modsPellaFineQFixRFixP010000/fit_xi4_zeta0.35.rda')
         fit$iterate(odeMethod)
-	#break
+	break
 	#optimization
         optAns = fit$optimize(cpue,
                 c('lsdo', 'lalpha'), #'lq'),

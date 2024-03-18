@@ -144,7 +144,8 @@ getData = function(dir, xiRange, zetaRange){
 P0 = 10000
 #mod="FlatT30"; contrast=F; 
 #mod="ExpT45"; contrast=T;
-mod="ExpT45MinCon"; contrast=T;
+#mod="ExpT45MinCon"; contrast=T;
+mod="ExpT45Sig0.3"; contrast=T;
 place = sprintf("./modsPT%s/", mod)
 
 #
