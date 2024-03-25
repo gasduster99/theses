@@ -1,0 +1,37 @@
+%\section{Appendix\label{lambApp}: Inverting $\frac{B^*}{\bar B(0)}$ and $\gamma$ for the PT Model}
+For brevity let $\zeta=\frac{B^*}{\bar B(0)}$.
+\begin{align*}
+&\zeta=\left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}\\
+%&\zeta^{\gamma-1}=\frac{1}{\gamma}\\
+&\zeta=\gamma\zeta^{\gamma}\\
+&\zeta=\gamma e^{\gamma\log(\zeta)}\\
+&\zeta\log(\zeta)=\gamma\log(\zeta) e^{\gamma\log(\zeta)}
+\end{align*}
+The Lambert product logarithm, $W$, is defined as the inverse function of $z=xe^x$ such that $x=W(z)$.
+Applying this definition allows for the isolation of $\gamma$.
+\begin{align}
+&\gamma\log(\zeta)=W\left(\zeta\log(\zeta)\right) \nonumber\\
+&\gamma=\frac{W\left(\zeta\log(\zeta)\right)}{\log(\zeta)} \label{gammaOfZeta}
+\end{align}
+The Lambert product logarithm is a multivalued function with a branch point at
+$-\frac{1}{e}$. The principal branch, $W_0(z)$, is defined on $z\in\left(-\frac{1}{e}, \infty\right)$,
+and the lower branch, $W_{-1}(z)$, is defined on $z\in\left(-\frac{1}{e}, 0\right)$. Taken
+individually, each respective branch is analytic, but cannot be expressed in terms
+of elementary functions.
+
+%
+When $\zeta\in\left(0, \frac{1}{e}\right)$ the solution of interest in Eq. (\ref{gammaOfB})
+comes from $W_0$. %$\gamma\to1$ as $\zeta\to\frac{1}{e}$ to produce the Fox Model. 
+When $\zeta\to\frac{1}{e}$, the Fox Model emerges as $\gamma\to1$.
+When $\zeta\in\left(\frac{1}{e}, 1\right)$ the solution of interest comes from
+$W_{-1}$. For the use case presented here, Eq. (\ref{gammaOfB}) is to be interpreted as,
+
+\begin{equation}
+\gamma = 
+\begin{cases} 
+\frac{W_0\left(\zeta\log\left(\zeta\right)\right)}{\log\left(\zeta\right)} & \zeta\in\left(0, \frac{1}{e}\right)\\
+\frac{W_{-1}\left(\zeta\log\left(\zeta\right)\right)}{\log\left(\zeta\right)} & \zeta\in\left(\frac{1}{e}, 1\right)
+\end{cases}. 
+\end{equation} 
+
+
