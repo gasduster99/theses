@@ -618,7 +618,7 @@ from the Log-normal distribution falls below \mbox{$(1-P)F_{MSY}$.}
 \clearpage
 \section{Results}
 
-{\color{red} BACK FILL OTHER MODERATE GROWTH}
+{\color{red} Biological Regeim corr($a_s$, $\kappa$)<0}
 
 %\begin{figure}[h!]
 \begin{wrapfigure}{r}{0.50\textwidth}
@@ -630,11 +630,13 @@ from the Log-normal distribution falls below \mbox{$(1-P)F_{MSY}$.}
 %
 Figure (\ref{vbCurves}) shows three hypothetical individual-growth/maturity curves 
 that span a wide range of RPs. As seen in Figure (\ref{rpSpace}), the larger values of
-$w(a_s)$ corresond to less dramatic growth with the red curve demonstrating the
-simle (no growth) production model limit ($a_s\rightarrow0$ and $\kappa\rightarrow\infty$).
-The cases with smaller $w(a_s)$ values (blue and purple curves) correspond to more dramatic
-growth behaviors, with the blue curve where $a_s=2$ and $\kappa=0.1$ representing the most
-dramatic growth shown here.
+$w(a_s)$ correspond to larger recruits relative to maximum size. This leaves little growth 
+to be evaluated by the biomass dynamics equations; the red curve demonstrates the
+simple (no growth) production model limit ($a_s\rightarrow0$ and $\kappa\rightarrow\infty$).
+The cases shown with smaller $w(a_s)$ values (blue and purple curves) correspond to slower growth %more dramatic
+behaviors. The blue curve, where $a_s=2$ and $\kappa=0.1$, emphasizes the effect of growth 
+on the biomass dynamics most amoung these examples. 
+%representing the most\dramatic growth shown here.
 %a more lagged selectivity and slow indivdual-growth.
 
 %
@@ -651,8 +653,7 @@ $B_{MSY}$ within each given $\gamma$.
 Figure (\ref{delayTriptic}) demonstrates a range of biomass dynamics that the Schnute
 delay model can display under a spectrum of growth behaviors with fishing held consistent
 at $F_{MSY}$. The three special cases of $\gamma=-1$ (BH), $\gamma\to0$
-(Ricker), and $\gamma=1$ (Logistic) recruitment are shown in each of the above
-shown growth configurations.
+(Ricker), and $\gamma=1$ (Logistic) recruitment are shown in each of the above growth configurations.
 %of growth ranging from the simple (no growth) production model setting when 
 %$a_s\rightarrow0$ and $\kappa\rightarrow\infty$, to an opposing case ($a_s=10$ 
 %and $\kappa=0.1$) representing extremely lagged selectivity and slow indivdual-growth. 
@@ -663,31 +664,31 @@ shown growth configurations.
 %rather than solely determined by the assumed functional form of recruitment as is 
 
  
-%the case with the simple production model. The case $a_s=2$ and $\kappa=0.1$ is 
-%shown as an example of dynamics where RPs are more moderatly influenced by 
-%individual-growth/maturity. 
-%The shortened selectivity lag allows oscillatory individual-growth/maturity 
-%dynamics to quickly equilibrate towards a more purely 
-%recruitment driven dynamics more quickly than the $a_s=10$ example.
-%% right leaning yeild curve
-Notice under the most dramatic growth ($a_s=2$ and $\kappa=0.1$) setting, biomass
-of the Logistic model comes into equilibrium at $B_{MSY}$ as an oscillating
-curve. This effect occures here due to the Logistic model's relatively high $\frac{B^*}{B_0}$
-%steep yeild curve for high biomasses 
-interacting with the lag in selectivity upon the sudden onset of fishing; this
-produces a shock that pushes biomass past $B_{MSY}$ setting up an oscillatory
-pattern of recruitment.
-%over the steepest regions of the yeild curve. 
-One may also observe these oscillations under the Ricker model by exaggerating
-the $a_s$ lag as well as the steepness of the Ricker curve. The BH model may
-also demonstrate these ocillations, in a heavily lagged setting, by shocking
-the population past its relatively low $B_{MSY}$ as a sudden release in fishing applied to a
-%over the steepest portion of its yeild curve (a sudden release 
-heavily fished population at low equilibrium biomass.
+%%the case with the simple production model. The case $a_s=2$ and $\kappa=0.1$ is 
+%%shown as an example of dynamics where RPs are more moderatly influenced by 
+%%individual-growth/maturity. 
+%%The shortened selectivity lag allows oscillatory individual-growth/maturity 
+%%dynamics to quickly equilibrate towards a more purely 
+%%recruitment driven dynamics more quickly than the $a_s=10$ example.
+%%% right leaning yeild curve
+%Notice under the most emphatic growth ($a_s=2$ and $\kappa=0.1$) setting, biomass
+%of the Logistic model comes into equilibrium at $B_{MSY}$ as an oscillating
+%curve. This effect occures here due to the Logistic model's relatively high $\frac{B^*}{B_0}$
+%%steep yeild curve for high biomasses 
+%interacting with the lag in selectivity upon the sudden onset of fishing; this
+%produces a shock that pushes biomass past $B_{MSY}$ setting up an oscillatory
+%pattern of recruitment.
+%%over the steepest regions of the yeild curve. 
+%One may also observe these oscillations under the Ricker model by exaggerating
+%the $a_s$ lag as well as the steepness of the Ricker curve. The BH model may
+%also demonstrate these ocillations, in a heavily lagged setting, by shocking
+%the population past its relatively low $B_{MSY}$ as a sudden release in fishing applied to a
+%%over the steepest portion of its yeild curve (a sudden release 
+%heavily fished population at low equilibrium biomass.
 
 %
 \begin{wrapfigure}{r}{0.50\textwidth}
-\vspace{-1.5cm}
+\vspace{-0.5cm}
 \includegraphics[width=0.49\textwidth]{../ddBias/rpTriptic.png}
 \vspace{-0.75cm}
 \caption{Restricted RP-space under each recruitment models,
@@ -697,14 +698,14 @@ with each growth curve.}\label{rpTriptic}
 %
 Figure (\ref{rpTriptic}) shows the range of RPs that can be modeled with each
 of the BH, Ricker, and Logistic recruitments over the spectrum of
-individual-growth/maturitymodels simulated here. Notice that the more dramatic
-the growth, the further the RP curve lies from the simple production model,
-but each recruitment model reacts differently under each of the given growth
+individual-growth/maturity models simulated here. Notice for smaller values of 
+$w(a_s)$ the further the RP curve lies from the simple production model,
+and each recruitment model reacts slightly differently under each of the given growth
 parameters. The Ricker and BH RP-spaces are qualitatively similar in shape
-with more dramatic growth settings decreasing $\frac{B_{MSY}}{B_0}$ relative to the
+with smaller values of $w(a_s)$ decreasing $\frac{B_{MSY}}{B_0}$ relative to the
 simple production model setting. The Logistic model on the other hand increases
-$\frac{B_{MSY}}{B_0}$ relative to the simple production model setting as growth
-parameters become more dramatic. It is also worth noting that the Ricker model's
+$\frac{B_{MSY}}{B_0}$ relative to the simple production model setting as smaller 
+values of $w(a_s)$ decreases. It is also worth noting that the Ricker model's
 RPs are much less influenced by growth parameters as compared with that of the
 BH or Logistic model.
 
@@ -750,22 +751,23 @@ shows the same two regiems pattern of RP inference. Firstly, there is a region o
 relatively small model misspecification where the minimal distance mapping
 is preserved. Secondly, as model misspecification becomes greater (around the
 Ricker set) $\frac{F^*}{M}$ begins to be sharply underestimated. Above this
-break point in RP estimation inference appears to be driven to the trivial RP
+break point in RP estimation inference appears to be driven toward the trivial RP
 $\frac{F^*}{M}=0$, $\frac{B^*}{\bar B(0)}=0.5$) that is shared in common
 amoung all of the two-parameter models described here.
 
 %
-These results merely confirm that the theoretical limiting dynamics do indeed
-replicate expected RP inference patterns as previously observed in Chapter (\ref{schnuteChapter}).
+These results confirm that the theoretical limiting dynamics do 
+indeed replicate expected RP inference patterns as previously observed in 
+Chapter (\ref{schnuteChapter}).
 
 %
 %\clearpage
 \subsection{Moderate Growth}
 
 %
-Moving past verification of the simple production model, other values of $a_s$
-and $\kappa$ provide a probe into the effects individual growth dynamics may
-have on RP inference.
+Moving past the simple production model, other values of $a_s$ and $\kappa$ 
+provide a probe into the effects individual growth dynamics may have on RP 
+inference.
 %
 Individual growth is a multifaceted phenomena that is not easily reduced
 to a single number, but for the purposes of this model $w(a_s)$ serves as a decent 
@@ -781,8 +783,8 @@ That said, $w(a_s)$ is not a one-to-one map of $\kappa$ and $a_s$.
 A level curve of $w(a_s; \kappa)=c$ is attained by increasing the value of $a_s$
 and decreasing $\kappa$ corrispondingly, or vice versa.
 %
-The case where $a_s=4$ and $\kappa=0.2$ (resulting in $w(a_s)\approx0.6$)
-respresents a plausibly biological example of moderate growth.
+The case where $a_s=1$ and $\kappa=0.5$ (resulting in $w(a_s)\approx0.6$)
+respresents a reasonable biological example of moderate growth.
 %
 Similar examples of the $w(a_s)=0.6$ level curve result in much larger lags
 (discussed in Section (\ref{ocillation})) or larger $\kappa$'s which quickly
@@ -792,10 +794,10 @@ setting.
 %
 \begin{figure}[h!]
 \includegraphics[width=0.48\textwidth]{../ddBias/directionalBiasDDSubExpT45N150A0-1AS4K0.2N38.png} %directionalBiasDDExpT45N150A0-1AS4K0.2.png}
-\includegraphics[width=0.48\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS4K0.2N56.png} %94 %directionalBiasDDFlatT45N150A0-1AS4K0.2N28.png}
-\vspace{-0.75cm}
+\includegraphics[width=0.48\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56.png} %../ddBias/directionalBiasDDSubFlatT45N150A0-1AS4K0.2N56.png} %94 %directionalBiasDDFlatT45N150A0-1AS4K0.2N28.png}
+%\vspace{-0.75cm}
 \caption{
-RP mapping of BH delay model fit to Schnute delay data under moderate growth ($a_s=4$ and $\kappa=0.2$).
+RP mapping of BH delay model fit to Schnute delay data under moderate growth ($a_s=1$ and $\kappa=0.5$).
 $Left:$ High contrast simulation.
 $Right:$ Low contrast simulation.
 }\label{moderateGrowth}
@@ -814,11 +816,11 @@ RPs onto the constrained BH RP set. In the low contrast setting Figure (\ref{mod
 a very similar two regiem pattern of RP inference is observed, however the
 location of the break between these regiems appears at lower values of
 $\frac{B^*}{\bar B(0)}$. In this moderate growth setting the break point
-occures around values of $\frac{B^*}{\bar B(0)}$ just below 0.4 where in %as opposed 
-\mbox{
+occures around values of $\frac{B^*}{\bar B(0)}$ just below 0.4 as opposed to 
+%\mbox{
 the simple production model the break point occurs at $\frac{B^*}{\bar B(0)}$
 just above 0.4.
-}
+%}
 
 %\begin{itemize}
 %\item largly the same as the production model limit.
@@ -832,9 +834,9 @@ just above 0.4.
 
 %
 The emphatic growth setting simulated here fixes $a_s=2$ and $\kappa=0.1$, to
-simulate a species that grows quite slowly and yet matures into the
-reproducing  stock at a relatively early age. This combination has the effect
-of exaggerating the components of the model dynamics which are related to
+simulate a species that grows quite slowly and matures into the reproducing  
+stock at a relatively early age. This combination has the effect of 
+exaggerating the components of the model dynamics which are related to
 individual growth since individuals recruit at a small size and slowly
 grow over the extent of the modeled period.
 
@@ -847,17 +849,17 @@ this is true for all of the two parameter constrained constrained RP sets as
 seen in Figure (\ref{rpTriptic}).
 
 %
-Despite the emphaticly growth driven dynamics in this setting, the RP mappings
-seen in Figure (\ref{dramaticGrowth}) obviously bare a huge resemblance to the
-previously seen RP mappings. Again the biggest differences in the RP mappings
-occur around the location of the break point where the low contrast model
-begins to dramatically underestimate $\frac{F^*}{M}$.
+Despite the heavily growth influenced driven biomass dynamics in this setting, 
+the RP mappings seen in Figure (\ref{dramaticGrowth}) obviously bare a huge 
+resemblance to the previously seen RP mappings. Again the biggest differences 
+in the RP mappings occur around the location of the break point where the low 
+contrast model begins to dramatically underestimate $\frac{F^*}{M}$.
 %\clearpage
 \begin{figure}[h!]
-\vspace{-1.1cm}
+%\vspace{-0.5cm}
 \includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1.png}
 \includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84Edge.png}
-\vspace{-0.5cm}
+%\vspace{-0.5cm}
 \caption{
 RP mapping of BH delay model fit to Schnute delay data under dramatic growth ($a_s=2$ and $\kappa=0.1$).
 $Left:$ High contrast simulation.
@@ -899,9 +901,12 @@ these models.
 
 %\clearpage
 \begin{wrapfigure}{r}{0.50\textwidth}
-\vspace{-1.1cm}
-\includegraphics[width=0.45\textwidth]{../ddBias/metaLowerZetaLinesDDFlatT45N150A0-1AS2K0.1N84Edge.png}
-\vspace{-0.95cm}
+%\vspace{-1.1cm}
+%\includegraphics[width=0.45\textwidth]{../ddBias/metaLowerZetaLinesDDFlatT45N150A0-1AS2K0.1N84Edge.png}
+\includegraphics[width=0.45\textwidth]{../ddBias/relErrorImagesBHDD0.5.png}
+%\includegraphics[width=0.45\textwidth]{../ddBias/relErrorImagesBHDD0.2.png}
+\includegraphics[width=0.45\textwidth]{../ddBias/relErrorImagesBHDD0.01.png}
+%\vspace{-0.95cm}
 \caption{BH RP estimation failure threasholds with increasingly emphatic individual growth dynamics.
 }\label{breaks}
 \end{wrapfigure}

@@ -1,5 +1,5 @@
 %https://github.com/adamnovak/ucscthesis
-\documentclass[11pt]{ucscthesis}
+\documentclass[12pt]{ucscthesis}
 \def\dsp{\def\baselinestretch{2.0}\large\normalsize}
 \dsp
 
@@ -367,14 +367,20 @@ is considered together with model misspecification. %alongside the effect of mod
 
 %
 \chapter{Inverting $\frac{B^*}{\bar B(0)}$ and $\gamma$ for the PT Model \label{lambApp}}
-\begingroup
+%\begingroup
 %\let\clearpage\relax
 \include{lambApp.tex}
 %\endgroup
 
 %
-\chapter{Relation to $F_{SPR}$ Proxy}
-%\include{proxyMath.tex}
+\chapter{\color{red}Relation to $F_{SPR}$ Proxy}
+\include{proxyMath.tex}
+
+%
+\chapter{Delay Differential Replacement Line}
+\include{ddRepLine.tex}
+
+
 
 
 % if \nocite is specified, all entries in the bib file are included,

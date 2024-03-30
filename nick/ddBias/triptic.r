@@ -282,8 +282,8 @@ layout(t(1:3))
 #
 
 #Growth
-dat$aS = 4 #10
-dat$kappa = 0.2 #0.1
+dat$aS = 1 #4 #10
+dat$kappa = 0.5 #0.2 #0.1
 #Recruitment
 dat$alpha = 1.2
 dat$lalpha= log(dat$alpha)
@@ -315,15 +315,16 @@ dat$lbeta = log(dat$beta)
 dat$iterate()
 par(mar=c(5, 5, 4, 2)+0.1)
 dat$plotQuan( function(B){B}, main="Logistic", ylim=c(0,max(dat$B)), xlab="Time", ylab="Biomass", add=T, lwd=2, col=cols[3], lty=1)
-legend('bottom', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=4$,    $\\kappa=0.2$, $w(a_s)\\approx %s$", round(vbGrow(4, 0.2, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, dat$WW, dat$a0),2)))), col=cols[3], lwd=2, lty=rev(1:3), cex=2)
+#legend('bottom', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=4$,    $\\kappa=0.2$, $w(a_s)\\approx %s$", round(vbGrow(4, 0.2, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, dat$WW, dat$a0),2)))), col=cols[3], lwd=2, lty=rev(1:3), cex=2)
+legend('bottom', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=1$,    $\\kappa=0.5$, $w(a_s)\\approx %s$", round(vbGrow(1, 0.5, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, dat$WW, dat$a0),2)))), col=cols[3], lwd=2, lty=rev(1:3), cex=2)
 
 #
 #RICKER
 #
 
 #Growth
-dat$aS = 4 #10
-dat$kappa = 0.2 #0.1
+dat$aS = 1 #4 #10
+dat$kappa = 0.5 #0.2 #0.1
 #Recruitment
 dat$alpha = 1.2 
 dat$lalpha= log(dat$alpha)
@@ -354,15 +355,16 @@ dat$lbeta = log(dat$beta)
 dat$iterate()
 par(mar=c(5, 5, 4, 2)+0.1)
 dat$plotQuan( function(B){B}, main="Logistic", ylim=c(0,max(dat$B)), xlab="Time", ylab="Biomass", add=T, lwd=2, col=cols[2], lty=1)
-legend('bottom', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=4$,    $\\kappa=0.2$, $w(a_s)\\approx %s$", round(vbGrow(4, 0.2, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, dat$WW, dat$a0),2)))), col=cols[2], lwd=2, lty=rev(1:3), cex=2)
+#legend('bottom', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=4$,    $\\kappa=0.2$, $w(a_s)\\approx %s$", round(vbGrow(4, 0.2, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, dat$WW, dat$a0),2)))), col=cols[2], lwd=2, lty=rev(1:3), cex=2)
+legend('bottom', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=1$,    $\\kappa=0.5$, $w(a_s)\\approx %s$", round(vbGrow(1, 0.5, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, dat$WW, dat$a0),2)))), col=cols[2], lwd=2, lty=rev(1:3), cex=2)
 
 #
 #LOGISTIC
 #
 
 #Growth
-dat$aS = 4 #10
-dat$kappa = 0.2 #0.1
+dat$aS = 1 #4 #10
+dat$kappa = 0.5 #0.2 #0.1
 #Recruitment
 dat$alpha = 1.2 
 dat$lalpha= log(dat$alpha)
@@ -392,7 +394,7 @@ dat$lbeta = log(dat$beta)
 dat$iterate()
 par(mar=c(5, 5, 4, 2)+0.1)
 dat$plotQuan( function(B){B}, main="Logistic", ylim=c(0,max(dat$B)), xlab="Time", ylab="Biomass", add=T, lwd=2, col=cols[1], lty=1)
-legend('bottom', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=4$,    $\\kappa=0.2$, $w(a_s)\\approx %s$", round(vbGrow(4, 0.2, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, dat$WW, dat$a0),2)))), col=cols[1], lwd=2, lty=rev(1:3), cex=2)
+legend('bottom', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=1$,    $\\kappa=0.5$, $w(a_s)\\approx %s$", round(vbGrow(1, 0.5, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, dat$WW, dat$a0),2)))), col=cols[1], lwd=2, lty=rev(1:3), cex=2)
 
 #
 dev.off()
@@ -418,8 +420,8 @@ gamma = -1
 #k = 0.1
 #
 #lines(xis, getZetaG(xis, M, 0.2, WW, 4, -1, gamma), lty=1, lwd=2)#, col=cols[3])
-a = 4
-k = 0.2
+a = 1 #4
+k = 0.5 #0.2
 #	        x,   M, k, W, aS, a0, G
 line = getZetaG(xis, M, k, WW, a, -1, gamma)
 plot(xis, line, 'l', lty=2, lwd=2, ylim=c(0.1, 0.6), col=cols[3],
@@ -448,8 +450,8 @@ gamma = 0.0001
 #k = 0.1
 #
 #lines(xis, getZetaG(xis, M, 0.2, WW, 4, -1, gamma), lty=1, lwd=2)#, col=cols[3])
-a = 4
-k = 0.2
+a = 1 #4
+k = 0.2 #0.2
 #	        x,   M, k, W, aS, a0, G
 line = getZetaG(xis, M, k, WW, a, -1, gamma)
 lines(xis, line, lty=2, lwd=2, col=cols[2])
@@ -474,8 +476,8 @@ gamma = 1
 #k = 0.1
 #
 #lines(xis, getZetaG(xis, M, 0.2, WW, 4, -1, gamma), lty=1, lwd=2)#, col=cols[3])
-a = 4
-k = 0.2
+a = 1 #4
+k = 0.5 #0.2
 #	        x,   M, k, W, aS, a0, G
 line = getZetaG(xis, M, k, WW, a, -1, gamma)
 lines(xis, line, lty=2, lwd=2, col=cols[1])
@@ -489,7 +491,7 @@ a = 0.1
 k = 10
 line = getZetaG(xis, M, k, WW, a, -1, gamma)
 lines(xis, line, lty=1, lwd=2, col=cols[1])                         #TeX("$a_s=10$  $\\kappa=0.1$")
-legend('bottomleft', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=4$,    $\\kappa=0.2$, $w(a_s)\\approx %s$", round(vbGrow(4, 0.2, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, dat$WW, dat$a0),2)))), 
+legend('bottomleft', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=1$,    $\\kappa=0.5$, $w(a_s)\\approx %s$", round(vbGrow(1, 0.5, dat$WW, dat$a0), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, dat$WW, dat$a0),2)))), 
 	col=c(rep("black", 3)), 
 	#fill=c(cols[1:3]),#, rep(NA, 3)),
 	lwd=2, #c(rep(1,3), rep(2,3)), 

@@ -1,0 +1,394 @@
+\documentclass[a0paper,portrait]{baposter}
+
+\usepackage{bm}
+\usepackage{tikz}
+\usepackage{color}
+\usepackage{xcolor}
+%\usepackage{natbib}
+\usepackage[]{apacite}
+\usepackage{wrapfig}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{colortbl}
+\usepackage[T1]{fontenc}
+\usepackage{stackengine}
+\usepackage[utf8]{inputenc} %unicode support
+\usepackage{mathtools, nccmath}
+
+\usetikzlibrary{positioning, shapes, snakes}
+
+\selectcolormodel{cmyk}
+
+%\graphicspath{{figures/}} % Directory in which figures are stored
+
+
+\newcommand{\compresslist}{%
+\setlength{\itemsep}{0pt}%
+\setlength{\parskip}{1pt}%
+\setlength{\parsep}{0pt}%
+}
+
+\newenvironment{boenumerate}
+  {\begin{enumerate}\renewcommand\labelenumi{\textbf\theenumi.}}
+  {\end{enumerate}}
+
+\newcommand{\redhat}[1]{\color{red}\hat{\text{$#1$}}}
+\newcommand{\orangebar}[1]{\color{orange}\bar{\text{$#1$}}}
+
+\begin{document}
+
+%
+\definecolor{darkgreen}{cmyk}{0.8,0,0.8,0.45}
+\definecolor{lightgreen}{cmyk}{0.8,0,0.8,0.25}
+\definecolor{darkblue}{HTML}{000080}%{1A5276}%{2471A3}
+\definecolor{lightblue}{HTML}{0000FF}%{2E86C1}
+\definecolor{black}{HTML}{000000}
+\definecolor{violet}{HTML}{8000FF}
+
+\begin{poster}
+{
+grid=false,
+headerborder=open, % Adds a border around the header of content boxes
+colspacing=1em, % Column spacing
+bgColorOne=white, % Background color for the gradient on the left side of the poster
+bgColorTwo=white, % Background color for the gradient on the right side of the poster
+borderColor=lightblue, % Border color
+headerColorOne=lightblue, % Background color for the header in the content boxes (left side)
+headerColorTwo=lightblue, % Background color for the header in the content boxes (right side)
+headerFontColor=white, % Text color for the header text in the content boxes
+boxColorOne=white, % Background color of the content boxes
+textborder=rounded, %rectangle, % Format of the border around content boxes, can be: none, bars, coils, triangles, rectangle, rounded, roundedsmall, roundedright or faded
+eyecatcher=false, % Set to false for ignoring the left logo in the title and move the title left
+headerheight=0.11\textheight, % Height of the header
+headershape=rounded, % Specify the rounded corner in the content box headers, can be: rectangle, small-rounded, roundedright, roundedleft or rounded
+headershade=plain,
+headerfont=\Large\textsf, % Large, bold and sans serif font in the headers of content boxes
+%textfont={\setlength{\parindent}{1.5em}}, % Uncomment for paragraph indentation
+linewidth=2pt % Width of the border lines around content boxes
+}
+{}
+%
+%TITLE
+%
+{
+\vspace{3cm}
+\begin{minipage}{0.14\textwidth}
+	\includegraphics[width=1\textwidth]{./noaa.jpeg}
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+	%\vspace*{-3cm}
+	%\hspace*{1cm}
+	\begin{center}
+	{\huge \textbf{A Metamodel Based Clustering of Fisheries Model Parameter Estimation Behavior.}}\\ % in Sparsely Sampled, Mixed Stock Fisheries.}\\
+	\vspace{0.5cm}
+	{\Large Nick Grunloh$^a$, E.J. Dick$^b$, and Herbie Lee$^a$}
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.14\textwidth}
+	\hspace*{-0.5cm}
+	\includegraphics[width=1.2\textwidth]{./fiatSlug.jpg}
+\end{minipage}
+\normalsize
+\\ \sf
+$^a$ Department of Statistical Science, Baskin School of Engineering, University of California Santa Cruz, 1156 High Street, Santa Cruz, CA 95064, USA\\
+$^b$ Fisheries Ecology Division, Southwest Fisheries Science Center, National Marine Fisheries Service, NOAA, 110 McAllister Way, Santa Cruz, CA 95060, USA\\
+}
+\\
+
+%
+\headerbox{Introduction}{name=introduction,column=0,row=0.06,span=3}{
+Integrated fisheries models are based upon differential equations which model
+stock dynamics through time. Fisheries are largely managed based upon
+quantities derived from the equilibrium equations of these dynamics, known as
+Reference Points (RP). RP behavior is primarily driven by the functional form
+of the productivity assumed in the differential equations. \shortciteA{mangel_perspective_2013} %Mangel et. al. (2013) 
+demonstrate that the most commonly used models of productivity limit the
+domain of RPs due to a lack of flexibility induced by their two-parameter
+functional forms. Three-parameter models of production release this theoretical
+RP limitation \shortcite{punt_extending_2019}. %(Punt \& Cope, 2019). 
+Nonetheless, two-parameter models of
+productivity are overwhelmingly used in practice. When RP model misspecification
+of this type is present in population dynamics models, what are the useful limits
+of statistical inference with respect to estimating these RPs? Here, a simulation
+environment is designed which explores how misspecified two-parameter production
+models bias RP inference. Using a Gaussian Process metamodel of the inferred RPs
+(under two-parameter productivity), the full theoretical space of RP bias
+behavior is explored. This structured simulation setting allows for clustering
+of RP failure modes which use the metamodel to predict when a given species is
+most likely to be subject to catastrophic model failure.
+%Effective management of exploited fish populations requires accurate estimates
+%of commercial fisheries catches to inform monitoring and assessment efforts. In
+%California, the high degree of heterogeneity in the species composition of many
+%groundfish fisheries, particularly those targeting rockfish (genus Sebastes), 
+%leads to challenges in sampling all potential strata, or species, adequately. 
+%Limited resources and increasingly complex stratification of the sampling system 
+%inevitably leads to gaps in sample data. In the presence of sampling gaps, 
+%current methods for speciating commercial landings provide ad-hoc point estimates 
+%of species compositions in unsampled strata by “borrowing” data across adjacent 
+%stratum in time and space. Due to complex interactions between biogeography and
+%market category sorting dynamics, it is not possible to be certain about optimal 
+%a’priori pooling strategies. Here we introduce a Bayesian Model Averaging (BMA) 
+%method for discovering quantitatively justifiable pooling strategies by averaging 
+%across exhaustive sets of spatially partitioned models. In combination with Bayesian 
+%hierarchical modeling, these methods allow us to infer pooling strategies from port 
+%sampling data. Furthermore, these methods allow for a complete statistical summary 
+%of several of the most important sources of uncertainty. 
+}
+
+%1. Model
+\headerbox{1. Fisheries Model}{name=model,column=0,below=introduction,span=1}{
+	%\hspace*{-0.5cm}
+	%\begin{minipage}[h!]{0.49\textwidth}
+	\begin{align*}
+	&~~~~ ~~~~ I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2) \\
+	~\\
+	%	\frac{dB(t)}{dt} &= P(B(t);\bm{\theta}) - Z(t)B(t)
+	%	%~\\~\\
+	%	\end{align*}
+	&\medmath{\frac{dB}{dt}} \medmath{= \overbrace{w(a_s)R(B;\theta)}^\text{Recruitment} + \overbrace{\kappa \left[w_\infty N-B\right]}^\text{Net Growth} - \overbrace{(M+F)B}^\text{Mortality}} \\%\label{bEq}\\
+	&\medmath{\frac{dN}{dt}} \medmath{= R(B;\theta) - (M+F)N} %\\%\label{nEq}\\
+	%&~\\
+	%&R(B_{t-a_s}; \theta): \text{Two v. Three Parameter}\\
+	%&w(a) : \text{Individual Growth}
+	\end{align*}
+}
+
+%2. Reference Points
+\headerbox{2. Individual Growth $w(a)$}{name=growth,column=0,below=model,span=1}{
+	\includegraphics[width=0.52\textwidth]{../../ddBias/vbCurves.png}
+	{\color{red}Flatten; High, Medium, Low; Individual Biomass; Title}
+	%
+	%%Equilibrium Reference Points:
+	%\begin{minipage}[h!]{0.33\textwidth}
+	%	\begin{align*}
+        %	&\substack{\text{Reference}\\\text{Points}}:\\ %&MSY\\
+	%	&\frac{F_{MSY}}{M}\\
+	%	&$~$\\
+	%	&\frac{B_{MSY}}{B_0}
+        %	\end{align*}
+	%\end{minipage}
+        %\begin{minipage}[h!]{0.65\textwidth}
+        %	%$~$\\\hspace*{0.2cm}
+        %	\includegraphics[width=0.8\textwidth]{../../advance/plots/yieldRPplus.png}
+        %\end{minipage}
+}
+
+
+%2. Explore Spatially Pooled Models
+\headerbox{3. $R(B;\theta)$ \& RPs}{name=rp,column=1,below=introduction,span=1}{
+	\begin{align*}%MSY, ~
+	\substack{\text{Reference}\\\text{Points}} &: \frac{F_{MSY}}{M}, ~\frac{B_{MSY}}{B_0}
+	\end{align*}
+	
+	%
+	{\color{red} two v. three parameter $R$, Relation to RPs, Make picture smaller}
+
+        %
+	\begin{center}
+        $~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\
+        \hspace{-2cm}
+        \begin{tikzpicture}[overlay]
+        \node at (1,0) {\includegraphics[width=1\textwidth]{../../gpBias/designLineHHardExpT45N150M0.3Wide.png}};
+        \node[circle, draw, minimum size=7, inner sep=-2] at (2.6,1.5){\tiny S};
+        \draw[latex-, very thick,black] (0.4,-1.1) -- ++(2,2.4);
+        \node[circle,fill=red, minimum size=9, inner sep=-2] at (0.25,-1.25){\tiny BH};
+        \end{tikzpicture}
+        \end{center}
+        $~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\
+        %\[ \omega_\iota = Pr(M_\iota|y) = \frac{ p(y|M_\iota)p(M_\iota) }{ \sum_\iota p(y|M_\iota)p(M_\iota) } \]
+        %\[ \bar p(\bm{\theta}|\bm{y}) = \sum_{\iota} \omega_\iota p(\bm{\theta}|\bm{y}, M_\iota) \]
+        %\[ \bar p(y^*|\bm{y}) = \bm{\int} BB(y^*|\bm{\theta}) \bar p(\bm{\theta}|\bm{y}) \bm{d\theta}\]
+        %\underline{\textbf{Species Composition:}}\\
+        %\[ \pi^*_{jklm\eta} = \frac{y^*_{jklm\eta}}{\sum_j y^*_{jklm\eta}} ~~~ y^*_{klm\eta}\neq 0.\]
+        %%\vspace{0.01cm}
+}
+
+
+%3. Bayesian Model Averaging
+\headerbox{4. Simulation}{name=sim,column=2,below=introduction,span=1}{
+	%
+	\begin{equation*}
+	\underbrace{\left(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{Schnute Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\frac{\hat F_{MSY}}{M}, \frac{\hat B_{MSY}}{\bar B(0)}\right)}_{\text{BH Estimate}}
+	\end{equation*}
+	%\begin{center}
+	
+
+	%
+        \begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+        \hat y(\textbf{x}) = \beta_0 + \textbf{x}\bm{\beta} + \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\Big(\textbf{y}-\big(\beta_0+\bm{X}\bm{\beta}\big)\Big)
+        \end{equation}
+
+        %
+        \begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+        \hat \sigma^2(\textbf{x}) = \textbf{R(x, x)} - \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x)}.
+        \end{equation}
+
+        %
+        \begin{equation}
+        \log(\hat{F}_{MSY}) \sim N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))
+        \end{equation}
+
+
+	%%
+        %\begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ 
+	%\hat F_{MSY}(\textbf{x}) = e^{\beta_0 + \textbf{x}\bm{\beta} + \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\Big(\textbf{y}-\big(\beta_0+\bm{X}\bm{\beta}\big)\Big)}
+        %\end{equation}
+
+        %%
+        %\begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+        %\hat \sigma^2(\textbf{x}) = \textbf{R(x, x)} - \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x)}.
+        %\end{equation}
+	
+	%%
+	%$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\
+	%\hspace{-2cm}
+	%\begin{tikzpicture}[overlay]
+	%\node at (1,0) {\includegraphics[width=1\textwidth]{../../gpBias/designLineHHardExpT45N150M0.3Wide.png}};
+	%\node[circle, draw, minimum size=7, inner sep=-2] at (2.6,1.5){\tiny S};
+	%\draw[latex-, very thick,black] (0.4,-1.1) -- ++(2,2.4);
+	%\node[circle,fill=red, minimum size=9, inner sep=-2] at (0.25,-1.25){\tiny BH};
+	%\end{tikzpicture}
+	%\end{center}
+	%$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\
+	%\[ \omega_\iota = Pr(M_\iota|y) = \frac{ p(y|M_\iota)p(M_\iota) }{ \sum_\iota p(y|M_\iota)p(M_\iota) } \]
+	%\[ \bar p(\bm{\theta}|\bm{y}) = \sum_{\iota} \omega_\iota p(\bm{\theta}|\bm{y}, M_\iota) \]
+	%\[ \bar p(y^*|\bm{y}) = \bm{\int} BB(y^*|\bm{\theta}) \bar p(\bm{\theta}|\bm{y}) \bm{d\theta}\]
+	%\underline{\textbf{Species Composition:}}\\
+	%\[ \pi^*_{jklm\eta} = \frac{y^*_{jklm\eta}}{\sum_j y^*_{jklm\eta}} ~~~ y^*_{klm\eta}\neq 0.\]
+	%%\vspace{0.01cm}
+}
+
+%$\text{B}_{10}=115975$ $~~~~~$ $\bar{\text{B}}_{10}=61136$ $~~~~~$ $\hat{\text{B}}_{10}=512$ $~~~~~$ $\hat{\bar{\text{B}}}_{10}=274$
+\headerbox{5. Clustering}{name=cluster,column=2,below=sim,span=1}{
+	%%
+	%\begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+        %\hat y(\textbf{x}) = \beta_0 + \textbf{x}\bm{\beta} + \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\Big(\textbf{y}-\big(\beta_0+\bm{X}\bm{\beta}\big)\Big)
+	%\end{equation}
+
+	%%
+	%\begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+       	%\hat \sigma^2(\textbf{x}) = \textbf{R(x, x)} - \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x)}.
+	%\end{equation}
+	%
+	%%
+	%\begin{equation}
+	%\log(\hat{F}_{MSY}) \sim N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))
+	%\end{equation}
+	
+	%BH is said to be estimating well when:
+	We want a small percent error in RP estimation:
+	\begin{align*}
+	\frac{\frac{F_{MSY}}{M}-\frac{\hat{F}_{MSY}}{M}}{\frac{F_{MSY}}{M}}\le P\\
+	\hat{F}_{MSY}\ge(1-P)F_{MSY}
+	\end{align*}
+	
+	%\hat y(\textbf{x}), \hat \sigma^2(\textbf{x})
+	Declare model failure when:
+	\begin{equation*}
+	e^{\hat y(\textbf{x}) + \sqrt{2\hat \sigma^2(\textbf{x})}\Phi^{-1}\left(\frac{1}{10}-1\right)}<(1-P)F_{MSY} 
+	\end{equation*}
+
+	%%
+	%\begin{equation}
+	%\hat{F}_{MSY}\sim LN(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))
+	%\end{equation}
+
+	%%
+	%Rejection region is then defined as the RP's for which the $5^{th}$ percentile
+	%from the Log-normal distribution falls below $(1-P)F_{MSY}$.
+}
+
+%
+\headerbox{6. Results}{name=results, column=0, below=rp, span=2}{
+	%%\begin{minipage}[h!]{0.25\textwidth}
+	%%{\color{red} Fast, Medium, Slow Growth Titles; \& Purple, Blue colors}\\
+	%\includegraphics[width=0.32\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56.png}
+	%\includegraphics[width=0.32\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png} %directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56.png}
+	%\includegraphics[width=0.32\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png}\\
+	%%\end{minipage}
+        %%\begin{minipage}[h!]{0.75\textwidth}
+	%%{\color{red} 1\% \& 50\% Error Titles}\\
+	%%\includegraphics[width=0.49\textwidth]{../../ddBias/relErrorImagesBHDD0.01.png}
+	%\includegraphics[width=\textwidth]{../../ddBias/relErrorImagesBHDD0.5.png}
+	%%\end{minipage}
+	
+	{\color{red}add $P=0.5$ in title? somewhere.}\\
+        \begin{minipage}[h!]{0.25\textwidth}
+	\includegraphics[width=0.6\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png}\\
+        \includegraphics[width=0.6\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png}\\
+        \includegraphics[width=0.6\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png}
+        \end{minipage}
+        \begin{minipage}[h!]{0.75\textwidth}
+        %\includegraphics[width=0.49\textwidth]{../../ddBias/relErrorImagesBHDD0.01.png}
+        \includegraphics[width=0.6\textwidth]{../../ddBias/relErrorImagesBHDD0.5.png}
+	\end{minipage}
+}
+
+%
+\headerbox{7. Conclusion}{name=conclusion,column=2,below=cluster,span=1}{
+	%$~$\\
+	%A Bayesian model-based method for speciating commercial landings shows promise. 
+	%BMA adds robustness to models by effectively integrating over modeling uncertainties.
+	%\\\\
+	%\underline{\textbf{Achievments of the Bayesian Approach:}}
+	%\begin{itemize}
+	%\item Model Overdispersion
+	%\item Robust Uncertainty Estimation
+	%\item Mechanisms for Pooling
+	%\item Out-of-Sample Predictions
+	%\end{itemize}
+	%$~$\\
+	%\underline{\textbf{Future Directions:}}
+	%\begin{itemize}
+	%\item Explore Additional Random Effects
+	%\item Possible Multivariate Likelihoods
+	%\item Dirichlet Process Models
+	%\end{itemize}
+	%\vspace{0.15cm}
+}
+
+%
+\headerbox{References}{name=ref,column=0,below=results,span=3}{
+	{\renewcommand{\markboth}[2]{}}% Remove header adjustment
+	%\printbibliography}
+
+	\bibliographystyle{apacite}
+	\bibliography{./gpBias.bib} %,./spline.bib,./spaceFilling.bib,./ageStructure.bib}
+	
+}
+
+
+%\headerbox{6. Conclusions}{name=conclusion,column=1,below=sea,span=2,above=bottom}{
+%% DeCAF is a chemoinformatical tool that can be helpful in ligand-based drug design.
+%% It provides a comprehensive molecule description and a fast algorithms for comparing and aligning multiple ligands.
+%We proved that DeCAF is a significant improvement over the SEA algorithm, a popular method for comparing sets of ligands.
+%\begin{boenumerate}\compresslist
+%    \item DeCAF gives better results for 23 out of 35 receptors.
+%    \item For targets with easily separable active and inactive datasets, SEA and DeCAF give similar results.
+%    \item In cases in which SEA fails to identify active molecules, our method performs substantially better.
+%\end{boenumerate}
+%% It can be also used in other [procedures], such as database screening or drug repositioning.
+%% DeCAF is written in Python and freely available at \textbf{\color{darkgreen}http://bitbucket.org/marta-sd/decaf}. 
+%}
+%
+%
+%\headerbox{7. References}{name=references,column=0,span=1,below=mcs,above=bottom}{
+%
+%
+%%\small % Reduce the font size in this block
+%\renewcommand{\section}[2]{\vskip 0.05em} % Get rid of the default "References" section title
+%%\nocite{*} % Insert publications even if they are not cited in the poster
+%
+%
+%\bibliographystyle{unsrt}
+%\bibliography{poster} % Use sample.bib as the bibliography file
+%}
+
+\end{poster}
+
+\end{document}
+

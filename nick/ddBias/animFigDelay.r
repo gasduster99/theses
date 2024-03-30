@@ -358,19 +358,19 @@ fv = 1
 #GOOD START: add refinement
 #mod = "FlatT45N150A0-1AS0.1K10"
 #mod = "FlatT45N150A0-1AS0.1K10N28"
-#mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100
+mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100; colString="Reds 2"; mainTitle="Fast Growth"
 #GOOD START: add refinment
 #mod = "FlatT45N150A0-1AS2K0.1"
 #mod = "FlatT45N150A0-1AS2K0.1N28"
 #mod = "FlatT45N150A0-1AS2K0.1N56"; fv=100
-#mod = "FlatT45N150A0-1AS2K0.1N84Edge"; fv=100 #150 #100
+#mod = "FlatT45N150A0-1AS2K0.1N84Edge"; fv=100; colString="Blues"; mainTitle="Slow Growth"
 #
 #mod = "FlatT45N150A0-1AS4K0.2N28"; fv=100
 #mod = "FlatT45N150A0-1AS4K0.2N56"; fv=100 #8 #10
 #mod = "FlatT45N150A0-1AS4K0.2N84"; fv=200
 #mod = "FlatT45N150A0-1AS4K0.2N94"; fv=100
 #
-mod = "FlatT45N150A0-1AS1K0.5N56"; fv=100
+#mod = "FlatT45N150A0-1AS1K0.5N56"; fv=100; colString="Purples"; mainTitle="Medium Growth"
 
 
 #
@@ -731,15 +731,15 @@ ms = matrix(ms, nrow=length(xiStar), ncol=length(zetaStar))
 msThresh = 3.2#3.11
 
 #
-png(sprintf("directionalBiasDDSub%s.png", mod))
-eucCols = hcl.colors(41, "Reds 2", rev=T)
+png(sprintf("directionalBiasDDSub%s%s.png", mod, colString))
+eucCols = hcl.colors(41, colString, rev=T) #  #hcl.colors(41, "Purples", rev=T) #hcl.colors(41, "Reds 2", rev=T)
 #par(mar=c(5, 4, 4, 5)+0.1)
 par(mar=c(5, 5, 4, 4)+0.1)
 image(xiStar, zetaStar, eucBias-ms,
         col  = adjustcolor(eucCols, alpha.f=0.99),
         xlab = TeX("$F_{MSY}/M$"), 
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-	main = TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
+	main = mainTitle, #TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
 	ylim = c(zetaBot, zetaTop),
 	xlim = c(xiBot, xiTop),
 	zlim = (c(0, msThresh)), #1.71466050), #c(0, 1), #0.95),

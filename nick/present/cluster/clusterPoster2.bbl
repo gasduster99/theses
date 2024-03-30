@@ -1,0 +1,62 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Mangel%
+\ \protect \BOthers {.}}{%
+Mangel%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2013}}%
+}]{%
+mangel_perspective_2013}
+\APACinsertmetastar {%
+mangel_perspective_2013}%
+\begin{APACrefauthors}%
+Mangel, M.%
+, MacCall, A\BPBI D.%
+, Brodziak, J.%
+, Dick, E.%
+, Forrest, R\BPBI E.%
+, Pourzand, R.%
+\BCBL {}\ \BBA {} Ralston, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{{\APACmonth{04}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A perspective on steepness, reference points, and stock
+  assessment} {A perspective on steepness, reference points, and stock
+  assessment}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Canadian Journal of Fisheries and Aquatic
+  Sciences}{70}{6}{930--940}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Punt%
+\ \BBA {} Cope%
+}{%
+Punt%
+\ \BBA {} Cope%
+}{%
+{\protect \APACyear {2019}}%
+}]{%
+punt_extending_2019}
+\APACinsertmetastar {%
+punt_extending_2019}%
+\begin{APACrefauthors}%
+Punt, A\BPBI E.%
+\BCBT {}\ \BBA {} Cope, J\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{{\APACmonth{09}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Extending integrated stock assessment models to use
+  non-depensatory three-parameter stock-recruitment relationships} {Extending
+  integrated stock assessment models to use non-depensatory three-parameter
+  stock-recruitment relationships}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Fisheries Research}{217}{}{46--57}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

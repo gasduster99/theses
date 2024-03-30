@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+
+%
+\usepackage[margin=1in]{geometry}
+\usepackage{authblk}
+
+%
+\author[1]{Nick Grunloh}
+\author[2]{E.J. Dick}
+\author[1]{Herbie Lee}
+
+%
+\affil[1]{\small Department of Statistical Science, Baskin School of Engineering, University of California Santa Cruz, 1156 High Street, Santa Cruz, CA 95064, USA}
+\affil[2]{\small Fisheries Ecology Division, Southwest Fisheries Science Center, National Marine Fisheries Service, NOAA, 110 McAllister Way, Santa Cruz, CA 95060, USA}
+
+%
+\date{\today}
+
+%
+\title{A Metamodel Based Clustering of Fisheries Model Parameter Estimation Behavior}
+
+%
+\begin{document}
+
+%
+\pagenumbering{gobble}
+
+%
+\maketitle
+%
+\begin{abstract}
+Integrated fisheries models are based upon differential equations which model 
+stock dynamics through time. Fisheries are largely managed based upon 
+quantities derived from the equilibrium equations of these dynamics, known as 
+Reference Points (RP). RP behavior is primarily driven by the functional form 
+of the productivity assumed in the differential equations. Mangel et. al. 
+(2013) demonstrate that the most commonly used models of productivity limit the 
+domain of RPs due to a lack of flexibility induced by their two-parameter 
+functional forms. Three-parameter models of production release this theoretical 
+RP limitation (Punt \& Cope, 2019). Nonetheless, two-parameter models of 
+productivity are overwhelmingly used in practice. When RP model misspecification 
+of this type is present in population dynamics models, what are the useful limits 
+of statistical inference with respect to estimating these RPs? Here, a simulation 
+environment is designed which explores how misspecified two-parameter production 
+models bias RP inference. Using a Gaussian Process metamodel of the inferred RPs 
+(under two-parameter productivity), the full theoretical space of RP bias 
+behavior is explored. This structured simulation setting allows for clustering 
+of RP failure modes which use the metamodel to predict when a given species is 
+most likely to be subject to catastrophic model failure. 
+\end{abstract}
+
+%
+\end{document}
