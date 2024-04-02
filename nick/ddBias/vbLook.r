@@ -69,7 +69,7 @@ legend('bottomright', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\
 dev.off()
 
 #NOTE: set width
-png('vbPoster.png', width=500, height=300)
+png('vbPoster.png', width=400, height=350)
 
 #
 aS = 0.1

@@ -4,7 +4,7 @@
 \usepackage{tikz}
 \usepackage{color}
 \usepackage{xcolor}
-%\usepackage{natbib}
+\usepackage{enumitem}
 \usepackage[]{apacite}
 %\usepackage{multicol} 
 \usepackage{wrapfig}
@@ -96,7 +96,7 @@ linewidth=2pt % Width of the border lines around content boxes
 	%\vspace*{-3cm}
 	%\hspace*{1cm}
 	\begin{center}
-	{\huge \textbf{A Metamodel Based Clustering of Fisheries Model Parameter Estimation Behavior.}}\\ % in Sparsely Sampled, Mixed Stock Fisheries.}\\
+	{\huge \textbf{A Metamodel Based Clustering of Fisheries Reference Point Estimation.}}\\ % in Sparsely Sampled, Mixed Stock Fisheries.}\\
 	\vspace{0.5cm}
 	{\Large Nick Grunloh$^a$, E.J. Dick$^b$, and Herbie Lee$^a$}
 	\end{center}
@@ -155,7 +155,7 @@ most likely to be subject to catastrophic model failure.
 %1. Model
 \headerbox{1. Fisheries Model}{name=model,column=0,below=introduction,span=2}{
 	%
-        \begin{minipage}[b]{0.5\textwidth}	
+        \begin{minipage}[h!]{0.45\textwidth}	
 	%
 	\begin{equation*}
 	I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2)
@@ -174,7 +174,7 @@ most likely to be subject to catastrophic model failure.
 	\includegraphics[width=\textwidth]{../../ddBias/vbPoster.png}
 	%
         \end{minipage}
-        \begin{minipage}[b]{0.5\textwidth}
+        \begin{minipage}[h!]{0.55\textwidth}
 	%
 	\subsubsection*{Recruitment Into the Population:}
 	%{\color{red}
@@ -187,19 +187,26 @@ most likely to be subject to catastrophic model failure.
 	%}
 	%
         \begin{minipage}[b]{0.5\textwidth}
-        \begin{itemize}
-		\item Non-Linear
-		\item Two v. Three Parameter
-		\item Most models assume $\gamma=-1$
-		\item Three parameter expands space %Two parameter limits to line
-		%\item \color{red} black/white fade $\gamma\in(-2, 1)$
+        \begin{itemize}[leftmargin=*]
+		\raggedright
+		\item $R$ is notoriously\\ nonlinear and unknown.
+		\item Three parameter model shown left.
+		\item Most models assume\\ a two parameter form. %\\ Although a three parameter  
+		\item $\gamma=-1$ (black curve) is most common.%ly used model.
+		%\item Two v. Three Parameter
+		%\item Most models assume $\gamma=-1$
+		\item Freeing $\gamma$ expands RPs. %Two parameter limits to line
+		%\item {\color{red} Words can fix all things in time}
 	\end{itemize}
+	$~$\\
 	\end{minipage}
 	\begin{minipage}[b]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{../../gpBias/g3.png}
+		\includegraphics[width=\textwidth]{../../ddBias/g3Grey.png}
+		$~$\\$~$\\
 	\end{minipage}
 	
 	%
+	\vspace*{-1.5cm}
 	\subsubsection*{Reference Points: $\frac{F_{MSY}}{M}, ~\frac{B_{MSY}}{B_0}$}
 	
 	%%
@@ -209,18 +216,21 @@ most likely to be subject to catastrophic model failure.
 	
 	%
         \begin{minipage}[b]{0.5\textwidth}
-	\begin{itemize}
-		\item $\frac{F_{MSY}}{M}, ~\frac{B_{MSY}}{B_0}$
-		\item Equilibrium Derived Quantitiy from PopDyn.
-		\item Primarily driven by $R(B)$
-                \item Mangement
-                %\item \color{red} black/white fade $\gamma\in(-2, 1)$
+	\begin{itemize}[leftmargin=*]
+		\raggedright
+		%\item $\frac{F_{MSY}}{M}, ~\frac{B_{MSY}}{B_0}$
+		\item Equilibrium quantities from dynamics.
+		\item Primarily driven by $R$.
+		\item Inferred by learning $\theta$\\ as possible. %from data.
+                \item RPs are the foundation of mangement action.
         \end{itemize}
+	$~$\\$~$\\$~$\\
 	\end{minipage}
         \begin{minipage}[b]{0.48\textwidth}
-	\includegraphics[width=\textwidth]{../../ddBias/designLineColorHHardFlatT30N150WWideN112.png}
+	\includegraphics[width=\textwidth]{../../ddBias/rpCurves.png} %designLineColorHHardFlatT30N150WWideN112.png}
+	$~$\\$~$\\$~$\\
 	\end{minipage}
-	
+	$~$\vspace*{-2cm}
 	%%
         %%\begin{center}
         %%$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\
@@ -240,23 +250,25 @@ most likely to be subject to catastrophic model failure.
 %3. Bayesian Model Averaging
 \headerbox{2. Simulation \& Metamodeling}{name=sim,column=2,below=introduction,span=1}{
 	%
+	Datasets are simulated broadly in RP space and fit with misspecified two-parameter $R(B)$. 
+	Each dataset produces an example bias mapping. 
+	%
 	\begin{equation*}
-	\underbrace{\left(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{Schnute Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\frac{\hat F_{MSY}}{M}, \frac{\hat B_{MSY}}{\bar B(0)}\right)}_{\text{BH Estimate}}
+	\underbrace{\left(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\frac{\hat F_{MSY}}{M}, \frac{1}{\frac{\hat F_{MSY}}{M}+2}\right)}_{\text{2-Parameter Estimate}}%\frac{\hat B_{MSY}}{\bar B(0)}\right)}_{\text{2-Parameter Estimate}}
 	\end{equation*}
 	%\begin{center}
-
 	%
 	\begin{center}
-	$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\%$~$\\
+	$~$\\$~$\\$~$\\$~$\\$~$\\%$~$\\%$~$\\%$~$\\
 	\hspace{-2cm}
 	\begin{tikzpicture}[overlay]
-	\node at (1,0) {\includegraphics[width=0.85\textwidth]{../../gpBias/designLineHHardExpT45N150M0.3Wide.png}};
-	\node[circle, draw, minimum size=7, inner sep=-2] at (2.6,1.5){\tiny S};
-	\draw[latex-, very thick,black] (0.4,-1.1) -- ++(2,2.4);
-	\node[circle,fill=red, minimum size=9, inner sep=-2] at (0.25,-1.25){\tiny BH};
+	\node at (1,0) {\includegraphics[width=0.69\textwidth]{../../gpBias/designLineHHardExpT45N150M0.3Wide.png}};
+	\node[circle, draw, minimum size=7, inner sep=-2] at (2.4,1.4){\tiny 3};
+	\draw[latex-, very thick,black] (0.8,-0.85) -- ++(1.45,2.1);
+	\node[circle,fill=red, minimum size=9, inner sep=-2] at (0.7,-1){\tiny 2};
 	\end{tikzpicture}
 	\end{center}
-	$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\%$~$\\
+	$~$\\$~$\\$~$\\$~$\\%$~$\\%$~$\\%$~$\\
 
 	%%
         %\begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
@@ -270,9 +282,7 @@ most likely to be subject to catastrophic model failure.
 
 	%
 	A Gaussian Process (GP) metamodel models the simulated mapping of RPs under the 
-	misspecified two-parameter BH model of recruitment. The GP metamodel provides a 
-	flexible predictive infrastucture, via kriging, for predicting the infered RP, 
-	$\hat y(\textbf{x})$, as a function of the particular model mispecification $\textbf{x}$.
+	misspecified two-parameter model. The GP metamodel then predicts the inferred RP mean $\hat y(\textbf{x})$ \& variance $\hat \sigma^2(\textbf{x})$ as a function the true RPs,
 	%%complete with uncertainty%and variance $\hat \sigma^2(\textbf{x})$ 
 	%as a function of the particular model mispecification $\textbf{x}$.
 	%%estimates of BH RPs for  are obtained via kriging	
@@ -280,11 +290,11 @@ most likely to be subject to catastrophic model failure.
 	%%The GP full predictive description of inference
 	%%under the misspecified restricted models.
 	%%Predictive estimates are obtained via kriging
-	
         %
-        \begin{equation}
-        \log(\hat{F}_{MSY}) \sim N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))
-        \end{equation}
+	\vspace{-0.25cm}
+        \begin{equation*}
+        \log(\hat{F}_{MSY}) \sim N\Big(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x})\Big).
+        \end{equation*}
 
 
 	%%
@@ -320,6 +330,9 @@ most likely to be subject to catastrophic model failure.
 	We want a small percent error in RP estimation:
 	\begin{align*}
 	\frac{\frac{F_{MSY}}{M}-\frac{\hat{F}_{MSY}}{M}}{\frac{F_{MSY}}{M}}\le P\\
+	%\end{align*}
+	%%%Or equivalently:
+	%\begin{align*}
 	\hat{F}_{MSY}\ge(1-P)F_{MSY}
 	\end{align*}
 	
@@ -330,7 +343,8 @@ most likely to be subject to catastrophic model failure.
 	\end{equation*}
 	
 	%
-	{\color{red}Maybe more text? add $P=0.5$ in title? somewhere. Embiggen}
+	Catastrophic model failure is identified by taking $P$ to be 0.5. Hypotheses may be refined by reducing $P$ as relevant.
+	%{\color{red}Maybe more text? add $P=0.5$ in title? somewhere. Embigg}
 	
 	%
 	\end{minipage}
@@ -341,7 +355,7 @@ most likely to be subject to catastrophic model failure.
         	%\includegraphics[width=0.49\textwidth]{../../ddBias/relErrorImagesBHDD0.01.png}
         	\includegraphics[width=\textwidth]{../../ddBias/relErrorImagesBHDD0.5.png}
 		\end{minipage}
-		\begin{minipage}[h!]{0.25\textwidth}
+		\begin{minipage}[h!]{0.24\textwidth}
 		\includegraphics[width=\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png}\\
         	\includegraphics[width=\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png}\\
         	\includegraphics[width=\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png}
@@ -351,7 +365,24 @@ most likely to be subject to catastrophic model failure.
 }
 
 %
-\headerbox{4. Conclusion}{name=conclusion,column=2,below=sim,span=1}{
+\headerbox{4. Conclusions}{name=conclusion,column=2,below=model,span=1}{
+	%
+	\begin{itemize}
+	\raggedright
+	\item[$~$]
+	\item A rich simulation-based method for describing global RP bias.
+	\item GP metamodel, describes and identifies breakpoints well in this setting. %despite sharp breakpoints.
+	
+	\item Two-parameter model largely under\\ estimates $\frac{F_{MSY}}{M}$.
+	\item As model misspecification becomes ``large'', RP estimation breaks\\ catastrophically.
+	\item Slower growth exaggerates model\\ misspecification. % relative to  model.
+	\item[$~$]
+	%%\item I love words.
+	%\item Words are hard.
+	%\item Even though they are hard, it's good to use them.
+	%\item Words are free and very powerful when used correctly.
+	\end{itemize}
+	
 	%$~$\\
 	%A Bayesian model-based method for speciating commercial landings shows promise. 
 	%BMA adds robustness to models by effectively integrating over modeling uncertainties.
@@ -372,6 +403,12 @@ most likely to be subject to catastrophic model failure.
 	%\end{itemize}
 	%\vspace{0.15cm}
 }
+
+%%
+%\headerbox{5. Another}{name=conclusion,column=2,below=conclusion,span=1}{
+%	Is there any reason to have another one down here?
+%	I fels like it could be nice, lets see?
+%}
 
 %
 \headerbox{References}{name=ref,column=0,below=cluster,span=3}{

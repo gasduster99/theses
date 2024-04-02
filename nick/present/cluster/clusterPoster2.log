@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.14)  29 MAR 2024 21:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.14)  1 APR 2024 15:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -490,21 +490,31 @@ Package: bm 2021/04/25 v1.2e Bold Symbol Support (DPC/FMi)
 Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 )
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\enitkv@toks@=\toks31
+\labelindent=\skip75
+\enit@outerparindent=\dimen266
+\enit@toks=\toks32
+\enit@inbox=\box68
+\enit@count@id=\count294
+\enitdp@description=\count295
+)
 (/usr/share/texlive/texmf-dist/tex/latex/apacite/apacite.sty
 Package: apacite 2013/07/21 v6.03 APA citation
-\c@BibCnt=\count294
-\bibleftmargin=\skip75
-\bibindent=\skip76
-\bibparsep=\skip77
-\bibitemsep=\skip78
-\biblabelsep=\skip79
+\c@BibCnt=\count296
+\bibleftmargin=\skip76
+\bibindent=\skip77
+\bibparsep=\skip78
+\bibitemsep=\skip79
+\biblabelsep=\skip80
 )
 (/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen266
-\WF@size=\dimen267
-\c@WF@wrappedlines=\count295
-\WF@box=\box68
-\WF@everypar=\toks31
+\wrapoverhang=\dimen267
+\WF@size=\dimen268
+\c@WF@wrappedlines=\count297
+\WF@box=\box69
+\WF@everypar=\toks33
 Package: wrapfig 2003/01/31  v 3.6
 )
 (/usr/share/texmf/tex/latex/lm/lmodern.sty
@@ -544,7 +554,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2021/10/15 v2.17l AMS math features
-\@mathmargin=\skip80
+\@mathmargin=\skip81
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -552,52 +562,52 @@ Package: amstext 2021/08/26 v2.01 AMS text
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks32
-\ex@=\dimen268
+\@emptytoks=\toks34
+\ex@=\dimen269
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 LaTeX Info: Redefining \boldsymbol on input line 28.
-\pmbraise@=\dimen269
+\pmbraise@=\dimen270
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2021/08/26 v2.02 operator names
 )
-\inf@bad=\count296
+\inf@bad=\count298
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count297
-\leftroot@=\count298
+\uproot@=\count299
+\leftroot@=\count300
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count299
-\DOTSCASE@=\count300
+\classnum@=\count301
+\DOTSCASE@=\count302
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box69
-\strutbox@=\box70
-\big@size=\dimen270
+\Mathstrutbox@=\box70
+\strutbox@=\box71
+\big@size=\dimen271
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count301
-\c@MaxMatrixCols=\count302
+\macc@depth=\count303
+\c@MaxMatrixCols=\count304
 \dotsspace@=\muskip16
-\c@parentequation=\count303
-\dspbrk@lvl=\count304
-\tag@help=\toks33
-\row@=\count305
-\column@=\count306
-\maxfields@=\count307
-\andhelp@=\toks34
-\eqnshift@=\dimen271
-\alignsep@=\dimen272
-\tagshift@=\dimen273
-\tagwidth@=\dimen274
-\totwidth@=\dimen275
-\lineht@=\dimen276
-\@envbody=\toks35
-\multlinegap=\skip81
-\multlinetaggap=\skip82
-\mathdisplay@stack=\toks36
+\c@parentequation=\count305
+\dspbrk@lvl=\count306
+\tag@help=\toks35
+\row@=\count307
+\column@=\count308
+\maxfields@=\count309
+\andhelp@=\toks36
+\eqnshift@=\dimen272
+\alignsep@=\dimen273
+\tagshift@=\dimen274
+\tagwidth@=\dimen275
+\totwidth@=\dimen276
+\lineht@=\dimen277
+\@envbody=\toks37
+\multlinegap=\skip82
+\multlinetaggap=\skip83
+\mathdisplay@stack=\toks38
 LaTeX Info: Redefining \[ on input line 2938.
 LaTeX Info: Redefining \] on input line 2939.
 )
@@ -617,41 +627,41 @@ Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
-\col@sep=\dimen277
-\ar@mcellbox=\box71
-\extrarowheight=\dimen278
-\NC@list=\toks37
-\extratabsurround=\skip83
-\backup@length=\skip84
-\ar@cellbox=\box72
+\col@sep=\dimen278
+\ar@mcellbox=\box72
+\extrarowheight=\dimen279
+\NC@list=\toks39
+\extratabsurround=\skip84
+\backup@length=\skip85
+\ar@cellbox=\box73
 )
-\TX@col@width=\dimen279
-\TX@old@table=\dimen280
-\TX@old@col=\dimen281
-\TX@target=\dimen282
-\TX@delta=\dimen283
-\TX@cols=\count308
-\TX@ftn=\toks38
+\TX@col@width=\dimen280
+\TX@old@table=\dimen281
+\TX@old@col=\dimen282
+\TX@target=\dimen283
+\TX@delta=\dimen284
+\TX@cols=\count310
+\TX@ftn=\toks40
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count309
-\lst@gtempboxa=\box73
-\lst@token=\toks39
-\lst@length=\count310
-\lst@currlwidth=\dimen284
-\lst@column=\count311
-\lst@pos=\count312
-\lst@lostspace=\dimen285
-\lst@width=\dimen286
-\lst@newlines=\count313
-\lst@lineno=\count314
-\lst@maxwidth=\dimen287
+\lst@mode=\count311
+\lst@gtempboxa=\box74
+\lst@token=\toks41
+\lst@length=\count312
+\lst@currlwidth=\dimen285
+\lst@column=\count313
+\lst@pos=\count314
+\lst@lostspace=\dimen286
+\lst@width=\dimen287
+\lst@newlines=\count315
+\lst@lineno=\count316
+\lst@maxwidth=\dimen288
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count315
-\lst@skipnumbers=\count316
-\lst@framebox=\box74
+\c@lstnumber=\count317
+\lst@skipnumbers=\count318
+\lst@framebox=\box75
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2020/03/24 1.8d listings configuration
@@ -660,8 +670,8 @@ Package: listings 2020/03/24 1.8d (Carsten Heinz)
 
 (/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
-\everycr=\toks40
-\minrowclearance=\skip85
+\everycr=\toks42
+\minrowclearance=\skip86
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
@@ -677,33 +687,33 @@ ways
 
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count317
+\etb@tempcnta=\count319
 )
 (/usr/share/texlive/texmf-dist/tex/generic/listofitems/listofitems.sty
 (/usr/share/texlive/texmf-dist/tex/generic/listofitems/listofitems.tex
-\loi_cnt_foreach_nest=\count318
-\loi_nestcnt=\count319
+\loi_cnt_foreach_nest=\count320
+\loi_nestcnt=\count321
 )
 Package: listofitems 2019/08/21 v1.63 Grab items in lists using user-specified 
 sep char (CT)
 )
-\c@@stackindex=\count320
-\@boxshift=\skip86
-\stack@tmplength=\skip87
-\temp@stkl=\skip88
-\@stackedboxwidth=\skip89
-\@addedbox=\box75
-\@anchorbox=\box76
-\@insetbox=\box77
-\se@backgroundbox=\box78
-\stackedbox=\box79
-\@centerbox=\box80
-\c@ROWcellindex@=\count321
+\c@@stackindex=\count322
+\@boxshift=\skip87
+\stack@tmplength=\skip88
+\temp@stkl=\skip89
+\@stackedboxwidth=\skip90
+\@addedbox=\box76
+\@anchorbox=\box77
+\@insetbox=\box78
+\se@backgroundbox=\box79
+\stackedbox=\box80
+\@centerbox=\box81
+\c@ROWcellindex@=\count323
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks41
-\inpenc@posthook=\toks42
+\inpenc@prehook=\toks43
+\inpenc@posthook=\toks44
 )
 (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
 Package: mathtools 2021/02/02 v1.28 mathematical typesetting tools
@@ -711,21 +721,21 @@ Package: mathtools 2021/02/02 v1.28 mathematical typesetting tools
 (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count322
-\l_MT_multwidth_dim=\dimen288
-\origjot=\skip90
-\l_MT_shortvdotswithinadjustabove_dim=\dimen289
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen290
-\l_MT_above_intertext_sep=\dimen291
-\l_MT_below_intertext_sep=\dimen292
-\l_MT_above_shortintertext_sep=\dimen293
-\l_MT_below_shortintertext_sep=\dimen294
-\xmathstrut@box=\box81
-\xmathstrut@dim=\dimen295
+\g_MT_multlinerow_int=\count324
+\l_MT_multwidth_dim=\dimen289
+\origjot=\skip91
+\l_MT_shortvdotswithinadjustabove_dim=\dimen290
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen291
+\l_MT_above_intertext_sep=\dimen292
+\l_MT_below_intertext_sep=\dimen293
+\l_MT_above_shortintertext_sep=\dimen294
+\l_MT_below_shortintertext_sep=\dimen295
+\xmathstrut@box=\box82
+\xmathstrut@dim=\dimen296
 )
 (/usr/share/texlive/texmf-dist/tex/latex/ncctools/nccmath.sty
 Package: nccmath 2006/01/20 v1.3 Additional Math Commands (NCC)
-\NCC@fracrulewidth=\dimen296
+\NCC@fracrulewidth=\dimen297
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarypositioning.code.tex
@@ -778,31 +788,31 @@ File: tikzlibraryshapes.multipart.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
 s.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2021/05/15 v3.1.9a (3.1.9a)
-\pgfnodepartlowerbox=\box82
-\pgfnodeparttwobox=\box83
-\pgfnodepartthreebox=\box84
-\pgfnodepartfourbox=\box85
-\pgfnodeparttwentybox=\box86
-\pgfnodepartnineteenbox=\box87
-\pgfnodeparteighteenbox=\box88
-\pgfnodepartseventeenbox=\box89
-\pgfnodepartsixteenbox=\box90
-\pgfnodepartfifteenbox=\box91
-\pgfnodepartfourteenbox=\box92
-\pgfnodepartthirteenbox=\box93
-\pgfnodeparttwelvebox=\box94
-\pgfnodepartelevenbox=\box95
-\pgfnodeparttenbox=\box96
-\pgfnodepartninebox=\box97
-\pgfnodeparteightbox=\box98
-\pgfnodepartsevenbox=\box99
-\pgfnodepartsixbox=\box100
-\pgfnodepartfivebox=\box101
+\pgfnodepartlowerbox=\box83
+\pgfnodeparttwobox=\box84
+\pgfnodepartthreebox=\box85
+\pgfnodepartfourbox=\box86
+\pgfnodeparttwentybox=\box87
+\pgfnodepartnineteenbox=\box88
+\pgfnodeparteighteenbox=\box89
+\pgfnodepartseventeenbox=\box90
+\pgfnodepartsixteenbox=\box91
+\pgfnodepartfifteenbox=\box92
+\pgfnodepartfourteenbox=\box93
+\pgfnodepartthirteenbox=\box94
+\pgfnodeparttwelvebox=\box95
+\pgfnodepartelevenbox=\box96
+\pgfnodeparttenbox=\box97
+\pgfnodepartninebox=\box98
+\pgfnodeparteightbox=\box99
+\pgfnodepartsevenbox=\box100
+\pgfnodepartsixbox=\box101
+\pgfnodepartfivebox=\box102
 )))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count323
-\l__pdf_internal_box=\box102
+\l__color_backend_stack_int=\count325
+\l__pdf_internal_box=\box103
 )
 (./clusterPoster2.aux)
 \openout1 = `clusterPoster2.aux'.
@@ -824,17 +834,17 @@ LaTeX Font Info:    ... okay on input line 54.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count324
-\scratchdimen=\dimen297
-\scratchbox=\box103
-\nofMPsegments=\count325
-\nofMParguments=\count326
-\everyMPshowfont=\toks43
-\MPscratchCnt=\count327
-\MPscratchDim=\dimen298
-\MPnumerator=\count328
-\makeMPintoPDFobject=\count329
-\everyMPtoPDFconversion=\toks44
+\scratchcounter=\count326
+\scratchdimen=\dimen298
+\scratchbox=\box104
+\nofMPsegments=\count327
+\nofMParguments=\count328
+\everyMPshowfont=\toks45
+\MPscratchCnt=\count329
+\MPscratchDim=\dimen299
+\MPnumerator=\count330
+\makeMPintoPDFobject=\count331
+\everyMPtoPDFconversion=\toks46
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -878,13 +888,13 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@maskedRefs=\count330
+\c@maskedRefs=\count332
 (/usr/share/texlive/texmf-dist/tex/latex/apacite/english.apc
 File: english.apc 2013/07/21 v6.03 apacite language file
 LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
 )
-\c@lstlisting=\count331
+\c@lstlisting=\count333
 <./noaa.jpeg, id=31, 401.5pt x 401.5pt>
 File: ./noaa.jpeg Graphic file (type jpg)
 <use ./noaa.jpeg>
@@ -974,58 +984,55 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 238.
+(Font)              <8> on input line 248.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 238.
-<../../ddBias/vbPoster.png, id=33, 501.875pt x 301.125pt>
+(Font)              <6> on input line 248.
+<../../ddBias/vbPoster.png, id=33, 401.5pt x 351.3125pt>
 File: ../../ddBias/vbPoster.png Graphic file (type png)
 <use ../../ddBias/vbPoster.png>
-Package pdftex.def Info: ../../ddBias/vbPoster.png  used on input line 238.
-(pdftex.def)             Requested size: 217.9342pt x 130.76317pt.
+Package pdftex.def Info: ../../ddBias/vbPoster.png  used on input line 248.
+(pdftex.def)             Requested size: 196.13945pt x 171.62465pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
-38.
+48.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 5504) in paragraph at lines 238--238
-[]\T1/lmr/m/n/10 Most mod-els as-
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+
+ []
+
+<../../ddBias/g3Grey.png, id=34, 301.125pt x 326.21875pt>
+File: ../../ddBias/g3Grey.png Graphic file (type png)
+<use ../../ddBias/g3Grey.png>
+Package pdftex.def Info: ../../ddBias/g3Grey.png  used on input line 248.
+(pdftex.def)             Requested size: 115.06886pt x 124.6563pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--238
-[]\T1/lmr/m/n/10 Three pa-ram-e-ter
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+
  []
 
-<../../gpBias/g3.png, id=34, 481.8pt x 481.8pt>
-File: ../../gpBias/g3.png Graphic file (type png)
-<use ../../gpBias/g3.png>
-Package pdftex.def Info: ../../gpBias/g3.png  used on input line 238.
-(pdftex.def)             Requested size: 104.60748pt x 104.60686pt.
+<../../ddBias/rpCurves.png, id=35, 301.125pt x 326.21875pt>
+File: ../../ddBias/rpCurves.png Graphic file (type png)
+<use ../../ddBias/rpCurves.png>
+Package pdftex.def Info: ../../ddBias/rpCurves.png  used on input line 248.
+(pdftex.def)             Requested size: 115.06886pt x 124.6563pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--238
-[]\T1/lmr/m/n/10 Equilibrium De-
- []
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 238--238
-\T1/lmr/m/n/10 rived Quan-ti-tiy
- []
-
-<../../ddBias/designLineColorHHardFlatT30N150WWideN112.png, id=36, 481.8pt x 48
-1.8pt>
-File: ../../ddBias/designLineColorHHardFlatT30N150WWideN112.png Graphic file (t
-ype png)
-<use ../../ddBias/designLineColorHHardFlatT30N150WWideN112.png>
-Package pdftex.def Info: ../../ddBias/designLineColorHHardFlatT30N150WWideN112.
-png  used on input line 238.
-(pdftex.def)             Requested size: 104.60748pt x 104.60686pt.
-
-Overfull \hbox (2.22221pt too wide) in paragraph at lines 238--238
-[][] []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--238
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 248--248
+[]$[]$ $[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
 
  []
 
@@ -1035,28 +1042,28 @@ Missing character: There is no ; in font nullfont!
 
 Package amsmath Warning: Foreign command \atop;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 300.
+(amsmath)                 on input line 310.
 
-<../../gpBias/designLineHHardExpT45N150M0.3Wide.png, id=37, 481.8pt x 481.8pt>
+<../../gpBias/designLineHHardExpT45N150M0.3Wide.png, id=36, 481.8pt x 481.8pt>
 File: ../../gpBias/designLineHHardExpT45N150M0.3Wide.png Graphic file (type png
 )
 <use ../../gpBias/designLineHHardExpT45N150M0.3Wide.png>
 Package pdftex.def Info: ../../gpBias/designLineHHardExpT45N150M0.3Wide.png  us
-ed on input line 300.
-(pdftex.def)             Requested size: 176.74533pt x 176.74141pt.
+ed on input line 310.
+(pdftex.def)             Requested size: 143.4751pt x 143.47511pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 300--300
+Underfull \hbox (badness 10000) in paragraph at lines 310--310
 
  []
 
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-<../../ddBias/relErrorImagesBHDD0.5.png, id=38, 481.8pt x 481.8pt>
+<../../ddBias/relErrorImagesBHDD0.5.png, id=37, 481.8pt x 481.8pt>
 File: ../../ddBias/relErrorImagesBHDD0.5.png Graphic file (type png)
 <use ../../ddBias/relErrorImagesBHDD0.5.png>
 Package pdftex.def Info: ../../ddBias/relErrorImagesBHDD0.5.png  used on input 
-line 351.
+line 365.
 (pdftex.def)             Requested size: 194.09125pt x 194.09134pt.
 <../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png, id=39, 
 481.8pt x 481.8pt>
@@ -1064,31 +1071,31 @@ File: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png Gra
 phic file (type png)
 <use ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png>
 Package pdftex.def Info: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K
-10N56Reds 2.png  used on input line 351.
-(pdftex.def)             Requested size: 66.46999pt x 66.46642pt.
+10N56Reds 2.png  used on input line 365.
+(pdftex.def)             Requested size: 63.81265pt x 63.81245pt.
 <../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png, id=40, 
 481.8pt x 481.8pt>
 File: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png Gra
 phic file (type png)
 <use ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png>
 Package pdftex.def Info: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.
-5N56Purples.png  used on input line 351.
-(pdftex.def)             Requested size: 66.46999pt x 66.46642pt.
+5N56Purples.png  used on input line 365.
+(pdftex.def)             Requested size: 63.81265pt x 63.81245pt.
 <../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png, id=41
 , 481.8pt x 481.8pt>
 File: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png G
 raphic file (type png)
 <use ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png>
 Package pdftex.def Info: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.
-1N84EdgeBlues.png  used on input line 351.
-(pdftex.def)             Requested size: 66.46999pt x 66.46642pt.
+1N84EdgeBlues.png  used on input line 365.
+(pdftex.def)             Requested size: 63.81265pt x 63.81245pt.
 
-Overfull \hbox (2.2222pt too wide) in paragraph at lines 351--351
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 365--365
 []$[]$ $[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 351--351
+Underfull \hbox (badness 10000) in paragraph at lines 365--365
 
  []
 
@@ -1105,41 +1112,40 @@ Missing character: There is no ; in font nullfont!
 [2
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./noaa.jpeg> <./fiatSlug.j
-pg> <../../ddBias/vbPoster.png (PNG copy)> <../../gpBias/g3.png> <../../ddBias/
-designLineColorHHardFlatT30N150WWideN112.png> <../../gpBias/designLineHHardExpT
-45N150M0.3Wide.png> <../../ddBias/relErrorImagesBHDD0.5.png> <../../ddBias/dire
-ctionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png (PNG copy)> <../../ddBias/
-directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png (PNG copy)> <../../ddB
-ias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png (PNG copy)>]
-(./clusterPoster2.aux) ) 
+pg> <../../ddBias/vbPoster.png (PNG copy)> <../../ddBias/g3Grey.png> <../../ddB
+ias/rpCurves.png> <../../gpBias/designLineHHardExpT45N150M0.3Wide.png> <../../d
+dBias/relErrorImagesBHDD0.5.png> <../../ddBias/directionalBiasDDSubFlatT45N150A
+0-1AS0.1K10N56Reds 2.png (PNG copy)> <../../ddBias/directionalBiasDDSubFlatT45N
+150A0-1AS1K0.5N56Purples.png (PNG copy)> <../../ddBias/directionalBiasDDSubFlat
+T45N150A0-1AS2K0.1N84EdgeBlues.png (PNG copy)>] (./clusterPoster2.aux) ) 
 Here is how much of TeX's memory you used:
- 21910 strings out of 478287
- 454628 string characters out of 5849289
- 774645 words of memory out of 5000000
- 39630 multiletter control sequences out of 15000+600000
+ 22241 strings out of 478287
+ 460224 string characters out of 5849289
+ 786715 words of memory out of 5000000
+ 39957 multiletter control sequences out of 15000+600000
  560787 words of font info for 118 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 115i,25n,118p,416b,1289s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/sh
-are/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm
-/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf
-/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.e
-nc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/t
-ype1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx7.pfb></u
-sr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/p
-ublic/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi5.pfb></usr/sha
-re/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/l
-m/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf
-/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr5.p
-fb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/typ
-e1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/sh
-are/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public
-/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/t
-exmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/l
-msy5.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fo
-nts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb
->
-Output written on clusterPoster2.pdf (1 page, 645553 bytes).
+ 115i,25n,118p,416b,1296s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/s
+hare/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
+-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fo
+nts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type
+1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr
+/share/texmf/fonts/type1/public/lm/lmbx7.pfb></usr/share/texmf/fonts/type1/publ
+ic/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share
+/texmf/fonts/type1/public/lm/lmmi5.pfb></usr/share/texmf/fonts/type1/public/lm/
+lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/f
+onts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pf
+b></usr/share/texmf/fonts/type1/public/lm/lmr5.pfb></usr/share/texmf/fonts/type
+1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/sha
+re/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm
+/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texm
+f/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy
+10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy5.pfb></usr/share/texmf/font
+s/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb><
+/usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
+Output written on clusterPoster2.pdf (1 page, 554305 bytes).
 PDF statistics:
  180 PDF objects out of 1000 (max. 8388607)
  97 compressed objects within 1 object stream

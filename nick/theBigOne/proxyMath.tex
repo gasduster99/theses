@@ -1,0 +1,81 @@
+\begin{itemize}
+\item Define $F_{MSY}$ Proxy $F_{SPR_x}$
+\item Define $\frac{B_{MSY}}{B_0}$ Proxy $B_y$
+\item List management targets for RF, GF, FF
+\begin{tabular}{c|c|c|c|c}
+   & $B_y$ & $SPR_x$ & $\left[\frac{B_{MSY}}{B_0}\right]_{BH}$ & $\left[\frac{F_{MSY}}{M}\right]_{BH} (F Only)$ \\ 
+RF & $y=0.40$ & $x=0.50$ & 0.29 & 1.45 (0.29)\\
+GF & $y=0.40$ & $x=0.45$ & 0.22 & 2.46 (0.49)\\
+FF & $y=0.25$ & $x=0.30$ & 0.21 & 2.87 (0.57)
+\end{tabular}
+\item Show BH calculation only hits target for $\frac{\alpha}{M}=6$; target cannot equal MSY.
+\item Show general $\alpha$-$\gamma$ proxy relation under Schnute.
+
+%
+$B_0$ given by Eq. (\ref{B0S}). $R_0$ is given by evaluating $R(B_0; \theta)$.
+
+%
+\begin{equation}
+R_0 = \frac{M}{\gamma\beta} \left(1-\left(\frac{M}{\alpha}\right)^\gamma\right)
+\end{equation}
+
+%
+\begin{equation}
+F_{SPR_x} = \frac{R_0}{x B_0}-M = M\left(\frac{1}{x}-1\right)\label{fspr}
+\end{equation}
+
+%
+Evaluating $\frac{B_{MSY}}{B_0}$ Eq.(\ref{BratS}) at $F_{SPR_x}$. Solving for the compensation ratio $\frac{\alpha}{M}$ gives,
+
+%
+\begin{equation}
+\frac{\alpha}{M} = \left[ \frac{\frac{1}{x^\gamma}-y}{1-y} \right]^{1/\gamma}. \label{aProxy} %\frac{1}{\gamma}}
+\end{equation}
+
+\item Show general $\alpha$-$\gamma$ MSY relation under Schnute.\\
+Reference $\alpha$ Eq.(\ref{abgSys}) from text in $F_{MSY}$.\\
+When $F_{MSY}=F_{SPR_x}$ substitue in Eq.(\ref{fspr})
+\begin{equation}
+\frac{\alpha}{M} = \frac{1}{x}\Big(1+\gamma(1-x)\Big)^{1/\gamma} \label{aMSY}
+\end{equation}
+\item Show single $(\alpha, \gamma)$ pair to hit both proxy and MSY.
+
+%
+Equate Eqs. (\ref{aProxy}) and (\ref{aMSY})
+
+%
+\begin{align}
+\left[ \frac{\frac{1}{x^\gamma}-y}{1-y} \right]^{1/\gamma} &= \frac{1}{x}\Big(1+\gamma(1-x)\Big)^{1/\gamma}\\
+1-yx^\gamma &= \Big(1+\gamma(1-x)\Big)(1-y)\\
+1 &= \left[ 1-\gamma\frac{(1-x)(1-y)}{y}\right]x^{-\gamma}
+\end{align}
+
+%
+$r(x,y)=\frac{y}{(1-x)(1-y)}$
+
+%
+\begin{align}
+r(x,y)&=\Big(r(x,y)-\gamma\Big)x^{-\gamma}
+\end{align}
+
+%
+Recall the Lambert product logarithm, $W$, is defined as the inverse function of $z=xe^x$ such that $x=W(z)$.
+Isolating $\gamma$ requires that the above expression be placed into $xe^x$ form to apply the definition of $W$. %the Applying this definition allows for the isolation of $\gamma$.
+
+\begin{align}
+r(x, y)x^{r(x, y)}&=\Big(r(x, y)-\gamma\Big)x^{r(x, y)-\gamma}\\
+r(x, y)x^{r(x, y)}\log(x) &= \Big(r(x, y)-\gamma\Big)\log(x) e^{\big(r(x, y)-\gamma\big)\log(x)}\\
+W_{-1}\Big(r(x, y)x^{r(x, y)}\log(x)\Big) &= \Big(r(x, y)-\gamma\Big)\log(x)\\
+\gamma &= r(x, y)-\frac{W_{-1}\Big(r(x, y)x^{r(x, y)}\log(x)\Big)}{\log(x)} \label{gOfProxy}
+\end{align}
+
+%
+The solution of interest for $\gamma$ in terms of only the proxy values comes from $W_{-1}$.
+%
+To complete the point $(\alpha, \gamma)$ in terms of only proxy values $\alpha
+$ is given by substituting $\gamma$ from Eq.(\ref{gOfProxy}) into either of 
+Eqs. (\ref{aProxy}) or (\ref{aMSY}).
+
+\item a few pics demonstrating the result
+
+\end{itemize}
