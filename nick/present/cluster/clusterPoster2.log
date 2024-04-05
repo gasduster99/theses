@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.14)  2 APR 2024 18:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.14)  4 APR 2024 18:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -984,129 +984,121 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 248.
+(Font)              <8> on input line 257.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 248.
+(Font)              <6> on input line 257.
 <../../ddBias/vbPoster.png, id=33, 401.5pt x 401.5pt>
 File: ../../ddBias/vbPoster.png Graphic file (type png)
 <use ../../ddBias/vbPoster.png>
-Package pdftex.def Info: ../../ddBias/vbPoster.png  used on input line 248.
-(pdftex.def)             Requested size: 196.13945pt x 196.14246pt.
+Package pdftex.def Info: ../../ddBias/vbPoster.png  used on input line 257.
+(pdftex.def)             Requested size: 166.71973pt x 166.72354pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
-48.
+57.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 248--248
+Underfull \hbox (badness 10000) in paragraph at lines 257--257
 
  []
 
 <../../ddBias/g3Grey.png, id=34, 301.125pt x 326.21875pt>
 File: ../../ddBias/g3Grey.png Graphic file (type png)
 <use ../../ddBias/g3Grey.png>
-Package pdftex.def Info: ../../ddBias/g3Grey.png  used on input line 248.
+Package pdftex.def Info: ../../ddBias/g3Grey.png  used on input line 257.
 (pdftex.def)             Requested size: 115.06886pt x 124.6563pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 248--248
+Underfull \hbox (badness 10000) in paragraph at lines 257--257
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 248--248
+Overfull \hbox (5.99695pt too wide) in paragraph at lines 257--257
+[]  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 257--257
 
  []
 
 <../../ddBias/rpCurves.png, id=35, 301.125pt x 326.21875pt>
 File: ../../ddBias/rpCurves.png Graphic file (type png)
 <use ../../ddBias/rpCurves.png>
-Package pdftex.def Info: ../../ddBias/rpCurves.png  used on input line 248.
-(pdftex.def)             Requested size: 92.05544pt x 99.72803pt.
+Package pdftex.def Info: ../../ddBias/rpCurves.png  used on input line 257.
+(pdftex.def)             Requested size: 115.06886pt x 124.6563pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 248--248
+Underfull \hbox (badness 10000) in paragraph at lines 257--257
 
  []
 
 
-Overfull \hbox (2.2222pt too wide) in paragraph at lines 248--248
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 257--257
 []$[]$ $[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 248--248
+Underfull \hbox (badness 10000) in paragraph at lines 257--257
 
  []
 
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-
-Package amsmath Warning: Foreign command \atop;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 310.
-
 <../../gpBias/designLineHHardExpT45N150M0.3Wide.png, id=36, 481.8pt x 481.8pt>
 File: ../../gpBias/designLineHHardExpT45N150M0.3Wide.png Graphic file (type png
 )
 <use ../../gpBias/designLineHHardExpT45N150M0.3Wide.png>
 Package pdftex.def Info: ../../gpBias/designLineHHardExpT45N150M0.3Wide.png  us
-ed on input line 310.
+ed on input line 318.
 (pdftex.def)             Requested size: 143.4751pt x 143.47511pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 310--310
+Package amsmath Warning: Foreign command \atop;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 318.
 
- []
-
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-<../../ddBias/relErrorImagesBHDD0.5.png, id=37, 481.8pt x 481.8pt>
-File: ../../ddBias/relErrorImagesBHDD0.5.png Graphic file (type png)
-<use ../../ddBias/relErrorImagesBHDD0.5.png>
-Package pdftex.def Info: ../../ddBias/relErrorImagesBHDD0.5.png  used on input 
-line 376.
-(pdftex.def)             Requested size: 132.93999pt x 132.94017pt.
+<../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png, id=37, 
+481.8pt x 481.8pt>
+File: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png Gra
+phic file (type png)
+<use ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png>
+Package pdftex.def Info: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K
+10N56Reds 2.png  used on input line 445.
+(pdftex.def)             Requested size: 117.89491pt x 117.89131pt.
+<../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png, id=38, 
+481.8pt x 481.8pt>
+File: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png Gra
+phic file (type png)
+<use ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png>
+Package pdftex.def Info: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.
+5N56Purples.png  used on input line 445.
+(pdftex.def)             Requested size: 117.89491pt x 117.89131pt.
 <../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png, id=39
 , 481.8pt x 481.8pt>
 File: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png G
 raphic file (type png)
 <use ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png>
 Package pdftex.def Info: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.
-1N84EdgeBlues.png  used on input line 376.
-(pdftex.def)             Requested size: 132.93999pt x 132.94017pt.
-<../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png, id=40, 
-481.8pt x 481.8pt>
-File: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png Gra
-phic file (type png)
-<use ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png>
-Package pdftex.def Info: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K
-10N56Reds 2.png  used on input line 376.
-(pdftex.def)             Requested size: 132.93999pt x 132.94017pt.
-<../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png, id=41, 
-481.8pt x 481.8pt>
-File: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png Gra
-phic file (type png)
-<use ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png>
-Package pdftex.def Info: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.
-5N56Purples.png  used on input line 376.
-(pdftex.def)             Requested size: 132.93999pt x 132.94017pt.
+1N84EdgeBlues.png  used on input line 445.
+(pdftex.def)             Requested size: 117.89491pt x 117.89131pt.
+<../../ddBias/relErrorImagesBHDD0.5.png, id=40, 481.8pt x 481.8pt>
+File: ../../ddBias/relErrorImagesBHDD0.5.png Graphic file (type png)
+<use ../../ddBias/relErrorImagesBHDD0.5.png>
+Package pdftex.def Info: ../../ddBias/relErrorImagesBHDD0.5.png  used on input 
+line 445.
+(pdftex.def)             Requested size: 117.89491pt x 117.89131pt.
 
-Overfull \hbox (2.2222pt too wide) in paragraph at lines 376--376
-[]$[]$ $[]$ 
- []
-
-
-Overfull \hbox (2.2222pt too wide) in paragraph at lines 376--376
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 445--445
 []$[]$ $[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 376--376
+Underfull \hbox (badness 10000) in paragraph at lines 445--445
 
  []
 
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -1119,22 +1111,22 @@ Missing character: There is no ; in font nullfont!
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./noaa.jpeg> <./fiatSlug.j
 pg> <../../ddBias/vbPoster.png (PNG copy)> <../../ddBias/g3Grey.png> <../../ddB
 ias/rpCurves.png> <../../gpBias/designLineHHardExpT45N150M0.3Wide.png> <../../d
-dBias/relErrorImagesBHDD0.5.png> <../../ddBias/directionalBiasDDSubFlatT45N150A
-0-1AS2K0.1N84EdgeBlues.png (PNG copy)> <../../ddBias/directionalBiasDDSubFlatT4
-5N150A0-1AS0.1K10N56Reds 2.png (PNG copy)> <../../ddBias/directionalBiasDDSubFl
-atT45N150A0-1AS1K0.5N56Purples.png (PNG copy)>] (./clusterPoster2.aux) ) 
+dBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png (PNG copy)> <../
+../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png (PNG copy)> 
+<../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png (PNG c
+opy)> <../../ddBias/relErrorImagesBHDD0.5.png>] (./clusterPoster2.aux) ) 
 Here is how much of TeX's memory you used:
- 22241 strings out of 478287
- 460224 string characters out of 5849289
- 786791 words of memory out of 5000000
- 39957 multiletter control sequences out of 15000+600000
+ 22157 strings out of 478287
+ 458036 string characters out of 5849289
+ 780282 words of memory out of 5000000
+ 39873 multiletter control sequences out of 15000+600000
  560787 words of font info for 118 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 115i,25n,118p,416b,1296s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 115i,25n,118p,416b,1294s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/s
 hare/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
 -mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fo
-nts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}
+nts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type
 1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr
 /share/texmf/fonts/type1/public/lm/lmbx7.pfb></usr/share/texmf/fonts/type1/publ
@@ -1150,7 +1142,7 @@ f/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy
 10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy5.pfb></usr/share/texmf/font
 s/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb><
 /usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on clusterPoster2.pdf (1 page, 556073 bytes).
+Output written on clusterPoster2.pdf (1 page, 559686 bytes).
 PDF statistics:
  180 PDF objects out of 1000 (max. 8388607)
  97 compressed objects within 1 object stream
