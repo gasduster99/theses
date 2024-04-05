@@ -36,28 +36,28 @@
 \contentsline {section}{\numberline {3.4}Discussion}{46}{section.3.4}%
 \contentsline {chapter}{\numberline {4}A Delay Differential Model}{49}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Introduction}{50}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Methods}{50}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Delay Differential Model}{50}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Reference Points}{53}{subsection.4.2.2}%
-\contentsline {subsubsection}{\numberline {4.2.2.1}BH Constraint}{54}{subsubsection.4.2.2.1}%
-\contentsline {subsection}{\numberline {4.2.3}Delay Differential Integration}{55}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Simulation Design}{56}{subsection.4.2.4}%
-\contentsline {subsection}{\numberline {4.2.5}Parameter Estimation}{58}{subsection.4.2.5}%
-\contentsline {subsubsection}{\numberline {4.2.5.1}Numbers Indicies}{59}{subsubsection.4.2.5.1}%
-\contentsline {subsection}{\numberline {4.2.6}GP Metamodel}{60}{subsection.4.2.6}%
-\contentsline {subsection}{\numberline {4.2.7}Clustering Model Failure}{60}{subsection.4.2.7}%
-\contentsline {section}{\numberline {4.3}Results}{63}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Simple Production Model Limit}{65}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Moderate Growth}{66}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Emphatic Growth Dynamics}{67}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Clustering Catastrophic Model Failure}{69}{subsection.4.3.4}%
-\contentsline {subsection}{\numberline {4.3.5}Ocillatory Growth Influence}{71}{subsection.4.3.5}%
-\contentsline {subsubsection}{\numberline {4.3.5.1}RP Estimation}{73}{subsubsection.4.3.5.1}%
-\contentsline {subsubsection}{\numberline {4.3.5.2}Estimating More}{74}{subsubsection.4.3.5.2}%
-\contentsline {section}{\numberline {4.4}Discussion}{76}{section.4.4}%
-\contentsline {section}{\numberline {4.5}old ideas}{76}{section.4.5}%
-\contentsline {chapter}{\numberline {5}\color {red} Conclusion}{77}{chapter.5}%
-\contentsline {chapter}{\numberline {A}Inverting $\frac {B^*}{\bar B(0)}$ and $\gamma $ for the PT Model }{78}{appendix.A}%
-\contentsline {chapter}{\numberline {B}\color {red}Relation to $F_{SPR}$ Proxy}{80}{appendix.B}%
+\contentsline {section}{\numberline {4.2}Methods}{53}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Delay Differential Model}{53}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Reference Points}{57}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}BH Constraint}{58}{subsubsection.4.2.2.1}%
+\contentsline {subsection}{\numberline {4.2.3}Delay Differential Integration}{59}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Simulation Design}{60}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.5}Parameter Estimation}{62}{subsection.4.2.5}%
+\contentsline {subsubsection}{\numberline {4.2.5.1}Numbers Indicies}{63}{subsubsection.4.2.5.1}%
+\contentsline {subsection}{\numberline {4.2.6}GP Metamodel}{64}{subsection.4.2.6}%
+\contentsline {subsection}{\numberline {4.2.7}Clustering Model Failure}{64}{subsection.4.2.7}%
+\contentsline {section}{\numberline {4.3}Results}{66}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Simple Production Model Limit}{68}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Moderate Growth}{69}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Emphatic Growth Dynamics}{70}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Clustering Catastrophic Model Failure}{72}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}Ocillatory Growth Influence}{74}{subsection.4.3.5}%
+\contentsline {subsubsection}{\numberline {4.3.5.1}RP Estimation}{76}{subsubsection.4.3.5.1}%
+\contentsline {subsubsection}{\numberline {4.3.5.2}Estimating More}{77}{subsubsection.4.3.5.2}%
+\contentsline {section}{\numberline {4.4}Discussion}{79}{section.4.4}%
+\contentsline {section}{\numberline {4.5}old ideas}{79}{section.4.5}%
+\contentsline {chapter}{\numberline {5}\color {red} Conclusion}{80}{chapter.5}%
+\contentsline {chapter}{\numberline {A}Inverting $\frac {B^*}{\bar B(0)}$ and $\gamma $ for the PT Model }{81}{appendix.A}%
+\contentsline {chapter}{\numberline {B}\color {red}Relation to $F_{SPR}$ Proxy}{83}{appendix.B}%
 \contentsline {chapter}{\numberline {C}Delay Differential Replacement Line}{84}{appendix.C}%
-\contentsline {chapter}{Bibliography}{86}{appendix*.3}%
+\contentsline {chapter}{Bibliography}{85}{appendix*.3}%
