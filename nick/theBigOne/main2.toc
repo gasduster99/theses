@@ -1,7 +1,7 @@
-\contentsline {chapter}{List of Figures}{v}{chapter*.2}%
-\contentsline {chapter}{Abstract}{x}{chapter*.2}%
-\contentsline {chapter}{Dedication}{xi}{chapter*.2}%
-\contentsline {chapter}{Acknowledgments}{xii}{chapter*.2}%
+\contentsline {chapter}{List of Figures}{iv}{chapter*.2}%
+\contentsline {chapter}{Abstract}{v}{chapter*.2}%
+\contentsline {chapter}{Dedication}{vi}{chapter*.2}%
+\contentsline {chapter}{Acknowledgments}{vii}{chapter*.2}%
 \contentsline {chapter}{\numberline {1}\color {blue}Introduction }{1}{chapter.1}%
 \contentsline {chapter}{\numberline {2}Pella-Tomlinson Model}{7}{chapter.2}%
 \contentsline {section}{\numberline {2.1}\color {red}Introduction}{8}{section.2.1}%
@@ -59,5 +59,4 @@
 \contentsline {chapter}{\numberline {5}\color {red} Conclusion}{80}{chapter.5}%
 \contentsline {chapter}{\numberline {A}Inverting $\frac {B^*}{\bar B(0)}$ and $\gamma $ for the PT Model }{81}{appendix.A}%
 \contentsline {chapter}{\numberline {B}\color {red}Relation to $F_{SPR}$ Proxy}{83}{appendix.B}%
-\contentsline {chapter}{\numberline {C}Delay Differential Replacement Line}{84}{appendix.C}%
-\contentsline {chapter}{Bibliography}{85}{appendix*.3}%
+\contentsline {chapter}{\numberline {C}Delay Differential Replacement Line}{87}{appendix.C}%
