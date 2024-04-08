@@ -1,9 +1,23 @@
 \begin{thebibliography}{10}
 
+\bibitem{aalto_separating_2015}
+Emilius~A. Aalto, E.J. Dick, and Alec~D. MacCall.
+\newblock Separating recruitment and mortality time lags for a delay-difference
+  production model.
+\newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
+  72(2):161--165, February 2015.
+
 \bibitem{beverton_dynamics_1957}
 Raymond~JH Beverton and Sidney~J. Holt.
 \newblock {\em On the dynamics of exploited fish populations}, volume~11.
 \newblock Springer Science \& Business Media, 1957.
+
+\bibitem{brent_chapter_1973}
+Richard~P. Brent.
+\newblock Chapter 4: {An} {Algorithm} with {Guaranteed} {Convergence} for
+  {Finding} a {Zero} of a {Function}.
+\newblock In {\em Algorithms for minimization without derivatives}. Courier
+  Corporation, 1973.
 
 \bibitem{conn_when_2010}
 Paul~B. Conn, Erik~H. Williams, and Kyle~W. Shertzer.
@@ -29,18 +43,22 @@ R.~B. Deriso.
 \newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
   37(2):268--282, February 1980.
 
+\bibitem{devon_lin_latin_2015}
+C.~Devon~Lin and Boxin Tang.
+\newblock Latin {Hypercubes} and {Space}-filling {Designs}.
+\newblock In {\em Handbook of {Design} and {Analysis} of {Experiments}}. 2015.
+
+\bibitem{dick_depletion-based_2011}
+E.~J. Dick and Alec~D. MacCall.
+\newblock Depletion-based stock reduction analysis: a catch-based method for
+  determining sustainable yields for data-poor fish stocks.
+\newblock {\em Fisheries Research}, 110(2):331--341, 2011.
+\newblock Publisher: Elsevier.
+
 \bibitem{fletcher_restructuring_1978}
 R.~I. Fletcher.
 \newblock On the restructuring of the {Pella}-{Tomlinson} system.
 \newblock {\em Fish. Bull}, 76(3):515--521, 1978.
-
-\bibitem{fournier_length-based_1987}
-David~A. Fournier and Ian~J. Doonan.
-\newblock A length-based stock assessment method utilizing a generalized
-  delay-difference model.
-\newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
-  44(2):422--437, 1987.
-\newblock Publisher: NRC Research Press Ottawa, Canada.
 
 \bibitem{fox_jr_exponential_1970}
 William~W. Fox~Jr.
@@ -81,6 +99,13 @@ Ray Hilborn and Marc Mangel.
   {Data}}.
 \newblock Princeton University Press, March 1997.
 
+\bibitem{johnson_minimax_1990}
+Mark~E. Johnson, Leslie~M. Moore, and Donald Ylvisaker.
+\newblock Minimax and maximin distance designs.
+\newblock {\em Journal of statistical planning and inference}, 26(2):131--148,
+  1990.
+\newblock Publisher: Elsevier.
+
 \bibitem{lee_can_2012}
 Hui-Hua Lee, Mark~N. Maunder, Kevin~R. Piner, and Richard~D. Methot.
 \newblock Can steepness of the stock–recruitment relationship be estimated in
@@ -106,6 +131,25 @@ Marc Mangel, Alec~D. MacCall, Jon Brodziak, E.j. Dick, Robyn~E. Forrest,
 \newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
   70(6):930--940, April 2013.
 
+\bibitem{mckay_comparison_2000}
+Michael~D. McKay, Richard~J. Beckman, and William~J. Conover.
+\newblock A comparison of three methods for selecting values of input variables
+  in the analysis of output from a computer code.
+\newblock {\em Technometrics}, 42(1):55--61, 2000.
+\newblock Publisher: Taylor \& Francis.
+
+\bibitem{methot_stock_2013}
+Richard~D. Methot and Chantell~R. Wetzel.
+\newblock Stock synthesis: {A} biological and statistical framework for fish
+  stock assessment and fishery management.
+\newblock {\em Fisheries Research}, 142:86--99, May 2013.
+
+\bibitem{morris_exploratory_1995}
+Max~D. Morris and Toby~J. Mitchell.
+\newblock Exploratory designs for computational experiments.
+\newblock {\em Journal of Statistical Planning and Inference}, 43(3):381--402,
+  February 1995.
+
 \bibitem{punt_model_1988}
 André~E. Punt.
 \newblock {\em Model selection for the dynamics of southern {African} hake
@@ -123,6 +167,11 @@ André~E. Punt and Jason~M. Cope.
 \newblock Extending integrated stock assessment models to use non-depensatory
   three-parameter stock-recruitment relationships.
 \newblock {\em Fisheries Research}, 217:46--57, September 2019.
+
+\bibitem{quinn_quantitative_1999}
+Terrance~J. Quinn and Richard~B. Deriso.
+\newblock {\em Quantitative fish dynamics}.
+\newblock oxford university Press, 1999.
 
 \bibitem{ramasubramanian_machine_2017}
 Karthik Ramasubramanian and Abhishek Singh.
@@ -175,6 +224,20 @@ Luca Scrucca.
 Karline Soetaert, Thomas Petzoldt, and R.~Woodrow Setzer.
 \newblock Solving {Differential} {Equations} in {R}: {Package} {deSolve}.
 \newblock {\em Journal of Statistical Software}, 33:1--25, February 2010.
+
+\bibitem{stein_large_1987}
+Michael Stein.
+\newblock Large sample properties of simulations using {Latin} hypercube
+  sampling.
+\newblock {\em Technometrics}, 29(2):143--151, 1987.
+\newblock Publisher: Taylor \& Francis.
+
+\bibitem{von_bertalanffy_quantitative_1938}
+Ludwig Von~Bertalanffy.
+\newblock A quantitative theory of organic growth (inquiries on growth laws.
+  {II}).
+\newblock {\em Human biology}, 10(2):181--213, 1938.
+\newblock Publisher: JSTOR.
 
 \bibitem{walters_continuous_2020}
 Carl~J. Walters.
