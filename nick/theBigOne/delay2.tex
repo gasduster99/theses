@@ -37,6 +37,7 @@
 While the SPM captures the majority of variation in RPs, individual growth is 
 the next most influential dynamic for explaining RP variation {\color{red}cite 
 or generalize}. The SPM captures the net effect of biomass production by 
+<<<<<<< HEAD
 modeling all aspects of biomass production (i.e. maturity, recruitment, 
 growth, etc.) together in the production function. While there are a number of 
 %teasing apart?
@@ -55,8 +56,66 @@ the natural autocorrelation often observed with stock size. Some DDMs explicatly
 out the dynamics of individual growth and maturity from recruitment to explain net production 
 as separate but interconnected processes {\color{red} cite schnute, deriso \cite{walters_continuous_2020}, \cite[pg. 334]{hilborn_quantitative_1992}, Quinn and Deriso 1999}
  
+=======
+including all aspects of biomass production (i.e. maturity, recruitment, 
+growth, etc.) together in the production function. While there are a number of %teasing apart?
+approaches to modeling these dynamics \cite{quinn_quantitative_1999, hilborn_quantitative_1992}, 
+for the purpose of fisheries management, in a ``data-rich'' setting it is currently considered best 
+%{\color{red}cite age structured model, selectivity models, any other model I can find (Munch, Bethany?)} 
+practice to use an age sturctured models (ASM) \cite{methot_stock_2013}. Due to their complexity, 
+ASMs require a lot of expensive data to make make inferences from. Even when these data do exists, 
+the highly parameterized structures used in these models introduce the potential for identifiability 
+issues {\color{red} cite}.
 
 %
+Delay differential models (DDM) are an intermediate approach between SPM and ASM. 
+At their simplest DDMs do not neccessarily model individual growth \cite{dick_depletion-based_2011, aalto_separating_2015}, 
+but still these models are beneficial in modeling the lag between egg production and recruitment into the reproducing population.  %\cite{dick_depletion-based_2011, aalto_separating_2015}.
+%Simple DDMs may not explicitily model individual growth \cite{dick_depletion-based_2011, aalto_separating_2015} %{\color{red}cite EJ Alec and Aalto et al. 2015}, 
+%but even so the delayed structure of DDMs are beneficial in modeling the lag between egg production 
+%and recruitment into the reproducing population. 
+%as well as the natural autocorrelation often observed with stock size.
+More complex DDMs are capable of exactly representing simple ASMs with an explicit and compact
+representations of simple individual growth and maturity dynamics integrated directly into\cite{deriso_harvesting_1980, schnute_general_1985, schnute_general_1987}.
+%That said, DDMs are capable of explicitly representing simple individual growth and maturity dynamics 
+%\cite{walters_continuous_2020}, \cite[pg. 334]{hilborn_quantitative_1992} \cite{Quinn and Deriso 1999}.
+When information about growth is available DDMs have enough growth and maturity infrastructure present 
+to make use of the information without requiring the use of heavily parameterized age stuctured models e.g. \cite{black rockfish assessment}.
+%can put those data to use without the need to parameterize the full age at length table of a fully age stuctured model \cite{black rockfish assessment}.
+%}
+%DDMs that can tease out individual growth and maturity from recruitment to explain net production 
+%as separate but interconnected processes {\color{red} cite schnute, deriso \cite{walters_continuous_2020}, \cite[pg. 334]{hilborn_quantitative_1992}, Quinn and Deriso 1999}
+The relatively smaller size, and flexibility, of DDMs makes them ideal for modeling ``data-poor'' stocks, 
+while entertaining hypotheses that relate growth and maturity.  
+%When information about growth is available the DDM allows  may be known but not the full age at length table of an age stuctured model \cite{black rockfish assessment}
+
+%RPS
+While DDMs are effective and flexible data-poor models, there use in stock 
+assessments has been limited by the accessibility of RP calculations \cite{munyandorero_analytical_2023, sedar_stock_2010}. 
+While there has been work to develop accessible RPs using DDMs \cite{dick_depletion-based_2011, munyandorero_analytical_2023}, 
+this work expands those efforts, by deriving analytical expressions for DDMs 
+with growth under the the Schnute modeled of recruitment. 
+\citep{munyandorero_analytical_2023} gives RP calculations for this model 
+under BH, Ricker, and Shepard models, this works adds to that work by deriving 
+the RP calculation under the Schnute model. The BH and Ricker special cases of the 
+Schnute DDM reiterate the \citeP{Munyandorero2023} calucations, while the Schunte model 
+extends those results by also providing RP calulations under the Schafer and 
+Cushing models as addittional special cases. Furthmore the Schnute model unifes these 
+models with a single analytical result. This study further {\color{red}reveils} that RPs are 
+largely dtermined by the form of R. While growth does have an effect on RPs in 
+these models, the effect is secondary to the form of R.
+>>>>>>> 9158eb13c983dad22eefa99a136ea608e99813ef
+
+{\color{red} Gotta introduce and discuss bias estimation}
+
+
+%RPs are largely determined by R, and to a much lesser effect growth.
+%RP calculation have been elusive \cite{Munyandorero2023, Schnute}.
+%MSY-based RPs (e.g., Aalto et al. 2015),
+%\cite{Munyandorero2023} gives results for BH, Ricker, and three parameter Shepard.
+%I give results for Schnute which includes BH, Ricker, Schafer, and Cushing as a a special case.
+%
+<<<<<<< HEAD
 \begin{itemize}
 	\item[\checkmark] SPM describe productivity via net recruitment of biomass, natural mortality and fishing.
 	\item ASM describe recruitment in numbers, indivual growth to biomass, natural mortality, fishing, and selectivity.
@@ -67,69 +126,82 @@ as separate but interconnected processes {\color{red} cite schnute, deriso \cite
 	\item 
 \end{itemize}
 
+=======
+>>>>>>> 9158eb13c983dad22eefa99a136ea608e99813ef
 %
-\begin{itemize}
-	\item intermediate in complexity between SPMs and ASMs. (Next step in complexity)
-	\item perfect size model for data poor stocks, when some knowledge about growth may be known but not the full age at length table of an age stuctured model \cite{black rockfish assessment}
-	\item These models include natural mortality, and may or may not \cite{dbSRA} incorporate individual (somatic) growth. 
-	\item 
-	\item time series fisheries data (catch, biomass and/or numbers)
-	\item delay structure naturally represents time from egg to recruitment, and the natural auto correlation of stock size with itself.
-	\item naturual mortaility
-	\item 
-	\item RP calculation have been elusive \cite{Munyandorero2023, Schnute}.
-	\begin{itemize}
-	\item \cite{Munyandorero2023} gives results for BH, Ricker, and three parameter Shepard
-	\item I give results for Schnute which includes BH, Ricker, Schafer, and Cushing as a a special case.
-	\end{itemize}
-	
-	\item data poor setting
-\end{itemize}
-
-
-%Munyandorero 2012, 2015, 2022, 2023*
-\begin{itemize}
-\item fitted to time series of fishery data
-\item received little attention in developing MSY-based RPs or proxies 2015, 2022
-\item intermediate in complexity between SPMs and ASMs.
-\item allows development of RPs. The unanimous answer was: “No;
-\item MSY-based RPs (e.g., Aalto et al. 2015),
-\item Relates:
-\begin{itemize}
-	\item lag: (i) to the number of years from egg deposition until the young fish become vulnerable to the fishery,
-	\item $B_{t-lag}$: (ii) to the fact that the exploitable stock size in any time step depends on stock sizes in previous time steps,
-\end{itemize}
-\item These models include natural mortality, individual growth
-\item that the populations’ recruit 
-\item adult components can be tuned by separate indices of abundance in number, weight, or both.
-\item (i) constant growth and mortality rates
-\item (ii) equal ages of knife-edge selectivity (i.e., recruitment to the fishery) and knife-edge maturity, implying that adults and recruits in the population are fully selected and have equal (full) reproductive capacity.
-\end{itemize}
-
-%DB-SRA
-\begin{itemize}
-\item 
-Management of “data-rich” stocks is often based on complex assessments that incorporate a variety of data sources and that provide estimates of stock status, various management targets or reference points, and sustainable yield. 
-There remain very many fish stocks for which data are too limited to support these data-rich approaches. 
-The focus of assessment for “data-poor” stocks is often restricted to estimates of sustainable yield because insufficient data are available to estimate the full suite of reference points. 
-Common approaches for data-poor stocks include defining a proxy value for sustainable catch ($F_msy$ proxy), e.g. recent average catch, which may be precautionarily reduced to account for uncertainty. 
-Advice regarding the extent of these reductions has been based on qualitative descriptions of stock status, such as “above Bmsy” or “overfished” (Restrepo et al., 1998).
-\item data poor model with lots of flexibility and RPs
-\item no individual growth
-\end{itemize}
-
-%First Idea
-\begin{itemize}
-\item the delay model: \cite{schnute_general_1985} \cite{schnute_general_1987} \cite{fournier_length-based_1987}.
-\item discrete: \cite[pg. 334]{hilborn_quantitative_1992}, Quinn and Deriso 1999
-\item \cite{walters_continuous_2020} cDDM model
-\item automatic accounting for cohort cycles
-\item Huynh 2020
-\item Licanideo et al. 2023 cDDM MSE 
-\item Munyandorero 2012, 2015, 2022, 2023*
-\item Shertzer and Conn (2012), the BH–SRR should be the default choice in analyses unless there are mechanisms, such as cannibalism or depletion of food resources, that favor the R–SRR or the S–SRR].
-\item ignorance of how generate RPs with DD models \cite{munyandorero_analytical_2023}.
-\end{itemize}
+%%
+%\begin{itemize}
+%	\item[\checkmark] SPM describe productivity via net recruitment of biomass, natural mortality and fishing.
+%	\item[\checkmark] ASM describe recruitment in numbers, indivual growth to biomass, natural mortality, fishing, and selectivity.
+%	\item[\checkmark] selectivity requires a lot of data to parameterize and describe. 
+%	\item[\checkmark] in a data poor setting, DDM offer an effective intermediate.
+%	\item RPs are largely determined by R, and to a much lesser effect growth. 
+%	\item growth is often estimated external to the dynamics model, although we will see that in certain situations an index can inform growth as well.
+%\end{itemize}
+%
+%%
+%\begin{itemize}
+%	\item[\checkmark] intermediate in complexity between SPMs and ASMs. (Next step in complexity)
+%	\item[\checkmark] perfect size model for data poor stocks, when some knowledge about growth may be known but not the full age at length table of an age stuctured model \cite{black rockfish assessment}
+%	\item[\checkmark] These models include natural mortality, and may or may not \cite{dbSRA} incorporate individual (somatic) growth. 
+%	\item 
+%	\item time series fisheries data (catch, biomass and/or numbers)
+%	\item delay structure naturally represents time from egg to recruitment, and the natural auto correlation of stock size with itself.
+%	\item naturual mortaility
+%	\item 
+%	\item RP calculation have been elusive \cite{Munyandorero2023, Schnute}.
+%	\begin{itemize}
+%	\item \cite{Munyandorero2023} gives results for BH, Ricker, and three parameter Shepard
+%	\item I give results for Schnute which includes BH, Ricker, Schafer, and Cushing as a a special case.
+%	\end{itemize}
+%	
+%	\item data poor setting
+%\end{itemize}
+%
+%
+%%Munyandorero 2012, 2015, 2022, 2023*
+%\begin{itemize}
+%\item fitted to time series of fishery data
+%\item received little attention in developing MSY-based RPs or proxies 2015, 2022
+%\item intermediate in complexity between SPMs and ASMs.
+%\item allows development of RPs. The unanimous answer was: “No;
+%\item MSY-based RPs (e.g., Aalto et al. 2015),
+%\item Relates:
+%\begin{itemize}
+%	\item lag: (i) to the number of years from egg deposition until the young fish become vulnerable to the fishery,
+%	\item $B_{t-lag}$: (ii) to the fact that the exploitable stock size in any time step depends on stock sizes in previous time steps,
+%\end{itemize}
+%\item These models include natural mortality, individual growth
+%\item that the populations’ recruit 
+%\item adult components can be tuned by separate indices of abundance in number, weight, or both.
+%\item (i) constant growth and mortality rates
+%\item (ii) equal ages of knife-edge selectivity (i.e., recruitment to the fishery) and knife-edge maturity, implying that adults and recruits in the population are fully selected and have equal (full) reproductive capacity.
+%\end{itemize}
+%
+%%DB-SRA
+%\begin{itemize}
+%\item 
+%Management of “data-rich” stocks is often based on complex assessments that incorporate a variety of data sources and that provide estimates of stock status, various management targets or reference points, and sustainable yield. 
+%There remain very many fish stocks for which data are too limited to support these data-rich approaches. 
+%The focus of assessment for “data-poor” stocks is often restricted to estimates of sustainable yield because insufficient data are available to estimate the full suite of reference points. 
+%Common approaches for data-poor stocks include defining a proxy value for sustainable catch ($F_msy$ proxy), e.g. recent average catch, which may be precautionarily reduced to account for uncertainty. 
+%Advice regarding the extent of these reductions has been based on qualitative descriptions of stock status, such as “above Bmsy” or “overfished” (Restrepo et al., 1998).
+%\item data poor model with lots of flexibility and RPs
+%\item no individual growth
+%\end{itemize}
+%
+%%First Idea
+%\begin{itemize}
+%\item the delay model: \cite{schnute_general_1985} \cite{schnute_general_1987} \cite{fournier_length-based_1987}.
+%\item discrete: \cite[pg. 334]{hilborn_quantitative_1992}, Quinn and Deriso 1999
+%\item \cite{walters_continuous_2020} cDDM model
+%\item automatic accounting for cohort cycles
+%\item Huynh 2020
+%\item Licanideo et al. 2023 cDDM MSE 
+%\item Munyandorero 2012, 2015, 2022, 2023*
+%\item Shertzer and Conn (2012), the BH–SRR should be the default choice in analyses unless there are mechanisms, such as cannibalism or depletion of food resources, that favor the R–SRR or the S–SRR].
+%\item ignorance of how generate RPs with DD models \cite{munyandorero_analytical_2023}.
+%\end{itemize}
 
 %
 \section{Methods}
