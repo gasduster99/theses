@@ -37,26 +37,6 @@
 While the SPM captures the majority of variation in RPs, individual growth is 
 the next most influential dynamic for explaining RP variation {\color{red}cite 
 or generalize}. The SPM captures the net effect of biomass production by 
-<<<<<<< HEAD
-modeling all aspects of biomass production (i.e. maturity, recruitment, 
-growth, etc.) together in the production function. While there are a number of 
-%teasing apart?
-approaches to modeling these these dynamics {\color{red}cite age structured model, 
-selectivity models, any other model I can find (Munch, Bethany?)}, in current best 
-practice for management age sturctured models (ASM) are used when the data are 
-availble {\color{red} cite SS3, or new thing}. However ASM require a lot of expensive 
-data to fit; furthermore even when the data do exists, the highly parameterized 
-sturctures used to model these data introduce the potential for identifiability issues {\color{red} cite}.
-
-%
-An intermediate approach between SPM and ASM is the delay differential model (DDM). 
-Simple DDM models do not neccessarily model individual growth {\color{red}cite EJ Alec and Aalto et al. 2015}, 
-but even so the delayed sturcture of the model is beneficial in modeling the lag from egg to recruitment as well as
-the natural autocorrelation often observed with stock size. Some DDMs explicatly teases 
-out the dynamics of individual growth and maturity from recruitment to explain net production 
-as separate but interconnected processes {\color{red} cite schnute, deriso \cite{walters_continuous_2020}, \cite[pg. 334]{hilborn_quantitative_1992}, Quinn and Deriso 1999}
- 
-=======
 including all aspects of biomass production (i.e. maturity, recruitment, 
 growth, etc.) together in the production function. While there are a number of %teasing apart?
 approaches to modeling these dynamics \cite{quinn_quantitative_1999, hilborn_quantitative_1992}, 
@@ -76,11 +56,11 @@ but still these models are beneficial in modeling the lag between egg production
 %and recruitment into the reproducing population. 
 %as well as the natural autocorrelation often observed with stock size.
 More complex DDMs are capable of exactly representing simple ASMs with an explicit and compact
-representations of simple individual growth and maturity dynamics integrated directly into\cite{deriso_harvesting_1980, schnute_general_1985, schnute_general_1987}.
+representations of simple individual growth and maturity dynamics \cite{deriso_harvesting_1980, schnute_general_1985, schnute_general_1987}.
 %That said, DDMs are capable of explicitly representing simple individual growth and maturity dynamics 
 %\cite{walters_continuous_2020}, \cite[pg. 334]{hilborn_quantitative_1992} \cite{Quinn and Deriso 1999}.
-When information about growth is available DDMs have enough growth and maturity infrastructure present 
-to make use of the information without requiring the use of heavily parameterized age stuctured models e.g. \cite{black rockfish assessment}.
+When information about individual growth is available DDMs have enough growth and maturity modeling infrastructure to %infrastructure present 
+to make use of the information without requiring the use of heavily parameterized age stuctured models. %e.g. \cite{black rockfish assessment}.
 %can put those data to use without the need to parameterize the full age at length table of a fully age stuctured model \cite{black rockfish assessment}.
 %}
 %DDMs that can tease out individual growth and maturity from recruitment to explain net production 
@@ -95,18 +75,87 @@ assessments has been limited by the accessibility of RP calculations \cite{munya
 While there has been work to develop accessible RPs using DDMs \cite{dick_depletion-based_2011, munyandorero_analytical_2023}, 
 this work expands those efforts, by deriving analytical expressions for DDMs 
 with growth under the the Schnute modeled of recruitment. 
-\citep{munyandorero_analytical_2023} gives RP calculations for this model 
-under BH, Ricker, and Shepard models, this works adds to that work by deriving 
+Munyandorero \cite{munyandorero_analytical_2023} gives RP calculations for this model 
+under BH, Ricker, and Shepard models, this work adds to that work by deriving 
 the RP calculation under the Schnute model. The BH and Ricker special cases of the 
-Schnute DDM reiterate the \citeP{Munyandorero2023} calucations, while the Schunte model 
-extends those results by also providing RP calulations under the Schafer and 
-Cushing models as addittional special cases. Furthmore the Schnute model unifes these 
-models with a single analytical result. This study further {\color{red}reveils} that RPs are 
-largely dtermined by the form of R. While growth does have an effect on RPs in 
-these models, the effect is secondary to the form of R.
->>>>>>> 9158eb13c983dad22eefa99a136ea608e99813ef
+Schnute DDM reiterate the Munyandorero calucations. The Schnute model unifies these 
+models with a single analytical result, and extends them by also providing RP calulations 
+under the Schaffer {\color{red}and Cushing models} as additional special cases. 
+%%Furthmore the Schnute model unifies these models with a single analytical result. 
+%This study further {\color{red}reveils} that RPs are largely dtermined by the 
+%form of R. While growth does have an effect on RPs in these models, the effect 
+%is secondary to the form of R.
 
-{\color{red} Gotta introduce and discuss bias estimation}
+%
+The DDM delevoped here extends the analysis of how productivity model misspecification 
+can bias RPs estimation as individual growth and maturity dynamics are added to the model. 
+The DDM allows for a probe into how recruitment and growth interact to effect RP estimation.
+%when in the presence of individual growth and maturity dynamics
+%Models that include individual growth and maturity dynamics %which account for individual growth and age-structure
+%are another important practical setting for extending the understanding of how
+%productivity model misspecification can bias RPs estimation. 
+This work begins with a derivation of RPs under the three-parameter Schnute 
+DDM. Analytical RP calcluations are then structured so as to fit into the 
+simulation design methods presented in Section (\ref{lhs}), and RP biases are 
+then analysed via the GP metamodel developed in Section (\ref{gpmm}).
+
+
+%{\color{red} Gotta introduce and discuss bias estimation
+%
+%In this study I consider the behavior of inference when index data are simulated
+%from three-parameter PT and Schnute production models, but the simulated data are fit
+%using intentionally misspecified two-parameter logistic or BH production models. The
+%work begins with a derivation of RPs under the three-parameter models. A method is
+%then presented for generating simulation designs based on the parametric form of RPs
+%which serves as a control on the nature of simulated model misspecification. Finally a
+%Gaussian Process (GP) metamodel [12] is constructed for exploration and analysis of biases.
+%A key insight of this approach is that bias is considered broadly across RP-space to
+%uncover patterns and correlations between RPs. The GP metamodel is explicit about
+%trade-offs between RPs so as to inform the full utility of reducing bias, as well as to
+%suggest mechanisms for understanding what causes bias. Further, the effect of contrast
+%on estimation is considered together with model misspecification.
+%
+%%Additionally
+%Models that include individual growth and maturity dynamics %which account for individual growth and age-structure
+%are another important practical setting for extending the understanding of how
+%productivity model misspecification can bias RPs estimation.
+%% in stock 
+%%assessment models is the context of dynamics which account for individual 
+%%growth and age-structure.
+%%which include individual growth in the population dynamics. 
+%%It is also necessary to study RP bias in the context of
+%%%An additional extension is to study of RP bias in the context of
+%%individual growth and age-structure. %d models.
+%%%A further important modeling extension is to include the dynamics of 
+%%%age-structure in the population. 
+%The Deriso-Schnute delay-difference (DD) model provides a compact
+%representation of simple age-structured dynamics \shortcite{deriso_harvesting_1980, schnute_general_1985, schnute_general_1987}. %\color{red} cite equivalnece}. 
+%While various modeling strategies may be considered for including effects of
+%age-structure in the population, the Deriso-Schnute DD model presents an ideal
+%model for the simulation setting presented here. The compact representation of
+%the Deriso-Schnute DD model via delay-differential equations accounts for the
+%effects of individual growth and maturity while maintaining relatively fast
+%computation.  %while accounting for the effects of individual growth and maturity.  %and parsimonious parameterization of growth   for the simulation setting presented here.
+%
+%%
+%The DD model is derived directly from an assumption of Von Bertalanffy growth \shortcite{von_bertalanffy_quantitative_1938} %{\color{red} cite } 
+%in weight, as seen in Eq (\ref{vbGrowth}). In this setting Von Bertalanffy
+%growth relates individual age to individual weight by assuming linear
+%instantaneous growth (as parameterized by the growth parameters $\kappa$ and
+%$w_\infty$). The DD model expands the idea of biomass production into the
+%processes of recruitment, individual growth, and maturity. This formulation
+%separates the number of individuals in the population ($N$) from the biomass
+%of the population ($B$). The dynamics of $N$, as seen in Eq (\ref{nEq}), are
+%very similar to that of the Deriso production model presented above, however
+%the role of the production function is now filled by a "recruitment" function
+%which describes how new individuals are added to the numbers equation. The $B$ dynamics,
+%%of accounting for $B$, as seen in Eq(\ref{bEq}), %, described from left to right), 
+%can then be seen to describe biomass by an account of 1) biomass of new
+%recruits, 2) the net growth of existing biomass, and 3) biomass lost due to
+%mortality. The model accounts for maturity as knife-edge maturity at the
+%instant an individual reaches age $a_0$.
+%%
+%}
 
 
 %RPs are largely determined by R, and to a much lesser effect growth.
@@ -115,19 +164,6 @@ these models, the effect is secondary to the form of R.
 %\cite{Munyandorero2023} gives results for BH, Ricker, and three parameter Shepard.
 %I give results for Schnute which includes BH, Ricker, Schafer, and Cushing as a a special case.
 %
-<<<<<<< HEAD
-\begin{itemize}
-	\item[\checkmark] SPM describe productivity via net recruitment of biomass, natural mortality and fishing.
-	\item ASM describe recruitment in numbers, indivual growth to biomass, natural mortality, fishing, and selectivity.
-	\item selectivity requires a lot of data to parameterize and describe. 
-	\item in a data poor setting, DDM offer an effective intermediate.
-	\item RPs are largely determined by R, and to a much lesser effect growth. 
-	\item growth is often estimated external to the dynamics model, although we will see that in certain situations an index can inform growth as well.
-	\item 
-\end{itemize}
-
-=======
->>>>>>> 9158eb13c983dad22eefa99a136ea608e99813ef
 %
 %%
 %\begin{itemize}
@@ -204,6 +240,7 @@ these models, the effect is secondary to the form of R.
 %\end{itemize}
 
 %
+\clearpage
 \section{Methods}
 
 %
@@ -212,7 +249,7 @@ these models, the effect is secondary to the form of R.
 %
 \begin{wrapfigure}{r}{0.45\textwidth} %[17]{r}[0pt]{0pt}%
 %\begin{figure}[h!]
-\vspace{-1cm}
+\vspace{-1.5cm}
 %\includegraphics[width=0.5\textwidth]{plots/derisoSrr.png}
 %\begin{minipage}[h!]{0.64\textwidth}
 \includegraphics[width=0.49\textwidth]{plots/vbOpt.png}
@@ -227,13 +264,13 @@ approximated by VB growth in weight directly.
 %A comparison of 
 %with the typical assumption of VB growth in length. 
 }
-\label{SrrPT}
+\label{vbComp}
 %\end{minipage}
 \end{wrapfigure}
 
 %
 Age structured fisheries models typically assume %Von Bertalanffy (VB) growth 
-\cite[VB]{von_bertalanffy_quantitative_1938} gorwth in length with age. To model
+\cite[VB]{von_bertalanffy_quantitative_1938} growth in length with age. To model
 weight the assumption of VB growth in length is composed with a power law 
 relating length to weight, $w=al^b$. 
 %The statistical model then assumes observed indicies of abundance are proportional to weight. 
@@ -262,8 +299,10 @@ age $a$. The parameter $a_0$ controls the age at which individuals are assummed
 to have zero weight; by letting $a_0<0$ this allows fish of age zero to have
 positive weight. Rather than taking a sigmoidally increasing function, VB growth
 directly in weight results in an monotonically inceasing curve that asymptotes
-with a strictly decreasing growth rate with age.
-{\color{red}(only a good approximation for older ages where growth begins to decline)}
+with a strictly decreasing growth rate with age. This results in a curve that
+can approximate the composite VB-allometric growth assumption very well except 
+at very young ages, see Figure (\ref{vbComp}).
+%{\color{red}(only a good approximation for older ages where growth begins to decline)}
 
 %
 Together with VB growth, the delay model is derived from the assumption that
@@ -298,7 +337,7 @@ through time.
 %
 This formulation separates the number of individuals in the population from the
 biomass of the population. The dynamics of $N$, as seen in Eq (\ref{nEq}), are
-very similar to that of the {\color{green}production models previously presented}, 
+very similar to that of the production model in Section (\ref{sModel}), 
 however the role of the production function is now filled by a "recruitment"
 function, $R(B)$, which describes the number of new individuals recruiting into the
 expoitable population as a function of exploitable biomass. In turn, the biomass

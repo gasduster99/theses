@@ -150,6 +150,13 @@ Max~D. Morris and Toby~J. Mitchell.
 \newblock {\em Journal of Statistical Planning and Inference}, 43(3):381--402,
   February 1995.
 
+\bibitem{munyandorero_analytical_2023}
+Joseph Munyandorero.
+\newblock Analytical expressions of sustainable benchmarks generic for all
+  two-stage-structured models of exploited fish populations.
+\newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
+  80(9):1425--1435, 2023.
+
 \bibitem{punt_model_1988}
 André~E. Punt.
 \newblock {\em Model selection for the dynamics of southern {African} hake
@@ -219,6 +226,12 @@ Luca Scrucca.
   {Parallelisation} and {Islands} {EvolutionOn} some extensions to {GA}
   package: hybrid optimisation, parallelisation and islands evolution.
 \newblock {\em The R Journal}, 9(1):187--206, 2017.
+
+\bibitem{sedar_stock_2010}
+{and} Review SouthEast~Data SEDAR, Assessment.
+\newblock Stock assessment of spiny lobster, {Panulirus} argus. {In} the
+  {Southeast} {United} {States}. {SEDAR} 8 {Update} {Assessment} {Workshop}
+  {Report}., 2010.
 
 \bibitem{soetaert_solving_2010}
 Karline Soetaert, Thomas Petzoldt, and R.~Woodrow Setzer.

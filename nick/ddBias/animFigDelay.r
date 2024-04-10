@@ -759,7 +759,7 @@ image(xiStar, zetaStar, eucBias-ms,
 curve(bh(x), from=0, to=4, lwd=3, add=T)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
-thin = c(T,rep(F,435)) #475))#135))
+thin = c(T,rep(F,475))#435)) #475))#135))
 quiver(
         lFXStar[w,2][thin], lFXStar[w,3][thin],
         xiBias[w][thin], zetaBias[w][thin],
