@@ -132,17 +132,20 @@ plot(gs, aMsy, 'l',
 	ylim=c(min(aProxy), 6*M),
 	xlab=TeX("$\\gamma$"),
 	ylab=TeX("$\\alpha$"),
-	main=""
+	main=TeX("Schnute $\\alpha$-$\\gamma$ Relationships")
 )
 lines(gs, aProxy, lwd=3, lty=2)
 points(gW, getAlpha(gW, FSPRx, M), col='red', pch=19)
 #abline(v=-1)
+points(-1, getAlpha(-1, FSPRx, M), col='blue', pch=19)
+points(-1, getAlphaProxy(-1, M, x, y), col='blue', pch=19)
+segments(-1, getAlpha(-1, FSPRx, M), -1, getAlphaProxy(-1, M, x, y), col='blue')
 legend("topright", 
-	legend=c("MSY", "Proxy", "Proxy=MSY"), 
-	lty=c(1, 2, NA), 
+	legend=c("MSY", "Proxy", "Proxy=MSY", "BH"), 
+	lty=c(1, 2, NA, NA), 
 	lwd=3, 
-	pch=c(NA, NA, 19),
-	col=c('black', 'black', 'red')
+	pch=c(NA, NA, 19, 19),
+	col=c('black', 'black', 'red', 'blue')
 )
 #points(gW, getAlpha(gW, FSPRx, M), col='blue')
 #points(gW, M*( (1/(x^gW)-y)/(1-y) )^(1/gW), pch='.')
@@ -160,7 +163,7 @@ curve(SRR(x, getAlphaProxy(-1, M, X, y), getBeta(getAlphaProxy(-1, M, X, y), -1,
 	lty=2, 
 	lwd=3,
 	xlab="Biomass",
-	ylab="Production",
+	ylab="Recruitment", #"Production",
 	main=""
 )
 curve(SRR(x, getAlphaProxy(gW, M, X, y), getBeta(getAlphaProxy(gW, M, X, y), gW, M, 1), gW), add=T, lwd=3)
@@ -188,6 +191,13 @@ rug(BStar, lwd=2, ticksize=0.05)
 legend("bottomright", legend=c("BH at Proxy", "Schnute at Proxy at MSY"), lty=c(2, 1), lwd=3)
 dev.off()
 
+#
+#M=0.1
+#
+
+#
+M=0.1
+
 #RP space: plot BH MSY with proxy point
 #RP space: plot
 i=1
@@ -197,7 +207,7 @@ x = xs[i]
 FSPRx = M*((1/x)-1)
 gW = getGammaProMsy(x, y)
 #
-png("rpProxAll.png")
+png("rpProxAll0.1.png")
 curve(1/(x+2), 0, 3, xlim=c(0, 3), ylim=c(0.2,0.55), lwd=3, xlab="F*/M", ylab="B*/B0", main="Reference Points")
 points(FSPRx/M, y, col=i+1, pch=19)
 #
@@ -229,6 +239,124 @@ legend("topright", legend=c(
 	col=c(1, 2, 2, 3, 3, 4, 4)
 )
 dev.off()
+
+#
+#M=0.2
+#
+
+#
+M=0.2
+
+#RP space: plot BH MSY with proxy point
+#RP space: plot
+i=1
+y = ys[i]
+x = xs[i]
+#
+FSPRx = M*((1/x)-1)
+gW = getGammaProMsy(x, y)
+#
+png("rpProxAll0.2.png")
+curve(1/(x+2), 0, 3, xlim=c(0, 3), ylim=c(0.2,0.55), lwd=3, xlab="F*/M", ylab="B*/B0", main="Reference Points")
+points(FSPRx/M, y, col=i+1, pch=19)
+#
+FM = seq(0,3,length.out=100)
+gLine = getZeta(gW, FM*M, M)
+lines(FM, gLine, col=i+1, lwd=3)
+#
+gg = gW
+for(i in 2:3){
+	#
+	x = xs[i]
+	y = ys[i]
+	#
+	FSPRx = M*((1/x)-1)
+	gW = getGammaProMsy(x, y)
+	gg = c(gg, gW)
+	#
+	points(FSPRx/M, y, col=i+1, pch=19)
+	gLine = getZeta(gW, FM*M, M)
+	lines(FM, gLine, col=i+1, lwd=3)
+}
+legend("topright", legend=c(
+	"BH MSY", 
+	sprintf("%s Proxy (%s, %s)", names[1], xs[1], ys[1]), TeX(sprintf("%s Schnute $\\gamma\\approx$%s", names[1], round(gg[1],2))),
+	sprintf("%s Proxy (%s, %s)", names[2], xs[2], ys[2]), TeX(sprintf("%s Schnute $\\gamma\\approx$%s", names[2], round(gg[2],2))), 
+	sprintf("%s Proxy (%s, %s)", names[3], xs[3], ys[3]), TeX(sprintf("%s Schnute $\\gamma\\approx$%s", names[3], round(gg[3],2)))), 
+	lwd=c(3, NA, 3, NA, 3, NA, 3), 
+	pch=c(NA, 19, NA, 19, NA, 19, NA), 
+	col=c(1, 2, 2, 3, 3, 4, 4)
+)
+dev.off()
+
+#
+#table
+#
+
+M=0.2
+
+#RP space: plot BH MSY with proxy point
+#RP space: plot
+i=1
+y = ys[i]
+x = xs[i]
+Fy = c(0.5, 0.5, 2)
+Bx = 1/((1/xs)-1+2) #c(0.29, 0.22, 0.21)
+#
+FSPRx = M*((1/x)-1)
+gW = getGammaProMsy(x, y)
+#
+png("rpProxTable.png")
+curve(1/(x+2), 0, 3, xlim=c(0, 3), ylim=c(0.2,0.55), lwd=3, xlab="F*/M", ylab="B*/B0", main="Reference Points")
+points(FSPRx/M, y, col=i+1, pch=19)
+segments(Fy[i], 1/(Fy[i]+2), FSPRx/M, y, col=i+1)
+segments(FSPRx/M, Bx[i], FSPRx/M, y, col=i+1)
+#
+FM = seq(0,3,length.out=100)
+gLine = getZeta(gW, FM*M, M)
+#lines(FM, gLine, col=i+1, lwd=3)
+#
+gg = gW
+for(i in 2:3){
+	#
+	x = xs[i]
+	y = ys[i]
+	#
+	FSPRx = M*((1/x)-1)
+	gW = getGammaProMsy(x, y)
+	gg = c(gg, gW)
+	#
+	points(FSPRx/M, y, col=i+1, pch=19)
+	segments(Fy[i], 1/(Fy[i]+2), FSPRx/M, y, col=i+1)
+	segments(FSPRx/M, Bx[i], FSPRx/M, y, col=i+1)
+	#gLine = getZeta(gW, FM*M, M)
+	#lines(FM, gLine, col=i+1, lwd=3)
+}
+#
+i=1
+y=ys[i]
+x=xs[i]
+FSPRx = M*((1/x)-1)
+segments(Fy[i], 1/(Fy[i]+2), FSPRx/M, y, col=i+1)
+segments(FSPRx/M, Bx[i], FSPRx/M, y, col=i+1)
+#
+legend("topright", legend=c(
+	"BH MSY", 
+	sprintf("%s Proxy (%s, %s)", names[1], xs[1], ys[1]), #TeX(sprintf("%s Schnute $\\gamma\\approx$%s", names[1], round(gg[1],2))),
+	sprintf("%s Proxy (%s, %s)", names[2], xs[2], ys[2]), #TeX(sprintf("%s Schnute $\\gamma\\approx$%s", names[2], round(gg[2],2))), 
+	sprintf("%s Proxy (%s, %s)", names[3], xs[3], ys[3])), #TeX(sprintf("%s Schnute $\\gamma\\approx$%s", names[3], round(gg[3],2)))), 
+	lwd=c(3, NA, NA, NA), 
+	pch=c(NA, 19, 19, 19), 
+	col=c(1, 2, 3, 4)
+)
+dev.off()
+
+
+
+
+
+
+
 
 
 #alpha = 1

@@ -4,10 +4,6 @@ The top-level auxiliary file: main2.aux
 A level-1 auxiliary file: pt2.aux
 A level-1 auxiliary file: schnute2.aux
 A level-1 auxiliary file: delay2.aux
-White space in argument---line 11 of file delay2.aux
- : \citation{black
- :                 rockfish assessment}
-I'm skipping whatever remains of this command
 A level-1 auxiliary file: lambApp.aux
 A level-1 auxiliary file: proxyMath.aux
 A level-1 auxiliary file: ddRepLine.aux
@@ -55,45 +51,45 @@ Warning--there's a number but no series in ramasubramanian_machine_2017
 Too many commas in name 1 of "SEDAR, Assessment, {and} Review, SouthEast Data" for entry sedar_stock_2010
 while executing---line 1090 of file plain.bst
 Warning--empty journal in walters_continuous_2020
-You've used 44 entries,
+You've used 45 entries,
             2118 wiz_defined-function locations,
-            764 strings with 11390 characters,
-and the built_in function-call counts, 13331 in all, are:
-= -- 1354
-> -- 527
+            771 strings with 11552 characters,
+and the built_in function-call counts, 13657 in all, are:
+= -- 1390
+> -- 534
 < -- 3
-+ -- 222
-- -- 166
-* -- 950
-:= -- 2265
-add.period$ -- 145
-call.type$ -- 44
-change.case$ -- 208
++ -- 225
+- -- 168
+* -- 976
+:= -- 2318
+add.period$ -- 149
+call.type$ -- 45
+change.case$ -- 212
 chr.to.int$ -- 0
-cite$ -- 48
-duplicate$ -- 493
-empty$ -- 1096
-format.name$ -- 166
-if$ -- 2716
+cite$ -- 49
+duplicate$ -- 504
+empty$ -- 1125
+format.name$ -- 168
+if$ -- 2783
 int.to.chr$ -- 0
-int.to.str$ -- 44
-missing$ -- 49
-newline$ -- 233
-num.names$ -- 88
-pop$ -- 189
+int.to.str$ -- 45
+missing$ -- 50
+newline$ -- 239
+num.names$ -- 90
+pop$ -- 190
 preamble$ -- 1
-purify$ -- 171
+purify$ -- 174
 quote$ -- 0
-skip$ -- 312
+skip$ -- 319
 stack$ -- 0
-substring$ -- 937
-swap$ -- 46
+substring$ -- 973
+swap$ -- 47
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 162
+type$ -- 166
 warning$ -- 4
-while$ -- 148
-width$ -- 46
-write$ -- 495
-(There were 11 error messages)
+while$ -- 152
+width$ -- 47
+write$ -- 508
+(There were 10 error messages)
