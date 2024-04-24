@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.14)  12 APR 2024 15:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.14)  24 APR 2024 12:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1123,7 +1123,7 @@ opy)> <../../ddBias/relErrorImagesBHDD0.5.png>] (./clusterPoster2.aux) )
 Here is how much of TeX's memory you used:
  22157 strings out of 478287
  458036 string characters out of 5849289
- 781373 words of memory out of 5000000
+ 780333 words of memory out of 5000000
  39873 multiletter control sequences out of 15000+600000
  560787 words of font info for 118 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1147,7 +1147,7 @@ f/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy
 10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy5.pfb></usr/share/texmf/font
 s/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb><
 /usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on clusterPoster2.pdf (1 page, 559576 bytes).
+Output written on clusterPoster2.pdf (1 page, 559589 bytes).
 PDF statistics:
  180 PDF objects out of 1000 (max. 8388607)
  97 compressed objects within 1 object stream
