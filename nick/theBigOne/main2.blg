@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2022)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main2.aux
 A level-1 auxiliary file: pt2.aux
@@ -13,6 +13,10 @@ Database file #2: ./spaceFilling.bib
 Repeated entry---line 2 of file ./spaceFilling.bib
  : @book{gramacy_surrogates_2020
  :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 11 of file ./spaceFilling.bib
+ : @book{pourmohamad_bayesian_2021
+ :                                ,
 I'm skipping whatever remains of this entry
 Database file #3: ./delayDifferential.bib
 Repeated entry---line 2 of file ./delayDifferential.bib
@@ -43,53 +47,54 @@ Repeated entry---line 107 of file ./delayDifferential.bib
  : @book{wanner_solving_1996
  :                          ,
 I'm skipping whatever remains of this entry
-Too many commas in name 1 of "SEDAR, Assessment, {and} Review, SouthEast Data" for entry sedar_stock_2010
-while executing---line 1049 of file plain.bst
+Repeated entry---line 154 of file ./delayDifferential.bib
+ : @article{yeakel_generalized_2015
+ :                                 ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "sedar_stock_2010"
 Warning--empty publisher in devon_lin_latin_2015
 Warning--empty booktitle in mangel_theoretical_2006
 Warning--there's a number but no series in ramasubramanian_machine_2017
-Too many commas in name 1 of "SEDAR, Assessment, {and} Review, SouthEast Data" for entry sedar_stock_2010
-while executing---line 1090 of file plain.bst
 Warning--empty journal in walters_continuous_2020
-You've used 45 entries,
+You've used 51 entries,
             2118 wiz_defined-function locations,
-            771 strings with 11552 characters,
-and the built_in function-call counts, 13657 in all, are:
-= -- 1390
-> -- 534
+            811 strings with 12392 characters,
+and the built_in function-call counts, 15588 in all, are:
+= -- 1597
+> -- 599
 < -- 3
-+ -- 225
-- -- 168
-* -- 976
-:= -- 2318
-add.period$ -- 149
-call.type$ -- 45
-change.case$ -- 212
++ -- 253
+- -- 188
+* -- 1122
+:= -- 2644
+add.period$ -- 171
+call.type$ -- 51
+change.case$ -- 239
 chr.to.int$ -- 0
-cite$ -- 49
-duplicate$ -- 504
-empty$ -- 1125
-format.name$ -- 168
-if$ -- 2783
+cite$ -- 55
+duplicate$ -- 575
+empty$ -- 1282
+format.name$ -- 188
+if$ -- 3175
 int.to.chr$ -- 0
-int.to.str$ -- 45
-missing$ -- 50
-newline$ -- 239
-num.names$ -- 90
-pop$ -- 190
+int.to.str$ -- 51
+missing$ -- 58
+newline$ -- 273
+num.names$ -- 102
+pop$ -- 202
 preamble$ -- 1
-purify$ -- 174
+purify$ -- 196
 quote$ -- 0
-skip$ -- 319
+skip$ -- 361
 stack$ -- 0
-substring$ -- 973
-swap$ -- 47
+substring$ -- 1143
+swap$ -- 53
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 166
+type$ -- 188
 warning$ -- 4
-while$ -- 152
-width$ -- 47
-write$ -- 508
+while$ -- 176
+width$ -- 53
+write$ -- 582
 (There were 10 error messages)

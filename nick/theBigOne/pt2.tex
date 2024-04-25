@@ -4,12 +4,118 @@
 %
 {\color{red}
 \begin{itemize}
-\item Start with advancemnt text
-
-\item Beef it up a bit with anything new I cvan think o frelated to the rest of the work.
-
+%\item warm intro to Schaefer.
+%\item define Schaefer and RPs graphically
+\item No M
+%\item PT as a generalization of Schaefer
+%\item state RP generalization and relation to larger RP mapping goal.
+%\item Jabba \cite{winker_jabba_2018}
 \end{itemize}
 }
+
+%
+Historically the Schaefer model is a canonical model in fisheries. % is the Schaefer model. The
+%The basis of the Schaefer model is ripe with debate \cite{kingsland_refractory_1982}.
+%It is a much loved, and argued over, model \cite{kingsland_refractory_1982}.
+The basis of the Schaefer model is ripe with debate \cite{kingsland_refractory_1982},
+and the debate continues within modern fisheries modeling \cite{prager_comparison_2002, maunder_is_2003, prager_reply_2003}.
+While the Schaefer model is based on a nonlinear ODE, it still manages to retains 
+an appealing simplicity and instructive interpretability. % in its quadrtatic form. %particular form is helpful
+The nonlinearity of the model gives the model its conconceptual relavance to the 
+messy world of biology, all while retaining an approachable quadratic form that allows 
+much of the analysis of the model to be closed form.  
+
+%\begin{itemize}
+%\item nonlinear, yet closed form.
+%\item simple without being rediculous
+%\item \cite{prager_reply_2003} usefulness as a well understood and simple model that has the ability
+%to reasonably approximate dynamics in many data poor stocks
+%\end{itemize}
+%%
+%On the one hand, Maunder \cite{maunder_is_2003} argues that the Schaefer model is
+%insufficient in large part due to the restriction it places on $\frac{B^*}{\bar B(0)}$,
+%at $\frac{1}{2}$, and further argues that the three parameter Pella-Tomlinson
+%(PT) model \cite{pella_generalized_1969} should replace the Schaefer model to
+%avoid biased parameter estimates. On the other hand, while Prager
+%\cite{prager_reply_2003} appreciates the limitations of the Schaefer model, he
+%argues its usefulness as a well understood and simple model that has the ability
+%to reasonably approximate dynamics in many data poor stocks. %productivity shapes. 
+
+%
+The Schaefer model is formed by choosing $P$, from Eq. (\ref{ode}), to be logistic 
+growth \cite{mangel_theoretical_2006} parameterized by $\bm{\theta} = [r, K]$ 
+so that the family of production functions takes the following form,
+%
+\begin{align}
+P(B; [r, K]) = r B \left(1-\frac{B}{K}\right). \label{logistic}
+\end{align}
+$r$ is a parameter controlling the maximum rate of biomass production for a 
+population in the absence of competition for resources (i.e. the slope of 
+production function at the origin). $K$ is the so called "carrying capacity" of 
+the population. In this context the carrying capacity can be formally stated as 
+steady state biomass in the absence of fishing \mbox{(i.e. $\bar B(0)=K$).}
+
+%\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.6\textwidth}
+        \includegraphics[width=\textwidth]{./plots/srrSchaeffer.png}
+\end{minipage}
+\begin{minipage}[h!]{0.37\textwidth}
+\caption{\label{srrSchaefer}
+        \\The logistic production function in black plotted next to depictions of the key biological parameters and refe
+        The slope at the origin (and thus $r$) is shown in blue, catch resulting in MSY in red, biomass at MSY in green,
+        MSY is seen at the peak of the parabola, and is attained with a fishing rate of $\frac{r}{2}$ and biomass equili
+}
+\end{minipage}
+%\end{wrapfigure}
+\end{figure}
+
+%
+The logistic production function produces idealized parabolic recruitment with
+RPs taking very simple forms that can be easily understood from the
+graphical construction seen in Figure (\ref{srrSchaefer}). Positive
+productivity is observed when \mbox{$B\in(0, K)$.} Due to the parabolic shape of the
+logistic production function it is straightforward to see that yield is maximized
+by fishing the stock down to $B^*$, where the stock attains its peak productivity.
+By symmetry it is clear that this peak occurs at $B^*=\frac{K}{2}$. The fishing
+rate required to hold the stock at MSY is $F^*=\frac{r}{2}$, which is half of the
+stock's maximum reproductive rate. \mbox{MSY is then the product of $F^*$ and $B^*$
+so that $MSY=\frac{rK}{4}$.}
+
+%
+%{\color{red}
+While this idealized form is instructive, and convenient, these simplistic 
+dynamics are also potentially problematic. The symmetry of the logistic 
+functional form is very rigid in that it assumes dynamics in the lower 
+{\color{red}(mate limited)} regime of the dynamics ($B\in(0, \frac{K}{2})$) 
+have the same shape as the upper {\color{red}(density limited)} regime of 
+the recruitment dynamics ($B\in(\frac{K}{2}, K)$). 
+%What in nature ties these phenomena together so that this assumption should be true? 
+%}
+Maunder \cite{maunder_is_2003} argues that the Schaefer model is
+insufficient in large part due to the restriction it places on $\frac{B^*}{\bar B(0)}$,
+at $\frac{1}{2}$, and further argues that the three parameter Pella-Tomlinson
+(PT) model \cite{pella_generalized_1969} should replace the Schaefer model to 
+avoid biased parameter estimates.
+
+%%The Schaefer model is a much loved and argued over model
+%The basis of the Schaefer model is ripe with debate \cite{kingsland_refractory_1982},
+%and the debate continues within modern fisheries modeling \cite{prager_comparison_2002}.
+%On the one hand, Maunder \cite{maunder_is_2003} argues that the Schaefer model is
+%insufficient in large part due to the restriction it places on $\frac{B^*}{\bar B(0)}$,
+%at $\frac{1}{2}$, and further argues that the three parameter Pella-Tomlinson
+%(PT) model \cite{pella_generalized_1969} should replace the Schaefer model to 
+%avoid biased parameter estimates. On the other hand, while Prager 
+%\cite{prager_reply_2003} appreciates the limitations of the Schaefer model, he 
+%argues its usefulness as a well understood and simple model that has the ability 
+%to reasonably approximate dynamics in many data poor stocks. %productivity shapes. 
+
+\begin{itemize}
+\item PT as a generalization of Schaefer
+\item state RP generalization and relation to larger RP mapping goal.
+\item Jabba \cite{winker_jabba_2018}
+\end{itemize}
+
 
 %
 \section{Methods \label{meth}}

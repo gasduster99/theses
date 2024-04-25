@@ -113,6 +113,13 @@ Mark~E. Johnson, Leslie~M. Moore, and Donald Ylvisaker.
   1990.
 \newblock Publisher: Elsevier.
 
+\bibitem{kingsland_refractory_1982}
+Sharon Kingsland.
+\newblock The refractory model: the logistic curve and the history of
+  population ecology.
+\newblock {\em The Quarterly Review of Biology}, 57(1):29--52, 1982.
+\newblock Publisher: Stony Brook Foundation, Inc.
+
 \bibitem{lee_can_2012}
 Hui-Hua Lee, Mark~N. Maunder, Kevin~R. Piner, and Richard~D. Methot.
 \newblock Can steepness of the stock–recruitment relationship be estimated in
@@ -137,6 +144,12 @@ Marc Mangel, Alec~D. MacCall, Jon Brodziak, E.j. Dick, Robyn~E. Forrest,
 \newblock A perspective on steepness, reference points, and stock assessment.
 \newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
   70(6):930--940, April 2013.
+
+\bibitem{maunder_is_2003}
+Mark~N. Maunder.
+\newblock Is it time to discard the {Schaefer} model from the stock assessment
+  scientist’s toolbox?
+\newblock {\em Fisheries Research}, 61(1-3):145--149, 2003.
 
 \bibitem{mckay_comparison_2000}
 Michael~D. McKay, Richard~J. Beckman, and William~J. Conover.
@@ -163,6 +176,29 @@ Joseph Munyandorero.
   two-stage-structured models of exploited fish populations.
 \newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
   80(9):1425--1435, 2023.
+
+\bibitem{pella_generalized_1969}
+Jerome~J. Pella and Patrick~K. Tomlinson.
+\newblock A generalized stock production model.
+\newblock {\em Inter-American Tropical Tuna Commission Bulletin},
+  13(3):416--497, 1969.
+
+\bibitem{pourmohamad_bayesian_2021}
+Tony Pourmohamad and Herbert Lee.
+\newblock {\em Bayesian {Optimization} of {Computer} {Experiments}}.
+\newblock Springer, 2021.
+
+\bibitem{prager_comparison_2002}
+Michael~H. Prager.
+\newblock Comparison of logistic and generalized surplus-production models
+  applied to swordfish, {Xiphias} gladius, in the north {Atlantic} {Ocean}.
+\newblock {\em Fisheries Research}, 58(1):41--57, 2002.
+\newblock Publisher: Elsevier.
+
+\bibitem{prager_reply_2003}
+Michael~H Prager.
+\newblock Reply to the {Letter} to the {Editor} by {Maunder}.
+\newblock {\em Fisheries Research}, 61(1):151--154, March 2003.
 
 \bibitem{punt_model_1988}
 André~E. Punt.
@@ -234,12 +270,6 @@ Luca Scrucca.
   package: hybrid optimisation, parallelisation and islands evolution.
 \newblock {\em The R Journal}, 9(1):187--206, 2017.
 
-\bibitem{sedar_stock_2010}
-{and} Review SouthEast~Data SEDAR, Assessment.
-\newblock Stock assessment of spiny lobster, {Panulirus} argus. {In} the
-  {Southeast} {United} {States}. {SEDAR} 8 {Update} {Assessment} {Workshop}
-  {Report}., 2010.
-
 \bibitem{soetaert_solving_2010}
 Karline Soetaert, Thomas Petzoldt, and R.~Woodrow Setzer.
 \newblock Solving {Differential} {Equations} in {R}: {Package} {deSolve}.
@@ -270,6 +300,12 @@ Carl~J. Walters.
 Gerhard Wanner and Ernst Hairer.
 \newblock {\em Solving ordinary differential equations {II}}, volume 375.
 \newblock Springer Berlin Heidelberg, 1996.
+
+\bibitem{winker_jabba_2018}
+Henning Winker, Felipe Carvalho, and Maia Kapur.
+\newblock {JABBA}: just another {Bayesian} biomass assessment.
+\newblock {\em Fisheries Research}, 204:275--288, 2018.
+\newblock Publisher: Elsevier.
 
 \bibitem{yeakel_generalized_2015}
 Justin~D. Yeakel and Marc Mangel.

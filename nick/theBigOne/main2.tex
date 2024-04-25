@@ -56,7 +56,7 @@
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}
 
 %line spacing
-\renewcommand{\baselinestretch}{1.5}%{2.5}%
+%\renewcommand{\baselinestretch}{1.5}%{2.5}%
 
 
 % Declarations for Front Matter
@@ -114,20 +114,40 @@ parameter space into two dimensions.
 %
 \begin{dedication}
 \null\vfil
-{\large \color{red}
+{\large 
 \begin{center}
-To myself,\\\vspace{12pt}
-Perry H. Disdainful,\\\vspace{12pt}
-the only person worthy of my company.
+To my family, friends, and mentors.
 \end{center}}
 \vfil\null
 \end{dedication}
 
 %
 \begin{acknowledgements}
-\color{red}
-I want to ``thank'' my committee, without whose ridiculous demands, I
-would have graduated so, so, very much faster.
+\begin{itemize}
+\item Family
+\begin{itemize}
+\item Parents, family
+\item My partner through this Anna.
+\end{itemize}
+\item Marc
+\begin{itemize}
+	\item undergrad
+	\item M.S., CSTAR, Ph.D. 
+\end{itemize}
+\item Groundfish Team
+\begin{itemize}
+\item EJ
+\item John
+\item others
+\end{itemize}
+\item Statistics Department
+\begin{itemize}
+\item I am grafetful for my wonderful advisor Professor Herbie Lee.
+\item Committee 
+\item Statistics Department Alex, Jack, Annalisa, Pedro, Nichole
+\end{itemize}
+\item Sea Grant, ?CIMEC?
+\end{itemize}
 \end{acknowledgements}
 
 \end{frontmatter}
@@ -372,7 +392,7 @@ require analytical inversion of RPs. %ting the relationship between which
 % for analyzing inference under the two-parameter model.
 %The parametric forms of RPs under the three-parameter models are then inverted to develop a %PT model are then inverted to develop a
 %simulation setting for analyzing inference under the two-parameter models. % Schaefer model as well as the BH. 
-Finally a Gaussian Process (GP) metamodel \cite{gramacy_surrogates_2020}
+Finally a Gaussian Process (GP) metamodel \cite{gramacy_surrogates_2020, pourmohamad_bayesian_2021}
 is constructed for exploration and analysis of RP biases in each of the 
 SPM and DDM settings.
 
@@ -408,11 +428,11 @@ is considered together with model misspecification. %alongside the effect of mod
 %}
 
 %
-\chapter{Pella-Tomlinson Model}
+\chapter{The Schaefer and Pella-Tomlinson Models}
 \include{pt2.tex}
 
 %
-\chapter{Schnute Model \label{schnuteChapter}}
+\chapter{The Beverton-Holt and Schnute Models \label{schnuteChapter}}
 %\include{schnute.tex}
 \include{schnute2.tex}
 
