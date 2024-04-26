@@ -1,17 +1,17 @@
 %
-\section{\color{red}Introduction\label{ptInt}}
+\section{Introduction\label{ptInt}}
 
-%
-{\color{red}
-\begin{itemize}
-%\item warm intro to Schaefer.
-%\item define Schaefer and RPs graphically
-\item No M
-%\item PT as a generalization of Schaefer
-%\item state RP generalization and relation to larger RP mapping goal.
-%\item Jabba \cite{winker_jabba_2018}
-\end{itemize}
-}
+%%
+%{\color{red}
+%\begin{itemize}
+%%\item warm intro to Schaefer.
+%%\item define Schaefer and RPs graphically
+%\item No M
+%%\item PT as a generalization of Schaefer
+%%\item state RP generalization and relation to larger RP mapping goal.
+%%\item Jabba \cite{winker_jabba_2018}
+%\end{itemize}
+%}
 
 %
 Historically the Schaefer model is a canonical model in fisheries. % is the Schaefer model. The
@@ -22,7 +22,7 @@ and the debate continues within modern fisheries modeling \cite{prager_compariso
 While the Schaefer model is based on a nonlinear ODE, it still manages to retains 
 an appealing simplicity and instructive interpretability. % in its quadrtatic form. %particular form is helpful
 The nonlinearity of the model gives the model its conconceptual relavance to the 
-messy world of biology, all while retaining an approachable quadratic form that allows 
+biological systems, while retaining an approachable quadratic form that allows 
 much of the analysis of the model to be closed form.  
 
 %\begin{itemize}
@@ -51,9 +51,14 @@ P(B; [r, K]) = r B \left(1-\frac{B}{K}\right). \label{logistic}
 \end{align}
 $r$ is a parameter controlling the maximum rate of biomass production for a 
 population in the absence of competition for resources (i.e. the slope of 
-production function at the origin). $K$ is the so called "carrying capacity" of 
-the population. In this context the carrying capacity can be formally stated as 
-steady state biomass in the absence of fishing \mbox{(i.e. $\bar B(0)=K$).}
+production function at the origin). $K$ is the so called ``carrying capacity''
+of the population. In this context the carrying capacity can be formally 
+stated as steady state biomass in the absence of fishing \mbox{(i.e. $\bar B(0)=K$).} 
+The model is typically stated without natural mortality, $M$, so that $Z(t)=F(T)$. 
+In Chapter (\ref{schnuteChapter}) we will see a case where this is not a 
+neccessary constraint, but in the typical case as shown here, this simplification 
+gives the parabolic production function a dual interpretation as an equilibrium 
+yeild curve.  
 
 %\begin{wrapfigure}{r}{0.5\textwidth}
 \begin{figure}[h!]
@@ -85,11 +90,12 @@ so that $MSY=\frac{rK}{4}$.}
 %
 %{\color{red}
 While this idealized form is instructive, and convenient, these simplistic 
-dynamics are also potentially problematic. The symmetry of the logistic 
-functional form is very rigid in that it assumes dynamics in the lower 
-{\color{red}(mate limited)} regime of the dynamics ($B\in(0, \frac{K}{2})$) 
-have the same shape as the upper {\color{red}(density limited)} regime of 
-the recruitment dynamics ($B\in(\frac{K}{2}, K)$). 
+dynamics are also potentially problematic. The symmetry of the logistic, 
+functional form that provides its relatively straight-forward RP analysis, also 
+assumes very rigid dynamics. It assumes dynamics in the lower 
+(resource limited) regime of the dynamics ($B\in(0, \frac{K}{2})$) 
+have the same shape as the upper (density limited) regime of production 
+dynamics ($B\in(\frac{K}{2}, K)$). 
 %What in nature ties these phenomena together so that this assumption should be true? 
 %}
 Maunder \cite{maunder_is_2003} argues that the Schaefer model is
@@ -110,12 +116,41 @@ avoid biased parameter estimates.
 %argues its usefulness as a well understood and simple model that has the ability 
 %to reasonably approximate dynamics in many data poor stocks. %productivity shapes. 
 
-\begin{itemize}
-\item PT as a generalization of Schaefer
-\item state RP generalization and relation to larger RP mapping goal.
-\item Jabba \cite{winker_jabba_2018}
-\end{itemize}
+%
+The PT model is a three parameter generalization of the Schaefer model that uses 
+its extra parameter to explicitely control the location of $\frac{B^*}{\bar B(0)}$. 
+In doing so, the PT model can model the entire space of RPs and does so in a way that 
+retains much of the analytical appeal of the Schaefer model. While there are some oddities
+of the functional form \cite{punt_extending_2019, fletcher_restructuring_1978}, the model 
+has been very useful in generalizing the analysis of RPs \cite{winker_jabba_2018}.  
 
+%
+In this chapter the PT model is used to generate index data simulated broadly 
+in RP-space but fit with an intentionally misspecified Schaefer model. This 
+%parameterizes 
+%simulated 
+parameterizes a broad set of misspecified situations for the Schaefer model 
+where the simulated data have well understood dynamics in the fisheries 
+community. A GP metamodel of the simulation is developed to demonstrate how 
+misspecification of the Schaefer model forms biases in RP estimation. First, 
+analytical expressions for RPs are derived under the PT model for use in 
+deriving a fully analytical simulation design. Next, a GP metamodel is 
+developed and a catch is parameterized in terms of contrast to demonstrate 
+how the nature of bias is controlled by the information content in the data.
+
+%{\color{red}
+%A statement of my uses in this chapter and a transition into methods.  
+%In this thesis I consider the behavior of RP inference when index data are simulated
+%81from three-parameter PT and Schnute models of productivity, but the simulated data
+%82are fit using intentionally misspecified two-parameter Logistic and BH models.
+%}
+%
+%\begin{itemize}
+%\item PT as a generalization of Schaefer
+%\item state RP generalization and relation to larger RP mapping goal.
+%\item Jabba \cite{winker_jabba_2018}
+%\item fletcher \cite{fletcher_restructuring_1978}, prager \cite{prager_comparison_2002}, pt orignal \cite{pella_generalized_1969}
+%\end{itemize}
 
 %
 \section{Methods \label{meth}}

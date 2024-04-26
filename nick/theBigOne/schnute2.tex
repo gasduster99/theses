@@ -1,6 +1,33 @@
 %
 \section{\color{red}Introduction\label{ptInt}}
 
+%
+Similarly to the Schaefer model, the Beverton-Holt (BH) model 
+\cite{beverton_dynamics_1957} is founded on the notion of density dependence. 
+Like the Schaefer model, the BH model begins the derivation of their 
+recruitment relatiohship with a quadratic nonlinear differential equation. 
+However in the BH model they essentially model $\frac{dP}{dt}$ with a 
+quadriatic logistic model, and solve this equation in discrete time to derive 
+their recruitment relationship. Here their recruitment relationship is 
+reparameterized as, % consider the % By solving this differential equation they derive 
+%
+\begin{equation}
+P(B) = \frac{\alpha B}{1+\beta B}.
+\end{equation}
+
+%
+The paratemer $\alpha$ here has the same interpretation as the $r$ parameter, 
+from the Scheafer model, representing the slope at the origin of the 
+production function. The $\beta$ parameter here is also related to $K$, 
+from the Scheafer model, however the BH model is not parameterized 
+directly in terms of carrying capacity but rather $K\propto\frac{1}{\beta}$. 
+The primary role of $\beta$ in this parameterization is to scale the 
+population, and $\beta$ is largly responsible for controling carrying capacity 
+in practice. 
+
+{\color{red} talk about including $M$}
+
+
 {\color{red}
 \begin{itemize}
 \item history of BH
