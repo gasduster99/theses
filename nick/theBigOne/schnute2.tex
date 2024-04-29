@@ -2,21 +2,45 @@
 \section{\color{red}Introduction\label{ptInt}}
 
 %
+{\color{red}Some sort of soft opener}
+The BH model has a long \cite{holden_beverton_1995} and varied history 
+\begin{itemize}
+\item gotelli, 2001 ecology book (density dependence)
+\item appaears in stock assessments \cite{ss3}, \cite{black} \cite{other assessments of the last cycle?}
+\item control theroy \cite{}
+\item motivate pervasive BH \cite{holden}
+%Holden, Mike. “Beverton and Holt Revisited.” Fisheries Research 24, no. 1 (July 1, 1995): 3–8. https://doi.org/10.1016
+\item maunder BH density dependence paper
+\end{itemize}
+
+%model approaches the recruitment relatiohship with a quadratic nonlinear differential equation. 
+%However in the BH model they essentially model $\frac{dP}{dt}$ with a 
+%quadriatic logistic model
+%
 Similarly to the Schaefer model, the Beverton-Holt (BH) model 
-\cite{beverton_dynamics_1957} is founded on the notion of density dependence. 
-Like the Schaefer model, the BH model begins the derivation of their 
-recruitment relatiohship with a quadratic nonlinear differential equation. 
-However in the BH model they essentially model $\frac{dP}{dt}$ with a 
-quadriatic logistic model, and solve this equation in discrete time to derive 
-their recruitment relationship. Here their recruitment relationship is 
+\cite{beverton_dynamics_1957} is founded on a notion of density dependence. 
+%Like the Schaefer model, the BH model begins the derivation of their 
+Unlike the Schaefer model, the BH approach to modeling productivity factors the 
+density dependance related to recruitment separately from terms relating to 
+natural mortality. This behooves an additional and more explicit model of natural \cite{beverton_holt_1959} 
+mortality while recruitment is modeled independently. %and an independent handling of recruitment. 
+Their derivation of the recruitment relationship again assumes that density 
+dependence appears in their equations as quadriatic logistic differential equation %modeling 
+%for assumes a quadriatic logistic differential equation 
+however they only model the change in numbers of the population this way, rather 
+than as a direct model of net productivty as seen in the Schaefer model. They 
+then solve this equation in discrete time and reparameterize to argue for the 
+generality of the resulting recruitment relationship. 
+
+%
+For purposes of this study their recruitment relationship is 
 reparameterized as, % consider the % By solving this differential equation they derive 
 %
 \begin{equation}
 P(B) = \frac{\alpha B}{1+\beta B}.
 \end{equation}
-
 %
-The paratemer $\alpha$ here has the same interpretation as the $r$ parameter, 
+The parameter $\alpha$ here has the same interpretation as the $r$ parameter, 
 from the Scheafer model, representing the slope at the origin of the 
 production function. The $\beta$ parameter here is also related to $K$, 
 from the Scheafer model, however the BH model is not parameterized 
@@ -30,10 +54,17 @@ in practice.
 
 {\color{red}
 \begin{itemize}
-\item history of BH
-\item motivate pervasive BH 
+%\item history of BH
+%\item motivate pervasive BH \cite{holden}
+%Holden, Mike. “Beverton and Holt Revisited.” Fisheries Research 24, no. 1 (July 1, 1995): 3–8. https://doi.org/10.1016/0165-7836(95)00377-M.
+\item maunder BH density dependence paper (2022)
+\item Hamel, maunder Natural mortality (2023)
+\item Pauly: M and individual growth 
+%\item gotelli, 2001 ecology book (density dependence)
+
 \item what is Schnute all about
 \item take a paragraph from advancment
+\item Under the Deriso model inverting the relationship between RPs and model parameters is not fully analytically possible \cite{schnute_analytical_1998}
 \end{itemize}
 }
 

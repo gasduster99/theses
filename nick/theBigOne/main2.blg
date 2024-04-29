@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2022)
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main2.aux
 A level-1 auxiliary file: pt2.aux
@@ -51,50 +51,51 @@ Repeated entry---line 154 of file ./delayDifferential.bib
  : @article{yeakel_generalized_2015
  :                                 ,
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "holden"
 Warning--I didn't find a database entry for "sedar_stock_2010"
 Warning--empty publisher in devon_lin_latin_2015
 Warning--empty booktitle in mangel_theoretical_2006
 Warning--there's a number but no series in ramasubramanian_machine_2017
 Warning--empty journal in walters_continuous_2020
-You've used 51 entries,
+You've used 52 entries,
             2118 wiz_defined-function locations,
-            811 strings with 12392 characters,
-and the built_in function-call counts, 15588 in all, are:
-= -- 1597
-> -- 599
+            817 strings with 12465 characters,
+and the built_in function-call counts, 15851 in all, are:
+= -- 1625
+> -- 606
 < -- 3
-+ -- 253
-- -- 188
-* -- 1122
-:= -- 2644
-add.period$ -- 171
-call.type$ -- 51
-change.case$ -- 239
++ -- 256
+- -- 190
+* -- 1142
+:= -- 2689
+add.period$ -- 174
+call.type$ -- 52
+change.case$ -- 243
 chr.to.int$ -- 0
-cite$ -- 55
-duplicate$ -- 575
-empty$ -- 1282
-format.name$ -- 188
-if$ -- 3175
+cite$ -- 56
+duplicate$ -- 586
+empty$ -- 1305
+format.name$ -- 190
+if$ -- 3228
 int.to.chr$ -- 0
-int.to.str$ -- 51
-missing$ -- 58
-newline$ -- 273
-num.names$ -- 102
-pop$ -- 202
+int.to.str$ -- 52
+missing$ -- 59
+newline$ -- 278
+num.names$ -- 104
+pop$ -- 204
 preamble$ -- 1
-purify$ -- 196
+purify$ -- 199
 quote$ -- 0
-skip$ -- 361
+skip$ -- 368
 stack$ -- 0
-substring$ -- 1143
-swap$ -- 53
+substring$ -- 1161
+swap$ -- 54
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 188
+type$ -- 192
 warning$ -- 4
-while$ -- 176
-width$ -- 53
-write$ -- 582
+while$ -- 180
+width$ -- 54
+write$ -- 593
 (There were 10 error messages)
