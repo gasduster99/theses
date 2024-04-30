@@ -2,35 +2,47 @@
 \section{\color{red}Introduction\label{ptInt}}
 
 %
-{\color{red}Some sort of soft opener}
-The BH model has a long \cite{holden_beverton_1995} and varied history 
-\begin{itemize}
-\item gotelli, 2001 ecology book (density dependence)
-\item appaears in stock assessments \cite{ss3}, \cite{black} \cite{other assessments of the last cycle?}
-\item control theroy \cite{}
-\item motivate pervasive BH \cite{holden}
-%Holden, Mike. “Beverton and Holt Revisited.” Fisheries Research 24, no. 1 (July 1, 1995): 3–8. https://doi.org/10.1016
-\item maunder BH density dependence paper
-\end{itemize}
+The perspective of Beverton-Holt \cite{beverton_dynamics_1957} has been 
+foundational to the structure of modern fisheries models \cite{holden_beverton_1995}. 
+Evoloving from the work of Von Bertalanffy \cite{von_bertalanffy_quantitative_1938}, 
+alongside the Ricker \cite{ricker_stock_1954} and Schaefer \cite{schaefer_study_1957}   
+models, the perspective of Beverton-Holt shaped the following decades of fisheries 
+research. To this day, stock assessments view the BH model of recruitment as a 
+default \cite{methot_stock_2013}. %, black}. 
+
+% and ricker \cite{ricker} models 
+% and varied history 
+%\begin{itemize}
+%\item gotelli, 2001 ecology book (density dependence)
+%\item appaears in stock assessments \cite{ss3}, \cite{black} \cite{other assessments of the last cycle?}
+%\item control theroy \cite{}
+%\item motivate pervasive BH \cite{holden}
+%%Holden, Mike. “Beverton and Holt Revisited.” Fisheries Research 24, no. 1 (July 1, 1995): 3–8. https://doi.org/10.1016
+%\item maunder BH density dependence paper
+%\end{itemize}
 
 %model approaches the recruitment relatiohship with a quadratic nonlinear differential equation. 
 %However in the BH model they essentially model $\frac{dP}{dt}$ with a 
 %quadriatic logistic model
 %
+%%and an independent handling of recruitment. 
+%
+%%modeling %for assumes a quadriatic logistic differential equation 
+%
 Similarly to the Schaefer model, the Beverton-Holt (BH) model 
-\cite{beverton_dynamics_1957} is founded on a notion of density dependence. 
+\cite{beverton_dynamics_1957} is founded on a notion of density dependence \cite{gotelli_primer_1995}. 
 %Like the Schaefer model, the BH model begins the derivation of their 
 Unlike the Schaefer model, the BH approach to modeling productivity factors the 
 density dependance related to recruitment separately from terms relating to 
-natural mortality. This behooves an additional and more explicit model of natural \cite{beverton_holt_1959} 
-mortality while recruitment is modeled independently. %and an independent handling of recruitment. 
-Their derivation of the recruitment relationship again assumes that density 
-dependence appears in their equations as quadriatic logistic differential equation %modeling 
-%for assumes a quadriatic logistic differential equation 
-however they only model the change in numbers of the population this way, rather 
-than as a direct model of net productivty as seen in the Schaefer model. They 
-then solve this equation in discrete time and reparameterize to argue for the 
-generality of the resulting recruitment relationship. 
+natural mortality. This behooves an additional and more explicit model of 
+natural mortality \cite{beverton_review_1959} while recruitment is modeled 
+separatly. Similarly to the Schaefer model, there derivation of the recruitment 
+relationship assumes that density dependence appears as a quadriatic logistic 
+differential equation. However the BH model formulates this as a model of the 
+change in recruitment over time, rather than as a direct model of net productivty 
+as seen in the Schaefer model. They then solve this equation in discrete time 
+and reparameterize to argue for the generality of the resulting recruitment 
+relationship that we use today. 
 
 %
 For purposes of this study their recruitment relationship is 
@@ -49,24 +61,79 @@ The primary role of $\beta$ in this parameterization is to scale the
 population, and $\beta$ is largly responsible for controling carrying capacity 
 in practice. 
 
-{\color{red} talk about including $M$}
+{\color{red} talk about including $M$, plot BH and M and then yeild with RPs}
 
+{\color{blue}
 
-{\color{red}
-\begin{itemize}
-%\item history of BH
-%\item motivate pervasive BH \cite{holden}
-%Holden, Mike. “Beverton and Holt Revisited.” Fisheries Research 24, no. 1 (July 1, 1995): 3–8. https://doi.org/10.1016/0165-7836(95)00377-M.
-\item maunder BH density dependence paper (2022)
-\item Hamel, maunder Natural mortality (2023)
-\item Pauly: M and individual growth 
-%\item gotelli, 2001 ecology book (density dependence)
+%
+The Deriso production function presents a convenient three parameter form
+that is capable of representing many of the most common two parameter production
+functions as special cases \cite{deriso_harvesting_1980}. The BH and
+Logistic production functions arise when $\gamma$ is fixed to -1 or 1
+respectively, and the Ricker model is a \mbox{limiting case as
+$\gamma\rightarrow0$ \cite{schnute_general_1985}.}
 
-\item what is Schnute all about
-\item take a paragraph from advancment
-\item Under the Deriso model inverting the relationship between RPs and model parameters is not fully analytically possible \cite{schnute_analytical_1998}
-\end{itemize}
+%
+Using the Deriso model as a data generating model across a wide range
+of RP-space, similarly as described in Section (\ref{sim}), %, and fitting those data under a BH model, 
+presents an ideal setting for extending the above study of RP biases across a
+broad range of productivity assumptions. Under the Deriso model inverting the
+relationship between RPs and model parameters is not fully analytically possible
+\cite{schnute_analytical_1998}. Numerical inversion of the nonlinear system
+seen in Eq (\ref{system}) is required for determining parameter values for data
+generation. Notice for a given $\gamma$ value, $\alpha$ and $\beta$ can be
+solved analytically.
+
+%While the Deriso model generalizes many common models, inference under 
+Inference under the BH model is of particular interest due to its overwhelming
+popularity in stock assessment. Similar to the limited RP-space of the
+Schaefer model the two parameter BH model also has a limited RP-space as shown
+in Figure (\ref{bhRP}).  While the BH constrained RP space is more complicated
+than the Schaefer model, analogy to the results obtained under the
+PT-Schaefer simulation setting, and the flexible GP metamodel, should expedite
+the analysis of BH inference.
+
 }
+
+{\color{gray}
+%
+The PT model is a three parameter generalization of the Schaefer model that uses
+its extra parameter to explicitely control the location of $\frac{B^*}{\bar B(0)}$.
+In doing so, the PT model can model the entire space of RPs and does so in a way that
+retains much of the analytical appeal of the Schaefer model. While there are some oddities
+of the functional form \cite{punt_extending_2019, fletcher_restructuring_1978}, the model
+has been very useful in generalizing the analysis of RPs \cite{winker_jabba_2018}.
+
+%
+In this chapter the PT model is used to generate index data simulated broadly
+in RP-space but fit with an intentionally misspecified Schaefer model. This
+%parameterizes 
+%simulated 
+parameterizes a broad set of misspecified situations for the Schaefer model
+where the simulated data have well understood dynamics in the fisheries
+community. A GP metamodel of the simulation is developed to demonstrate how
+misspecification of the Schaefer model forms biases in RP estimation. First,
+analytical expressions for RPs are derived under the PT model for use in
+deriving a fully analytical simulation design. Next, a GP metamodel is
+developed and a catch is parameterized in terms of contrast to demonstrate
+how the nature of bias is controlled by the information content in the data.
+}
+
+%{\color{red}
+%\begin{itemize}
+%%\item history of BH
+%%\item motivate pervasive BH \cite{holden}
+%%Holden, Mike. “Beverton and Holt Revisited.” Fisheries Research 24, no. 1 (July 1, 1995): 3–8. https://doi.org/10.1016/0165-7836(95)00377-M.
+%%\item maunder BH density dependence paper (2022)
+%%\item Hamel, maunder Natural mortality (2023)
+%%\item Pauly: M and individual growth 
+%\item gotelli, 2001 ecology book (density dependence)
+%%
+%\item what is Schnute all about
+%\item take a paragraph from advancment
+%\item Under the Deriso model inverting the relationship between RPs and model parameters is not fully analytically possible \cite{schnute_analytical_1998}
+%\end{itemize}
+%}
 
 %
 \section{Methods \label{meth}}

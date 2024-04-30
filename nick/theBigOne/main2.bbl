@@ -12,6 +12,13 @@ Raymond~JH Beverton and Sidney~J. Holt.
 \newblock {\em On the dynamics of exploited fish populations}, volume~11.
 \newblock Springer Science \& Business Media, 1957.
 
+\bibitem{beverton_review_1959}
+Raymond~JH Beverton and Sidney~J. Holt.
+\newblock {\em A review of the lifespans and mortality rates of fish in nature,
+  and their relation to growth and other physiological characteristics.}
+\newblock Novartis {Foundation} {Symposia}. John Wiley \& Sons, Ltd,
+  Chichester, UK, January 1959.
+
 \bibitem{brent_chapter_1973}
 Richard~P. Brent.
 \newblock Chapter 4: {An} {Algorithm} with {Guaranteed} {Convergence} for
@@ -75,6 +82,11 @@ William~W. Fox~Jr.
   1970.
 \newblock \_eprint:
   https://onlinelibrary.wiley.com/doi/pdf/10.1577/1548-8659\%281970\%2999\%3C80\%3AAESMFO\%3E2.0.CO\%3B2.
+
+\bibitem{gotelli_primer_1995}
+Nicholas~J. Gotelli.
+\newblock {\em A primer of ecology.}
+\newblock 1995.
 
 \bibitem{gramacy_surrogates_2020}
 Robert~B. Gramacy.
@@ -243,6 +255,12 @@ William~Edwin Ricker.
 \newblock Stock and recruitment.
 \newblock {\em Journal of the Fisheries Board of Canada}, 11(5):559--623, 1954.
 \newblock Publisher: NRC Research Press Ottawa, Canada.
+
+\bibitem{schaefer_study_1957}
+Milner~B. Schaefer.
+\newblock A study of the dynamics of the fishery for yellowfin tuna in the
+  eastern tropical {Pacific} {Ocean}.
+\newblock 1957.
 
 \bibitem{schnute_general_1985}
 Jon Schnute.
