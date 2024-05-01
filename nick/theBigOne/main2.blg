@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2022)
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main2.aux
 A level-1 auxiliary file: pt2.aux
@@ -51,6 +51,10 @@ Repeated entry---line 154 of file ./delayDifferential.bib
  : @article{yeakel_generalized_2015
  :                                 ,
 I'm skipping whatever remains of this entry
+Repeated entry---line 320 of file ./delayDifferential.bib
+ : @article{brooks_analytical_2010
+ :                                ,
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "sedar_stock_2010"
 Warning--empty publisher in devon_lin_latin_2015
 Warning--empty publisher in gotelli_primer_1995
@@ -58,45 +62,45 @@ Warning--empty booktitle in mangel_theoretical_2006
 Warning--there's a number but no series in ramasubramanian_machine_2017
 Warning--empty journal in schaefer_study_1957
 Warning--empty journal in walters_continuous_2020
-You've used 55 entries,
+You've used 57 entries,
             2118 wiz_defined-function locations,
-            828 strings with 12882 characters,
-and the built_in function-call counts, 16545 in all, are:
-= -- 1689
-> -- 633
+            837 strings with 13209 characters,
+and the built_in function-call counts, 17295 in all, are:
+= -- 1765
+> -- 669
 < -- 3
-+ -- 270
-- -- 198
-* -- 1176
-:= -- 2812
-add.period$ -- 184
-call.type$ -- 55
-change.case$ -- 254
++ -- 284
+- -- 210
+* -- 1244
+:= -- 2936
+add.period$ -- 190
+call.type$ -- 57
+change.case$ -- 266
 chr.to.int$ -- 0
-cite$ -- 61
-duplicate$ -- 620
-empty$ -- 1366
-format.name$ -- 198
-if$ -- 3371
+cite$ -- 63
+duplicate$ -- 642
+empty$ -- 1422
+format.name$ -- 210
+if$ -- 3521
 int.to.chr$ -- 0
-int.to.str$ -- 55
-missing$ -- 64
-newline$ -- 293
-num.names$ -- 110
-pop$ -- 225
+int.to.str$ -- 57
+missing$ -- 66
+newline$ -- 303
+num.names$ -- 114
+pop$ -- 233
 preamble$ -- 1
-purify$ -- 209
+purify$ -- 219
 quote$ -- 0
-skip$ -- 388
+skip$ -- 402
 stack$ -- 0
-substring$ -- 1179
-swap$ -- 56
+substring$ -- 1245
+swap$ -- 58
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 200
+type$ -- 208
 warning$ -- 6
-while$ -- 186
-width$ -- 57
-write$ -- 623
-(There were 10 error messages)
+while$ -- 194
+width$ -- 59
+write$ -- 645
+(There were 11 error messages)

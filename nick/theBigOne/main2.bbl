@@ -26,6 +26,12 @@ Richard~P. Brent.
 \newblock In {\em Algorithms for minimization without derivatives}. Courier
   Corporation, 1973.
 
+\bibitem{brooks_analytical_2010}
+Elizabeth~N. Brooks, Joseph~E. Powers, and Enric Cortés.
+\newblock Analytical reference points for age-structured models: application to
+  data-poor fisheries.
+\newblock {\em ICES Journal of Marine Science}, 67(1):165--175, January 2010.
+
 \bibitem{conn_when_2010}
 Paul~B. Conn, Erik~H. Williams, and Kyle~W. Shertzer.
 \newblock When can we reliably estimate the productivity of fish stocks?
@@ -193,6 +199,12 @@ Joseph Munyandorero.
   two-stage-structured models of exploited fish populations.
 \newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
   80(9):1425--1435, 2023.
+
+\bibitem{myers_maximum_1999}
+Ransom~A Myers, Keith~G Bowen, and Nicholas~J Barrowman.
+\newblock Maximum reproductive rate of fish at low population sizes.
+\newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
+  56(12):2404--2419, December 1999.
 
 \bibitem{pella_generalized_1969}
 Jerome~J. Pella and Patrick~K. Tomlinson.

@@ -4,11 +4,13 @@
 %
 The perspective of Beverton-Holt \cite{beverton_dynamics_1957} has been 
 foundational to the structure of modern fisheries models \cite{holden_beverton_1995}. 
-Evoloving from the work of Von Bertalanffy \cite{von_bertalanffy_quantitative_1938}, 
+Evolving from the work of Von Bertalanffy \cite{von_bertalanffy_quantitative_1938}, 
 alongside the Ricker \cite{ricker_stock_1954} and Schaefer \cite{schaefer_study_1957}   
 models, the perspective of Beverton-Holt shaped the following decades of fisheries 
 research. To this day, stock assessments view the BH model of recruitment as a 
 default \cite{methot_stock_2013}. %, black}. 
+
+{\color{red} add black rockfish assessment assessment}
 
 % and ricker \cite{ricker} models 
 % and varied history 
@@ -61,7 +63,42 @@ The primary role of $\beta$ in this parameterization is to scale the
 population, and $\beta$ is largly responsible for controling carrying capacity 
 in practice. 
 
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{../gpBias/pBHandM.png}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+	\includegraphics[width=\textwidth]{../gpBias/yeildBH.png}
+\end{minipage}
+\caption{\label{srrBH}
+       % \\The logistic production function in black plotted next to depictions of the key biological parameters and ref
+       % The slope at the origin (and thus $r$) is shown in blue, catch resulting in MSY in red, biomass at MSY in green
+       % MSY is seen at the peak of the parabola, and is attained with a fishing rate of $\frac{r}{2}$ and biomass equil
+}
+%\end{wrapfigure}
+\end{figure}
+
+
 {\color{red} talk about including $M$, plot BH and M and then yeild with RPs}
+
+{\color{red} Something about the limitations of RPs \cite{mangel_perspective_2013, brooks_analytical_2010} }
+
+%
+Deriso \cite{deriso_harvesting_1980} and Schnute \cite{schnute_general_1985} 
+developed slightly different (conceptually equilavent) three parameter 
+generalizations of the BH model. This model generalizes the BH model by 
+controlling the nature of density dependence, by allowing production to 
+increase or decrease beyond that of the BH model for large spawning biomass. 
+The later form in \cite{schnute_general_1985} is prefered here due its 
+interpretability and improved regularity of closed form RPs it produces.
+
+%
+The Schnute model not only generalizes the BH model, but in doing so it 
+also passes through the Ricker and Schaeffer models. As the Schnute model 
+transitions between these models it takes intermediate forms which can model 
+all of the interviening RPs, thus representing all of the most biologically 
+relavant hypotheses.  
+
 
 {\color{blue}
 
@@ -476,6 +513,10 @@ minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
 [\hat\mu, \hat\sigma, \hat\nu]=\underset{{[\mu, \sigma, \nu]}}{\arg\min}\int_\Gamma \big(T(\gamma; \mu, \sigma, \nu) - \zeta(\gamma)\big)^2 d\gamma
 \end{align}
 
+{\color{red}
+\cite{punt_extending_2019} \cite{myers_maximum_1999} define $(\gamma_{min}, \zeta_{min})$
+}
+
 %
 \clearpage
 %
@@ -706,6 +747,19 @@ BH model is misspecified for those data.
 %
 \subsection{Metamodeled Trends}
 
+{\color{red} \cite{punt_extending_2019} \cite{myers_maximum_1999} for the bottom left corner
+
+The Deriso–Schnute model (Hilborn and Walters 1992),
+an alternative three-parameter model, has the Ricker and the
+Beverton–Holt as special cases. However, it suffers from the
+same problems that we described above: survival is not constrained to be finite 
+except when the model is a Ricker model, or it has the derivative of survival 
+as S → 0 constrained to be zero.
+
+Punt \& Cope
+The cells in red indicate combinations of FMSY/M and BMSY/B0 for which 
+recruitment is negative for 0<B<B0
+}
 
 %
 Unlike the Schaefer model, the BH set is not a constant in
