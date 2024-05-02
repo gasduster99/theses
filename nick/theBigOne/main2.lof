@@ -8,7 +8,7 @@
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Joint bias direction for ($F^*$, $\frac {B^*}{B_0}$) estimates under the misspecified Schaefer Model. The intensity of color represents the excess bias relative to the shortest possible mapping. Results in the low contrast setting are shown $left$, and the high contrast setting is shown $right$. }}{31}{figure.2.5}%
 \contentsline {figure}{\numberline {2.6}{\ignorespaces Bias in $F^*$ under the Schaefer model when PT data are generated with increasing contrast so that $F^*$ and $\frac {B^*}{B_0}$ are fixed at 0.699 and 0.201 respectively. }}{33}{figure.2.6}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces }}{40}{figure.3.1}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces \color {red} Thou shlt write me a caption }}{40}{figure.3.1}%
 \contentsline {figure}{\numberline {3.2}{\ignorespaces The Schnute production function plotted across a variety of parameter values. Regimes of similarly behaving curves are grouped by color. }}{43}{figure.3.2}%
 \contentsline {figure}{\numberline {3.3}{\ignorespaces LHS grids. Intersecting $\mathcal {F}$ and $\mathcal {B}$ produces $n^2$ cells; a particular cell $\mathcal {F}_i\times \mathcal {B}_j$ is shown in grey. One point is in each of the marginal $\mathcal {F}_i$ and $\mathcal {B}_j$ grid elements. }}{49}{figure.3.3}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces An outline of the sampling procedure for $\gamma $ given $B_0$, $M$, and $F^*$. }}{50}{figure.3.4}%

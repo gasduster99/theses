@@ -32,7 +32,8 @@ default \cite{methot_stock_2013}. %, black}.
 %%modeling %for assumes a quadriatic logistic differential equation 
 %
 Similarly to the Schaefer model, the Beverton-Holt (BH) model 
-\cite{beverton_dynamics_1957} is founded on a notion of density dependence \cite{gotelli_primer_1995}. 
+\cite{beverton_dynamics_1957} is founded on a notion of density 
+dependence \cite{gotelli_primer_1995} (albeit to a lesser extent). 
 %Like the Schaefer model, the BH model begins the derivation of their 
 Unlike the Schaefer model, the BH approach to modeling productivity factors the 
 density dependance related to recruitment separately from terms relating to 
@@ -71,6 +72,7 @@ in practice.
 	\includegraphics[width=\textwidth]{../gpBias/yeildBH.png}
 \end{minipage}
 \caption{\label{srrBH}
+	\color{red} Thou shlt write me a caption
        % \\The logistic production function in black plotted next to depictions of the key biological parameters and ref
        % The slope at the origin (and thus $r$) is shown in blue, catch resulting in MSY in red, biomass at MSY in green
        % MSY is seen at the peak of the parabola, and is attained with a fishing rate of $\frac{r}{2}$ and biomass equil
@@ -78,83 +80,126 @@ in practice.
 %\end{wrapfigure}
 \end{figure}
 
+%
+As seen in Figure (\ref{srrBH}, $left$) the BH model is an asymptoing curve, 
+such that as $\lim_{B\to\infty}P_{BH}(B)=\frac{\alpha}{\beta}$. This makes the 
+inclusion of an explicate handling of natural mortality, $M$, pertinent for 
+the modeling of surplus production. In this case, $MB$ represents linear natural 
+mortality, but it also constitues a replacement line where biological production 
+must exceed this rate of mortality to persist. Figure (\ref{srrBH}, $right$) 
+demonstrates how when the typical linear handling of natural mortality is 
+taken together with the BH model a left leaning surplus production curve is 
+produces that is reminiscent of PT curves for $\gamma_{PT}<2$ as can be seen in 
+Figure (\ref{SrrPT}).
+  
+%{\color{red} talk about including $M$, plot BH and M and then yeild with RPs}
+%{\color{red} Something about the limitations of RPs \cite{mangel_perspective_2013, brooks_analytical_2010} }
 
-{\color{red} talk about including $M$, plot BH and M and then yeild with RPs}
-
-{\color{red} Something about the limitations of RPs \cite{mangel_perspective_2013, brooks_analytical_2010} }
+%
+Recall when $\gamma_{PT}\le2$, under the PT model, the RPs lie in the lower 
+$\frac{B^*}{B_0}\le0.5$ region of RP space. Under the BH model this too is the case, 
+although due to two-parameter form of the BH model, the BH set is a curve passing 
+through $\frac{B^*}{B_0}\le0.5$. Myers et. al. \cite{myers_maximum_1999}, 
+Brooks et. al. \cite{brooks_analytical_2010}, and Mangel et. al. \cite{mangel_perspective_2013} 
+show how this limitation arrises analytically via steepness. Mangel et. al. \cite{mangel_perspective_2013}, 
+further demonstrates the generality of this phenomena, and shows how these 
+functional limitations limit fisheries managment based on $MSY$-based RPs. 
+%numerous softer correlation examples Williams (2002), Punt et al. (2008), and Brooks et al. (2010).
+%Brooks and Powers (2007), Forrest et al. (2010) 
 
 %
 Deriso \cite{deriso_harvesting_1980} and Schnute \cite{schnute_general_1985} 
-developed slightly different (conceptually equilavent) three parameter 
-generalizations of the BH model. This model generalizes the BH model by 
-controlling the nature of density dependence, by allowing production to 
-increase or decrease beyond that of the BH model for large spawning biomass. 
+developed slightly different (but conceptually equilavent) three-parameter 
+generalizations of the BH model
+\footnote{
 The later form in \cite{schnute_general_1985} is prefered here due its 
 interpretability and improved regularity of closed form RPs it produces.
-
+}.
+This model generalizes the BH model by controlling the nature of density 
+dependence, by allowing production to increase or decrease beyond that of the 
+BH model for large spawning biomass. 
 %
 The Schnute model not only generalizes the BH model, but in doing so it 
-also passes through the Ricker and Schaeffer models. As the Schnute model 
-transitions between these models it takes intermediate forms which can model 
-all of the interviening RPs, thus representing all of the most biologically 
-relavant hypotheses.  
-
-
-{\color{blue}
-
-%
-The Deriso production function presents a convenient three parameter form
-that is capable of representing many of the most common two parameter production
-functions as special cases \cite{deriso_harvesting_1980}. The BH and
-Logistic production functions arise when $\gamma$ is fixed to -1 or 1
-respectively, and the Ricker model is a \mbox{limiting case as
-$\gamma\rightarrow0$ \cite{schnute_general_1985}.}
+frees the RP limitations presented above. The three-parameter Schnute model has 
+the two-parameter BH, Ricker, and Schaefer models, as special cases. 
+Each of the two-parameter models limits RPs similarly to the BH model, but in 
+particular each of them models a different set of RPs. 
+As the Schnute model transitions between these models it takes intermediate 
+forms which can model all of the interviening RPs, thus representing all of 
+the most biologically relavant hypotheses commonly discussed in fisheries 
+management.  
 
 %
-Using the Deriso model as a data generating model across a wide range
-of RP-space, similarly as described in Section (\ref{sim}), %, and fitting those data under a BH model, 
-presents an ideal setting for extending the above study of RP biases across a
-broad range of productivity assumptions. Under the Deriso model inverting the
-relationship between RPs and model parameters is not fully analytically possible
-\cite{schnute_analytical_1998}. Numerical inversion of the nonlinear system
-seen in Eq (\ref{system}) is required for determining parameter values for data
-generation. Notice for a given $\gamma$ value, $\alpha$ and $\beta$ can be
-solved analytically.
-
-%While the Deriso model generalizes many common models, inference under 
-Inference under the BH model is of particular interest due to its overwhelming
-popularity in stock assessment. Similar to the limited RP-space of the
-Schaefer model the two parameter BH model also has a limited RP-space as shown
-in Figure (\ref{bhRP}).  While the BH constrained RP space is more complicated
-than the Schaefer model, analogy to the results obtained under the
-PT-Schaefer simulation setting, and the flexible GP metamodel, should expedite
-the analysis of BH inference.
-
-}
-
-{\color{gray}
-%
-The PT model is a three parameter generalization of the Schaefer model that uses
-its extra parameter to explicitely control the location of $\frac{B^*}{\bar B(0)}$.
-In doing so, the PT model can model the entire space of RPs and does so in a way that
-retains much of the analytical appeal of the Schaefer model. While there are some oddities
-of the functional form \cite{punt_extending_2019, fletcher_restructuring_1978}, the model
-has been very useful in generalizing the analysis of RPs \cite{winker_jabba_2018}.
-
-%
-In this chapter the PT model is used to generate index data simulated broadly
-in RP-space but fit with an intentionally misspecified Schaefer model. This
-%parameterizes 
-%simulated 
-parameterizes a broad set of misspecified situations for the Schaefer model
+In this chapter the Schnute model is used to generate index data simulated 
+broadly in RP-space but fit with an intentionally misspecified BH model. This
+%parameterizes %simulated 
+parameterizes a broad set of misspecified situations for the BH model
 where the simulated data have well understood dynamics in the fisheries
-community. A GP metamodel of the simulation is developed to demonstrate how
-misspecification of the Schaefer model forms biases in RP estimation. First,
-analytical expressions for RPs are derived under the PT model for use in
-deriving a fully analytical simulation design. Next, a GP metamodel is
-developed and a catch is parameterized in terms of contrast to demonstrate
-how the nature of bias is controlled by the information content in the data.
-}
+community. A GP metamodel of the simulation demonstrates how misspecification 
+of the BH model forms biases in RP estimation. First, some of the neccessary 
+analytical RP expressions are derived under the Schnute model. The remaining 
+RPs do not have analytical expressions. Therefore, a numerically stable method 
+is then developed that allows an adaptive simulation design to be computed 
+without the remaining closed-form RP expressions. A GP metamodel is then used 
+to demonstrate the nature of RP biases under the BH model. 
+%is controlled by the information content in the data.
+
+
+%{\color{blue}
+%
+%%
+%The Deriso production function presents a convenient three parameter form
+%that is capable of representing many of the most common two parameter production
+%functions as special cases \cite{deriso_harvesting_1980}. The BH and
+%Logistic production functions arise when $\gamma$ is fixed to -1 or 1
+%respectively, and the Ricker model is a \mbox{limiting case as
+%$\gamma\rightarrow0$ \cite{schnute_general_1985}.}
+%
+%%
+%Using the Deriso model as a data generating model across a wide range
+%of RP-space, similarly as described in Section (\ref{sim}), %, and fitting those data under a BH model, 
+%presents an ideal setting for extending the above study of RP biases across a
+%broad range of productivity assumptions. Under the Deriso model inverting the
+%relationship between RPs and model parameters is not fully analytically possible
+%\cite{schnute_analytical_1998}. Numerical inversion of the nonlinear system
+%seen in Eq (\ref{system}) is required for determining parameter values for data
+%generation. Notice for a given $\gamma$ value, $\alpha$ and $\beta$ can be
+%solved analytically.
+%
+%%While the Deriso model generalizes many common models, inference under 
+%Inference under the BH model is of particular interest due to its overwhelming
+%popularity in stock assessment. Similar to the limited RP-space of the
+%Schaefer model the two parameter BH model also has a limited RP-space as shown
+%in Figure (\ref{bhRP}).  While the BH constrained RP space is more complicated
+%than the Schaefer model, analogy to the results obtained under the
+%PT-Schaefer simulation setting, and the flexible GP metamodel, should expedite
+%the analysis of BH inference.
+%
+%}
+
+%{\color{gray}
+%%%
+%%The PT model is a three parameter generalization of the Schaefer model that uses
+%%its extra parameter to explicitely control the location of $\frac{B^*}{\bar B(0)}$.
+%%In doing so, the PT model can model the entire space of RPs and does so in a way that
+%%retains much of the analytical appeal of the Schaefer model. While there are some oddities
+%%of the functional form \cite{punt_extending_2019, fletcher_restructuring_1978}, the model
+%%has been very useful in generalizing the analysis of RPs \cite{winker_jabba_2018}.
+%
+%%
+%In this chapter the PT model is used to generate index data simulated broadly
+%in RP-space but fit with an intentionally misspecified Schaefer model. This
+%%parameterizes 
+%%simulated 
+%parameterizes a broad set of misspecified situations for the Schaefer model
+%where the simulated data have well understood dynamics in the fisheries
+%community. A GP metamodel of the simulation is developed to demonstrate how
+%misspecification of the Schaefer model forms biases in RP estimation. First,
+%analytical expressions for RPs are derived under the PT model for use in
+%deriving a fully analytical simulation design. Next, a GP metamodel is
+%developed and a catch is parameterized in terms of contrast to demonstrate
+%how the nature of bias is controlled by the information content in the data.
+%}
 
 %{\color{red}
 %\begin{itemize}
@@ -248,6 +293,10 @@ allows for the production function not to approach (or intersect) 0 for large
 biomasses (e.g. BH production). In turn, the Schunte model requires the addition
 of the term $-MB$ to form an interpretable yeild curve and make RPs well defined
 over the relevant domain of $\gamma$.
+
+{\color{red} [logistic model]-MB=[another logistic model] with slightly different 
+parameterization such that M is explicite. parabola-parabola is another parabola.}
+
 %is not only a typical assumption of fisheries models, but is also key to the making 
 %RPs well defined over the relevant domain of $\gamma$.
 
