@@ -1,10 +1,11 @@
-This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2022)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main2.aux
 A level-1 auxiliary file: pt2.aux
 A level-1 auxiliary file: schnute2.aux
 A level-1 auxiliary file: delay2.aux
 A level-1 auxiliary file: lambApp.aux
+A level-1 auxiliary file: schaeferSchnute.aux
 A level-1 auxiliary file: proxyMath.aux
 A level-1 auxiliary file: ddRepLine.aux
 The style file: plain.bst
@@ -47,6 +48,10 @@ Repeated entry---line 107 of file ./delayDifferential.bib
  : @book{wanner_solving_1996
  :                          ,
 I'm skipping whatever remains of this entry
+Repeated entry---line 136 of file ./delayDifferential.bib
+ : @article{corless_lambertw_1996
+ :                               ,
+I'm skipping whatever remains of this entry
 Repeated entry---line 154 of file ./delayDifferential.bib
  : @article{yeakel_generalized_2015
  :                                 ,
@@ -62,45 +67,45 @@ Warning--empty booktitle in mangel_theoretical_2006
 Warning--there's a number but no series in ramasubramanian_machine_2017
 Warning--empty journal in schaefer_study_1957
 Warning--empty journal in walters_continuous_2020
-You've used 57 entries,
+You've used 59 entries,
             2118 wiz_defined-function locations,
-            837 strings with 13209 characters,
-and the built_in function-call counts, 17295 in all, are:
-= -- 1765
-> -- 669
+            850 strings with 13560 characters,
+and the built_in function-call counts, 18042 in all, are:
+= -- 1840
+> -- 704
 < -- 3
-+ -- 284
-- -- 210
-* -- 1244
-:= -- 2936
-add.period$ -- 190
-call.type$ -- 57
-change.case$ -- 266
++ -- 299
+- -- 222
+* -- 1311
+:= -- 3060
+add.period$ -- 196
+call.type$ -- 59
+change.case$ -- 278
 chr.to.int$ -- 0
-cite$ -- 63
-duplicate$ -- 642
-empty$ -- 1422
-format.name$ -- 210
-if$ -- 3521
+cite$ -- 65
+duplicate$ -- 664
+empty$ -- 1478
+format.name$ -- 222
+if$ -- 3669
 int.to.chr$ -- 0
-int.to.str$ -- 57
-missing$ -- 66
-newline$ -- 303
-num.names$ -- 114
-pop$ -- 233
+int.to.str$ -- 59
+missing$ -- 68
+newline$ -- 313
+num.names$ -- 118
+pop$ -- 241
 preamble$ -- 1
-purify$ -- 219
+purify$ -- 229
 quote$ -- 0
-skip$ -- 402
+skip$ -- 416
 stack$ -- 0
-substring$ -- 1245
-swap$ -- 58
+substring$ -- 1312
+swap$ -- 60
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 208
+type$ -- 216
 warning$ -- 6
-while$ -- 194
-width$ -- 59
-write$ -- 645
-(There were 11 error messages)
+while$ -- 202
+width$ -- 61
+write$ -- 667
+(There were 12 error messages)

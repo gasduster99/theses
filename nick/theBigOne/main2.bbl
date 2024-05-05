@@ -38,6 +38,12 @@ Paul~B. Conn, Erik~H. Williams, and Kyle~W. Shertzer.
 \newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
   67(3):511--523, 2010.
 
+\bibitem{corless_lambertw_1996}
+R.~M. Corless, G.~H. Gonnet, D.~E.~G. Hare, D.~J. Jeffrey, and D.~E. Knuth.
+\newblock On the {LambertW} function.
+\newblock {\em Advances in Computational Mathematics}, 5(1):329--359, December
+  1996.
+
 \bibitem{cressie_statistics_2015}
 Noel Cressie.
 \newblock {\em Statistics for spatial data}.
@@ -148,6 +154,12 @@ Hui-Hua Lee, Mark~N. Maunder, Kevin~R. Piner, and Richard~D. Methot.
 \newblock Can steepness of the stock–recruitment relationship be estimated in
   fishery stock assessment models?
 \newblock {\em Fisheries Research}, 125-126:254--261, August 2012.
+
+\bibitem{lehtonen_lambert_2016}
+Jussi Lehtonen.
+\newblock The {Lambert} {W} function in ecological and evolutionary models.
+\newblock {\em Methods in Ecology and Evolution}, 7(9):1110--1118, September
+  2016.
 
 \bibitem{magnusson_what_2007}
 Arni Magnusson and Ray Hilborn.

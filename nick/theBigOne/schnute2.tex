@@ -288,14 +288,22 @@ explicitly here. % as opposed to  inclusion of natural mortality, $M$.
 Natural mortality models the instantaneous rate of mortality from all causes
 outside of fishing. While Eq. (\ref{schnuteSimple}) models $M$ explicitly,
 natural mortality is implicit to the structure of the previously decribed
-Schaefer, Fox, and PT production models. Explicitly modeling natural mortality
-allows for the production function not to approach (or intersect) 0 for large
-biomasses (e.g. BH production). In turn, the Schunte model requires the addition
-of the term $-MB$ to form an interpretable yeild curve and make RPs well defined
-over the relevant domain of $\gamma$.
-
-{\color{red} [logistic model]-MB=[another logistic model] with slightly different 
-parameterization such that M is explicite. parabola-parabola is another parabola.}
+Schaefer, Fox, and PT production models. Explicitly modeling natural mortality 
+in this way allows $P_s$ to model the production function in such a way so as to allow 
+production to increase for large spawning biomass (or asymptote, e.g. BH production), 
+and still retain well defined RPs. % well defined. %This is not only a typical assumption
+%biomasses (e.g. BH production). In turn, the Schunte model requires the addition
+%of the term $-MB$ to form an interpretable yeild curve and make RPs well defined
+%over the relevant domain of $\gamma$.
+This handling of $M$ is typical for age structured models under BH or Ricker 
+recruitment (or even BH/Ricker production models), but it is uncommonly used with the 
+Schaefer model ($\gamma=1$) as is possible in this setting. Appendix (\ref{mApp}) 
+shows that while explicite $M$ may not be typical under the Schaefer model, the 
+assumption of linear natural mortality, $-MB$, produces a valid Scheafer model 
+with an admissible interpretation.  
+%some values of $\gamma$ may lead to the logistic {\color{red} [logistic 
+%model]-MB=[another logistic model] with slightly different 
+%parameterization such that M is explicite. parabola-parabola is another parabola.}
 
 %is not only a typical assumption of fisheries models, but is also key to the making 
 %RPs well defined over the relevant domain of $\gamma$.

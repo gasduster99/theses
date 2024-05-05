@@ -19,7 +19,7 @@ Historically the Schaefer model is a canonical model in fisheries. % is the Scha
 %It is a much loved, and argued over, model \cite{kingsland_refractory_1982}.
 The basis of the Schaefer model is ripe with debate \cite{kingsland_refractory_1982},
 and the debate continues within modern fisheries modeling \cite{prager_comparison_2002, maunder_is_2003, prager_reply_2003}.
-While the Schaefer model is based on a nonlinear ODE, it still manages to retains 
+While the Schaefer model is based on a nonlinear ODE, it still manages to retain 
 an appealing simplicity and instructive interpretability. % in its quadrtatic form. %particular form is helpful
 The nonlinearity of the model gives the model its conconceptual relavance to the 
 biological systems, while retaining an approachable quadratic form that allows 
@@ -49,16 +49,19 @@ so that the family of production functions takes the following form,
 \begin{align}
 P(B; [r, K]) = r B \left(1-\frac{B}{K}\right). \label{logistic}
 \end{align}
-$r$ is a parameter controlling the maximum rate of biomass production for a 
-population in the absence of competition for resources (i.e. the slope of 
-production function at the origin). $K$ is the so called ``carrying capacity''
-of the population. In this context the carrying capacity can be formally 
-stated as steady state biomass in the absence of fishing \mbox{(i.e. $\bar B(0)=K$).} 
-The model is typically stated without natural mortality, $M$, so that $Z(t)=F(T)$. 
-In Chapter (\ref{schnuteChapter}) we will see a case where this is not a 
-neccessary constraint, but in the typical case as shown here, this simplification 
-gives the parabolic production function a dual interpretation as an equilibrium 
-yeild curve.  
+$r$ is a parameter controlling the maximum rate of population growth (biomass production) %per capita growth rate %of surplus biomass production 
+for a population in the absence of competition for resources (i.e. the slope 
+of production function at the origin). $K$ is the so called ``carrying 
+capacity'' of the population. In this context the carrying capacity can be 
+formally stated as steady state biomass in the absence of fishing \mbox{(i.e. 
+$\bar B(0)=K$).} The model is typically stated without natural mortality, $M$, 
+so that $Z(t)=F(t)$ (Appendix (\ref{mApp}) shows a slightly more complicated 
+case where $M$ may be included explicitly). %this is not a neccessary constraint
+%but in the typical case %as shown here, 
+The typical simplification of an implicite handling of natural mortality 
+makes the logistic production interpretable as modeling surplus 
+biomass production directly, and thus RPs may be seen visualized directly on the curve.  
+%this simplification gives the parabolic production function a dual interpretation as a yeild curve directly.  
 
 %\begin{wrapfigure}{r}{0.5\textwidth}
 \begin{figure}[h!]
@@ -67,25 +70,28 @@ yeild curve.
 \end{minipage}
 \begin{minipage}[h!]{0.37\textwidth}
 \caption{\label{srrSchaefer}
-        \\The logistic production function in black plotted next to depictions of the key biological parameters and refe
-        The slope at the origin (and thus $r$) is shown in blue, catch resulting in MSY in red, biomass at MSY in green,
-        MSY is seen at the peak of the parabola, and is attained with a fishing rate of $\frac{r}{2}$ and biomass equili
+	\\The logistic production function in black plotted next to depictions of the key biological parameters and reference points.
+        The slope at the origin (and thus $r$) is shown in blue, catch resulting in MSY in red, biomass at MSY in green, and $K$ in purple at the right x-intercept.
+        MSY is seen at the peak of the parabola, and is attained with a fishing rate of $\frac{r}{2}$ and biomass equilibrating to $\frac{K}{2}$.
+        %\\The logistic production function in black plotted next to depictions of the key biological parameters and refe
+        %The slope at the origin (and thus $r$) is shown in blue, catch resulting in MSY in red, biomass at MSY in green,
+        %MSY is seen at the peak of the parabola, and is attained with a fishing rate of $\frac{r}{2}$ and biomass equili
 }
 \end{minipage}
 %\end{wrapfigure}
 \end{figure}
 
 %
-The logistic production function produces idealized parabolic recruitment with
+The logistic production function produces idealized parabolic production with
 RPs taking very simple forms that can be easily understood from the
 graphical construction seen in Figure (\ref{srrSchaefer}). Positive
 productivity is observed when \mbox{$B\in(0, K)$.} Due to the parabolic shape of the
 logistic production function it is straightforward to see that yield is maximized
 by fishing the stock down to $B^*$, where the stock attains its peak productivity.
-By symmetry it is clear that this peak occurs at $B^*=\frac{K}{2}$. The fishing
-rate required to hold the stock at MSY is $F^*=\frac{r}{2}$, which is half of the
-stock's maximum reproductive rate. \mbox{MSY is then the product of $F^*$ and $B^*$
-so that $MSY=\frac{rK}{4}$.}
+By symmetry of the logistic parabola it is clear that this peak occurs at 
+$B^*=\frac{K}{2}$. The fishing rate required to hold the stock at MSY is 
+$F^*=\frac{r}{2}$, which is half of the stock's maximum rate of productivity. 
+\mbox{MSY is then the product of $F^*$ and $B^*$so that $MSY=\frac{rK}{4}$.}
 
 %
 %{\color{red}
@@ -152,24 +158,10 @@ how the nature of bias is controlled by the information content in the data.
 %\item fletcher \cite{fletcher_restructuring_1978}, prager \cite{prager_comparison_2002}, pt orignal \cite{pella_generalized_1969}
 %\end{itemize}
 
-%
+%\vspace{-1cm}
 \section{Methods \label{meth}}
 
 \subsection{Model}
-
-%
-%Below I present the three-parameter Pella-Tomlinson (PT) family, which has a 
-The three-parameter Pella-Tomlinson (PT) family has a convenient form that includes, among
-others \cite{fox_jr_exponential_1970,rankin_alternative_2015}, the
-logistic production function as a special case. %Under logistic production to form the Schaefer model. The 
-PT production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$
-and the family takes the following form,
-%Pella Tomlinson
-\begin{align}
-P_{p}(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{(\gamma-1)}\right). \label{pt}
-\end{align}
-
-%\clearpage
 
 %
 \begin{wrapfigure}{r}{0.45\textwidth} %[17]{r}[0pt]{0pt}%
@@ -194,30 +186,50 @@ left-leaning and right-leaning regimes are shown in blue and red respectively.
 %\end{figure}
 
 %
+\renewcommand{\baselinestretch}{2.5}
+%Below I present the three-parameter Pella-Tomlinson (PT) family, which has a 
+The three-parameter Pella-Tomlinson (PT) family has a convenient form that includes, among
+others \cite{fox_jr_exponential_1970,rankin_alternative_2015}, the
+logistic production function as a special case. %Under logistic production to form the Schaefer model. The 
+PT production function is parameterized so that $\bm{\theta} = [r, K, \gamma]$
+and the family takes the following form,
+%Pella Tomlinson
+\begingroup
+\footnotesize
+\begin{align}
+P_{p}(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{(\gamma-1)}\right). \label{pt}
+\end{align}
+\endgroup
+
+%\clearpage
+
+%
+The parameters $r$ and $K$ maintain the same interpretation as 
+they do in the logistic production function. 
+%
 $\gamma$ is a parameter which breaks PT out of the restrictive symmetry of the
-logistic curve. In general $\gamma\in(1, \infty)$, with the logistic model
+logistic curve. In this parameterization $\gamma\in(1, \infty)$, with the logistic model
 appearing in the special case of $\gamma=2$, and the Fox model appearing as
 a limiting case as $\gamma\to1$.
 %In the special case of $\gamma=2~$ Eq (\ref{pt}) 
 %collapses back to the logistic curve, however in general $\gamma\in(1, \infty)$.
-%
-%The parameters $r$ and $K$ maintain the same interpretation as 
-%they do in the logistic production function. In Figure (\ref{SrrPT}) PT recruitment 
+%In Figure (\ref{SrrPT}) PT recruitment 
 %is shown for a range of parameter values so as to demonstrate the various 
 %recruitment shapes that can be achieved by PT recruitment.  
-%reproductivei (biomass accumulation)
-The parameter $r$ controls the maximum per-capita growth rate of the population
-in the absence of competition for resources (i.e. the slope of production
-function at the origin). $K$ is the so called "carrying capacity" of the
-population. In this context the carrying capacity can be formally stated as
-steady state biomass in the absence of fishing \mbox{(i.e. $\bar B(0)=K$).}
+%reproductive (biomass accumulation)
+%
+%The parameter $r$ controls the maximum per-capita production %growth rate 
+%of the population in the absence of competition for resources (i.e. the slope 
+%of production function at the origin). $K$ is the so called ``carrying capacity'' of the
+%population. In this context the carrying capacity can be formally stated as
+%steady state biomass in the absence of fishing \mbox{(i.e. $\bar B(0)=K$).}
 %
 In Figure (\ref{SrrPT}) PT production is shown for a range of parameter values
 so as to demonstrate the various productivity shapes that can be achieved under
 PT.
 
 %
-While the form of the PT curve produces some limitations \cite{fletcher_restructuring_1978}, %{(\color{red}cite)}, 
+While the form of the PT curve produces some limitations \cite{punt_extending_2019, fletcher_restructuring_1978} %\cite{fletcher_restructuring_1978}, %{(\color{red}cite)}, 
 importantly the % how $\gamma$ appears in PT still produces some limitations to the form of the production function 
 introduction of a third parameter allows enough flexibility to fully describe
 the space of reference points used in management. To see this, the reference
@@ -315,7 +327,7 @@ analytically invertible, and leads to the following relationship
 %
 %Above $W_0$ is the principal branch of the Lambert product logarithm function. 
 %Above $W_{-1}$ is the lower branch of the Lambert product logarithm function. 
-Above $W$ is the Lambert product logarithm function. More details about this
+Above $W$ is the Lambert product logarithm function \cite{lehtonen_lambert_2016, corless_lambertw_1996}. More details about this
 derivation, and the Lambert product logarithm, are given in \mbox{Appendix (\ref{lambApp}).}
 
 %
