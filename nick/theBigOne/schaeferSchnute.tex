@@ -1,0 +1,79 @@
+The Schaefer model is typically stated as discussed in Chapter (\ref{ptChapter})
+\begin{equation}
+\frac{dB}{dt} = r B \left(1-\frac{B}{K}\right) - FB. \label{sheaferOG}
+\end{equation}
+However under model \ref{schnuteSimple}, when $\gamma=1$, 
+$P_s(B;[\alpha, \beta, 1])$ reduces to quadratic logistic production and 
+draws a parallel to the logistic production of the typical Schaefer model. 
+%discussed in Chapter (\ref{ptChapter}). The typical formulation, and interpretation, of 
+The typical Schaefer model does not explicitly include $M$, but rather natural 
+mortality is assumed to be implicite in the quadratic form of surplus production. 
+That said, if natural mortality is explicitly included in a model with logistic 
+production, as seen in Chapter (\ref{schnuteChapter}) under the Schnute model 
+when $\gamma=1$, it is straight forward to show that the result is in fact a 
+Schaefer model with updated parameters that explicitly model $M$.
+\begin{align}
+\frac{dB}{dt} &= \alpha B \left(1-\beta B\right) - (M+F)B \nonumber\\%. \label{sheaferSchnute}
+&= \alpha B -\alpha\beta B^2 - M B - F B \nonumber\\
+&= (\alpha-M)B -\alpha\beta B^2 - F B \nonumber\\
+&= (\alpha-M)B \left(1 - \frac{\alpha\beta}{\alpha-M}B\right) - F B
+\end{align}
+%Due to the quadratic form of the Schaefer model 
+The linear $MB$ term naturally combines with the quadratic form of 
+$P_s(B;[\alpha, \beta, 1])$ to simplify into another quadratic 
+form that is now directly analogous with the typical Schaefer model seen in 
+Eq. (\ref{sheaferOG}). This process produces a Schaefer model with 
+the following updated parameters
+\begin{align}
+\frac{dB}{dt} &= r' B \left(1-\frac{B}{K'}\right) - FB\\
+r'=\alpha&-M ~~~~~~~~~ K'=\left(\frac{\alpha-M}{\alpha}\right)\frac{1}{\beta}.
+\end{align}
+%
+%If instead one were to start in the reverse direction, starting with the 
+%typical Schaefer model (with implicte natural mortality) and required
+%  
+%The maximum rate of surplus biomass production, $r'$,  is the difference between the 
+%maximum rate of production, $\alpha$, and $M$ 
+
+
+%A bit of interpretation. Quadratic production of biomass before Mortality.
+$P_s(B;[\alpha, \beta, 1])$ represents the biomass production independent of 
+mortality. By combining $MB$ into the quadratic form, a new intrinsic 
+population growth rate, $r'$, is derived which represents the maximum rate of 
+biomass production less natural mortality. %as a net rate of maximum surplus production. 
+Similarly, 
+%Maximum rate of production is shrunk by $M$.
+carrying capacity is shrunk by the factor $\frac{\alpha-M}{\alpha}$ 
+which can be interpreted as the percent decrease of $\alpha$ by removing $M$.
+% represents as fraction $\alpha$.
+% of the maximum rate of biomass production that decreased by $M$.
+%maximum rate of surplus biomass production in maximum production by $M$.
+
+%
+Furthermore working with $\gamma=1$ in the analytical expression of Schnute RPs, 
+as given in Chapter (\ref{schnuteChapter}), analytical RPs take the expected 
+values. For example, working with the equation for $\alpha$ from Eq. (\ref{abgSys}), 
+with $\gamma=1$, $F^*$ is shown to takes the expected form for a Schaefer model.
+\begin{align}
+\alpha &= (M+F^*)\left(1+\frac{F^*}{M+F^*}\right) \nonumber\\
+       &= M+2F^* \nonumber\\
+   F^* &= \frac{\alpha-M}{2} = \frac{r'}{2} 
+\end{align}
+%By working with Eq (\ref{BsEq}, \ref{B0S}).
+Working with Eq. (\ref{B0S}) from the text gives the expected carrying capacity.
+\begin{align}
+B_0 &= \frac{1}{\beta} \left( 1-\frac{M}{\alpha} \right) \nonumber\\
+    &= \frac{\alpha-M}{\alpha\beta} = K'
+\end{align}
+Furthermore, Eq. (\ref{B0S}) for $B^*$ gives,
+\begin{align}
+    B^* &= \frac{1}{\beta} \left( 1-\frac{M+\frac{\alpha-M}{2}}{\alpha}\right) \nonumber\\
+        &= \frac{1}{\beta} - \frac{M+\alpha}{2\beta\alpha}\nonumber\\
+        &= \frac{\alpha-M}{2\alpha\beta} = \frac{K'}{2}.
+\end{align}
+%
+Finally $\frac{B_{MSY}}{B_0}$ in the case of explicite motality is indeed also $\frac{1}{2}$,
+\begin{align}
+\frac{B_{MSY}}{B_0}&=\frac{K'/2}{K'}\nonumber\\
+&=\frac{1}{2}.
+\end{align}
