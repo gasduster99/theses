@@ -358,17 +358,77 @@ Schaefer model, at various degrees of misspecification, so as to observe the
 effect of productivity model misspecification upon RP inference.
 
 %
-\subsection{Design}
+%\subsection{Design}
+%%
+%Letting $\mathcal{F}$ and $\mathcal{B}$ be regular grids, of size $n=100$, on
+%\mbox{$F^*\in(0.1, 0.7)$} and \mbox{$\frac{B^*}{B_0}\in(0.2, 0.6)$}
+%respectively, a Latin Hypercube Sample \cite[LHS]{santner_design_2003} design of size 100 is collected among the cells produced by
+%$\mathcal{F}\times\mathcal{B}$. 
+%
+%%
+%Each of the sampled LHS design locations represent a unique PT model with the
+%sampled RP values. Since the relationship mapping RPs analytically to productivity
+%parameters can be found for the PT model, LHS designs the the PT model are 
+%computed directly in RP space and Eq. (\ref{gammaOfB}) is used to map the
+%sampled RP design locations to PT productivity parameters.
+%
+%\clearpage
+\subsection{Latin Hypercube Design \label{lhs}}
 
 %
-Letting $\mathcal{F}$ and $\mathcal{B}$ be regular grids, of size $n=100$, on
+The goal of space filling design in this setting is to extend the notion of the
+random sample (and its desirable parameter estimation properties) across the
+simulated RP domain so as to represent the simulated space as well as possible \cite{gramacy_surrogates_2020}.
+The simple random sample is the classical approach to unbiased parameter
+estimation, however simple randomness is patchy, often sampling some regions
+of design space quite densely, while leaving other regions of design space empty.
+Space filling designs aim to preserve (or enhance) parameter estimation properties
+across the simulated domain \cite{devon_lin_latin_2015, stein_large_1987},
+while constraining samples to be spaced in some notion of spread over the entire space.
+Latin Hypercube Sampling \cite[LHS]{mckay_comparison_2000} is among the most
+foundational methods of generating the designs for use in computer experiments. 
+A Latin Hypercube Deisgn \cite[LHD]{santner_design_2003} is thus an experimental 
+design based on a LHS. 
+
+%, in the 2 dimensional space defined by RPs,
+A LHS of size $n$ distributes samples so as to spread points across a design 
+region in a broadly representative way. A LHD extends the notion of a 
+univariate random uniform sample across multiple dimensions so that each 
+margin of the design space enjoys a uniform distribution.
+%
+LHDs achieve this notion of uniformity by first partitioning each dimension
+of the design space into regular grids of size $n$. By intersecting the grids
+of each dimension, cells are produced that evenly partition the design space.
+In two dimensions $n^2$ cells are produced, from which a total of $n$ samples
+are taken. Crucially only one point is randomly sampled from a given element of
+each grid in each dimension so as to reduce clumping of the $n$ samples across
+the design space.
+
+%
+%\begin{figure}[h!]
+%\centering [width=0.96\textwidth]
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-1cm}
+\includegraphics[width=0.49\textwidth]{../gpBias/designGrid.png}
+\vspace{-0.5cm}
+\caption{ LHS grids with n=9. Intersecting $\mathcal{F}$ and $\mathcal{B}$ produces $n^2$
+cells; a particular cell $\mathcal{F}_i\times\mathcal{B}_j$ is shown in grey.
+One point is in each of the marginal $\mathcal{F}_i$ and $\mathcal{B}_j$ grid
+elements. \label{LHS}
+}
+\end{wrapfigure}
+
+
+%
+In the 2 dimensional space defined by the PT RPs a LHD is defined by first
+letting $\mathcal{F}$ and $\mathcal{B}$ be regular grids, of size $n=100$, on
 \mbox{$F^*\in(0.1, 0.7)$} and \mbox{$\frac{B^*}{B_0}\in(0.2, 0.6)$}
-respectively, a LHS design of size 100 is collected among the cells produced by
-$\mathcal{F}\times\mathcal{B}$. 
+respectively. A LHS, of size 100, is then collected among the cells produced 
+by $\mathcal{F}\times\mathcal{B}$. 
 
 %
-Each of the sampled LHS design locations represent a unique PT model with the
-sampled RP values. Since the relationship mapping RPs analytically to productivity
+Each of the sampled locations represent a unique PT model with the sampled RP 
+values. Since the relationship mapping RPs analytically to productivity
 parameters can be found for the PT model, LHS designs the the PT model are 
 computed directly in RP space and Eq. (\ref{gammaOfB}) is used to map the
 sampled RP design locations to PT productivity parameters.
@@ -424,16 +484,16 @@ of the mapping itself.
 
 %
 In this setting, the aim of metamodeling is to study how well RPs are inferred
-when typical two-parameter models of productivity (Logistic and BH) are
-misspecified for populations that are actually driven by more complicated
-dynamics. The simulation design, $\bm{X}$, provides a sample of different
-population dynamics that are driven by three-parameter production functions
-broadly in RP space. By simulating index of abundance data from the three
-parameter model, and fitting those data with the two-parameter production model, we %one can 
+when typical two-parameter models of productivity %(Logistic and BH) 
+are misspecified for populations that are actually driven by more 
+complicated dynamics. The simulation design, $\bm{X}$, provides a sample of 
+different population dynamics that are driven by three-parameter production 
+functions broadly in RP space. By simulating index of abundance data from the 
+three parameter model, and fitting those data with the two-parameter production model, we %one can 
 observe particular instances of how well RPs are inferred at the given
 misspecification of the two-parameter model relative to the true three-parameter
 production model. By gathering all of the simulated instances of how RPs are
-inferred (under the two-parameter model), %under misspecified two-parameter models
+inferred under the two-parameter model, %under misspecified two-parameter models
 we form a set of example mappings to train a metamodel which represents the
 mapping of true RPs (under the three-parameter model) to estimates of RPs under the
 misspecified two-parameter production model. The metamodel is essentially a surrogate
@@ -446,18 +506,20 @@ controls for the specific degree of model misspecification.
 %model is specification. %more generally.
 
 %
-A flexible GP model is assumed for the structure of the metamodel to describe the mapping
-of RPs under misspecified two-parameter models of productivity. A GP is a
-stochastic process generalizing the multivariate normal distribution
-to an infinite dimensional analog. GP models are often specified primarily
+A flexible GP model is assumed for the structure of the metamodel to describe 
+the mapping of RPs under misspecified two-parameter models of productivity. A 
+GP is astochastic process generalizing the multivariate normal distribution to 
+an infinite dimensional analog. GP models are often specified primarily
 through the choice of a covariance (or correlation) function which defines the
 relationship between locations in the input space. %an index set. Typically the index set is spatial for GPs,
 %with points closely related in the index set resulting in correlated effects in
 %the model. 
-Typically correlation functions are specified so that points closely related in
+Typically correlation functions are specified so that inputs closely related in
 space result in correlated effects in the model. In this setting the inputs to
-the GP metamodel are the space of reference points which define the simulated
-three-parameter production models.
+the GP metamodel are RPs from the full theoretical range of RPs under the 
+three-parameter production model. 
+%In this setting the inputs to the GP metamodel are the space of reference points 
+%which define the simulated three-parameter production models.
 %The GP model then implies a multivariate normal response distribution on the
 %observations of the model with a correlated error structure defined by the
 %modeled covariance function.
@@ -466,10 +528,12 @@ three-parameter production models.
 While index of abundance data are generated from three-parameter models, at each
 design location of the simulation, fitting the restricted two-parameter model
 results in a maximum likelihood estimate (MLE; and associated estimation
-uncertainty) of each of the productivity parameters
-{\color{red}
-(i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
-}
+uncertainty) of each of the productivity parameters. For the Schaefer model 
+the productivity parameters estimated are reparameterized as $\log(r)$ and 
+$\log(K)$ so that the modeled spaces are each in $\mathbb{R}$.
+%{\color{red}
+%(i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
+%}
 % as well as estimation uncertainty (via the inverted Fisher information).
 %At each design location of the simulation, fitting the restricted two-parameter
 %model results in a MLE of each of the productivity parameters
@@ -548,25 +612,25 @@ $\textbf{r(x)}$ is a vector-valued function of correlation function evaluations 
 predictive location $\textbf{x}$ against all observations in $\bm{X}$
 (i.e. $\textbf{r(x)}=\bm{R}(\textbf{x}, \bm{x}_i)~\forall~\bm{x}_i\in\bm{X}$).
 
-%
-{\color{red}
-While metamodeling occurs on the inferred productivity parameters of the
-restricted production model, the metamodel can also be used to build
-estimates of major biological RPs. For the BH model the relevant
-transformations for relating productivity parameters with RPs are given in
-Eqs. (\ref{BratS}, \ref{FmsyS}) with $\gamma$ fixed to -1; for the Schaefer
-model $\hat B^*=\frac{\hat K}{2}$ and $\hat F^*=\frac{\hat r}{2}$.
-%reference points.
-%%estimate of two productivity parameters under the restricted production model. Each of the fitted productivity parameter
-%%estimates are then modeled using independent instances of the following model in Eq (28).
-%
-Applying the metamodel predictive surfaces on the scale of RP estimates allows for the
-quantification of estimation bias that is induced by fitting a misspecified two-parameter
-production model to indices of abundance generated under three-parameter productivity.
-}
+%%
+%{\color{red}
+%While metamodeling occurs on the inferred productivity parameters of the
+%restricted production model, the metamodel can also be used to build
+%estimates of major biological RPs. For the BH model the relevant
+%transformations for relating productivity parameters with RPs are given in
+%Eqs. (\ref{BratS}, \ref{FmsyS}) with $\gamma$ fixed to -1; for the Schaefer
+%model $\hat B^*=\frac{\hat K}{2}$ and $\hat F^*=\frac{\hat r}{2}$.
+%%reference points.
+%%%estimate of two productivity parameters under the restricted production model. Each of the fitted productivity parameter
+%%%estimates are then modeled using independent instances of the following model in Eq (28).
+%%
+%Applying the metamodel predictive surfaces on the scale of RP estimates allows for the
+%quantification of estimation bias that is induced by fitting a misspecified two-parameter
+%production model to indices of abundance generated under three-parameter productivity.
+%}
 
 %
-\subsection{Catch \label{catch}}
+\subsection{Catch \label{catch} {\color{red}possibly before 2.2.2 and 2.2.3}}
 
 %%
 %For the sake of simulation, catch is parameterized so that $F_t$ can be 
@@ -647,10 +711,21 @@ the relative fishing series is reduced to a two-parameter family. %below.
         c &= \frac{\chi_{max}-1}{15-1}  &d = 15c + \chi_{max} ~~~~~~~~~~~ \label{relFish3}
 \end{align}
 %
-By further specifying {\color{red}$\chi_{max} = 1.6^\chi$ and $\chi_{min} = 0.4^\chi$}
+By further specifying $\chi_{max} = 1.6^\chi$ and $\chi_{min} = 0.4^\chi$ %{\color{red}$\chi_{max} = 1.6^\chi$ and $\chi_{min} = 0.4^\chi$}
 the two-parameters $\chi_{max}$, and $\chi_{min}$ can be reduced to the single
 parameter $\chi$. The tuning parameter $\chi$ then singularly controls contrast
-that appears in time series data.
+that appears in time series data. The constants 1.6 and 0.4 may be tuned to 
+simulate more or less contrast, however the values chosen should be $>1$ and $<1$ 
+respectively and should be chosen in coordination with the number of simulated time 
+epochs so at to avoid introducing an aliasing effect between the index sampling 
+frequency and the higher frequency (i.e. sharp) features of fishing/catch 
+\cite{shannon_communication_1998, mclean_nyquistovercoming_2005}. For 
+the 45 epoc simulation presented here the constants 1.6 and 0.4 %time period 
+are tuned to avoid aliasing the high contrast features of index samples in the 
+most dramatic simulations. By increasing the sampling frequency, or number of 
+simulated time periods, the constantants may be increased/decreased accordingly. 
+
+%simulated indices in the high contrast environment 
 %Other choices of the bases of exponentiation for $\chi_{max}$ and $\chi_{min}$ may be used so long as the base for 
 
 %
@@ -680,7 +755,7 @@ environments as well as the time series data they induce in the solution of
 the production model ODE.
 
 %\clearpage
-\subsection{Two-Parameter Production Model Inference\label{modelFit}}
+\subsection{Two-Parameter Production Model Inference\label{modelFit} {\color{red}possibly before 2.2.2 and 2.2.3} }
 
 %
 The simulated mapping results from fitting an intentionally misspecified two
@@ -691,10 +766,11 @@ a more complex three-parameter model of productivity.
 %The goal of model fitting is to assess how the biological parameters of the
 %two-parameter production model behave under MLE inference when index of 
 %abundance data are generated from more complex models of productivity. % three-parameter models, to PT data.
-Thus, let $I_t$ be an index of abundance simulated from the three-parameter PT
-or Schnute production models at time $t\in\{1,2, 3,..., T\}$. However the
+Thus, let $I_t$ be an index of abundance simulated from the three-parameter PT model
+%or Schnute production models 
+at time $t\in\{1,2, 3,..., T\}$. However the
 fitted model is specified to be intentionally misspecified so that the fitted
-model is driven by a two-parameter Schaefer, or BH production model respectively. %of productivity. 
+model is driven by a two-parameter Schaefer model. %, or BH production model respectively. %of productivity. 
 
 %
 The observation model for the fitted model is log-normal such that,
@@ -703,9 +779,9 @@ The observation model for the fitted model is log-normal such that,
 I_t| q, \sigma^2, \bm{\theta} \sim LN(qB_t(\bm{\theta}), \sigma^2).
 \end{align}
 %
-$B_t(\bm{\theta})$ is defined by the solution of the ODEs defined by the Schaefer, or BH models.
+$B_t(\bm{\theta})$ is defined by the solution of the ODEs defined by the Schaefer model with $\bm{\theta}=[r, K]$. %, or BH models.
 %
-For the Schaefer model $\bm{\theta}=[r, K]$, {\color{red}and for the BH model $\bm{\theta}=[\alpha, \beta]$.}
+%For the Schaefer model $\bm{\theta}=[r, K]$, {\color{red}and for the BH model $\bm{\theta}=[\alpha, \beta]$.}
 %%
 %\begin{align}
 %\frac{dB}{dt} = r B \left(1-\frac{B}{K}\right) - FB. \label{odeS}
@@ -746,7 +822,7 @@ when the optimum results in an invertible Hessian at the found MLE.
 
 %
 %\clearpage
-\subsection{Continuous model formulation}
+\subsection{Continuous model formulation {\color{red}possibly before 2.2.2 and 2.2.3} }
 
 %
 An important (and often overlooked) implementation detail is the solution to the
@@ -933,6 +1009,23 @@ logistic parabola estimate tends to under estimate $F^*$.
 %\item reiterate each point in RP space is an entire PT model, on the Schaefer 
 %line moder are Schaefer.
 
+%%
+%{\color{red}
+%While metamodeling occurs on the inferred productivity parameters of the
+%restricted production model, the metamodel can also be used to build
+%estimates of major biological RPs. For the BH model the relevant
+%transformations for relating productivity parameters with RPs are given in
+%Eqs. (\ref{BratS}, \ref{FmsyS}) with $\gamma$ fixed to -1; for the Schaefer
+%model $\hat B^*=\frac{\hat K}{2}$ and $\hat F^*=\frac{\hat r}{2}$.
+%%reference points.
+%%%estimate of two productivity parameters under the restricted production model. Each of the fitted productivity parameter
+%%%estimates are then modeled using independent instances of the following model in Eq (28).
+%%
+%Applying the metamodel predictive surfaces on the scale of RP estimates allows for the
+%quantification of estimation bias that is induced by fitting a misspecified two-parameter
+%production model to indices of abundance generated under three-parameter productivity.
+%}
+
 %
 Each point in the space of the RPs $F^*$ and $\frac{B^*}{\bar B(0)}$ uniquely
 identifies a complete PT model with different combinations of parameters values.
@@ -1057,6 +1150,8 @@ parameterizing contrast so as to fully extinguish $F^*$ bias may require a more 
 model of fishing.
 %,  in may be By including more contrast $F^*$ bias  in this low $\frac{B^*}{B_0}$, 
 %high $F^*$ region can be further reduce.}
+
+{\color{red}Maybe show MSY bias for high and low contrast.}
 
 %
 \section{Discussion}

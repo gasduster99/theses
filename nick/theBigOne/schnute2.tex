@@ -436,52 +436,52 @@ The design at large captures various degrees of model misspecification relative
 to the BH model, so as to observe the effect of productivity model misspecification
 upon RP inference.
 
+%%
+%\clearpage
+%\subsection{Latin Hypercube Sampling \label{lhs}}
 %
-\clearpage
-\subsection{Latin Hypercube Sampling \label{lhs}}
-
+%%
+%The goal of space filling design in this setting is to extend the notion of the
+%random sample (and its desirable parameter estimation properties) across the
+%simulated RP domain so as to represent the simulated space as well as possible \cite{gramacy_surrogates_2020}.
+%The simple random sample is the classical approach to unbiased parameter
+%estimation, however simple randomness is patchy, often sampling some regions
+%of design space quite densely, while leaving other regions of design space empty.
+%Space filling designs aim to preserve (or enhance) parameter estimation properties 
+%across the simulated domain \cite{devon_lin_latin_2015, stein_large_1987},
+%while constraining samples to be spaced in some notion of spread over the entire space.
+%Latin hypercube sampling \cite[LHS]{mckay_comparison_2000} is among the most
+%foundational of space filling designs used in computer experiments.
 %
-The goal of space filling design in this setting is to extend the notion of the
-random sample (and its desirable parameter estimation properties) across the
-simulated RP domain so as to represent the simulated space as well as possible \cite{gramacy_surrogates_2020}.
-The simple random sample is the classical approach to unbiased parameter
-estimation, however simple randomness is patchy, often sampling some regions
-of design space quite densely, while leaving other regions of design space empty.
-Space filling designs aim to preserve (or enhance) parameter estimation properties 
-across the simulated domain \cite{devon_lin_latin_2015, stein_large_1987},
-while constraining samples to be spaced in some notion of spread over the entire space.
-Latin hypercube sampling \cite[LHS]{mckay_comparison_2000} is among the most
-foundational of space filling designs used in computer experiments.
-
+%%
+%%\begin{figure}[h!]
+%%\centering [width=0.96\textwidth]
+%\begin{wrapfigure}{r}{0.5\textwidth}
+%\vspace{-1cm}
+%\includegraphics[width=0.49\textwidth]{../gpBias/designGrid.png}
+%\vspace{-0.5cm}
+%\caption{ LHS grids. Intersecting $\mathcal{F}$ and $\mathcal{B}$ produces $n^2$
+%cells; a particular cell $\mathcal{F}_i\times\mathcal{B}_j$ is shown in grey.
+%One point is in each of the marginal $\mathcal{F}_i$ and $\mathcal{B}_j$ grid
+%elements.
+%}
+%\end{wrapfigure}
 %
-%\begin{figure}[h!]
-%\centering [width=0.96\textwidth]
-\begin{wrapfigure}{r}{0.5\textwidth}
-\vspace{-1cm}
-\includegraphics[width=0.49\textwidth]{../gpBias/designGrid.png}
-\vspace{-0.5cm}
-\caption{ LHS grids. Intersecting $\mathcal{F}$ and $\mathcal{B}$ produces $n^2$
-cells; a particular cell $\mathcal{F}_i\times\mathcal{B}_j$ is shown in grey.
-One point is in each of the marginal $\mathcal{F}_i$ and $\mathcal{B}_j$ grid
-elements.
-}
-\end{wrapfigure}
-
+%%
+%A LHS of size $n$, in the 2 dimensional space defined
+%by RPs, distributes samples so as to spread points across a design region in a
+%broadly representative way. A LHS design extends the notion of a univariate
+%random uniform sample across multiple dimensions so that each margin of the design 
+%space enjoys a uniform distribution.
 %
-A LHS of size $n$, in the 2 dimensional space defined
-by RPs, distributes samples so as to spread points across a design region in a
-broadly representative way. A LHS design extends the notion of a univariate
-random uniform sample across multiple dimensions so that each margin of the design 
-space enjoys a uniform distribution.
-
-%
-LHS designs achieve this notion of uniformity by first partitioning each dimension 
-of the design space into regular grids of size $n$. By intersecting the grids
-of each dimension, cells are produced that evenly partition the design space.
-In two dimensions $n^2$ cells are produced, from which a total of $n$ samples
-are taken. Crucially only one point is randomly sampled from a given element of
-each grid in each dimension so as to reduce clumping of the $n$ samples across
-the design space.
+%%
+%LHS designs achieve this notion of uniformity by first partitioning each dimension 
+%of the design space into regular grids of size $n$. By intersecting the grids
+%of each dimension, cells are produced that evenly partition the design space.
+%In two dimensions $n^2$ cells are produced, from which a total of $n$ samples
+%are taken. Crucially only one point is randomly sampled from a given element of
+%each grid in each dimension so as to reduce clumping of the $n$ samples across
+%the design space.
 
 %
 \subsection{Design \label{sLHS}}

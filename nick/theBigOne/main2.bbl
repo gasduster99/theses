@@ -193,6 +193,11 @@ Michael~D. McKay, Richard~J. Beckman, and William~J. Conover.
 \newblock {\em Technometrics}, 42(1):55--61, 2000.
 \newblock Publisher: Taylor \& Francis.
 
+\bibitem{mclean_nyquistovercoming_2005}
+R.~F. McLean, S.~H. Alsop, and J.~S. Fleming.
+\newblock Nyquist—overcoming the limitations.
+\newblock {\em Journal of Sound and Vibration}, 280(1):1--20, February 2005.
+
 \bibitem{methot_stock_2013}
 Richard~D. Methot and Chantell~R. Wetzel.
 \newblock Stock synthesis: {A} biological and statistical framework for fish
@@ -280,6 +285,11 @@ William~Edwin Ricker.
 \newblock {\em Journal of the Fisheries Board of Canada}, 11(5):559--623, 1954.
 \newblock Publisher: NRC Research Press Ottawa, Canada.
 
+\bibitem{santner_design_2003}
+Thomas~J. Santner, Brian~J. Williams, William~I. Notz, and Brain~J. Williams.
+\newblock {\em The design and analysis of computer experiments}, volume~1.
+\newblock Springer, 2003.
+
 \bibitem{schaefer_study_1957}
 Milner~B. Schaefer.
 \newblock A study of the dynamics of the fishery for yellowfin tuna in the
@@ -316,6 +326,11 @@ Luca Scrucca.
   {Parallelisation} and {Islands} {EvolutionOn} some extensions to {GA}
   package: hybrid optimisation, parallelisation and islands evolution.
 \newblock {\em The R Journal}, 9(1):187--206, 2017.
+
+\bibitem{shannon_communication_1998}
+Claude~E Shannon.
+\newblock Communication in the {Presence} of {Noise}.
+\newblock {\em PROCEEDINGS OF THE IEEE}, 86(2), 1998.
 
 \bibitem{soetaert_solving_2010}
 Karline Soetaert, Thomas Petzoldt, and R.~Woodrow Setzer.

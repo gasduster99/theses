@@ -67,45 +67,45 @@ Warning--empty booktitle in mangel_theoretical_2006
 Warning--there's a number but no series in ramasubramanian_machine_2017
 Warning--empty journal in schaefer_study_1957
 Warning--empty journal in walters_continuous_2020
-You've used 59 entries,
+You've used 62 entries,
             2118 wiz_defined-function locations,
-            850 strings with 13560 characters,
-and the built_in function-call counts, 18042 in all, are:
-= -- 1840
-> -- 704
-< -- 3
-+ -- 299
-- -- 222
-* -- 1311
-:= -- 3060
-add.period$ -- 196
-call.type$ -- 59
-change.case$ -- 278
+            865 strings with 13977 characters,
+and the built_in function-call counts, 18920 in all, are:
+= -- 1922
+> -- 752
+< -- 4
++ -- 319
+- -- 238
+* -- 1377
+:= -- 3215
+add.period$ -- 205
+call.type$ -- 62
+change.case$ -- 294
 chr.to.int$ -- 0
-cite$ -- 65
-duplicate$ -- 664
-empty$ -- 1478
-format.name$ -- 222
-if$ -- 3669
+cite$ -- 68
+duplicate$ -- 697
+empty$ -- 1542
+format.name$ -- 238
+if$ -- 3844
 int.to.chr$ -- 0
-int.to.str$ -- 59
-missing$ -- 68
-newline$ -- 313
-num.names$ -- 118
-pop$ -- 241
+int.to.str$ -- 62
+missing$ -- 72
+newline$ -- 328
+num.names$ -- 124
+pop$ -- 257
 preamble$ -- 1
-purify$ -- 229
+purify$ -- 243
 quote$ -- 0
-skip$ -- 416
+skip$ -- 438
 stack$ -- 0
-substring$ -- 1312
-swap$ -- 60
-text.length$ -- 3
+substring$ -- 1344
+swap$ -- 64
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 216
+type$ -- 226
 warning$ -- 6
-while$ -- 202
-width$ -- 61
-write$ -- 667
+while$ -- 210
+width$ -- 64
+write$ -- 700
 (There were 12 error messages)
