@@ -1169,86 +1169,201 @@ Furthermore a more complex model of fishing may be neccessary.
 %results of these existing results.
 %Existing
 
-%blue: final chapter
-%grey: adapt for this chapter
-%red: save for BH
-
-%agree with estimating productivity (steepness, r, etc.)
-%extends by LHS simulation design over RPs
-%establish different models of model failure from trends in 
-\begin{itemize}
-\item 
-Results presented here generally agree with what is known about estimating population
-productivity parameters \cite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
-\item 
-These studies appreciate the role of contrast for estimating productivity,
-however they struggle to make generally extensible conclusions since they focus only
-on a handful of stocks that fall short of forming a random sample of the greater
-population of possible stock behaviors.
-\item 
-The LHS design methods presented here are
-designed specifically to simulate a representative sample of stocks broadly
-across the space of possible RPs.
-\item 
-Furthermore, the simulation design, taken together
-with the GP metamodel of productivity parmater estimates, allows this study to control
-the degree of model misspecification and generalize conclusions about the behavior
-of productivity estimation within the production model setting presented.
-\end{itemize}
-
-$~$\\
+%
+The metamodeled trends in RP estimation under the Schaefer model are consistent 
+with what is known about estimating population productivity parameters 
+\cite{lee_can_2012, conn_when_2010, magnusson_what_2007}. These studies 
+focus on productivity parameters, but since RPs in the Schaefer model are 
+entirely determined by population productivity parameters, there is a 
+direct relationship between bias in RPs and productivity parameters. 
+Previous studies do not directly control for the structure of model 
+misspecification and as a result do not come to a complete mechanistic 
+understanding of the model failure they observe.
+%
+%Previous studies 
+%were not designed to provide a mechanistic understanding of model failure since they do 
+%not directly control for the structure of how their models are misspecified. 
+The LHD of this simulation adds to what is known about estimating RPs by 
+organizing model misspecification so as to enlighten the mechanisms of how 
+bias in productivity, and thus RPs, manifest under the Schaefer model. 
+%of this work simulation 
+%LHD is specifically chosen to produce a representative sample of stocks broadly
+%across the space of possible RPs, and organizing model misspecification in this way 
+%enlightens the understanding of the mechanisms of how bias in productivity, 
+%and thus RPs, manifest. 
+Figure (\ref{flatProd}) demonstrates that the observed RP biases are tied directly to 
+the shape of the data generating PT production function relative to the symetric case 
+of the Schaefer model; a trend which is more generally described by the metamodel in 
+Figure (\ref{arrowsPT}).
 
 %
-\begin{itemize}
-\item 
-In the presence of contrast, $F^*$ estimation can enjoy very low bias even
-for a wide range of poorly specified models; conversely in the absence of contrast
-$F^*$ estimation can suffer very large bias even for slightly misspecified models.
-\item 
-This pattern is particularly true for low-contrast inference under the Schaefer model where the
-geometry of the restricted RP set isolates estimation failure of $F^*$ from
-$\frac{B^*}{\bar B(0)}$.
-\item 
-The GP metamodeling approach reveals a
-more general pattern that highly informative data sets (high contrast)
-produces a nearly minimal distance mapping of RPs %that are nearly minimal distance mapping 
-onto the constrained RP set{\color{blue} Across all settings.}
-\end{itemize}
+The metamodeled RP bias trends indicate that the Scheafer model may present 
+systematic managemnt risks that are yet unrecognized. It is understood that 
+the Schaefer model will induce biases in $\frac{B^*}{B_0}$ so as to hold 
+$\frac{B^*}{B_0}=0.5$ \cite{maunder_is_2003, prager_reply_2003}, but the 
+structure of biases in $F^*$ estimation is less well understood. These results 
+suggest that populations coming from $\frac{B^*}{B_0}<0.5$, will tend to have $F^*$ 
+underestimated by the Schaefer model. Complimentary, when the population comes 
+from the RP regime where $\frac{B^*}{B_0}>0.5$, these results suggest that $F^*$ 
+is likely to be overestimated by the Schaefer model. The Schaefer model thus 
+poses a risk for populations coming from $\frac{B^*}{B_0}>0.5$, since 
+overestimation of $F^*$ may lead to management that results in overfishing. 
+For the populations coming from $\frac{B^*}{B_0}<0.5$ the 
+underestimated $F^*$ would make management based on Schaefer model 
+estimates more conservative. Of these observed patterns it is certainly better 
+to be conservative in estimating $F^*$
+\footnote{It is largly thought that $\frac{B^*}{B_0}<0.5$ for most commonly modeled stocks.}, 
+however it is not enough to simply be conservative. Our ultimate goals in 
+modeling should be to provide an accurate summary of the stock with a complete 
+contextualization of our models' deficancies. To that end, this work contextulizes
+RP estimation under the Schaefer model, and suggests that understanding the 
+degree of contrast in index data is important due to its influce on the degree of 
+bias in $F^*$ estimates. 
+%since contrast controls the degree of bias of $F^*$.   
+%with leadWhile biases in 
+%$\frac{B^*}{B_0}$ are strictly dependent on the degree of model misspecification, 
+%the degree of contrast in the data controls the degree of bias of $F^*$.   
 
-$~$\\
+%%agree with estimating productivity (steepness, r, etc.)
+%%extends by LHS simulation design over RPs
+%%establish different models of model failure from trends in 
+%\begin{itemize}
+%\item 
+%Results presented here generally agree with what is known about estimating population
+%productivity parameters \cite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
+%\item 
+%These studies appreciate the role of contrast for estimating productivity,
+%however they struggle to make generally extensible conclusions since they focus only
+%on a handful of stocks that fall short of forming a random sample of the greater
+%population of possible stock behaviors.
+%\item 
+%The LHS design methods presented here are
+%designed specifically to simulate a representative sample of stocks broadly
+%across the space of possible RPs.
+%\item 
+%Furthermore, the simulation design, taken together
+%with the GP metamodel of productivity parameter estimates, allows this study to control
+%the degree of model misspecification and generalize conclusions about the behavior
+%of productivity estimation within the production model setting presented.
+%\end{itemize}
 
-%quantify contrast better
-%simulate contrast better
-\begin{itemize}
-\item 
-While the relative fishing rate parameterized in Section (\ref{catch}) captures a usefully
-broad spectrum of relevant fishing behaviors, it is still limiting in the amount of information
-that it can induce. 
-\item
-Improved methods for quantifying contrast in fisheries data, and/or methods of
-discovering more informative fishing behavior, could improve this analysis.
-\item%vertically here.
-RP inference with a two parameter production function will be biased in the direction of a shortest
-distance map from the true RPs onto restricted set of RPs under the two-parameter
-model.
-\end{itemize}
+%contrastFurthermore, 
+This work reiterates the role of contrast 
+\cite{hilborn_quantitative_1992} in estimating stock productivity. 
+Since the structure of the Scheafer model does not induce strong correlations
+between RPs\footnote{A luxury not granted under the BH model introduced
+in Chapter (\ref{schnuteChapter}).}, it provides an exceptional modeling 
+environment for understanding the estimation characteristics of $F^*$. In the 
+presence of contrast, $F^*$ estimation can enjoy very low bias even for a wide 
+range of poorly specified models; conversely in the absence of contrast $F^*$ 
+estimation can suffer very large bias even for slightly misspecified models.
+This pattern is exemplified in the low-contrast setting where the Schaefer 
+model imposes little a'priori structure on $F^*$ and the low contrast index 
+data poorly informs $F^*$, through $r$, via a biased view of the upper biomass 
+range of the PT curve.
+%Since the structure of the Scheafer model does not induce strong correlations 
+%between RPs, a luxury not granted under the BH model which will be introduced 
+%in Chapter (\ref{schnuteChapter}), it provides a unique modeling enviroment 
+%for understanding these estmation characteristics of $F^*$.
+In the high contrast setting the GP metamodel demonstrates a straight forward 
+vertical mapping of $F^*$, indicated minimal bias in $F^*$ estimates.
 
-$~$\\
+%$~$\\
+%
+%%
+%\begin{itemize}
+%\item 
+%In the presence of contrast, $F^*$ estimation can enjoy very low bias even
+%for a wide range of poorly specified models; conversely in the absence of contrast
+%$F^*$ estimation can suffer very large bias even for slightly misspecified models.
+%\item 
+%This pattern is particularly true for low-contrast inference under the Schaefer model where the
+%geometry of the restricted RP set isolates estimation failure of $F^*$ from
+%$\frac{B^*}{\bar B(0)}$.
+%\item 
+%The GP metamodeling approach reveals a
+%more general pattern that highly informative data sets (high contrast)
+%produces a nearly minimal distance mapping of RPs %that are nearly minimal distance mapping 
+%onto the constrained RP set{\color{blue} Across all settings.}
+%\end{itemize}
 
-\begin{itemize}
-\item 
-The RP bias trends of the Schaefer model demonstrate a risk prone RP strategy
-\item
-For any population with $\frac{B^*}{B_0}<0.5$, the results presented here suggest that
-$\frac{B^*}{B_0}$ will tend to be overestimated. 
-\item
-When the population comes from
-the regime where $\frac{B^*}{B_0}>0.5$, the results presented here suggest that
-$\frac{B^*}{B_0}$ will tend to be underestimated, but $F^*$ is likely to be
-overestimated depending on the degree of contrast present in the data.
-\end{itemize}
+%
+The relative fishing rate parameterized in Section (\ref{catch}) is broadly 
+representative of many California fisheries \cite{pearson_effectiveness_1995, pearson_reliability_2008}. 
+The form used here captures a useful notion of contrast and provides a seemless 
+form that reveals how model failure behaves as contrast is removed from the 
+data. 
+%
+While the relative fishing rate parameterized in Section (\ref{catch}) captures a useful
+spectrum of relevant fishing behaviors, it is still limiting in the amount of information
+that it can induce.
+%While the simulated functional form of fishing is useful, it is 
+%important to recognise how the sampling frequency of the data may be aliasing 
+%with respect to sharp features that may be induced in biomass dynamics by 
+%increasing contrast beyond that simulated here. In these cases the effective 
+%sampling density should be increased to comensate. 
+%Furthermore, 
+Generally improved methods for quantifying contrast in fisheries 
+data, and/or methods of discovering more informative fishing behavior, could 
+improve this analysis.
 
-{\color{red} furture work?????}
+%
+While the Schaefer model is among the simplest models in fisheries, the concepts 
+it develops form the foundation of models that are commonly used in practice. 
+In the following chapters the dynamics models considered layer in model 
+complexity one piece at a time and the behavior of RP estimation is described 
+in each case so as to understand the influence of each subsequent modeling 
+component. 
+
+%%when contrast exceeds high contrast fishing behavior. 
+%It is straight forward to avoid these issues by increasing the effective sample 
+%density to pick up these  at higher effective frequency.   
+%
+%While the relative fishing rate parameterized in Section (\ref{catch}) captures a usefully
+%broad spectrum of relevant fishing behaviors, it is still limiting in the amount of information
+%that it can induce.
+%Improved methods for quantifying contrast in fisheries data, and/or methods of
+%discovering more informative fishing behavior, could improve this analysis.
+
+%$~$\\
+%
+%%quantify contrast better
+%%simulate contrast better
+%\begin{itemize}
+%\item 
+%While the relative fishing rate parameterized in Section (\ref{catch}) captures a usefully
+%broad spectrum of relevant fishing behaviors, it is still limiting in the amount of information
+%that it can induce. 
+%\item
+%Improved methods for quantifying contrast in fisheries data, and/or methods of
+%discovering more informative fishing behavior, could improve this analysis.
+%\item%vertically here.
+%RP inference with a two parameter production function will be biased in the direction of a shortest
+%distance map from the true RPs onto restricted set of RPs under the two-parameter
+%model.
+%\end{itemize}
+
+
+%$~$\\
+%
+%\begin{itemize}
+%\item 
+%The RP bias trends of the Schaefer model demonstrate a risk prone RP strategy
+%\item
+%For any population with $\frac{B^*}{B_0}<0.5$, the results presented here suggest that
+%$\frac{B^*}{B_0}$ will tend to be overestimated. 
+%\item
+%When the population comes from
+%the regime where $\frac{B^*}{B_0}>0.5$, the results presented here suggest that
+%$\frac{B^*}{B_0}$ will tend to be underestimated, but $F^*$ is likely to be
+%overestimated depending on the degree of contrast present in the data.
+%\end{itemize}
+%
+%{\color{red} furture work?????}
+%\begin{itemize}
+%\item uses of the schaefer model to isolate correlation between RPs
+%\item the PT model 
+%\end{itemize}
 
 
 %{\color{blue} 
@@ -1360,6 +1475,11 @@ overestimated depending on the degree of contrast present in the data.
 %contrast present in the data. So while the Schaefer model is an intuitive model, it tends to
 %lead to much less conservative RP estimation.
 %
+
+
+
+%%
+%{\color{blue}
 %%
 %While it is important to recognize these limitations of two-parameter models
 %of productivity, we should not solely accept conservativism as a rational of

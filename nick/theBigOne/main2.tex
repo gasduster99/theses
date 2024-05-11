@@ -158,7 +158,7 @@ To my family, friends, and mentors.
 \linenumbers
 
 %
-\chapter{\color{blue}Introduction \label{intro}}
+\chapter{Introduction \label{intro}}
 \clearpage
 
 %{\color{red}{\it Generalize beyond production model}}
@@ -254,31 +254,51 @@ function relating the current biomass of the population to an aggregate
 production of biomass.
 
 %
-Secondly, the population decreases as biomass is removed by various sources that are
-assumed to remove biomass linearly with biomass. Above, $Z(t)$, is an
-aggregate rate of removal. When the fishing rate, $F(t)$, is the only source of removal
-$Z(t)=F(t)$, however some models will also included other linear terms in $Z(t)$.
-Commonly the rate of ``natural mortality'', $M$, is also included as an additional term
-so that $Z(t)=M+F(t)$.
+Secondly, the population decreases as biomass is removed by various sources 
+that areassumed to remove biomass linearly with biomass. Above, $Z(t)$, is 
+an aggregate rate of removal. When the fishing rate, $F(t)$, is the only 
+explicitly modeled source of removal $Z(t)=F(t)$, however some models will 
+also included other linear terms in $Z(t)$. Commonly the rate of ``natural 
+mortality'', $M$, is also included as an additional term so that $Z(t)=M+F(t)$.
 
 %
 %(although in the Chapter (\ref{delayChapter}) a related extension 
 %delay differential model is )
 
-{\color{blue}
+%{\color{blue}
 %
-This general structure is the conceptual basis for most modern fisheries 
-models used in management {\color{red}cite}. As data permits this general 
-structure is expanded to account for age classes in the population via 
-{\it age structured models} (ASM). Modeling age structure in the population 
-allows for individual growth and maturity to be modeled as cohorts age 
-through time. At their core, ASMs rely on similar dynamics as seen in 
-Eq. (\ref{ode}), however the above ODE is expanded as a system of interelated 
-ODEs for each age class.  
+The general structure in Eq. (\ref{ode}) is the conceptual basis for most 
+modern fisheries models used in management \cite{hilborn_quantitative_1992, methot_stock_2013, winker_jabba_2018}. 
+As data permits this general structure is often expanded to account for age, weight, 
+and/or length classes \cite{schnute_general_1987, fournier_length-based_1987} in 
+the population in models called {\it Age structured models} (ASM). ASMs are currently considered best
+practice in ``data-rich'' settings when there is considered enough data to 
+establish length/age relationships and selectivity \cite{maunder_review_2013, cope_stock_2023}. 
+Modeling age structure in the population allows for individual growth and maturity 
+to be modeled as cohorts that age through time. Despite this added complexity, 
+at their core, ASMs rely on similar dynamics as seen in Eq. (\ref{ode}), 
+however in ASMs the above ODE is expanded to a system of interrelated ODEs for 
+each age class.  
 
 %
-Extensions into DDM and ASM
-}
+{\it Delay-differential models} (DDM) can provide an intermediate modeling 
+infrastructure between SPMs and ASMs. By simplifying the model assumptions 
+around growth and maturity, simple ASMs may be represented exactly 
+by DDMs \cite{deriso_harvesting_1980}. Furthermore, SPMs can be represented as a limiting case of DDM 
+growth and matruity parameters. This makes DDMs ideal for ``data-limited'' 
+assessment settings. Despite the useful bridge that DDMs provide, their use 
+in stock assessments has been sparing due to the complexity of deriving key 
+manaagment quantities under these models \cite{dick_depletion-based_2011, munyandorero_analytical_2023}.
+%Often the complexdue to a lack of methods . 
+%Although analytical results about these models 
+%have been sparing \cite{dick_depletion-based_2011, munyandorero_analytical_2023}, RP calculations  
+
+%The simplifying assumptions of DDMs also makes them substantially more 
+%computationally efficient that ASMs. These factors make the DDM a perfect 
+%bridge for extending the ana  
+
+%Extensions yinto DDM and ASM
+%}
 
 %%
 %Secondly, the population decreases as biomass is removed due to catch, $C(t)$.

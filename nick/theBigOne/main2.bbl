@@ -38,6 +38,16 @@ Paul~B. Conn, Erik~H. Williams, and Kyle~W. Shertzer.
 \newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
   67(3):511--523, 2010.
 
+\bibitem{cope_stock_2023}
+Jason~M. Cope, Natalie~A. Dowling, Sybrand~A. Hesp, Kristen~L. Omori, Pia
+  Bessell-Browne, Leandro Castello, Rowan Chick, Dawn Dougherty, Steven~J.
+  Holmes, and Richard McGarvey.
+\newblock The stock assessment theory of relativity: deconstructing the term
+  “data-limited” fisheries into components and guiding principles to
+  support the science of fisheries management.
+\newblock {\em Reviews in Fish Biology and Fisheries}, 33(1):241--263, 2023.
+\newblock Publisher: Springer.
+
 \bibitem{corless_lambertw_1996}
 R.~M. Corless, G.~H. Gonnet, D.~E.~G. Hare, D.~J. Jeffrey, and D.~E. Knuth.
 \newblock On the {LambertW} function.
@@ -85,6 +95,14 @@ E.~J. Dick and Alec~D. MacCall.
 R.~I. Fletcher.
 \newblock On the restructuring of the {Pella}-{Tomlinson} system.
 \newblock {\em Fish. Bull}, 76(3):515--521, 1978.
+
+\bibitem{fournier_length-based_1987}
+David~A. Fournier and Ian~J. Doonan.
+\newblock A length-based stock assessment method utilizing a generalized
+  delay-difference model.
+\newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
+  44(2):422--437, 1987.
+\newblock Publisher: NRC Research Press Ottawa, Canada.
 
 \bibitem{fox_jr_exponential_1970}
 William~W. Fox~Jr.
@@ -186,6 +204,11 @@ Mark~N. Maunder.
   scientist’s toolbox?
 \newblock {\em Fisheries Research}, 61(1-3):145--149, 2003.
 
+\bibitem{maunder_review_2013}
+Mark~N. Maunder and André~E. Punt.
+\newblock A review of integrated analysis in fisheries stock assessment.
+\newblock {\em Fisheries Research}, 142:61--74, May 2013.
+
 \bibitem{mckay_comparison_2000}
 Michael~D. McKay, Richard~J. Beckman, and William~J. Conover.
 \newblock A comparison of three methods for selecting values of input variables
@@ -222,6 +245,18 @@ Ransom~A Myers, Keith~G Bowen, and Nicholas~J Barrowman.
 \newblock Maximum reproductive rate of fish at low population sizes.
 \newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
   56(12):2404--2419, December 1999.
+
+\bibitem{pearson_effectiveness_1995}
+Donald~Edgar Pearson and Glenn Almany.
+\newblock The effectiveness of {California}'s commercial rockfish port sampling
+  program.
+\newblock 1995.
+
+\bibitem{pearson_reliability_2008}
+Donald~Edgar Pearson, Brenda Erwin, and Meisha Key.
+\newblock Reliability of {California}'s groundfish landing estimates from
+  1969-2006.
+\newblock 2008.
 
 \bibitem{pella_generalized_1969}
 Jerome~J. Pella and Patrick~K. Tomlinson.

@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2022)
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main2.aux
 A level-1 auxiliary file: pt2.aux
@@ -21,42 +21,46 @@ Repeated entry---line 11 of file ./spaceFilling.bib
 I'm skipping whatever remains of this entry
 Database file #3: ./delayDifferential.bib
 Repeated entry---line 2 of file ./delayDifferential.bib
- : @article{schnute_general_1985
- :                              ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 19 of file ./delayDifferential.bib
- : @article{schnute_analytical_1998
- :                                 ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 36 of file ./delayDifferential.bib
  : @article{methot_stock_2013
  :                           ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 54 of file ./delayDifferential.bib
+Repeated entry---line 31 of file ./delayDifferential.bib
+ : @article{schnute_analytical_1998
+ :                                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 48 of file ./delayDifferential.bib
+ : @article{schnute_general_1985
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 78 of file ./delayDifferential.bib
  : @article{walters_continuous_2020
  :                                 ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 74 of file ./delayDifferential.bib
+Repeated entry---line 85 of file ./delayDifferential.bib
  : @article{hilborn_quantitative_1992
  :                                   ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 83 of file ./delayDifferential.bib
- : @article{schnute_general_1987
- :                              ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 107 of file ./delayDifferential.bib
+Repeated entry---line 114 of file ./delayDifferential.bib
  : @book{wanner_solving_1996
  :                          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 136 of file ./delayDifferential.bib
+Repeated entry---line 123 of file ./delayDifferential.bib
+ : @article{fournier_length-based_1987
+ :                                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 135 of file ./delayDifferential.bib
+ : @article{schnute_general_1987
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 147 of file ./delayDifferential.bib
  : @article{corless_lambertw_1996
  :                               ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 154 of file ./delayDifferential.bib
+Repeated entry---line 165 of file ./delayDifferential.bib
  : @article{yeakel_generalized_2015
  :                                 ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 320 of file ./delayDifferential.bib
+Repeated entry---line 331 of file ./delayDifferential.bib
  : @article{brooks_analytical_2010
  :                                ,
 I'm skipping whatever remains of this entry
@@ -64,48 +68,50 @@ Warning--I didn't find a database entry for "sedar_stock_2010"
 Warning--empty publisher in devon_lin_latin_2015
 Warning--empty publisher in gotelli_primer_1995
 Warning--empty booktitle in mangel_theoretical_2006
+Warning--empty journal in pearson_effectiveness_1995
+Warning--empty journal in pearson_reliability_2008
 Warning--there's a number but no series in ramasubramanian_machine_2017
 Warning--empty journal in schaefer_study_1957
 Warning--empty journal in walters_continuous_2020
-You've used 62 entries,
+You've used 67 entries,
             2118 wiz_defined-function locations,
-            865 strings with 13977 characters,
-and the built_in function-call counts, 18920 in all, are:
-= -- 1922
-> -- 752
+            885 strings with 15002 characters,
+and the built_in function-call counts, 20681 in all, are:
+= -- 2091
+> -- 862
 < -- 4
-+ -- 319
-- -- 238
-* -- 1377
-:= -- 3215
-add.period$ -- 205
-call.type$ -- 62
-change.case$ -- 294
++ -- 366
+- -- 276
+* -- 1514
+:= -- 3524
+add.period$ -- 222
+call.type$ -- 67
+change.case$ -- 328
 chr.to.int$ -- 0
-cite$ -- 68
-duplicate$ -- 697
-empty$ -- 1542
-format.name$ -- 238
-if$ -- 3844
+cite$ -- 75
+duplicate$ -- 750
+empty$ -- 1654
+format.name$ -- 276
+if$ -- 4186
 int.to.chr$ -- 0
-int.to.str$ -- 62
-missing$ -- 72
-newline$ -- 328
-num.names$ -- 124
-pop$ -- 257
+int.to.str$ -- 67
+missing$ -- 77
+newline$ -- 355
+num.names$ -- 134
+pop$ -- 287
 preamble$ -- 1
-purify$ -- 243
+purify$ -- 272
 quote$ -- 0
-skip$ -- 438
+skip$ -- 476
 stack$ -- 0
-substring$ -- 1344
-swap$ -- 64
+substring$ -- 1442
+swap$ -- 67
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 226
-warning$ -- 6
-while$ -- 210
-width$ -- 64
-write$ -- 700
-(There were 12 error messages)
+type$ -- 246
+warning$ -- 8
+while$ -- 226
+width$ -- 69
+write$ -- 755
+(There were 13 error messages)
