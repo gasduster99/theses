@@ -142,7 +142,7 @@ To my family, friends, and mentors.
 \end{itemize}
 \item Statistics Department
 \begin{itemize}
-\item I am grafetful for my wonderful advisor Professor Herbie Lee.
+\item I am grateful for my wonderful advisor Professor Herbie Lee.
 \item Committee 
 \item Statistics Department Alex, Jack, Annalisa, Pedro, Nichole
 \end{itemize}
@@ -181,17 +181,17 @@ To my family, friends, and mentors.
 %mechanisms of model failure under the most common two-parameter models. %in the Schaefer model.
 %}
 
-The most fundamental model in modern fisheries management is the surplus-production
-model (SPM). These models focus on modeling population growth via nonlinear
+The most fundamental model in modern fisheries management is the {\it surplus-production
+model} (SPM). These models focus on modeling population growth via nonlinear
 parametric ordinary differential equations (ODE).
 %NOTE: we can not observe all fish in the sea, and this rely on an index of abundance 
 %which typically comes from experimental fishing procedure(for example ccfrp).
 Data for a typical surplus-production model comes in the form of an index
 of abundance through time which is assumed to be proportional to the reproducing
-biomass for the modelled population that is vulnerable to fishing. The index
+biomass for the modeled population that is vulnerable to fishing. The index
 is often observed alongside a variety of other known quantities, but at a
 minimum, each index will be observed in the presence of some known catch for
-the period. Figure (\ref{hakeData}) shows the classic Namibian Hake dataset
+the period. Figure (\ref{hakeData}) shows the classic Namibian Hake data set
 \cite{punt_model_1988, hilborn_ecological_1997, mangel_theoretical_2006}
 exemplifying the form.
 % from the classic Namibian Hake data set. 
@@ -206,7 +206,7 @@ exemplifying the form.
         \includegraphics[width=0.45\textwidth]{./plots/hakeCatch.png}
         %\vspace{-1cm}
         \caption{\label{hakeData}
-        \textit{left}: An index of abundance data, catch per unit effort (CPUE), for Namibian Hake from 1965 to 1987. % \protect\shortcite{hilborn_ecological_1997}
+        \textit{left}: Index of abundance data, catch per unit effort (CPUE), for Namibian Hake from 1965 to 1987. % \protect\shortcite{hilborn_ecological_1997}
         \textit{right}: The associated catch data for Namibian Hake over the same time period.
         }
 \end{figure}
@@ -222,11 +222,11 @@ I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2).
 Above $q$ is often referred to as the ``catchability parameter''; it serves as the %represents the %$ is often refered to as the catchability parameter and the catchab
 proportionality constant mapping between the observed index of abundance and biomass.
 $\sigma^2$ models residual variation. Biologically speaking $q$ and $\sigma^2$
-are often treated as nuisance parameters with the ``biological parameters''
+are often treated as nuisance parameters with biological productivity parameters
 entering the model through a process model on biomass.
 
 % 
-Biomass is assumed to evolve as an ODE throught time. 
+Biomass is assumed to evolve as an ODE through time. 
 %Initially the following form is 
 %Here I largely focus on in this case I focus on the following form
 The class of models is largely based on models of the following form,
@@ -255,11 +255,11 @@ production of biomass.
 
 %
 Secondly, the population decreases as biomass is removed by various sources 
-that areassumed to remove biomass linearly with biomass. Above, $Z(t)$, is 
+that are assumed to remove biomass linearly with biomass. Above, $Z(t)$, is 
 an aggregate rate of removal. When the fishing rate, $F(t)$, is the only 
 explicitly modeled source of removal $Z(t)=F(t)$, however some models will 
-also included other linear terms in $Z(t)$. Commonly the rate of ``natural 
-mortality'', $M$, is also included as an additional term so that $Z(t)=M+F(t)$.
+also included other linear terms in $Z(t)$. Commonly the rate of {\it natural 
+mortality} ($M$) is also included as an additional term so that $Z(t)=M+F(t)$.
 
 %
 %(although in the Chapter (\ref{delayChapter}) a related extension 
@@ -269,27 +269,29 @@ mortality'', $M$, is also included as an additional term so that $Z(t)=M+F(t)$.
 %
 The general structure in Eq. (\ref{ode}) is the conceptual basis for most 
 modern fisheries models used in management \cite{hilborn_quantitative_1992, methot_stock_2013, winker_jabba_2018}. 
-As data permits this general structure is often expanded to account for age, weight, 
-and/or length classes \cite{schnute_general_1987, fournier_length-based_1987} in 
-the population in models called {\it Age structured models} (ASM). ASMs are currently considered best
-practice in ``data-rich'' settings when there is considered enough data to 
-establish length/age relationships and selectivity \cite{maunder_review_2013, cope_stock_2023}. 
-Modeling age structure in the population allows for individual growth and maturity 
-to be modeled as cohorts that age through time. Despite this added complexity, 
-at their core, ASMs rely on similar dynamics as seen in Eq. (\ref{ode}), 
-however in ASMs the above ODE is expanded to a system of interrelated ODEs for 
-each age class.  
+As data permits this general structure is often expanded to model age, weight, 
+and/or length classes \cite{schnute_general_1987, fournier_length-based_1987} 
+in the population via models called {\it age structured models} (ASM). ASMs 
+are currently considered best practice in ``data-rich'' settings when there is 
+considered enough quality data to establish length/age relationships and the 
+associated selectivity for these classes \cite{maunder_review_2013, cope_stock_2023}. 
+Modeling age and length/weight structure in the population allows for 
+individual growth and maturity to be modeled as cohorts that age through time. 
+Despite this added complexity, at their core ASMs rely on similar dynamics as 
+seen in Eq. (\ref{ode}), however in ASMs the above ODE is expanded to a system 
+of interrelated ODEs for each age class.  
 
 %
 {\it Delay-differential models} (DDM) can provide an intermediate modeling 
 infrastructure between SPMs and ASMs. By simplifying the model assumptions 
 around growth and maturity, simple ASMs may be represented exactly 
-by DDMs \cite{deriso_harvesting_1980}. Furthermore, SPMs can be represented as a limiting case of DDM 
-growth and matruity parameters. This makes DDMs ideal for ``data-limited'' 
-assessment settings. Despite the useful bridge that DDMs provide, their use 
-in stock assessments has been sparing due to the complexity of deriving key 
-manaagment quantities under these models \cite{dick_depletion-based_2011, munyandorero_analytical_2023}.
-%Often the complexdue to a lack of methods . 
+by DDMs \cite{deriso_harvesting_1980, hilborn_quantitative_1992}. 
+Furthermore, SPMs can be represented as a limiting case of DDM growth and 
+maturity parameters \cite{walters_continuous_2020}. This makes DDMs ideal for ``data-limited'' assessment 
+settings and as a simplified model for understanding the role of growth in 
+stock assessment models. Despite the useful bridge that DDMs provide, their use in stock 
+assessments has been sparing due to the complexity of deriving key management 
+quantities under these models \cite{dick_depletion-based_2011, munyandorero_analytical_2023}.%Often the complexdue to a lack of methods . 
 %Although analytical results about these models 
 %have been sparing \cite{dick_depletion-based_2011, munyandorero_analytical_2023}, RP calculations  
 
@@ -314,8 +316,8 @@ biomass in the population to reproduce in the future. We seek to fish in a way
 that allows (or even encourages) future productivity in the population. This is
 accomplished by maximizing the equilibrium level of catch over time.
 Equilibrium yield is modeled by $\bar Y = F\bar B(F)$, where $\bar B$ is the 
-steady state biomass implied by Eq. (\ref{ode}), and $\bar~$ indicates the 
-value of at steady state. 
+steady state biomass implied by Eq. (\ref{ode}), and $\bar~$ indicates quantities 
+at steady state. 
 %in the assumed form for catch, so that $\bar Y = F\bar B(F)$, where $\bar~$
 %indicates a value at steady state.
 %The steady state biomass is a function of $F$.
@@ -367,7 +369,7 @@ is still under debate because the particular mechanisms and behavior (direction 
 of these biases for key management quantities %(and the mechanisms of inducing these biases) 
 are not fully understood or described \cite{munyandorero_analytical_2023}. Lee et al. \cite{lee_can_2012} provides some
 evidence that estimation of productivity parameters %, and thus RPs via \shortcite{mangel_perspective_2013},
-are dependent on changes in biomass trend through time (i.e. contrast) as well % as well as contrast in data %lacking contrast in biomass. 
+are dependent on changes in biomass trends through time (i.e. contrast) as well % as well as contrast in data %lacking contrast in biomass. 
 as model specification. Conn et al. \cite{conn_when_2010} comes to similar conclusions %about steepness estimation
 via calibration modeling techniques. These studies indicate important factors that
 contribute to inferential failure. However they do not offer mechanisms of model
@@ -395,14 +397,14 @@ simulated from three-parameter PT and Schnute models of productivity, but the
 simulated data are fit using intentionally misspecified two-parameter Logistic 
 and BH models. 
 %
-RP inference is simulated in the simple production model setting, and the 
+RP inference is simulated in the SPM setting, and the 
 results are then extended to the context of models that include individual 
 growth and maturity by developing a Schnute DDM.
 %
 In each simulation setting a derivation of RPs, and associated quantities, 
 under the three-parameter models is derived. %PT model.
 Under the PT model simulation design is entirely analytical. Under the 
-Schnute model fully anaytical designs are not possible. Thus %a method is developed for generating simulation designs which ensure
+Schnute model fully analytical designs are not possible. Thus %a method is developed for generating simulation designs which ensure
 a method is presented for generating simulation designs under the Schnute model 
 that is based on the parametric form of RPs, but does not 
 require analytical inversion of RPs. %ting the relationship between which 
@@ -421,7 +423,7 @@ A key insight of this approach is that bias is considered broadly across RP-spac
 uncover patterns and correlations between RPs. %f bias magnitude and direction. 
 %A flexible Gaussian Process (GP) meta-modeling approach is used to model bias 
 %patterns across RP-space.
-Developing simulation designs broadly over RP space serves as a neccessary 
+Developing simulation designs broadly over RP space serves as a necessary 
 control on the nature of the simulated model misspecification that other studies 
 have not considered. %been provided. %as context for their results. %as context for their re analyses. 
 Furthermore, the GP metamodel used to analyze RP biases is explicit about 
@@ -480,7 +482,7 @@ on a handful of stocks that fall short of forming a random sample of the greater
 population of possible stock behaviors. The LHS design methods presented here are
 designed specifically to simulate a representative sample of stocks broadly
 across the space of possible RPs. Furthermore, the simulation design, taken together
-with the GP metamodel of productivity parmater estimates, allows this study to control
+with the GP metamodel of productivity parameters estimates, allows this study to control
 the degree of model misspecification and generalize conclusions about the behavior
 of productivity estimation within the production model setting presented.
 
@@ -526,12 +528,12 @@ While the relative fishing rate parameterized in Section (\ref{catch}) captures 
 broad spectrum of relevant fishing behaviors, it is still limiting in the amount of information
 that it can induce. Improved methods for quantifying contrast in fisheries data, and/or methods of
 discovering more informative fishing behavior, could improve this analysis. In the absence of a %Without knowing a 
-maximally informative dataset simulation methods will not fully describe how
+maximally informative data set simulation methods will not fully describe how
 inference fails, but the methods presented here tell the most complete picture
 yet, with explicit control of the degree model misspecification, contrast, and
 a simulation design that allows for uniform representative data generation
 across biologically meaningful stocks. The results presented here suggest the
-conjecture that under a maximally informative dataset, RP inference with a two
+conjecture that under a maximally informative data set, RP inference with a two
 parameter production function will be biased in the direction of a shortest 
 distance map from the true RPs onto restricted set of RPs under the two-parameter 
 model.
@@ -569,7 +571,7 @@ stands for data generated in the Cushing-like regime of Schnute RPs. In this reg
 the BH model tends to be fairly unbiased overall, however the bias that is present
 for these populations tends to be overestimation in both RPs, which could lead to 
 unintentionally overfishing these already fragile populations.
-{\color{red} nonstationarity in populations may move the true RPs of existing populkations into these more vulnerable areas. by sticking to a BH model we will have a hard time understanding those changes as they occur. and a more flexible model would be flexible in noticing those changes.}  
+{\color{red} nonstationarity in populations may move the true RPs of existing populations into these more vulnerable areas. by sticking to a BH model we will have a hard time understanding those changes as they occur. and a more flexible model would be flexible in noticing those changes.}  
 %much more severe management consequences for those populations.
 
 
@@ -607,7 +609,7 @@ model for developing three-parameter models going forward.
 %
 {\color{red} growth angle on above.}
 
-{\color{red} furture work?????}
+{\color{red} future work?????}
 
 %
 %
@@ -624,7 +626,7 @@ model for developing three-parameter models going forward.
 %\endgroup
 
 %
-\chapter{A Scheafer Model with Explicite $M$ \label{mApp}}
+\chapter{A Schaefer Model with Explicit $M$ \label{mApp}}
 \include{schaeferSchnute.tex}
 
 %

@@ -21,7 +21,7 @@ The basis of the Schaefer model is ripe with debate \cite{kingsland_refractory_1
 and the debate continues within modern fisheries modeling \cite{prager_comparison_2002, maunder_is_2003, prager_reply_2003}.
 While the Schaefer model is based on a nonlinear ODE, it still manages to retain 
 an appealing simplicity and instructive interpretability. % in its quadrtatic form. %particular form is helpful
-The nonlinearity of the model gives the model its conconceptual relavance to the 
+The nonlinearity of the model gives the model its conceptual relevance to the 
 biological systems, while retaining an approachable quadratic form that allows 
 much of the analysis of the model to be closed form.  
 
@@ -42,9 +42,10 @@ much of the analysis of the model to be closed form.
 %to reasonably approximate dynamics in many data poor stocks. %productivity shapes. 
 
 %
-The Schaefer model is formed by choosing $P$, from Eq. (\ref{ode}), to be logistic 
-growth \cite{mangel_theoretical_2006} parameterized by $\bm{\theta} = [r, K]$ 
-so that the family of production functions takes the following form,
+The Schaefer model is formed by choosing $P$, from Eq. (\ref{ode}), to be the 
+logistic production function \cite{mangel_theoretical_2006} parameterized by 
+$\bm{\theta} = [r, K]$ so that the family of production functions take the 
+following form,
 %
 \begin{align}
 P(B; [r, K]) = r B \left(1-\frac{B}{K}\right). \label{logistic}
@@ -58,9 +59,9 @@ $\bar B(0)=K$).} The model is typically stated without natural mortality, $M$,
 so that $Z(t)=F(t)$ (Appendix (\ref{mApp}) shows a slightly more complicated 
 case where $M$ may be included explicitly). %this is not a neccessary constraint
 %but in the typical case %as shown here, 
-The typical simplification of an implicite handling of natural mortality 
+The typical form of the model %simplification of an implicite handling of natural mortality 
 makes the logistic production interpretable as modeling surplus 
-biomass production directly, and thus RPs may be seen visualized directly on the curve.  
+biomass production directly, and thus RPs may be visualized directly on the logistic curve.  
 %this simplification gives the parabolic production function a dual interpretation as a yeild curve directly.  
 
 %\begin{wrapfigure}{r}{0.5\textwidth}
@@ -70,7 +71,7 @@ biomass production directly, and thus RPs may be seen visualized directly on the
 \end{minipage}
 \begin{minipage}[h!]{0.37\textwidth}
 \caption{\label{srrSchaefer}
-	\\The logistic production function in black plotted next to depictions of the key biological parameters and reference points.
+	\\The logistic production function in black plotted with depictions of the key biological parameters and reference points.
         The slope at the origin (and thus $r$) is shown in blue, catch resulting in MSY in red, biomass at MSY in green, and $K$ in purple at the right x-intercept.
         MSY is seen at the peak of the parabola, and is attained with a fishing rate of $\frac{r}{2}$ and biomass equilibrating to $\frac{K}{2}$.
         %\\The logistic production function in black plotted next to depictions of the key biological parameters and refe
@@ -124,7 +125,7 @@ avoid biased parameter estimates.
 
 %
 The PT model is a three parameter generalization of the Schaefer model that uses 
-its extra parameter to explicitely control the location of $\frac{B^*}{\bar B(0)}$. 
+its extra parameter to explicitly control the location of $\frac{B^*}{\bar B(0)}$. 
 In doing so, the PT model can model the entire space of RPs and does so in a way that 
 retains much of the analytical appeal of the Schaefer model. While there are some oddities
 of the functional form \cite{punt_extending_2019, fletcher_restructuring_1978}, the model 
@@ -141,7 +142,7 @@ community. A GP metamodel of the simulation is developed to demonstrate how
 misspecification of the Schaefer model forms biases in RP estimation. First, 
 analytical expressions for RPs are derived under the PT model for use in 
 deriving a fully analytical simulation design. Next, a GP metamodel is 
-developed and a catch is parameterized in terms of contrast to demonstrate 
+developed and catch is parameterized in terms of contrast to demonstrate 
 how the nature of bias is controlled by the information content in the data.
 
 %{\color{red}
@@ -177,7 +178,7 @@ how the nature of bias is controlled by the information content in the data.
 \caption{
 %\onehalfspacing
 The Pella-Tomlinson production function plotted across a variety of parameter
-values. The special cases of Logistic production is shown in black, and the
+values. The special case of logistic production is shown in black, and the
 left-leaning and right-leaning regimes are shown in blue and red respectively.
 }
 \label{SrrPT}
@@ -209,8 +210,8 @@ they do in the logistic production function.
 %
 $\gamma$ is a parameter which breaks PT out of the restrictive symmetry of the
 logistic curve. In this parameterization $\gamma\in(1, \infty)$, with the logistic model
-appearing in the special case of $\gamma=2$, and the Fox model appearing as
-a limiting case as $\gamma\to1$.
+appearing in the special case of $\gamma=2$ (the Fox model appears as
+a limiting case as $\gamma\to1$). 
 %In the special case of $\gamma=2~$ Eq (\ref{pt}) 
 %collapses back to the logistic curve, however in general $\gamma\in(1, \infty)$.
 %In Figure (\ref{SrrPT}) PT recruitment 
@@ -232,8 +233,8 @@ PT.
 While the form of the PT curve produces some limitations \cite{punt_extending_2019, fletcher_restructuring_1978} %\cite{fletcher_restructuring_1978}, %{(\color{red}cite)}, 
 importantly the % how $\gamma$ appears in PT still produces some limitations to the form of the production function 
 introduction of a third parameter allows enough flexibility to fully describe
-the space of reference points used in management. To see this, the reference
-points are analytically derived for the PT model below. % in the following section.
+the space of RPs. %reference points used in management. 
+To see this, the reference points are analytically derived for the PT model below. % in the following section.
 
 %
 \subsection{Reference Points}\label{ptRef}
@@ -387,7 +388,7 @@ across the simulated domain \cite{devon_lin_latin_2015, stein_large_1987},
 while constraining samples to be spaced in some notion of spread over the entire space.
 Latin Hypercube Sampling \cite[LHS]{mckay_comparison_2000} is among the most
 foundational methods of generating the designs for use in computer experiments. 
-A Latin Hypercube Deisgn \cite[LHD]{santner_design_2003} is thus an experimental 
+A Latin Hypercube Design \cite[LHD]{santner_design_2003} is thus an experimental 
 design based on a LHS. 
 
 %, in the 2 dimensional space defined by RPs,
@@ -405,6 +406,13 @@ each grid in each dimension so as to reduce clumping of the $n$ samples across
 the design space.
 
 %
+In the 2 dimensional space defined by the PT RPs a LHD is defined by first
+letting $\mathcal{F}$ and $\mathcal{B}$ be regular grids, of size $n=100$, on
+\mbox{$F^*\in(0.1, 0.7)$} and \mbox{$\frac{B^*}{B_0}\in(0.2, 0.6)$}
+respectively. A LHS, of size 100, is then collected among the cells produced 
+by $\mathcal{F}\times\mathcal{B}$. 
+
+%
 %\begin{figure}[h!]
 %\centering [width=0.96\textwidth]
 \begin{wrapfigure}{r}{0.5\textwidth}
@@ -418,20 +426,13 @@ elements. \label{LHS}
 }
 \end{wrapfigure}
 
-
-%
-In the 2 dimensional space defined by the PT RPs a LHD is defined by first
-letting $\mathcal{F}$ and $\mathcal{B}$ be regular grids, of size $n=100$, on
-\mbox{$F^*\in(0.1, 0.7)$} and \mbox{$\frac{B^*}{B_0}\in(0.2, 0.6)$}
-respectively. A LHS, of size 100, is then collected among the cells produced 
-by $\mathcal{F}\times\mathcal{B}$. 
-
 %
 Each of the sampled locations represent a unique PT model with the sampled RP 
 values. Since the relationship mapping RPs analytically to productivity
 parameters can be found for the PT model, LHS designs the the PT model are 
 computed directly in RP space and Eq. (\ref{gammaOfB}) is used to map the
 sampled RP design locations to PT productivity parameters.
+\\
 
 %
 \subsection{Gaussian Process Metamodel\label{gpmm}}
@@ -508,7 +509,7 @@ controls for the specific degree of model misspecification.
 %
 A flexible GP model is assumed for the structure of the metamodel to describe 
 the mapping of RPs under misspecified two-parameter models of productivity. A 
-GP is astochastic process generalizing the multivariate normal distribution to 
+GP is a stochastic process generalizing the multivariate normal distribution to 
 an infinite dimensional analog. GP models are often specified primarily
 through the choice of a covariance (or correlation) function which defines the
 relationship between locations in the input space. %an index set. Typically the index set is spatial for GPs,
@@ -716,14 +717,14 @@ the two-parameters $\chi_{max}$, and $\chi_{min}$ can be reduced to the single
 parameter $\chi$. The tuning parameter $\chi$ then singularly controls contrast
 that appears in time series data. The constants 1.6 and 0.4 may be tuned to 
 simulate more or less contrast, however the values chosen should be $>1$ and $<1$ 
-respectively and should be chosen in coordination with the number of simulated time 
+respectively and should be chosen in coordination with the number of simulated  
 epochs so at to avoid introducing an aliasing effect between the index sampling 
-frequency and the higher frequency (i.e. sharp) features of induced by fishing 
+frequency and the higher frequency (i.e. sharp) features induced by fishing 
 \cite{shannon_communication_1998, mclean_nyquistovercoming_2005}. For 
-the 45 epoc simulation presented here the constants 1.6 and 0.4 %time period 
-are tuned to avoid aliasing the high contrast features of index samples in the 
+the 45 epoch simulation presented here the constants 1.6 and 0.4 %time period 
+are tuned to avoid aliasing high contrast features of index samples in the 
 most dramatic simulations. By increasing the sampling frequency, or number of 
-simulated time periods, the constantants may be increased/decreased accordingly. 
+simulated time periods, the constants may be increased/decreased accordingly. 
 
 %simulated indices in the high contrast environment 
 %Other choices of the bases of exponentiation for $\chi_{max}$ and $\chi_{min}$ may be used so long as the base for 
@@ -858,14 +859,14 @@ in practice may not be complete for every quarter (or year) of the modeled
 period. It is overwhelmingly common to discretize the ODE in time. 
 %via Euler's method with integration step sizes to match the observation frequency of the modeled data. 
 This is often computationally convenient when the underlying species
-dynamics are resonably well behaved, however when the dynamics model is used
+dynamics are reasonably well behaved, however when the dynamics model is used
 as a statistical model, with the goal of inferring the behavior of the
 underlying species dynamics, the regularity of the dynamics are not guaranteed.
 %general evaluating  can present several issues. 
 %strategy often pushes the assumption of catch continuity under the rug. However, 
-An implicit assumption of continuity of catch in time provides the neccessary
+An implicit assumption of continuity of catch in time provides the necessary
 regularity for the statistical model. Furthermore a continuous handling of the
-dynamics provides improved accruacy in evaluating the ODE, particually when
+dynamics provides improved accuracy in evaluating the ODE, particularly when
 inferring productivity parameters which largely control the regularity of the
 dynamics.
 
@@ -886,7 +887,7 @@ As previously mentioned, the overwhelming majority of implementations of
 stock assessment models discretize the ODE %using Euler's method 
 with the integration step sized fixed so as to match the observation frequency. 
 In this setting we explore model parameterizations that explore the full 
-extent ofbiologically relevant reference points. This exercise produces 
+extent of biologically relevant reference points. This exercise produces 
 some combinations of parameters that result in numerically stiff ODEs.
 
 %
@@ -895,7 +896,7 @@ The concept of stiffness in ODEs is hard to precisely characterize.
 Hairer and Wanner \cite[p.2]{wanner_solving_1996} describe stiffness in the
 following pragmatic sense, ``Stiff equations are problems for which explicit
 methods don't work''. It is hard to make this definition more mathematically
-precise, but due to the explicite discretization of the ODE this is a consistent 
+precise, but due to the explicit discretization of the ODE this is a consistent 
 issue for models of very productive species in the low contrast simulations. 
 % parameterized
 %so that $\zeta$ is greater than about $\frac{1}{2}$. 
@@ -1151,7 +1152,7 @@ decreases as contrast is added to PT data as generated in the low $\frac{B^*}{B_
 high $F^*$ regime. By including additional contrast $F^*$ bias is decreased. To fully 
 extinguish $F^*$ bias, additional contrast may be added by adjusting the time resolution 
 to commensurately avoid sample aliasing issues as discussed in Section (\ref{catch}). 
-Furthermore a more complex model of fishing may be neccessary.  
+Furthermore a more complex model of fishing may be necessary.  
 %, however
 %parameterizing contrast so as to fully extinguish $F^*$ bias may require a more complex
 %model of fishing.
@@ -1192,13 +1193,13 @@ bias in productivity, and thus RPs, manifest under the Schaefer model.
 %enlightens the understanding of the mechanisms of how bias in productivity, 
 %and thus RPs, manifest. 
 Figure (\ref{flatProd}) demonstrates that the observed RP biases are tied directly to 
-the shape of the data generating PT production function relative to the symetric case 
+the shape of the data generating PT production function relative to the symmetric case 
 of the Schaefer model; a trend which is more generally described by the metamodel in 
 Figure (\ref{arrowsPT}).
 
 %
-The metamodeled RP bias trends indicate that the Scheafer model may present 
-systematic managemnt risks that are yet unrecognized. It is understood that 
+The metamodeled RP bias trends indicate that the Schaefer model may present 
+systematic management risks that are yet unrecognized. It is understood that 
 the Schaefer model will induce biases in $\frac{B^*}{B_0}$ so as to hold 
 $\frac{B^*}{B_0}=0.5$ \cite{maunder_is_2003, prager_reply_2003}, but the 
 structure of biases in $F^*$ estimation is less well understood. These results 
@@ -1212,12 +1213,12 @@ For the populations coming from $\frac{B^*}{B_0}<0.5$ the
 underestimated $F^*$ would make management based on Schaefer model 
 estimates more conservative. Of these observed patterns it is certainly better 
 to be conservative in estimating $F^*$
-\footnote{It is largly thought that $\frac{B^*}{B_0}<0.5$ for most commonly modeled stocks.}, 
+\footnote{It is largely thought that $\frac{B^*}{B_0}<0.5$ for most commonly modeled stocks.}, 
 however it is not enough to simply be conservative. Our ultimate goals in 
 modeling should be to provide an accurate summary of the stock with a complete 
-contextualization of our models' deficancies. To that end, this work contextulizes
+contextualization of our models' deficiencies. To that end, this work contextualizes
 RP estimation under the Schaefer model, and suggests that understanding the 
-degree of contrast in index data is important due to its influce on the degree of 
+degree of contrast in index data is important due to its influence on the degree of 
 bias in $F^*$ estimates. 
 %since contrast controls the degree of bias of $F^*$.   
 %with leadWhile biases in 
@@ -1250,7 +1251,7 @@ bias in $F^*$ estimates.
 %contrastFurthermore, 
 This work reiterates the role of contrast 
 \cite{hilborn_quantitative_1992} in estimating stock productivity. 
-Since the structure of the Scheafer model does not induce strong correlations
+Since the structure of the Schaefer model does not induce strong correlations
 between RPs\footnote{A luxury not granted under the BH model introduced
 in Chapter (\ref{schnuteChapter}).}, it provides an exceptional modeling 
 environment for understanding the estimation characteristics of $F^*$. In the 
@@ -1290,7 +1291,7 @@ vertical mapping of $F^*$, indicated minimal bias in $F^*$ estimates.
 %
 The relative fishing rate parameterized in Section (\ref{catch}) is broadly 
 representative of many California fisheries \cite{pearson_effectiveness_1995, pearson_reliability_2008}. 
-The form used here captures a useful notion of contrast and provides a seemless 
+The form used here captures a useful notion of contrast and provides a seamless 
 form that reveals how model failure behaves as contrast is removed from the 
 data. 
 %
