@@ -8,9 +8,9 @@ Evolving from the work of Von Bertalanffy \cite{von_bertalanffy_quantitative_193
 alongside the Ricker \cite{ricker_stock_1954} and Schaefer \cite{schaefer_study_1957}   
 models, the perspective of Beverton-Holt shaped the following decades of fisheries 
 research. To this day, stock assessments view the BH model of recruitment as a 
-default \cite{methot_stock_2013}. %, black}. 
+default \cite{methot_stock_2013, barnes_stock_2023}. %, black}. 
 
-{\color{red} add black rockfish assessment assessment}
+%{\color{red} add black rockfish assessment assessment}
 
 % and ricker \cite{ricker} models 
 % and varied history 
@@ -37,9 +37,10 @@ dependence \cite{gotelli_primer_1995} (albeit to a lesser extent).
 %Like the Schaefer model, the BH model begins the derivation of their 
 Unlike the Schaefer model, the BH approach to modeling productivity factors the 
 density dependance related to recruitment separately from terms relating to 
-natural mortality. This behooves an additional and more explicit model of 
-natural mortality \cite{beverton_review_1959} while recruitment is modeled 
-separatly. Similarly to the Schaefer model, there derivation of the recruitment 
+natural mortality, behooving a more explicit model of natural mortality \cite{beverton_review_1959}.
+%This behooves an additional and more explicit model of 
+%natural mortality \cite{beverton_review_1959} while recruitment is modeled separatly. 
+Similarly to the Schaefer model, there derivation of the recruitment 
 relationship assumes that density dependence appears as a quadriatic logistic 
 differential equation. However the BH model formulates this as a model of the 
 change in recruitment over time, rather than as a direct model of net productivty 
@@ -55,8 +56,8 @@ reparameterized as, % consider the % By solving this differential equation they 
 P(B) = \frac{\alpha B}{1+\beta B}.
 \end{equation}
 %
-The parameter $\alpha$ here has the same interpretation as the $r$ parameter, 
-from the Scheafer model, representing the slope at the origin of the 
+The parameter $\alpha$ here has a similar interpretation as the $r$ parameter, 
+from the Scheafer model, in that it represents the slope at the origin of the 
 production function. The $\beta$ parameter here is also related to $K$, 
 from the Scheafer model, however the BH model is not parameterized 
 directly in terms of carrying capacity but rather $K\propto\frac{1}{\beta}$. 
@@ -72,7 +73,9 @@ in practice.
 	\includegraphics[width=\textwidth]{../gpBias/yeildBH.png}
 \end{minipage}
 \caption{\label{srrBH}
-	\color{red} Thou shlt write me a caption
+	($left$) BH production function plotted along side a linear model of natural mortality.
+	($right$) Surplus production implied by the combined BH model of production and linear natural mortality.
+	%\color{red} Thou shlt write me a caption
        % \\The logistic production function in black plotted next to depictions of the key biological parameters and ref
        % The slope at the origin (and thus $r$) is shown in blue, catch resulting in MSY in red, biomass at MSY in green
        % MSY is seen at the peak of the parabola, and is attained with a fishing rate of $\frac{r}{2}$ and biomass equil
@@ -96,10 +99,10 @@ Figure (\ref{SrrPT}).
 %{\color{red} Something about the limitations of RPs \cite{mangel_perspective_2013, brooks_analytical_2010} }
 
 %
-Recall when $\gamma_{PT}\le2$, under the PT model, the RPs lie in the lower 
-$\frac{B^*}{B_0}\le0.5$ region of RP space. Under the BH model this too is the case, 
-although due to two-parameter form of the BH model, the BH set is a curve passing 
-through $\frac{B^*}{B_0}\le0.5$. Myers et. al. \cite{myers_maximum_1999}, 
+Under the PT model recall when $\gamma_{PT}\le2$ the RPs lie in the lower 
+$\frac{B^*}{B_0}\le0.5$ region of RP space. Under the BH model this is also the 
+case, although due to two-parameter form of the BH model, the set of BH RPs is a 
+curve passing through $\frac{B^*}{B_0}\le0.5$. Myers et. al. \cite{myers_maximum_1999}, 
 Brooks et. al. \cite{brooks_analytical_2010}, and Mangel et. al. \cite{mangel_perspective_2013} 
 show how this limitation arrises analytically via steepness. Mangel et. al. \cite{mangel_perspective_2013}, 
 further demonstrates the generality of this phenomena, and shows how these 
@@ -113,10 +116,10 @@ developed slightly different (but conceptually equilavent) three-parameter
 generalizations of the BH model
 \footnote{
 The later form in \cite{schnute_general_1985} is prefered here due its 
-interpretability and improved regularity of closed form RPs it produces.
+interpretability and the improved regularity of closed form RPs it produces.
 }.
 This model generalizes the BH model by controlling the nature of density 
-dependence, by allowing production to increase or decrease beyond that of the 
+dependence by allowing production to increase or decrease beyond that of the 
 BH model for large spawning biomass. 
 %
 The Schnute model not only generalizes the BH model, but in doing so it 
@@ -136,12 +139,14 @@ broadly in RP-space but fit with an intentionally misspecified BH model. This
 parameterizes a broad set of misspecified situations for the BH model
 where the simulated data have well understood dynamics in the fisheries
 community. A GP metamodel of the simulation demonstrates how misspecification 
-of the BH model forms biases in RP estimation. First, some of the neccessary 
-analytical RP expressions are derived under the Schnute model. The remaining 
+of the BH model forms biases in RP estimation. First, as many as possible of 
+the neccessary %some of the neccessary 
+RP expressions are derived analytically under the Schnute model. The remaining 
 RPs do not have analytical expressions. Therefore, a numerically stable method 
 is then developed that allows an adaptive simulation design to be computed 
-without the remaining closed-form RP expressions. A GP metamodel is then used 
-to demonstrate the nature of RP biases under the BH model. 
+without the remaining closed-form RP expressions. The GP metamodel (as 
+developed in Section (\ref{gpmm})) is then used to demonstrate the nature of RP 
+biases under the BH model. 
 %is controlled by the information content in the data.
 
 
@@ -258,9 +263,10 @@ values. Regimes of similarly behaving curves are grouped by color.
 %
 The BH and Logistic production functions arise when $\gamma$ is fixed to -1 or
 1 respectively. The Ricker model is a limiting case as $\gamma\rightarrow0$. %\shortcite{schnute_general_1985}.
-For $\gamma<-1$ a family of strictly increasing Cushing-like curves arise,
-culminating in linear production as $\gamma\to-\infty$. These special cases form
-natural regimes of similarly behaving production functions as seen in Figure (\ref{sRegimes}).
+For $\gamma<-1$ a family of strictly increasing Cushing-like \cite{cushing_dependence_1971} 
+curves arise, culminating in linear production as $\gamma\to-\infty$. These 
+special cases form natural regimes of similarly behaving production functions 
+as seen in Figure (\ref{sRegimes}).
 
 %
 The behavior of RP inference under the BH model is of particular interest due
@@ -291,7 +297,7 @@ natural mortality is implicit to the structure of the previously decribed
 Schaefer, Fox, and PT production models. Explicitly modeling natural mortality 
 in this way allows $P_s$ to model the production function in such a way so as to allow 
 production to increase for large spawning biomass (or asymptote, e.g. BH production), 
-and still retain well defined RPs. % well defined. %This is not only a typical assumption
+and still retain well defined RPs so long as $\alpha>M$. % well defined. %This is not only a typical assumption
 %biomasses (e.g. BH production). In turn, the Schunte model requires the addition
 %of the term $-MB$ to form an interpretable yeild curve and make RPs well defined
 %over the relevant domain of $\gamma$.
@@ -299,8 +305,8 @@ This handling of $M$ is typical for age structured models under BH or Ricker
 recruitment (or even BH/Ricker production models), but it is uncommonly used with the 
 Schaefer model ($\gamma=1$) as is possible in this setting. Appendix (\ref{mApp}) 
 shows that while explicite $M$ may not be typical under the Schaefer model, the 
-assumption of linear natural mortality, $-MB$, produces a valid Scheafer model 
-with an admissible interpretation.  
+assumption of linear natural mortality, $-MB$, produces a mathematically valid 
+Scheafer model with an admissible interpretation.  
 %some values of $\gamma$ may lead to the logistic {\color{red} [logistic 
 %model]-MB=[another logistic model] with slightly different 
 %parameterization such that M is explicite. parabola-parabola is another parabola.}
@@ -417,15 +423,16 @@ For brevity, define the function \mbox{$\zeta(\gamma)=\frac{B^*}{B_0}\big(\alpha
 Inverting $\zeta(\gamma)$ for $\gamma$, and computing the cascade of
 $\alpha(\gamma)$, and then $\beta(\alpha(\gamma), \gamma)$, fully defines the
 Schnute model for a given $(\frac{F^*}{M}, \frac{B^*}{B_0})$. However
-inverting $\zeta$ accurately is extremely difficult. Inverting $\zeta$
+inverting $\zeta$ accurately is difficult. Inverting $\zeta$ %extremely difficult
 analytically is not feasible, and numerical methods for inverting
 $\zeta$ are unstable and can be computationally expensive.
 %Numerically inverting $\zeta$ quickly becomes  
 %prohibitively expensive, and solutions are often still unreliable.  
 %
 Rather than numerically invert precise values of $\zeta(\gamma)$, $\gamma$ is 
-sampled so that the overall simulation design is space filling as described in 
-Section (\ref{sLHS}).
+sampled based on the form of $\zeta$ so that the overall simulation 
+design is space filling. Ultimatly this produces a similar LHD as described in 
+Section (\ref{sLHS}), however bypassing inaccurate numerical methods. 
 
 %
 Each design location defines a complete Schnute production model with the given
@@ -486,65 +493,73 @@ upon RP inference.
 %
 \subsection{Design \label{sLHS}}
 
-%RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$RPs
-Due to the lack of an analytical relationship mapping RPs $\mapsto$ $\theta$,
-analogous to the PT model's Eq. (\ref{gammaOfB}), producing a LHS design
-over Schnute RPs requires a more tactful approach.
-The structured relationship between the RPs and productivity parameters,
-described in Section (\ref{sSim}), allows an approximate LHS to be obtained by
-a careful navigation of the system of equations seen in Eq. (\ref{abgSys}).
-
 %
 \begin{wrapfigure}{r}{0.5\textwidth}
-\vspace{-0.5cm}
-\begin{itemize}
-        \item[] \hspace*{-1cm}Given $B_0$, $M$, and $F^*$:
-        \item[1)] Draw $\gamma^* \sim \gamma|F^*, M$.
-        \item[2)] Compute $\frac{B^*}{B_0} = \zeta(\gamma^*)$
-        \item[3)] Compute $\alpha^* = \alpha(\gamma^*, F^*, M)$
-        \item[4)] Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$
-\end{itemize}
-\vspace{-0.5cm}
-\caption{ An outline of the sampling procedure for $\gamma$
-%(and associated quantities) 
-given $B_0$, $M$, and $F^*$.
-}
-\end{wrapfigure}
-
-%
-Under the Schnute model, let $\mathcal{F}$ and $\mathcal{B}$ represent regular grids on
-%Letting $\mathcal{F}$ and $\mathcal{B}$ be equally spaced grids, of size $n$, on 
-\mbox{$\frac{F^*}{M}\in(0.25, 4)$} and \mbox{$\frac{B^*}{B_0}\in(0.15, 0.7)$}
-respectively which can serve as the scaffolding for computing an approximate LHS.
-
-%
-Since it is not practical to invert $\zeta(\gamma)$, a uniform sample in
-$\frac{B^*}{B_0}$ can be obtained by modeling $\gamma$ as a random
-variable, with realization $\gamma^*$, and thinking of $\zeta(\gamma)$ as its
-cumulative distribution function (CDF). The aim is to model $\gamma$ as an
-easily sampled random variable with a CDF that closely approximates $\zeta$, so
-that $\zeta(\gamma^*)\dot\sim U(\zeta_{min},1)$ as closely as possible. There
-may be many good models for the distribution of $\gamma$, but in this setting
-the following distribution is very effective,
-%
-\begin{align}
-\gamma \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}. \label{mixT}
-\end{align}
-
-%
-%\clearpage
-
-%
-\begin{wrapfigure}{r}{0.5\textwidth}
-\vspace*{-1cm}
+%\vspace*{-1.5cm}
 %\begin{figure}[h!]
 \includegraphics[width=0.5\textwidth]{../gpBias/zeta.png}
 \vspace*{-1.3cm}
 \caption{$\zeta(\gamma)$ Plotted for $F^*=0.1$ and $M=0.2$. The point
 $(\gamma_{min}, \zeta_{min})$ shows the lowest biologically meaningful
-value of $\gamma$; below which productivity is negative.}
+value of $\gamma$.} %; below which productivity is negative.}
 %\end{figure}
 \end{wrapfigure}
+
+
+%%
+%\begin{wrapfigure}{r}{0.5\textwidth}
+%%\vspace{-0.5cm}
+%\begin{itemize}
+%        \item[] \hspace*{-1cm}Given $B_0$, $M$, and $F^*$:
+%        \item[1)] Draw $\gamma' \sim \gamma|F^*, M$.
+%        \item[2)] Compute $\frac{B^*}{B_0} = \zeta(\gamma')$
+%        \item[3)] Compute $\alpha' = \alpha(\gamma', F^*, M)$
+%        \item[4)] Compute $\beta' = \beta(\alpha', \gamma', M, B_0)$
+%\end{itemize}
+%%\vspace{-0.5cm}
+%\caption{ An outline of the sampling procedure for $\gamma$
+%%(and associated quantities) 
+%given $B_0$, $M$, and $F^*$.
+%}
+%\end{wrapfigure}
+
+%RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$RPs
+Due to the lack of an analytical relationship mapping RPs $\mapsto$ $\theta$,
+analogous to the PT model's Eq. (\ref{gammaOfB}), producing a LHD over Schnute 
+RPs requires a more tactful approach.
+The structured relationship between the RPs and productivity parameters,
+described in Section (\ref{sSim}), allows an approximate LHD to be obtained by
+a careful navigation of the system of equations seen in Eq. (\ref{abgSys}).
+
+%\clearpage
+%
+Under the Schnute model, let $\mathcal{F}$ and $\mathcal{B}$ represent regular grids on
+%Letting $\mathcal{F}$ and $\mathcal{B}$ be equally spaced grids, of size $n$, on 
+\mbox{$\frac{F^*}{M}\in(0.25, 4)$} and \mbox{$\frac{B^*}{B_0}\in(0.15, 0.7)$}
+respectively which can serve as the scaffolding for computing an approximate LHS.
+Furthermore, let the full design space be defined on the rectangle $R_{full}=(0.25, 4)\times(0.15, 0.7)$.
+
+%
+Since it is not practical to invert $\zeta(\gamma)$, a uniform sample in
+$\frac{B^*}{B_0}$ can be obtained by modeling $\gamma$ as a random
+variable, with realization $\gamma'$, and thinking of $\zeta(\gamma)$ as its
+cumulative distribution function (CDF). The aim is to model $\gamma$ as an
+easily sampled random variable with a CDF that closely approximates $\zeta$, so
+that $\zeta(\gamma')\dot\sim U(\zeta_{min},1)$ as closely as possible. The 
+point $(\gamma_{min}, \zeta_{min})$ is the lowest biologically meaningful
+value of $\gamma$ and $\frac{B^*}{B_0}$ respectively for a given 
+$\frac{F^*}{M}$, below which productivity is negative \cite{myers_maximum_1999, punt_extending_2019}. % defined by the relationship between Schnute productivity and linear natural mortality.
+There may be many good models for the distribution of $\gamma$, but in this setting
+the following distribution is very effective,
+%
+%
+%\clearpage
+%
+%
+%is very effective,
+\begin{align}
+\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}. \label{mixT}
+\end{align}
 
 %
 Above, $t$ is the density of the three-parameter location-scale family Student's $t$
@@ -566,18 +581,21 @@ $\zeta(\gamma)$. Thus, the values of $\mu$, $\sigma$, and $\nu$ are chosen by
 minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
 %Letting $T$ be the CDF of the modeled distribution of $\gamma$, the values of $\mu$, $\sigma$, and $\nu$ are chosen by minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
 %{\gamma_{min}}^{\gamma_{0.9}}
+
+%\vspace{-0.125cm}
 \begin{align}
 [\hat\mu, \hat\sigma, \hat\nu]=\underset{{[\mu, \sigma, \nu]}}{\arg\min}\int_\Gamma \big(T(\gamma; \mu, \sigma, \nu) - \zeta(\gamma)\big)^2 d\gamma
 \end{align}
 
-{\color{red}
-\cite{punt_extending_2019} \cite{myers_maximum_1999} define $(\gamma_{min}, \zeta_{min})$
-}
+%{\color{red}
+%\cite{punt_extending_2019} \cite{myers_maximum_1999} define $(\gamma_{min}, \zeta_{min})$
+%}
 
-%
-\clearpage
+%\clearpage
+\vspace{-0.25cm}
 %
 \begin{wrapfigure}{R}{0.5\textwidth}
+	\renewcommand{\baselinestretch}{1.3}
         %\vspace{-0.5cm}
         \vspace{-1cm}
         \begin{minipage}{0.5\textwidth}
@@ -591,43 +609,45 @@ minimizing the $L^2$ distance between $T(\gamma)$ and $\zeta(\gamma)$.
                         \State Draw $\frac{F^*}{M} \sim Unif(\mathcal{F}_i)$
                         \State Compute $[\hat\mu, \hat\sigma, \hat\nu]$ given $F^*~\&~M$
                         \While {$\mathcal{B}_j$ not sampled}
-                                \State Draw $\gamma^* \sim T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$
-                                \State Compute $\zeta^* = \zeta(\gamma^*)$
-                                \State Compute $j$ such that $\zeta^*\in\mathcal{B}_j$
+                                \State Draw $\gamma' \sim T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$
+                                \State Compute $\zeta' = \zeta(\gamma')$
+                                \State Compute $j$ such that $\zeta'\in\mathcal{B}_j$
                                 %\State Compute $\alpha^* = \alpha(\gamma^*, F^*, M)$ 
                                 %\State Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$   
                                 %\State \mbox{Save $(\frac{F^*}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$ in $\mathcal{F}_i\times\mathcal{B}_j$} 
                         \EndWhile
-                        \State Compute $\alpha^* = \alpha(\gamma^*, F^*, M)$
-                        \State Compute $\beta^* = \beta(\alpha^*, \gamma^*, M, B_0)$
-                        \State \mbox{Save $(\frac{F^*}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$ in $\mathcal{F}_i\times\mathcal{B}_j$}
+                        \State Compute $\alpha' = \alpha(\gamma', F^*, M)$
+                        \State Compute $\beta' = \beta(\alpha', \gamma', M, B_0)$
+                        \State \mbox{Save $(\frac{F^*}{M}, \zeta')\Leftrightarrow(\alpha', \beta', \gamma')$ in $\mathcal{F}_i\times\mathcal{B}_j$}
                         \EndFor
                         \EndProcedure
                         \end{algorithmic}
                 \end{algorithm}
         \end{minipage}
 \end{wrapfigure}
+\renewcommand{\baselinestretch}{2.5}
 %{\color{red}Connect $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ to overall algorithm.}
 
 %Furthermore, $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$, taken together with 
 The distribution $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ is fit for use in
-generating $\gamma^*$ random variates at a specific $F^*$ and $M$. This
+generating $\gamma'$ random variates at a specific $F^*$ and $M$. This
 approximation releases the need to invert $\zeta$ w.r.t. $\gamma$ by using
-samples of $\gamma^*$ values to generate approximatly uniform samples of
-$\zeta(\gamma^*)$. By sampling approximatly uniform $\zeta(\gamma^*)$ random
+the $\gamma'$ samples to generate approximatly uniform samples of
+$\zeta(\gamma')$. By sampling approximatly uniform $\zeta(\gamma')$ random
 variates in this way, and making use of the structure in Eq. (\ref{abgSys}), %allows for the collection of 
-an approximate LHS sample can be collected via Algorithm (\ref{lhsAlg}). %Figure (\ref{sudoCode}). 
+an approximate LHS can be collected via \mbox{Algorithm (\ref{lhsAlg}).} %Figure (\ref{sudoCode}). 
 
 %
 For a given $i$, $\frac{F^*}{M}$ is drawn uniformly from within $\mathcal{F}_i$. Conditioning on the
 sample of $F^*$, and $M$, $T(\gamma|\hat\mu, \hat\sigma, \hat\nu)$ is fit and
-$\gamma^*$ is sampled. $\zeta^*$ is then computed and placed into the appropriate
-grid element $\mathcal{B}_j$. Given $\gamma^*$, the cascade $\alpha(\gamma^*)$,
-and $\beta(\alpha(\gamma^*), \gamma^*)$, can be computed. The algorithm
-continues until all of the design elements, $(\frac{F^*}{M}, \zeta^*)\Leftrightarrow(\alpha^*, \beta^*, \gamma^*)$,
+$\gamma'$ is sampled. $\zeta'$ is then computed and placed into the appropriate
+grid element $\mathcal{B}_j$. Given $\gamma'$, the cascade $\alpha(\gamma')$,
+and $\beta(\alpha(\gamma'), \gamma')$, can be computed. The algorithm
+continues until all of the design elements, \mbox{$(\frac{F^*}{M}, \zeta')\Leftrightarrow(\alpha', \beta', \gamma')$,}
 have been computed for all $i\in[1,...,n]$.
 
 %
+%\clearpage
 \subsubsection{Design Refinement\label{desRef}}
 
 %
@@ -635,7 +655,7 @@ Since the behavior of RP inference, under misspecified models, will vary in
 yet-unknown ways, the exact sampling design density may be hard to know a priori.
 Several factors, including the particular level of observation uncertainty,
 high variance (i.e. hard to resolve) features of the response surface, or
-simply "gappy" instantiations of the initial LHS design may necessitate
+simply "gappy" instantiations of the initial LHD may necessitate
 adaptive design refinement, to accurately describe RP biases. Given the
 temperamental relationship between RPs and productivity parameters in the
 Schnute model, a recursive refinement algorithm that makes use of the
@@ -643,8 +663,8 @@ previously described LHS routine, is developed.
 
 %
 While LHS ensures uniformity in the design margins, and a certain degree of spread,
-it is widely recognized that particular LHS instantiations may leave substantive gaps
-in the simulation design. To correct this, LHS is often paired with design elements
+it is widely recognized that particular LHD instantiations may leave substantive gaps
+in the simulation design. To correct this, LHD are often paired with design elements
 of maximin design \cite{morris_exploratory_1995,devon_lin_latin_2015}. Maximin designs sample
 the design space by maximizing the minimum distance between sampled points.
 This has the advantage of definitionally filling holes in the design, %\shortcite{johnson_minimax_1990}, %in a way that has been %shown to have asymtoptically optimal characteristics for Gaussian process models \shortcite{johnson_minimax_1990}
@@ -655,13 +675,14 @@ in how they define and fill gaps \cite{johnson_minimax_1990}, the methods are
 quite complimentary when combined.
 
 %Thus 
-Making use of this complimentary relationship, holes in the existing LHS design
-of RPs are identified based on maximin design principles.
+Making use of this complimentary relationship, holes in the existing RP LHD %LHS design of RPs 
+are identified based on maximin design principles.
 %Holes in the existing design are identified based on maximin design principles.
 %That is to say,
 New design points are collected based on areas of the RP design
-space which maximizes the minimum distance between all pairs of points in the
-\mbox{current design, based on the following distance function}
+space which optimize the maximin dinstance %maximizes the minimum distance 
+between all pairs of points in the
+{current design, based on the following distance function}
 %$\mathcal{F}$ and $\mathcal{B}$
 \begin{align}
 d(\bm{x}, \bm{x'}) &= \sqrt{(\bm{x}-\bm{x'})^T\bm{D}^{-1}(\bm{x}-\bm{x'})}\\
@@ -692,7 +713,8 @@ design points,
 The point $\bm{x_a}$ is used as an anchor for augmenting $\bm{X_n}$. %by collecting 
 An additional $LHS_{n'}$ (via Algorithm (\ref{lhsAlg})) is collected, adding
 $n'$ design points, centered around $\bm{x_a}$, to the overall design. %are collected, %$LHS_{n'}$ is collected, using Algorithm (\ref{lhsAlg}). 
-The augmenting region, $R_{(x_a, d_a)}$, for collecting $LHS_{n'}$ is defined
+The augmenting region %(for collecting $LHS_{n'}$)
+, $R_{(x_a, d_a)}$, is defined
 based on the square centered at $\bm{x_a}$ with side length $2d_a$, where
 \mbox{$d_a = \min\{ d(\bm{x_i}, \bm{x_a}): i=1,...,n \}$}, in the space defined
 by the metric $d$.
@@ -713,12 +735,16 @@ values of $\frac{B^*}{B_0}$, the calculation of $x_a$ is further truncated
 based on a convex hull defined by the existing samples in the overall design.
 
 %
-Design refinement then proceeds as follows. An initial design is computed, $X_{n} = LHS_{n}(R_{full})$, % design is computed 
-based on an overall simulated region of RPs $R_{full}$. The maximin augmenting
-point, $x_a$, is computed at a maximin distance of $d_a$ from the existing samples.
-An augmenting design $X_{n'} = LHS_{n'}(R_{(x_a, d_a)})$ is collected and
-added to $X_n$. Design refinement carries on recursively collecting augmenting
-designs in this way until the maximin distance falls below the desired level.
+Design refinement then proceeds as follows. An initial design is computed on the 
+full RP design space, $X_{n} = LHS_{n}(R_{full})$. % design is computed 
+%based on an overall simulated region of RPs $R_{full}$. 
+The maximin augmenting point, $x_a$, is computed at a maximin distance of $d_a$ 
+from the existing samples. An augmenting design $X_{n'} = LHS_{n'}(R_{(x_a, d_a)})$ 
+is collected and added to $X_n$. Design refinement carries on recursively 
+collecting augmenting designs in this way until the maximin distance falls 
+below the desired level.
+
+{\color{red} State how small in practice here.}
 
 %
 \subsection{\color{red}refer back to GP?}

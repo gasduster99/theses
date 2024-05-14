@@ -60,11 +60,8 @@ Repeated entry---line 165 of file ./delayDifferential.bib
  : @article{yeakel_generalized_2015
  :                                 ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 331 of file ./delayDifferential.bib
- : @article{brooks_analytical_2010
- :                                ,
-I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "sedar_stock_2010"
+Warning--empty journal in barnes_stock_2023
 Warning--empty publisher in devon_lin_latin_2015
 Warning--empty publisher in gotelli_primer_1995
 Warning--empty booktitle in mangel_theoretical_2006
@@ -73,45 +70,45 @@ Warning--empty journal in pearson_reliability_2008
 Warning--there's a number but no series in ramasubramanian_machine_2017
 Warning--empty journal in schaefer_study_1957
 Warning--empty journal in walters_continuous_2020
-You've used 67 entries,
+You've used 68 entries,
             2118 wiz_defined-function locations,
-            885 strings with 15002 characters,
-and the built_in function-call counts, 20681 in all, are:
-= -- 2091
-> -- 862
+            888 strings with 15529 characters,
+and the built_in function-call counts, 21356 in all, are:
+= -- 2141
+> -- 945
 < -- 4
-+ -- 366
-- -- 276
-* -- 1514
-:= -- 3524
-add.period$ -- 222
-call.type$ -- 67
-change.case$ -- 328
++ -- 399
+- -- 308
+* -- 1585
+:= -- 3652
+add.period$ -- 225
+call.type$ -- 68
+change.case$ -- 347
 chr.to.int$ -- 0
-cite$ -- 75
-duplicate$ -- 750
-empty$ -- 1654
-format.name$ -- 276
-if$ -- 4186
+cite$ -- 77
+duplicate$ -- 760
+empty$ -- 1671
+format.name$ -- 308
+if$ -- 4303
 int.to.chr$ -- 0
-int.to.str$ -- 67
-missing$ -- 77
-newline$ -- 355
-num.names$ -- 134
-pop$ -- 287
+int.to.str$ -- 68
+missing$ -- 78
+newline$ -- 360
+num.names$ -- 136
+pop$ -- 308
 preamble$ -- 1
-purify$ -- 272
+purify$ -- 290
 quote$ -- 0
-skip$ -- 476
+skip$ -- 483
 stack$ -- 0
-substring$ -- 1442
+substring$ -- 1447
 swap$ -- 67
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 246
-warning$ -- 8
-while$ -- 226
-width$ -- 69
-write$ -- 755
-(There were 13 error messages)
+type$ -- 250
+warning$ -- 9
+while$ -- 228
+width$ -- 70
+write$ -- 764
+(There were 12 error messages)
