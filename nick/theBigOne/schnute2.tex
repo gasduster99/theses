@@ -222,7 +222,7 @@ biases under the BH model.
 %\end{itemize}
 %}
 
-%
+%\clearpage
 \section{Methods \label{meth}}
 
 
@@ -245,7 +245,7 @@ P_s(B; [\alpha, \beta, \gamma]) = \alpha B (1-\beta\gamma B)^{\frac{1}{\gamma}}.
 \vspace{-0.6cm}
 %\includegraphics[width=0.5\textwidth]{plots/derisoSrr.png}
 \includegraphics[width=0.49\textwidth]{../gpBias/g3.png}
-\vspace{-1cm}
+\vspace{-0.5cm}
 %\end{minipage}
 %\begin{minipage}[h!]{0.3\textwidth}
 \caption{
@@ -644,7 +644,8 @@ $\gamma'$ is sampled. $\zeta'$ is then computed and placed into the appropriate
 grid element $\mathcal{B}_j$. Given $\gamma'$, the cascade $\alpha(\gamma')$,
 and $\beta(\alpha(\gamma'), \gamma')$, can be computed. The algorithm
 continues until all of the design elements, \mbox{$(\frac{F^*}{M}, \zeta')\Leftrightarrow(\alpha', \beta', \gamma')$,}
-have been computed for all $i\in[1,...,n]$.
+have been computed for all $i\in[1,...,n]$. In the simulations presented here 
+an initial design of size $n=150$ is always collected. 
 
 %
 %\clearpage
@@ -699,6 +700,8 @@ axis of so as to normalize distances to a common scale.
 %distance function 
 
 %
+%Let $\bm{X_n}$ be the initial design computed on $R_{full}$; in this initial 
+%design $n=100$ design points are collected.
 If $\bm{X_n}$ is the initial design, computed on $R_{full}$, let $\bm{x_a}$ be the 
 augmenting point which maximizes the minimum distance between all of the existing
 design points,
@@ -741,15 +744,37 @@ full RP design space, $X_{n} = LHS_{n}(R_{full})$. % design is computed
 The maximin augmenting point, $x_a$, is computed at a maximin distance of $d_a$ 
 from the existing samples. An augmenting design $X_{n'} = LHS_{n'}(R_{(x_a, d_a)})$ 
 is collected and added to $X_n$. Design refinement carries on recursively 
-collecting augmenting designs in this way until the maximin distance falls 
-below the desired level.
-
-{\color{red} State how small in practice here.}
+collecting augmenting designs in this way until %the maximin distance is sufficiently small to demonstrate 
+stability of the metamodel. Typically design refinement converged after the 
+addition of about 60 augmenting designs of size $n'=5$.
+% with a maximin distance of   
+%below the desired level.
+%{\color{red} State how small in practice here.}
 
 %
-\subsection{\color{red}refer back to GP?}
+\subsection{Metamodeling}
 
 %
+The GP metamodeling method previously developed in Section (\ref{gpmm}) is 
+also applied in Chapters (\ref{schnuteChapter}) and (\ref{delayChapter}) for the 
+analysis of BH RP inference with the following modifications.
+
+%
+Recall that each design location of the simulation uniquely represents a three parameter 
+Schnute model. Index of abundance data are generated from the Schnute model 
+at each design location to be fit with a two parameter BH model.
+The productivity parameters of the estimated BH model are reparameterized as 
+$\log(\alpha)$ and $\log(\beta)$ so that the modeled spaces are each in $\mathbb{R}$.
+In turn, the MLE and associated variance (via the inverted Fisher information) 
+of these reparameterized quantities propogate the vectors 
+$\textbf{y}$ and $\bm{\omega}$ respectively to be modeled by the GP metamodel. 
+These quantities along with the RP calculations derived in each respective chapter 
+fully specifies the metamodelling analysis with all other details remaining the same. 
+%be a vector of estimates of the estimator variances (via the
+%inverted Fisher information) at each $\textbf{y}$.
+
+%
+\clearpage
 \section{Results}
 
 %
@@ -757,8 +782,8 @@ below the desired level.
 
 %
 \begin{wrapfigure}{r}{0.45\textwidth}
-%\vspace{-3cm}
-\vspace{-2cm}
+\vspace{-1.5cm}
+%\vspace{-2cm}
 %\begin{figure}[h!]
 \includegraphics[width=0.45\textwidth]{../gpBias/qqUnif.png}
 \vspace{-1cm} %against theoretical uniform quantiles
@@ -781,6 +806,23 @@ unreliable, the relative speed and accuracy that this approximate LHS sampling
 method provides is pivotal for the rest of the work presented here. %to understanding the relationship between RPs and $\gamma$.
 
 %
+%Similarly to the PT model, the three-parameter Schnute model is uniquely
+%identified by each point in the space of $\frac{F^*}{M}$
+%and $\frac{B^*}{B_0}$ RPs. As seen in 
+Figure (\ref{colorDes}) shows how Schnute production has different behaviors in regiems 
+of RPs space that are entirely defined by the value of $\gamma$. %(shown in Figure (\ref{sRegimes}))
+%As shown in Figure (\ref{sRegimes}), as well as the colors of Figure (\ref{colorDes}), 
+When $\gamma\ge1$ the Schnute model produces a family of Logistic-like curves that are
+increasingly right leaning as $\gamma$ increases.
+For $1>\gamma\ge0$, Schnute production takes a family of left leaning Ricker-like curves
+that all approach the x-axis. For $0>\gamma>-1$ there are a family of BH-like
+curves that do not approach the x-axis but still have decreasing productivity for large
+biomass stocks. When $\gamma$ is exactly $-1$ Schnute reduces to BH production which has
+asymptoting production for large biomass. Finally when $\gamma<-1$ Schnute
+produces a family of increasing Cushing-like curves that do not asymptote, and produces
+linear production as $\gamma\to-\infty$.
+
+%
 \begin{wrapfigure}{r}{0.5\textwidth}
 \vspace{-0.5cm}
 %\begin{figure}[h!]
@@ -799,50 +841,21 @@ The black curve shows the BH set.
 %\end{figure}
 \end{wrapfigure}
 
-%
-Similarly to the PT model, the three-parameter Schnute model is uniquely
-identified by each point in the space of $\frac{F^*}{M}$
-and $\frac{B^*}{B_0}$ RPs. As seen in Figure (\ref{colorDes}), Schnute
-production has different behaviors in different ranges of RPs space, which
-are entirely defined by the value of $\gamma$ (shown in Figure (\ref{sRegimes})).
-%As shown in Figure (\ref{sRegimes}), as well as the colors of Figure (\ref{colorDes}), 
-When $\gamma\ge1$ the Schnute model produces a family of Logistic-like curves that are
-increasingly right leaning as $\gamma$ increases.
-For $1>\gamma\ge0$, Schnute production takes a family of left leaning Ricker-like curves
-that all, at least, approach the x-axis. For $0>\gamma>-1$ there are a family of BH-like
-curves that do not approach the x-axis but still have decreasing productivity for large
-biomass stocks. When $\gamma$ is exactly $-1$ Schnute reduces to BH production which has
-asymptoting production for large biomass. Finally when $-1>\gamma$ Schnute
-produces a family of increasing Cushing-like curves that do not asymptote, and produces
-linear production as $\gamma\to-\infty$.
+
 
 %
 Modeling index data that are simulated broadly over the theoretical space of RPs
 with misspecified BH production greatly limits the range of possible RPs that
 can be inferred. Under BH production the full theoretical space of RPs are
-limited to the curve \mbox{$\frac{B^*}{B_0}=\frac{1}{F^*/M+2}$.} Define the
-``BH set'' as the set of RPs defined by this limited space, i.e. the curve \\
-$\left\{\left(\frac{F^*}{M}, \frac{B^*}{B_0}\right) \;\middle|\; \frac{B^*}{B_0}=\frac{1}{F^*/M+2}\right\}$.
-as seen in the {\color{red}black curve} in Figure (\ref{colorDes}).
+limited to the curve \mbox{$\frac{B^*}{B_0}=\frac{1}{F^*/M+2}$.} Going forward I refer to 
+this curve as the ``BH set''. That is to say, the BH set is the set of RPs defined by
+$\left\{\left(\frac{F^*}{M}, \frac{B^*}{B_0}\right) \;\middle|\; \frac{B^*}{B_0}=\frac{1}{F^*/M+2}\right\}$. 
+The BH set is visualized by the green curve in Figure (\ref{colorDes}).
 The farther away from this set that Schnute data are simulated, the more the
 BH model is misspecified for those data.
 
 %
 \subsection{Metamodeled Trends}
-
-{\color{red} \cite{punt_extending_2019} \cite{myers_maximum_1999} for the bottom left corner
-
-The Deriso–Schnute model (Hilborn and Walters 1992),
-an alternative three-parameter model, has the Ricker and the
-Beverton–Holt as special cases. However, it suffers from the
-same problems that we described above: survival is not constrained to be finite 
-except when the model is a Ricker model, or it has the derivative of survival 
-as S → 0 constrained to be zero.
-
-Punt \& Cope
-The cells in red indicate combinations of FMSY/M and BMSY/B0 for which 
-recruitment is negative for 0<B<B0
-}
 
 %
 Unlike the Schaefer model, the BH set is not a constant in
@@ -854,10 +867,11 @@ to interact as a function of contrast in the data.
 
 %
 \begin{figure}[h!]
-\begin{minipage}[h!]{0.49\textwidth}
+\begin{minipage}[h!]{0.46\textwidth}
 \hspace*{-0.5cm}
-\includegraphics[width=1.1\textwidth]{../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
-%\hspace*{1cm}
+\includegraphics[width=1.175\textwidth]{../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
+\hspace*{1cm}
+\vspace{-1cm}
 \caption{\label{contrastTrio}
 Heatplots showing the bias in RP estimation induced by model misspecification of
 the BH model in the high contrast simulation setting.
@@ -870,11 +884,17 @@ to the shortest possible mapping. (\emph{bottom}) Relative bias in $F^*$.
 }
 $~$\\$~$\\
 \end{minipage}
-\begin{minipage}[h!]{0.49\textwidth}
-\hspace*{1cm}
-\includegraphics[width=1.1\textwidth]{../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png}\\
-\hspace*{1cm}
-\includegraphics[width=1.1\textwidth]{../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
+\begin{minipage}[h!]{0.44\textwidth}
+\vspace{-0.8cm}
+\hspace*{-0.1cm}
+\includegraphics[width=1.2\textwidth]{../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png}\\
+\hspace*{-0.1cm}
+\includegraphics[width=1.2\textwidth]{../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
+\end{minipage}
+\begin{minipage}[h!]{0.07\textwidth}
+\vspace{-9cm}
+\hspace*{0.2cm}
+\includegraphics[width=1.7\textwidth]{../gpBias/legendSubSchnute.png}
 \end{minipage}
 \end{figure}
 
@@ -894,15 +914,43 @@ refers to the metamodel estimate.
 Figure (\ref{contrastTrio}, \emph{top-right}) combines the components of bias to
 show the overall mapping of RPs under BH inference in the high contrast
 simulation setting. Unlike high contrast RP inference under the Schaefer model,
-where maily bias in $\frac{B^*}{\bar B(0)}$ occured, the BH model does shows
+where mainly bias in $\frac{B^*}{\bar B(0)}$ occured, the BH model does shows
 bias in both RPs here. Despite the bias in $\frac{B^*}{\bar B(0)}$ and
 $\frac{F^*}{M}$ these results are similar to that of the Schaefer model in
 that the overall mapping of RPs is very nearly a minimal distance mapping onto
 the constrained set of RPs. %In this setting the 
 The primary difference between Schaefer model and BH RP inference is the
 geometry of their limited RP spaces. Unlike the Schaefer model the BH set
-encouragesbias in both RPs for misspecified models even in very well informed
+encourages bias in both RPs for misspecified models even in very well informed
 setting.
+
+%
+The speckled region in the bottom left corner of each panel of Figure (\ref{contrastTrio}) 
+represents RP combinations with negative surplus production \cite{myers_maximum_1999, punt_extending_2019}. 
+A theoretical stock governed by Schunte RPs in this region would have a 
+vanishing small possibility of persisting to the point of being assessed. 
+Thus these theoretical stocks are irrelavent to the study of RP bias beyond 
+the recognition that the Schnute model includes the theoretical existance of 
+such a stock.  
+
+
+%If species were to This region represents 
+{\color{red} 
+%\cite{punt_extending_2019} \cite{myers_maximum_1999} for the bottom left corner
+%The Deriso–Schnute model (Hilborn and Walters 1992),
+%an alternative three-parameter model, has the Ricker and the
+%Beverton–Holt as special cases. However, it suffers from the
+%same problems that we described above: survival is not constrained to be finite 
+%except when the model is a Ricker model, or it has the derivative of survival 
+%as S → 0 constrained to be zero.
+%
+%Punt \& Cope
+%The cells in red indicate combinations of FMSY/M and BMSY/B0 for which 
+%recruitment is negative for 0<B<B0
+
+add legend
+}
+
 
 \subsubsection{Low Contrast}
 
@@ -911,9 +959,16 @@ setting.
 \vspace{-0.5cm}
 %%\vspace{-1.25cm}
 %\begin{figure}[h!]
+\begin{minipage}[h!]{0.92\textwidth}
 \includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
 %\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
-\vspace{-1cm}
+\end{minipage}
+\begin{minipage}[h!]{0.06\textwidth}
+\vspace{-7cm}
+\hspace*{6cm}
+\includegraphics[width=1.7\textwidth]{../gpBias/legendSubSchnute.png}
+\end{minipage}
+\vspace{-0.5cm}
 \caption{
 %Relative bias in $F^*$ in the high contrast simulation setting. The BH set is also shown in black. 
 Joint bias direction of RP inference in the low contrast simulation setting.

@@ -407,9 +407,9 @@ the design space.
 
 %
 In the 2 dimensional space defined by the PT RPs a LHD is defined by first
-letting $\mathcal{F}$ and $\mathcal{B}$ be regular grids, of size $n=100$, on
+letting $\mathcal{F}$ and $\mathcal{B}$ be regular grids, of size $n=150$, on
 \mbox{$F^*\in(0.1, 0.7)$} and \mbox{$\frac{B^*}{B_0}\in(0.2, 0.6)$}
-respectively. A LHS, of size 100, is then collected among the cells produced 
+respectively. A LHS, of size 150, is then collected among the cells produced 
 by $\mathcal{F}\times\mathcal{B}$. 
 
 %
@@ -631,7 +631,7 @@ predictive location $\textbf{x}$ against all observations in $\bm{X}$
 %}
 
 %
-\subsection{Catch \label{catch} {\color{red}possibly before 2.2.2 and 2.2.3}}
+\subsection{Catch \label{catch}}
 
 %%
 %For the sake of simulation, catch is parameterized so that $F_t$ can be 
@@ -756,7 +756,7 @@ environments as well as the time series data they induce in the solution of
 the production model ODE.
 
 %\clearpage
-\subsection{Two-Parameter Production Model Inference\label{modelFit} {\color{red}possibly before 2.2.2 and 2.2.3} }
+\subsection{Two-Parameter Production Model Inference\label{modelFit} }
 
 %
 The simulated mapping results from fitting an intentionally misspecified two
@@ -823,7 +823,7 @@ when the optimum results in an invertible Hessian at the found MLE.
 
 %
 %\clearpage
-\subsection{Continuous model formulation {\color{red}possibly before 2.2.2 and 2.2.3} }
+\subsection{Continuous model formulation}
 
 %
 An important (and often overlooked) implementation detail is the solution to the
@@ -1005,7 +1005,7 @@ occurs. PT is shallower to the right of $B^*$ than it is on the left and so the
 logistic parabola estimate tends to under estimate $F^*$.
 
 %
-\subsubsection{Metamodeled Trends}
+\subsection{Metamodeled Trends}
 
 %\item define Schaefer line.
 %\item reiterate each point in RP space is an entire PT model, on the Schaefer 
@@ -1123,18 +1123,21 @@ In the high contrast simulation the mapping is nearly minimal distance with the 
 of PT data generated with simultaneously low $\frac{B^*}{B_0}$ and high $F^*$.
 
 %
-%\begin{wrapfigure}{r}{0.5\textwidth}
-%\vspace{-0.5cm}
-\begin{figure}
-\begin{minipage}[h!]{0.49\textwidth}
-\includegraphics[width=\textwidth]{../ptNew/contrastTest.png}
-\end{minipage}
-\begin{minipage}[h!]{0.49\textwidth}
+\subsection{Contrast \& $F^*$ Bias}
+
+%
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-1.5cm}
+%\begin{figure}
+%\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=0.5\textwidth]{../ptNew/contrastTest3.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
 \caption{
-Bias in $F^*$ under the Schaefer model when PT data are generated
-with increasing contrast so that $F^*$ and $\frac{B^*}{B_0}$ are fixed at
-0.699 and 0.201 respectively. 
-{\color{red} add $F^*=0.2$ and $\frac{B^*}{B_0}=0.4$, and maybe one more location based request from EJ}
+Bias in $F^*$ as estimated under the Schaefer model when PT data are generated
+with increasing contrast at three select RP locations. 
+%so that $F^*$ and $\frac{B^*}{B_0}$ are fixed at 0.699 and 0.201 respectively. 
+%{\color{red} add $F^*=0.2$ and $\frac{B^*}{B_0}=0.4$, and maybe one more location based request from EJ}
 %Bias is shown for the Schaefer models estimation of $F^*$ as a function of contrast.
 %A comparison of the true PT production function (in black) and the estimated logistic curve (in red)
 %with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification
@@ -1142,9 +1145,9 @@ with increasing contrast so that $F^*$ and $\frac{B^*}{B_0}$ are fixed at
 %%Fitted logistic production function verses true PT production function. 
 %%Observed biomass plotted along x-axis.
 \label{conTest}}
-\end{minipage}
-\end{figure}
-%\end{wrapfigure}
+%\end{minipage}
+%\end{figure}
+\end{wrapfigure}
 
 %
 Figure (\ref{conTest}) demonstrates how bias in $F^*$ estimation %under the Schaefer model 

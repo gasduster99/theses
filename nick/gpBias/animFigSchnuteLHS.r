@@ -766,6 +766,7 @@ image(xiStar, zetaStar, eucBias-ms,
 	cex.lab = 1.5,
         cex.main= 1.5
 )
+mtext("High Contrast", line=3, cex=1.5)
 greyRed =  colorRampPalette(c(eucCols[length(eucCols)],'grey10'))(4)[2]
 image(xiStar, zetaStar, (eucBias-ms),
         col  = greyRed, #eucCols[length(eucCols)], #"grey10", #adjustcolor(xCols, alpha.f=0.6),
