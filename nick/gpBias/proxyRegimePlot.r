@@ -192,6 +192,93 @@ legend("bottomright", legend=c("BH at Proxy", "Schnute at Proxy at MSY"), lty=c(
 dev.off()
 
 #
+#
+#
+
+png(sprintf("srrShow_x%s_y%s.png", x, y))
+#curve(SRR(x, getAlphaMsy(-1, FSPRx, M), getBeta(getAlphaMsy(-1, FSPRx, M), -1, M, 1), -1), lwd=3, xlim=c(0, 1), ylim=c(0, getAlphaMsy(-1, FSPRx, M)/getBeta(getAlphaMsy(-1, FSPRx, M), -1, M, 1)))
+X=x
+curve(SRR(x, getAlphaProxy(-1, M, X, y), getBeta(getAlphaProxy(-1, M, X, y), -1, M, 1), -1), from=0, to=1,
+	#lty=2, 
+	lwd=3,
+	xlab="Spawning Biomass",
+	ylab="Recruitment", #"Production",
+	main="Proxy Construction",
+	ylim=c(0, M+0.01),
+	xlim=c(0, 1+0.1),
+	xaxt="n",
+	yaxt="n"
+)
+#
+n=50    #-1.24
+gs = seq(-1.44, 0.4, length.out=n)
+gCol = (gs+1)^-0.3#
+bhj = which(abs(gs+1)==min(abs(gs+1))) #which(!is.na(gCol))[1]
+for(j in which(is.na(gCol))){
+        gCol[j] = gCol[bhj+(bhj-j)]
+}
+nums = round((gCol-min(gCol))/max(gCol-min(gCol))*100)
+nums = nums+ceiling(-nums[1]+nums[1]/bhj*1:n)*(1:n<bhj)
+cols = sprintf("grey%s", 100-nums)#round((gCol-min(gCol))/max(gCol-min(gCol))*100)) #1:100) 
+cols[grep("grey-", cols)] = "black"
+
+#
+i=n
+for(g in rev(gs)){
+	curve(SRR(x, getAlphaProxy(g, M, X, y), getBeta(getAlphaProxy(g, M, X, y), g, M, 1), g), 0, 1,
+		add=T,
+		col=cols[i],
+		lwd=3
+	)
+	i=i-1
+}
+curve(SRR(x, getAlphaProxy(-1, M, X, y), getBeta(getAlphaProxy(-1, M, X, y), -1, M, 1), -1), 0, 1, lwd=3, add=T)
+#curve(SRR(x, getAlphaProxy(gW, M, X, y), getBeta(getAlphaProxy(gW, M, X, y), gW, M, 1), gW), add=T, lwd=3)
+curve(M*x, from=0, to=1.025, col='red', add=T)
+#curve(getAlphaMsy(-1, FSPRx, M)*x, add=T, lty=1)
+#curve(getAlphaProxy(-1, M, X, y)*x, add=T, lty=2)
+#curve(getAlphaProxy(gW, M, X, y)*x, add=T, lty=3)
+segments(0, M, 1, M, lty=2)
+segments(0, 0, 0.5, (M+FSPRx)*0.5, col='blue')
+segments(1, 0, 1, M, lty=2)
+axis(2, at=c(M), labels=TeX("$R_0$"), las=1)
+#
+#FStar = FMsy(getAlphaMsy(-1, FSPRx, M), -1, M)
+#BStar = PBar(getAlphaMsy(-1, FSPRx, M), getBeta(getAlphaMsy(-1, FSPRx, M), -1, M, 1), -1, FStar, M)
+#abline(v=BStar, lty=1)
+#
+FStar = FMsy(getAlphaProxy(-1, M, X, y), -1, M)
+BStar = PBar(getAlphaProxy(-1, M, X, y), getBeta(getAlphaProxy(-1, M, X, y), -1, M, 1), -1, FStar, M)
+#segments(BStar, -1, BStar, (FStar+M)*BStar, lty=2)
+#rug(BStar, lwd=2, lty=2, ticksize=0.05)
+#
+FStar = FMsy(getAlphaProxy(gW, M, X, y), gW, M)
+BStar = PBar(getAlphaProxy(gW, M, X, y), getBeta(getAlphaProxy(gW, M, X, y), gW, M, 1), gW, FStar, M)
+#abline(v=BStar, lty=3)
+segments(BStar, 0, BStar, (FStar+M)*BStar, col="blue")
+curve((FStar+M)*x, from=0, to=x+0.025, col='blue', add=T)
+#segments(y, 0, y, M, col="blue")
+segments(x, 0, x, M, col="blue")
+#rug(BStar, lwd=2, ticksize=0.05)
+points(BStar, (FStar+M)*BStar, pch=19, col="blue")
+axis(1, at=c(BStar), labels=TeX("$yB_0$"))
+axis(1, at=c(1), labels=TeX("$B_0$"))
+axis(1, at=0, label=0)
+axis(1, at=x, label=TeX("$xB_0$"))
+axis(2, at=0, label=0)
+#axis(3, at=c(1), labels=TeX("$B_0$"))
+#axis(3, at=c(x), labels=TeX("$xB_0$"))
+#axis(3, at=0, labels=0)
+#text(BStar, -0.01, TeX("$B_y$"))
+#text(-0.03, M, TeX("$R_0$"))
+text(1.06, M+0.01, TeX("$MB$"))
+text(x+0.15, M+0.01, TeX("$(F_{SPR_x}+M)B$"))
+#legend("bottomright", legend=c(TeX("Replacement Line: $MB$"), "BH SRR"), lty=c(1, 2), lwd=3)
+dev.off()
+
+
+
+#
 #M=0.1
 #
 
