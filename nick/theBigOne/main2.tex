@@ -163,7 +163,84 @@ To my family, friends, and mentors.
 \chapter{Introduction \label{intro}}
 \clearpage
 
-%{\color{red}{\it Generalize beyond production model}}
+%
+Modern fisheries management is a multi-armed system based upon stock assessment. 
+Stock assessements characterize stock dynamics by collecting the available 
+data for a particular stock and anaylizing those data with population dynamics 
+models. Population dynamics models are then used to quantify the effect of 
+fishing on the stock and estimate long term sustainable catch levels which are 
+then used by fisheries managers. 
+
+% bracket maximum catch limits
+In the United States the Magnuson-Stevens Act\footnote{Magnuson-Stevens Fishery Conservation and Management Act, 2007. Pub. L. No. 94-265.} (MSA)
+dictates that stock assessment be a primarily scientific endevior, and it holds 
+stock assessment to the standard of reporting \textit{the best available science} 
+to fisheries managers. Furthermore, the MSA holds fisheries managers to the 
+standard of basing their management decisions upon the best available science. 
+There are a number of checks and balances between the scientific and management 
+arms, but ultimatly it is fisheries managers that set the actual catch limits 
+(based on science developed by stock assessments) that govern the amount of fish 
+that can be harvested. This system has proven to be effective, but it can %a globally emulated system 
+create an information bottleneck at the interface of stock assessment and 
+management. 
+
+%and the MSA dictates that fisheries managers base cath limits upon the science developed by stock assessments. 
+%This philosophical devision of 
+%power has numerous extemely important benefits, ranging from the inclusion of 
+%diverse views from varied stakeholders, focusing specialized knowledge, 
+%and creating a science-based environment to evaluated data. 
+
+%%
+%refrase in terms of \cite{noaa_magnuson-stevens_2007} Magnuson-Stevens Act\footnote{Magnuson-Stevens Fishery Conservation and Management Act,
+%2007. Pub. L. No. 94-265.}
+
+%{\color{red}
+%one more paragraph to connect to previous start.
+%RPs and transition to describing models.
+%}
+
+%However, ultimatly fisheries managers set annual catch limits for the stock based 
+%on the scientific foundation reported in stock assessments. 
+
+%%
+%Stock assessments to monitor the condition of fish stocks, Characterizing Stock 
+%Dynamic, measure how fishing affects the stock, and project harvest levels that 
+%achieve the largest sustainable long-term yield
+%Stock assessments provide the scientific foundation of sustainable fisheries management.
+%Fishery managers use the results of assessments to evaluate the status of fish stocks and
+%set annual catch limits
+
+%\begin{itemize}
+%\item add about a page of bigger-picture context to the very beginning. 
+%\item What is the big picture of the modeling used in fisheries management?
+%\item What is the high level topic of this thesis?
+%%
+%\item What is fisheries management and why is it important? 
+%\begin{itemize}
+%	\item Stock assessments to monitor the condition of fish stocks
+%	\item A fishery stock assessment is the scientific process of collecting, 
+%	analyzing, and reporting on the condition of a fish stock and estimating 
+%	its sustainable yield
+%	\item Stock assessments are scientific efforts that involve data collection, 
+%	data processing, and mathematical modeling to estimate the health and size of 
+%	a fish stock, measure how fishing affects the stock, and project harvest 
+%	levels that achieve the largest sustainable long-term yield	
+%	\item analyze and understand the impact of fisheries and environmental factors on fish stocks	
+%	\item The selection of a specific model for a stock assessment is tailored to the available data.	
+%	\item Characterizing Stock Dynamics
+%	\item Stock assessments provide the scientific foundation of sustainable fisheries management.
+%	\item Management Objectives
+%	\begin{itemize}
+%		\item reference points should be explicitly linked to a series of decision rules that determine 
+%		appropriate management action, depending on the estimates of the performance measures and how 
+%		they relate to the reference points.
+%		\item Fishery managers use the results of assessments to evaluate the status of fish stocks and 
+%		set annual catch limits (ACLs). An ACL is the largest amount of fish that commercial and 
+%		recreational fisheries can sustainably harvest from a stock in one year. ACLs help prevent 
+%		overfishing from occurring and help fishers to catch the maximum number of fish over the long-term. 
+%	\end{itemize}
+%\end{itemize}
+%\end{itemize}
 
 %{\color{blue}
 %%\textit{set the context for my question}
@@ -183,7 +260,37 @@ To my family, friends, and mentors.
 %mechanisms of model failure under the most common two-parameter models. %in the Schaefer model.
 %}
 
-The most fundamental model in modern fisheries management is the {\it surplus-production
+%
+While stock assessment scientists do their best to bracket models with 
+uncertainty, and contextulize results, inevitably not all of the modeling 
+subtlety understood by scientists makes it into the management arm. Fisheries 
+are very often managed based upon reference points (RPs) which serve as 
+simplified heuristic measures of population behavior, and subtlety in how 
+these measures are calulated can get lost in the transfer. %be lost in these measures. 
+Mangel et al. \cite{mangel_perspective_2013} and others have shown that RPs can 
+be stucturally limited by the most commonly used assessment models. When 
+these limitations are propogated to management these limitations can directly 
+bias how catch limits for fisheries are set. The nature of these limitations 
+manifests from the assumed mathematical form of production which is amoung the 
+most foundational components of most population dynamics models. 
+ 
+%%determined by a single parameter (steepness) when using two-parameter
+%%B̄(0)
+%%relationships. These functions introduce strong correlations between reference points
+%%(RP) that are pre-determined by the functional form, rather than a biological characteristic of the stock.
+%
+%The mathematical form of RPs depends upon the model assumptions through the
+%production function. %({\color{red} cite}). 
+%While a number of different RPs exist which describe the population in different
+%(but related) ways, the most common RPs revolve around the concept of MSY (or robust
+%ways of measuring MSY \cite{hilborn_pretty_2010,punt_management_2016}).
+%Here the focus is primarily on the RPs $\frac{B^*}{\bar B(0)}$ and $F^*$ ($\frac{F^*}{M}$ when appropriate)
+%for their pervasive use in modern fisheries \cite{punt_extending_2019}. %mangel_perspective_2013,
+
+
+
+%fisheries management
+The most fundamental model in stock assessment is the {\it surplus-production
 model} (SPM). These models focus on modeling population growth via nonlinear
 parametric ordinary differential equations (ODE).
 %NOTE: we can not observe all fish in the sea, and this rely on an index of abundance 
@@ -284,10 +391,10 @@ seen in Eq. (\ref{ode}), however in ASMs the above ODE is expanded to a system
 of interrelated ODEs for each age class.  
 
 %
-{\it Delay-differential models} (DDM) can provide an intermediate modeling 
-infrastructure between SPMs and ASMs. By simplifying the model assumptions 
-around growth and maturity, simple ASMs may be represented exactly 
-by DDMs \cite{deriso_harvesting_1980, hilborn_quantitative_1992}. 
+{\it Delay-differential models} (DDM), as described in more detail in Chapter (\ref{delayChapter}), 
+can provide an intermediate modeling infrastructure between SPMs and ASMs. By 
+simplifying the model assumptions around growth and maturity, simple ASMs may 
+be represented exactly by DDMs \cite{deriso_harvesting_1980, hilborn_quantitative_1992}. 
 Furthermore, SPMs can be represented as a limiting case of DDM growth and 
 maturity parameters \cite{walters_continuous_2020}. This makes DDMs ideal for ``data-limited'' assessment 
 settings and as a simplified model for understanding the role of growth in 
@@ -328,17 +435,19 @@ at steady state.
 MSY is then found by maximizing $\bar Y(F)$ with respect to $F$, and $F^*$ is 
 the fishing rate at MSY. Going forward let $^*$ decorate any value derived 
 under the condition of MSY.
-
-%
-Fisheries are very often managed based upon reference points (RPs) 
-which serve as simplified heuristic measures of population behavior. The
-mathematical form of RPs depends upon the model assumptions through the
-production function. %({\color{red} cite}). 
-While a number of different RPs exist which describe the population in different
-(but related) ways, the most common RPs revolve around the concept of MSY (or robust
-ways of measuring MSY \cite{hilborn_pretty_2010,punt_management_2016}).
-Here the focus is primarily on the RPs $\frac{B^*}{\bar B(0)}$ and $F^*$ ($\frac{F^*}{M}$ when appropriate)
+%%
+%While a number of different RPs exist which describe the population in different
+%(but related) ways, 
+Most RPs revolve around the concept of MSY (or robust ways of measuring MSY \cite{hilborn_pretty_2010,punt_management_2016}).
+Here the focus is primarily on the RPs $\frac{B^*}{\bar B(0)}$ and $\frac{F^*}{M}$ (or $F^*$ when appropriate)
 for their pervasive use in modern fisheries \cite{punt_extending_2019}. %mangel_perspective_2013,
+
+%{\color{red}
+%%Fisheries are very often managed based upon reference points (RPs) 
+%%which serve as simplified heuristic measures of population behavior. 
+%The mathematical form of RPs depends upon the model assumptions through the
+%production function. %({\color{red} cite}). 
+%}
 
 %
 $F^*$ is the afore mentioned fishing rate which results in MSY, and $\frac{B^*}{\bar B(0)}$
@@ -358,7 +467,11 @@ so that under the Schaefer model $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \le
 The two-parameter Fox model \cite{fox_jr_exponential_1970} limits $\left(F^*, \frac{B^*}{\bar B(0)}\right)\in \left(\mathbb{R}^+, \frac{1}{e}\right)$.
 Similarly the two-parameter Cushing \cite{cushing_dependence_1971, cushing_dependence_1973}, Beverton-Holt \cite[BH]{beverton_dynamics_1957}
 and Ricker \cite{ricker_stock_1954} production functions do not model the full theoretical space of
-RPs \cite{mangel_perspective_2013}%, yeakel_generalized_2015}.
+RPs. Mangel et. al. \cite{mangel_perspective_2013} show that this is a 
+consequence of two parameter production functions and suggests the use of a 
+three-parameter functions instead. 
+%and others have shown that RPs can
+%be stucturally limited by the most commonly used assessment models.\cite{mangel_perspective_2013}%, yeakel_generalized_2015}.
 %curves are also two-parameter
 %production functions that do not model the full theoretical space of
 %RPs \shortcite{mangel_perspective_2013}.
@@ -394,20 +507,22 @@ types of model misspecification.
 %simplicity of the Schaefer model make the PT/Schaefer pair an ideal setting for
 %beginning to understand the consequences of model misspecification on the
 %production function. 
-In this thesis I consider the behavior of RP inference when index data are 
-simulated from three-parameter PT and Schnute models of productivity, but the 
-simulated data are fit using intentionally misspecified two-parameter Logistic 
-and BH models. 
+%In this thesis 
+In Chapters (\ref{ptChapter}) and (\ref{schnuteChapter}) of this thesis I 
+consider the behavior of RP inference when index data are simulated from three-parameter 
+PT and Schnute models of productivity, but the simulated data are fit using 
+intentionally misspecified two-parameter Logistic and BH models respectively. 
+%(Chapters (\ref{ptChapter}) and (\ref{schnuteChapter}) respectivly). 
 %
 RP inference is simulated in the SPM setting, and the 
 results are then extended to the context of models that include individual 
-growth and maturity by developing a Schnute DDM.
+growth and maturity by developing a Schnute DDM in Chapter (\ref{delayChapter}).
 %
 In each simulation setting a derivation of RPs, and associated quantities, 
 under the three-parameter models is derived. %PT model.
 Under the PT model simulation design is entirely analytical. Under the 
 Schnute model fully analytical designs are not possible. Thus %a method is developed for generating simulation designs which ensure
-a method is presented for generating simulation designs under the Schnute model 
+in Chapter (\ref{schnuteChapter}) a method is presented for generating simulation designs under the Schnute model 
 that is based on the parametric form of RPs, but does not 
 require analytical inversion of RPs. %ting the relationship between which 
 %{\color{blue}
@@ -416,9 +531,13 @@ require analytical inversion of RPs. %ting the relationship between which
 % for analyzing inference under the two-parameter model.
 %The parametric forms of RPs under the three-parameter models are then inverted to develop a %PT model are then inverted to develop a
 %simulation setting for analyzing inference under the two-parameter models. % Schaefer model as well as the BH. 
-Finally a Gaussian Process (GP) metamodel \cite{gramacy_surrogates_2020, pourmohamad_bayesian_2021}
-is constructed for exploration and analysis of RP biases in each of the 
-SPM and DDM settings.
+In Chapter (\ref{ptChapter}) a Gaussian Process (GP) metamodel \cite{gramacy_surrogates_2020, pourmohamad_bayesian_2021} 
+is constructed for the analysis of Schaefer RP biases, and in Chapters (\ref{schnuteChapter}) 
+and (\ref{delayChapter}) this model is extended for the exploration %and analysis 
+of BH RP biases in each of the SPM and DDM settings. % in Chapters (\ref{schnuteChapter}) and (\ref{delayChapter}).
+%Finally a Gaussian Process (GP) metamodel \cite{gramacy_surrogates_2020, pourmohamad_bayesian_2021}
+%is constructed (introduced in Chapter (\ref{ptChapter})) for exploration and analysis of RP biases in each of the 
+%SPM and DDM settings.
 
 %
 A key insight of this approach is that bias is considered broadly across RP-space to
@@ -632,7 +751,7 @@ model for developing three-parameter models going forward.
 \include{schaeferSchnute.tex}
 
 %
-\chapter{The Schnute Model's Relationship to RP Proxies}
+\chapter{The Schnute Model's Relationship to RP Proxies \label{proxyMath}}
 \include{proxyMath.tex}
 
 %

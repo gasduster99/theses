@@ -11,7 +11,7 @@ mortality is assumed to be implicite in the quadratic form of surplus production
 That said, if natural mortality is explicitly included in a model with logistic 
 production, as seen in Chapter (\ref{schnuteChapter}) under the Schnute model 
 when $\gamma=1$, it is straight forward to show that the result is in fact a 
-Schaefer model with updated parameters that explicitly model $M$.
+Schaefer model with updated parameters that explicitly model $M$. 
 \begin{align}
 \frac{dB}{dt} &= \alpha B \left(1-\beta B\right) - (M+F)B \nonumber\\%. \label{sheaferSchnute}
 &= \alpha B -\alpha\beta B^2 - M B - F B \nonumber\\
@@ -34,7 +34,6 @@ r'=\alpha&-M ~~~~~~~~~ K'=\left(\frac{\alpha-M}{\alpha}\right)\frac{1}{\beta}.
 %  
 %The maximum rate of surplus biomass production, $r'$,  is the difference between the 
 %maximum rate of production, $\alpha$, and $M$ 
-
 
 %A bit of interpretation. Quadratic production of biomass before Mortality.
 $P_s(B;[\alpha, \beta, 1])$ represents the biomass production independent of 
@@ -66,6 +65,7 @@ B_0 &= \frac{1}{\beta} \left( 1-\frac{M}{\alpha} \right) \nonumber\\
     &= \frac{\alpha-M}{\alpha\beta} = K'
 \end{align}
 Furthermore, Eq. (\ref{B0S}) for $B^*$ gives,
+
 \begin{align}
     B^* &= \frac{1}{\beta} \left( 1-\frac{M+\frac{\alpha-M}{2}}{\alpha}\right) \nonumber\\
         &= \frac{1}{\beta} - \frac{M+\alpha}{2\beta\alpha}\nonumber\\
@@ -73,7 +73,18 @@ Furthermore, Eq. (\ref{B0S}) for $B^*$ gives,
 \end{align}
 %
 Finally $\frac{B_{MSY}}{B_0}$ in the case of explicite motality is indeed also $\frac{1}{2}$,
+
+%\vspace*{-0.5cm}
 \begin{align}
-\frac{B_{MSY}}{B_0}&=\frac{K'/2}{K'}\nonumber\\
-&=\frac{1}{2}.
+\frac{B^*}{B_0}&=\frac{K'/2}{K'}=\frac{1}{2}.
 \end{align}
+%\vspace*{-0.25cm}
+
+%
+This is a similar model as presented by Aalto et. al. \cite{aalto_separating_2015}, 
+albeit their model includes additional dynamics. In terms of the complexity of 
+dynamics the model presented by Aalto et. al. is intermediate to the SPMs 
+presented in Chapter (\ref{schnuteChapter}) and the DDMs presented in 
+Chapter (\ref{delayChapter}). Similar results may be obtained in the DDM 
+setting here, although with an explicite handling of numbers and individual 
+growth.  

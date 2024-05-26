@@ -210,8 +210,8 @@ they do in the logistic production function.
 %
 $\gamma$ is a parameter which breaks PT out of the restrictive symmetry of the
 logistic curve. In this parameterization $\gamma\in(1, \infty)$, with the logistic model
-appearing in the special case of $\gamma=2$ (the Fox model appears as
-a limiting case as $\gamma\to1$). 
+appearing in the special case of $\gamma=2$ (the Fox model \cite{fox_jr_exponential_1970} 
+appears as a limiting case as $\gamma\to1$). 
 %In the special case of $\gamma=2~$ Eq (\ref{pt}) 
 %collapses back to the logistic curve, however in general $\gamma\in(1, \infty)$.
 %In Figure (\ref{SrrPT}) PT recruitment 
@@ -1071,10 +1071,10 @@ can be seen. %to be seen. % in Figure (\ref{arrowsPT}).
 %../ptNew/ptLook.r
 \begin{figure}[h!]
 \begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTFlatT30.png}
+\includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTExpT45MinCon.png}
 \end{minipage}
 \begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTExpT45MinCon.png}
+\includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTFlatT30.png}
 \end{minipage}
 \begin{minipage}[h!]{0.09\textwidth}
 \hspace{-1cm}
@@ -1084,18 +1084,27 @@ can be seen. %to be seen. % in Figure (\ref{arrowsPT}).
 Joint bias direction for ($F^*$, $\frac{B^*}{B_0}$) estimates under
 the misspecified Schaefer Model. The intensity of color represents the excess
 bias relative to the shortest possible mapping. Results in the low contrast setting
-are shown $left$, and the high contrast setting is shown $right$.
+are shown $right$, and the high contrast setting is shown $left$.
 }
 \label{arrowsPT}
 \end{figure}
 
 %
 Figure (\ref{arrowsPT}) shows the pattern of biases the Schaefer model creates when fit
-to PT data generated at each point of RP space. An equivalent way to think of Figure
-(\ref{arrowsPT}) is that since the Schaefer model must estimate RPs in the Schaefer set,
-the metamodel arrows indicate the mapping that is created by inferring RPs under
-a misspecified Schaefer model fit to PT data generated at each point over the pictured
-region.
+to PT data generated at each point of RP space. An equivalent way to think of Figure (\ref{arrowsPT}) 
+is the mapping that is created by inferring RPs under a misspecified Schaefer 
+model fit to PT data generated at each point over the pictured region. Since 
+the Schaefer model must estimate RPs in the Schaefer set, the head of each arrow 
+points to the location in the Schaefer set where the metamodel expects the Schaefer 
+model to estimate its RPs. The tail of each arrow indicates the PT data 
+generating RPs, and thus the location of each arrow specifies a unique 
+misspecification of the Schaefer model. The direction and magnitude of each 
+arrow then indicates the combined bias in the Schaefer model's estimates of $F^*$ 
+and $\frac{B^*}{B_0}$ when measured jointly at each misspecified RP location to 
+fully describe the mapping.
+%the metamodel arrows indicate the mapping that is created by inferring RPs under
+%a misspecified Schaefer model fit to PT data generated at each point over the pictured
+%region. 
 
 %
 Since $\frac{B^*}{B_0}$ must be 0.5 under the Schaefer model, biases in the
@@ -1216,7 +1225,7 @@ For the populations coming from $\frac{B^*}{B_0}<0.5$ the
 underestimated $F^*$ would make management based on Schaefer model 
 estimates more conservative. Of these observed patterns it is certainly better 
 to be conservative in estimating $F^*$
-\footnote{It is largely thought that $\frac{B^*}{B_0}<0.5$ for most commonly modeled stocks.}, 
+\footnote{It is thought that $\frac{B^*}{B_0}<0.5$ for most commonly modeled stocks.}, 
 however it is not enough to simply be conservative. Our ultimate goals in 
 modeling should be to provide an accurate summary of the stock with a complete 
 contextualization of our models' deficiencies. To that end, this work contextualizes

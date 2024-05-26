@@ -1,18 +1,22 @@
 %\section{Appendix\label{lambApp}: Inverting $\frac{B^*}{\bar B(0)}$ and $\gamma$ for the PT Model}
 %For brevity 
-Let $\zeta=\frac{B^*}{\bar B(0)}$.
+Under the PT model, as parameterized in Chapter (\ref{ptChapter}), an
+expression for $\frac{B^*}{\bar B(0)}$ in terms of $\gamma$ is given by 
+Eq. (\ref{ptRP}). Letting $\zeta=\frac{B^*}{\bar B(0)}$, and inverting 
+Eq. (\ref{ptRP}) to express $\gamma$ in terms of $\zeta$ proceeds as follows,
+%Inverting Eq. (\ref{ptRP}) to express $\gamma$ in terms of $\frac{B^*}{\bar B(0)}$ invert 
 \begin{align*}
 &\zeta=\left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}\\
 %&\zeta^{\gamma-1}=\frac{1}{\gamma}\\
 &\zeta=\gamma\zeta^{\gamma}\\
 &\zeta=\gamma e^{\gamma\log(\zeta)}\\
-&\zeta\log(\zeta)=\gamma\log(\zeta) e^{\gamma\log(\zeta)}
+&\zeta\log(\zeta)=\gamma\log(\zeta) e^{\gamma\log(\zeta)}.
 \end{align*}
 The Lambert product logarithm, $W$, is defined as the inverse function of $z=xe^x$ such that $x=W(z)$ \cite{lehtonen_lambert_2016, corless_lambertw_1996}.
-Applying this definition allows for the isolation of $\gamma$.
+Applying this definition allows for the isolation of $\gamma$,
 \begin{align}
 &\gamma\log(\zeta)=W\left(\zeta\log(\zeta)\right) \nonumber\\
-&\gamma=\frac{W\left(\zeta\log(\zeta)\right)}{\log(\zeta)} \label{gammaOfZeta}
+&\gamma=\frac{W\left(\zeta\log(\zeta)\right)}{\log(\zeta)}. \label{gammaOfZeta}
 \end{align}
 The Lambert product logarithm is a multivalued function with a branch point at
 $-\frac{1}{e}$. The principal branch, $W_0(z)$, is defined on $z\in\left(-\frac{1}{e}, \infty\right)$,
