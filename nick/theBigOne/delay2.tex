@@ -30,22 +30,39 @@
 
 %sugar
 
+\begin{itemize}
+\item sweep Intro, Methods, Results, 
+\item draft Discussion
+\item fix up Intro
+\item sweep for SPM vs. DDM vs. ASM
+\item sweep for fast, medium and slow growth
+\item emphasize relation to ASM
+\end{itemize}
+
 %
 \section{Introduction}
 
 %
-While the SPM captures the majority of variation in RPs, individual growth is 
-the next most influential dynamic for explaining RP variation {\color{red}cite 
-or generalize}. The SPM captures the net effect of biomass production by 
-including all aspects of biomass production (i.e. maturity, recruitment, 
-growth, etc.) together in the production function. While there are a number of %teasing apart?
-approaches to modeling these dynamics \cite{quinn_quantitative_1999, hilborn_quantitative_1992}, 
-for the purpose of fisheries management, in a ``data-rich'' setting it is currently considered best 
+The simplified dynamics of SPMs capture a broad range of RP variation, however
+RP behavior is complicated when model dynamics are elaborated by the 
+inclusion of individual growth. 
+%by While the SPM captures the majority of variation in RPs, models including 
+%individual growth dynamics  also interact with the structure of productivity  
+%to effect RPs.
+%is the next most influential dynamic for explaining RP variation {\color{red}cite or generalize}. 
+The SPM captures the net effect of biomass production by assuming all aspects 
+of biomass production (i.e. maturity, recruitment, growth, etc.) are modeled by the %together in 
+the production function. There are a number of %teasing apart?
+approaches to model these dynamics which explicitly tease out these processes \cite{quinn_quantitative_1999, hilborn_quantitative_1992}. 
+For the purpose of fisheries management, when data limitations are not too severe, %in a {\color{red}``data-rich'' (not data-limited)} setting it is currently considered best 
 %{\color{red}cite age structured model, selectivity models, any other model I can find (Munch, Bethany?)} 
-practice to use an age sturctured models (ASM) \cite{methot_stock_2013}. Due to their complexity, 
+age structured models (ASM) \cite{methot_stock_2013} are often considered best practice.
+%ice to use an age structured models (ASM) \cite{methot_stock_2013}. Due to their complexity, cope_stock_2023
 ASMs require a lot of expensive data to make make inferences from. Even when these data do exists, 
 the highly parameterized structures used in these models introduce the potential for identifiability 
 issues {\color{red} cite}.
+
+{\color{red} introduce VB growth}
 
 %
 Delay differential models (DDM) are an intermediate approach between SPM and ASM. 
@@ -1413,15 +1430,24 @@ additional information about $\kappa$ and $a_s$ in the data. %that make estimati
 \section{Discussion}
 
 \begin{itemize}
-        \item break point decreases with growth
-        \item inference becomes more brittle with more dramtic growth.
+        \item While the SPM captures the majority of variation in RPs, individual growth is
+	the next most influential dynamic for explaining RP variation
+	\item break point decreases with growth
+        \item inference becomes more brittle with more dramtic growth (undre BH).
         \begin{itemize}
                 \item interaction between assumed form of growth and stock recruitment.
                 \item low-side steepness bias masks ocillatory/shock patterns induced by growth and maturity parameters
         \end{itemize}
         \item misspecified BH prevents learning growth
-        \item increasing growth accelerates model misspecification
-        \item statistical evidence of minimum distance mapping within accepible regiem, although float idea of PT-like pattern as BH set flattens. (explaining perterbations)
+	\item learning $\gamma$ and growth is possible with global optimization if index 
+	data can be ensured to be conditionally independent on growth parameter, at 
+	the very least heavily informative priors should make it possible to learn. %properly controlled         \item increasing growth accelerates model misspecification
+        \item if $\alpha$, $\beta$, $\gamma$ or euivalent are fixed incorrectly it would also produce incorrect inference on growth.
+	\item but if you can get all of it correct you can learn all of it. learn all or none.
+	
+	\item statistical evidence of minimum distance mapping within accepible regiem, 
+	{\color{red}although float idea of PT-like pattern as BH set flattens. (explaining perterbations)}
+	\item scale of error and discuss MSE
 \end{itemize}
 
 %
