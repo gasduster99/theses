@@ -381,14 +381,14 @@ modern fisheries models used in management \cite{hilborn_quantitative_1992, meth
 As data permits this general structure is often expanded to model age, weight, 
 and/or length classes \cite{schnute_general_1987, fournier_length-based_1987} 
 in the population via models called {\it age structured models} (ASM). ASMs 
-are currently considered best practice in ``data-rich'' settings when there is 
+are currently considered best practice when there is %in ``data-rich'' settings when there is 
 considered enough quality data to establish length/age relationships and the 
 associated selectivity for these classes \cite{maunder_review_2013, cope_stock_2023}. 
 Modeling age and length/weight structure in the population allows for 
 individual growth and maturity to be modeled as cohorts that age through time. 
 Despite this added complexity, at their core ASMs rely on similar dynamics as 
 seen in Eq. (\ref{ode}), however in ASMs the above ODE is expanded to a system 
-of interrelated ODEs for each age class.  
+of interrelated ODEs describing how cohorts age through time. %for each age class.  
 
 %
 {\it Delay-differential models} (DDM), as described in more detail in Chapter (\ref{delayChapter}), 
@@ -582,6 +582,15 @@ is considered together with model misspecification. %alongside the effect of mod
 
 %
 \chapter{A Delay Differential Model \label{delayChapter}}
+%
+\begin{itemize}
+\item sweep Intro, Methods, Results,
+\item draft Discussion
+\item fix up ASM paragraph in Intro
+\item sweep for SPM vs. DDM vs. ASM
+\item sweep for fast, medium and slow growth
+\item emphasize relation to ASM
+\end{itemize}
 %\input{delay.tex}
 %\include{delay.tex}
 \include{delay2.tex}

@@ -774,6 +774,17 @@ show = seq(1, length(eucCols), length.out=20)
 #points(D$xiSeed, D$zetaSeed)
 dev.off()
 
+png('subSchnuteLegend.png', width = 150, height = 400)
+plot.new()
+legend("top", #grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+        sprintf("%1.2f", seq(0, msThresh, length.out=20)), #rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), lengt
+        fill = eucCols[seq(1, 41, 2)], #rev(eucCols[show]), 
+        xpd = NA
+)
+dev.off()
+
+
+
 ##K bias
 #
 ##

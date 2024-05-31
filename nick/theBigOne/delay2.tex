@@ -30,17 +30,17 @@
 
 %sugar
 
-\begin{itemize}
-\item sweep Intro, Methods, Results, 
-\item draft Discussion
-\item fix up Intro
-\item sweep for SPM vs. DDM vs. ASM
-\item sweep for fast, medium and slow growth
-\item emphasize relation to ASM
-\end{itemize}
+%\begin{itemize}
+%\item sweep Intro, Methods, Results, 
+%\item draft Discussion
+%\item fix up Intro
+%\item sweep for SPM vs. DDM vs. ASM
+%\item sweep for fast, medium and slow growth
+%\item emphasize relation to ASM
+%\end{itemize}
 
 %
-\section{Introduction}
+\section{\color{red}Introduction}
 
 %
 The simplified dynamics of SPMs capture a broad range of RP variation, however
@@ -53,55 +53,139 @@ inclusion of individual growth.
 The SPM captures the net effect of biomass production by assuming all aspects 
 of biomass production (i.e. maturity, recruitment, growth, etc.) are modeled by the %together in 
 the production function. There are a number of %teasing apart?
-approaches to model these dynamics which explicitly tease out these processes \cite{quinn_quantitative_1999, hilborn_quantitative_1992}. 
-For the purpose of fisheries management, when data limitations are not too severe, %in a {\color{red}``data-rich'' (not data-limited)} setting it is currently considered best 
+approaches to model these dynamics to explicitly tease out these processes \cite{quinn_quantitative_1999, hilborn_quantitative_1992}, 
+but for the purpose of fisheries management, when data limitations are not too severe, %in a {\color{red}``data-rich'' (not data-limited)} setting it is currently considered best 
 %{\color{red}cite age structured model, selectivity models, any other model I can find (Munch, Bethany?)} 
-age structured models (ASM) \cite{methot_stock_2013} are often considered best practice.
-%ice to use an age structured models (ASM) \cite{methot_stock_2013}. Due to their complexity, cope_stock_2023
-ASMs require a lot of expensive data to make make inferences from. Even when these data do exists, 
-the highly parameterized structures used in these models introduce the potential for identifiability 
-issues {\color{red} cite}.
+age structured models, ASM, \cite{methot_stock_2013} are often considered best practice.
+%%ice to use an age structured models (ASM) \cite{methot_stock_2013}. 
 
-{\color{red} introduce VB growth}
+%Due to their complexity, cope_stock_2023
+%ASMs require a lot of expensive data to make make inferences from. Even when these data do exists, 
+%the highly parameterized structures used in these models introduce the potential for identifiability 
+%issues {\color{red} cite}.
+
+{\color{red} citations below, ?change methot above?}
+
+{\color{red} tansition }
 
 %
-Delay differential models (DDM) are an intermediate approach between SPM and ASM. 
-At their simplest DDMs do not neccessarily model individual growth \cite{dick_depletion-based_2011, aalto_separating_2015}, 
-but still these models are beneficial in modeling the lag between egg production and recruitment into the reproducing population.  %\cite{dick_depletion-based_2011, aalto_separating_2015}.
+ASMs separate the dynamics of the population into cohorts moving between age 
+classes through time. %of interrelated discrete %interrelated age classes. 
+Cohorts are goverened by a system of similar ODEs such that 
+each cohort is modeled in a way that resembles the SPM in time; by
+tracking the average size of individuals in the population as they age 
+ASMs inform models of individual growth. ASMs require the 
+specification of many parametric forms for describing the recruitment, 
+growth, maturity, selectivity, etc. that enmesh the system of ODEs at their 
+core. These structures allow ASMs to capture a wide range of dynamics, however 
+the simultaneous accurate specification, implementation, and estimation of all of 
+these forms, and the parameters they imply, requires a lot of expensive data 
+of many different types. 
+%they specifying the enmeshing ODE structures requires accurate 
+%specification of many  
+%models of individual growth to be informed 
+%with spawning biomass determined by the $a-1^{th}$although with. 
+%that resemble the structure of the SPM setting. the emesshing of ODES adds involves
+%The dynamics of each cohort resemble that of the simplified SPM setting, however 
+%as age classes grow through time the outputs from the $a^{th}$ age class becomes 
+%the input for the $a+1^{th}$ age class  
+%
+%  allow for individual growth and maturity to be modeled as cohorts that age 
+%through time.
+%Modeling age and length/weight structure in the population allows for
+%individual growth and maturity to be modeled as cohorts that age through time.
+%Despite this added complexity, at their core ASMs rely on similar dynamics as
+%seen in Eq. (\ref{ode}), however in ASMs the above ODE is expanded to a system
+%of interrelated ODEs for each age class.
+
+%
+{\color{red}
+\begin{itemize}
+%\item what is an ASM (reiterate intro intro and maybe a bit more)
+%\item maybe introduce VB growth?
+%\item require a lot of expensive data
+\item ?? Even when these data do exists, the highly parameterized structures 
+used in these models introduce the potential for identifiability issues {\color{red} cite}.
+\item ?expensive to compute.?
+\end{itemize}
+}
+
+%
+Delay differential models, DDMs (or delay difference models in discrete time) 
+are an intermediate approach between SPMs and ASMs. At their simplest DDMs do 
+not neccessarily model individual growth \cite{dick_depletion-based_2011, aalto_separating_2015}, 
+but still these models are beneficial in modeling the lag between egg production 
+and recruitment into the reproducing population.  %\cite{dick_depletion-based_2011, aalto_separating_2015}.
 %Simple DDMs may not explicitily model individual growth \cite{dick_depletion-based_2011, aalto_separating_2015} %{\color{red}cite EJ Alec and Aalto et al. 2015}, 
 %but even so the delayed structure of DDMs are beneficial in modeling the lag between egg production 
 %and recruitment into the reproducing population. 
 %as well as the natural autocorrelation often observed with stock size.
-More complex DDMs are capable of exactly representing simple ASMs with an explicit and compact
-representations of simple individual growth and maturity dynamics \cite{deriso_harvesting_1980, schnute_general_1985, schnute_general_1987}.
+More complex DDMs are capable of exactly representing simple ASMs with an 
+explicit and compact representation of simple individual growth and maturity 
+dynamics \cite{deriso_harvesting_1980, schnute_general_1985, schnute_general_1987}.
 %That said, DDMs are capable of explicitly representing simple individual growth and maturity dynamics 
 %\cite{walters_continuous_2020}, \cite[pg. 334]{hilborn_quantitative_1992} \cite{Quinn and Deriso 1999}.
-When information about individual growth is available DDMs have enough growth and maturity modeling infrastructure to %infrastructure present 
-to make use of the information without requiring the use of heavily parameterized age stuctured models. %e.g. \cite{black rockfish assessment}.
+When information about individual growth is available these DDMs have enough 
+growth and maturity modeling infrastructure to make use of the information 
+without requiring the use of heavily parameterized age stuctured models. %e.g. \cite{black rockfish assessment}.
 %can put those data to use without the need to parameterize the full age at length table of a fully age stuctured model \cite{black rockfish assessment}.
 %}
 %DDMs that can tease out individual growth and maturity from recruitment to explain net production 
 %as separate but interconnected processes {\color{red} cite schnute, deriso \cite{walters_continuous_2020}, \cite[pg. 334]{hilborn_quantitative_1992}, Quinn and Deriso 1999}
-The relatively smaller size, and flexibility, of DDMs makes them ideal for modeling ``data-poor'' stocks, 
-while entertaining hypotheses that relate growth and maturity.  
+The relatively smaller size, and yet flexibile dynamics, of DDMs makes them ideal for 
+modeling ``data-limited'' stocks, while still entertaining varied hypotheses that 
+relate growth and maturity.  
 %When information about growth is available the DDM allows  may be known but not the full age at length table of an age stuctured model \cite{black rockfish assessment}
 
+%
+{\color{red}
+\begin{itemize}
+\item state the main point of this chapter.
+\item Tack on analytical RPs angle
+\item reiterate steps in this chapter.
+\end{itemize}
+}
+
+
 %RPS
-While DDMs are effective and flexible data-poor models, there use in stock 
-assessments has been limited by the accessibility of RP calculations \cite{munyandorero_analytical_2023, sedar_stock_2010}. 
-While there has been work to develop accessible RPs using DDMs \cite{dick_depletion-based_2011, munyandorero_analytical_2023}, 
-this work expands those efforts, by deriving analytical expressions for DDMs 
-with growth under the the Schnute modeled of recruitment. 
-Munyandorero \cite{munyandorero_analytical_2023} gives RP calculations for this model 
-under BH, Ricker, and Shepard models, this work adds to that work by deriving 
-the RP calculation under the Schnute model. The BH and Ricker special cases of the 
-Schnute DDM reiterate the Munyandorero calucations. The Schnute model unifies these 
-models with a single analytical result, and extends them by also providing RP calulations 
-under the Schaffer {\color{red}and Cushing models} as additional special cases. 
+DDMs are effective and flexible data-limited models, however there use in 
+stock assessments have been limited by the accessibility of RP calculations 
+\cite{munyandorero_analytical_2023}. %{\color{red} add other paper? aalto?}. %While
+ 
+This chapter expands on existing work to develop accessible DDM RPs \cite{dick_depletion-based_2011, munyandorero_analytical_2023},
+by deriving analytical RP expressions that account for individual growth and
+maturity dynamics, with the continuous time DDM outlined by Walters \cite{walters_continuous_2020}, 
+under a Schnute model of recruitment. 
+%There has been some work to develop accessible RPs using DDMs \cite{dick_depletion-based_2011, munyandorero_analytical_2023}, 
+%and this work expands on those efforts.
+%Here the Schnute-Deriso delay-differential structure, as recently posed by Walters \cite{walters_continuous_2020}, %in a continuous time setting , is used 
+%is considered with a Schnute model of recruitment to derive analytical DDM RP 
+%expressions that account for individual growth maturity dynamics.
+%{\color{red}
+%this work expands those efforts by deriving and analytical DDM RP expressions under the Schnute model of recruitment. 
+%Using the Schnute-Deriso delay-differential structure to include individual growth, as recently detailed by Walters \cite{walters_continuous_2020},
+%under the Schnute modeled of recruitment.
+%}
+%This model under the DDM \cite{walters_continuous_2020} with individual growth, under the Schnute modeled of recruitment. 
+Munyandorero \cite{munyandorero_analytical_2023} gives RP expressions using 
+the DDM outlined by Walters under BH, Ricker, and Shepard recruitment. 
+My work in this chapter adds to that work by deriving RP calculations under 
+the Schnute model. The Munyandorero results are reiterated by the BH and Ricker 
+model special cases of the Schnute DDM. % and reiterate the Munyandorero results; deriving these results under the 
+The Schnute model further unifies these results with a single analytical form that 
+also extends RP results to include Schaefer and Cushing-like models. 
+%} as additional special cases. 
 %%Furthmore the Schnute model unifies these models with a single analytical result. 
 %This study further {\color{red}reveils} that RPs are largely dtermined by the 
 %form of R. While growth does have an effect on RPs in these models, the effect 
 %is secondary to the form of R.
+
+These analytical expressions form the basis of the simulation-based inquiry of 
+RP biases under BH recruitment, and the DDM expands the metamodeling infustructure
+to understand how RP biases are influenced by individual growth and maturity dynamics. 
+% the metamodeling methodology to explore how RP estimation is  
+
+
 
 %
 The DDM delevoped here extends the analysis of how productivity model misspecification 
@@ -113,8 +197,9 @@ The DDM allows for a probe into how recruitment and growth interact to effect RP
 %productivity model misspecification can bias RPs estimation. 
 This work begins with a derivation of RPs under the three-parameter Schnute 
 DDM. Analytical RP calcluations are then structured so as to fit into the 
-simulation design methods presented in Section (\ref{lhs}), and RP biases are 
-then analysed via the GP metamodel developed in Section (\ref{gpmm}).
+simulation design methods presented in Section (\ref{sLHS}), and RP biases are 
+then analysed via the GP metamodel developed in Sections (\ref{gpmm}) and (\ref{sMeta}).
+% as it is extended to the case of BH analysis in Section (\ref{sMeta}).
 
 
 %{\color{red} Gotta introduce and discuss bias estimation
