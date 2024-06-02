@@ -530,8 +530,15 @@ While index of abundance data are generated from three-parameter models, at each
 design location of the simulation, fitting the restricted two-parameter model
 results in a maximum likelihood estimate (MLE; and associated estimation
 uncertainty) of each of the productivity parameters. For the Schaefer model 
-the productivity parameters estimated are reparameterized as $\log(r)$ and 
-$\log(K)$ so that the modeled spaces are each in $\mathbb{R}$.
+the MLEs of the productivity parameters are transformed (via the expressions 
+developed in Section (\ref{ptRef}) with $\gamma=2$) to $\log(F^*)$ and $\log(B_0)$
+%as previously developed in Section (\ref{ptRef}) with $\gamma=2$. These quantities 
+so that the transformed RP quantities are both in $\mathbb{R}$. 
+%of RPs, via 
+%For the Schaefer model 
+%the productivity parameters estimated are reparameterized as $\log(r)$ and 
+%$\log(K)$ so that the modeled spaces are each in $\mathbb{R}$.
+%
 %{\color{red}
 %(i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
 %}
@@ -539,13 +546,16 @@ $\log(K)$ so that the modeled spaces are each in $\mathbb{R}$.
 %At each design location of the simulation, fitting the restricted two-parameter
 %model results in a MLE of each of the productivity parameters
 %(i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
+These quantities are then modelled as GP models over the broader RP space.
 To simplify the specification of the metamodel, let $\textbf{y}$ be a vector
-collecting the fitted MLEs for one of the productivity parameters, and let
+collecting the fitted MLEs for one of these quantities, and let
 $\bm{\omega}$ be a vector of estimates of the estimator variances (via the
 inverted Fisher information) at each $\textbf{y}$.
 %
-Each of the fitted productivity parameter estimates are then modeled using
+Each of the transformed parameter estimates are then modeled using
 independent instances of the following GP metamodel. %in Eq (\ref{GPModel}). 
+
+%
 \begin{align} \label{GPModel}
         \textbf{y} &= \beta_0 + \bm{X}\bm{\beta} + \bm{v} + \bm{\epsilon} \nonumber \\
         \bm{v} &\sim N_n(\bm{0}, \tau^2 \bm{R_{\ell}}) \\
@@ -595,23 +605,24 @@ and $\bm{\omega}$ from simulation fits.
 
 %
 Fitting the metamodel allows for a full predictive description of inference
-under the misspecified restricted models.
+under the misspecified two-parameter model.
 Predictive estimates are obtained via kriging \cite{cressie_statistics_2015} %{(\color{red}cite)}. 
 %over intermediate values over RP space. 
 %with $\hat~$ decorate any quantity that is derived for metamodel interpolation.
 %{\color{red}Let $\tilde~$ decorate any quantity that is derived 
 %under the metamodel prediction.}
-\begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+\begin{equation} \label{gpYHat} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
         \hat y(\textbf{x}) = \beta_0 + \textbf{x}\bm{\beta} + \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\Big(\textbf{y}-\big(\beta_0+\bm{X}\bm{\beta}\big)\Big)
 \end{equation}
 
 %
-$\hat y(\textbf{x})$ is the predicted value of the modeled productivity parameter
-MLE under the two-parameter production model, when the index of abundance %the metamodel at the 
+$\hat y(\textbf{x})$ is the metamodel's predicted value of the modeled $\log(RP)$ estimates %MLEs
+%the modeled transformed {\color{red}transformed parameter}MLE 
+under the two-parameter production model, when the index of abundance %the metamodel at the 
 is generated from the three-parameter production model at RP location $\textbf{x}$.
-$\textbf{r(x)}$ is a vector-valued function of correlation function evaluations for the
-predictive location $\textbf{x}$ against all observations in $\bm{X}$
-(i.e. $\textbf{r(x)}=\bm{R}(\textbf{x}, \bm{x}_i)~\forall~\bm{x}_i\in\bm{X}$).
+Finally, $\textbf{r(x)}$ is a vector-valued function of correlation function 
+evaluations for thepredictive location $\textbf{x}$ against all observations 
+in $\bm{X}$(i.e. $\textbf{r(x)}=\bm{R}(\textbf{x}, \bm{x}_i)~\forall~\bm{x}_i\in\bm{X}$).
 
 %%
 %{\color{red}
@@ -1051,17 +1062,17 @@ misspecification of the Schaefer model becomes worse and worse.
 %
 While Figure (\ref{flatProd}) demonstrates a real trend in simulation results,
 individual simulation runs will at best show jittery trends due to the stochastic
-nature of statistical inference. The GP process metamodel accounts for this
+nature of statistical inference. The GP metamodel accounts for this
 stochasticity %, filters out jitters, %  and allows for the jitters to be filtered out 
 to focus analysis on the signal in the simulation results. Recall that metamodeling
-occurs on the scale of the inferred productivity parameters of the restricted
-production model,
+occurs on the scales of $log(F^*)$ and $log(B_0)$,
+%the inferred productivity parameters of the restrictedproduction model,
 %by transforming  %(in this case the Schaefer model when fitting PT data. 
-by transforming metamodel predictions via Eq. (\ref{ptRP}), metamodeled predictions
-are obtained for Schaefer RPs. By further subtracting the true data generating
-PT RPs from the predicted Schaefer RPs at each point in RP space a pattern of
-inferential RP bias, induced by model misspecification of the Schaefer model,
-can be seen. %to be seen. % in Figure (\ref{arrowsPT}).
+by transforming metamodel predictions via the expressions in Section (\ref{ptRef}), %Eq. (\ref{ptRP}), 
+metamodeled predictions are obtained for the Schaefer RPs $F^*$ and $\frac{B^*}{B_0}$. 
+By further subtracting the true data generating PT RPs from the predicted Schaefer RPs 
+at each point in RP space a pattern of inferential RP bias, induced by model 
+misspecification of the Schaefer model, can be seen. %to be seen. % in Figure (\ref{arrowsPT}).
 
 %using the relevant transformations given in Eq. (\ref{ptRP}) , \ref{BratS}, \ref{FmsyS}) with $\gamma$
 %fixed to the restricting case.

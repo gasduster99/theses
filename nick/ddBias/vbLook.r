@@ -59,7 +59,9 @@ segments(aS, 0, aS, ww, col='blue')
 points(aS, ww, pch=19, col='blue')
 
 
-legend('bottomright', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, 1, -1), 2))), TeX(sprintf("$a_s=4$,    $\\kappa=0.2$, $w(a_s)\\approx %s$", round(vbGrow(4, 0.2, 1, -1), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, 1, -1),2)))),
+legend('bottomright', 
+	legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, 1, -1), 2))), TeX(sprintf("$a_s=1$,    $\\kappa=0.5$, $w(a_s)\\approx %s$", round(vbGrow(1, 0.5, 1, -1), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, 1, -1),2)))),
+	#legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, 1, -1), 2))), TeX(sprintf("$a_s=4$,    $\\kappa=0.2$, $w(a_s)\\approx %s$", round(vbGrow(4, 0.2, 1, -1), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, 1, -1),2)))),
         col=c('blue', 'purple', 'red'),
         #fill=c(cols[1:3]),#, rep(NA, 3)),
         lwd=3, #c(rep(1,3), rep(2,3)), 

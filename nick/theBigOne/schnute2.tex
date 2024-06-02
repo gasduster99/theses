@@ -764,7 +764,7 @@ Recall that each design location of the simulation uniquely represents a three p
 Schnute model. Index of abundance data are generated from the Schnute model 
 at each design location to be fit with a two parameter BH model.
 The productivity parameters of the estimated BH model are reparameterized as 
-$\log(\alpha)$ and $\log(\beta)$ so that the modeled spaces are each in $\mathbb{R}$.
+$\log(F^*)$ and $\log(B_0)$ so that the modeled spaces are each in $\mathbb{R}$.
 In turn, the MLE and associated variance (via the inverted Fisher information) 
 of these reparameterized quantities propagate the vectors 
 $\textbf{y}$ and $\bm{\omega}$ respectively to be modeled by the GP metamodel. 
@@ -897,7 +897,7 @@ $~$\\$~$\\
 \end{figure}
 
 %\paragraph{High Contrast}
-\subsubsection{High Contrast}
+\subsubsection{High Contrast \label{highConRes}}
 
 %
 Figure (\ref{contrastTrio}) shows metamodeled RP bias surfaces for inference

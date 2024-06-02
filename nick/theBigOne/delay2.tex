@@ -792,13 +792,13 @@ is also used in the DDM setting here.
 
 %
 Considering the behavior observed in Section (\ref{schnuteLowResults}), where
-$\frac{F_{MSY}}{M}$ is dramatically underestimated, it is natural to ask
+$\frac{F^*}{M}$ is dramatically underestimated, it is natural to ask
 where specifically in RP space we might see this catastrophic failure of the
-BH model.
+BH model as growth assumptions change.
 %
 The structure of RPs under the BH model suggests several natural avenues for
-forming hypotheses to identify highly misspecified RP regions. The single
-clearest feature to identify are cases where $\frac{F_{MSY}}{M}$ is
+forming hypotheses to identify highly misspecified RP regions, but the single
+clearest feature to identify are cases where $\frac{F^*}{M}$ is
 heavily under-estimated. Here this idea is expressed by a hypothesis testing
 inspired framework that uses the GP metamodel to proprogate estimate
 uncertainty across the simulated space of misspecified BH RPs.
@@ -812,10 +812,10 @@ broadly over RP space.
 
 %\clearpage
 %
-Recall that the metamodel models MLE estimates of $log(F_{MSY})$ under the misspecified BH model.
+Recall that the metamodel models MLEs of $log(F^*)$ under the misspecified BH model.
 %is a metamodeled quantity, 
 %corresponding to $$, $log(F_{MSY})$, corresponding to is the metamodeled 
-Thus, for a given set of RPs, $\textbf{x}$, of the BH metamodeled
+Thus, for a given set of RPs, $\textbf{x}$, the BH metamodeled
 quantity is given by kriging prediction as $N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
 where $\hat y(\textbf{x})$ is the kriging mean (as previously described in
 Eq. (\ref{gpYHat})) and $\hat \sigma^2(\textbf{x})$ provides estimate
@@ -825,9 +825,9 @@ uncertainty via the kriging predictive variance given by,
 \end{equation}
 
 %
-Model failure with respect to estimating $\frac{F_{MSY}}{M}$ under the BH
+Model failure with respect to estimating $\frac{F^*}{M}$ under the BH
 model is measured by the percent error as previously described in Section (\ref{highConRes}).
-When the BH model estimates $\frac{F_{MSY}}{M}$ well the percent error is
+When the BH model estimates $\frac{F^*}{M}$ well the percent error is
 expected to be small in the following sense,
 %In this setting to define the degree of model failure the percent error of the 
 %estimate is capped at no more than $P$ 
@@ -836,7 +836,7 @@ expected to be small in the following sense,
 
 %
 \begin{equation}
-\frac{\frac{F_{MSY}}{M}-\frac{\hat{F}_{MSY}}{M}}{\frac{F_{MSY}}{M}}<P. \label{pError}
+\frac{\frac{F^*}{M}-\frac{\hat{F}^*}{M}}{\frac{F^*}{M}}\le P. \label{pError}
 \end{equation}
 
 %
@@ -844,16 +844,53 @@ $P$ defines the extent of model failure on the scale of percent error. For
 measuring catestrophic model failure $P$ was chosen to be $0.5$, but smaller values
 of $P$ may be chosen to emphasize regions of more subtle model failure. %subtle regions 
 %
-Thus when the percent error is statistically greater than $P$ the notion that
-the BH model estimates $\frac{F_{MSY}}{M}$ well (in $P$-sense) is rejected.
+Since $\frac{F^*}{M}$ is generally underestimated for stocks above the BH set, a 
+one-sided test is used to identify model failure.
+Thus, when the percent error is statistically greater than $P$ the notion that
+the BH model estimates $\frac{F^*}{M}$ well (in the sense defined by $P$) is rejected.
 
 %
 For statistical evaluation, it is convienient to rearrange Eq. (\ref{pError})
-as \mbox{$\hat{F}_{MSY}>(1-P)F_{MSY}$}. $\hat{F}_{MSY}$ is then distributed as $LN(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
+as \mbox{$\hat{F}^*\ge (1-P)F^*$}. $\hat{F}^*$ is then distributed as $LN(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
 and the rejection region is then defined as the RP's for which the $5^{th}$ percentile
-from the Log-normal distribution falls below \mbox{$(1-P)F_{MSY}$.}
+from the Log-normal distribution falls below \mbox{$(1-P)F^*$.}
 
+%
+\subsection{Delay Differential Integration}
 
+%
+The delay model belongs to a class of differential equations known as delay
+differential equations (DDE). The delay arrises from the $B(t-a_s)$ terms
+found in the recruitment function. Solving DDEs require special care which
+depends on the nature of the time delay. The addition of time-varying delays,
+many different delays, or very small delays (delays below the step size of the
+numerical integrator) results in some of the more challenging settings for
+solving DDEs. However with a single stationary model of the age of selectivity,
+the delay model in this setting represents one of the most straight forward
+DDE structures. The most numerically challenging case presented here arrises
+in the case of the limiting SPM when $a_s\to0$ while $\kappa\to\infty$.
+That said the limiting SPM can be approximated for values of
+$a_s\approx0.1$, and it was straightforward to ensure that the step size of
+the integrator remained reasonably below 0.1.
+
+%
+The DDE presented here is integrated with the initial values fixed at $B_0$
+and $N_0$ as given by Eqs. (\ref{BF}) and (\ref{NF}) with $F=0$ at any given
+configuration of $\bm{\theta}$ and growth parameters. %$\kappa$, $w_\infty$ and $a_s$. 
+The system given in Eqs. (\ref{bEq}) and (\ref{nEq}) are then solved
+numerically using the implicit Livermore Solver (lsode) as implemented in the
+\verb|dede| function of the R package \verb|deSolve| \cite{soetaert_solving_2010}.
+The \verb|dede| solver provides many methods for integrating DDEs, but lsode
+was chosen because it is an implicit method that runs relatively quickly with
+a relatively smaller footprint in system memory as compared with other methods.
+The radau method was also tried in more computationally challenging settings
+with good results (albeit running more slowly that lsode). Ultimatly the
+simulated parameter space did not produce DDEs that require the more expensive
+radau integrator to solve accurately.
+
+%delays are on the order of the step size (vanishing delays) are difficult to solve. (dde CRAN)
+%
+%https://cran.r-project.org/web/packages/dde/vignettes/dde.html
 
 %
 \subsection{Parameter Estimation}
@@ -881,7 +918,7 @@ I_t \sim LN(q B_t(\bm{\theta}, \bm{\phi}), \sigma^2). \label{bL}
 \end{align}
 %
 $B_t(\bm{\theta}, \bm{\phi})$ is the biomass solution of the BH constrained DDE system. %of DDE defined in Eq. (\ref{bEq}). 
-The BH constraint isimplemented by fixing $\gamma=-1$ so that $\bm{\theta}'=[\alpha, \beta, \gamma=-1]$. 
+The BH constraint is implemented by fixing $\gamma=-1$ so that $\bm{\theta}'=[\alpha, \beta, \gamma=-1]$. 
 $\bm{\phi}$ is a vector of growth and maturity parameters, 
 $\bm{\phi}'=[\kappa, w_\infty, a_0, a_s]$. The nuisance parameter $q$ models 
 the proportionality constant of the index with process biomass, and $\sigma^2$ 
@@ -889,11 +926,12 @@ models residual variation of the index.
 
 %
 In this setting, $\bm{\phi}$ and $q$ are fixed %at the true value of 0.0005 
-to focus on the inferential affects of model misspecification on recruitment
+to focus on the inferential effects of model misspecification on recruitment
 parameters and RPs. Without an explicite mechanism for the delay model to incorporate
 age data, under the BH model $\bm{\phi}$ is not well informed and would
 tyically be estimated externally for data limted stocks. Under BH recruitment
-$\phi$ can only slightly impact RPs as seen in Figure (\ref{rpSpace}).
+$\phi$ can only slightly impact the range of modeled RPs, when compared with $\theta$, 
+as demonstrated in Figure (\ref{rpSpace}).
 %the BH model only contributes largly unimportant for the mapping of RPs since  
 %{\color{red} $\bm{\phi}$ tyically estimated externally; 
 %the components of $\phi$ only slightly impact RPs as seen in Figure (\ref{rpSpace})}.
@@ -921,7 +959,7 @@ the found MLE.
 \subsubsection{Numbers Indicies}
 
 %
-While not utilized here, age structured models may model
+While not utilized here, ASMs may model %age structured models may model
 %the delay model is also capable of modeling 
 indicies as proportional to numbers rather than (or simultaiously to)
 biomass. When solving the DDE, Eq. (\ref{nEq}) points out that the full DDE
@@ -934,7 +972,7 @@ fisheries are measured as weights %biomass Index observations
 while indicies derived from recreational fisheries are often measured as counts.
 %represent indicies that are better modeled as proportional tocounts rather than biomass. 
 If a numbers index, $J_t$, is observed alongside the previously
-mentioned biomass index, the following likelihood component is often added as a
+mentioned biomass index, the following likelihood component can be added as a %is often added as a
 conditionally independent component of the likelihood, %as follows,
 %|p, \tau^{2}, \bm{\theta}, \bm{\phi}
 \begin{align}
@@ -945,45 +983,6 @@ $N_t(\bm{\theta}, \bm{\phi})$ is the numbers solution of the DDE system.
 $\bm{\theta}$ and $\bm{\phi}$ are the productivity and growth parameters shared in 
 common with the biomass component. $p$ and $\tau^2$ are then the analogous
 proportionality constant and residual variation of the numbers index respectively.
-
-%
-\subsection{Delay Differential Integration}
-
-%
-The delay model belongs to a class of differential equations known as delay
-differential equations (DDE). The delay arrises from the $B(t-a_s)$ terms
-found in the recruitment function. Solving DDEs require special care which
-depends on the nature of the time delay. The addition of time-varying delays,
-many different delays, or very small delays (delays below the step size of the
-numerical integrator) results in some of the more challenging settings for
-solving DDEs. However with a single stationary model of the age of selectivity,
-the delay model in this setting represents one of the most straight forward
-DDE structures. The most numerically challenging case presented here arrises
-in the case of the limiting production model when $a_s\to0$ while $\kappa\to\infty$.
-That said the limiting production model can be approximated for values of
-$a_s\approx0.1$, and it was straightforward to ensure that the step size of
-the integrator remained reasonably below 0.1.
-
-%
-The DDE presented here is integrated with the initial values fixed at $B_0$
-and $N_0$ as given by Eqs. (\ref{BF}) and (\ref{NF}) with $F=0$ at any given
-configuration of $\bm{\theta}$ and growth parameters. %$\kappa$, $w_\infty$ and $a_s$. 
-The system given in Eqs. (\ref{bEq}) and (\ref{nEq}) are then solved
-numerically using the implicit Livermore Solver (lsode) as implemented in the
-\verb|dede| function of the R package \verb|deSolve| \cite{soetaert_solving_2010}.
-The \verb|dede| solver provides many methods for integrating DDEs, but lsode
-was chosen because it is an implicit method that runs relatively quickly with
-a relatively smaller footprint in system memory as compared with other methods.
-The radau method was also tried in more computationally challenging settings
-with good results (albeit running more slowly that lsode). Ultimatly the
-simulated parameter space did not produce DDEs that require the more expensive
-radau integrator to solve accurately.
-
-%delays are on the order of the step size (vanishing delays) are difficult to solve. (dde CRAN)
-%
-%https://cran.r-project.org/web/packages/dde/vignettes/dde.html
-
-
 
 %
 %
@@ -1083,8 +1082,7 @@ values of $w(a_s)$ decreases. It is also worth noting that the Ricker model's
 RPs are much less influenced by growth parameters as compared with that of the
 BH or Logistic model.
 
-%
-\clearpage
+%\clearpage
 %
 \subsection{Simple Production Model Limit}
 
