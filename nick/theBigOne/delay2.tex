@@ -44,8 +44,7 @@
 
 %
 The simplified dynamics of SPMs capture a broad range of RP variation, however
-RP behavior is complicated when model dynamics are elaborated by the 
-inclusion of individual growth. 
+RP behavior can be complicated by the inclusion of individual growth. %when model dynamics are elaborated by the inclusion of individual growth. 
 %by While the SPM captures the majority of variation in RPs, models including 
 %individual growth dynamics  also interact with the structure of productivity  
 %to effect RPs.
@@ -54,7 +53,7 @@ The SPM captures the net effect of biomass production by assuming all aspects
 of biomass production (i.e. maturity, recruitment, growth, etc.) are modeled by the %together in 
 the production function. There are a number of %teasing apart?
 approaches to model these dynamics to explicitly tease out these processes \cite{quinn_quantitative_1999, hilborn_quantitative_1992}, 
-but for the purpose of fisheries management, when data limitations are not too severe, %in a {\color{red}``data-rich'' (not data-limited)} setting it is currently considered best 
+but for the purpose of stock assessment, when data limitations are not too severe, %in a {\color{red}``data-rich'' (not data-limited)} setting it is currently considered best 
 %{\color{red}cite age structured model, selectivity models, any other model I can find (Munch, Bethany?)} 
 age structured models, ASM, \cite{methot_stock_2013} are often considered best practice.
 %%ice to use an age structured models (ASM) \cite{methot_stock_2013}. 
@@ -64,16 +63,16 @@ age structured models, ASM, \cite{methot_stock_2013} are often considered best p
 %the highly parameterized structures used in these models introduce the potential for identifiability 
 %issues {\color{red} cite}.
 
-{\color{red} citations below, ?change methot above?}
-
-{\color{red} tansition }
+%{\color{red} citations below, ?change methot above?}
+%
+%{\color{red} tansition }
 
 %
 ASMs separate the dynamics of the population into cohorts moving between age 
 classes through time. %of interrelated discrete %interrelated age classes. 
 Cohorts are goverened by a system of similar ODEs such that 
 each cohort is modeled in a way that resembles the SPM in time; by
-tracking the average size of individuals in the population as they age 
+tracking the average size of individuals in the population as they age, 
 ASMs inform models of individual growth. ASMs require the 
 specification of many parametric forms for describing the recruitment, 
 growth, maturity, selectivity, etc. that enmesh the system of ODEs at their 
@@ -98,17 +97,17 @@ of many different types.
 %seen in Eq. (\ref{ode}), however in ASMs the above ODE is expanded to a system
 %of interrelated ODEs for each age class.
 
-%
-{\color{red}
-\begin{itemize}
-%\item what is an ASM (reiterate intro intro and maybe a bit more)
-%\item maybe introduce VB growth?
-%\item require a lot of expensive data
-\item ?? Even when these data do exists, the highly parameterized structures 
-used in these models introduce the potential for identifiability issues {\color{red} cite}.
-\item ?expensive to compute.?
-\end{itemize}
-}
+%%
+%{\color{red}
+%\begin{itemize}
+%%\item what is an ASM (reiterate intro intro and maybe a bit more)
+%%\item maybe introduce VB growth?
+%%\item require a lot of expensive data
+%\item ?? Even when these data do exists, the highly parameterized structures 
+%used in these models introduce the potential for identifiability issues {\color{red} cite}.
+%\item ?expensive to compute.?
+%\end{itemize}
+%}
 
 %
 Delay differential models, DDMs (or delay difference models in discrete time) 
@@ -122,7 +121,7 @@ and recruitment into the reproducing population.  %\cite{dick_depletion-based_20
 %as well as the natural autocorrelation often observed with stock size.
 More complex DDMs are capable of exactly representing simple ASMs with an 
 explicit and compact representation of simple individual growth and maturity 
-dynamics \cite{deriso_harvesting_1980, schnute_general_1985, schnute_general_1987}.
+dynamics \cite{deriso_harvesting_1980, fournier_length-based_1987, schnute_general_1985, schnute_general_1987}.
 %That said, DDMs are capable of explicitly representing simple individual growth and maturity dynamics 
 %\cite{walters_continuous_2020}, \cite[pg. 334]{hilborn_quantitative_1992} \cite{Quinn and Deriso 1999}.
 When information about individual growth is available these DDMs have enough 
@@ -137,25 +136,34 @@ modeling ``data-limited'' stocks, while still entertaining varied hypotheses tha
 relate growth and maturity.  
 %When information about growth is available the DDM allows  may be known but not the full age at length table of an age stuctured model \cite{black rockfish assessment}
 
-%
-{\color{red}
-\begin{itemize}
-\item state the main point of this chapter.
-\item Tack on analytical RPs angle
-\item reiterate steps in this chapter.
-\end{itemize}
-}
+%%
+%{\color{red}
+%\begin{itemize}
+%\item state the main point of this chapter.
+%\item Tack on analytical RPs angle
+%\item reiterate steps in this chapter.
+%\end{itemize}
+%}
 
 
 %RPS
 DDMs are effective and flexible data-limited models, however there use in 
 stock assessments have been limited by the accessibility of RP calculations 
 \cite{munyandorero_analytical_2023}. %{\color{red} add other paper? aalto?}. %While
- 
-This chapter expands on existing work to develop accessible DDM RPs \cite{dick_depletion-based_2011, munyandorero_analytical_2023},
-by deriving analytical RP expressions that account for individual growth and
-maturity dynamics, with the continuous time DDM outlined by Walters \cite{walters_continuous_2020}, 
-under a Schnute model of recruitment. 
+%
+This chapter expands the preveious chapters' analysis of RP biases under the 
+two-parameter BH model using the DDM outlined by Walters \cite{walters_continuous_2020}
+to account of RP bias as individual growth and maturity dynamics vary.
+%
+The simulation design using this DDM requires a derivation 
+of analytical RPs that account for individual growth and
+maturity dynamics under a Schnute model of recruitment.
+%%expressions that account for individual growth andmaturity dynamics
+%%This chapter 
+%expands on existing work to develop accessible DDM RPs \cite{dick_depletion-based_2011, munyandorero_analytical_2023},
+%by deriving analytical RP expressions that account for individual growth and
+%maturity dynamics, with the continuous time DDM outlined by Walters \cite{walters_continuous_2020}, 
+%under a Schnute model of recruitment. 
 %There has been some work to develop accessible RPs using DDMs \cite{dick_depletion-based_2011, munyandorero_analytical_2023}, 
 %and this work expands on those efforts.
 %Here the Schnute-Deriso delay-differential structure, as recently posed by Walters \cite{walters_continuous_2020}, %in a continuous time setting , is used 
@@ -168,29 +176,33 @@ under a Schnute model of recruitment.
 %}
 %This model under the DDM \cite{walters_continuous_2020} with individual growth, under the Schnute modeled of recruitment. 
 Munyandorero \cite{munyandorero_analytical_2023} gives RP expressions using 
-the DDM outlined by Walters under BH, Ricker, and Shepard recruitment. 
+this same DDM %outlined by Walters 
+under BH, Ricker, and Shepard recruitment. 
 My work in this chapter adds to that work by deriving RP calculations under 
 the Schnute model. The Munyandorero results are reiterated by the BH and Ricker 
 model special cases of the Schnute DDM. % and reiterate the Munyandorero results; deriving these results under the 
 The Schnute model further unifies these results with a single analytical form that 
 also extends RP results to include Schaefer and Cushing-like models. 
-%} as additional special cases. 
-%%Furthmore the Schnute model unifies these models with a single analytical result. 
-%This study further {\color{red}reveils} that RPs are largely dtermined by the 
-%form of R. While growth does have an effect on RPs in these models, the effect 
-%is secondary to the form of R.
-
+%%} as additional special cases. 
+%%%Furthmore the Schnute model unifies these models with a single analytical result. 
+%%This study further {\color{red}reveils} that RPs are largely dtermined by the 
+%%form of R. While growth does have an effect on RPs in these models, the effect 
+%%is secondary to the form of R.
 These analytical expressions form the basis of the simulation-based inquiry of 
-RP biases under BH recruitment, and the DDM expands the metamodeling infustructure
-to understand how RP biases are influenced by individual growth and maturity dynamics. 
-% the metamodeling methodology to explore how RP estimation is  
-
-
+RP biases as they are influenced by individual growth and maturity dynamics.
+%under BH recruitment, and the DDM expands the metamodeling infustructure
+%to understand how RP biases are influenced by individual growth and maturity dynamics. 
+%% the metamodeling methodology to explore how RP estimation is  
 
 %
-The DDM delevoped here extends the analysis of how productivity model misspecification 
-can bias RPs estimation as individual growth and maturity dynamics are added to the model. 
-The DDM allows for a probe into how recruitment and growth interact to effect RP estimation.
+These analytical expressions form the basis of the simulation-based inquiry of
+RP biases under BH recruitment, when the data are generated broadly under the 
+Schnute model; further the DDM setting allows for a probe into how recruitment and 
+growth interact to effect RP estimation. 
+%%
+%The DDM delevoped here extends the analysis of how productivity model misspecification 
+%can bias RPs estimation as individual growth and maturity dynamics are added to the model. 
+%The DDM allows for a probe into how recruitment and growth interact to effect RP estimation.
 %when in the presence of individual growth and maturity dynamics
 %Models that include individual growth and maturity dynamics %which account for individual growth and age-structure
 %are another important practical setting for extending the understanding of how
@@ -370,20 +382,22 @@ approximated by VB growth in weight directly.
 %\end{minipage}
 \end{wrapfigure}
 
-%
-Age structured fisheries models typically assume %Von Bertalanffy (VB) growth 
+%Age structured fisheries models
+ASMs typically assume Von Bertalanffy %(VB) growth 
 \cite[VB]{von_bertalanffy_quantitative_1938} growth in length with age. To model
-weight the assumption of VB growth in length is composed with a power law 
-relating length to weight, $w=al^b$. 
+weight the assumption of VB growth in length, 
+$l(a)=l_\infty(1-e^{-\kappa (a-a_0)})$, 
+is composed with a power law relating length to weight, $w=al^b$. 
 %The statistical model then assumes observed indicies of abundance are proportional to weight. 
 %
-Since $b$ is usually $\sim3$ this composition of assumed functional forms
-typically results in a monotonically increasing sigmoidal curve of weight with age.
-When $b\le1$ weight at age takes a VB-like form with $b=1$ resulting in
+Since weight is typically proportional to volume, $b$ is usually $\sim3$. When 
+$b$ takes a value around $3$ this composition of assumed functional forms %typically 
+results in a monotonically increasing sigmoidal curve of weight with 
+age. When $b\le1$ weight at age takes a VB-like form with $b=1$ resulting in
 an exact correspondence of simulanious VB-growth in length and weight.
 
 %
-The delay model slightly abridges these relationships by directly assuming VB
+The DDM slightly abridges these relationships by directly assuming VB
 growth in weight as follows,
 %%
 %\begin{align}
@@ -394,7 +408,7 @@ growth in weight as follows,
 w(a) &= w_\infty(1-e^{-\kappa (a-a_0)}). \label{vbGrowth}
 \end{align}
 %
-$\kappa$ is a parameter that controls the instantaneous rate of individual
+Here $\kappa$ is a parameter that controls the instantaneous rate of individual
 growth (in weight) with age. $w_\infty$ is the maximum weight of individuals
 in the population, and $w(a)$ is the average weight of an individual at
 age $a$. The parameter $a_0$ controls the age at which individuals are assummed
@@ -407,7 +421,7 @@ at very young ages, see Figure (\ref{vbComp}).
 %{\color{red}(only a good approximation for older ages where growth begins to decline)}
 
 %
-Together with VB growth, the delay model is derived from the assumption that
+Together with VB growth, the DDM is derived from the assumption that
 both natural mortality and fishing selectivity are separately propotional
 %the total mortality rate (from both natural and fishing mortality) is proportional 
 to a common heavyside step function with age. That is to say, before a threshold
@@ -415,13 +429,25 @@ age of selectivity, $a_s$, the population is assumed not to experience any
 mortality whatsoever, but all fish older then $a_s$ experience the same rate
 of natural mortaility. Simulaneously all fish older than $a_s$ are equally
 vulnerable to fishing (i.e. knife edge selectivity at age $a_s$), although
-fishing effort may vary from through time.
+fishing effort may vary from through time. 
 
 %
-\cite{walters_continuous_2020} shows that within these assumptions the
-following delay differential system of equations exactly models the population
-dynamics of the total exploitable biomass $B(t)$ and number of indivuduals $N(t)$
-through time.
+Together the parameters $\kappa$ and $a_s$ control individual growth and 
+maturity of the stock. Larger values of $\kappa$ represent faster growing 
+individuals; in the limiting case where $\kappa\to\infty$ individuals recruit 
+at $w_\infty$. Since this DDM ties maturity and selectivity together $a_s$ can 
+also be thought of as controlling the average age of maturity into the reproducing 
+stock. Since faster growing stocks tend to mature at younger ages, $\kappa$ 
+and $a_s$ tend to be negatively correlated. When $\kappa\to\infty$ simultaneously 
+with $a_s\to0$, as consistent with the negative correlation between the parameters, 
+the DDM converges to the previously studied SPM.
+
+%
+Walters \cite{walters_continuous_2020}, preceeded with similar discrete time models 
+by Deriso \cite{deriso_harvesting_1980} and Schnute \cite{schnute_general_1985}, 
+shows that within these assumptions the following delay differential system of 
+equations exactly models the population dynamics of the total exploitable biomass 
+$B(t)$ and number of indivuduals $N(t)$ through time.
 %%
 %\begin{align}
 %B(t) = \int^\infty_{a_s} N(a, t)w(a) da
@@ -440,7 +466,7 @@ through time.
 This formulation separates the number of individuals in the population from the
 biomass of the population. The dynamics of $N$, as seen in Eq (\ref{nEq}), are
 very similar to that of the production model in Section (\ref{sModel}), 
-however the role of the production function is now filled by a "recruitment"
+however the role of the production function is now filled by a ``recruitment''
 function, $R(B)$, which describes the number of new individuals recruiting into the
 expoitable population as a function of exploitable biomass. In turn, the biomass
 dynamics are coupled to the numbers dynamics by the assumption of VB growth with
@@ -457,30 +483,33 @@ causes of mortality as it is applied to biomass. Finally, the term $\kappa \left
 accounts for the net growth of the existing biomass by discounting the limiting maximal individual
 growth rate by metabolic weight loss proportional to $B(t)$. This term, together with the delay
 structure in $R$, provides the major computational savings of the delay differential setting, as
-compared with full age structured models, by automatically keeping track of changes in the mean
-size and growth associated with changes in recruitment as cohorts mature into the population.
+compared with full ASMs. The mean size and growth associated with changes in recruitment as cohorts 
+mature into the population are automatically described by the DDM equations rather than the 
+numerical arrays used by ASMs to track quantities across all age classes in time.
+% of changes in the mean
+%size and growth associated with changes in recruitment as cohorts mature into the population.
 %The framework is likely to perform very well at this task, considering that growth and natural 
 %survival rates tend to be fairly stable over time in fishes.
 
 %
-Often a BH functional form is assumed for the stock recruitment relationship, but any adequatly
-flexible family of functions may model this relationship. For the sake of evaluating the adequacy
-of assumed BH recruitment the simulation setting below is derived for the delay model under the
-assumption of the generalized three parameter Schnute recruitment as follows.
+Often a BH functional form is assumed for the stock recruitment relationship, but many %adequatly flexible 
+families of functions may model this relationship. For the sake of evaluating the adequacy
+of assumed BH recruitment, the simulation described in the following sections is derived for the 
+DDM under the assumption of generalized three parameter Schnute recruitment,
 %
 \begin{align}
-R(B;[\alpha, \beta, \gamma]') = \alpha B(t-a_s)(1-\beta\gamma B(t-a_s))^{\frac{1}{\gamma}} \label{srr}
+R(B;[\alpha, \beta, \gamma]') = \alpha B(t-a_s)(1-\beta\gamma B(t-a_s))^{\frac{1}{\gamma}}. \label{srr}
 \end{align}
 %
 The parameters $\bm{\theta}'=[\alpha, \beta, \gamma]$ %\alpha$, $\beta$, and $\gamma$, 
-function similarly in this setting as previously described in Section (\ref{}).
-That said, since the delay model explicitly parses out growth in it's dynamics,
-these parameters only describe the net processes of larval production, and maturation
-into the population, where as the production model used these parameters to
-also model the net effects of growth on biomass production. %NOTE: production model includes net growth in in the nonlinear form of P, while the delay model used VB Growth params (functional form) on top of this nonlinearity. 
+function similarly in this setting as previously described in Section (\ref{sModel}).
+That said, since the DDM explicitly parses out growth in it's dynamics,
+these parameters only describe the net processes of larval production %, and maturation into the population, 
+where as the production model uses these parameters to also model the net 
+effects of growth on biomass production. %NOTE: production model includes net growth in in the nonlinear form of P, while the delay model used VB Growth params (functional form) on top of this nonlinearity. 
 The $\gamma$ parameter generalizes the family to model varying degrees of
 decreasing recruitment for large biomasses as $\gamma$ increases. The Schnute
-function is exactly equivalent to BH recruitment at the special case when
+function is again exactly equivalent to BH recruitment at the special case when
 $\gamma=-1$, it passes through the Ricker model as $\gamma\rightarrow0$, and
 Logistic recruitment occurs when $\gamma=1$.
 
@@ -488,7 +517,7 @@ Logistic recruitment occurs when $\gamma=1$.
 % controls the behavior of recruitment from the special case of BH recruitment at $\gamma=-1$, 
 %The structure of the Schnute function here is similar to that of the previously described, with $\gamma$ . 
 %
-Since the delay model assumes knife edge selectivity, at age $a_s$, the term
+Since the DDM assumes knife edge selectivity, at age $a_s$, the term
 $B(t-a_s)$ appears in $R$. That is to say fish recruiting into the exploitable
 population are the result of larval production of biomass $a_s$ time
 units in the past. This is because fishing selectivity is only assumed to occur
@@ -500,34 +529,34 @@ equations as opposed to the simple ODEs that arrise in the production model
 setting.
 %which is where the delay differential equation  
 
+%%
+%\begin{itemize}
+%        %\item parameters $\alpha$, $\beta$, and $\gamma$,
+%        %\item The BH and Logistic production functions arise when $\gamma$ is fixed to -1 or 1 respectively. 
+%        %\item The Ricker model is a limiting case as $\gamma\rightarrow0$. %\shortcite{schnute_general_1985}.
+%        %\item For $\gamma<-1$ a family of strictly increasing Cushing-like curves arise,
+%        %       culminating in linear production as $\gamma\to-\infty$. These special cases form
+%        %       natural regimes of similarly behaving production functions as seen in Figure (\ref{sRegimes}).
+%        %\item time delay
+%        \item[$\sim$] interpretation of recruitment (larval production, recruitment) [growth external] vs. production (larval production, recruitment, growth)
+%\end{itemize}
 %
-\begin{itemize}
-        %\item parameters $\alpha$, $\beta$, and $\gamma$,
-        %\item The BH and Logistic production functions arise when $\gamma$ is fixed to -1 or 1 respectively. 
-        %\item The Ricker model is a limiting case as $\gamma\rightarrow0$. %\shortcite{schnute_general_1985}.
-        %\item For $\gamma<-1$ a family of strictly increasing Cushing-like curves arise,
-        %       culminating in linear production as $\gamma\to-\infty$. These special cases form
-        %       natural regimes of similarly behaving production functions as seen in Figure (\ref{sRegimes}).
-        %\item time delay
-        \item[$\sim$] interpretation of recruitment (larval production, recruitment) [growth external] vs. production (larval production, recruitment, growth)
-\end{itemize}
-
-\begin{itemize}
-\item general structure: \cite{walters_continuous_2020} \cite[pg. 334]{hilborn_quantitative_1992}
-\item growth: \cite{von_bertalanffy_quantitative_1938}
-\item recruitment: \cite{schnute_general_1985, schnute_analytical_1998}
-\end{itemize}
-
+%\begin{itemize}
+%\item general structure: \cite{walters_continuous_2020} \cite[pg. 334]{hilborn_quantitative_1992}
+%\item growth: \cite{von_bertalanffy_quantitative_1938}
+%\item recruitment: \cite{schnute_general_1985, schnute_analytical_1998}
+%\end{itemize}
 
 %
 \subsection{Reference Points}
 
 %
-Deriving reference points for the delay model under Schnute recruitment is
+Deriving reference points for the DDM under Schnute recruitment is
 conceptually similar to the production model setting. The additional nonlinear
-VB growth assumptions along side Schnute recruitment quickly make the
+VB growth assumptions along side Schnute recruitment quickly makes the
 expressions look somewhat unweildy, although analytical solutions can still be
-derived for most of the same quantities (although complicated by growth parameters).
+derived for most of the same quantities as was done in Chapter (\ref{schnuteChapter}) 
+(although complicated by growth parameters).
 
 %
 Starting from Eqs. (\ref{bEq}) and (\ref{nEq}), setting both $\frac{dB}{dt}$
@@ -551,16 +580,16 @@ equilibrium biomass that accounts for the factors of individual growth.
 
 %
 Expressions for $B_0$ and $B^*$ are attained by evaluating $\bar{B}(F)$ at
-$F=0$ and $F=F^*$ respectively. Calculation of $F^*$ typically involves %amounts to %requires %Obtaining an expression for 
-maximization of equilibrium yield, \mbox{$\bar{Y} = F\bar{B}(F)$.} While it was not
-possible to analytically maximize $\bar{Y}$, stable numerical solutions for
-calculating $F^*$ were obtained by numerically solving for the roots of the
-analytical derivative of equilibrium yield with respect to $F$. Below a greatly
+$F=0$ and $F=F^*$ respectively. The calculation of $F^*$ typically involves %amounts to %requires %Obtaining an expression for 
+maximization of equilibrium yield, \mbox{$\bar{Y} = F\bar{B}(F)$.} Just as was 
+the case under the Schnutre SPM in Chapter (\ref{schnuteChapter}), it is again not
+possible to analytically maximize $\bar{Y}$ in the DDM setting. However stable 
+numerical solutions for calculating $F^*$ were obtained by numerically solving 
+for the roots of the analytical derivative of equilibrium yield with respect to $F$. Below a greatly
 simplifed expression for $\frac{d \bar{Y}}{dF}$ is shown; the substitution
 $Z=F+M$ (total mortality rate) has been made to produce a more compact expression.
 
-%
-\vspace{-0.75cm}
+%\vspace{-0.75cm}
 \begingroup
 \scriptsize
 \begin{align}
@@ -604,10 +633,9 @@ $\frac{1}{x+2}$ is plotted in black for reference.
 %\end{figure}
 
 %
-In the simple production model the BH constrained RPs are fixed to $\frac{1}{x+2}$.
-In the delay differential modeling setting the constrained BH RP set is
-complicated by the growth parameters $a_s$ and $\kappa$.
-Under BH recruitment these parameters of the delay model slightly %the growth parameters $a_s$ and $\kappa$  
+In the SPM the BH constrained RPs are fixed to $\frac{1}{x+2}$.
+In the DDM the constrained BH RP set is complicated by the growth parameters 
+$a_s$ and $\kappa$. Under BH recruitment these parameters slightly %of the DDM slightly %the growth parameters $a_s$ and $\kappa$  
 influence this relationship as seen in Figure (\ref{rpSpace}). That said,
 the influence of $a_s$ and $\kappa$ on RPs is still largly limited to a
 confined region of reference point space which resembles the $\frac{1}{x+2}$
@@ -615,61 +643,31 @@ form. In fact the confined region of RPs is bounded above by $\frac{1}{x+2}$. %b
 In Figure (\ref{rpSpace}) notice that for values of $a_s$ and $\kappa$ that
 result in high $w(a_s)$ (high values of $\kappa$ and small values of $a_s$ seen
 in red) the BH RP space converges to $\frac{1}{x+2}$ as derived in the simple
-production model setting. In opposition to the simple production model limit,
-when $w(a_s)$ is low (as seen in the more blue region of Figure(\ref{rpSpace})), RPs
-decrease as the influence of growth in the dynamics increases.
+production model setting. In opposition to the SPM limit, when $w(a_s)$ is low 
+(as seen in the more blue region of Figure(\ref{rpSpace})), RPs decrease as 
+the influence of growth in the dynamics increases (i.e. slower individual growth). 
+This is another way of noticing that the DDM converges to the previously 
+studied SPM, this time in RP space, as $\kappa\to\infty$ and $a_s\to0$ 
+simultaneously.
+%When κ → ∞ simultaneously with as → 0, as con-
+%1055sistent with the negative correlation between the parameters, the DDM converges to the
+%1056previously studied SPM.
 %The opposite limit with low values of $\kappa$ and high values $a_s$ (blue region) depresses RPs away from $\frac{1}{x+2}$. 
-
-%
-\subsection{Delay Differential Integration}
-
-%
-The delay model belongs to a class of differential equations known as delay
-differential equations (DDE). The delay arrises from the $B(t-a_s)$ terms
-found in the recruitment function. Solving DDEs require special care which
-depends on the nature of the time delay. The addition of time-varying delays,
-many different delays, or very small delays (delays below the step size of the
-numerical integrator) results in some of the more challenging settings for
-solving DDEs. However with a single stationary model of the age of selectivity,
-the delay model in this setting represents one of the most straight forward
-DDE structures. The most numerically challenging case presented here arrises
-in the case of the limiting production model when $a_s\to0$ while $\kappa\to\infty$.
-That said the limiting production model can be approximated for values of
-$a_s\approx0.1$, and it was straightforward to ensure that the step size of
-the integrator remained reasonably below 0.1.
-
-%
-The DDE presented here is integrated with the initial values fixed at $B_0$
-and $N_0$ as given by Eqs. (\ref{BF}) and (\ref{NF}) with $F=0$ at any given
-configuration of $\bm{\theta}$ and growth parameters. %$\kappa$, $w_\infty$ and $a_s$. 
-The system given in Eqs. (\ref{bEq}) and (\ref{nEq}) are then solved
-numerically using the implicit Livermore Solver (lsode) as implemented in the
-\verb|dede| function of the R package \verb|deSolve| \cite{soetaert_solving_2010}.
-The \verb|dede| solver provides many methods for integrating DDEs, but lsode
-was chosen because it is an implicit method that runs relatively quickly with
-a relatively smaller footprint in system memory as compared with other methods.
-The radau method was also tried in more computationally challenging settings
-with good results (albeit running more slowly that lsode). Ultimatly the
-simulated parameter space did not produce DDEs that require the more expensive
-radau integrator to solve accurately.
-
-%delays are on the order of the step size (vanishing delays) are difficult to solve. (dde CRAN)
-%
-%https://cran.r-project.org/web/packages/dde/vignettes/dde.html
+%{\color{red}emphasize how DDM reverts to SPM}
 
 %
 \subsection{Simulation Design}
 
 %
 Similarly as previously described in Section (\ref{sSim}) the relationship
-between RPs $\mapsto$ $\theta$ cannot be fully expressed analytically for the
-Schnute delay model. However, just as in the production model setting,
+between \mbox{RPs $\mapsto$ $\theta$} cannot be fully expressed analytically for the
+Schnute DDM. However, just as in the SPM setting, %production model setting,
 simulation only requires enough knowledge of these mappings to gather a list
 of $(\alpha, \beta, \gamma)$ tuples and the corresponding RPs in some reasonable
 space-filling design over RP space. %for the purposes of simulation 
 
 %Like the Schnute production model setting, 
-In the delay model a partial mapping for
+In the DDM a partial mapping for
 $\big(F^*, B_0\big) \mapsto \big(\alpha(\cdot, \gamma), ~\beta(\cdot, \cdot, \gamma)\big)$
 %in the delay modelling setting 
 can be derived analytically in terms of RPs and $\gamma$. The substitution
@@ -698,155 +696,96 @@ as seen below, to identify $\gamma$.
 \end{align}
 
 %
-The system formed by collecting Eqs. (\ref{aDelay}), (\ref{bDelay}), and
-(\ref{gDelay}) can be navigated similarly to Eq. (\ref{abgSys}) in the Schnute
-production model setting. For a population experiencing natural mortality $M$,
-VB growth with paramters $\kappa$ and $w_\infty$, and age of selectivity $a_s$
-the above system can fully specify $\alpha$ and $\beta$ for a given $\gamma$,
-by fixing $F^*$, $B_0$, and $\frac{B^*}{B_0}$. For a given $\gamma$ a cascade
-of closed form solutions for $\alpha$ and $\beta$ can be obtained, just as in
-Section (\ref{sSim}).
+The system formed by collecting Eqs. (\ref{aDelay}), (\ref{bDelay}), and 
+(\ref{gDelay}) can be navigated similarly to Eq. (\ref{abgSys}) in the Schnute 
+production model setting. For a population experiencing natural mortality $M$, 
+VB growth with paramters $\kappa$ and $w_\infty$, and age of selectivity $a_s$ 
+the above system can fully specify $\alpha$ and $\beta$ for a given $\gamma$, 
+by fixing $F^*$, $B_0$, and $\frac{B^*}{B_0}$. For a given $\gamma$ a cascade 
+of closed form solutions for $\alpha$ and $\beta$ can be obtained, just as in 
+Section (\ref{sSim}). 
 %
-First $\alpha(\gamma)$ can be computed, and then $\beta(\alpha(\gamma), \gamma)$
-can be computed. If $\alpha(\gamma)$ is filled back into the expression for
-$\frac{B^*}{B_0}$, the system collapses into a single onerous expression for
-$\frac{B^*}{B_0}(\alpha(\gamma), \gamma)$.For brevity, define the function
-\mbox{$\zeta(\gamma)=\frac{B^*}{B_0}\big(\alpha(\gamma), \gamma, F^*, M\big)$}
+First $\alpha(\gamma)$ can be computed, and then $\beta(\alpha(\gamma), \gamma)$ 
+can be computed. If $\alpha(\gamma)$ is filled back into the expression for 
+$\frac{B^*}{B_0}$, the system collapses into a single onerous expression for 
+$\frac{B^*}{B_0}(\alpha(\gamma), \gamma)$. For brevity, define the function 
+\mbox{$\zeta(\gamma)=\frac{B^*}{B_0}\big(\alpha(\gamma), \gamma, F^*, M\big)$} 
 based on Eq. (\ref{gDelay}).
 
 %
 Again rather than inverting $\zeta(\gamma)$ for $\gamma$, $\gamma$ is the
 sampled so that the overall simulation design is space filling as described in
 Section (\ref{sLHS}). Given the sampled $\gamma$, the cascade of $\alpha(\gamma)$, 
-and then $\beta(\alpha(\gamma), \gamma)$, can be computed, and the Schnute
-delay model is fully defined by a given $(\frac{F^*}{M}, \frac{B^*}{B_0})$.
+and then $\beta(\alpha(\gamma), \gamma)$, can be computed, and the Schnute DDM 
+is fully defined by a given $(\frac{F^*}{M}, \frac{B^*}{B_0})$.
 %
-While conceputally this framing is similar to the Schnute production model,
+While conceputally this framing is similar to the Schnute SPM,
 the analytical expressions are more complex, and numerically trecherous, since
 growth parameters appear explicitly here. Other ways of navigating the RPs $\mapsto$ $\theta$
 system are possible, but for the sake of numerical stability this strategy has
-proven the most reliably accurate by limiting exposure to numerical error propogation.
+proven the most reliably accurate by limiting exposure to numerical error 
+propogation which quickly becomes significant using other schemes.
 
 %
-Each design location defines a complete Schnute delay differential model with
-the given RP values. Indices of abundance are simulated from the Schnute model
-at each design location, a small amount of residual variation, $\sigma = 0.01$,
+Each design location defines a complete Schnute DDM with
+the given RP values. Just as in Chapter (\ref{schnuteChapter}), $B_0$ is fixed 
+at $10000$, and $M$ is fixed at $0.2$; furthermore $a_0$ and $w_\infty$ (of VB 
+growth) were fixed to -1 and 1 respectively throught.
+The values of $\kappa$ and $a_s$ are varied roughly along the line $w(a_s)=w_\infty-\frac{a_s}{3}$ 
+so as to produces a negatively correlated relationship between $\kappa$ and 
+$a_s$ representing fast ($\kappa=10$,  $a_s=0.1$), medium ($\kappa=0.5$,  $a_s=1$) and 
+slow ($\kappa=0.1$,  $a_s=2$) individual growth simulation settings.
+Indices of abundance are simulated from the Schnute model at each design 
+location, a small amount of residual variation, $\sigma = 0.01$,
 is added to the simulated index, and the data are then fit with a misspecified
 BH model. The design captures various degrees of model misspecification
 relative to the BH model, so as to observe the effect of recruitment
 misspecification upon RP inference.
 
+%%
+%{\color{red}
+%point to catch, and LHS design, and Metamodel.
+%}
 %
-{\color{red}
-point to catch, and LHS design, and Metamodel.
+%\begin{itemize}
+%%$\bm{\phi}$ fixed, $q$ fixed,\\ 
+%%MLE $\bm{\theta}$ and $\sigma^2$\\
+%%\item fixed $B_0=10000$, $M=0.2$, $a_0=-1$, $w_\infty=1$
+%\item play with $\kappa$ and age of selectivity $a_s$
+%%Look at values above and adapt from schnute paper.
+%\end{itemize}
+
+%
+\subsection{Metamodeling}
+
+%
+The GP metamodeling method previously developed in Section (\ref{gpmm}), and later adapted 
+\mbox{%adapted 
+for analysis of the BH model in Chapter (\ref{schnuteChapter}), 
+is also used in the DDM setting here.
 }
+%and (\ref{delayChapter}) for the
+%analysis of BH RP inference with the following modifications.
 
-%
-\subsection{Parameter Estimation}
-%
-\begin{itemize}
-        %\item layout likelihood setup
-        %\item mention recreational data numbers likelihood
-        %\item point out similarity of B/N solutions
-        \item I use B only here
-        \item quick statement of inference, and reference to previous section
-\end{itemize}
+%%
+%Recall that each design location of the simulation uniquely represents a three parameter
+%Schnute model. Index of abundance data are generated from the Schnute model
+%at each design location to be fit with a two parameter BH model.
+%The productivity parameters of the estimated BH model are reparameterized as
+%$\log(\alpha)$ and $\log(\beta)$ so that the modeled spaces are each in $\mathbb{R}$.
+%In turn, the MLE and associated variance (via the inverted Fisher information)
+%of these reparameterized quantities propagate the vectors
+%$\textbf{y}$ and $\bm{\omega}$ respectively to be modeled by the GP metamodel.
+%These quantities along with the RP calculations derived in each respective chapter
+%fully specifies the metamodeling analysis with all other details remaining the same.
+%%be a vector of estimates of the estimator variances (via the
+%%inverted Fisher information) at each $\textbf{y}$.
+%\
 
-%
-Let $I_t$, $t\in\{1,2,3,...,T\}$, be a series of indicies of abundance,
-proportional to biomass, as simulated from the Schnute Delay model. These data
-are modelled with the following log-normal observation model that has been
-intentionally constrained to BH recruitment,
-%is then intentially constrainted to BH recruitment and a log-normal observation model as follows, % by fixing $\gamma=-1$.
-%Growth parameters: $\bm{\phi}'=[\kappa, w_\infty, a_0, a_s]$
-%
-%The observation model for the fitted model is log-normal such that, 
-%|q, \sigma^2, \bm{\theta}, \bm{\phi}
-\begin{align}
-I_t \sim LN(q B_t(\bm{\theta}, \bm{\phi}), \sigma^2). \label{bL}
-\end{align}
-%
-$B_t(\bm{\theta}, \bm{\phi})$ is the biomass solution of the BH constrained DDE system. %of DDE defined in Eq. (\ref{bEq}). 
-The BH constraint isimplemented by fixing $\gamma=-1$ so that $\bm{\theta}'=[\alpha, \beta, \gamma=-1]$.
-$\bm{\phi}$ is a vector of growth and maturity parameters,
-$\bm{\phi}'=[\kappa, w_\infty, a_0, a_s]$. The nuisance parameter $q$ models
-the proportionality constant of the index with process biomass, and $\sigma^2$
-models residual variation of the index.
-
-%
-In this setting, $\bm{\phi}$ and $q$ are fixed %at the true value of 0.0005 
-to focus on the inferential affects of model misspecification on recruitment
-parameters and RPs. Without an explicite mechanism for the delay model to incorporate
-age data, under the BH model $\bm{\phi}$ is not well informed and would
-tyically be estimated externally for data limted stocks. Under BH recruitment
-$\phi$ can only slightly impact RPs as seen in Figure (\ref{rpSpace}).
-%the BH model only contributes largly unimportant for the mapping of RPs since  
-%{\color{red} $\bm{\phi}$ tyically estimated externally; 
-%the components of $\phi$ only slightly impact RPs as seen in Figure (\ref{rpSpace})}.
-
-%
-$\sigma^2$ and $\theta$ are reparameterized to the log scale and fit via MLE.
-Reparameterizing the parameters to the log scale improves the reliability of
-optimization, in addition to facilitating the use of Hessian information for
-estimating MLE standard errors. Given that the biological parameters enter the
-likelihood via a nonlinear differential equation, and further the parameters
-themselves are related to each other nonlinearly, the likelihood function can
-often be difficult to optimize. A hybrid optimization scheme is used to
-maximize the log likelihood to ensure that a global MLE solution is found. The
-R package GA \cite{scrucca_ga_2013, scrucca_extensions_2017} is used to
-run a genetic algorithm to explore parameter space globally. Optimization
-periodically jumps into the L-BFGS-B local optimizer to refine optima within a
-local mode. The scheme functions by searching globally, with the genetic
-algorithm, across many initial values for starting the local gradient-based
-optimizer. The genetic algorithm serves to iteratively improve hot starts for
-the local gradient-based optimizer. Additionally, optimization is only
-considered to be converged when the optimum results in an invertible Hessian at
-the found MLE.
-
-\begin{itemize}
-%$\bm{\phi}$ fixed, $q$ fixed,\\ 
-%MLE $\bm{\theta}$ and $\sigma^2$\\
-\item fixed $M=0.2$, $a_0=-1$, $w_\infty=1$
-\item play with $\kappa$ and age of selectivity $a_s$
-%Look at values above and adapt from schnute paper.
-\end{itemize}
-
-%
-\subsubsection{Numbers Indicies}
-
-%
-While not utilized here, age structured models may commonly model
-%the delay model is also capable of modeling 
-indicies as proportional to numbers rather than (or simultaiously to)
-biomass. When solving the DDE, Eq. (\ref{nEq}) points out that the full DDE
-solution will expose a numbers solution simultaneously with a biomass solution
-that may be used for these purposes. These solutions are often quite similar
-since the main driver of process behavior comes from the form of $R$ which is
-shared among $N$ and $B$.
-However, it is common on the west coast of the US that indicies derived from commercial
-fisheries are measured as weights %biomass Index observations
-while indicies derived from recreational fisheries are often measured as counts.
-%represent indicies that are better modeled as proportional tocounts rather than biomass. 
-If a numbers index, $J_t$, is observed alongside the previously
-mentioned biomass index, the following likelihood component is often added as a
-conditionally independent component of the likelihood, %as follows,
-%|p, \tau^{2}, \bm{\theta}, \bm{\phi}
-\begin{align}
-J_t \sim LN(p N_t(\bm{\theta}, \bm{\phi}), \tau^{2}) \label{nL}.
-\end{align}
-%
-$N_t(\bm{\theta}, \bm{\phi})$ is the numbers solution of the DDE system.
-$\bm{\theta}$ and $\bm{\phi}$ are the productivity and growth parameters shared in 
-common with the biomass component. $p$ and $\tau^2$ are then the analogous
-proportionality constant and residual variation of the numbers index respectively.
-
-%
-\subsection{GP Metamodel}
-
-%
-{\color{red}
-point to catch, and LHS design, and Metamodel.
-}
+%%
+%{\color{red}
+%point to catch, and LHS design, and Metamodel.
+%}
 
 %
 \subsection{Clustering Model Failure}
@@ -871,8 +810,7 @@ to define a classifier for identifying where BH inference breaks down
 broadly over RP space.
 
 
-%
-\clearpage
+%\clearpage
 %
 Recall that the metamodel models MLE estimates of $log(F_{MSY})$ under the misspecified BH model.
 %is a metamodeled quantity, 
@@ -914,6 +852,138 @@ For statistical evaluation, it is convienient to rearrange Eq. (\ref{pError})
 as \mbox{$\hat{F}_{MSY}>(1-P)F_{MSY}$}. $\hat{F}_{MSY}$ is then distributed as $LN(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
 and the rejection region is then defined as the RP's for which the $5^{th}$ percentile
 from the Log-normal distribution falls below \mbox{$(1-P)F_{MSY}$.}
+
+
+
+%
+\subsection{Parameter Estimation}
+%%
+%\begin{itemize}
+%        %\item layout likelihood setup
+%        %\item mention recreational data numbers likelihood
+%        %\item point out similarity of B/N solutions
+%        \item I use B only here
+%        \item quick statement of inference, and reference to previous section
+%\end{itemize}
+
+%
+Let $I_t$, $t\in\{1,2,3,...,T\}$, be a series of indicies of abundance, 
+proportional to biomass, as simulated from the Schnute DDM. These data 
+are modelled with the following log-normal observation model that has been 
+intentionally constrained to BH recruitment, 
+%is then intentially constrainted to BH recruitment and a log-normal observation model as follows, % by fixing $\gamma=-1$.
+%Growth parameters: $\bm{\phi}'=[\kappa, w_\infty, a_0, a_s]$
+%
+%The observation model for the fitted model is log-normal such that, 
+%|q, \sigma^2, \bm{\theta}, \bm{\phi}
+\begin{align}
+I_t \sim LN(q B_t(\bm{\theta}, \bm{\phi}), \sigma^2). \label{bL}
+\end{align}
+%
+$B_t(\bm{\theta}, \bm{\phi})$ is the biomass solution of the BH constrained DDE system. %of DDE defined in Eq. (\ref{bEq}). 
+The BH constraint isimplemented by fixing $\gamma=-1$ so that $\bm{\theta}'=[\alpha, \beta, \gamma=-1]$. 
+$\bm{\phi}$ is a vector of growth and maturity parameters, 
+$\bm{\phi}'=[\kappa, w_\infty, a_0, a_s]$. The nuisance parameter $q$ models 
+the proportionality constant of the index with process biomass, and $\sigma^2$ 
+models residual variation of the index.
+
+%
+In this setting, $\bm{\phi}$ and $q$ are fixed %at the true value of 0.0005 
+to focus on the inferential affects of model misspecification on recruitment
+parameters and RPs. Without an explicite mechanism for the delay model to incorporate
+age data, under the BH model $\bm{\phi}$ is not well informed and would
+tyically be estimated externally for data limted stocks. Under BH recruitment
+$\phi$ can only slightly impact RPs as seen in Figure (\ref{rpSpace}).
+%the BH model only contributes largly unimportant for the mapping of RPs since  
+%{\color{red} $\bm{\phi}$ tyically estimated externally; 
+%the components of $\phi$ only slightly impact RPs as seen in Figure (\ref{rpSpace})}.
+
+%
+$\sigma^2$ and $\theta$ are reparameterized to the log scale and fit via MLE.
+Reparameterizing the parameters to the log scale improves the reliability of
+optimization, in addition to facilitating the use of Hessian information for
+estimating MLE standard errors. Given that the biological parameters enter the
+likelihood via a nonlinear differential equation, and further the parameters
+themselves are related to each other nonlinearly, the likelihood function can
+often be difficult to optimize. A hybrid optimization scheme is used to
+maximize the log likelihood to ensure that a global MLE solution is found. The
+R package GA \cite{scrucca_ga_2013, scrucca_extensions_2017} is used to
+run a genetic algorithm to explore parameter space globally. Optimization
+periodically jumps into the L-BFGS-B local optimizer to refine optima within a
+local mode. The scheme functions by searching globally, with the genetic
+algorithm, across many initial values for starting the local gradient-based
+optimizer. The genetic algorithm serves to iteratively improve hot starts for
+the local gradient-based optimizer. Additionally, optimization is only
+considered to be converged when the optimum results in an invertible Hessian at
+the found MLE.
+
+%
+\subsubsection{Numbers Indicies}
+
+%
+While not utilized here, age structured models may model
+%the delay model is also capable of modeling 
+indicies as proportional to numbers rather than (or simultaiously to)
+biomass. When solving the DDE, Eq. (\ref{nEq}) points out that the full DDE
+solution will expose a numbers solution simultaneously with a biomass solution
+that may be used for these purposes. These solutions are often quite similar
+since the main driver of process behavior comes from the form of $R$ which is
+shared among $N$ and $B$.
+However, it is common on the west coast of the US that indicies derived from commercial
+fisheries are measured as weights %biomass Index observations
+while indicies derived from recreational fisheries are often measured as counts.
+%represent indicies that are better modeled as proportional tocounts rather than biomass. 
+If a numbers index, $J_t$, is observed alongside the previously
+mentioned biomass index, the following likelihood component is often added as a
+conditionally independent component of the likelihood, %as follows,
+%|p, \tau^{2}, \bm{\theta}, \bm{\phi}
+\begin{align}
+J_t \sim LN(p N_t(\bm{\theta}, \bm{\phi}), \tau^{2}) \label{nL}.
+\end{align}
+%
+$N_t(\bm{\theta}, \bm{\phi})$ is the numbers solution of the DDE system.
+$\bm{\theta}$ and $\bm{\phi}$ are the productivity and growth parameters shared in 
+common with the biomass component. $p$ and $\tau^2$ are then the analogous
+proportionality constant and residual variation of the numbers index respectively.
+
+%
+\subsection{Delay Differential Integration}
+
+%
+The delay model belongs to a class of differential equations known as delay
+differential equations (DDE). The delay arrises from the $B(t-a_s)$ terms
+found in the recruitment function. Solving DDEs require special care which
+depends on the nature of the time delay. The addition of time-varying delays,
+many different delays, or very small delays (delays below the step size of the
+numerical integrator) results in some of the more challenging settings for
+solving DDEs. However with a single stationary model of the age of selectivity,
+the delay model in this setting represents one of the most straight forward
+DDE structures. The most numerically challenging case presented here arrises
+in the case of the limiting production model when $a_s\to0$ while $\kappa\to\infty$.
+That said the limiting production model can be approximated for values of
+$a_s\approx0.1$, and it was straightforward to ensure that the step size of
+the integrator remained reasonably below 0.1.
+
+%
+The DDE presented here is integrated with the initial values fixed at $B_0$
+and $N_0$ as given by Eqs. (\ref{BF}) and (\ref{NF}) with $F=0$ at any given
+configuration of $\bm{\theta}$ and growth parameters. %$\kappa$, $w_\infty$ and $a_s$. 
+The system given in Eqs. (\ref{bEq}) and (\ref{nEq}) are then solved
+numerically using the implicit Livermore Solver (lsode) as implemented in the
+\verb|dede| function of the R package \verb|deSolve| \cite{soetaert_solving_2010}.
+The \verb|dede| solver provides many methods for integrating DDEs, but lsode
+was chosen because it is an implicit method that runs relatively quickly with
+a relatively smaller footprint in system memory as compared with other methods.
+The radau method was also tried in more computationally challenging settings
+with good results (albeit running more slowly that lsode). Ultimatly the
+simulated parameter space did not produce DDEs that require the more expensive
+radau integrator to solve accurately.
+
+%delays are on the order of the step size (vanishing delays) are difficult to solve. (dde CRAN)
+%
+%https://cran.r-project.org/web/packages/dde/vignettes/dde.html
+
+
 
 %
 %

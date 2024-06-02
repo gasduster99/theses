@@ -434,13 +434,13 @@ Section (\ref{sLHS}), however bypassing inaccurate numerical methods.
 
 %
 Each design location defines a complete Schnute production model with the given
-RP values. Indices of abundance are simulated from the Schnute model at each design
-location, a small amount of residual variation, $\sigma=0.01$, is added to the
-simulated index, and the data are then fit with a misspecified BH production model.
-The design at large captures various degrees of model misspecification relative
-to the BH model, so as to observe the effect of productivity model misspecification
-upon RP inference.
-
+RP values. $B_0$ is fixed at $10000$ as in Chapter (\ref{ptChapter}), and $M$ 
+is fixed at a typical value of $0.2$. Indices of abundance are simulated from 
+the Schnute model at each design location, a small amount of residual variation, 
+$\sigma=0.01$, is added to the simulated index, and the data are then fit 
+with a misspecified BH production model. The design at large captures various 
+degrees of model misspecification relativeto the BH model, so as to observe 
+the effect of productivity model misspecificationupon RP inference.
 %%
 %\clearpage
 %\subsection{Latin Hypercube Sampling \label{lhs}}
@@ -742,6 +742,7 @@ full RP design space, $X_{n} = LHS_{n}(R_{full})$. % design is computed
 %based on an overall simulated region of RPs $R_{full}$. 
 The maximin augmenting point, $\bm{x_a}$, is computed at a maximin distance of $d_a$ 
 from the existing samples. An augmenting design $X_{n'} = LHS_{n'}(R_{(x_a, d_a)})$ 
+%the DDM converges to thepreviously studied SPM.
 is collected and added to $X_n$. Design refinement carries on recursively 
 collecting augmenting designs in this way until %the maximin distance is sufficiently small to demonstrate 
 stability of the metamodel. Typically design refinement converged after the 
@@ -949,7 +950,7 @@ such a stock.
 %}
 
 
-\subsubsection{Low Contrast}
+\subsubsection{Low Contrast \label{schnuteLowResults}}
 
 %
 \begin{wrapfigure}{r}{0.5\textwidth}
