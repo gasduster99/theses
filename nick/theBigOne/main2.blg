@@ -29,39 +29,42 @@ Repeated entry---line 31 of file ./delayDifferential.bib
  :                                 ,
 I'm skipping whatever remains of this entry
 Repeated entry---line 48 of file ./delayDifferential.bib
+ : @article{deriso_harvesting_1980
+ :                                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 65 of file ./delayDifferential.bib
  : @article{schnute_general_1985
  :                              ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 78 of file ./delayDifferential.bib
+Repeated entry---line 95 of file ./delayDifferential.bib
  : @article{walters_continuous_2020
  :                                 ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 85 of file ./delayDifferential.bib
+Repeated entry---line 102 of file ./delayDifferential.bib
  : @article{hilborn_quantitative_1992
  :                                   ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 114 of file ./delayDifferential.bib
+Repeated entry---line 131 of file ./delayDifferential.bib
  : @book{wanner_solving_1996
  :                          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 123 of file ./delayDifferential.bib
+Repeated entry---line 140 of file ./delayDifferential.bib
  : @article{fournier_length-based_1987
  :                                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 135 of file ./delayDifferential.bib
+Repeated entry---line 152 of file ./delayDifferential.bib
  : @article{schnute_general_1987
  :                              ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 147 of file ./delayDifferential.bib
+Repeated entry---line 172 of file ./delayDifferential.bib
  : @article{corless_lambertw_1996
  :                               ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 165 of file ./delayDifferential.bib
+Repeated entry---line 190 of file ./delayDifferential.bib
  : @article{yeakel_generalized_2015
  :                                 ,
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "nickEJ"
-Warning--I didn't find a database entry for "sedar_stock_2010"
 Warning--empty publisher in devon_lin_latin_2015
 Warning--empty journal in dick_stock_2023
 Warning--empty publisher in gotelli_primer_1995
@@ -71,45 +74,45 @@ Warning--empty journal in pearson_reliability_2008
 Warning--there's a number but no series in ramasubramanian_machine_2017
 Warning--empty journal in schaefer_study_1957
 Warning--empty journal in walters_continuous_2020
-You've used 68 entries,
+You've used 70 entries,
             2118 wiz_defined-function locations,
-            890 strings with 15539 characters,
-and the built_in function-call counts, 21356 in all, are:
-= -- 2141
-> -- 945
+            899 strings with 15769 characters,
+and the built_in function-call counts, 21910 in all, are:
+= -- 2195
+> -- 965
 < -- 4
-+ -- 399
-- -- 308
-* -- 1585
-:= -- 3652
-add.period$ -- 225
-call.type$ -- 68
-change.case$ -- 347
++ -- 409
+- -- 314
+* -- 1621
+:= -- 3745
+add.period$ -- 231
+call.type$ -- 70
+change.case$ -- 355
 chr.to.int$ -- 0
-cite$ -- 77
-duplicate$ -- 760
-empty$ -- 1671
-format.name$ -- 308
-if$ -- 4303
+cite$ -- 79
+duplicate$ -- 783
+empty$ -- 1720
+format.name$ -- 314
+if$ -- 4417
 int.to.chr$ -- 0
-int.to.str$ -- 68
-missing$ -- 78
-newline$ -- 360
-num.names$ -- 136
-pop$ -- 308
+int.to.str$ -- 70
+missing$ -- 81
+newline$ -- 370
+num.names$ -- 140
+pop$ -- 319
 preamble$ -- 1
-purify$ -- 290
+purify$ -- 297
 quote$ -- 0
-skip$ -- 483
+skip$ -- 497
 stack$ -- 0
-substring$ -- 1447
-swap$ -- 67
+substring$ -- 1484
+swap$ -- 69
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 250
+type$ -- 256
 warning$ -- 9
-while$ -- 228
-width$ -- 70
-write$ -- 764
-(There were 12 error messages)
+while$ -- 234
+width$ -- 72
+write$ -- 785
+(There were 13 error messages)

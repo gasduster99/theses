@@ -656,7 +656,7 @@ simultaneously.
 %{\color{red}emphasize how DDM reverts to SPM}
 
 %
-\subsection{Simulation Design}
+\subsection{Simulation Design\label{delayDesign}}
 
 %
 Similarly as previously described in Section (\ref{sSim}) the relationship
@@ -991,30 +991,56 @@ proportionality constant and residual variation of the numbers index respectivel
 \clearpage
 \section{Results}
 
-{\color{red} Biological Regeim corr($a_s$, $\kappa$)<0}
+%{\color{red} Biological Regeim corr($a_s$, $\kappa$)<0}
+
+%Together the parameters κ and as control individual growth and maturity of the
+%stock. Larger values of κ represent faster growing individuals; in the limiting case
+%where κ → ∞ individuals recruit at w∞ . Since this DDM ties maturity and selectivity
+%together as can also be thought of as controlling the average age of maturity into the
+%reproducing stock. Since faster growing stocks tend to mature at younger ages, κ and
+%as tend to be negatively correlated. When κ → ∞ simultaneously with as → 0, as con-
+%sistent with the negative correlation between the parameters, the DDM converges to the
+%previously studied SPM.
+
+%The values of κ and
+%as are varied roughly along the line w(as ) = w∞ − a3s so as to produces a negatively
+%correlated relationship between κ and as representing fast (κ = 10, as = 0.1), medium
+%(κ = 0.5, as = 1) and slow (κ = 0.1, as = 2) individual growth simulation settings.
 
 %\begin{figure}[h!]
 \begin{wrapfigure}{r}{0.50\textwidth}
 \vspace{-1.5cm}
 \includegraphics[width=0.49\textwidth]{../ddBias/vbCurves.png}
-\vspace{-1cm}
-\caption{Three hypothetical individual-growth curves, showing $w(a_s)$ on each curve.}\label{vbCurves}
+%\vspace{-1cm}
+\caption{Three hypothetical individual-growth curves, demonstrating 
+fast (i.e. SPM limit), medium and slow individual growth in red, 
+purple, and blue respectively.
+\label{vbCurves}}
 \end{wrapfigure}
 %
-Figure (\ref{vbCurves}) shows three hypothetical individual-growth/maturity curves 
-that span a wide range of RPs. As seen in Figure (\ref{rpSpace}), the larger values of
-$w(a_s)$ correspond to larger recruits relative to maximum size. This leaves little growth 
-to be evaluated by the biomass dynamics equations; the red curve demonstrates the
-simple (no growth) production model limit ($a_s\rightarrow0$ and $\kappa\rightarrow\infty$).
-The cases shown with smaller $w(a_s)$ values (blue and purple curves) correspond to slower growth %more dramatic
-behaviors. The blue curve, where $a_s=2$ and $\kappa=0.1$, emphasizes the effect of growth 
-on the biomass dynamics most amoung these examples. 
+Figure (\ref{vbCurves}) shows the VB growth curves in weight
+described at the end of Section (\ref{delayDesign}). %spanning a range of individual growth and maturity parameters and a range of RPs. 
+The larger values of $w(a_s)$ correspond to larger recruits relative 
+to maximum size; by comparing the RPs of models with larger values of 
+$w(a_s)$ in Figure (\ref{rpSpace}) we can see that these models result in SPM-like RPs.
+When $w(a_s)$ is large recruits are near maximum size and thus there is little growth left 
+% to be This leaves little growth 
+to be evaluated by the biomass dynamics equations. In Figure (\ref{vbCurves}) the red curve 
+demonstrates a stock with fast growing individuals that provides an example of the SPM limit 
+($a_s\rightarrow0$ and $\kappa\rightarrow\infty$). In this setting individuals recuit so near maximum size that 
+growth does not meaningfully effect the biomass dynamics in this setting \mbox{(i.e. $w(a_s)\approx w(a_s+1)\approx w(a_s+2)...$).}
+%with no growth in the dynamics(no growth) production model limit ($a_s\rightarrow0$ and $\kappa\rightarrow\infty$).
+The cases shown with smaller $w(a_s)$ values, the purple and blue curves, correspond to 
+incrementally slower growth behaviors. The slowest growth stock simulated is the blue curve, 
+where $a_s=2$ and $\kappa=0.1$, emphasizing the effect of growth on the biomass dynamics. 
+% most amoung these examples. 
 %representing the most\dramatic growth shown here.
 %a more lagged selectivity and slow indivdual-growth.
 
 %
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{../ddBias/growthTriptic.png}
+\vspace{-0.5cm}
 \caption{
 Biomass dynamics of BH ($left$), Ricker ($center$), and Logistic ($right$)
 delay differential models in the low contrast simulation setting. In all cases
@@ -1024,7 +1050,7 @@ $B_{MSY}$ within each given $\gamma$.
 \end{figure}
 %
 Figure (\ref{delayTriptic}) demonstrates a range of biomass dynamics that the Schnute
-delay model can display under a spectrum of growth behaviors with fishing held consistent
+DDM can display under this spectrum of growth behaviors with fishing held consistent
 at $F_{MSY}$. The three special cases of $\gamma=-1$ (BH), $\gamma\to0$
 (Ricker), and $\gamma=1$ (Logistic) recruitment are shown in each of the above growth configurations.
 %of growth ranging from the simple (no growth) production model setting when 
@@ -1054,7 +1080,7 @@ at $F_{MSY}$. The three special cases of $\gamma=-1$ (BH), $\gamma\to0$
 %%over the steepest regions of the yeild curve. 
 %One may also observe these oscillations under the Ricker model by exaggerating
 %the $a_s$ lag as well as the steepness of the Ricker curve. The BH model may
-%also demonstrate these ocillations, in a heavily lagged setting, by shocking
+%also demonstrate these oscillations, in a heavily lagged setting, by shocking
 %the population past its relatively low $B_{MSY}$ as a sudden release in fishing applied to a
 %%over the steepest portion of its yeild curve (a sudden release 
 %heavily fished population at low equilibrium biomass.
@@ -1072,22 +1098,21 @@ with each growth curve.}\label{rpTriptic}
 Figure (\ref{rpTriptic}) shows the range of RPs that can be modeled with each
 of the BH, Ricker, and Logistic recruitments over the spectrum of
 individual-growth/maturity models simulated here. Notice for smaller values of 
-$w(a_s)$ the further the RP curve lies from the simple production model,
+$w(a_s)$ the further the RP curve lies from the SPM,
 and each recruitment model reacts slightly differently under each of the given growth
 parameters. The Ricker and BH RP-spaces are qualitatively similar in shape
-with smaller values of $w(a_s)$ decreasing $\frac{B_{MSY}}{B_0}$ relative to the
-simple production model setting. The Logistic model on the other hand increases
-$\frac{B_{MSY}}{B_0}$ relative to the simple production model setting as smaller 
-values of $w(a_s)$ decreases. It is also worth noting that the Ricker model's
+with smaller values of $w(a_s)$ decreasing $\frac{B^*}{B_0}$ relative to the SPM. 
+The Logistic model on the other hand increases $\frac{B^*}{B_0}$ relative to 
+the SPM as $w(a_s)$ decreases. It is also worth noting that the Ricker model's
 RPs are much less influenced by growth parameters as compared with that of the
 BH or Logistic model.
 
 %\clearpage
 %
-\subsection{Simple Production Model Limit}
+\subsection{Fast Individual Growth (SPM Limit)}
 
 %
-Under the delay differential's limiting simple production model ($a_s=0.1$ and $\kappa=10$),
+Under the delay differential's limiting SPM ($a_s=0.1$ and $\kappa=10$),
 the expectation is that RP inference should be identical to that of the model seen in
 Chapter (\ref{schnuteChapter}). By way of verifying this equivalence, Figure (\ref{prodLimit})
 demonstrates a virtually identical pattern of RP biases as previously seen in
@@ -1131,7 +1156,7 @@ $\frac{B^*}{\bar B(0)}=\frac{1}{F^*/M+2}$ RP-set) so as to produce a nearly
 minimal distance mapping of RPs onto the constrained BH set of RPs.
 %\subsubsection{low}
 Similarly, in the low contrast setting, Figure (\ref{prodLimit}, $right$) again
-shows the same two regiems pattern of RP inference. Firstly, there is a region of
+shows the same two regiem pattern of RP inference. Firstly, there is a region of
 relatively small model misspecification where the minimal distance mapping
 is preserved. Secondly, as model misspecification becomes greater (around the
 Ricker set) $\frac{F^*}{M}$ begins to be sharply underestimated. Above this
@@ -1140,18 +1165,20 @@ $\frac{F^*}{M}=0$, $\frac{B^*}{\bar B(0)}=0.5$) that is shared in common
 amoung all of the two-parameter models described here.
 
 %
-These results confirm that the theoretical limiting dynamics do 
-indeed replicate expected RP inference patterns as previously observed in 
-Chapter (\ref{schnuteChapter}).
+These results confirm that the expected theoretical limiting dynamics do indeed behave 
+nearly identical to RP inference patterns previously described. Given the implementation 
+differences between the DDM and the SPM this result also provides replicability %some sense of  
+of the results in Chapter (\ref{schnuteChapter}). 
+%expected RP inference patterns as previously observed in 
+%Chapter (\ref{schnuteChapter}).
 
 %
 %\clearpage
-\subsection{Moderate Growth}
+\subsection{Moderate Individual Growth}
 
 %
-Moving past the simple production model, other values of $a_s$ and $\kappa$ 
-provide a probe into the effects individual growth dynamics may have on RP 
-inference.
+Moving past the SPM, other values of $a_s$ and $\kappa$ provide a probe into 
+the effects individual growth dynamics may have on RP inference.
 %
 Individual growth is a multifaceted phenomena that is not easily reduced
 to a single number, but for the purposes of this model $w(a_s)$ serves as a decent 
@@ -1168,11 +1195,11 @@ A level curve of $w(a_s; \kappa)=c$ is attained by increasing the value of $a_s$
 and decreasing $\kappa$ corrispondingly, or vice versa.
 %
 The case where $a_s=1$ and $\kappa=0.5$ (resulting in $w(a_s)\approx0.6$)
-respresents a reasonable biological example of moderate growth.
+respresents a reasonable biological example of moderate individual growth.
 %
 Similar examples of the $w(a_s)=0.6$ level curve result in much larger lags
-(discussed in Section (\ref{ocillation})) or larger $\kappa$'s which quickly
-tend toward behaviors previously described in the simple production model
+(discussed in Section (\ref{oscillation})) or larger $\kappa$'s which quickly
+tend toward behaviors previously described in the SPM
 setting.
 
 %
@@ -1200,20 +1227,19 @@ $Right:$ Low contrast simulation.
 %\clearpage
 %
 The RP mappings seen in Figure (\ref{moderateGrowth}) show very similar RP mappings
-to that of the simple production model, with the biggest differences occuring
+to that of the SPM, with the biggest differences occuring
 around the location of the break point where the low contrast model begins to
 dramatically underestimate $\frac{F^*}{M}$.
 %
-In the high contrast simulation setting Figure (\ref{moderateGrowth}; $left$),
+In the high contrast simulation setting Figure (\ref{moderateGrowth}; $left$) shows
 the RP mappings again demonstrate a nearly identical minimal distance mapping of
-RPs onto the constrained BH RP set. In the low contrast setting Figure (\ref{moderateGrowth}; $right$)
-a very similar two regiem pattern of RP inference is observed, however the
+RPs onto the constrained BH RP set. In the low contrast setting Figure (\ref{moderateGrowth}; $right$) 
+shows a very similar two regiem pattern of RP inference is observed, however the
 location of the break between these regiems appears at lower values of
 $\frac{B^*}{\bar B(0)}$. In this moderate growth setting the break point
-occures around values of $\frac{B^*}{\bar B(0)}$ just below 0.4 as opposed to 
+occurs around values of $\frac{B^*}{\bar B(0)}$ just below 0.4 as opposed to 
 %\mbox{
-the simple production model the break point occurs at $\frac{B^*}{\bar B(0)}$
-just above 0.4.
+the SPM where the break point occurs at values of $\frac{B^*}{\bar B(0)}$ just above 0.4.
 %}
 
 %\begin{itemize}
@@ -1224,23 +1250,24 @@ just above 0.4.
 %\end{itemize}
 
 %\clearpage
-\subsection{Emphatic Growth Dynamics}
+\subsection{Slow Individual Growth Dynamics}
 
 %
-The emphatic growth setting simulated here fixes $a_s=2$ and $\kappa=0.1$, to
+The slow individual growth setting simulated here fixes $a_s=2$ and $\kappa=0.1$, to
 simulate a species that grows quite slowly and matures into the reproducing  
-stock at a relatively early age. This combination has the effect of 
-exaggerating the components of the model dynamics which are related to
-individual growth since individuals recruit at a small size and slowly
+stock relatively later than the previously describe simulations. This combination has 
+the effect of exaggerating the components of the model dynamics which are related to
+individual growth since individuals recruit at a smaller size and slowly
 grow over the extent of the modeled period.
 
 %
 The slow growth of these dynamics oppose the simple production model setting
 in the sense that they move the constrained RP set a large distance (largest
 amoung the spectrum of decreasing $w(a_s)$ populations simulated here)
-away from the $\frac{1}{x+2}$ limiting case. It is interesting to note that
-this is true for all of the two parameter constrained constrained RP sets as
-seen in Figure (\ref{rpTriptic}).
+away from the $\frac{1}{x+2}$ limiting case. 
+%It is interesting to note that
+%this is true for all of the two parameter constrained constrained RP sets as
+%seen in Figure (\ref{rpTriptic}).
 
 %
 Despite the heavily growth influenced driven biomass dynamics in this setting, 
@@ -1274,13 +1301,13 @@ $Right:$ Low contrast simulation.
 %
 In this low contrast setting the break point in RP estimation occures around values of
 $\frac{B^*}{\bar B(0)}$ well below 0.4 with the behaviour extending as far down as 
-$\frac{B^*}{\bar B(0)}=0.3$. This regiem shift occurs well below that of the Ricker
+\mbox{$\frac{B^*}{\bar B(0)}=0.3$}. This regiem shift occurs well below that of the Ricker
 set, as initially observed in the production model setting.
-This reduced range of acceptible RP inference indicates that under increasingly
-emphatic growth
+This reduced range of acceptible RP inference indicates that for slow growing stocks 
+%under increasinglyemphatic growth
 %\vspace{0.5cm}
-the model misspecification issue of the BH model becomes an
-increasingly brittle assumption with respect ot RPs.
+%the model misspecification issue of the 
+misspecified BH models becomes increasingly brittle with respect to RPs.
 %to the simple production model where the break point occurs at $\frac{B^*}{\bar B(0)}$
 %just above 0.4.
 
@@ -1301,7 +1328,7 @@ these models.
 
 %
 %\clearpage
-\subsection{Clustering Catastrophic Model Failure}
+\subsection{\color{red}Clustering Catastrophic Model Failure}
 
 %\clearpage
 \begin{wrapfigure}{r}{0.50\textwidth}
@@ -1316,10 +1343,10 @@ these models.
 \end{wrapfigure}
 %
 Figure (\ref{breaks}) shows the rejection thresholds for the low contrast
-simulations of each of the emphatic, moderate, and no growth settings. %, moderate growth, and emphatic growth 
-The dark lines represent the rejection threshold with a false positive rate
-of about 15\%, and the light shaded regions show how the rejection threshold
-changes as the false positvie rate rages from 50\% to 2.25\%.
+simulations of each of the fast, medium, and slow growth simulation settings. %emphatic, moderate, and no growth settings. %, moderate growth, and emphatic growth 
+The lines represent the estimated 
+%with a false positive rate of about 15\%, and the light shaded regions show how the rejection threshold
+%changes as the false positvie rate rages from 50\% to 2.25\%.
 When applied to the high contrast simulations the rejection threshold falls
 outside of the simulated RP range as expected by inspection of the
 \mbox{high contrast RP mappings.}
@@ -1348,7 +1375,7 @@ more emphatic in the dynamics.
 %
 Model misspecification of the BH model is compounded for the more emphatic growth settings
 as recruitment can interact with growth dynamics to produce unique behaviors as exemplified
-in Section (\ref{ocillation}).
+in Section (\ref{oscillation}).
 
 
 %\begin{itemize}
@@ -1360,31 +1387,34 @@ in Section (\ref{ocillation}).
 %\item a general statement about the range of the rejection threshold
 %\end{itemize}
 
-%
-\clearpage
-\subsection{Ocillatory Growth Influence\label{ocillation}}
+%\clearpage
+\subsection{Oscillatory Growth. The Road to Chaos.\label{oscillation}}
 
 %
-While the above patterns of RP estimation follow for biological regiems
-of the $w(a_s; \kappa)=c$ level curve, as $a_s$ increases an ocillatory
-regiem also exists within these dynamics. While RP estimation behaves
-similarly in this ocillatory regiem there are unique features in this
-setting that are not present in the more biological regiems. Below
-consider the ocillatory example of a logistic delay model with $a_s=10$ fixing
-fishing at $F_{MSY}$.
+While the above patterns of RP estimation follow for biologically inspired 
+growth patterns (i.e. $corr(a_s, \kappa)<0$),
+%of the $w(a_s; \kappa)=c$ level curve, 
+as $a_s$ increases to weaken (and eventually reverse) the biological negative 
+correlation between $a_s$ and $\kappa$, an ocillatory regiem also exists within these dynamics. 
+While RP estimation behaves somewhat similar in this ocillatory regiem there 
+are unique features in this setting that are not present in the more biological 
+regiems. Below consider the ocillatory example of a logistic delay model with 
+$a_s=10$ and fishing fixing at $F_{MSY}$.
 %Moderate w(a_s)\approx0.6
 
 %{\color{red} maybe an appendix}
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.85\textwidth]{../ddBias/shockBiomassYeild.png}
+\includegraphics[width=0.85\textwidth]{../ddBias/shockBiomassSurplus.png}%Yeild.png}
 \vspace{-0.5cm}
-\caption{$top~left:$ Logistic biomass over 30 epochs of time with $a_s=10$.
+\caption{$top~left:$ Logistic DDM biomass over 30 epochs of time with $a_s=10$.
 Green, red, and blue colors indicate three 10 epoch long windows of biomass.
-v indicates local biomass ocillation maxima.
-$top~right:$ Yield plotted over the range of biomasses shown.
+v indicates local biomass oscillation maxima.
+$top~right:$ %Yield 
+Surplus biomass production plotted over the range of biomasses shown.
 The biomass range of each 10 epoch window is shown in the vertical colored lines.
-$bottom~left:$ Yield plotted through time. Colors correspond to the
+$bottom~left:$ %Yield 
+Surplus biomass production plotted through time. Colors correspond to the
 lagged biomass region that results in the evaluated yield. The black horizontal
 line demonstrates the pre-model assumption of biomass fixed at $B_0$.
 }
@@ -1395,65 +1425,81 @@ line demonstrates the pre-model assumption of biomass fixed at $B_0$.
 %
 Figure (\ref{shock}) demonstrates the mechanism of how these oscillatory
 dynamics form. Oscillatory dynamics appear when fishing pushes biomass past
-$B_{MSY}$ within the lagged $a_s$ window of recruitment. The delay model assumes that
-biomass is fixed in equilibrium at $B_0$, for $t\le0$. Therefore in the green region of
-the biomass series, $0<t<10$, the population recruits at $R(B0)$. Figure (\ref{shock})
-shows that in this initial period $R(B0)$ results in zero yield for that
-period, and biomass falls as a result.
+$B_{MSY}$ within the lagged $a_s$ window. %of recruitment. 
+When $t\le0$ the delay model assumes that biomass is fixed in equilibrium at $B_0$. 
+Therefore in the green region of the biomass series, $0<t<10$, the population recruits 
+at $R(B0)$. Figure (\ref{shock}) shows that in this initial period $R(B0)$ results in 
+zero yield for that period, and biomass falls as a result.
 
 %
 Once $t$ exceeds $a_s$, the lagged recruitment refers to the integrated
-biomass series to evaltuate recruitment based on $R(B_{t-a_s})$. The red
-region of the biomass series is the result of yield over the initial
-green biomasses. Figure (\ref{shock}) shows that the yield over the green biomass
-series first increases, as biomass aproaches $B_{MSY}$ and then decreases as biomass
-passes $B_{MSY}$. This creates the local maximum in the red biomass series.
+biomass series to evaltuate recruitment based on $B_{t-a_s}$. The red
+region of the biomass series is the result of surplus biomass production 
+(i.e. evaluation of the yeild curve) %yield 
+over the initial green biomasses. Figure (\ref{shock}) shows that the %yield 
+surplus biomass production over the green biomass series first increases, 
+as biomass decreases to approach $B^*$ ($B^*\approx5000$ here). As biomass 
+decreases below $B^*$, surplus biomass then decreases to create
+%and then decreases as the biomass crosse $B_{MSY}$. This creates 
+the local maximum in the red biomass series.
 
 %
-Furthermore, the blue region of the biomass series is then based on yield
+Furthermore, the blue region of the biomass series is then based on surplus biomass %yield
 over the red biomasses. Notice that since the red biomasses first increase and
-then decrease, yield increases as the red biomass increases toward
-$B_{MSY}$, and yield subsequently decreases following the descending leg
-of the red biomass series. %in the ocillation of the red biomass series. 
-This yield pattern carries the ocillation of the red biomass region
-forward into the blue region.
+then decrease, surplus biomass %yield 
+increases as the red biomass increases and surplus biomass subsequently decreases  %toward$B^*$, and yield subsequently decreases 
+following the descending leg of the red biomass series. This %yield%in the oscillation of the red biomass series. 
+surplus biomass pattern carries the oscillation of the red biomass region
+forward into the blue region despite the red biomasses never increasing past $B^*$. 
+%Each crossing of $B^*$, as may be forced by fishing, created a compounding oscillatory component.
 
 %
-This process of biomass ocillation carries on in this manner nonetheless
-approaching equilibrium at $B_{MSY}$. Equilibrium is reached in an ocillatory
-manner setoff by the green biomass series crossing over from above $B_{MSY}$
+This process of biomass oscillation carries on in this manner nonetheless
+approaching equilibrium at $B^*$. Equilibrium is reached in an oscillatory
+manner setoff by the green biomass series crossing over from above $B^*$
 to below it. The example shown in Figure (\ref{shock}) exemplifies the oscillatory 
 phenomena simulated here, but the mechanism that produces these oscillations may
-occur with other forms of recruitment outside of logistic recruitment whenever
-fishing cases biomass to cross over $B_{MSY}$ within the lagged recruitment window.
+occur with other forms of recruitment, or fishing, outside of logistic recruitment 
+whenever fishing cases biomass to cross over $B^*$ within the lagged recruitment 
+window. By repeatedly forcing the population biomass over the $B^*$ threshold in 
+this manner the dynamics can quickly resemble the behavior of chaotic equations \cite{ausloos_logistic_2006, sprott_simple_2007}. %ticresembling that of chaotic 
 
 %
 \subsubsection{RP Estimation}
 
 %
-Statistical inference in the oscillatory regiem can be challenging. Depending on
-the parameters inferred, the likelihood can have multiple local modes which
-require global optimization techniques to distiguish. Furthermore, parameter
-estimation is more uncertain in this setting as the likelihood may confuse
-oscillations with residual noise.
+Statistical inference in the oscillatory regiems of individual growth can be 
+challenging. Depending on the parameters inferred, the likelihood can have 
+multiple local modes which require global optimization techniques to distiguish. 
+Furthermore, parameter estimation is more uncertain in this setting as the 
+likelihood may confuse oscillations with residual noise.
 %This uncertainty extends to RP estimation, high contrast setting, $w\approx0.6$ $a_s=10$
 
-%
-Figure (\ref{ocillationArrow}) shows the BH RP mapping fixing $w(10;0.1)\approx0.6$
-in the high contrast simulation setting. This places the dynamics firmly in the
-ocillatory regiem, but the
-high %contrast setting provides significant information for inferring recruitment parameters.
+%Figure (\ref{oscillationArrow}) shows the BH RP mapping fixing $w(10;0.1)\approx0.6$
+%in the high contrast simulation setting. This places the 
+%dynamics firmly in the ocillatory regiem, but the high 
+%contrast setting provides significant information for inferring recruitment parameters.
 %
 %\clearpage
-\begin{wrapfigure}{r}{0.50\textwidth}
-\vspace{-0.75cm}
-\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N300A0-1AS10K0.1.png}
-\vspace{-0.95cm}
-\caption{RP mapping of BH delay model fit to high contrast Schnute delay data under ocillatory growth ($a_s=10$ and $\kappa=0.1$).
-}\label{ocillationArrow}
-\end{wrapfigure}
+%\vspace{-1cm}
+
 %high 
-contrast setting provides significant information for inferring recruitment parameters.
+Figure (\ref{oscillationArrow}) shows the BH RP mapping fixing $w(10;0.1)\approx0.6$
+in the high contrast simulation setting. This places the
+dynamics firmly in the ocillatory regiem, but the high 
+contrast setting provides significant information for 
+inferring recruitment parameters.
+
+%
+\clearpage
+\begin{wrapfigure}{r}{0.50\textwidth}
+%\vspace{-1.25cm}
+\vspace{-1.15cm}
+\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N300A0-1AS10K0.1.png}
+\vspace{-0.75cm}
+\caption{RP mapping of BH delay model fit to high contrast Schnute delay data under ocillatory growth ($a_s=10$ and $\kappa=0.1$).
+}\label{oscillationArrow}
+\end{wrapfigure}
 
 %
 Interestingly in this high contrast setting, a very similar two regiem pattern
@@ -1463,9 +1509,51 @@ That said the boundary between the regiems in this setting is much smoother
 and the location of the break between these regiems appears around higher values of
 $\frac{B^*}{\bar B(0)}$. %of HIGHER values.
 
+%%
+%\begin{wrapfigure}{r}{0.50\textwidth}
+%\vspace{-1cm}
+%\centering
+%\includegraphics[width=0.45\textwidth]{../ddBias/indexGridExpT45N300A0-1AS10K0.1.png}
+%\vspace{-0.45cm}
+%%\begin{tikzpicture}[overlay]
+%%\node at (5,-0.5) {\includegraphics[width=0.49\textwidth]{../ddBias/indexGridKAExpT45N300A0-1AS10K0.1.png}};
+%%\node[minimum size=7, inner sep=-2] at (5,-3.5){Time};
+%%\node[minimum size=7, inner sep=-2, rotate=90] at (2,-0.5){Biomass};
+%%}
+%%\end{tikzpicture}
+%\caption{Example BH fits ($red$) to Schnute data ($black$). Each example plot is arranged to mirror its location in RP space.
+%%Higher $\frac{B^*}{\bar B(0)}$
+%%is arranged higher veritically, and higher $\frac{F^*}{M}$ is arranged farther 
+%%to the right horizontally so as to mirror the RP space domain. 
+%}\label{bhGrid}
+%\end{wrapfigure}
+
+%
+This higher $\frac{B^*}{\bar B(0)}$ break point, hovering around 0.5, is
+consistent with the mechanism which induces oscillation. 
+%When the initial contion of biomass is started at $B_0$Starting the biomass
+%at $\bar B(0)$ in the ocillatory regiem, 
+Increased $\frac{B^*}{\bar B(0)}$ will tend to exasterbate oscillatory behavior 
+by increasing $B_{MSY}$ so that biomass is more easily pushed past $B_{MSY}$ 
+within the initial lagged as window of recruitment. This produces more dramatic 
+oscillations in the higher $\frac{B^*}{\bar B(0)}$ region of RP space. Similarly
+this phenomena may be understood in terms of the relationship between $\gamma$, 
+$B^*$, and the notion of elasticity described by Yeakel and Mangel \cite{yeakel_generalized_2015}.
+
+%\begin{itemize}
+%\item RP estimation is harder when ocilations are present
+%\item Ocillations may be confused with noise.
+%\item $w\approx0.6$ $a_s=10$
+%\item Here the high contrast simulation setting is shown.
+%\end{itemize}
+%
+
+%
+\clearpage
+
 %
 \begin{wrapfigure}{r}{0.50\textwidth}
-\vspace{-1cm}
+\vspace{-0.75cm}
 \centering
 \includegraphics[width=0.45\textwidth]{../ddBias/indexGridExpT45N300A0-1AS10K0.1.png}
 \vspace{-0.45cm}
@@ -1483,24 +1571,7 @@ $\frac{B^*}{\bar B(0)}$. %of HIGHER values.
 \end{wrapfigure}
 
 %
-This higher $\frac{B^*}{\bar B(0)}$ break point, hovering around 0.5, is
-consistent with the mechanism which induces ocillation. Starting the biomass
-at $\bar B(0)$ in the ocillatory regiem, increased $\frac{B^*}{\bar B(0)}$
-will tend to exasterbate oscillatory behavior by increasing $B_{MSY}$ so that
-biomass is more easily pushed past $B_{MSY}$ within the initial lagged as
-window of recruitment. This produces more dramatic oscillations in the higher
-$\frac{B^*}{\bar B(0)}$ region of RP space.
-
-%\begin{itemize}
-%\item RP estimation is harder when ocilations are present
-%\item Ocillations may be confused with noise.
-%\item $w\approx0.6$ $a_s=10$
-%\item Here the high contrast simulation setting is shown.
-%\end{itemize}
-%
-
-%
-The fitted BH model does not produce significant ocillations because
+The fitted BH model does not produce significant oscillations because
 under the BH model $\frac{B^*}{\bar B(0)}$ is constrained below 0.5 with the
 majority of the simulation BH $\frac{B^*}{\bar B(0)}$ RPs falling between 0.4 and 0.2. % in the simulated RP domain. 
 Therefore, the fitted BH model will not tend to push biomass past $B_{MSY}$ and
@@ -1509,7 +1580,8 @@ shows a subset of example BH fits, which demonstrats the limited oscillatory
 capacity of the BH fits. Furthermore, since the BH model has a limited
 oscillatory capacity in this setting, the BH model tends to explain the
 oscillations with artificailly high residual variation and artifically low
-steepness focusing on overly simplistic trends in the data.
+%steepness 
+$\alpha$, focusing fits on overly simplistic trends in the data.
 
 %\begin{itemize}
 %\item RP inference breaks in a simplifing manner as previously described
@@ -1522,9 +1594,18 @@ steepness focusing on overly simplistic trends in the data.
 %
 \subsubsection{Estimating More}
 
+%
+Figure (\ref{estAK}) shows a subset of example model fits to Schnute data 
+simulated broadly over RP space with residual variation, $\sigma=0.12$.
+Model fits are shown both under the two-parameter BH model as well as under the
+three parameter Schnute model, each model estimating all of its recruitment
+parameters as well as the 
+%as well as the growth and maturity parameters $\kappa$ and $a_s$.
+%Notice that the BH model, even when additionally estimating $\kappa$ and $a_s$,
+%does not gain the flexibility to properly model Schnute data.
 %\begin{figure}[h!]
 \begin{wrapfigure}{r}{0.50\textwidth}
-%\vspace{-1cm}
+%\vspace{-1.15cm}
 \includegraphics[width=0.49\textwidth]{../ddBias/indexGridKAExpT45N300A0-1AS10K0.1.png}
 %\vspace{-0.5cm}
 \caption{
@@ -1535,19 +1616,19 @@ Schnute data ($black$) arranged to mirror RP space. %Each model additionally est
 }\label{estAK}
 %\end{figure}
 \end{wrapfigure}
-
-%
-Figure (\ref{estAK}) shows a subset of example model fits broadly over RP space.
-Model fits are shown both under the two-parameter BH model as well as under the
-three parameter Schnute model, each model estimating all of its recruitment
-parameters as well as the growth and maturity parameters $\kappa$ and $a_s$.
+%%
+%Figure (\ref{estAK}) shows a subset of example model fits broadly over RP space.
+%Model fits are shown both under the two-parameter BH model as well as under the
+%three parameter Schnute model, each model estimating all of its recruitment
+%parameters as well as the 
+individual growth and maturity parameters $\kappa$ and $a_s$.
 Notice that the BH model, even when additionally estimating $\kappa$ and $a_s$,
 does not gain the flexibility to properly model Schnute data.
 
 %
-The lack of oscillatory dynamics produced by the BH model causes the misspecified
+On the one hand the lack of oscillatory dynamics produced by the BH model causes the misspecified
 BH fits in Figure (\ref{estAK}) to largely estimates $\kappa$ and $a_s$ so as to
-approximate the production model limiting case. The fitted Schnute model can
+approximate the SPM limiting case. The fitted Schnute model on the other hand, can 
 produce the oscillatory dynamics and thus the information in the oscillatory data
 well inform estimates of $\kappa$ and $a_s$ under the Schnute model. Furthermore,
 the Schnute model has no issue learning its $\gamma$ parameter.
@@ -1567,7 +1648,7 @@ correctly specifying RPs, and also by opening up the model dynamics to reveal
 additional information about $\kappa$ and $a_s$ in the data. %that make estimating 
 %DISCUSSION:This difficulty may be self-imposed by a tendancy of the field to over constrain dynamics.  
 
-{\color{red} Yeakle Elasticity \cite{yeakel_generalized_2015}}
+%{\color{red} Yeakle Elasticity \cite{yeakel_generalized_2015}}
 
 %%
 %\begin{itemize}
@@ -1601,6 +1682,7 @@ additional information about $\kappa$ and $a_s$ in the data. %that make estimati
 	\item statistical evidence of minimum distance mapping within accepible regiem, 
 	{\color{red}although float idea of PT-like pattern as BH set flattens. (explaining perterbations)}
 	\item scale of error and discuss MSE
+	\item BH model is quite limited for slow growing stocks. 
 \end{itemize}
 
 %

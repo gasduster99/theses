@@ -86,7 +86,7 @@ in practice.
 %
 As seen in Figure (\ref{srrBH}, $left$) the BH model is an asymptoting curve, 
 such that as $\lim_{B\to\infty}P_{BH}(B)=\frac{\alpha}{\beta}$. This makes the 
-inclusion of an explicate handling of natural mortality, $M$, pertinent for 
+inclusion of an explicit handling of natural mortality, $M$, pertinent for 
 the modeling of surplus production. In this case, $MB$ represents linear natural 
 mortality, but it also constitutes a replacement line where biological production 
 must exceed this rate of mortality to persist. Figure (\ref{srrBH}, $right$) 
@@ -568,7 +568,7 @@ Student's $t$ distribution at the lower bound $\gamma_{min}$.
 $\delta(\gamma_{min})$ is the Dirac delta function evaluated at $\gamma_{min}$,
 which is scaled by the known value $\zeta_{min}$; this places probability mass
 $\zeta_{min}$ at the point $\gamma_{min}$. Since sampling from a Student's $t$
-distribution is readily doable, sampling from a truncated Student's $t$ mixture
+distribution is straightforward, sampling from a truncated Student's $t$ mixture
 only requires slight modification.
 
 %$~$\\$~$\\
@@ -814,8 +814,8 @@ of RPs space that are entirely defined by the value of $\gamma$. %(shown in Figu
 %As shown in Figure (\ref{sRegimes}), as well as the colors of Figure (\ref{colorDes}), 
 When $\gamma\ge1$ the Schnute model produces a family of Logistic-like curves that are
 increasingly right leaning as $\gamma$ increases.
-For $1>\gamma\ge0$, Schnute production takes a family of left leaning Ricker-like curves
-that all approach the x-axis. For $0>\gamma>-1$ there are a family of BH-like
+For $0<\gamma<1$, Schnute production takes a family of left leaning Ricker-like curves
+that all approach the x-axis. For $-1<\gamma<0$ there are a family of BH-like
 curves that do not approach the x-axis but still have decreasing productivity for large
 biomass stocks. When $\gamma$ is exactly $-1$ Schnute reduces to BH production which has
 asymptoting production for large biomass. Finally when $\gamma<-1$ Schnute
@@ -912,7 +912,7 @@ refers to the metamodel estimate.
 Figure (\ref{contrastTrio}, \emph{top-right}) combines the components of bias to
 show the overall mapping of RPs under BH inference in the high contrast
 simulation setting. Unlike high contrast RP inference under the Schaefer model,
-where mainly bias in $\frac{B^*}{\bar B(0)}$ occurred, the BH model does shows
+where mainly bias in $\frac{B^*}{\bar B(0)}$ occurred, the BH model shows
 bias in both RPs here. Despite the bias in $\frac{B^*}{\bar B(0)}$ and
 $\frac{F^*}{M}$ these results are similar to that of the Schaefer model in
 that the overall mapping of RPs is very nearly a minimal distance mapping onto
@@ -1351,9 +1351,11 @@ headwind against our most vulnerable stocks. We should not merely accept the
 potentially cautious RP estimation regimes as a rational of accepting the 
 pervasive use of the BH model in American fisheries.
 %degree of universal use of the BH model in the US. 
-Increasing the flexibility of the production function by moving toward
-three-parameter models we can release these underlying structural limitations
-\cite{mangel_perspective_2013}. While three-parameter production functions 
+By moving toward three-parameter models we can release these underlying 
+structural limitations \cite{mangel_perspective_2013}.
+%increasing the flexibility of the production function by moving toward
+%three-parameter models we can release these underlying structural limitations \cite{mangel_perspective_2013}. 
+While three-parameter production functions 
 have their own complicating factors \cite{punt_extending_2019}, the flexibility 
 that three-parameter production functions offer may be used in a number of ways 
 outside of direct parameter estimation to solve a number of structural 

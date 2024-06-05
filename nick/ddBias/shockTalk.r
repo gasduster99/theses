@@ -729,6 +729,183 @@ text(surplus(max(dat$B[22:33])+250, dat)*r, max(dat$B[22:33])+250, label="V", co
 dev.off()
 
 
+#
+png("shockBiomassSurplus.png")
+
+cols = brewer.pal(4, 'Set1')[c(1,2,1,3)]
+
+#
+layout(
+matrix(c(
+	1,1,3,
+	1,1,3,
+	2,2,4
+), 3, 3, byrow=T)
+)
+
+##
+#dat$time = 1:40
+#dat$iterate()
+#plot(dat$time-1, dat$B, 'l', col=cols[1], lwd=3, ylim=c(3000,B0), xlab="Time", ylab="Biomass")
+##dat$plotQuan( function(B){B}, main="Logistic", ylim=c(0,B0), xlab="Time", ylab="Biomass", lwd=3, col=cols[1]) 
+##, cex.main=3, cex.axis=2, cex.lab=3)
+#points(40, dat$B[40], pch=19, col=cols[1])
+
+#
+par(mar=c(4, 4, 4, 2)+0.1)
+
+#
+dat$time = 1:31
+dat$iterate()
+#dat$plotQuan( function(B){B}, main="Logistic", ylim=c(0,B0), xlab="Time", ylab="Biomass", lwd=3, col=cols[2], add=T)  
+#lines(dat$time-1, dat$B, 'l', col=cols[2], lwd=3)
+plot(dat$time-1, dat$B, 'l', col=cols[2], lwd=3, ylim=c(3000,B0), ylab="Biomass", xlab="")
+title("                                                             Oscillation Mechanism")#line = -2)
+points(30, dat$B[30], pch=19, col=cols[2])
+text(which(dat$B==max(dat$B[20:30]))-2, max(dat$B[20:30])+200, col=cols[2], label="V", font=2)
+#
+#points(30, dat$B[30], col=cols[1])
+
+##
+#lines((dat$time-1)[21:31]+0.5, SRR(dat$B[11:21], dat), 'l', col=cols[3], lwd=3)
+##
+#points(30+0.5, SRR(dat$B[21], dat), col=cols[3], pch=19) 
+#points(30+0.5, SRR(dat$B[21], dat), col=cols[2], lwd=2)
+
+#
+dat$time = 1:21
+dat$iterate()
+#dat$plotQuan( function(B){B}, main="Logistic", ylim=c(0,B0), xlab="Time", ylab="Biomass", lwd=3, col=cols[3], add=T)  
+#points(11, dat$B[11], col=cols[3])
+lines(dat$time-1, dat$B, 'l', col=cols[3], lwd=3)
+points(20.5, dat$B[21], pch=19, col=cols[3])
+text(which(dat$B==max(dat$B[10:20]))-1, max(dat$B[10:20])+200, col=cols[3], label="V", font=2)
+#
+points(20.5, dat$B[21], col=cols[2], lwd=2)
+
+##
+#lines((dat$time-1)[11:21]+0.5, c(SRR(dat$B[1:11], dat)), 'l', col=cols[4], lwd=3)
+#points(10, dat$B[11], col=cols[4], lwd=2)
+#points(20+0.5, SRR(dat$B[11], dat), col=cols[4], pch=19)
+#points(20+0.5, SRR(dat$B[11], dat), col=cols[3], lwd=2) 
+
+#
+dat$time = 1:11
+dat$iterate()
+#dat$plotQuan( function(B){B}, main="Logistic", ylim=c(0,B0), xlab="Time", ylab="Biomass", lwd=3, col=cols[4], add=T)  
+lines(dat$time-1, dat$B, 'l', col=cols[4], lwd=3)
+points(0, dat$B[1], pch=19)
+points(0, dat$B[1], col=cols[4], lwd=2)
+points(10, dat$B[10], pch=19, col=cols[4])
+#
+points(10, dat$B[10], col=cols[3], lwd=2)
+#
+#abline(h=BMsy)
+#
+lines(dat$time-0.5, SRR(rep(dat$B[1], 11), dat))
+points(10+0.5, SRR(dat$B[1], dat), pch=19)
+points(10+0.5, SRR(dat$B[1], dat), col=cols[4], lwd=2)
+
+
+#
+ww = vbGrow(dat$aS, dat$kappa, dat$WW, dat$a0)
+Fmsy = FMsy(dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
+BMsy = BBar(Fmsy, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)
+#
+r = (Fmsy*BMsy)/surplus(BMsy, dat)
+
+#
+dat$time = 1:31
+dat$iterate()
+#
+par(mar=c(4, 4, 0, 2)+0.1)
+plot((dat$time-1)[21:31]+0.5, surplus(dat$B[11:21], dat)*r, 'l', col=cols[3], lwd=3, xlab="Time", ylab="Surplus Biomass", xlim=c(0, 30), ylim=c(0, 1800)) #Fmsy*BMsy))#, ylim=c(2250, 3750))
+#
+points(30+0.5, surplus(dat$B[21], dat)*r, col=cols[3], pch=19) 
+points(30+0.5, surplus(dat$B[21], dat)*r, col=cols[2], lwd=2)
+
+#
+dat$time = 1:21
+dat$iterate()
+#
+lines((dat$time-1)[11:21]+0.5, c(surplus(dat$B[1:11], dat)*r), 'l', col=cols[4], lwd=3)
+#points(10, dat$B[11], col=cols[4], lwd=2)
+points(20+0.5, surplus(dat$B[11], dat)*r, col=cols[4], pch=19)
+points(20+0.5, surplus(dat$B[11], dat)*r, col=cols[3], lwd=2) 
+
+#
+dat$time = 1:11
+dat$iterate()
+#
+lines(dat$time-0.5, surplus(rep(dat$B[1], 11), dat)*r)
+points(10+0.5, surplus(dat$B[1], dat)*r, pch=19)
+points(10+0.5, surplus(dat$B[1], dat)*r, col=cols[4], lwd=2)
+
+##
+#lines((dat$time-1)[21:31]+0.5, SRR(dat$B[11:21], dat), 'l', col=cols[3], lwd=3)
+##
+#points(30+0.5, SRR(dat$B[21], dat), col=cols[3], pch=19) 
+#points(30+0.5, SRR(dat$B[21], dat), col=cols[2], lwd=2)
+
+
+#
+par(mar=c(4, 4, 4, 2)+0.1)
+
+#
+dat$time = 1:44
+dat$iterate()
+
+#
+g = function(x){BBar(x, dat$M, dat$kappa, ww, dat$WW, exp(dat$lalpha), exp(dat$lbeta), dat$gamma)}
+g = Vectorize(g, 'x')
+maxF = uniroot(g, c(Fmsy, exp(dat$lalpha)))$root
+FFs = seq(0, maxF, length.out=1000)
+#
+#plot(FFs*g(FFs), g(FFs), type='l', lwd=2, xlab="Yield", ylab="Biomass", ylim=c(0, 10000))
+BB = seq(0, 15000, length.out=1000)
+base = 0
+plot(FFs*g(FFs), g(FFs), type='l', lwd=2, xlab="Surplus Biomass", ylab="Biomass", ylim=c(3000, 10000), xlim=c(base, 1700)) #Fmsy*BMsy))#max(surplus(BB, dat))) )
+#
+segments(base+0, dat$B[1], base+0, dat$B[11], col=cols[4], lwd=3)
+points(base+0, dat$B[1], pch=19, col='black')
+points(base+0, dat$B[1], col=cols[4], lwd=2)
+points(base+0, dat$B[11], pch=19, col=cols[4])
+segments(base+100, dat$B[11], base+100, max(dat$B[11:22]), col=cols[3], lwd=3)
+points(base+100, dat$B[11], col="white", pch=19)
+points(base+100, dat$B[11], col=cols[3], lwd=2)
+text(base+100, max(dat$B[11:22])+150, label="V", col=cols[3], font=2)
+points(base+100, dat$B[22], pch=19, col=cols[3])
+segments(base+200, dat$B[22], base+200, max(dat$B[22:33]), col=cols[2], lwd=3)
+points(base+200, dat$B[22], col="white", pch=19)
+points(base+200, dat$B[22], col=cols[2], lwd=2)
+text(base+200, max(dat$B[22:33])+150, label="V", col=cols[2], font=2)
+points(base+200, dat$B[33], pch=19, col=cols[2])
+#segments(300, dat$B[33], 300, max(dat$B[33:44]), col=cols[1], lwd=3)
+#points(300, dat$B[33], col=cols[1])
+#points(300, max(dat$B[33:44]), pch="V", col=cols[1])
+#points(300, dat$B[44], pch=19, col=cols[1])
+#abline(h=BMsy)
+#
+#BB = seq(dat$B[1], dat$B[11], length.out=1000)
+#lines(surplus(BB, dat), BB, col=cols[3], lwd=3)
+points(surplus(dat$B[11], dat)*r, dat$B[11], col=cols[4], pch=19)
+points(surplus(dat$B[11], dat)*r, dat$B[11], col=cols[3], lwd=2)
+#
+#BB = seq(dat$B[11], dat$B[22], length.out=1000)
+points(surplus(dat$B[22], dat)*r, dat$B[22], col=cols[3], pch=19)
+points(surplus(dat$B[22], dat)*r, dat$B[22], col=cols[2], lwd=2)
+#points(surplus(max(dat$B[11:22])+150, dat), max(dat$B[11:22])+150, pch="V", col=cols[3], lwd=2)
+text(surplus(max(dat$B[11:22])+150, dat)*r, max(dat$B[11:22])+150, label="V", col=cols[3], font=2)
+#
+points(surplus(dat$B[33], dat)*r, dat$B[33], col=cols[2], pch=19)
+#points(surplus(max(dat$B[22:33])+250, dat), max(dat$B[22:33])+250, pch="V", col=cols[2], lwd=2)
+text(surplus(max(dat$B[22:33])+250, dat)*r, max(dat$B[22:33])+250, label="V", col=cols[2], font=2)
+#
+#lines(c(0, surplus(BMsy, dat)), c(0, BMsy), col='red')
+
+#
+dev.off()
+
 
 
 
