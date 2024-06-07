@@ -76,10 +76,10 @@ tracking the average size of individuals in the population as they age,
 ASMs inform models of individual growth. ASMs require the 
 specification of many parametric forms for describing the recruitment, 
 growth, maturity, selectivity, etc. that enmesh the system of ODEs at their 
-core. These structures allow ASMs to capture a wide range of dynamics, however 
+core. These complex structures allow ASMs to capture a wide range of dynamics, however 
 the simultaneous accurate specification, implementation, and estimation of all of 
 these forms, and the parameters they imply, requires a lot of expensive data 
-of many different types. 
+of many different types to fit. 
 %they specifying the enmeshing ODE structures requires accurate 
 %specification of many  
 %models of individual growth to be informed 
@@ -126,7 +126,7 @@ dynamics \cite{deriso_harvesting_1980, fournier_length-based_1987, schnute_gener
 %\cite{walters_continuous_2020}, \cite[pg. 334]{hilborn_quantitative_1992} \cite{Quinn and Deriso 1999}.
 When information about individual growth is available these DDMs have enough 
 growth and maturity modeling infrastructure to make use of the information 
-without requiring the use of heavily parameterized age stuctured models. %e.g. \cite{black rockfish assessment}.
+without requiring the use of heavily parameterized ASMs. %e.g. \cite{black rockfish assessment}.
 %can put those data to use without the need to parameterize the full age at length table of a fully age stuctured model \cite{black rockfish assessment}.
 %}
 %DDMs that can tease out individual growth and maturity from recruitment to explain net production 
@@ -151,7 +151,7 @@ DDMs are effective and flexible data-limited models, however there use in
 stock assessments have been limited by the accessibility of RP calculations 
 \cite{munyandorero_analytical_2023}. %{\color{red} add other paper? aalto?}. %While
 %
-This chapter expands the preveious chapters' analysis of RP biases under the 
+This chapter expands the previous chapters' analyses of RP biases under the 
 two-parameter BH model using the DDM outlined by Walters \cite{walters_continuous_2020}
 to account of RP bias as individual growth and maturity dynamics vary.
 %
@@ -197,7 +197,7 @@ RP biases as they are influenced by individual growth and maturity dynamics.
 %
 These analytical expressions form the basis of the simulation-based inquiry of
 RP biases under BH recruitment, when the data are generated broadly under the 
-Schnute model; further the DDM setting allows for a probe into how recruitment and 
+Schnute model. Additionally, the DDM setting allows for a probe into how recruitment and 
 growth interact to effect RP estimation. 
 %%
 %The DDM delevoped here extends the analysis of how productivity model misspecification 
@@ -429,7 +429,7 @@ age of selectivity, $a_s$, the population is assumed not to experience any
 mortality whatsoever, but all fish older then $a_s$ experience the same rate
 of natural mortaility. Simulaneously all fish older than $a_s$ are equally
 vulnerable to fishing (i.e. knife edge selectivity at age $a_s$), although
-fishing effort may vary from through time. 
+fishing effort may vary through time. 
 
 %
 Together the parameters $\kappa$ and $a_s$ control individual growth and 
@@ -438,16 +438,16 @@ individuals; in the limiting case where $\kappa\to\infty$ individuals recruit
 at $w_\infty$. Since this DDM ties maturity and selectivity together $a_s$ can 
 also be thought of as controlling the average age of maturity into the reproducing 
 stock. Since faster growing stocks tend to mature at younger ages, $\kappa$ 
-and $a_s$ tend to be negatively correlated. When $\kappa\to\infty$ simultaneously 
+and $a_s$ tend to be negatively correlated. Furthermore when $\kappa\to\infty$ simultaneously 
 with $a_s\to0$, as consistent with the negative correlation between the parameters, 
 the DDM converges to the previously studied SPM.
 
 %
-Walters \cite{walters_continuous_2020}, preceeded with similar discrete time models 
-by Deriso \cite{deriso_harvesting_1980} and Schnute \cite{schnute_general_1985}, 
-shows that within these assumptions the following delay differential system of 
-equations exactly models the population dynamics of the total exploitable biomass 
-$B(t)$ and number of indivuduals $N(t)$ through time.
+Walters \cite{walters_continuous_2020} (preceeded with similar discrete time models 
+by Deriso \cite{deriso_harvesting_1980} and Schnute \cite{schnute_general_1985}) 
+shows that within the above assumptions, the following delay-differential system of 
+equations describe %exactly models 
+the population dynamics of the total exploitable biomass $B(t)$ and number of indivuduals $N(t)$ through time.
 %%
 %\begin{align}
 %B(t) = \int^\infty_{a_s} N(a, t)w(a) da
@@ -485,7 +485,7 @@ growth rate by metabolic weight loss proportional to $B(t)$. This term, together
 structure in $R$, provides the major computational savings of the delay differential setting, as
 compared with full ASMs. The mean size and growth associated with changes in recruitment as cohorts 
 mature into the population are automatically described by the DDM equations rather than the 
-numerical arrays used by ASMs to track quantities across all age classes in time.
+numerous numerical arrays used by ASMs to track quantities across all age classes in time.
 % of changes in the mean
 %size and growth associated with changes in recruitment as cohorts mature into the population.
 %The framework is likely to perform very well at this task, considering that growth and natural 
@@ -1714,16 +1714,21 @@ additional information about $\kappa$ and $a_s$ in the data. %that make estimati
 \clearpage
 \section{Discussion}
 
-\begin{itemize}
-        %
-        \item[1] DDM further reiterates chapter 3
-        \item[1] RP biases are oriented by two parameter RP set
-\end{itemize}
+%\begin{itemize}
+%        %
+%        \item[1] DDM further reiterates chapter 3
+%        \item[1] RP biases are oriented by two parameter RP set
+%\end{itemize}
 
 %
-The addition of individual growth and maturity dynamics via the DDM further 
-reiterate the general patterns observed in Chapter (\ref{schnuteChapter}). The 
-added growth dynamics expand the notion that 
+The addition of individual growth and maturity dynamics to the previous chapters, %to the RP analysais in Chapter (\ref{schnuteChapter}), 
+via the DDM, further reiterate the general patterns observed in Chapter (\ref{schnuteChapter}). 
+The added individual growth dynamics, and the modest effect they have on modifying the BH RP set as seen 
+in Figure (\ref{rpSpace}), expands the notion that RP estimation under %biases induced by 
+two parameter recruitment models are largely oriented to the geometry induced by the 
+restricted model rather than stock biology. Furthermore, the added dynamics of the DDM 
+demonstrates that the BH model can become very brittle for slower growing stocks; 
+the added flexibility of three parameter models can relieve these issues.
 
 %%
 %\begin{itemize}
@@ -1736,17 +1741,17 @@ added growth dynamics expand the notion that
 
 %
 The general behavior of the RP mapping in the DDM setting is very similar to 
-that observed in Chapter (\ref{schnuteChapter}). In the presence of contrast 
+that observed under the SPM in Chapter (\ref{schnuteChapter}). In the presence of contrast 
 RPs consistently map onto the BH set in a manner resembling a shortest distance map.
 In the low contrast setting the RP mapping has two primary regimes, a region of relatively 
 minor BH model misspecification with intact shortest distance RP estimation, and a region of %for relatively minor BH misspecification, and a region of 
 catestrophic failure of RP estimation where $\frac{F^*}{M}$ is dramatically underestimated 
-out side of the intact region. This poses the same general risk profile for fisheries 
+outside of the intact region. This poses the same general risk profile for fisheries 
 management with BH RP estimates in the DDM setting as for the SPM. The primary difference 
 in RP estimation of the DDM as compared with the SPM is the degree of allowable model 
 misspecification of the BH model before the catestrophic failure mode of RPs sets in. 
 As growth becomes a larger component of the dynamics the BH model becomes more brittle 
-with a decreasing range of model misspecification resulting in intact RP estimation.
+with a decreased range of model misspecification resulting in intact RP estimation.
  
 %% 
 %\begin{itemize}
@@ -1759,14 +1764,14 @@ with a decreasing range of model misspecification resulting in intact RP estimat
 
 %
 The flexibility of the recruitment function is the primary driver of the space 
-of RPs that can be modeled by fisheries models. While individual growth 
+of RPs that can be modeled by these fisheries models. While individual growth 
 contributes to RP flexibility, the effects of growth dynamics on the range of 
 modeled RPs is secondary to the model of recruitment. By specifying a BH model 
 of recruitment, we a'priori reduce the space of RPs dramatically and the RP 
 flexibility offered by individual growth and maturity dynamics is heavily influenced
 by the model of recruitment. Furthermore the mapping that statistical inference 
 produces onto these restricted spaces is a function of this interaction between 
-growth and recruitment. The brittleness observed under the BH model in the 
+individual growth and recruitment. The brittleness observed under the BH model in the 
 slower individual growth settings indicates that not only does the BH model limit 
 the space of RPs, but even when $a_s$ and $\kappa$ are correctly specified an 
 incorrect specification of the BH model dampens the effects of those growth dynamics. % making the BH model more brittle. 
@@ -1797,8 +1802,8 @@ catestrophically breaking RP estimation in these settings.
 
 %
 While the oscillatory dynamics are thought to be outside of the more biological 
-regiems of individual growth {\color{red} cite??? \cite{denney_lifehistory_2002} negative correlation},
-the analysis of these dynamics here demonstrate how the individual growth 
+regiems of individual growth (i.e. $corr(a_s, \kappa)<0$ \cite{denney_lifehistory_2002}),
+the analysis of these dynamics demonstrate how individual growth 
 interacts with the form of recruitment. This interaction under the BH model 
 exasterbates model misspecification by dampening the information that individual growth contributed to biomass dynamics.
 %as individual growth becomes a more important dynamic. 
@@ -1813,14 +1818,30 @@ flexibility that this adds to the model of recruitment is vital to tapping into
 the information about $a_s$ and $\kappa$ that may available in index data.  
 
 %
-The results presented here certainly do not proove this or even neccessarily 
-warrant a change in practice at this time. However future work should be done 
+The results presented here suggest that future work should be done
+%certainly do not proove this or even neccessarily warrant a change in practice at this time. However future work should be done 
 to investigate the feasibility of using three-parameter recruitment models in 
 stock assessments. 
-Three paremeter models of recruitment will certainly allow better estimates of RPs 
-and the results presented here suggest that these models may be capable of supplementing
-information for individual growth and maturity parameters in addition to the external 
-analysis of age data. %interaction betthere could also be improvements
+%
+Firstly, this study makes it clear that two-parameter recruitment models can 
+induce significant biases in RPs, and the use of three-parameter models of 
+recruitment can certainly contribute to better estimates of RPs.
+Three parameter models of recruitment can be estimated to allow better estimates 
+of RPs, even when growth dynamics are included in the model, or three-parameter 
+models may be used by analyses similar to that in Appendix (\ref{proxyMath}) to 
+increase the flexibiliy of recruitment by use of three parameter models.
+%even when grow dynamics are included in the model.
+Secondly, the results presented here suggest that better specification of 
+recruitment may make models less brittle. Particularly for slow growing, 
+data-limited stocks, where the available data does not demonstrate good contrast, 
+the use of three-parameter models may improve the regularity of parameter 
+estimation and allow stock assessment models to better access the information 
+that is availble in limited datasets. Furthermore, future investigation 
+should be considered for how the use of three-parameter recruitment models may 
+be capable of supplementing the inference of individual growth and maturity 
+parameters in addition to the external analysis of age data. 
+
+%interaction betthere could also be improvements
 %%too furvant
 %It is possible that the assumed conditional independence 
 %of the index of abundance data may be better satisfied by treating individual 
@@ -1837,13 +1858,31 @@ analysis of age data. %interaction betthere could also be improvements
 %better inference of growth parameters
 %Future work
 
-{\color{red} wrap it up}
-\begin{itemize}
-	\item region of applicability of misspecified BH DDM may be more limited than BH SPM.
-       	\item slow growing RF or GF proxy values affected by catestrophic DDM BH failure. 
-       	\item both Appendix (D) analysis of proxy consistency and catestrophic BH DDM failure suggest a less extreme model of density dependence would be appropriate.  
-       	\item While I would prefer a three parameter R, the results here suggest a Ricker model for slow growing GF and RF would appropirate, or even neccessary if modeled with this DDM model.
-\end{itemize}
+%
+%While the DDM presented here is an example of an abbreviate ASM the dynamics it 
+%includes can still model many of the individual growth and maturity dynamics that 
+The DDE structure given in \cite{walters_continuous_2020, deriso_harvesting_1980, schnute_general_1985}, 
+together with Schnute three-parameter recruitment, makes the DDM presented 
+here an extrordinarily general, and compact, model for analysis of a wide 
+range of dynamics. This one DDE can exactly represent everything from the 
+simplest Schaefer model, to Ricker, BH, or Cushing-like models, all with a 
+wide range of individual growth and maturity dynamics from simple SPMs, 
+lag-only models similar to \cite{dick_depletion-based_2011}, ranging up to 
+simple ASM-like growth dynamics. While not all RPs can be represented 
+analytically, many can be under many common models. The analytical results 
+presented here, and the methods presented for navigating RPs, in this 
+wide varity of different modeling situations opens the door to the many future 
+uses in stock assessment. 
+%analysis   and  can  DDM and still mana  
+
+
+%{\color{red} wrap it up}
+%\begin{itemize}
+%	\item region of applicability of misspecified BH DDM may be more limited than BH SPM.
+%       	\item slow growing RF or GF proxy values affected by catestrophic DDM BH failure. 
+%       	\item both Appendix (D) analysis of proxy consistency and catestrophic BH DDM failure suggest a less extreme model of density dependence would be appropriate.  
+%       	\item While I would prefer a three parameter R, the results here suggest a Ricker model for slow growing GF and RF would appropirate, or even neccessary if modeled with this DDM model.
+%\end{itemize}
 
 %\begin{itemize}
 %	%
