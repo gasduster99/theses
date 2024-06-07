@@ -1035,7 +1035,7 @@ hsToLine = function(x, HS){
 #metaRel2SEThresh = exp(m-2*se)/M
 
 #
-howBad = 0.6
+howBad = 0.5
 
 ##
 #png(sprintf("relErrorLinesDD%s.png", howBad))
@@ -1231,6 +1231,7 @@ image( xiStar, zetaStar, lineMat,
 
 ##
 #legend('topright', legend=c(TeX(sprintf("$a_s=2$,    $\\kappa=0.1$, $w(a_s)\\approx %s$", round(vbGrow(2, 0.1, WW, a0), 2))), TeX(sprintf("$a_s=1$,    $\\kappa=0.5$, $w(a_s)\\approx %s$", round(vbGrow(1, 0.5, WW, a0), 2))), TeX(sprintf("$a_s=0.1$, $\\kappa=10$,  $w(a_s)\\approx %s$", round(vbGrow(0.1, 10, WW, a0),2)))), fill=cols[c(3,2,1)])
+legend('topright', legend=c("Fast", "Medium", "Slow"), fill=cols)
 
 dev.off()
 

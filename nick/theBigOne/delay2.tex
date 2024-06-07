@@ -1043,15 +1043,15 @@ where $a_s=2$ and $\kappa=0.1$, emphasizing the effect of growth on the biomass 
 \vspace{-0.5cm}
 \caption{
 Biomass dynamics of BH ($left$), Ricker ($center$), and Logistic ($right$)
-delay differential models in the low contrast simulation setting. In all cases
+DDMs in the low contrast simulation setting. In all cases
 $\alpha=1.2$ and $\beta$ is chosen so that each model shares the same
-$B_{MSY}$ within each given $\gamma$.
+$B^*$ within each given $\gamma$.
 }\label{delayTriptic}
 \end{figure}
 %
 Figure (\ref{delayTriptic}) demonstrates a range of biomass dynamics that the Schnute
 DDM can display under this spectrum of growth behaviors with fishing held consistent
-at $F_{MSY}$. The three special cases of $\gamma=-1$ (BH), $\gamma\to0$
+at $F^*$. The three special cases of $\gamma=-1$ (BH), $\gamma\to0$
 (Ricker), and $\gamma=1$ (Logistic) recruitment are shown in each of the above growth configurations.
 %of growth ranging from the simple (no growth) production model setting when 
 %$a_s\rightarrow0$ and $\kappa\rightarrow\infty$, to an opposing case ($a_s=10$ 
@@ -1123,11 +1123,12 @@ low contrast settings).
 \begin{figure}[h!]
 \begin{minipage}[h!]{0.44\textwidth}
 %\includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTFlatT30.png}
-\includegraphics[width=\textwidth]{../ddBias/directionalBiasDDSubExpT45N300AS0.1K10.png}
+\includegraphics[width=\textwidth]{../ddBias/directionalBiasDDSubExpT45N300AS0.1K10Reds 2.png}
 \end{minipage}
 \begin{minipage}[h!]{0.44\textwidth}
 %\includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTExpT45MinCon.png}
-\includegraphics[width=\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56.png}
+\includegraphics[width=\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png}
+%directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56.png}
 \end{minipage}
 \begin{minipage}[h!]{0.09\textwidth}
 \hspace{-1cm}
@@ -1136,9 +1137,10 @@ low contrast settings).
 %\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N300AS0.1K10.png}
 %\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56.png}
 \caption{
-RP mapping of BH delay model fit to Schnute delay data under the simple (no
-growth) production model limit. $left:$ High contrast simulation.
-$Right:$ Low contrast simulation.
+RP mapping of BH DDM fit to Schnute DDM data under the fast individual growth setting (SPM limit)
+%simple (nogrowth) production model limit. 
+$(left)$ High contrast simulation.
+$(right)$ Low contrast simulation.
 }\label{prodLimit}
 \end{figure}
 
@@ -1205,10 +1207,10 @@ setting.
 %
 \begin{figure}[h!]
 \begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=\textwidth]{../ddBias/directionalBiasDDSubExpT45N150A0-1AS4K0.2N38.png}
+\includegraphics[width=\textwidth]{../ddBias/directionalBiasDDSubExpT45N150A0-1AS4K0.2N38Reds 2.png}
 \end{minipage}
-\begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56.png}
+\begin{minipage}[h!]{0.44\textwidth}%NOTE: arrow spacing
+\includegraphics[width=\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Reds 2.png}
 \end{minipage}
 \begin{minipage}[h!]{0.09\textwidth}
 \hspace{-1cm}
@@ -1218,9 +1220,9 @@ setting.
 %\includegraphics[width=0.48\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56.png} %../ddBias/directionalBiasDDSubFlatT45N150A0-1AS4K0.2N56.png} %94 %directionalBiasDDFlatT45N150A0-1AS4K0.2N28.png}
 %\vspace{-0.75cm}
 \caption{
-RP mapping of BH delay model fit to Schnute delay data under moderate growth ($a_s=1$ and $\kappa=0.5$).
-$Left:$ High contrast simulation.
-$Right:$ Low contrast simulation.
+RP mapping of BH DDM fit to Schnute DDM data under moderate growth ($a_s=1$ and $\kappa=0.5$).
+$(left)$ High contrast simulation.
+$(right)$ Low contrast simulation.
 }\label{moderateGrowth}
 \end{figure}
 
@@ -1278,10 +1280,12 @@ contrast model begins to dramatically underestimate $\frac{F^*}{M}$.
 %\clearpage
 \begin{figure}[h!]
 \begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=\textwidth]{../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1.png}
+%NOTE: REFINE
+\includegraphics[width=\textwidth]{../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1Reds 2.png}
 \end{minipage}
 \begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84Edge.png}
+%NOTE: change arrow spacing
+\includegraphics[width=\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeReds 2.png}
 \end{minipage}
 \begin{minipage}[h!]{0.09\textwidth}
 \hspace{-1cm}
@@ -1292,9 +1296,9 @@ contrast model begins to dramatically underestimate $\frac{F^*}{M}$.
 %\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84Edge.png}
 %\vspace{-0.5cm}
 \caption{
-RP mapping of BH delay model fit to Schnute delay data under dramatic growth ($a_s=2$ and $\kappa=0.1$).
-$Left:$ High contrast simulation.
-$Right:$ Low contrast simulation.
+RP mapping of BH DDM fit to Schnute DDM data under dramatic growth ($a_s=2$ and $\kappa=0.1$).
+$(left)$ High contrast simulation.
+$(right)$ Low contrast simulation.
 }\label{dramaticGrowth}
 \end{figure}
 %\vspace{-0.5cm}
@@ -1328,55 +1332,89 @@ these models.
 
 %
 %\clearpage
-\subsection{\color{red}Clustering Catastrophic Model Failure}
+\subsection{Clustering Catastrophic Model Failure}
 
 %\clearpage
 \begin{wrapfigure}{r}{0.50\textwidth}
 %\vspace{-1.1cm}
 %\includegraphics[width=0.45\textwidth]{../ddBias/metaLowerZetaLinesDDFlatT45N150A0-1AS2K0.1N84Edge.png}
 \includegraphics[width=0.45\textwidth]{../ddBias/relErrorImagesBHDD0.5.png}
-%\includegraphics[width=0.45\textwidth]{../ddBias/relErrorImagesBHDD0.2.png}
-\includegraphics[width=0.45\textwidth]{../ddBias/relErrorImagesBHDD0.01.png}
-%\vspace{-0.95cm}
-\caption{BH RP estimation failure threasholds with increasingly emphatic individual growth dynamics.
+%%\includegraphics[width=0.45\textwidth]{../ddBias/relErrorImagesBHDD0.2.png}
+%\includegraphics[width=0.45\textwidth]{../ddBias/relErrorImagesBHDD0.01.png}
+\vspace{-0.5cm}
+\caption{BH RP estimation catastrophic model failure ($P=0.5$) thresholds with decreasing individual growth dynamics.
 }\label{breaks}
 \end{wrapfigure}
+
+%%
+%Figure (\ref{breaks}) shows the rejection thresholds for the low contrast
+%simulations of each of the fast, medium, and slow growth simulation settings. %emphatic, moderate, and no growth settings. %, moderate growth, and emphatic growth 
+%The lines represent the estimated 
+%%with a false positive rate of about 15\%, and the light shaded regions show how the rejection threshold
+%%changes as the false positvie rate rages from 50\% to 2.25\%.
+%When applied to the high contrast simulations the rejection threshold falls
+%outside of the simulated RP range as expected by inspection of the
+%high contrast RP mappings.
+%%Figures (\ref{}) is outside the range of  The rejection threshold as applied to the high contrast models does not  
 %
-Figure (\ref{breaks}) shows the rejection thresholds for the low contrast
-simulations of each of the fast, medium, and slow growth simulation settings. %emphatic, moderate, and no growth settings. %, moderate growth, and emphatic growth 
-The lines represent the estimated 
-%with a false positive rate of about 15\%, and the light shaded regions show how the rejection threshold
-%changes as the false positvie rate rages from 50\% to 2.25\%.
-When applied to the high contrast simulations the rejection threshold falls
-outside of the simulated RP range as expected by inspection of the
-\mbox{high contrast RP mappings.}
-%Figures (\ref{}) is outside the range of  The rejection threshold as applied to the high contrast models does not  
+%%
+%Notice in Figure (\ref{breaks}) that the rejection threshold is subject to two
+%axese of sensativity. Firstly, for each simulated growth the rejection
+%threshold is more sensative for small values of $\frac{F_{MSY}}{M}$ than for
+%large values. This is a natural result since discerning $\hat y(x)$ below the
+%minimum simulated RP becomes more difficult when the data are truely generated
+%near the minimum simulated $\frac{F_{MSY}}{M}$.
+%%as those values $\hat y(x)$ from $\theta_{min}$ has maximum overlap at $\theta_{min}$
+%For large $\frac{F_{MSY}}{M}$ the minimum distance mapping results in $\hat y(x)$
+%well above the minimum simulated RP but for small $\frac{F_{MSY}}{M}$ even the
+%minimum distance mapping may be close to the rejection threshold.
+%
+%%
+%The second axis of sensativity is between individual growth simulations.
+%The no growth setting produces a very clear threshold of model failure, while
+%the failure threshold for emphatic growth is much more varied, especially near
+%the minimum simulated $\frac{F_{MSY}}{M}$. % setting appears to be less certain about     
+%This is largely due to the increased RP estimate uncertainty as growth becomes
+%more emphatic in the dynamics.
+
+%Nick will describe the results in Figure (\ref{breaks}). Probably keep it short. Maybe a page.
+Figure (\ref{breaks}) shows the clustering thresholds for the low contrast
+simulations of each of the fast, medium, and slow growth simulation settings.
+%$P=0.5$
+Clustering thresholds shown here are calculated for catastrophic model failure 
+as defined by $P=0.5$.  
+Each line separates hypothetical stocks where simulations would expect the BH model %to experience 
+to catestrophically fail in RP estimation. % model failure when modeled with a BH model, such that stocks above each 
+A percent error of 50\% was chosen to represent the threshold between the shortest 
+distance mapping below the lines and dramatic underestimation of $\frac{F^*}{M}$
+above each line.
+
+%$P=0.5$ was chosen to represent the threshold between the shortest distance mapping and 
+%Below each line RP estimation of the BH model is less that 50\% percent bias and above each line the  mapping is shortest distance and above the line the 
+%mapping represent catestrophic model failure of the BH model. The line represents the threshold where 
+%statistically the behavior changes.
 
 %
-Notice in Figure (\ref{breaks}) that the rejection threshold is subject to two
-axese of sensativity. Firstly, for each simulated growth the rejection
-threshold is more sensative for small values of $\frac{F_{MSY}}{M}$ than for
-large values. This is a natural result since discerning $\hat y(x)$ below the
-minimum simulated RP becomes more difficult when the data are truely generated
-near the minimum simulated $\frac{F_{MSY}}{M}$.
-%as those values $\hat y(x)$ from $\theta_{min}$ has maximum overlap at $\theta_{min}$
-For large $\frac{F_{MSY}}{M}$ the minimum distance mapping results in $\hat y(x)$
-well above the minimum simulated RP but for small $\frac{F_{MSY}}{M}$ even the
-minimum distance mapping may be close to the rejection threshold.
+In general clustering thresholds are oriented to the shape of the BH RP set in each of the simulated individual 
+growth settings. As individual growth slows from the SPM limit (in red) to the most emphatically slow growing 
+simulation in blue, the BH model fails catastrophically for an increasingly large range of RP space. 
+This indicates that the slower growing simulation makes the BH model more brittle to model misspecification. 
+In particular the fragility of the BH model is exacerbated most for high $\frac{F^*}{M}$ stocks as individual growth slows. %stocks in the slower individual growth setting 
+For low $\frac{F^*}{M}$ stocks the rejection thresholds for each simulated individual growth setting seems 
+to converge around the common value $\frac{B^*}{B_0}=0.5$.
+
+%Overall the misspecified BH model in the slower growth setting is more brittle than for faster growing settings.
 
 %
-The second axis of sensativity is between individual growth simulations.
-The no growth setting produces a very clear threshold of model failure, while
-the failure threshold for emphatic growth is much more varied, especially near
-the minimum simulated $\frac{F_{MSY}}{M}$. % setting appears to be less certain about     
-This is largely due to the increased RP estimate uncertainty as growth becomes
-more emphatic in the dynamics.
+Model misspecification of the BH model is compounded in the slower individual 
+growth settings, indicating an interaction between the functional form of 
+recruitment and growth dynamics. In the following section, this interaction is 
+examplified by exploring oscillatory dynamics that arrise outside of the more 
+biological regiems explored here.
+%interact with growth dynamics to produce 
+%unique behaviors as exemplifiedin Section (\ref{oscillation}).
 
-%
-Model misspecification of the BH model is compounded for the more emphatic growth settings
-as recruitment can interact with growth dynamics to produce unique behaviors as exemplified
-in Section (\ref{oscillation}).
-
+%\clearpage
 
 %\begin{itemize}
 %%\item $\alpha_0\approx0.16$$\alpha_0\in[0.5, 0.0225]$ shows
@@ -1399,7 +1437,7 @@ correlation between $a_s$ and $\kappa$, an ocillatory regiem also exists within 
 While RP estimation behaves somewhat similar in this ocillatory regiem there 
 are unique features in this setting that are not present in the more biological 
 regiems. Below consider the ocillatory example of a logistic delay model with 
-$a_s=10$ and fishing fixing at $F_{MSY}$.
+$a_s=10$ and fishing fixing at $F^*$.
 %Moderate w(a_s)\approx0.6
 
 %{\color{red} maybe an appendix}
@@ -1421,14 +1459,16 @@ line demonstrates the pre-model assumption of biomass fixed at $B_0$.
 \label{shock}
 \end{figure}
 
+%
+\clearpage
 
 %
 Figure (\ref{shock}) demonstrates the mechanism of how these oscillatory
 dynamics form. Oscillatory dynamics appear when fishing pushes biomass past
-$B_{MSY}$ within the lagged $a_s$ window. %of recruitment. 
+$B^*$ within the lagged $a_s$ window. %of recruitment. 
 When $t\le0$ the delay model assumes that biomass is fixed in equilibrium at $B_0$. 
 Therefore in the green region of the biomass series, $0<t<10$, the population recruits 
-at $R(B0)$. Figure (\ref{shock}) shows that in this initial period $R(B0)$ results in 
+at $R(B_0)$. Figure (\ref{shock}) shows that in this initial period $R(B_0)$ results in 
 zero yield for that period, and biomass falls as a result.
 
 %
@@ -1494,10 +1534,18 @@ inferring recruitment parameters.
 \clearpage
 \begin{wrapfigure}{r}{0.50\textwidth}
 %\vspace{-1.25cm}
-\vspace{-1.15cm}
-\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N300A0-1AS10K0.1.png}
+%\vspace{-1.15cm}
+\begin{minipage}[h!]{0.92\textwidth}
+\includegraphics[width=0.49\textwidth]{../ddBias/directionalBiasDDSubExpT45N300A0-1AS10K0.1Reds 2.png}
+\end{minipage}
+\begin{minipage}[h!]{0.06\textwidth}
+\vspace{-7cm}
+\hspace*{6cm}
+\includegraphics[width=1.7\textwidth]{../gpBias/legendSubSchnute.png}
+\end{minipage}
+
 \vspace{-0.75cm}
-\caption{RP mapping of BH delay model fit to high contrast Schnute delay data under ocillatory growth ($a_s=10$ and $\kappa=0.1$).
+\caption{RP mapping of BH DDM fit to high contrast Schnute DDM data under ocillatory growth ($a_s=10$ and $\kappa=0.1$).
 }\label{oscillationArrow}
 \end{wrapfigure}
 
@@ -1533,12 +1581,15 @@ This higher $\frac{B^*}{\bar B(0)}$ break point, hovering around 0.5, is
 consistent with the mechanism which induces oscillation. 
 %When the initial contion of biomass is started at $B_0$Starting the biomass
 %at $\bar B(0)$ in the ocillatory regiem, 
-Increased $\frac{B^*}{\bar B(0)}$ will tend to exasterbate oscillatory behavior 
-by increasing $B_{MSY}$ so that biomass is more easily pushed past $B_{MSY}$ 
-within the initial lagged as window of recruitment. This produces more dramatic 
-oscillations in the higher $\frac{B^*}{\bar B(0)}$ region of RP space. Similarly
-this phenomena may be understood in terms of the relationship between $\gamma$, 
-$B^*$, and the notion of elasticity described by Yeakel and Mangel \cite{yeakel_generalized_2015}.
+For fixed $B_0$ increased $\frac{B^*}{\bar B(0)}$ will tend to exasterbate oscillatory behavior 
+by increasing $B^*$ so that biomass is more easily pushed past $B^*$ by fishing
+within the initial lagged window of recruitment. This produces more dramatic 
+oscillations in the higher $\frac{B^*}{\bar B(0)}$ region of RP space. This 
+phenomena may also be understood in terms similar to the notion of elasticity 
+described by Yeakel and Mangel \cite{yeakel_generalized_2015} and its relationship 
+with $\gamma$ and $B^*$.
+%Similarly this phenomena may be understood in terms of the relationship between $\gamma$, 
+%$B^*$, and the notion of elasticity described by Yeakel and Mangel \cite{yeakel_generalized_2015}.
 
 %\begin{itemize}
 %\item RP estimation is harder when ocilations are present
@@ -1553,7 +1604,7 @@ $B^*$, and the notion of elasticity described by Yeakel and Mangel \cite{yeakel_
 
 %
 \begin{wrapfigure}{r}{0.50\textwidth}
-\vspace{-0.75cm}
+%\vspace{-0.75cm}
 \centering
 \includegraphics[width=0.45\textwidth]{../ddBias/indexGridExpT45N300A0-1AS10K0.1.png}
 \vspace{-0.45cm}
@@ -1592,14 +1643,14 @@ $\alpha$, focusing fits on overly simplistic trends in the data.
 
 
 %
-\subsubsection{Estimating More}
+\subsubsection{Estimating More\label{estMore}}
 
 %
 Figure (\ref{estAK}) shows a subset of example model fits to Schnute data 
-simulated broadly over RP space with residual variation, $\sigma=0.12$.
+simulated broadly over RP space with residual variation, $\sigma=0.12$, 
+resulting in a CV of about 6\%.
 Model fits are shown both under the two-parameter BH model as well as under the
-three parameter Schnute model, each model estimating all of its recruitment
-parameters as well as the 
+%three-parameter Schnute model, each model estimating all of its recruitment parameters as  
 %as well as the growth and maturity parameters $\kappa$ and $a_s$.
 %Notice that the BH model, even when additionally estimating $\kappa$ and $a_s$,
 %does not gain the flexibility to properly model Schnute data.
@@ -1619,9 +1670,9 @@ Schnute data ($black$) arranged to mirror RP space. %Each model additionally est
 %%
 %Figure (\ref{estAK}) shows a subset of example model fits broadly over RP space.
 %Model fits are shown both under the two-parameter BH model as well as under the
-%three parameter Schnute model, each model estimating all of its recruitment
-%parameters as well as the 
-individual growth and maturity parameters $\kappa$ and $a_s$.
+three-parameter Schnute model, each model estimating all of its recruitment
+parameters as 
+well as the individual growth and maturity parameters $\kappa$ and $a_s$.
 Notice that the BH model, even when additionally estimating $\kappa$ and $a_s$,
 does not gain the flexibility to properly model Schnute data.
 
@@ -1664,44 +1715,194 @@ additional information about $\kappa$ and $a_s$ in the data. %that make estimati
 \section{Discussion}
 
 \begin{itemize}
-        \item While the SPM captures the majority of variation in RPs, individual growth is
-	the next most influential dynamic for explaining RP variation
-	\item break point decreases with growth
-        \item inference becomes more brittle with more dramtic growth (undre BH).
-        \begin{itemize}
-                \item interaction between assumed form of growth and stock recruitment.
-                \item low-side steepness bias masks ocillatory/shock patterns induced by growth and maturity parameters
-        \end{itemize}
-        \item misspecified BH prevents learning growth
-	\item learning $\gamma$ and growth is possible with global optimization if index 
-	data can be ensured to be conditionally independent on growth parameter, at 
-	the very least heavily informative priors should make it possible to learn. %properly controlled         \item increasing growth accelerates model misspecification
-        \item if $\alpha$, $\beta$, $\gamma$ or euivalent are fixed incorrectly it would also produce incorrect inference on growth.
-	\item but if you can get all of it correct you can learn all of it. learn all or none.
-	
-	\item statistical evidence of minimum distance mapping within accepible regiem, 
-	{\color{red}although float idea of PT-like pattern as BH set flattens. (explaining perterbations)}
-	\item scale of error and discuss MSE
-	\item BH model is quite limited for slow growing stocks. 
+        %
+        \item[1] DDM further reiterates chapter 3
+        \item[1] RP biases are oriented by two parameter RP set
 \end{itemize}
 
 %
-\section{old ideas}
+The addition of individual growth and maturity dynamics via the DDM further 
+reiterate the general patterns observed in Chapter (\ref{schnuteChapter}). The 
+added growth dynamics expand the notion that 
+
+%%
+%\begin{itemize}
+%        %
+%	\item[2] quick rehashing of description of general RP mapping.
+%	\item contrast is the same
+%	\item risk iprofile is the same
+%	\item low contrast has two regions: catestrophic failure and intact estimation.
+%\end{itemize}
 
 %
+The general behavior of the RP mapping in the DDM setting is very similar to 
+that observed in Chapter (\ref{schnuteChapter}). In the presence of contrast 
+RPs consistently map onto the BH set in a manner resembling a shortest distance map.
+In the low contrast setting the RP mapping has two primary regimes, a region of relatively 
+minor BH model misspecification with intact shortest distance RP estimation, and a region of %for relatively minor BH misspecification, and a region of 
+catestrophic failure of RP estimation where $\frac{F^*}{M}$ is dramatically underestimated 
+out side of the intact region. This poses the same general risk profile for fisheries 
+management with BH RP estimates in the DDM setting as for the SPM. The primary difference 
+in RP estimation of the DDM as compared with the SPM is the degree of allowable model 
+misspecification of the BH model before the catestrophic failure mode of RPs sets in. 
+As growth becomes a larger component of the dynamics the BH model becomes more brittle 
+with a decreasing range of model misspecification resulting in intact RP estimation.
+ 
+%% 
+%\begin{itemize}
+%        \item[3] shape of R is the primarly source of RP flexibility. individual growth effects RPs secondary to R.
+%        %While the SPM captures the majority of variation in RPs, individual growth is the next most influential dynamic for explaining RP v
+%        \item[3] under the BH model not only is R extemely limited, but as individual growth dynamics become more
+%        dominant under the BH model the interaction exasterbates model misspecification. %between BH Recruitment and individual growth 
+%        \item[3] break point decreases with growth/inference becomes more brittle with more dramtic growth (undre BH).
+%\end{itemize}
+
+%
+The flexibility of the recruitment function is the primary driver of the space 
+of RPs that can be modeled by fisheries models. While individual growth 
+contributes to RP flexibility, the effects of growth dynamics on the range of 
+modeled RPs is secondary to the model of recruitment. By specifying a BH model 
+of recruitment, we a'priori reduce the space of RPs dramatically and the RP 
+flexibility offered by individual growth and maturity dynamics is heavily influenced
+by the model of recruitment. Furthermore the mapping that statistical inference 
+produces onto these restricted spaces is a function of this interaction between 
+growth and recruitment. The brittleness observed under the BH model in the 
+slower individual growth settings indicates that not only does the BH model limit 
+the space of RPs, but even when $a_s$ and $\kappa$ are correctly specified an 
+incorrect specification of the BH model dampens the effects of those growth dynamics. % making the BH model more brittle. 
+When indvidual growth dynamics represent a larger component of the total biomass 
+dynamics the BH model becomes more brittle such that smaller RP misspecifications are capable of 
+catestrophically breaking RP estimation in these settings.
+%The same RP mispecification fails dramatically with slow growth that would be intact for faster growth. 
+%remaining by the model of individual growth and maturity%are making a clear RPS are 
+%{\color{red}make the point about RP brittleness as a function of growth.}
+
+
+%%
+%\begin{itemize}
+%        \item[4] oscillatory regiem demonstrates how growth interacts with R.
+%        \item[4] demonstrates how growth may be informed with a good model of R.
+%\end{itemize}
+%%
+%\begin{itemize}
+%        %
+%        \item[5] it is not best practice to learn growth from index data, and misspecified BH prevents learning growth.
+%        \item[5] learning $\gamma$ and growth is possible with global optimization if index
+%        data can be ensured to be conditionally independent on growth parameter, at
+%        the very least heavily informative priors should make it possible to learn. %properly controlled         \item increasing growth acc
+%        \item[5] if $\alpha$, $\beta$, $\gamma$ (or equivalent) are fixed incorrectly it would also produce incorrect inference on growth.
+%        \item[5] but if you can get all of it correct you can learn all of it.
+%        \item[5] learn all or none.
+%\end{itemize}
+
+%
+While the oscillatory dynamics are thought to be outside of the more biological 
+regiems of individual growth {\color{red} cite??? \cite{denney_lifehistory_2002} negative correlation},
+the analysis of these dynamics here demonstrate how the individual growth 
+interacts with the form of recruitment. This interaction under the BH model 
+exasterbates model misspecification by dampening the information that individual growth contributed to biomass dynamics.
+%as individual growth becomes a more important dynamic. 
+%in the slow growth setting when individual grows
+% BH model dampens the effect of growth dynamics
+At this time it is not best practice to estimate individual growth parameters 
+from index of abundance data as done in Section (\ref{estMore}). This analysis 
+is consistent with that practice when the BH model of recruitment is misspecified (as it soo often may be). 
+However if recruitment is made more flexible by the use of a three-parameter model, 
+such as the Schnute curve, not only is the $\gamma$ parameter possible to estimate, but the
+flexibility that this adds to the model of recruitment is vital to tapping into 
+the information about $a_s$ and $\kappa$ that may available in index data.  
+
+%
+The results presented here certainly do not proove this or even neccessarily 
+warrant a change in practice at this time. However future work should be done 
+to investigate the feasibility of using three-parameter recruitment models in 
+stock assessments. 
+Three paremeter models of recruitment will certainly allow better estimates of RPs 
+and the results presented here suggest that these models may be capable of supplementing
+information for individual growth and maturity parameters in addition to the external 
+analysis of age data. %interaction betthere could also be improvements
+%%too furvant
+%It is possible that the assumed conditional independence 
+%of the index of abundance data may be better satisfied by treating individual 
+%growth and maturity parameters as fixed from external analysis of age data, 
+%but this practice is likely to contribute to brittle inference. 
+% qas random in stock assessement indicies of abundance are not 
+
+%if $\alpha$, $\beta$, $\gamma$ (or equivalent) are fixed incorrectly it would also produce incorrect inference on growth.
+%but if you can get all of it correct you can learn all of it.
+%learn all or none.
+
+
+%exploring further if these models allow 
+%better inference of growth parameters
+%Future work
+
+{\color{red} wrap it up}
 \begin{itemize}
-\item show production model limit (contrast %, ?flat?)
-\begin{itemize}
-        \item $a_s\rightarrow0$: instant maturity
-        \item $\kappa\rightarrow\infty$: recruit as an adult ()
+	\item region of applicability of misspecified BH DDM may be more limited than BH SPM.
+       	\item slow growing RF or GF proxy values affected by catestrophic DDM BH failure. 
+       	\item both Appendix (D) analysis of proxy consistency and catestrophic BH DDM failure suggest a less extreme model of density dependence would be appropriate.  
+       	\item While I would prefer a three parameter R, the results here suggest a Ricker model for slow growing GF and RF would appropirate, or even neccessary if modeled with this DDM model.
 \end{itemize}
-\item describe second order shapes of growth/maturity (and cause)
-\begin{itemize}
-        \item weight of recruits => scaling biomass (q, $\beta$, and $w_\infty$)
-        \item
-\end{itemize}
-\item describe RP bias
-\item flat
-\end{itemize}
+
+%\begin{itemize}
+%	%
+%	\item[1] DDM further reiterates chapter 3
+%	\item[1] RP biases are oriented by two parameter RP set
+%	%
+%	\item[2] quick rehashing of description of general RP mapping.
+%	% 
+%        \item[3] shape of R is the primarly source of RP flexibility. individual growth effects RPs secondary to R.
+%	%While the SPM captures the majority of variation in RPs, individual growth is the next most influential dynamic for explaining RP variation
+%	\item[3] under the BH model not only is R extemely limited, but as individual growth dynamics become more 
+%	dominant under the BH model the interaction exasterbates model misspecification. %between BH Recruitment and individual growth 
+%	\item[3] break point decreases with growth/inference becomes more brittle with more dramtic growth (undre BH).
+%        %\begin{itemize}
+%        %        \item interaction between assumed form of growth and stock recruitment.
+%        %        \item low-side steepness bias masks ocillatory/shock patterns induced by growth and maturity parameters
+%        %\end{itemize}
+%	%
+%	\item[4] oscillatory regiem demonstrates how growth interacts with R.
+%	\item[4] demonstrates how growth may be informed with a good model of R.
+%	%
+%	\item[5] it is not best practice to learn growth from index data, and misspecified BH prevents learning growth.
+%	\item[5] learning $\gamma$ and growth is possible with global optimization if index 
+%	data can be ensured to be conditionally independent on growth parameter, at 
+%	the very least heavily informative priors should make it possible to learn. %properly controlled         \item increasing growth accelerates model misspecification
+%        \item[5] if $\alpha$, $\beta$, $\gamma$ (or equivalent) are fixed incorrectly it would also produce incorrect inference on growth.
+%	\item[5] but if you can get all of it correct you can learn all of it. 
+%	\item[5] learn all or none.
+%	%
+%	\item statistical evidence of minimum distance mapping within accepible regiem, 
+%	{\color{red}although float idea of PT-like pattern as BH set flattens. (explaining perterbations)}
+%	\item scale of error and discuss MSE
+%	\item BH model is quite limited for slow growing stocks. 
+%	%
+%	\item risk profile similar to the SPM setting
+%	\item region of applicability of misspecified BH DDM may be more limited than BH SPM.
+%	\item slow growing RF or GF proxy values affected by catestrophic DDM BH failure. 
+%	\item both Appendix (D) analysis of proxy consistency and catestrophic BH DDM failure suggest a less extreme model of density dependence would be appropriate.  
+%	\item While I would prefer a three parameter R, the results here suggest a Ricker model for slow growing GF and RF would appropirate, or even neccessary if modeled with this DDM model.
+%	%and Suggesting a 
+%\end{itemize}
+
+%%
+%\section{old ideas}
+%
+%%
+%\begin{itemize}
+%\item show production model limit (contrast %, ?flat?)
+%\begin{itemize}
+%        \item $a_s\rightarrow0$: instant maturity
+%        \item $\kappa\rightarrow\infty$: recruit as an adult ()
+%\end{itemize}
+%\item describe second order shapes of growth/maturity (and cause)
+%\begin{itemize}
+%        \item weight of recruits => scaling biomass (q, $\beta$, and $w_\infty$)
+%        \item
+%\end{itemize}
+%\item describe RP bias
+%\item flat
+%\end{itemize}
 
 
