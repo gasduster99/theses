@@ -442,8 +442,10 @@ lines(xis, line, lty=1, lwd=2, col=cols[3])
 
 #Ricker
 
-#
-gamma = 0.0001
+#NOTE: there is something going on as gamma passes through 0 and the effect that growth has on RPs.
+#inferring with a ricker model has minimal (is any; numerical only? i dont think so.?.) RP effect.
+#at some positive gamma value slower growth results in more B^*/B0 not less.  
+gamma = 0.0001 
 
 ##
 #a = 10

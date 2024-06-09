@@ -40,7 +40,7 @@
 %\end{itemize}
 
 %
-\section{\color{red}Introduction}
+\section{Introduction}
 
 %
 The simplified dynamics of SPMs capture a broad range of RP variation, however
@@ -70,7 +70,7 @@ age structured models, ASM, \cite{methot_stock_2013} are often considered best p
 %
 ASMs separate the dynamics of the population into cohorts moving between age 
 classes through time. %of interrelated discrete %interrelated age classes. 
-Cohorts are goverened by a system of similar ODEs such that 
+Cohorts are governed by a system of similar ODEs such that 
 each cohort is modeled in a way that resembles the SPM in time; by
 tracking the average size of individuals in the population as they age, 
 ASMs inform models of individual growth. ASMs require the 
@@ -112,7 +112,7 @@ of many different types to fit.
 %
 Delay differential models, DDMs (or delay difference models in discrete time) 
 are an intermediate approach between SPMs and ASMs. At their simplest DDMs do 
-not neccessarily model individual growth \cite{dick_depletion-based_2011, aalto_separating_2015}, 
+not necessarily model individual growth \cite{dick_depletion-based_2011, aalto_separating_2015}, 
 but still these models are beneficial in modeling the lag between egg production 
 and recruitment into the reproducing population.  %\cite{dick_depletion-based_2011, aalto_separating_2015}.
 %Simple DDMs may not explicitily model individual growth \cite{dick_depletion-based_2011, aalto_separating_2015} %{\color{red}cite EJ Alec and Aalto et al. 2015}, 
@@ -131,7 +131,7 @@ without requiring the use of heavily parameterized ASMs. %e.g. \cite{black rockf
 %}
 %DDMs that can tease out individual growth and maturity from recruitment to explain net production 
 %as separate but interconnected processes {\color{red} cite schnute, deriso \cite{walters_continuous_2020}, \cite[pg. 334]{hilborn_quantitative_1992}, Quinn and Deriso 1999}
-The relatively smaller size, and yet flexibile dynamics, of DDMs makes them ideal for 
+The relatively smaller size, and yet flexible dynamics, of DDMs makes them ideal for 
 modeling ``data-limited'' stocks, while still entertaining varied hypotheses that 
 relate growth and maturity.  
 %When information about growth is available the DDM allows  may be known but not the full age at length table of an age stuctured model \cite{black rockfish assessment}
@@ -208,9 +208,9 @@ growth interact to effect RP estimation.
 %are another important practical setting for extending the understanding of how
 %productivity model misspecification can bias RPs estimation. 
 This work begins with a derivation of RPs under the three-parameter Schnute 
-DDM. Analytical RP calcluations are then structured so as to fit into the 
+DDM. Analytical RP calculations are then structured so as to fit into the 
 simulation design methods presented in Section (\ref{sLHS}), and RP biases are 
-then analysed via the GP metamodel developed in Sections (\ref{gpmm}) and (\ref{sMeta}).
+then analyzed via the GP metamodel developed in Sections (\ref{gpmm}) and (\ref{sMeta}).
 % as it is extended to the case of BH analysis in Section (\ref{sMeta}).
 
 
@@ -394,7 +394,7 @@ Since weight is typically proportional to volume, $b$ is usually $\sim3$. When
 $b$ takes a value around $3$ this composition of assumed functional forms %typically 
 results in a monotonically increasing sigmoidal curve of weight with 
 age. When $b\le1$ weight at age takes a VB-like form with $b=1$ resulting in
-an exact correspondence of simulanious VB-growth in length and weight.
+an exact correspondence of simultaneous VB-growth in length and weight.
 
 %
 The DDM slightly abridges these relationships by directly assuming VB
@@ -411,10 +411,10 @@ w(a) &= w_\infty(1-e^{-\kappa (a-a_0)}). \label{vbGrowth}
 Here $\kappa$ is a parameter that controls the instantaneous rate of individual
 growth (in weight) with age. $w_\infty$ is the maximum weight of individuals
 in the population, and $w(a)$ is the average weight of an individual at
-age $a$. The parameter $a_0$ controls the age at which individuals are assummed
+age $a$. The parameter $a_0$ controls the age at which individuals are assumed
 to have zero weight; by letting $a_0<0$ this allows fish of age zero to have
 positive weight. Rather than taking a sigmoidally increasing function, VB growth
-directly in weight results in an monotonically inceasing curve that asymptotes
+directly in weight results in an monotonically increasing curve that asymptotes
 with a strictly decreasing growth rate with age. This results in a curve that
 can approximate the composite VB-allometric growth assumption very well except 
 at very young ages, see Figure (\ref{vbComp}).
@@ -422,12 +422,12 @@ at very young ages, see Figure (\ref{vbComp}).
 
 %
 Together with VB growth, the DDM is derived from the assumption that
-both natural mortality and fishing selectivity are separately propotional
+both natural mortality and fishing selectivity are separately proportional
 %the total mortality rate (from both natural and fishing mortality) is proportional 
-to a common heavyside step function with age. That is to say, before a threshold
+to a common Heaviside step function with age. That is to say, before a threshold
 age of selectivity, $a_s$, the population is assumed not to experience any
 mortality whatsoever, but all fish older then $a_s$ experience the same rate
-of natural mortaility. Simulaneously all fish older than $a_s$ are equally
+of natural mortality. Simultaneously all fish older than $a_s$ are equally
 vulnerable to fishing (i.e. knife edge selectivity at age $a_s$), although
 fishing effort may vary through time. 
 
@@ -435,7 +435,7 @@ fishing effort may vary through time.
 Together the parameters $\kappa$ and $a_s$ control individual growth and 
 maturity of the stock. Larger values of $\kappa$ represent faster growing 
 individuals; in the limiting case where $\kappa\to\infty$ individuals recruit 
-at $w_\infty$. Since this DDM ties maturity and selectivity together $a_s$ can 
+at $w_\infty$. Since this DDM ties maturity and selectivity together, $a_s$ can 
 also be thought of as controlling the average age of maturity into the reproducing 
 stock. Since faster growing stocks tend to mature at younger ages, $\kappa$ 
 and $a_s$ tend to be negatively correlated. Furthermore when $\kappa\to\infty$ simultaneously 
@@ -443,11 +443,11 @@ with $a_s\to0$, as consistent with the negative correlation between the paramete
 the DDM converges to the previously studied SPM.
 
 %
-Walters \cite{walters_continuous_2020} (preceeded with similar discrete time models 
+Walters \cite{walters_continuous_2020} (preceded with similar discrete time models 
 by Deriso \cite{deriso_harvesting_1980} and Schnute \cite{schnute_general_1985}) 
 shows that within the above assumptions, the following delay-differential system of 
 equations describe %exactly models 
-the population dynamics of the total exploitable biomass $B(t)$ and number of indivuduals $N(t)$ through time.
+the population dynamics of the total exploitable biomass $B(t)$ and number of individuals $N(t)$ through time.
 %%
 %\begin{align}
 %B(t) = \int^\infty_{a_s} N(a, t)w(a) da
@@ -468,7 +468,7 @@ biomass of the population. The dynamics of $N$, as seen in Eq (\ref{nEq}), are
 very similar to that of the production model in Section (\ref{sModel}), 
 however the role of the production function is now filled by a ``recruitment''
 function, $R(B)$, which describes the number of new individuals recruiting into the
-expoitable population as a function of exploitable biomass. In turn, the biomass
+exploitable population as a function of exploitable biomass. In turn, the biomass
 dynamics are coupled to the numbers dynamics by the assumption of VB growth with
 growth parameters appearing in Eq (\ref{bEq}), converting population numbers
 into biomass and accounting for the growth of biomass with age.
@@ -495,7 +495,7 @@ numerous numerical arrays used by ASMs to track quantities across all age classe
 Often a BH functional form is assumed for the stock recruitment relationship, but many %adequatly flexible 
 families of functions may model this relationship. For the sake of evaluating the adequacy
 of assumed BH recruitment, the simulation described in the following sections is derived for the 
-DDM under the assumption of generalized three parameter Schnute recruitment,
+DDM under the assumption of generalized three-parameter Schnute recruitment,
 %
 \begin{align}
 R(B;[\alpha, \beta, \gamma]') = \alpha B(t-a_s)(1-\beta\gamma B(t-a_s))^{\frac{1}{\gamma}}. \label{srr}
@@ -518,14 +518,14 @@ Logistic recruitment occurs when $\gamma=1$.
 %The structure of the Schnute function here is similar to that of the previously described, with $\gamma$ . 
 %
 Since the DDM assumes knife edge selectivity, at age $a_s$, the term
-$B(t-a_s)$ appears in $R$. That is to say fish recruiting into the exploitable
+$B(t-a_s)$ appears in $R$. That is to say, fish recruiting into the exploitable
 population are the result of larval production of biomass $a_s$ time
 units in the past. This is because fishing selectivity is only assumed to occur
 for fish that are at least $a_s$ time units old and thus fish younger than $a_s$
 are not exploitable. This waiting period requires that new recruits be the
 result of spawning biomass $a_s$ time units in the past. Modeling maturity in
 this way results in dynamics equations which are a system of delay differential
-equations as opposed to the simple ODEs that arrise in the production model
+equations as opposed to the simple ODEs that arise in the production model
 setting.
 %which is where the delay differential equation  
 
@@ -552,11 +552,11 @@ setting.
 
 %
 Deriving reference points for the DDM under Schnute recruitment is
-conceptually similar to the production model setting. The additional nonlinear
-VB growth assumptions along side Schnute recruitment quickly makes the
-expressions look somewhat unweildy, although analytical solutions can still be
-derived for most of the same quantities as was done in Chapter (\ref{schnuteChapter}) 
-(although complicated by growth parameters).
+conceptually similar to the SPM setting. The additional nonlinear
+VB growth assumption, alongside Schnute recruitment, quickly makes the
+expressions look somewhat unwieldy\footnote{complicated by growth parameters}, although analytical solutions can still be
+derived for most of the same quantities as was done in Chapter (\ref{schnuteChapter}). 
+%(although complicated by growth parameters).
 
 %
 Starting from Eqs. (\ref{bEq}) and (\ref{nEq}), setting both $\frac{dB}{dt}$
@@ -574,7 +574,7 @@ Eq. (\ref{NF}) is just $\frac{R(\bar{B})}{F+M}$, and is coupled to $\bar{B}(F)$
 where most of the dynamics appear. Eq. (\ref{BF}) resembles Eq (\ref{BsEq})
 from the simple production model setting although the growth parameters
 $\kappa$, $w_\infty$ and $w(a_s)$, make slight adjustments to the balance of the
-maximum rate of recruitment and mortaility rate to give an expression for
+maximum rate of recruitment and mortality rate to give an expression for
 equilibrium biomass that accounts for the factors of individual growth.
 % for the produce to a more complex expression for equilibirum biomass.
 
@@ -582,13 +582,13 @@ equilibrium biomass that accounts for the factors of individual growth.
 Expressions for $B_0$ and $B^*$ are attained by evaluating $\bar{B}(F)$ at
 $F=0$ and $F=F^*$ respectively. The calculation of $F^*$ typically involves %amounts to %requires %Obtaining an expression for 
 maximization of equilibrium yield, \mbox{$\bar{Y} = F\bar{B}(F)$.} Just as was 
-the case under the Schnutre SPM in Chapter (\ref{schnuteChapter}), it is again not
-possible to analytically maximize $\bar{Y}$ in the DDM setting. However stable 
-numerical solutions for calculating $F^*$ were obtained by numerically solving 
-for the roots of the analytical derivative of equilibrium yield with respect to $F$. Below a greatly
-simplifed expression for $\frac{d \bar{Y}}{dF}$ is shown; the substitution
-$Z=F+M$ (total mortality rate) has been made to produce a more compact expression.
-
+the case under the Schnute SPM in Chapter (\ref{schnuteChapter}), it is again not
+possible to analytically maximize $\bar{Y}$ under the Schnute model in the DDM setting. 
+However stable numerical solutions for calculating $F^*$ were obtained by 
+numerically solving for the roots of the analytical derivative of equilibrium 
+yield with respect to $F$. Below a greatly simplified expression for $\frac{d \bar{Y}}{dF}$ 
+is shown; the substitution $Z=F+M$ (total mortality rate) has been made to 
+produce a more compact expression.
 %\vspace{-0.75cm}
 \begingroup
 \scriptsize
@@ -637,18 +637,17 @@ In the SPM the BH constrained RPs are fixed to $\frac{1}{x+2}$.
 In the DDM the constrained BH RP set is complicated by the growth parameters 
 $a_s$ and $\kappa$. Under BH recruitment these parameters slightly %of the DDM slightly %the growth parameters $a_s$ and $\kappa$  
 influence this relationship as seen in Figure (\ref{rpSpace}). That said,
-the influence of $a_s$ and $\kappa$ on RPs is still largly limited to a
+the influence of $a_s$ and $\kappa$ on RPs is still largely limited to a
 confined region of reference point space which resembles the $\frac{1}{x+2}$
 form. In fact the confined region of RPs is bounded above by $\frac{1}{x+2}$. %bounding the region above by $\frac{1}{x+2}$.
 In Figure (\ref{rpSpace}) notice that for values of $a_s$ and $\kappa$ that
 result in high $w(a_s)$ (high values of $\kappa$ and small values of $a_s$ seen
 in red) the BH RP space converges to $\frac{1}{x+2}$ as derived in the simple
-production model setting. In opposition to the SPM limit, when $w(a_s)$ is low 
+production model setting. Opposing the SPM limit, when $w(a_s)$ is low 
 (as seen in the more blue region of Figure(\ref{rpSpace})), RPs decrease as 
 the influence of growth in the dynamics increases (i.e. slower individual growth). 
-This is another way of noticing that the DDM converges to the previously 
-studied SPM, this time in RP space, as $\kappa\to\infty$ and $a_s\to0$ 
-simultaneously.
+This is another way (this time in RP space) of noticing that the DDM converges 
+to the previously studied SPM as $\kappa\to\infty$ and $a_s\to0$ simultaneously.
 %When κ → ∞ simultaneously with as → 0, as con-
 %1055sistent with the negative correlation between the parameters, the DDM converges to the
 %1056previously studied SPM.
@@ -699,7 +698,7 @@ as seen below, to identify $\gamma$.
 The system formed by collecting Eqs. (\ref{aDelay}), (\ref{bDelay}), and 
 (\ref{gDelay}) can be navigated similarly to Eq. (\ref{abgSys}) in the Schnute 
 production model setting. For a population experiencing natural mortality $M$, 
-VB growth with paramters $\kappa$ and $w_\infty$, and age of selectivity $a_s$ 
+VB growth with parameters $\kappa$ and $w_\infty$, and age of selectivity $a_s$ 
 the above system can fully specify $\alpha$ and $\beta$ for a given $\gamma$, 
 by fixing $F^*$, $B_0$, and $\frac{B^*}{B_0}$. For a given $\gamma$ a cascade 
 of closed form solutions for $\alpha$ and $\beta$ can be obtained, just as in 
@@ -719,18 +718,18 @@ Section (\ref{sLHS}). Given the sampled $\gamma$, the cascade of $\alpha(\gamma)
 and then $\beta(\alpha(\gamma), \gamma)$, can be computed, and the Schnute DDM 
 is fully defined by a given $(\frac{F^*}{M}, \frac{B^*}{B_0})$.
 %
-While conceputally this framing is similar to the Schnute SPM,
-the analytical expressions are more complex, and numerically trecherous, since
+While conceptually this framing is similar to the Schnute SPM,
+the analytical expressions are more complex, and numerically treacherous, since
 growth parameters appear explicitly here. Other ways of navigating the RPs $\mapsto$ $\theta$
 system are possible, but for the sake of numerical stability this strategy has
 proven the most reliably accurate by limiting exposure to numerical error 
-propogation which quickly becomes significant using other schemes.
+propagation which quickly becomes significant using other schemes.
 
 %
 Each design location defines a complete Schnute DDM with
 the given RP values. Just as in Chapter (\ref{schnuteChapter}), $B_0$ is fixed 
 at $10000$, and $M$ is fixed at $0.2$; furthermore $a_0$ and $w_\infty$ (of VB 
-growth) were fixed to -1 and 1 respectively throught.
+growth) were fixed to -1 and 1 respectively throughout.
 The values of $\kappa$ and $a_s$ are varied roughly along the line $w(a_s)=w_\infty-\frac{a_s}{3}$ 
 so as to produces a negatively correlated relationship between $\kappa$ and 
 $a_s$ representing fast ($\kappa=10$,  $a_s=0.1$), medium ($\kappa=0.5$,  $a_s=1$) and 
@@ -800,7 +799,7 @@ The structure of RPs under the BH model suggests several natural avenues for
 forming hypotheses to identify highly misspecified RP regions, but the single
 clearest feature to identify are cases where $\frac{F^*}{M}$ is
 heavily under-estimated. Here this idea is expressed by a hypothesis testing
-inspired framework that uses the GP metamodel to proprogate estimate
+inspired framework that uses the GP metamodel to propagate estimate
 uncertainty across the simulated space of misspecified BH RPs.
 %as a surrogate for the distribution of 
 %$\frac{F_{MSY}}{M}$ across degrees of misspecified BH models. 
@@ -841,7 +840,7 @@ expected to be small in the following sense,
 
 %
 $P$ defines the extent of model failure on the scale of percent error. For
-measuring catestrophic model failure $P$ was chosen to be $0.5$, but smaller values
+measuring catastrophic model failure $P$ was chosen to be $0.5$, but smaller values
 of $P$ may be chosen to emphasize regions of more subtle model failure. %subtle regions 
 %
 Since $\frac{F^*}{M}$ is generally underestimated for stocks above the BH set, a 
@@ -850,9 +849,9 @@ Thus, when the percent error is statistically greater than $P$ the notion that
 the BH model estimates $\frac{F^*}{M}$ well (in the sense defined by $P$) is rejected.
 
 %
-For statistical evaluation, it is convienient to rearrange Eq. (\ref{pError})
+For statistical evaluation, it is convenient to rearrange Eq. (\ref{pError})
 as \mbox{$\hat{F}^*\ge (1-P)F^*$}. $\hat{F}^*$ is then distributed as $LN(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
-and the rejection region is then defined as the RP's for which the $5^{th}$ percentile
+and the rejection region is then defined as the RPs for which the $5^{th}$ percentile
 from the Log-normal distribution falls below \mbox{$(1-P)F^*$.}
 
 %
@@ -860,14 +859,14 @@ from the Log-normal distribution falls below \mbox{$(1-P)F^*$.}
 
 %
 The delay model belongs to a class of differential equations known as delay
-differential equations (DDE). The delay arrises from the $B(t-a_s)$ terms
+differential equations (DDE). The delay arises from the $B(t-a_s)$ terms
 found in the recruitment function. Solving DDEs require special care which
 depends on the nature of the time delay. The addition of time-varying delays,
 many different delays, or very small delays (delays below the step size of the
 numerical integrator) results in some of the more challenging settings for
 solving DDEs. However with a single stationary model of the age of selectivity,
-the delay model in this setting represents one of the most straight forward
-DDE structures. The most numerically challenging case presented here arrises
+the DDM used here represents one of the most straightforward numerical 
+DDE settings. The most numerically challenging case presented here arises
 in the case of the limiting SPM when $a_s\to0$ while $\kappa\to\infty$.
 That said the limiting SPM can be approximated for values of
 $a_s\approx0.1$, and it was straightforward to ensure that the step size of
@@ -884,7 +883,7 @@ The \verb|dede| solver provides many methods for integrating DDEs, but lsode
 was chosen because it is an implicit method that runs relatively quickly with
 a relatively smaller footprint in system memory as compared with other methods.
 The radau method was also tried in more computationally challenging settings
-with good results (albeit running more slowly that lsode). Ultimatly the
+with good results (albeit running more slowly that lsode). Ultimately the
 simulated parameter space did not produce DDEs that require the more expensive
 radau integrator to solve accurately.
 
@@ -904,9 +903,9 @@ radau integrator to solve accurately.
 %\end{itemize}
 
 %
-Let $I_t$, $t\in\{1,2,3,...,T\}$, be a series of indicies of abundance, 
+Let $I_t$, $t\in\{1,2,3,...,T\}$, be a series of indices of abundance, 
 proportional to biomass, as simulated from the Schnute DDM. These data 
-are modelled with the following log-normal observation model that has been 
+are modeled with the following log-normal observation model that has been 
 intentionally constrained to BH recruitment, 
 %is then intentially constrainted to BH recruitment and a log-normal observation model as follows, % by fixing $\gamma=-1$.
 %Growth parameters: $\bm{\phi}'=[\kappa, w_\infty, a_0, a_s]$
@@ -927,11 +926,16 @@ models residual variation of the index.
 %
 In this setting, $\bm{\phi}$ and $q$ are fixed %at the true value of 0.0005 
 to focus on the inferential effects of model misspecification on recruitment
-parameters and RPs. Without an explicite mechanism for the delay model to incorporate
-age data, under the BH model $\bm{\phi}$ is not well informed and would
-tyically be estimated externally for data limted stocks. Under BH recruitment
-$\phi$ can only slightly impact the range of modeled RPs, when compared with $\theta$, 
-as demonstrated in Figure (\ref{rpSpace}).
+parameters and RPs. Under the BH model $\bm{\phi}$ is not well informed and 
+typically would be estimated externally to the DDM for data-limited stocks.
+%
+%Without an explicit mechanism for the DDM to incorporate
+%age data, under the BH model $\bm{\phi}$ is not well informed and would
+%tyically be estimated externally for data limted stocks. 
+%%
+%Under BH recruitment $\phi$ can only have a modest impact the range of modeled RPs, 
+%when compared with $\theta$, as demonstrated in Figure (\ref{rpSpace}).
+%%
 %the BH model only contributes largly unimportant for the mapping of RPs since  
 %{\color{red} $\bm{\phi}$ tyically estimated externally; 
 %the components of $\phi$ only slightly impact RPs as seen in Figure (\ref{rpSpace})}.
@@ -956,20 +960,20 @@ considered to be converged when the optimum results in an invertible Hessian at
 the found MLE.
 
 %
-\subsubsection{Numbers Indicies}
+\subsubsection{Numbers Indices}
 
 %
 While not utilized here, ASMs may model %age structured models may model
 %the delay model is also capable of modeling 
-indicies as proportional to numbers rather than (or simultaiously to)
+indices as proportional to numbers rather than (or simultaneously to)
 biomass. When solving the DDE, Eq. (\ref{nEq}) points out that the full DDE
 solution will expose a numbers solution simultaneously with a biomass solution
 that may be used for these purposes. These solutions are often quite similar
 since the main driver of process behavior comes from the form of $R$ which is
 shared among $N$ and $B$.
-However, it is common on the west coast of the US that indicies derived from commercial
+However, it is common on the west coast of the US that indices derived from commercial
 fisheries are measured as weights %biomass Index observations
-while indicies derived from recreational fisheries are often measured as counts.
+while indices derived from recreational fisheries are often measured as counts.
 %represent indicies that are better modeled as proportional tocounts rather than biomass. 
 If a numbers index, $J_t$, is observed alongside the previously
 mentioned biomass index, the following likelihood component can be added as a %is often added as a
@@ -1027,10 +1031,10 @@ When $w(a_s)$ is large recruits are near maximum size and thus there is little g
 % to be This leaves little growth 
 to be evaluated by the biomass dynamics equations. In Figure (\ref{vbCurves}) the red curve 
 demonstrates a stock with fast growing individuals that provides an example of the SPM limit 
-($a_s\rightarrow0$ and $\kappa\rightarrow\infty$). In this setting individuals recuit so near maximum size that 
+($a_s\rightarrow0$ and $\kappa\rightarrow\infty$). In this setting individuals recruit so near maximum size that 
 growth does not meaningfully effect the biomass dynamics in this setting \mbox{(i.e. $w(a_s)\approx w(a_s+1)\approx w(a_s+2)...$).}
 %with no growth in the dynamics(no growth) production model limit ($a_s\rightarrow0$ and $\kappa\rightarrow\infty$).
-The cases shown with smaller $w(a_s)$ values, the purple and blue curves, correspond to 
+The cases shown with smaller $w(a_s)$ values (the purple and blue curves) correspond to 
 incrementally slower growth behaviors. The slowest growth stock simulated is the blue curve, 
 where $a_s=2$ and $\kappa=0.1$, emphasizing the effect of growth on the biomass dynamics. 
 % most amoung these examples. 
@@ -1158,13 +1162,13 @@ $\frac{B^*}{\bar B(0)}=\frac{1}{F^*/M+2}$ RP-set) so as to produce a nearly
 minimal distance mapping of RPs onto the constrained BH set of RPs.
 %\subsubsection{low}
 Similarly, in the low contrast setting, Figure (\ref{prodLimit}, $right$) again
-shows the same two regiem pattern of RP inference. Firstly, there is a region of
+shows the same two regime pattern of RP inference. Firstly, there is a region of
 relatively small model misspecification where the minimal distance mapping
 is preserved. Secondly, as model misspecification becomes greater (around the
 Ricker set) $\frac{F^*}{M}$ begins to be sharply underestimated. Above this
 break point in RP estimation inference appears to be driven toward the trivial RP
 $\frac{F^*}{M}=0$, $\frac{B^*}{\bar B(0)}=0.5$) that is shared in common
-amoung all of the two-parameter models described here.
+among all of the two-parameter models described here.
 
 %
 These results confirm that the expected theoretical limiting dynamics do indeed behave 
@@ -1183,21 +1187,21 @@ Moving past the SPM, other values of $a_s$ and $\kappa$ provide a probe into
 the effects individual growth dynamics may have on RP inference.
 %
 Individual growth is a multifaceted phenomena that is not easily reduced
-to a single number, but for the purposes of this model $w(a_s)$ serves as a decent 
+to a single number, but for the purposes here $w(a_s)$ serves as a decent 
 proxy for the extent of the model dynamics that are due to individual growth. % displayed by the model. 
 %
 This follows from the intuition that individuals maturing at a smaller fraction
 of $w_\infty$ demonstrate the dynamics of growth during an observable (to the model) %being fished (observable) 
-phase rather than growth occuring prior to selection. % by the fishery.
+phase rather than growth occurring prior to selection. % by the fishery.
 
 %
 That said, $w(a_s)$ is not a one-to-one map of $\kappa$ and $a_s$.
 %
 A level curve of $w(a_s; \kappa)=c$ is attained by increasing the value of $a_s$
-and decreasing $\kappa$ corrispondingly, or vice versa.
+and decreasing $\kappa$ correspondingly, or vice versa.
 %
 The case where $a_s=1$ and $\kappa=0.5$ (resulting in $w(a_s)\approx0.6$)
-respresents a reasonable biological example of moderate individual growth.
+represents a reasonable biological example of moderate individual growth.
 %
 Similar examples of the $w(a_s)=0.6$ level curve result in much larger lags
 (discussed in Section (\ref{oscillation})) or larger $\kappa$'s which quickly
@@ -1229,15 +1233,15 @@ $(right)$ Low contrast simulation.
 %\clearpage
 %
 The RP mappings seen in Figure (\ref{moderateGrowth}) show very similar RP mappings
-to that of the SPM, with the biggest differences occuring
+to that of the SPM, with the biggest differences occurring
 around the location of the break point where the low contrast model begins to
 dramatically underestimate $\frac{F^*}{M}$.
 %
 In the high contrast simulation setting Figure (\ref{moderateGrowth}; $left$) shows
 the RP mappings again demonstrate a nearly identical minimal distance mapping of
 RPs onto the constrained BH RP set. In the low contrast setting Figure (\ref{moderateGrowth}; $right$) 
-shows a very similar two regiem pattern of RP inference is observed, however the
-location of the break between these regiems appears at lower values of
+shows a very similar two regime pattern of RP inference is observed, however the
+location of the break between these regimes appears at lower values of
 $\frac{B^*}{\bar B(0)}$. In this moderate growth setting the break point
 occurs around values of $\frac{B^*}{\bar B(0)}$ just below 0.4 as opposed to 
 %\mbox{
@@ -1265,7 +1269,7 @@ grow over the extent of the modeled period.
 %
 The slow growth of these dynamics oppose the simple production model setting
 in the sense that they move the constrained RP set a large distance (largest
-amoung the spectrum of decreasing $w(a_s)$ populations simulated here)
+among the spectrum of decreasing $w(a_s)$ populations simulated here)
 away from the $\frac{1}{x+2}$ limiting case. 
 %It is interesting to note that
 %this is true for all of the two parameter constrained constrained RP sets as
@@ -1303,11 +1307,11 @@ $(right)$ Low contrast simulation.
 \end{figure}
 %\vspace{-0.5cm}
 %
-In this low contrast setting the break point in RP estimation occures around values of
-$\frac{B^*}{\bar B(0)}$ well below 0.4 with the behaviour extending as far down as 
-\mbox{$\frac{B^*}{\bar B(0)}=0.3$}. This regiem shift occurs well below that of the Ricker
+In this low contrast setting the break point in RP estimation occurs around values of
+$\frac{B^*}{\bar B(0)}$ well below 0.4 with the behavior extending as far down as 
+\mbox{$\frac{B^*}{\bar B(0)}=0.3$}. This regime shift occurs well below that of the Ricker
 set, as initially observed in the production model setting.
-This reduced range of acceptible RP inference indicates that for slow growing stocks 
+This reduced range of acceptable RP inference indicates that for slow growing stocks 
 %under increasinglyemphatic growth
 %\vspace{0.5cm}
 %the model misspecification issue of the 
@@ -1317,7 +1321,7 @@ misspecified BH models becomes increasingly brittle with respect to RPs.
 
 %
 Interestingly this pattern only follows for the low contrast setting. In the high
-contrast setting inference returns to a pattern resmbleing the minimal distance
+contrast setting inference returns to a pattern resembling the minimal distance
 mapping onto BH RP set. Further pointing to the importance of contrast for informing
 these models.
 
@@ -1384,9 +1388,9 @@ simulations of each of the fast, medium, and slow growth simulation settings.
 Clustering thresholds shown here are calculated for catastrophic model failure 
 as defined by $P=0.5$.  
 Each line separates hypothetical stocks where simulations would expect the BH model %to experience 
-to catestrophically fail in RP estimation. % model failure when modeled with a BH model, such that stocks above each 
-A percent error of 50\% was chosen to represent the threshold between the shortest 
-distance mapping below the lines and dramatic underestimation of $\frac{F^*}{M}$
+to catastrophically fail in RP estimation. % model failure when modeled with a BH model, such that stocks above each 
+A percent error of 50\% was chosen to represent the threshold of catastrophic model failure so that the shortest 
+distance mapping occurs below the lines and dramatic underestimation of $\frac{F^*}{M}$ occurs for data generated
 above each line.
 
 %$P=0.5$ was chosen to represent the threshold between the shortest distance mapping and 
@@ -1400,8 +1404,8 @@ growth settings. As individual growth slows from the SPM limit (in red) to the m
 simulation in blue, the BH model fails catastrophically for an increasingly large range of RP space. 
 This indicates that the slower growing simulation makes the BH model more brittle to model misspecification. 
 In particular the fragility of the BH model is exacerbated most for high $\frac{F^*}{M}$ stocks as individual growth slows. %stocks in the slower individual growth setting 
-For low $\frac{F^*}{M}$ stocks the rejection thresholds for each simulated individual growth setting seems 
-to converge around the common value $\frac{B^*}{B_0}=0.5$.
+For low $\frac{F^*}{M}$ stocks the failure thresholds for each simulated individual growth setting %seems to 
+converges around the common value $\frac{B^*}{B_0}=0.5$.
 
 %Overall the misspecified BH model in the slower growth setting is more brittle than for faster growing settings.
 
@@ -1409,8 +1413,8 @@ to converge around the common value $\frac{B^*}{B_0}=0.5$.
 Model misspecification of the BH model is compounded in the slower individual 
 growth settings, indicating an interaction between the functional form of 
 recruitment and growth dynamics. In the following section, this interaction is 
-examplified by exploring oscillatory dynamics that arrise outside of the more 
-biological regiems explored here.
+exemplified by exploring oscillatory dynamics that arise outside of the more 
+biological regimes explored here.
 %interact with growth dynamics to produce 
 %unique behaviors as exemplifiedin Section (\ref{oscillation}).
 
@@ -1433,11 +1437,11 @@ While the above patterns of RP estimation follow for biologically inspired
 growth patterns (i.e. $corr(a_s, \kappa)<0$),
 %of the $w(a_s; \kappa)=c$ level curve, 
 as $a_s$ increases to weaken (and eventually reverse) the biological negative 
-correlation between $a_s$ and $\kappa$, an ocillatory regiem also exists within these dynamics. 
-While RP estimation behaves somewhat similar in this ocillatory regiem there 
+correlation between $a_s$ and $\kappa$, a regime of oscillatory dynamics appear. %also exists within these dynamics. 
+While RP estimation behaves somewhat similar in this oscillatory regime there 
 are unique features in this setting that are not present in the more biological 
-regiems. Below consider the ocillatory example of a logistic delay model with 
-$a_s=10$ and fishing fixing at $F^*$.
+regimes. Below consider the oscillatory example of a logistic DDM with 
+$a_s=10$, $\kappa=0.1$ and fishing fixing at $F^*$.
 %Moderate w(a_s)\approx0.6
 
 %{\color{red} maybe an appendix}
@@ -1473,9 +1477,9 @@ zero yield for that period, and biomass falls as a result.
 
 %
 Once $t$ exceeds $a_s$, the lagged recruitment refers to the integrated
-biomass series to evaltuate recruitment based on $B_{t-a_s}$. The red
+biomass series to evaluate recruitment based on $B_{t-a_s}$. The red
 region of the biomass series is the result of surplus biomass production 
-(i.e. evaluation of the yeild curve) %yield 
+(i.e. evaluation of the yield curve) %yield 
 over the initial green biomasses. Figure (\ref{shock}) shows that the %yield 
 surplus biomass production over the green biomass series first increases, 
 as biomass decreases to approach $B^*$ ($B^*\approx5000$ here). As biomass 
@@ -1496,7 +1500,7 @@ forward into the blue region despite the red biomasses never increasing past $B^
 %
 This process of biomass oscillation carries on in this manner nonetheless
 approaching equilibrium at $B^*$. Equilibrium is reached in an oscillatory
-manner setoff by the green biomass series crossing over from above $B^*$
+manner set off by the green biomass series crossing over from above $B^*$
 to below it. The example shown in Figure (\ref{shock}) exemplifies the oscillatory 
 phenomena simulated here, but the mechanism that produces these oscillations may
 occur with other forms of recruitment, or fishing, outside of logistic recruitment 
@@ -1508,9 +1512,9 @@ this manner the dynamics can quickly resemble the behavior of chaotic equations 
 \subsubsection{RP Estimation}
 
 %
-Statistical inference in the oscillatory regiems of individual growth can be 
+Statistical inference in the oscillatory regimes of individual growth can be 
 challenging. Depending on the parameters inferred, the likelihood can have 
-multiple local modes which require global optimization techniques to distiguish. 
+multiple local modes which require global optimization techniques to distinguish. 
 Furthermore, parameter estimation is more uncertain in this setting as the 
 likelihood may confuse oscillations with residual noise.
 %This uncertainty extends to RP estimation, high contrast setting, $w\approx0.6$ $a_s=10$
@@ -1526,7 +1530,7 @@ likelihood may confuse oscillations with residual noise.
 %high 
 Figure (\ref{oscillationArrow}) shows the BH RP mapping fixing $w(10;0.1)\approx0.6$
 in the high contrast simulation setting. This places the
-dynamics firmly in the ocillatory regiem, but the high 
+dynamics firmly in the oscillatory regime, but the high 
 contrast setting provides significant information for 
 inferring recruitment parameters.
 
@@ -1545,16 +1549,16 @@ inferring recruitment parameters.
 \end{minipage}
 
 \vspace{-0.75cm}
-\caption{RP mapping of BH DDM fit to high contrast Schnute DDM data under ocillatory growth ($a_s=10$ and $\kappa=0.1$).
+\caption{RP mapping of BH DDM fit to high contrast Schnute DDM data under oscillatory growth ($a_s=10$ and $\kappa=0.1$).
 }\label{oscillationArrow}
 \end{wrapfigure}
 
 %
-Interestingly in this high contrast setting, a very similar two regiem pattern
+Interestingly in this high contrast setting, a very similar two regime pattern
 of RP inference is observed as previously seen in low contrast settings.
-That said the boundary between the regiems in this setting is much smoother
+That said the boundary between the regimes in this setting is much smoother
 %DISCUSISON: due to more uncertain modes smoothly changing 
-and the location of the break between these regiems appears around higher values of
+and the location of the break between these regimes appears around higher values of
 $\frac{B^*}{\bar B(0)}$. %of HIGHER values.
 
 %%
@@ -1581,7 +1585,7 @@ This higher $\frac{B^*}{\bar B(0)}$ break point, hovering around 0.5, is
 consistent with the mechanism which induces oscillation. 
 %When the initial contion of biomass is started at $B_0$Starting the biomass
 %at $\bar B(0)$ in the ocillatory regiem, 
-For fixed $B_0$ increased $\frac{B^*}{\bar B(0)}$ will tend to exasterbate oscillatory behavior 
+For fixed $B_0$ increased $\frac{B^*}{\bar B(0)}$ will tend to exacerbate oscillatory behavior 
 by increasing $B^*$ so that biomass is more easily pushed past $B^*$ by fishing
 within the initial lagged window of recruitment. This produces more dramatic 
 oscillations in the higher $\frac{B^*}{\bar B(0)}$ region of RP space. This 
@@ -1627,10 +1631,10 @@ under the BH model $\frac{B^*}{\bar B(0)}$ is constrained below 0.5 with the
 majority of the simulation BH $\frac{B^*}{\bar B(0)}$ RPs falling between 0.4 and 0.2. % in the simulated RP domain. 
 Therefore, the fitted BH model will not tend to push biomass past $B_{MSY}$ and
 thus is incapable of modeling oscillatory biomass series. Figure (\ref{bhGrid})
-shows a subset of example BH fits, which demonstrats the limited oscillatory
+shows a subset of example BH fits, which demonstrates the limited oscillatory
 capacity of the BH fits. Furthermore, since the BH model has a limited
 oscillatory capacity in this setting, the BH model tends to explain the
-oscillations with artificailly high residual variation and artifically low
+oscillations with artificially high residual variation and artificially low
 %steepness 
 $\alpha$, focusing fits on overly simplistic trends in the data.
 
@@ -1692,7 +1696,7 @@ the Schnute model has no issue learning its $\gamma$ parameter.
 %\end{itemize} 
 
 %
-While Statistical inference in the oscillatory regiem can be challenging in
+While Statistical inference in the oscillatory regime can be challenging in
 the highly constrained BH model, the Schnute model can easily estimate its extra
 $\gamma$ parameter. The flexibility of estimating $\gamma$ simplifies inference by 
 correctly specifying RPs, and also by opening up the model dynamics to reveal
@@ -1725,10 +1729,11 @@ The addition of individual growth and maturity dynamics to the previous chapters
 via the DDM, further reiterate the general patterns observed in Chapter (\ref{schnuteChapter}). 
 The added individual growth dynamics, and the modest effect they have on modifying the BH RP set as seen 
 in Figure (\ref{rpSpace}), expands the notion that RP estimation under %biases induced by 
-two parameter recruitment models are largely oriented to the geometry induced by the 
-restricted model rather than stock biology. Furthermore, the added dynamics of the DDM 
-demonstrates that the BH model can become very brittle for slower growing stocks; 
-the added flexibility of three parameter models can relieve these issues.
+two-parameter recruitment models are largely oriented to the geometry induced by the 
+restricted model rather than stock biology. Furthermore, the added individual 
+growth dynamics of the DDM demonstrates that the BH model can become very brittle 
+for slower growing species. 
+%by a mechanism that the added flexibility of three-parameter models can relieve. %these issues.
 
 %%
 %\begin{itemize}
@@ -1745,11 +1750,11 @@ that observed under the SPM in Chapter (\ref{schnuteChapter}). In the presence o
 RPs consistently map onto the BH set in a manner resembling a shortest distance map.
 In the low contrast setting the RP mapping has two primary regimes, a region of relatively 
 minor BH model misspecification with intact shortest distance RP estimation, and a region of %for relatively minor BH misspecification, and a region of 
-catestrophic failure of RP estimation where $\frac{F^*}{M}$ is dramatically underestimated 
+catastrophic failure of RP estimation where $\frac{F^*}{M}$ is dramatically underestimated 
 outside of the intact region. This poses the same general risk profile for fisheries 
 management with BH RP estimates in the DDM setting as for the SPM. The primary difference 
 in RP estimation of the DDM as compared with the SPM is the degree of allowable model 
-misspecification of the BH model before the catestrophic failure mode of RPs sets in. 
+misspecification of the BH model before the catastrophic failure mode of RPs sets in. 
 As growth becomes a larger component of the dynamics the BH model becomes more brittle 
 with a decreased range of model misspecification resulting in intact RP estimation.
  
@@ -1775,9 +1780,9 @@ individual growth and recruitment. The brittleness observed under the BH model i
 slower individual growth settings indicates that not only does the BH model limit 
 the space of RPs, but even when $a_s$ and $\kappa$ are correctly specified an 
 incorrect specification of the BH model dampens the effects of those growth dynamics. % making the BH model more brittle. 
-When indvidual growth dynamics represent a larger component of the total biomass 
+When individual growth dynamics represent a larger component of the total biomass 
 dynamics the BH model becomes more brittle such that smaller RP misspecifications are capable of 
-catestrophically breaking RP estimation in these settings.
+catastrophically breaking RP estimation in these settings.
 %The same RP mispecification fails dramatically with slow growth that would be intact for faster growth. 
 %remaining by the model of individual growth and maturity%are making a clear RPS are 
 %{\color{red}make the point about RP brittleness as a function of growth.}
@@ -1802,16 +1807,16 @@ catestrophically breaking RP estimation in these settings.
 
 %
 While the oscillatory dynamics are thought to be outside of the more biological 
-regiems of individual growth (i.e. $corr(a_s, \kappa)<0$ \cite{denney_lifehistory_2002}),
+regimes of individual growth (i.e. $corr(a_s, \kappa)<0$ \cite{denney_lifehistory_2002}),
 the analysis of these dynamics demonstrate how individual growth 
 interacts with the form of recruitment. This interaction under the BH model 
-exasterbates model misspecification by dampening the information that individual growth contributed to biomass dynamics.
+exacerbates model misspecification by dampening the information that individual growth contributed to biomass dynamics.
 %as individual growth becomes a more important dynamic. 
 %in the slow growth setting when individual grows
 % BH model dampens the effect of growth dynamics
 At this time it is not best practice to estimate individual growth parameters 
 from index of abundance data as done in Section (\ref{estMore}). This analysis 
-is consistent with that practice when the BH model of recruitment is misspecified (as it soo often may be). 
+is consistent with that practice when the BH model of recruitment is misspecified (as it so often may be). 
 However if recruitment is made more flexible by the use of a three-parameter model, 
 such as the Schnute curve, not only is the $\gamma$ parameter possible to estimate, but the
 flexibility that this adds to the model of recruitment is vital to tapping into 
@@ -1825,21 +1830,25 @@ stock assessments.
 %
 Firstly, this study makes it clear that two-parameter recruitment models can 
 induce significant biases in RPs, and the use of three-parameter models of 
-recruitment can certainly contribute to better estimates of RPs.
-Three parameter models of recruitment can be estimated to allow better estimates 
-of RPs, even when growth dynamics are included in the model, or three-parameter 
-models may be used by analyses similar to that in Appendix (\ref{proxyMath}) to 
-increase the flexibiliy of recruitment by use of three parameter models.
+recruitment can certainly contribute to better RP estimates.
+Three-parameter models of recruitment can be directly estimated to allow better estimates 
+of RPs (even when growth dynamics are dominant in the model). Alternatively, 
+the increased flexibility of three-parameter models can be used to improve RP estimation 
+without direct estimation of $\gamma$ by resolving structural inconsistencies presented by RP 
+proxies as seen in Appendix (\ref{proxyMath}).
+%by resolving model inconsistencies similar to Appendix (\ref{proxyMath}). 
+%their increased flexibiliy to resolve model inconsistencies similar to Appendix (\ref{proxyMath}). 
+%to increase the flexibiliy of recruitment by use of three parameter models.
 %even when grow dynamics are included in the model.
 Secondly, the results presented here suggest that better specification of 
 recruitment may make models less brittle. Particularly for slow growing, 
 data-limited stocks, where the available data does not demonstrate good contrast, 
 the use of three-parameter models may improve the regularity of parameter 
 estimation and allow stock assessment models to better access the information 
-that is availble in limited datasets. Furthermore, future investigation 
-should be considered for how the use of three-parameter recruitment models may 
-be capable of supplementing the inference of individual growth and maturity 
-parameters in addition to the external analysis of age data. 
+that is available in limited datasets. %Furthermore, future investigation should be considered 
+Furthermore, results presented here suggest that three-parameter recruitment models %in 
+may be useful for supplementing the inference of individual growth and maturity 
+parameters beyond the external analysis of age data. 
 
 %interaction betthere could also be improvements
 %%too furvant
@@ -1863,16 +1872,17 @@ parameters in addition to the external analysis of age data.
 %includes can still model many of the individual growth and maturity dynamics that 
 The DDE structure given in \cite{walters_continuous_2020, deriso_harvesting_1980, schnute_general_1985}, 
 together with Schnute three-parameter recruitment, makes the DDM presented 
-here an extrordinarily general, and compact, model for analysis of a wide 
+here an extraordinarily general, and compact, model for analysis of a wide 
 range of dynamics. This one DDE can exactly represent everything from the 
 simplest Schaefer model, to Ricker, BH, or Cushing-like models, all with a 
-wide range of individual growth and maturity dynamics from simple SPMs, 
-lag-only models similar to \cite{dick_depletion-based_2011}, ranging up to 
-simple ASM-like growth dynamics. While not all RPs can be represented 
-analytically, many can be under many common models. The analytical results 
-presented here, and the methods presented for navigating RPs, in this 
-wide varity of different modeling situations opens the door to the many future 
-uses in stock assessment. 
+wide range of individual growth and maturity dynamics ranging from simple SPMs, 
+lag-only models (similar to \cite{dick_depletion-based_2011}), ranging up to 
+simple ASMs. While not all RPs can be represented analytically, under many 
+common models the RPs are analytical. The methods presented here for navigating RPs
+across the variety of different models representable by this compact DDM
+%analytical results presented here, 
+%as well as the methods presented for navigating these RPs, in this wide varity of different modeling situations 
+open the door to the countless future uses in stock assessment. 
 %analysis   and  can  DDM and still mana  
 
 
