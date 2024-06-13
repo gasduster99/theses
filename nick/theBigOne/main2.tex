@@ -125,6 +125,19 @@ To my family, friends, and mentors.
 
 %
 \begin{acknowledgements}
+
+%
+I am incredibly lucky to have Brian and Joanne Grunloh 
+honest, hard working, and sketical perspective of the world.
+You have always supported me to follow my passions and 
+guide me to success. To my parterner Anna for her love and 
+patient enduring of my constant jibber jabber about mathmatical 
+esoterica and minutia about the beach.
+
+%
+I am grateful for the advising 
+
+
 \begin{itemize}
 \item Family
 \begin{itemize}
@@ -613,23 +626,23 @@ is considered together with model misspecification. %alongside the effect of mod
 
 %
 \chapter{A Delay Differential Model \label{delayChapter}}
-%
-\begin{itemize}
-\item scan for metamodeled quantity consitency through out.
-%\item sweep Intro, Methods, Results
-%\item fix up ASM paragraph in Intro
-%\item describe how DDM reverts to SPM as 
-\item sweep for SPM vs. DDM vs. ASM
-\item sweep for fast, medium and slow growth
-%\item emphasize relation to ASM
-%\item draft Discussion
-\end{itemize}
-%\input{delay.tex}
-%\include{delay.tex}
+%%
+%\begin{itemize}
+%\item scan for metamodeled quantity consitency through out.
+%%\item sweep Intro, Methods, Results
+%%\item fix up ASM paragraph in Intro
+%%\item describe how DDM reverts to SPM as 
+%\item sweep for SPM vs. DDM vs. ASM
+%\item sweep for fast, medium and slow growth
+%%\item emphasize relation to ASM
+%%\item draft Discussion
+%\end{itemize}
+%%\input{delay.tex}
+%%\include{delay.tex}
 \include{delay2.tex}
 
 %
-\chapter{\color{red}Synthesis of Conclusions and Future Works}
+\chapter{\color{red}Conclusion}
 \clearpage
 
 \begin{itemize}
@@ -639,15 +652,20 @@ is considered together with model misspecification. %alongside the effect of mod
 %
 Results presented here generally agree with what is known about estimating population
 productivity parameters \cite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
-These studies appreciate the role of contrast for estimating productivity,
+Previous studies appreciate the role of contrast for estimating productivity,
 however they struggle to make generally extensible conclusions since they focus only
 on a handful of stocks that fall short of forming a random sample of the greater
-population of possible stock behaviors. The LHS design methods presented here are
-designed specifically to simulate a representative sample of stocks broadly
+population of possible stock behaviors. The LHD methods presented in Chapters (\ref{ptChapter}) 
+and (\ref{schnuteChapter}) are designed specifically to simulate a representative sample of stocks broadly
 across the space of possible RPs. Furthermore, the simulation design, taken together
-with the GP metamodel of productivity parameters estimates, allows this study to control
+with the GP metamodel of RP estimates, allows this study to control
 the degree of model misspecification and generalize conclusions about the behavior
-of productivity estimation within the production model setting presented.
+{\color{red}of productivity estimation within the production model setting presented.}
+
+%
+\begin{itemize}
+\item generalize to DDM recruitment
+\end{itemize}
 
 %%
 %Unfortunately, we are unable to generalize the relationship because the twelve 
@@ -673,7 +691,18 @@ of $F^*$ and $\frac{B^*}{\bar B(0)}$.
 The GP metamodeling approach reveals a
 more general pattern that highly informative data sets (high contrast)
 produces a nearly minimal distance mapping of RPs %that are nearly minimal distance mapping 
-onto the constrained RP set{\color{blue} Across all settings.}
+onto the constrained RP set{\color{red} Across all settings.}
+
+\begin{itemize}
+\item generalize to DDM recruitment
+\item combine below and above to discuss RP estimation in terms of general RP estimation oriented to restricted spaces.
+\item generalize restricted space
+\begin{itemize}
+	\item 1/2 for schafffer
+	\item 1/(x+2) for BH
+	\item small deviations with growth
+\end{itemize}
+\end{itemize}
 
 %
 In all of the cases presented here when model misspecification is removed, even 
@@ -683,6 +712,9 @@ Model misspecification is a necessary but not sufficient condition for inducing
 RP estimation bias. The particular RP bias present depends on the RP geometry 
 of the fitted model and how that geometry is misspecified relative to the data. 
 The RP mapping is then oriented to the RP geometry of the fitted model.
+
+%
+
 
 %
 %NOTE: BITCH ABOUT NOT BEING ABLE TO PRODUCE A PERFECTLY INFORMATIVE TIME SERIES

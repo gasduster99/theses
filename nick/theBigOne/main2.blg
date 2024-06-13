@@ -64,7 +64,6 @@ Repeated entry---line 190 of file ./delayDifferential.bib
  : @article{yeakel_generalized_2015
  :                                 ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "nickEJ"
 Warning--empty publisher in devon_lin_latin_2015
 Warning--empty journal in dick_stock_2023
 Warning--empty publisher in gotelli_primer_1995
@@ -76,7 +75,7 @@ Warning--empty journal in schaefer_study_1957
 Warning--empty journal in walters_continuous_2020
 You've used 71 entries,
             2118 wiz_defined-function locations,
-            907 strings with 16042 characters,
+            905 strings with 16030 characters,
 and the built_in function-call counts, 22303 in all, are:
 = -- 2236
 > -- 983
