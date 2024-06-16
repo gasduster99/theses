@@ -645,166 +645,349 @@ is considered together with model misspecification. %alongside the effect of mod
 \chapter{\color{red}Conclusion}
 \clearpage
 
-\begin{itemize}
-\item discuss a bit relation to proxies wrt balancing conservative vs. accurate.
-\end{itemize}
+%
+{\color{blue}
+Code forms the foundation of an R package,\\ 
+analytical RPs under three parameter paper under review,\\
+stock assessment \cite{dick_stock_2023},\\...
+}
 
 %
-Results presented here generally agree with what is known about estimating population
-productivity parameters \cite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
-Previous studies appreciate the role of contrast for estimating productivity,
-however they struggle to make generally extensible conclusions since they focus only
-on a handful of stocks that fall short of forming a random sample of the greater
-population of possible stock behaviors. The LHD methods presented in Chapters (\ref{ptChapter}) 
-and (\ref{schnuteChapter}) are designed specifically to simulate a representative sample of stocks broadly
-across the space of possible RPs. Furthermore, the simulation design, taken together
-with the GP metamodel of RP estimates, allows this study to control
-the degree of model misspecification and generalize conclusions about the behavior
-{\color{red}of productivity estimation within the production model setting presented.}
+The simulation setting under the PT/Schaefer models in Chapter (\ref{ptChapter}) 
+demonstrates a simplified and fully analytical setting for developing the 
+conceptual basis of how two-parameter productivity models may bias RP estimation. 
+A useful notion of contrast is developed here, and the simplified geometry of the 
+Schaefer model aids in understanding mechanisms by which a lack of contrast 
+contributes to RP biases.
+%Chapter (\ref{ptChapter}) develops a useful notion of contrast, and the simplified geometry of the Schaefer model 
+%aids in understanding mechanisms by which a lack of contrast contributes to RP biases.
+The simulation and metamodel developed in this setting forms the basis of the 
+metamodeling analysis to be extended into the more challenging simulation settings 
+presented in the following chapters.
+% under the Schnute/BH SPM and DDM. The role of  
+%The analysis of the misspecified Schaefer model  
 
-%
-\begin{itemize}
-\item generalize to DDM recruitment
-\end{itemize}
-
-%%
-%Unfortunately, we are unable to generalize the relationship because the twelve 
-%assessment examples are not a random sample from the population of all fish 
-%stocks and sample size is small. A more general conclusion may be obtained by 
-%including more assessments
-%%
 %\begin{itemize}
-%\item \shortcite{lee_can_2012} Generalizability via random sample of fisheries, LHS RP explicitly does this.
-%\item multiple starting locations and convergence defined as positive definite Hessian.
+%\item Chapter (\ref{ptChapter})
+%\begin{itemize}
+%	\item contrast
+%	\item mechanism
+%	\item mapping
+%	\item analytical metamodeling simulation environment 
 %\end{itemize}
 
 %
-In the presence of contrast, $F^*$ estimation can enjoy very low bias even
-for a wide range of poorly specified models; conversely in the absence of contrast
-$F^*$ estimation can suffer very large bias even for slightly misspecified models.
-This pattern is particularly true for low-contrast inference under the Schaefer model where the
-geometry of the restricted RP set isolates estimation failure of $F^*$ from
-$\frac{B^*}{\bar B(0)}$. While contrast has a similar impact on $F^*$ estimation
-under the BH model, the geometry of the BH RP set correlates estimation bias
-of $F^*$ and $\frac{B^*}{\bar B(0)}$.
-{\color{red}Add sentence about growth. as growth increases misspecification interacts with recruitment misspecification to further bias.} 
-The GP metamodeling approach reveals a
-more general pattern that highly informative data sets (high contrast)
-produces a nearly minimal distance mapping of RPs %that are nearly minimal distance mapping 
-onto the constrained RP set{\color{red} Across all settings.}
+Chapter (\ref{schnuteChapter}) generalizes the simulation framework to handle 
+SPMs where $F^*$ is not analytical by extending the LHD methods to generate data 
+under the Schnute production function. Furthermore, due to the relatively more 
+complicated RP response surface induced by the BH geometry an adaptive method of 
+augmenting the simulation design is developed for refining hard to resolve features. 
+The metamodel analysis of RP estimation under the BH model generalizes the RP 
+mapping developed under the Schaefer model to more complex RP sets. Under the 
+BH model RP inference demonstrates  an approximately shortest distance mapping 
+onto the constrained RP space as mediated by the information content provided 
+by the avilable contrast in the data. For the BH RP geometry this shortest 
+distance mapping ensures that if there is bias in one of $\frac{B^*}{B_0}$ or 
+$\frac{F^*}{M}$, there will necessarily be bias in the other RP. These biases 
+tend to be conservative for stocks that are more densisty dependent than the 
+BH model, but leads to potentially hazardous overestimation of RPs for the most 
+vulnerable less densisty dependent stocks that the BH model. Furthermore, the low 
+contrast simulation setting demonstrates that heavily misspecified BH models 
+demonstrate a catastrophic failure mode that dramatically underestimations $\frac{F^*}{M}$ and 
+prioritzes high level biomass tends in the data. 
+%%brittleness that 
+%This catastrophic failure mode is a sort of self regulation of RPs where FM is almost
+%completely ignored for the purposes of preserving B̄(0)
+%estimates as best as possible within the BH set.    
+%%extends the simulation framework into the 
 
+%\begin{itemize}
+%\item Chapter (\ref{schnuteChapter})
+%\begin{itemize}
+%	\item extension to handle a wider range of non-analytical
+%	\item generalized notion of mapping
+%	\item risk profile
+%	\item notion of the brittle BH 
+%\end{itemize}
+%\end{itemize}
+
+%
+The development of the DDM in Chapter (\ref{delayChapter}) further 
+extends the simulation-based analysis of RPs to account for the effects of 
+individual growth and maturity dynamics. While $F^*$ is not analytical 
+under the general Schnute DDM, many of the special cases of the Schnute model 
+do provide analyical RP calculations for the DDM.
+%that account for individual growth and maturity. 
+Furthermore the analytical results derived under the general Schnute DDM 
+provide stable methods for navigating RPs to describe RP behavior for 
+general density dependence simultaneously accounting for individual growth 
+and maturity. %even more generally. 
+% more generally to explore RP behaviorm more generally.
+% for the dev are analytical to  the analysis 
+The effects of individual growth and maturity on RPs were found to be small 
+relative to the form of recruitment, but differed by the level of density 
+dependence. The behavior of BH RP estimation in the DDM setting was generally 
+very similar to the SPM setting. The relationship between the form of recruitment 
+and individual growth interact under the BH model to make RP estimation more 
+brittle for slower growing stocks. This indicates that better, or more flexible, 
+models of recruitment may be required to develop more complex DDMs as useful 
+and practile models in stock assessment. 
+
+%%
+%\begin{itemize}
+%\item Chapter (\ref{delayChapter})
+%\begin{itemize}
+%	\item growth is small relative to recruitment
+%	\item growth interactes with specification of recruitment
+%	\item misspecified BH model becomes more brittle as with more (slow) growth
+%\end{itemize}
+%\end{itemize}
+
+\subsection{Future Work}
+
+%the most complete picture of how RPs are estimated yet
+While the work presented here provides a novel understanding of how RPs are 
+biased by two parameter models of productivity, there are always improvements 
+that can be made in future study. There are two major directions for 
+interrelated future work. Firstly, there is always a desire to study additional 
+biology dynamics. Secondly, the results presented here suggest that studying 
+these more complex biologies would be aided by extensions to the metamodeling 
+techniques presently used.
+
+%Biology
+%\item Additional Biology Dynamics:
+%	\begin{itemize}
+%		\item Given the role of contrast: improved notions of understanding/quantifying contrast (such as...)
+%		\item Recruitment deviations \cite{thorson_case_2019}.
+%		%ASM
+%		\item adapting design methods to simulate simulation designs for ASMs such as Stock Synthesis \cite{methot_stock_2013} or new noaa model FIMS \cite{stawitz_fisheries_202}.
+%			selectivity
+%	\end{itemize}
+
+%
+
+
+
+%Metamodel
+%\item Metamodeling:	
+%	\begin{itemize}
+%		\item faster simulation would allow the analysis to condition on specific stock assessment data (catch, ages, lengths)
+%			turn around on the porder of days rather than a week
+%			fit and compare multiple models to triangulate better RPs.
+%		\item more sofisticated metamodels. 
+%			nonstationary GP \cite{gramacy_bayesian_2008, binois_hetgp_2021, heinonen_non-stationary_2016}. 
+%			less design refinement
+%		\item more effective design refinement (acquisition functions)
+%			Including measures of the GP metamodel variance in the acquision function \cite{pourmohamad_bayesian_2021} (beyond maximin distance) to focus design refinement on poorly understood response features. Or similar Entropy search \cite{hennig_entropy_2012, hernandez-lobato_predictive_2014} 
+
+%
 \begin{itemize}
-\item generalize to DDM recruitment
-\item combine below and above to discuss RP estimation in terms of general RP estimation oriented to restricted spaces.
-\item generalize restricted space
+\item future work
 \begin{itemize}
-	\item 1/2 for schafffer
-	\item 1/(x+2) for BH
-	\item small deviations with growth
+	%
+	\item While we acomplished our goals; here are ways to improve things for future use:  
+	%
+	%\item Given the role of contrast: improved notions of understanding/quantifying contrast (such as...)
+	%
+	\item Metamodeling:	
+	\begin{itemize}
+		\item faster simulation would allow the analysis to condition on specific stock assessment data (catch, ages, lengths)
+			turn around on the porder of days rather than a week
+			fit and compare multiple models to triangulate better RPs.
+		\item more sofisticated metamodels. 
+			nonstationary GP \cite{gramacy_bayesian_2008, binois_hetgp_2021, heinonen_non-stationary_2016}. 
+			less design refinement
+		\item more effective design refinement (acquisition functions)
+			Including measures of the GP metamodel variance in the acquision function \cite{pourmohamad_bayesian_2021} (beyond maximin distance) to focus design refinement on poorly understood response features. Or similar Entropy search \cite{hennig_entropy_2012, hernandez-lobato_predictive_2014} 		
+		%\item require less design refinement with a nonstationary GP \cite{gramacy_bayesian_2008, binois_hetgp_2021, heinonen_non-stationary_2016}
+		%\item accounting for response surface variability, nonstationary GP, and thru more robust acquisistion functions (e.g. EI) \cite{}
+		%\item more general methods for Section (\ref{sLHS}). Metamodel based Space-filling in the output space methods. 
+		%\item development as dynamics require improvements.
+	\end{itemize}
+	\item Additional Biology Dynamics:
+	\begin{itemize}
+		\item Given the role of contrast: improved notions of understanding/quantifying contrast (such as...)
+		\item Recruitment deviations \cite{thorson_case_2019}.
+		%ASM
+		\item adapting design methods to simulate simulation designs for ASMs such as Stock Synthesis \cite{methot_stock_2013} or new noaa model FIMS \cite{stawitz_fisheries_202}.
+			selectivity
+	\end{itemize}
+	%\item Given the role of contrast: improved notions of understanding/quantifying contrast
+	%\item Exploring different types of model misspecification 
+	%\item age structured models
+	%\item increasing the flexibility of fisheries models (estimate more, propogate uncertainty)
+	
+
+	%\item assumptions of stationarity (popDyn or GP) 
+	%\begin{itemize}
+	%	\item misspecified models will underestimate variance. uses of the metamodel correct 
+	%	\item additional components of variance in metamodel. 
+	%	\item nonstationary GP metamodel
+	%\end{itemize}
+	
 \end{itemize}
 \end{itemize}
 
+%\begin{itemize}
+%\item discuss a bit relation to proxies wrt balancing conservative vs. accurate.
+%\end{itemize}
 %
-In all of the cases presented here when model misspecification is removed, even 
-with weakly informative data, RP estimation is unbiased and well estimated. 
-Thus contrast alone is not the only factor leading to inferential failure. 
-Model misspecification is a necessary but not sufficient condition for inducing 
-RP estimation bias. The particular RP bias present depends on the RP geometry 
-of the fitted model and how that geometry is misspecified relative to the data. 
-The RP mapping is then oriented to the RP geometry of the fitted model.
-
+%%
+%Results presented here generally agree with what is known about estimating population
+%productivity parameters \cite{lee_can_2012, conn_when_2010, magnusson_what_2007}.
+%Previous studies appreciate the role of contrast for estimating productivity,
+%however they struggle to make generally extensible conclusions since they focus only
+%on a handful of stocks that fall short of forming a random sample of the greater
+%population of possible stock behaviors. The LHD methods presented in Chapters (\ref{ptChapter}) 
+%and (\ref{schnuteChapter}) are designed specifically to simulate a representative sample of stocks broadly
+%across the space of possible RPs. Furthermore, the simulation design, taken together
+%with the GP metamodel of RP estimates, allows this study to control
+%the degree of model misspecification and generalize conclusions about the behavior
+%{\color{red}of productivity estimation within the production model setting presented.}
 %
-
-
+%%
+%\begin{itemize}
+%\item generalize to DDM recruitment
+%\end{itemize}
 %
-%NOTE: BITCH ABOUT NOT BEING ABLE TO PRODUCE A PERFECTLY INFORMATIVE TIME SERIES
-%SPECULATE ABOUT IDEALLY INFORMATION CATCH PATTERNS (DYNAMIC CALIBRATION OF $F^*$)
-While the relative fishing rate parameterized in Section (\ref{catch}) captures a usefully
-broad spectrum of relevant fishing behaviors, it is still limiting in the amount of information
-that it can induce. Improved methods for quantifying contrast in fisheries data, and/or methods of
-discovering more informative fishing behavior, could improve this analysis. In the absence of a %Without knowing a 
-maximally informative data set simulation methods will not fully describe how
-inference fails, but the methods presented here tell the most complete picture
-yet, with explicit control of the degree model misspecification, contrast, and
-a simulation design that allows for uniform representative data generation
-across biologically meaningful stocks. The results presented here suggest the
-conjecture that under a maximally informative data set, RP inference with a two
-parameter production function will be biased in the direction of a shortest 
-distance map from the true RPs onto restricted set of RPs under the two-parameter 
-model.
-
+%%%
+%%Unfortunately, we are unable to generalize the relationship because the twelve 
+%%assessment examples are not a random sample from the population of all fish 
+%%stocks and sample size is small. A more general conclusion may be obtained by 
+%%including more assessments
+%%%
+%%\begin{itemize}
+%%\item \shortcite{lee_can_2012} Generalizability via random sample of fisheries, LHS RP explicitly does this.
+%%\item multiple starting locations and convergence defined as positive definite Hessian.
+%%\end{itemize}
 %
-Given the potential for model misspecification of RPs, a minimal distance
-mapping of RPs represents a best-case scenario where the total bias of RPs,
-when measured jointly, is minimized. That said, without recognizing the
-geometry of how two-parameter models of productivity limit RP space this may
-lead to unintuitive implications in RP estimation. For example, due to the
-shape of the BH RP set a minimal distance mapping ensures that if there is
-model misspecification with respect to one of $\frac{B^*}{B_0}$ or $F^*$, 
-this will necessarily induce bias in the other RP. However under the 
-Schaefer model, since the RP set is a constant in $\frac{B^*}{B_0}$, 
-estimates of $F^*$ are not contaminated in the
-%bias in $F^*$ is not adulterated in the
-same way by model misspecification of $\frac{B^*}{B_0}$. While models with
-constant RPs, such as the logistic model $\frac{B^*}{B_0}=\frac{1}{2}$,
-the Fox model $\frac{B^*}{B_0}=\frac{1}{e}$, or any PT model with fixed $\gamma$ 
-are extremely limited, they can be valuable tools for developing intuition 
-precisely because they isolate RP estimation in their free RPs as compared 
-with the correlated RP biases present in models like the BH or Ricker model.
-
+%%
+%In the presence of contrast, $F^*$ estimation can enjoy very low bias even
+%for a wide range of poorly specified models; conversely in the absence of contrast
+%$F^*$ estimation can suffer very large bias even for slightly misspecified models.
+%This pattern is particularly true for low-contrast inference under the Schaefer model where the
+%geometry of the restricted RP set isolates estimation failure of $F^*$ from
+%$\frac{B^*}{\bar B(0)}$. While contrast has a similar impact on $F^*$ estimation
+%under the BH model, the geometry of the BH RP set correlates estimation bias
+%of $F^*$ and $\frac{B^*}{\bar B(0)}$.
+%{\color{red}Add sentence about growth. as growth increases misspecification interacts with recruitment misspecification to further bias.} 
+%The GP metamodeling approach reveals a
+%more general pattern that highly informative data sets (high contrast)
+%produces a nearly minimal distance mapping of RPs %that are nearly minimal distance mapping 
+%onto the constrained RP set{\color{red} Across all settings.}
 %
-When one considers the implications of RP bias, overestimation of RPs carries
-the severe implication of management recommendations potentially leading to
-overfishing, while underestimation of RP leads to overly conservative management.
-In this sense, when the true model is not known, the geometry of the BH set together
-with the metamodeled bias trends makes the BH model a naturally conservative
-estimator of RPs for most stocks. For most non-BH populations the results presented 
-here suggest that the BH model is likely to make conservative errors in its 
-estimates of $F^*$ and $\frac{B^*}{B_0}$. The one notable exception 
-%to the conservatism of the BH model 
-stands for data generated in the Cushing-like regime of Schnute RPs. In this regime 
-the BH model tends to be fairly unbiased overall, however the bias that is present
-for these populations tends to be overestimation in both RPs, which could lead to 
-unintentionally overfishing these already fragile populations.
-{\color{red} nonstationarity in populations may move the true RPs of existing populations into these more vulnerable areas. by sticking to a BH model we will have a hard time understanding those changes as they occur. and a more flexible model would be flexible in noticing those changes.}  
-%much more severe management consequences for those populations.
-
-
+%\begin{itemize}
+%\item generalize to DDM recruitment
+%\item combine below and above to discuss RP estimation in terms of general RP estimation oriented to restricted spaces.
+%\item generalize restricted space
+%\begin{itemize}
+%	\item 1/2 for schafffer
+%	\item 1/(x+2) for BH
+%	\item small deviations with growth
+%\end{itemize}
+%\end{itemize}
 %
-The RP bias trends of the Schaefer model demonstrate a much more risk prone RP 
-modeling strategy than the BH overall. %less conservative RP modeling strategy %than the BH overall.
-%{\color{red}conservatism} than the BH overall.
-For any population with $\frac{B^*}{B_0}<0.5$, the results presented here suggest that 
-$\frac{B^*}{B_0}$ will tend to be overestimated. When the population comes from 
-the regime where $\frac{B^*}{B_0}>0.5$, the results presented here suggest that 
-$\frac{B^*}{B_0}$ will tend to be underestimated, but $F^*$ is likely to be 
-overestimated depending on the degree of contrast present in the data. So while 
-the Schaefer model is an intuitive model, it may tends to lead to less conservative 
-RP estimation.
-
+%%
+%In all of the cases presented here when model misspecification is removed, even 
+%with weakly informative data, RP estimation is unbiased and well estimated. 
+%Thus contrast alone is not the only factor leading to inferential failure. 
+%Model misspecification is a necessary but not sufficient condition for inducing 
+%RP estimation bias. The particular RP bias present depends on the RP geometry 
+%of the fitted model and how that geometry is misspecified relative to the data. 
+%The RP mapping is then oriented to the RP geometry of the fitted model.
 %
-{\color{red} discuss growth}
-
+%%
 %
-While it is important to recognize these limitations of two-parameter models
-of productivity, we should not solely accept the avoidance of risk as a 
-rational of choosing a BH model of productivity. %Ultimately accuracy of RP estimation, 
-%without structural RP biases, %and accurate assessment of uncertainty is a better state 
-Increasing the flexibility of the production function by moving toward
-three-parameter models would release the underlying structural limitations
-\cite{mangel_perspective_2013} that cause these RP biases in the first place.
-{\color{red} Maybe sell the paper with EJ here}
-Punt \& Cope \cite{punt_extending_2019} %(Mangel et al., 2013). Punt and Cope (2019) 
-considers a suite of possible three-parameter curves which could be used
-instead of current two-parameter curves. For all of their benefits, three
-parameter production functions have their own complicating factors, and the
-structure present in the Schnute model explored here makes it an intuitive bridge
-model for developing three-parameter models going forward.
-
 %
-{\color{red} growth angle on above.}
-
-{\color{red} future work?????}
+%%
+%%NOTE: BITCH ABOUT NOT BEING ABLE TO PRODUCE A PERFECTLY INFORMATIVE TIME SERIES
+%%SPECULATE ABOUT IDEALLY INFORMATION CATCH PATTERNS (DYNAMIC CALIBRATION OF $F^*$)
+%While the relative fishing rate parameterized in Section (\ref{catch}) captures a usefully
+%broad spectrum of relevant fishing behaviors, it is still limiting in the amount of information
+%that it can induce. Improved methods for quantifying contrast in fisheries data, and/or methods of
+%discovering more informative fishing behavior, could improve this analysis. In the absence of a %Without knowing a 
+%maximally informative data set simulation methods will not fully describe how
+%inference fails, but the methods presented here tell the most complete picture
+%yet, with explicit control of the degree model misspecification, contrast, and
+%a simulation design that allows for uniform representative data generation
+%across biologically meaningful stocks. The results presented here suggest the
+%conjecture that under a maximally informative data set, RP inference with a two
+%parameter production function will be biased in the direction of a shortest 
+%distance map from the true RPs onto restricted set of RPs under the two-parameter 
+%model.
+%
+%%
+%Given the potential for model misspecification of RPs, a minimal distance
+%mapping of RPs represents a best-case scenario where the total bias of RPs,
+%when measured jointly, is minimized. That said, without recognizing the
+%geometry of how two-parameter models of productivity limit RP space this may
+%lead to unintuitive implications in RP estimation. For example, due to the
+%shape of the BH RP set a minimal distance mapping ensures that if there is
+%model misspecification with respect to one of $\frac{B^*}{B_0}$ or $F^*$, 
+%this will necessarily induce bias in the other RP. However under the 
+%Schaefer model, since the RP set is a constant in $\frac{B^*}{B_0}$, 
+%estimates of $F^*$ are not contaminated in the
+%%bias in $F^*$ is not adulterated in the
+%same way by model misspecification of $\frac{B^*}{B_0}$. While models with
+%constant RPs, such as the logistic model $\frac{B^*}{B_0}=\frac{1}{2}$,
+%the Fox model $\frac{B^*}{B_0}=\frac{1}{e}$, or any PT model with fixed $\gamma$ 
+%are extremely limited, they can be valuable tools for developing intuition 
+%precisely because they isolate RP estimation in their free RPs as compared 
+%with the correlated RP biases present in models like the BH or Ricker model.
+%
+%%
+%When one considers the implications of RP bias, overestimation of RPs carries
+%the severe implication of management recommendations potentially leading to
+%overfishing, while underestimation of RP leads to overly conservative management.
+%In this sense, when the true model is not known, the geometry of the BH set together
+%with the metamodeled bias trends makes the BH model a naturally conservative
+%estimator of RPs for most stocks. For most non-BH populations the results presented 
+%here suggest that the BH model is likely to make conservative errors in its 
+%estimates of $F^*$ and $\frac{B^*}{B_0}$. The one notable exception 
+%%to the conservatism of the BH model 
+%stands for data generated in the Cushing-like regime of Schnute RPs. In this regime 
+%the BH model tends to be fairly unbiased overall, however the bias that is present
+%for these populations tends to be overestimation in both RPs, which could lead to 
+%unintentionally overfishing these already fragile populations.
+%{\color{red} nonstationarity in populations may move the true RPs of existing populations into these more vulnerable areas. by sticking to a BH model we will have a hard time understanding those changes as they occur. and a more flexible model would be flexible in noticing those changes.}  
+%%much more severe management consequences for those populations.
+%
+%
+%%
+%The RP bias trends of the Schaefer model demonstrate a much more risk prone RP 
+%modeling strategy than the BH overall. %less conservative RP modeling strategy %than the BH overall.
+%%{\color{red}conservatism} than the BH overall.
+%For any population with $\frac{B^*}{B_0}<0.5$, the results presented here suggest that 
+%$\frac{B^*}{B_0}$ will tend to be overestimated. When the population comes from 
+%the regime where $\frac{B^*}{B_0}>0.5$, the results presented here suggest that 
+%$\frac{B^*}{B_0}$ will tend to be underestimated, but $F^*$ is likely to be 
+%overestimated depending on the degree of contrast present in the data. So while 
+%the Schaefer model is an intuitive model, it may tends to lead to less conservative 
+%RP estimation.
+%
+%%
+%{\color{red} discuss growth}
+%
+%%
+%While it is important to recognize these limitations of two-parameter models
+%of productivity, we should not solely accept the avoidance of risk as a 
+%rational of choosing a BH model of productivity. %Ultimately accuracy of RP estimation, 
+%%without structural RP biases, %and accurate assessment of uncertainty is a better state 
+%Increasing the flexibility of the production function by moving toward
+%three-parameter models would release the underlying structural limitations
+%\cite{mangel_perspective_2013} that cause these RP biases in the first place.
+%{\color{red} Maybe sell the paper with EJ here}
+%Punt \& Cope \cite{punt_extending_2019} %(Mangel et al., 2013). Punt and Cope (2019) 
+%considers a suite of possible three-parameter curves which could be used
+%instead of current two-parameter curves. For all of their benefits, three
+%parameter production functions have their own complicating factors, and the
+%structure present in the Schnute model explored here makes it an intuitive bridge
+%model for developing three-parameter models going forward.
+%
+%%
+%{\color{red} growth angle on above.}
+%
+%{\color{red} future work?????}
 
 %
 %

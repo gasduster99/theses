@@ -25,6 +25,12 @@ Raymond~JH Beverton and Sidney~J. Holt.
 \newblock Novartis {Foundation} {Symposia}. John Wiley \& Sons, Ltd,
   Chichester, UK, January 1959.
 
+\bibitem{binois_hetgp_2021}
+Mickaël Binois and Robert~B. Gramacy.
+\newblock \textbf{{hetGP}} : {Heteroskedastic} {Gaussian} {Process} {Modeling}
+  and {Sequential} {Design} in \textit{{R}}.
+\newblock {\em Journal of Statistical Software}, 98(13), 2021.
+
 \bibitem{brent_chapter_1973}
 Richard~P. Brent.
 \newblock Chapter 4: {An} {Algorithm} with {Guaranteed} {Convergence} for
@@ -37,6 +43,21 @@ Elizabeth~N. Brooks, Joseph~E. Powers, and Enric Cortés.
 \newblock Analytical reference points for age-structured models: application to
   data-poor fisheries.
 \newblock {\em ICES Journal of Marine Science}, 67(1):165--175, January 2010.
+
+\bibitem{clark_groundfish_1991}
+William~G. Clark.
+\newblock Groundfish exploitation rates based on life history parameters.
+\newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
+  48(5):734--750, 1991.
+\newblock Publisher: NRC Research Press Ottawa, Canada.
+
+\bibitem{clark_f_2002}
+William~G. Clark.
+\newblock F 35\% {Revisited} {Ten} {Years} {Later}.
+\newblock {\em North American Journal of Fisheries Management}, 22(1):251--257,
+  February 2002.
+\newblock Publisher: Taylor \& Francis \_eprint:
+  https://doi.org/10.1577/1548-8675(2002)022{\textless}0251:FRTYL{\textgreater}2.0.CO;2.
 
 \bibitem{conn_when_2010}
 Paul~B. Conn, Erik~H. Williams, and Kyle~W. Shertzer.
@@ -149,11 +170,42 @@ Robert~B. Gramacy.
   optimization for the applied sciences}.
 \newblock Chapman and Hall/CRC, 2020.
 
+\bibitem{gramacy_bayesian_2008}
+Robert~B. Gramacy and Herbert K.~H. Lee.
+\newblock Bayesian {Treed} {Gaussian} {Process} {Models} with an {Application}
+  to {Computer} {Modeling}.
+\newblock {\em Journal of the American Statistical Association},
+  103(483):1119--1130, 2008.
+\newblock Publisher: [American Statistical Association, Taylor \& Francis,
+  Ltd.].
+
 \bibitem{gramacy_cases_2012}
 Robert~B. Gramacy and Herbert~KH Lee.
 \newblock Cases for the nugget in modeling computer experiments.
 \newblock {\em Statistics and Computing}, 22(3):713--722, 2012.
 \newblock Publisher: Springer.
+
+\bibitem{heinonen_non-stationary_2016}
+Markus Heinonen, Henrik Mannerström, Juho Rousu, Samuel Kaski, and Harri
+  Lähdesmäki.
+\newblock Non-{Stationary} {Gaussian} {Process} {Regression} with {Hamiltonian}
+  {Monte} {Carlo}.
+\newblock In {\em Proceedings of the 19th {International} {Conference} on
+  {Artificial} {Intelligence} and {Statistics}}, pages 732--740. PMLR, May
+  2016.
+\newblock ISSN: 1938-7228.
+
+\bibitem{hennig_entropy_2012}
+Philipp Hennig and Christian~J. Schuler.
+\newblock Entropy search for information-efficient global optimization.
+\newblock {\em Journal of Machine Learning Research}, 13(6), 2012.
+
+\bibitem{hernandez-lobato_predictive_2014}
+José~Miguel Hernández-Lobato, Matthew~W Hoffman, and Zoubin Ghahramani.
+\newblock Predictive {Entropy} {Search} for {Efficient} {Global} {Optimization}
+  of {Black}-box {Functions}.
+\newblock In {\em Advances in {Neural} {Information} {Processing} {Systems}},
+  volume~27. Curran Associates, Inc., 2014.
 
 \bibitem{hilborn_quantitative_1992}
 R.~Hilborn and C.~J. Walters.
@@ -185,6 +237,12 @@ Mark~E. Johnson, Leslie~M. Moore, and Donald Ylvisaker.
   1990.
 \newblock Publisher: Elsevier.
 
+\bibitem{kennedy_bayesian_2001}
+Marc~C. Kennedy and Anthony O'Hagan.
+\newblock Bayesian calibration of computer models.
+\newblock {\em Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, 63(3):425--464, 2001.
+
 \bibitem{kingsland_refractory_1982}
 Sharon Kingsland.
 \newblock The refractory model: the logistic curve and the history of
@@ -203,6 +261,15 @@ Jussi Lehtonen.
 \newblock The {Lambert} {W} function in ecological and evolutionary models.
 \newblock {\em Methods in Ecology and Evolution}, 7(9):1110--1118, September
   2016.
+
+\bibitem{mace_relationships_1994}
+Pamela~M. Mace.
+\newblock Relationships between {Common} {Biological} {Reference} {Points}
+  {Used} as {Thresholds} and {Targets} of {Fisheries} {Management}
+  {Strategies}.
+\newblock {\em Canadian Journal of Fisheries and Aquatic Sciences},
+  51(1):110--122, January 1994.
+\newblock Publisher: NRC Research Press.
 
 \bibitem{magnusson_what_2007}
 Arni Magnusson and Ray Hilborn.
@@ -408,6 +475,12 @@ Michael Stein.
   sampling.
 \newblock {\em Technometrics}, 29(2):143--151, 1987.
 \newblock Publisher: Taylor \& Francis.
+
+\bibitem{thorson_case_2019}
+James~T. Thorson, Merrill~B. Rudd, and Henning Winker.
+\newblock The case for estimating recruitment variation in data-moderate and
+  data-poor age-structured models.
+\newblock {\em Fisheries Research}, 217:87--97, September 2019.
 
 \bibitem{von_bertalanffy_quantitative_1938}
 Ludwig Von~Bertalanffy.

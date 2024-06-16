@@ -1,20 +1,28 @@
 %\begin{itemize}
 
-{\color{blue}
-A bit more: Measurability of Proxy. Difficulty of RP calculations $F^*$.
-%\item Define $F_{MSY}$ Proxy $F_{SPR_x}$
-}
+%{\color{blue}
+%A bit more: Measurability of Proxy. Difficulty of RP calculations $F^*$.
+%%\item Define $F_{MSY}$ Proxy $F_{SPR_x}$
+%cite Clark (1991, 1993, 2002) \cite{clark_groundfish_1991, clark_f_2002} Mace (1994) \cite{mace_relationships_1994} to derive, Punt \cite{punt_how_2012} in use
+%}
 
 %
-$F_{SPR_x}$ is the fishing rate that brings the {\it Spawning Potential Ratio} (SPR) to $x\%$ of $B_0$.
+Due to the difficulty of calculating RPs, in particular $F^*$ as exemplified 
+by the Schnute model as seen in Sections (\ref{sModel}) and (\ref{ddmRP}), proxies of RPs
+have been developed \cite{clark_groundfish_1991, mace_relationships_1994, clark_f_2002}.
+One such proxy is the fishing rate that brings the {\it Spawning Potential Ratio} (SPR) 
+to $x\%$ of $B_0$, also known as $F_{SPR_x}$.
+%
+%$F_{SPR_x}$ is the fishing rate that brings the {\it Spawning Potential Ratio} (SPR) to $x\%$ of $B_0$.
 This definition implies the following relation between total mortality, $B_0$ and $R_0$.
 %
 \begin{equation}
 	(F_{SPR_x}+M)x B_0 = R_0 \nonumber
 \end{equation}
 %
-By setting $x$ appropriately the hope is that $F_{SPR_x}$ is a measurable proxy 
-for $F_{MSY}$. $F_{SPR_x}$ is a helpful proxy because it is independent of the 
+By setting $x$ appropriately the hope is that $F_{SPR_x}$ is a easily calculable proxy %measurable
+for $F^*$. Calculating $F_{SPR_x}$ is relatively more straightforward than $F^*$ 
+because it is independent of the %a helpful proxy because it is independent of the 
 functional form of productivity. Since $R_0$ is defined as $R_0=M B_0$, $F_{SPR_x}$ 
 can then be written as,
 %
@@ -32,7 +40,7 @@ Another proxy used manages fishing so as to target an equilibrium biomass
 that is $y\%$ of $B_0$, denoted $B_y$. 
 %is the equilibrium biomass that is $y\%$ of $B_0$. 
 When $B_y$ is combined with the $F_{SPR_x}$ proxy (of $F_{MSY}$), $B_y$ is 
-thought of as a measurable proxy for $\frac{B_{MSY}}{B_0}$. Enforcing both 
+thought of as a proxy for $\frac{B_{MSY}}{B_0}$. Enforcing both %measureable
 proxies simultaneously implies $\frac{\bar B(F_{SPR_x})}{B_0}=y$. By managing
 %In the combined setting, $B_y$ can be defined as $\frac{\bar B(F_{SPR_x})}{B_0}=y$. By managing 
 the population so as to target these two proxies simultaneously it is thought 
@@ -97,7 +105,7 @@ consistently for all categories. This is a conservative management approach
 from the BH perspective since species are managed to biomasses %(thought to be)
 that are greater than the BH $B^*$, but it also admits that proxy values 
 are inconsistent with the underlying dynamics used to estimate biomass in 
-the first place. Furthermore the BH SPM neccessitiates that the chosen proxy 
+the first place. Furthermore the BH SPM necessitates that the chosen proxy 
 values will never equal the RPs they are intended to approximate.
 
 %{\color{blue}
@@ -131,7 +139,7 @@ issues presented by the BH model in any of a number of ways.
 %With informative indicies and global optimization one my estimate any (or both) of $\alpha$, $\beta$ and $\gamma$ 
 %to calculate RP directly as seen in Section (\ref{}estimating more).
 %Or 
-One potentiallly compelling use of this extra degree of freedom is to  
+One potentially compelling use of this extra degree of freedom is to  
 %One may 
 engineer the values of $\alpha$ and $\gamma$ to demand consistency of 
 the proxies and $MSY$.
@@ -139,8 +147,8 @@ This necessitates that RPs are always equal to their measurable proxy approximat
 and it resolves the inconsistency between proxies and the underlying dynamics 
 used to estimate the biomasses to which they are compared. The Schnute model 
 can do this by using $\gamma$ to tie proxies directly to the true RPs that 
-they are intended to approximate. This makes proxies measurable quantities 
-that truly represent the Schnute $MSY$ RPs. 
+they are intended to approximate. This makes the proxies easily calculable quantities 
+that truly represent Schnute $MSY$ RPs. 
 %ll while allowing some of the structure of the structure of productivity to be learned from data  
 %Since under the Schnute model the 
 %To derive the 
@@ -157,8 +165,18 @@ under the Schnute SPM (similar to Eq.(\ref{BratS})) evaluated at $F_{SPR_x}$ (as
 
 %Evaluating $\frac{B_{MSY}}{B_0}$ Eq.(\ref{BratS}) at $F_{SPR_x}$. 
 Solving Eq. (\ref{why}) for $\alpha$ gives a relation between $\alpha$, 
-and $\gamma$ that defines an infinite family of Schnute curves that 
-respect the proxy values $x$ and $y$.
+and $\gamma$ that defines an infinite %family of Schnute curves that respect the proxy values $x$ and $y$.
+\begin{wrapfigure}{r}{0.49\textwidth}
+\vspace{-1cm}
+\includegraphics[width=0.49\textwidth]{../gpBias/agRF_x0.5_y0.4.png}
+\vspace{-1.5cm}
+\caption{\label{agCurves} $\alpha$-$\gamma$ relationships between \mbox{Schnute MSY RPs, Eq. (\ref{aMSY}), and proxies,} Eq. (\ref{aProxy}), for the Rockfish management category.
+The discrepancy that the BH model presents between MSY RPs and proxies is shown by the difference in the implied values of $\alpha$ respectively (shown in blue) when $\gamma=-1$ under the BH model.
+}
+%MSY RP curve, along side Schnute MSY RP curves with $\gamma$ chosen to match the management pr
+\end{wrapfigure}
+%
+family of Schnute curves that respect the proxy values $x$ and $y$.
 % the compensation ratio $\frac{\alpha}{M}$ gives,
 %
 \begin{equation}
@@ -211,7 +229,8 @@ Now equating Eqs. (\ref{aProxy}) and (\ref{aMSY}) and then simplifying with the 
 \end{align*}
 
 %
-At this point it convenient to make the substitution $r(x,y)=\frac{y}{(1-x)(1-y)}$. Making this substitution, and factoring, simplifies the form as,
+At this point it convenient to make the substitution $r(x,y)=\frac{y}{(1-x)(1-y)}$. Making this substitution, 
+and factoring, simplifies the above form as,
 %
 \begin{align}
 r(x,y)&=\Big(r(x,y)-\gamma\Big)x^{-\gamma}.
@@ -220,6 +239,7 @@ r(x,y)&=\Big(r(x,y)-\gamma\Big)x^{-\gamma}.
 %
 Recall the Lambert product logarithm, $W$, is defined as the inverse function of $x e^x$ such that $x=W(xe^x)$ \cite{lehtonen_lambert_2016, corless_lambertw_1996}.
 Isolating $\gamma$ requires that the above expression be placed into the form $xe^x$ to apply the definition of $W$. %the Applying this definition allows for the isolation of $\gamma$.
+
 \begin{align}
 r(x, y)x^{r(x, y)}&=\Big(r(x, y)-\gamma\Big)x^{r(x, y)-\gamma} \nonumber\\
 r(x, y)x^{r(x, y)}\log(x) &= \Big(r(x, y)-\gamma\Big)\log(x) e^{\big(r(x, y)-\gamma\big)\log(x)} \nonumber\\
@@ -227,8 +247,8 @@ W_{-1}\Big(r(x, y)x^{r(x, y)}\log(x)\Big) &= \Big(r(x, y)-\gamma\Big)\log(x) \no
 \gamma &= r(x, y)-\frac{W_{-1}\Big(r(x, y)x^{r(x, y)}\log(x)\Big)}{\log(x)} \label{gOfProxy}
 \end{align}
 %
-The solution of interest for the $\gamma$, that brings the proxies into agreement 
-with MSY, comes from $W_{-1}$.
+The solution of interest for the $\gamma$ (bringing proxies into agreement 
+with MSY) comes from $W_{-1}$ branch of the Lambert product logarithm.
 %
 To complete the point $(\alpha, \gamma)$, $\alpha$ may be computed by 
 substituting $\gamma$ from Eq. (\ref{gOfProxy}) into either of 
@@ -236,16 +256,18 @@ Eqs. (\ref{aProxy}) or (\ref{aMSY}) to give $\alpha$ in terms of only the proxie
 
 %\clearpage
 \begin{wrapfigure}{r}{0.49\textwidth}
+%\vspace{-1.5cm}
 \includegraphics[width=0.49\textwidth]{../gpBias/rpProxAll0.2.png}
-\caption{\label{rpProxCurves}BH MSY RP curve, along side Schnute MSY RP curves with $\gamma$ chosen to match the management proxies.}
+\vspace{-1.5cm}
+\caption{\label{rpProxCurves}BH MSY RP curve, along side Schnute MSY RP curves with $\gamma$ chosen to match the management proxies. }
 \end{wrapfigure}
 %
 Figure (\ref{rpProxCurves}) demonstrates how the BH RPs can be generalized by 
 the three parameter Schnute model to bring $MSY$ RPs into alignment with the 
-proxy values. The colored curves show the RPs that a Schnute model with 
-$\gamma$'s fixed by Eq. (\ref{gOfProxy}) can model. Notice that the proxy values 
-fall along the colored curves, with the specific location of the the proxy point 
-given by the $\alpha$ derived by plugging $\gamma$ back into either of Eqs. (\ref{aProxy}) 
+proxy values. The colored curves show Schnute RPs with $\gamma$'s fixed by 
+Eq. (\ref{gOfProxy}). Notice that the proxy values fall along the colored 
+curves, with the specific location of the the proxy point given by the $\alpha$ 
+as derived by plugging $\gamma$ back into either of Eqs. (\ref{aProxy}) 
 or (\ref{aMSY}).
 
 %
@@ -256,9 +278,9 @@ other three-parameter models should be able to bring RPs into correspondence
 with their proxies, the differing functional forms of various three-parameter 
 models may result in yield curves that behave in unexpected ways. A beautiful 
 feature of the Schnute model used in this way is that the derived $\gamma$ 
-values generalize the BH model in a way that results in familiar yield curves 
-such as the Cushing, BH, Ricker, or Logistic models with well studied risk 
-characteristics. 
+values generalize the BH model in a way that results in familiar production models %curves 
+such as the Cushing-like, BH, Ricker, or Logistic models each with well studied risk 
+characteristics and dynamics. 
 %(or interpolation between those models)
 
 %which is that have may result in more or less conservative resolutions of their parametric forms and RPs. 

@@ -478,7 +478,210 @@ Recruitment deviations
 	month = nov,
 	year = {2002},
 	note = {Publisher: Royal Society},
-	keywords = {comparative study, conservation, fisheries, population growth rate, Ricker, stock–recruitment},
+	keywords = {Ricker, conservation, comparative study, fisheries, population growth rate, stock–recruitment},
 	pages = {2229--2237},
 	file = {Full Text:/home/nick/Zotero/storage/LQXU3JEM/Denney et al. - 2002 - Life–history correlates of maximum population grow.pdf:application/pdf},
+}
+
+@article{thorson_case_2019,
+	series = {Recruitment: {Theory}, {Estimation}, and {Application} in {Fishery} {Stock} {Assessment} {Models}},
+	title = {The case for estimating recruitment variation in data-moderate and data-poor age-structured models},
+	volume = {217},
+	issn = {0165-7836},
+	url = {https://www.sciencedirect.com/science/article/pii/S0165783618301978},
+	doi = {10.1016/j.fishres.2018.07.007},
+	abstract = {The birth and survival of juveniles (termed recruitment) is highly variable in marine populations, and this variation is not precisely predicted by spawning output or environmental effects in isolation. Variation in recruitment after accounting for differences in spawning output (termed “recruitment deviations”) is commonly estimated in age-structured populations models that are fitted to data including samples of length or age-composition (“age-structured integrated models”, ASIM). However, recruitment deviations often are not estimated when fitting only to catch and abundance-index data (“age-structured production models”, ASPM), or catch data given an assumed value for final stock status (“age-structured stock-reduction analysis”, ASSRA). We use a simulation and real-world example to illustrate the potential benefits of estimating recruitment deviations in data-rich (ASIM), data-moderate (ASPM), and data-poor (ASSRA) models, while using either marginal likelihood or tuning algorithms with penalized likelihood estimation. The simulation experiment shows that marginal and penalized likelihood methods are both unbiased and precise for ASIM when estimating recruitment deviations, but biased and imprecise when not. The ASPM is somewhat biased both with or without estimating recruitment deviations, but is more precise when estimating recruitment deviations than not. The ASPM with recruitment deviations estimated using marginal likelihood has somewhat better performance than using penalized likelihood, although maximum likelihood also sometimes does not converge. The ASSRA has similar precision with or without estimating recruitment deviations, but estimating recruitment deviations is important to have reasonable estimates of confidence intervals. Both marginal and penalized likelihood can accurately estimate the variance of recruitment deviations for ASIM and ASPM. Estimating recruitment deviations is necessary to accurately estimate uncertainty in spawning output, and results are robust to mis-specifying the recruitment model (e.g., when simulating data with regime-shift dynamics). A sensitivity analysis shows mis-specifying maturity-at-age causes bias in all models, but bias is somewhat mitigated when estimating recruitment deviations. Finally, a case-study involving Pacific hake off the US West Coast emphasizes that it is necessary to estimate recruitment deviations to closely match results from the original assessment.},
+	urldate = {2024-06-13},
+	journal = {Fisheries Research},
+	author = {Thorson, James T. and Rudd, Merrill B. and Winker, Henning},
+	month = sep,
+	year = {2019},
+	keywords = {Age-structured production model, Data-poor model, Penalized likelihood, Recruitment, Stock assessment, Stock-reduction analysis},
+	pages = {87--97},
+	file = {ScienceDirect Snapshot:/home/nick/Zotero/storage/P2N69VA4/S0165783618301978.html:text/html},
+}
+
+@misc{stawitz_fisheries_2023,
+	title = {The {Fisheries} {Integrated} {Modeling} {System} ({FIMS})},
+	copyright = {Creative Commons Attribution 4.0 International},
+	shorttitle = {{NOAA}-{FIMS}/{FIMS}},
+	url = {https://zenodo.org/doi/10.5281/zenodo.10393209},
+	abstract = {What's Changed
+
+Summary of high level/breaking changes:
+
+
+
+Added a pkgdown site for FIMS
+
+Add code cov tests and site link
+
+Remove recruitment bias correction and adjustment because we plan to use TMB (https://github.com/NOAA-FIMS/FIMS/issues/185)
+
+Improve logging coverage and separate logs into multiple files
+
+Put recruitment deviations on the log scale when input
+
+Report more values with standard errors
+
+Code cleanup, documentation, and consistency improvements
+
+Remove rapidjson dependence
+
+Add start\_year and end\_year as slots to FIMSFrame
+
+Make log\_obs\_error a vector
+
+Load the Rcpp module upon package install so components don't need to be prefaced by fims\$
+
+Refactor vectors to use fims::Vector class
+
+Add Newton steps to FIMS integration test to improve convergence in integration test
+
+
+More detail:
+
+
+
+Update issue forms by @k-doering-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/426
+
+Update DESCRIPTION to match release number by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/425
+
+resolved issues causing warnings by @MOshima-PIFSC in https://github.com/NOAA-FIMS/FIMS/pull/430
+
+\#307:  export age comp function by @k-doering-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/438
+
+Style code and document by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/439
+
+368 convert fims to a pkgdown site by @Bai-Li-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/437
+
+\#242 fix codecov calc and upload by @k-doering-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/436
+
+391 feature find a file parser for c++ tests by @msupernaw in https://github.com/NOAA-FIMS/FIMS/pull/434
+
+Style code and document by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/440
+
+fix: deploying pkgdown by @k-doering-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/448
+
+fix: remove set() by @KyleShertzer-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/451
+
+Update DESCRIPTION by @peterkuriyama-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/435
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/454
+
+Remove bias correction/adjustment by @Bai-Li-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/452
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/460
+
+Style code and document by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/458
+
+doc: error and progress logging for information.hpp by @nathanvaughan-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/424
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/461
+
+fix: refactor parameter constructor by @Bai-Li-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/455
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/462
+
+doc: logit\_steep correction by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/463
+
+refactor add\_tmb\_to\_fims\_internal by @msupernaw in https://github.com/NOAA-FIMS/FIMS/pull/459
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/465
+
+Created get-gtest-codecov to create coverage.xml report for issue \#242 by @MOshima-PIFSC in https://github.com/NOAA-FIMS/FIMS/pull/470
+
+\#441: fix reviewer checklist build trigger, edit checklist by @k-doering-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/474
+
+377 refactor call report f from modelhpp instead of fleet and population by @Andrea-Havron-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/466
+
+Style code and document by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/484
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/483
+
+Changed {\textless}T{\textgreater} to {\textless}Type{\textgreater} by @MOshima-PIFSC in https://github.com/NOAA-FIMS/FIMS/pull/487
+
+411 refactor naming convention of member and local variables in the fleet class by @Bai-Li-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/476
+
+Remove test data from fims deterministic folder by @Bai-Li-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/481
+
+Update GHA workflows to enforce FIMS installation by @Bai-Li-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/489
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/488
+
+renamed dimension folded indices to be clearer by @peterkuriyama-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/480
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/490
+
+rm acomp/index nll tests objects by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/491
+
+Delete test files by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/492
+
+fix: update windows-2019 to windows-latest by @Bai-Li-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/495
+
+Create multiple namespaces in FIMS by @k-doering-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/479
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/500
+
+fix: use expect\_equal() for deterministic tests by @Bai-Li-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/496
+
+Style code and document by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/505
+
+fix: build trigger only on pr being opened by @k-doering-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/498
+
+407 updating log files by @nathanvaughan-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/499
+
+Name refactoring for tests, growth, and median by @nathanvaughan-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/503
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/509
+
+Fix the test for population.CalculateRecruitment() by @Bai-Li-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/508
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/512
+
+fix: update run google test to use windows latest by @k-doering-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/511
+
+refactor: move duplicated code into the test fixture section by @Bai-Li-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/497
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/513
+
+Fims concurrent by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/520
+
+Remove third party library rapidjson by @Bai-Li-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/519
+
+Make Doxygen comment style the same by @k-doering-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/518
+
+refactor recruitment deviations to log space by @Andrea-Havron-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/514
+
+add documentation to test-fims-estimation by @Andrea-Havron-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/515
+
+Added start\_year and end\_year as slots to FIMSFrame by @kellijohnson-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/501
+
+New 464 load module by @Andrea-Havron-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/526
+
+make log\_obs\_error a vector by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/532
+
+Fims vector by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/517
+
+format C++ code with clang format by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/523
+
+Style code and document by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/522
+
+Release mq by @ChristineStawitz-NOAA in https://github.com/NOAA-FIMS/FIMS/pull/533
+
+
+New Contributors
+
+
+
+@peterkuriyama-NOAA made their first contribution in https://github.com/NOAA-FIMS/FIMS/pull/435
+
+
+Full Changelog: https://github.com/NOAA-FIMS/FIMS/compare/v0.1.0...v0.2.0},
+	urldate = {2024-06-15},
+	publisher = {Zenodo},
+	author = {Stawitz, Christine and Havron, Andrea and Li, Bai and Supernaw, Matthew and Doering, Kathryn and Nathan Vaughan and Kelli Johnson and Jane Sullivan and Jon Kenton Tarsus Brodziak and Ian Taylor and Meg Oshima and Jim Ianelli and Tim Miller and Kuriyama, Peter and KyleShertzer-NOAA},
+	month = dec,
+	year = {2023},
+	doi = {10.5281/ZENODO.10393209},
 }
