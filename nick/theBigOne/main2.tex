@@ -646,10 +646,35 @@ is considered together with model misspecification. %alongside the effect of mod
 \clearpage
 
 %
+%{\color{blue}
+%Code forms the foundation of an R package,\\ 
+%analytical RPs under three parameter paper under review,\\
+%stock assessment \cite{dick_stock_2023},\\...
+%}
+
+%%
+%This thesis develops three-parameter models of productivity and recruitment to im-
+%29 prove RP estimation. By simulating from three-parameter models and observing RP
+%30 estimation under misspecified two-parameter models, a metamodel of the RP estima-
+%31 tion process makes the consequences of RP estimation with the most common models
+%32 explicit. The metamodel demonstrates the types of stocks where RP estimation may
+%33 fail, indicates how RP estimatiion fails, and quantifies the scale of biases with current
+%34 models.
+
+%
 {\color{blue}
-Code forms the foundation of an R package,\\ 
-analytical RPs under three parameter paper under review,\\
-stock assessment \cite{dick_stock_2023},\\...
+{\color{red} Also revise intro paragraph.} 
+
+This thesis develops a metamodeling simulation framework for evaluating RP estimation 
+under misspecified two-parameter models of productivity. By developing three-parameter 
+models in the SPM and DDM settings, analytical and numerical methods are provided for 
+generating data broadly in RP space under the Schnute and PT models. A GP metamodel is 
+then presented for explicit analysis of RP biases under two-parameter models. The analytical 
+methods for navigating the relationship between three parameter models and RPs form the 
+foundation of the a paper under review based on the work presented in Appendix (\ref{proxyMath}). 
+The implementation and analytical results under the DDM is particularly novel and 
+contributes to futher expansion of those methods. Additionally the experiences 
+of these projects contributed to \cite{dick_stock_2023}.   
 }
 
 %
@@ -752,20 +777,51 @@ that can be made in future study. There are two major directions for
 interrelated future work. Firstly, there is always a desire to study additional 
 biology dynamics. Secondly, the results presented here suggest that studying 
 these more complex biologies would be aided by extensions to the metamodeling 
-techniques presently used.
+techniques.
 
 %Biology
 %\item Additional Biology Dynamics:
 %	\begin{itemize}
 %		\item Given the role of contrast: improved notions of understanding/quantifying contrast (such as...)
 %		\item Recruitment deviations \cite{thorson_case_2019}.
+%A simulation experiment shows that estimating recruitment variation reduces bias and imprecision regardless of data quantity.   
+%estimate random variation in recruitment beyond that predicted from spawning output, treating recruitment variation as a random 
+%effect and using the epsilon bias-correction estimator (Thorson and Kristensen, 2016).
 %		%ASM
 %		\item adapting design methods to simulate simulation designs for ASMs such as Stock Synthesis \cite{methot_stock_2013} or new noaa model FIMS \cite{stawitz_fisheries_202}.
 %			selectivity
 %	\end{itemize}
 
 %
+Given the role of contrast for informing productivity parameters, and thus RPs, 
+improved notions of understanding contrast could improve this analysis. This 
+analysis develops some mechanisms by which the lack of contrast fails to 
+inform RPs, but developing a deeper understanding of how contrast informs 
+parameters, or at least developing methods of quantifying observed contrast, 
+more generally is clearly important for contextulizing model fit. The notion 
+of contrast developed in Section (\ref{catch}) is representative of many 
+California fisheries and is useful for the simulation purposes here, but 
+methods of understanding the notion more generally would be extremely valuable.  
+%The notion of contrast developed in Section (\ref{catch}) if useful and representative of many California fisheries. 
 
+%
+While the DDM developed in Chapter (\ref{delayChapter}) parsimoniously develops 
+the most foundational biological processes in fisheries management, further 
+developing RP analyses that account for additional biological processes are 
+always desired. The addition of recruitment deviations to the DDM is clear a next 
+step. Thorson et. al. \cite{thorson_case_2019} show that modeling recruitment deviations
+as a random effect composed with BH recruitment can reduce bias in estimates of depletion 
+and improve uncertainty quantification for data-limited models of Pacific hake. %such the DDM developed here.
+The methods presented in this thesis are an ideal framework for understaning those 
+results more boardly in terms of RP model misspecification. Furthermore, 
+expanding this study to incorporate age/length data and various models of selectivity 
+via more complex ASMs such as Stock Synthesis \cite{methot_stock_2013} or FIMS \cite{stawitz_fisheries_202}
+could be an excellent direction for furture work.
+
+%\cite{thorson_case_2019} 
+%a unifying sentence about processes uniting Recruitment deviations and ASMs 
+%such as Stock Synthesis \cite{methot_stock_2013} or new noaa model FIMS \cite{stawitz_fisheries_202}
+%incorporating (catch, ages, lengths) data/ and effects of various selectivity. 
 
 
 %Metamodel
@@ -781,52 +837,73 @@ techniques presently used.
 %			Including measures of the GP metamodel variance in the acquision function \cite{pourmohamad_bayesian_2021} (beyond maximin distance) to focus design refinement on poorly understood response features. Or similar Entropy search \cite{hennig_entropy_2012, hernandez-lobato_predictive_2014} 
 
 %
-\begin{itemize}
-\item future work
-\begin{itemize}
-	%
-	\item While we acomplished our goals; here are ways to improve things for future use:  
-	%
-	%\item Given the role of contrast: improved notions of understanding/quantifying contrast (such as...)
-	%
-	\item Metamodeling:	
-	\begin{itemize}
-		\item faster simulation would allow the analysis to condition on specific stock assessment data (catch, ages, lengths)
-			turn around on the porder of days rather than a week
-			fit and compare multiple models to triangulate better RPs.
-		\item more sofisticated metamodels. 
-			nonstationary GP \cite{gramacy_bayesian_2008, binois_hetgp_2021, heinonen_non-stationary_2016}. 
-			less design refinement
-		\item more effective design refinement (acquisition functions)
-			Including measures of the GP metamodel variance in the acquision function \cite{pourmohamad_bayesian_2021} (beyond maximin distance) to focus design refinement on poorly understood response features. Or similar Entropy search \cite{hennig_entropy_2012, hernandez-lobato_predictive_2014} 		
-		%\item require less design refinement with a nonstationary GP \cite{gramacy_bayesian_2008, binois_hetgp_2021, heinonen_non-stationary_2016}
-		%\item accounting for response surface variability, nonstationary GP, and thru more robust acquisistion functions (e.g. EI) \cite{}
-		%\item more general methods for Section (\ref{sLHS}). Metamodel based Space-filling in the output space methods. 
-		%\item development as dynamics require improvements.
-	\end{itemize}
-	\item Additional Biology Dynamics:
-	\begin{itemize}
-		\item Given the role of contrast: improved notions of understanding/quantifying contrast (such as...)
-		\item Recruitment deviations \cite{thorson_case_2019}.
-		%ASM
-		\item adapting design methods to simulate simulation designs for ASMs such as Stock Synthesis \cite{methot_stock_2013} or new noaa model FIMS \cite{stawitz_fisheries_202}.
-			selectivity
-	\end{itemize}
-	%\item Given the role of contrast: improved notions of understanding/quantifying contrast
-	%\item Exploring different types of model misspecification 
-	%\item age structured models
-	%\item increasing the flexibility of fisheries models (estimate more, propogate uncertainty)
-	
+The metamodeling structures developed here have proven effective tools for understanding RP biases 
+in the SPM and DDM settings presented here, that said several imporvements may be made to the metamodeling 
+simulation framework itself to facilitate this analysis in more complex settings. Improving the speed 
+of simulations from the order of a week to the order of days would allow the analysis to condition 
+on specific stock assessment models and data (i.e. catches, ages, lengths) to consider how RP model 
+misspecification may be specifically present in a given stock assessment. It was not considered a priority 
+for the work presented in this thesis but by more effectively refining the simulation design through the 
+use of more pointed acquision functions \cite{pourmohamad_bayesian_2021}, fewer simulations may be collected 
+which is the primary factor for determining the run time of these simulations. In particular, since 
+optimization is not a goal of the metamodel in this setting, developing Entropy-based aquisition functions 
+\cite{hennig_entropy_2012, hernandez-lobato_predictive_2014} could be useful here. Furthermore, given the 
+catestrophic model failure that was observed under low contrast BH models, particularly in the slower growing examples, 
+it could be valuable to consider nonstationary GP metamodels \cite{gramacy_bayesian_2008, binois_hetgp_2021, heinonen_non-stationary_2016}. 
+By considering nonstationary metamodels the catestrophic model failure may be more quickly and accuratly 
+identified.
 
-	%\item assumptions of stationarity (popDyn or GP) 
-	%\begin{itemize}
-	%	\item misspecified models will underestimate variance. uses of the metamodel correct 
-	%	\item additional components of variance in metamodel. 
-	%	\item nonstationary GP metamodel
-	%\end{itemize}
-	
-\end{itemize}
-\end{itemize}
+%By documenting these directions for future work here it is the hope that these approaches may facilitate the future reseach of  
+
+% however as using these methods in the context of more complexbiological models or  
+
+%%
+%\begin{itemize}
+%\item future work
+%\begin{itemize}
+%	%
+%	\item While we acomplished our goals; here are ways to improve things for future use:  
+%	%
+%	%\item Given the role of contrast: improved notions of understanding/quantifying contrast (such as...)
+%	%
+%	\item Metamodeling:	
+%	\begin{itemize}
+%		\item faster simulation would allow the analysis to condition on specific stock assessment data (catch, ages, lengths)
+%			turn around on the porder of days rather than a week
+%			fit and compare multiple models to triangulate better RPs.
+%		\item more sofisticated metamodels. 
+%			nonstationary GP \cite{gramacy_bayesian_2008, binois_hetgp_2021, heinonen_non-stationary_2016}. 
+%			less design refinement
+%		\item more effective design refinement (acquisition functions)
+%			Including measures of the GP metamodel variance in the acquision function \cite{pourmohamad_bayesian_2021} (beyond maximin distance) to focus design refinement on poorly understood response features. Or similar Entropy search \cite{hennig_entropy_2012, hernandez-lobato_predictive_2014} 		
+%		%\item require less design refinement with a nonstationary GP \cite{gramacy_bayesian_2008, binois_hetgp_2021, heinonen_non-stationary_2016}
+%		%\item accounting for response surface variability, nonstationary GP, and thru more robust acquisistion functions (e.g. EI) \cite{}
+%		%\item more general methods for Section (\ref{sLHS}). Metamodel based Space-filling in the output space methods. 
+%		%\item development as dynamics require improvements.
+%	\end{itemize}
+%	\item Additional Biology Dynamics:
+%	\begin{itemize}
+%		\item Given the role of contrast: improved notions of understanding/quantifying contrast (such as...)
+%		\item Recruitment deviations \cite{thorson_case_2019}.
+%		%ASM
+%		\item adapting design methods to simulate simulation designs for ASMs such as Stock Synthesis \cite{methot_stock_2013} or new noaa model FIMS \cite{stawitz_fisheries_202}.
+%			selectivity
+%	\end{itemize}
+%	%\item Given the role of contrast: improved notions of understanding/quantifying contrast
+%	%\item Exploring different types of model misspecification 
+%	%\item age structured models
+%	%\item increasing the flexibility of fisheries models (estimate more, propogate uncertainty)
+%	
+%
+%	%\item assumptions of stationarity (popDyn or GP) 
+%	%\begin{itemize}
+%	%	\item misspecified models will underestimate variance. uses of the metamodel correct 
+%	%	\item additional components of variance in metamodel. 
+%	%	\item nonstationary GP metamodel
+%	%\end{itemize}
+%	
+%\end{itemize}
+%\end{itemize}
 
 %\begin{itemize}
 %\item discuss a bit relation to proxies wrt balancing conservative vs. accurate.
