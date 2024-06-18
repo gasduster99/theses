@@ -74,45 +74,45 @@ Warning--empty journal in pearson_reliability_2008
 Warning--there's a number but no series in ramasubramanian_machine_2017
 Warning--empty journal in schaefer_study_1957
 Warning--empty journal in walters_continuous_2020
-You've used 81 entries,
+You've used 80 entries,
             2118 wiz_defined-function locations,
-            964 strings with 18198 characters,
-and the built_in function-call counts, 25658 in all, are:
-= -- 2586
-> -- 1120
-< -- 6
-+ -- 471
-- -- 364
-* -- 1902
-:= -- 4367
-add.period$ -- 272
-call.type$ -- 81
-change.case$ -- 413
+            957 strings with 17859 characters,
+and the built_in function-call counts, 25089 in all, are:
+= -- 2526
+> -- 1092
+< -- 5
++ -- 460
+- -- 354
+* -- 1862
+:= -- 4283
+add.period$ -- 267
+call.type$ -- 80
+change.case$ -- 405
 chr.to.int$ -- 0
-cite$ -- 90
-duplicate$ -- 917
-empty$ -- 2015
-format.name$ -- 364
-if$ -- 5194
+cite$ -- 89
+duplicate$ -- 894
+empty$ -- 1974
+format.name$ -- 354
+if$ -- 5066
 int.to.chr$ -- 0
-int.to.str$ -- 81
-missing$ -- 92
-newline$ -- 431
-num.names$ -- 162
-pop$ -- 357
+int.to.str$ -- 80
+missing$ -- 91
+newline$ -- 425
+num.names$ -- 160
+pop$ -- 348
 preamble$ -- 1
-purify$ -- 344
+purify$ -- 337
 quote$ -- 0
-skip$ -- 592
+skip$ -- 573
 stack$ -- 0
-substring$ -- 1753
-swap$ -- 92
-text.length$ -- 6
+substring$ -- 1716
+swap$ -- 81
+text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 300
+type$ -- 296
 warning$ -- 9
-while$ -- 273
-width$ -- 83
-write$ -- 920
+while$ -- 268
+width$ -- 82
+write$ -- 906
 (There were 13 error messages)

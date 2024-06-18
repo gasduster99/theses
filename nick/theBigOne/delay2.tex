@@ -503,7 +503,7 @@ R(B;[\alpha, \beta, \gamma]') = \alpha B(t-a_s)(1-\beta\gamma B(t-a_s))^{\frac{1
 %
 The parameters $\bm{\theta}'=[\alpha, \beta, \gamma]$ %\alpha$, $\beta$, and $\gamma$, 
 function similarly in this setting as previously described in Section (\ref{sModel}).
-That said, since the DDM explicitly parses out growth in it's dynamics,
+That said, since the DDM explicitly parses out growth in its dynamics,
 these parameters only describe the net processes of larval production %, and maturation into the population, 
 where as the production model uses these parameters to also model the net 
 effects of growth on biomass production. %NOTE: production model includes net growth in in the nonlinear form of P, while the delay model used VB Growth params (functional form) on top of this nonlinearity. 
@@ -554,8 +554,9 @@ setting.
 Deriving reference points for the DDM under Schnute recruitment is
 conceptually similar to the SPM setting. The additional nonlinear
 VB growth assumption, alongside Schnute recruitment, quickly makes the
-expressions look somewhat unwieldy\footnote{complicated by growth parameters}, although analytical solutions can still be
-derived for most of the same quantities as was done in Chapter (\ref{schnuteChapter}). 
+expressions look somewhat unwieldy. Although complicated by growth parameters, 
+analytical solutions can still be derived for most of the same quantities as 
+was done in Chapter (\ref{schnuteChapter}). 
 %(although complicated by growth parameters).
 
 %
@@ -786,73 +787,80 @@ is also used in the DDM setting here.
 %point to catch, and LHS design, and Metamodel.
 %}
 
+%%
+%\subsection{Clustering Model Failure}
 %
-\subsection{Clustering Model Failure}
-
+%%
+%Considering the behavior observed in Section (\ref{schnuteLowResults}), where
+%$\frac{F^*}{M}$ is dramatically underestimated, it is natural to ask
+%where specifically in RP space we might see this catastrophic failure of the
+%BH model as growth assumptions change.
+%%
+%%The structure of RPs under the BH model suggests several potential avenues for
+%%forming hypotheses to identify highly misspecified RP regions. 
+%%however identifing cases where $\frac{F^*}{M}$
+%%but the single
+%%clearest feature to identify are cases where $\frac{F^*}{M}$ is
+%%heavily under-estimated. 
+%%Here a hypothesis testing inspired framework is used to identify these cases.
+%%By using the GP metamodel to propagate estimate uncertainty across the simulated 
+%%RP space the metamodel can predict which stocks may fail when modeled under 
+%%the BH model. 
+%Below a hypothesis testing inspired classifier is derived in terms of the GP predictive structures 
+%for identifying where BH inference fails in this way. 
+%%% of misspecified BH RPs.
+%%%as a surrogate for the distribution of 
+%%%$\frac{F_{MSY}}{M}$ across degrees of misspecified BH models. 
+%%This allows for a rejection threshold (against the null hypothesis that BH RP
+%%estimates are unbiased) to be derived in terms of the GP predictive structures
+%%to define a classifier for identifying where BH inference breaks down
+%%broadly over RP space.
 %
-Considering the behavior observed in Section (\ref{schnuteLowResults}), where
-$\frac{F^*}{M}$ is dramatically underestimated, it is natural to ask
-where specifically in RP space we might see this catastrophic failure of the
-BH model as growth assumptions change.
 %
-The structure of RPs under the BH model suggests several natural avenues for
-forming hypotheses to identify highly misspecified RP regions, but the single
-clearest feature to identify are cases where $\frac{F^*}{M}$ is
-heavily under-estimated. Here this idea is expressed by a hypothesis testing
-inspired framework that uses the GP metamodel to propagate estimate
-uncertainty across the simulated space of misspecified BH RPs.
-%as a surrogate for the distribution of 
-%$\frac{F_{MSY}}{M}$ across degrees of misspecified BH models. 
-This allows for a rejection threshold (against the null hypothesis that BH RP
-estimates are unbiased) to be derived in terms of the GP predictive structures
-to define a classifier for identifying where BH inference breaks down
-broadly over RP space.
-
-
-%\clearpage
+%%\clearpage
+%%
+%Recall that the metamodel models MLEs of $log(F^*)$ under the misspecified BH model.
+%%is a metamodeled quantity, 
+%%corresponding to $$, $log(F_{MSY})$, corresponding to is the metamodeled 
+%Thus, for a given set of RPs, $\textbf{x}$, the BH metamodeled
+%quantity is given by kriging prediction as $N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
+%where $\hat y(\textbf{x})$ is the kriging mean (as previously described in
+%Eq. (\ref{gpYHat})) and $\hat \sigma^2(\textbf{x})$ provides estimate
+%uncertainty via the kriging predictive variance given by,
+%\begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+%       \hat \sigma^2(\textbf{x}) = \textbf{R(x, x)} - \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x)}.
+%\end{equation}
 %
-Recall that the metamodel models MLEs of $log(F^*)$ under the misspecified BH model.
-%is a metamodeled quantity, 
-%corresponding to $$, $log(F_{MSY})$, corresponding to is the metamodeled 
-Thus, for a given set of RPs, $\textbf{x}$, the BH metamodeled
-quantity is given by kriging prediction as $N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
-where $\hat y(\textbf{x})$ is the kriging mean (as previously described in
-Eq. (\ref{gpYHat})) and $\hat \sigma^2(\textbf{x})$ provides estimate
-uncertainty via the kriging predictive variance given by,
-\begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
-       \hat \sigma^2(\textbf{x}) = \textbf{R(x, x)} - \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x)}.
-\end{equation}
-
+%%
+%Model failure with respect to estimating $\frac{F^*}{M}$ under the BH
+%model is measured by the percent error as previously described in Section (\ref{highConRes}).
+%When the BH model estimates $\frac{F^*}{M}$ well the percent error is
+%expected to be small in the following sense,
+%%In this setting to define the degree of model failure the percent error of the 
+%%estimate is capped at no more than $P$ 
+%%with respect to $\frac{F_{MSY}}{M}$ 
+%%the percent error is capped to 
 %
-Model failure with respect to estimating $\frac{F^*}{M}$ under the BH
-model is measured by the percent error as previously described in Section (\ref{highConRes}).
-When the BH model estimates $\frac{F^*}{M}$ well the percent error is
-expected to be small in the following sense,
-%In this setting to define the degree of model failure the percent error of the 
-%estimate is capped at no more than $P$ 
-%with respect to $\frac{F_{MSY}}{M}$ 
-%the percent error is capped to 
-
+%%
+%\begin{equation}
+%\frac{\frac{F^*}{M}-\frac{\hat{F}^*}{M}}{\frac{F^*}{M}}\le P. \label{pError}
+%\end{equation}
 %
-\begin{equation}
-\frac{\frac{F^*}{M}-\frac{\hat{F}^*}{M}}{\frac{F^*}{M}}\le P. \label{pError}
-\end{equation}
-
+%%
+%$P$ defines the extent of model failure on the scale of percent error. For
+%measuring catastrophic model failure $P$ was chosen to be $0.5$, but smaller values
+%of $P$ may be chosen to emphasize regions of more subtle model failure. %subtle regions 
+%%
+%Since $\frac{F^*}{M}$ is generally underestimated for stocks above the BH set, a 
+%one-sided test is used to identify model failure.
+%Thus, when the percent error is statistically greater than $P$ the notion that
+%the BH model estimates $\frac{F^*}{M}$ well (in the sense defined by $P$) is rejected.
 %
-$P$ defines the extent of model failure on the scale of percent error. For
-measuring catastrophic model failure $P$ was chosen to be $0.5$, but smaller values
-of $P$ may be chosen to emphasize regions of more subtle model failure. %subtle regions 
-%
-Since $\frac{F^*}{M}$ is generally underestimated for stocks above the BH set, a 
-one-sided test is used to identify model failure.
-Thus, when the percent error is statistically greater than $P$ the notion that
-the BH model estimates $\frac{F^*}{M}$ well (in the sense defined by $P$) is rejected.
-
-%
-For statistical evaluation, it is convenient to rearrange Eq. (\ref{pError})
-as \mbox{$\hat{F}^*\ge (1-P)F^*$}. $\hat{F}^*$ is then distributed as $LN(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
-and the rejection region is then defined as the RPs for which the $5^{th}$ percentile
-from the Log-normal distribution falls below \mbox{$(1-P)F^*$.}
+%%
+%For statistical evaluation, it is convenient to rearrange Eq. (\ref{pError})
+%as \mbox{$\hat{F}^*\ge (1-P)F^*$}. $\hat{F}^*$ is then distributed as $LN(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
+%and the rejection region is then defined as the RPs for which the $5^{th}$ percentile
+%from the Log-normal distribution falls below \mbox{$(1-P)F^*$.}
 
 %
 \subsection{Delay Differential Integration}
@@ -1113,7 +1121,7 @@ BH or Logistic model.
 
 %\clearpage
 %
-\subsection{Fast Individual Growth (SPM Limit)}
+\subsection{Fast Individual Growth (SPM Limit)\label{fast}}
 
 %
 Under the delay differential's limiting SPM ($a_s=0.1$ and $\kappa=10$),
@@ -1180,7 +1188,7 @@ of the results in Chapter (\ref{schnuteChapter}).
 
 %
 %\clearpage
-\subsection{Moderate Individual Growth}
+\subsection{Moderate Individual Growth\label{medium}}
 
 %
 Moving past the SPM, other values of $a_s$ and $\kappa$ provide a probe into 
@@ -1256,7 +1264,7 @@ the SPM where the break point occurs at values of $\frac{B^*}{\bar B(0)}$ just a
 %\end{itemize}
 
 %\clearpage
-\subsection{Slow Individual Growth Dynamics}
+\subsection{Slow Individual Growth Dynamics\label{slow}}
 
 %
 The slow individual growth setting simulated here fixes $a_s=2$ and $\kappa=0.1$, to
@@ -1277,7 +1285,7 @@ away from the $\frac{1}{x+2}$ limiting case.
 
 %
 Despite the heavily growth influenced driven biomass dynamics in this setting, 
-the RP mappings seen in Figure (\ref{dramaticGrowth}) obviously bare a huge 
+the RP mappings seen in Figure (\ref{dramaticGrowth}) obviously bear a huge 
 resemblance to the previously seen RP mappings. Again the biggest differences 
 in the RP mappings occur around the location of the break point where the low 
 contrast model begins to dramatically underestimate $\frac{F^*}{M}$.
@@ -1338,6 +1346,86 @@ these models.
 %\clearpage
 \subsection{Clustering Catastrophic Model Failure}
 
+%%
+%\subsection{Clustering Model Failure}
+
+%
+Considering the behavior observed in Sections (\ref{fast}-\ref{slow}), where
+$\frac{F^*}{M}$ is dramatically underestimated, it is natural to ask
+where specifically in RP space we might expect to see this catastrophic failure 
+of the BH model as growth assumptions change.
+%
+%The structure of RPs under the BH model suggests several potential avenues for
+%forming hypotheses to identify highly misspecified RP regions. 
+%however identifing cases where $\frac{F^*}{M}$
+%but the single
+%clearest feature to identify are cases where $\frac{F^*}{M}$ is
+%heavily under-estimated. 
+%Here a hypothesis testing inspired framework is used to identify these cases.
+%By using the GP metamodel to propagate estimate uncertainty across the simulated 
+%RP space the metamodel can predict which stocks may fail when modeled under 
+%the BH model. 
+Below a hypothesis testing inspired classifier is derived in terms of the GP predictive structures 
+for identifying where BH inference fails in this way. 
+%% of misspecified BH RPs.
+%%as a surrogate for the distribution of 
+%%$\frac{F_{MSY}}{M}$ across degrees of misspecified BH models. 
+%This allows for a rejection threshold (against the null hypothesis that BH RP
+%estimates are unbiased) to be derived in terms of the GP predictive structures
+%to define a classifier for identifying where BH inference breaks down
+%broadly over RP space.
+
+
+%\clearpage
+%
+Recall that the metamodel models MLEs of $log(F^*)$ under the misspecified BH model.
+%is a metamodeled quantity, 
+%corresponding to $$, $log(F_{MSY})$, corresponding to is the metamodeled 
+Thus, for a given set of RPs, $\textbf{x}$, the BH metamodeled
+quantity is given by kriging prediction as $N(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
+where $\hat y(\textbf{x})$ is the kriging mean (as previously described in
+Eq. (\ref{gpYHat})) and $\hat \sigma^2(\textbf{x})$ provides estimate
+uncertainty via the kriging predictive variance given by,
+\begin{equation} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+       \hat \sigma^2(\textbf{x}) = \textbf{R(x, x)} - \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x)}.
+\end{equation}
+
+%
+Model failure with respect to estimating $\frac{F^*}{M}$ under the BH
+model is measured by the percent error as previously described in Section (\ref{highConRes}).
+When the BH model estimates $\frac{F^*}{M}$ well the percent error is
+expected to be small in the following sense,
+%In this setting to define the degree of model failure the percent error of the 
+%estimate is capped at no more than $P$ 
+%with respect to $\frac{F_{MSY}}{M}$ 
+%the percent error is capped to 
+
+%
+\begin{equation}
+\frac{\frac{F^*}{M}-\frac{\hat{F}^*}{M}}{\frac{F^*}{M}}\le P. \label{pError}
+\end{equation}
+
+%
+$P$ defines the extent of model failure on the scale of percent error. For
+measuring catastrophic model failure $P$ was chosen to be $0.5$, but smaller values
+of $P$ may be chosen to emphasize regions of more subtle model failure. %subtle regions 
+%
+Since $\frac{F^*}{M}$ is generally underestimated for stocks above the BH set, a 
+one-sided test is used to identify model failure.
+Thus, when the percent error is statistically greater than $P$ the notion that
+the BH model estimates $\frac{F^*}{M}$ well (in the sense defined by $P$) is rejected.
+
+%
+For statistical evaluation, it is convenient to rearrange Eq. (\ref{pError})
+as \mbox{$\hat{F}^*\ge (1-P)F^*$}. $\hat{F}^*$ is then distributed as $LN(\hat y(\textbf{x}), \hat \sigma^2(\textbf{x}))$,
+and catestrophic model failure is predicted
+%the notion that BH RP estimates are well estimated 
+%is rejected for  
+%rejection region (against the  that BH RP
+%estimates are unbiased) is then defined as the RPs for which the $5^{th}$ percentile
+in regions of RP space where the $5^{th}$ percentile of the 
+Log-normal distribution falls below \mbox{$(1-P)F^*$.}
+
 %\clearpage
 \begin{wrapfigure}{r}{0.50\textwidth}
 %\vspace{-1.1cm}
@@ -1385,8 +1473,8 @@ these models.
 Figure (\ref{breaks}) shows the clustering thresholds for the low contrast
 simulations of each of the fast, medium, and slow growth simulation settings.
 %$P=0.5$
-Clustering thresholds shown here are calculated for catastrophic model failure 
-as defined by $P=0.5$.  
+%Clustering thresholds shown here are calculated for catastrophic model failure 
+%as defined by $P=0.5$.  
 Each line separates hypothetical stocks where simulations would expect the BH model %to experience 
 to catastrophically fail in RP estimation. % model failure when modeled with a BH model, such that stocks above each 
 A percent error of 50\% was chosen to represent the threshold of catastrophic model failure so that the shortest 
@@ -1772,7 +1860,7 @@ The flexibility of the recruitment function is the primary driver of the space
 of RPs that can be modeled by these fisheries models. While individual growth 
 contributes to RP flexibility, the effects of growth dynamics on the range of 
 modeled RPs is secondary to the model of recruitment. By specifying a BH model 
-of recruitment, we a'priori reduce the space of RPs dramatically and the RP 
+of recruitment, we a priori reduce the space of RPs dramatically and the RP 
 flexibility offered by individual growth and maturity dynamics is heavily influenced
 by the model of recruitment. Furthermore the mapping that statistical inference 
 produces onto these restricted spaces is a function of this interaction between 
