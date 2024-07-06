@@ -1208,6 +1208,34 @@ cols = cols[c(1,4,2)]
 
 #
 var[var<0]=eps()
+se = sqrt(var)
+
+
+
+
+
+#myDist = function(x, xi, zeta)
+#Lower
+eucBiasL = mcmapply(function(xiHat, xi, zeta){
+                myDist(xiHat, xi, zeta)
+        }, qlnorm(0.15, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
+)
+#exp(lFPred-1.96*se)/M
+#xiHat
+eucBiasL = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
+#Upper
+eucBiasU = mcmapply(function(xiHat, xi, zeta){
+                myDist(xiHat, xi, zeta)
+        }, qlnorm(0.85, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
+)
+#exp(lFPred-1.96*se)/M
+#xiHat
+eucBiasU = matrix(eucBiasU, nrow=length(xiStar), ncol=length(zetaStar))
+image(eucBiasU-eucBiasL)
+
+
+
+#
 var = var/fv#var/fv/fv
 se = sqrt(var)
 #
@@ -1234,9 +1262,6 @@ image( xiStar, zetaStar, lineMat,
 legend('topright', legend=c("Fast", "Medium", "Slow"), fill=cols)
 
 dev.off()
-
-
-
 
 
 

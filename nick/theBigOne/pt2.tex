@@ -435,15 +435,15 @@ sampled RP design locations to PT productivity parameters.
 \\
 
 %
-\subsection{\color{red}Gaussian Process Metamodel\label{gpmm}}
+\subsection{Gaussian Process Metamodel\label{gpmm}}
 %
 
-{\color{red}
-\begin{itemize}
-%Clear up $\sigma$ notation CRISPY\\
-\item Indicate uses outside of \cite{kennedy_bayesian_2001}
-\end{itemize}
-}
+%{\color{red}
+%\begin{itemize}
+%%Clear up $\sigma$ notation CRISPY\\
+%\item Indicate uses outside of \cite{kennedy_bayesian_2001}
+%\end{itemize}
+%}
 
 
 %
@@ -459,7 +459,7 @@ mapping within the ontology defined by the statistical model. %, based on simula
 The predictive infrastructure of the statistical model is then useful as an
 approximate abstraction of the system itself to better understand the system
 through further data collection, cheap approximation of the mapping, and/or study
-of the mapping itself.
+of the mapping itself. 
 
 %\begin{itemize}
 %\item Goal of metamodel
@@ -495,7 +495,20 @@ of the mapping itself.
 In this setting, the aim of metamodeling is to study how well RPs are inferred
 when typical two-parameter models of productivity %(Logistic and BH) 
 are misspecified for populations that are actually driven by more 
-complicated dynamics. The simulation design, $\bm{X}$, provides a sample of 
+complicated dynamics. %While the use of metamodels in this setting is 
+%To this end, 
+Thus the goal of metamodeling in this setting is not typical Bayesian calibration \cite{kennedy_bayesian_2001} 
+of RPs, but rather %the goal is 
+to aid in the description (and simulation) of RP 
+model misspecification consquences. 
+Correcting these RP biases is clearly a goal, %may be aided by the RP mappings developed using the metamodels presented here
+but the best estimates of RPs will likely be come 
+from using the understanding developed by these metamodels to inform better, %to directly model andfit better 
+and more adequatly flexible, models of productivity directly.
+%The metamodeling methodology is useful here convient in this setting for the more general goal of %style calibration goals of metamodeling
+
+%
+To that end the simulation design, $\bm{X}$, provides a sample of 
 different population dynamics that are driven by three-parameter production 
 functions broadly in RP space. By simulating index of abundance data from the 
 three parameter model, and fitting those data with the two-parameter production model, we %one can 
@@ -560,7 +573,7 @@ collecting the fitted MLEs for one of these quantities, and let
 $\bm{\omega}$ be a vector of estimates of the estimator variances (via the
 inverted Fisher information) at each $\textbf{y}$.
 %
-Each of the transformed parameter estimates are then modeled using
+Each of the transformed RP estimates are then modeled using
 independent instances of the following GP metamodel. %in Eq (\ref{GPModel}). 
 
 %
@@ -581,10 +594,10 @@ independent instances of the following GP metamodel. %in Eq (\ref{GPModel}).
 $\bm{X}$ is the $n$ x 2 LHS design matrix of RPs for each simulated %respective 
 three-parameter data generating model as described in Section (\ref{desRef}).
 %The GP residual variation
-$\epsilon$ models independent normally distributed error, which provides an
+$\bm{\epsilon}$ models independent normally distributed error, which provides an
 ideal mechanism for propagating uncertainty from inference in the simulation
 step into the metamodel. By matching each $\text{y}_i$ with an observed $\omega_i$
-variance term, $\epsilon$ serves to down weight the influence of each $\text{y}_i$
+variance term, $\bm{\epsilon}$ serves to down weight the influence of each $\text{y}_i$
 in proportion to the inferred production model sampling distribution
 uncertainty. This has the effect of smoothing the GP model in a way similar to
 the nugget effect \cite{gramacy_cases_2012}, although the application

@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2022)
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main2.aux
 A level-1 auxiliary file: pt2.aux
@@ -64,7 +64,6 @@ Repeated entry---line 190 of file ./delayDifferential.bib
  : @article{yeakel_generalized_2015
  :                                 ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "stawitz_fisheries_202"
 Warning--empty publisher in devon_lin_latin_2015
 Warning--empty journal in dick_stock_2023
 Warning--empty publisher in gotelli_primer_1995
@@ -74,45 +73,45 @@ Warning--empty journal in pearson_reliability_2008
 Warning--there's a number but no series in ramasubramanian_machine_2017
 Warning--empty journal in schaefer_study_1957
 Warning--empty journal in walters_continuous_2020
-You've used 80 entries,
+You've used 81 entries,
             2118 wiz_defined-function locations,
-            957 strings with 17859 characters,
-and the built_in function-call counts, 25089 in all, are:
-= -- 2526
-> -- 1092
+            960 strings with 18204 characters,
+and the built_in function-call counts, 25729 in all, are:
+= -- 2572
+> -- 1170
 < -- 5
-+ -- 460
-- -- 354
-* -- 1862
-:= -- 4283
-add.period$ -- 267
-call.type$ -- 80
-change.case$ -- 405
++ -- 492
+- -- 384
+* -- 1927
+:= -- 4399
+add.period$ -- 269
+call.type$ -- 81
+change.case$ -- 423
 chr.to.int$ -- 0
-cite$ -- 89
-duplicate$ -- 894
-empty$ -- 1974
-format.name$ -- 354
-if$ -- 5066
+cite$ -- 90
+duplicate$ -- 901
+empty$ -- 1996
+format.name$ -- 384
+if$ -- 5181
 int.to.chr$ -- 0
-int.to.str$ -- 80
+int.to.str$ -- 81
 missing$ -- 91
-newline$ -- 425
-num.names$ -- 160
-pop$ -- 348
+newline$ -- 429
+num.names$ -- 162
+pop$ -- 371
 preamble$ -- 1
-purify$ -- 337
+purify$ -- 354
 quote$ -- 0
-skip$ -- 573
+skip$ -- 581
 stack$ -- 0
-substring$ -- 1716
-swap$ -- 81
+substring$ -- 1722
+swap$ -- 82
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 296
+type$ -- 300
 warning$ -- 9
-while$ -- 268
-width$ -- 82
-write$ -- 906
+while$ -- 270
+width$ -- 83
+write$ -- 914
 (There were 13 error messages)
