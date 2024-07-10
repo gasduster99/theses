@@ -115,7 +115,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsPTExpT45Sig0.3/'
+place = './modsPTExpT45Sig0.3N600/'
 odeMethod = "lsode"
 
 ###grid for simulation
