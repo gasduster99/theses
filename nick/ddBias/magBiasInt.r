@@ -350,319 +350,347 @@ hsToLine = function(x, HS){
 
 }
 
+##
+##DATA
+##
 #
-#DATA
+##
+##mod = #"ExpT45N150K1" #"FlatT30N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150A7.5" # #"ExpT45N150Wide"
+##fail
+##mod = "FlatT30N150A-1AS15K0.1"
+##fail
+##mod = "FlatT30N150A-0.5AS15K0.1" 
+###worked w/ F help w/o K help
+##mod = "ExpT45N150A-1AS2" 
+###worked w/ F help w/o K help
+##mod = "ExpT45N150A-1AS15K0.1" 
+##fail
+##mod = "ExpT45N150A-0.5AS15K0.1" 
 #
-
+### worked but no xi<1
+##mod = "ExpT45N300AS1K1" 
+##kinda worked
+##mod = "ExpT45N300AS10K10"
 #
-#mod = #"ExpT45N150K1" #"FlatT30N150A15K0.1" #"ExpT45N150A15" #"ExpT45N150A7.5" # #"ExpT45N150Wide"
-#fail
-#mod = "FlatT30N150A-1AS15K0.1"
-#fail
-#mod = "FlatT30N150A-0.5AS15K0.1" 
-##worked w/ F help w/o K help
-#mod = "ExpT45N150A-1AS2" 
-##worked w/ F help w/o K help
-#mod = "ExpT45N150A-1AS15K0.1" 
-#fail
-#mod = "ExpT45N150A-0.5AS15K0.1" 
-
-## worked but no xi<1
-#mod = "ExpT45N300AS1K1" 
-#kinda worked
-#mod = "ExpT45N300AS10K10"
-
+###failed
+##mod = "ExpT45N300AS10K0.1"
+##WORKED
+##mod = "ExpT45N300A0-1AS10K0.1"; fv=1
+##GOOD START: add a bit of refinement
+##mod = "ExpT45N150A0-1AS2K0.1"
 ##failed
-#mod = "ExpT45N300AS10K0.1"
-#WORKED
-#mod = "ExpT45N300A0-1AS10K0.1"; fv=1
-#GOOD START: add a bit of refinement
-#mod = "ExpT45N150A0-1AS2K0.1"
-#failed
-#mod = "ExpT45N300A0-1AS10K0.1N28"
-##WORKED 
-mod = "ExpT45N300AS0.1K10"; fv=1
-#
-#mod = "ExpT45N300A0-1AS0.1K0.1"; fv=10
-#
-#mod = "ExpT45N150A0-1AS4K0.2"; fv=1
-#mod = "ExpT45N150A0-1AS4K0.2N28"; fv=1
-
-
-##failed Fmsy overestimated
-#mod = "FlatT45N300A0-1AS10K0.1"
-#bumpy 
-#mod = "FlatT45N300A0-1AS10K0.1N56"
-#mod = "FlatT45N300A0-1AS10K0.1N84"
-
-##GOOD START: add refinement
-#mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100
-
-##GOOD START: add refinment
-#mod = "FlatT45N150A0-1AS2K0.1N84Edge"; fv=200
-
+##mod = "ExpT45N300A0-1AS10K0.1N28"
+###WORKED 
+#mod = "ExpT45N300AS0.1K10"; fv=1
 ##
-#mod = "FlatT45N150A0-1AS4K0.2N56"; fv=100
-
+##mod = "ExpT45N300A0-1AS0.1K0.1"; fv=10
 ##
-#mod = "FlatT45N150A0-1AS1K0.5N56"; fv=100
-
+##mod = "ExpT45N150A0-1AS4K0.2"; fv=1
+##mod = "ExpT45N150A0-1AS4K0.2N28"; fv=1
 #
-place = sprintf("./modsDD%s/", mod)
-
 #
-xiRes = 0.5
-zetaTop = 0.6 #0.7
-zetaBot = 0.2 #0.1
-xiBot = 0.5
-xiTop = 3.5
-
+###failed Fmsy overestimated
+##mod = "FlatT45N300A0-1AS10K0.1"
+##bumpy 
+##mod = "FlatT45N300A0-1AS10K0.1N56"
+##mod = "FlatT45N300A0-1AS10K0.1N84"
 #
-i = 1
-C = NULL
-while( is.null(C) ){
-       #
-       f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit_*.rda"))[i] )
-       fOne = readRDS(f)
-       C = fOne$rsCov
-       #
-       i = i+1
-}
-
+###GOOD START: add refinement
+##mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100
 #
-aS = fOne$aS
-a0 = fOne$a0
-M  = fOne$M
-kappa = fOne$kappa
-WW = fOne$WW
-ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
+###GOOD START: add refinment
+##mod = "FlatT45N150A0-1AS2K0.1N84Edge"; fv=200
 #
-B0 = 10000
-
+###
+##mod = "FlatT45N150A0-1AS4K0.2N56"; fv=100
 #
-outlFV = getlFV(fOne)
-outlV = getlV(fOne)
-
+###
+##mod = "FlatT45N150A0-1AS1K0.5N56"; fv=100
 #
-Dall = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
-D = Dall[Dall$lFV>0 & Dall$lB0V>0,]
-D = D[complete.cases(D),]
-#who = (1/(D$xiHat+2)+0.001)>D$zetaHat & D$zetaHat>(1/(D$xiHat+2)-0.001) 
-#D = D[!who,]
-#
-D$lFV = D$lFV*fv #[D$lF>-3] = D$lFV[D$lF>-3]*10
-#D = D[c(rep(T, 1), F),]
-#D = D[seq(1, nrow(D), 2),]
-#D = Dall[Dall$lF<4,]
-#plot(D[,1], D[,2], pch=20)
-#points(D[,3], D[,4])
-#plot(D[,3], D[,4])
-#points(D[,5], D[,5], pch=20)
-
-#
-#GP INTERPOLATION
-#
-
-#First fit the lF Model and make lF related Predictions
-
-#pick a polynomial mean function
-lFy = D$lF
-lFV = diag(D$lFV)
-lFX = cbind(1, D$xiSeed, D$zetaSeed)
-
-#
-xAug = seq(0.5, 4, 0.1) #0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
-aug = cbind(rep(1, length(xAug)), xAug, getZetaBH(xAug, M, kappa, WW, aS, a0)) #1/(xAug+2))
-#xAug = numeric(0)
-#aug = numeric(0)
-lFX = rbind(lFX, aug)
-lFy = c(lFy, log(xAug*M))
-lFVm = mean(D$lFV, na.rm=T)
-lFV = diag(c(D$lFV, rep(lFVm, length(xAug))))
-lFV[is.na(lFV)] = lFVm
-
-#
-lFaxes = lFX[,2:3]
-registerData(lFy, lFX, lFaxes, lFV)
-par = c(l1=0.5, l2=0.5, s2=0.5)
-lFFit = gpMAP(par, hessian=F, psiSample=F, lower=c(rep(eps(), 3))) #lower=c(0.3, rep(eps(), 2)))
-writeLines("lF Fit:")
-print(lFFit)
-
-#lF prediction
-zetaStar = seq(min(D$zetaSeed), max(D$zetaSeed), 0.005) #length.out=)  #seq(0.15, 0.35, 0.001)  #rev(seq(0.1, 0.80, 0.01)) #
-xiStar   = seq(min(D$xiSeed), max(D$xiSeed), 0.01) #length.out=)       #seq(1, 3.5, 0.005)
-lFXStar = cbind(1, expand.grid(xiStar, zetaStar))
-mask = sapply(1:nrow(lFXStar), function(i){
-               #
-               win = 0.2#0.3
-               #
-               xi = lFXStar[i,2]
-               zeta = lFXStar[i,3]
-               #step = win*10/0.1
-               bot = c()
-               top = c()
-               for(x in seq(max(xi-win, xiBot), min(xi+win, xiTop), length.out=30)){
-                       #
-                       isWin = x<=(D$xiBin+win) & x>=(D$xiBin-win)
-                       bot = c(bot, min(D$zetaBin[isWin]) )
-                       top = c(top, max(D$zetaBin[isWin]) )
-               }
-               bot = mean(bot)
-               top = mean(top)
-               ##
-               #bot = min(D$zetaSeed[D$xiSeed==round(xi/xiRes)*xiRes])
-               #top = max(D$zetaSeed[D$xiSeed==round(xi/xiRes)*xiRes])
-               #
-               return( zeta>bot & zeta<top & zeta>zetaBot & zeta<zetaTop )
-               #return(T)
-       }
-)
-lFPred = gpPredict(lFXStar, lFXStar[,2:3], lFFit)
-lFPred[!mask] = NA
-
-#bias
-xiHat = exp(lFPred)/M
-xiBias = sweep(xiHat, 1, xiStar)
-xiBias[is.infinite(xiBias)] = NA
-#zbh = BBar(exp(lFPred), M, kappa, ww, WW, fit$alpha, fit$beta, fit$gamma)/BBar(0, M, kappa, ww, WW, fit$alpha, fit$beta, fit$gamma) 
-zbh = matrix(getZetaBH(exp(lFPred)/M, M, kappa, WW, aS, a0), nrow(xiBias), ncol(xiBias))
-zetaBias = sweep(zbh, 2, zetaStar)
-#zetaBias = sweep(matrix(0.5, nrow(xiHat), ncol(xiHat)), 2, zetaStar)
-zetaBias[!mask] = NA
-
-#
-eucBias = mcmapply(function(xiHat, xi, zeta){
-                myDist(xiHat, xi, zeta)
-        }, xiHat, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
-)
-eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
-
-#Now fit the lK Model and make lK related Predictions
-
-#
-lKy = D$lB0
-lKV = diag(c(D$lB0V))
-lKX = cbind(1, D$xiSeed, D$zetaSeed)
-
 ##
-#xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+#place = sprintf("./modsDD%s/", mod)
+#
+##
+#xiRes = 0.5
+#zetaTop = 0.6 #0.7
+#zetaBot = 0.2 #0.1
+#xiBot = 0.5
+#xiTop = 3.5
+#
+##
+#i = 1
+#C = NULL
+#while( is.null(C) ){
+#       #
+#       f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit_*.rda"))[i] )
+#       fOne = readRDS(f)
+#       C = fOne$rsCov
+#       #
+#       i = i+1
+#}
+#
+##
+#aS = fOne$aS
+#a0 = fOne$a0
+#M  = fOne$M
+#kappa = fOne$kappa
+#WW = fOne$WW
+#ww = vbGrow(aS, kappa, WW, a0) #WW*(1-exp(-kappa*a0))
+##
+#B0 = 10000
+#
+##
+#outlFV = getlFV(fOne)
+#outlV = getlV(fOne)
+#
+##
+#Dall = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
+#D = Dall[Dall$lFV>0 & Dall$lB0V>0,]
+#D = D[complete.cases(D),]
+##who = (1/(D$xiHat+2)+0.001)>D$zetaHat & D$zetaHat>(1/(D$xiHat+2)-0.001) 
+##D = D[!who,]
+##
+#D$lFV = D$lFV*fv #[D$lF>-3] = D$lFV[D$lF>-3]*10
+##D = D[c(rep(T, 1), F),]
+##D = D[seq(1, nrow(D), 2),]
+##D = Dall[Dall$lF<4,]
+##plot(D[,1], D[,2], pch=20)
+##points(D[,3], D[,4])
+##plot(D[,3], D[,4])
+##points(D[,5], D[,5], pch=20)
+#
+##
+##GP INTERPOLATION
+##
+#
+##First fit the lF Model and make lF related Predictions
+#
+##pick a polynomial mean function
+#lFy = D$lF
+#lFV = diag(D$lFV)
+#lFX = cbind(1, D$xiSeed, D$zetaSeed)
+#
+##
+#xAug = seq(0.5, 4, 0.1) #0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
 #aug = cbind(rep(1, length(xAug)), xAug, getZetaBH(xAug, M, kappa, WW, aS, a0)) #1/(xAug+2))
-##xAug = seq(0.75, 4, 0.5) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
-##aug = cbind(rep(1, length(xAug)), xAug, 1/(xAug+2))
-#lKX = rbind(lKX, aug)
-#lKy = c(lKy, log(B0))
-#lKVm = mean(D$lB0V, na.rm=T)
-#lKV = diag(c(D$lB0V, rep(lKVm, length(xAug))))
-
+##xAug = numeric(0)
+##aug = numeric(0)
+#lFX = rbind(lFX, aug)
+#lFy = c(lFy, log(xAug*M))
+#lFVm = mean(D$lFV, na.rm=T)
+#lFV = diag(c(D$lFV, rep(lFVm, length(xAug))))
+#lFV[is.na(lFV)] = lFVm
 #
-lKaxes = lKX[,2:3]
-#
-registerData(lKy, lKX, lKaxes, lKV)
-par = c(l1=0.5, l2=0.5, s2=0.5)
-lKFit = gpMAP(par, hessian=F, psiSample=F, lower=c(eps(), rep(eps(), 2)))
-writeLines("lK Fit:")
-print(lKFit)
-
-#lK prediction
-lKXStar = cbind(1, expand.grid(xiStar, zetaStar))
-lKPred = gpPredict(lKXStar, lKXStar[,2:3], lKFit)
-lKPred[!mask] = NA
-
-#biomass bias
-kBias = exp(lKPred)-B0
-#zetaHat*B0Hat
-bMSYHat = zbh*exp(lKPred) #exp(lKPred)/(xiHat+2)
-bMSYBias = sweep(bMSYHat, 2, zetaStar*B0)
-
-#MSY bias
-bMSYStar = zetaStar*B0
-fMSYStar = xiStar*M
-##SRR(Bmsy, a, b, g)
-#alpHat = getAlpha(-1, exp(lFPred), M)
-#betHat = getBeta(alpHat, -1, M, exp(lKPred))
-#msyHat = SRR(bMSYHat, alpHat, betHat, -1)
-#msyTru = matrix(NA, nrow=length(xiStar), ncol=length(zetaStar))
-##for(j in 1:length(zetaStar)){
-##     #
-##     for(i in 1:length(xiStar)){
-##             #
-##             par = getPar(xiStar[i], zetaStar[j], M)
-##             msyTru[i, j] = SRR(bMSYStar[j], log(par[1]), log(P0), par[2])
-##     }
-##}
-##msyBias = msyHat-msyTru
-
-#
-var = gpPredictVar(lFXStar, lFXStar[,2:3], tg=0, lFFit)
-
-#
-save.image(sprintf("%s.RData", mod))
-
 ##
-##Magnitude
-##
+#lFaxes = lFX[,2:3]
+#registerData(lFy, lFX, lFaxes, lFV)
+#par = c(l1=0.5, l2=0.5, s2=0.5)
+#lFFit = gpMAP(par, hessian=F, psiSample=F, lower=c(rep(eps(), 3))) #lower=c(0.3, rep(eps(), 2)))
+#writeLines("lF Fit:")
+#print(lFFit)
 #
-##Slow
-#load('FlatT45N150A0-1AS2K0.1N84Edge.RData')
+##lF prediction
+#zetaStar = seq(min(D$zetaSeed), max(D$zetaSeed), 0.005) #length.out=)  #seq(0.15, 0.35, 0.001)  #rev(seq(0.1, 0.80, 0.01)) #
+#xiStar   = seq(min(D$xiSeed), max(D$xiSeed), 0.01) #length.out=)       #seq(1, 3.5, 0.005)
+#lFXStar = cbind(1, expand.grid(xiStar, zetaStar))
+#mask = sapply(1:nrow(lFXStar), function(i){
+#               #
+#               win = 0.2#0.3
+#               #
+#               xi = lFXStar[i,2]
+#               zeta = lFXStar[i,3]
+#               #step = win*10/0.1
+#               bot = c()
+#               top = c()
+#               for(x in seq(max(xi-win, xiBot), min(xi+win, xiTop), length.out=30)){
+#                       #
+#                       isWin = x<=(D$xiBin+win) & x>=(D$xiBin-win)
+#                       bot = c(bot, min(D$zetaBin[isWin]) )
+#                       top = c(top, max(D$zetaBin[isWin]) )
+#               }
+#               bot = mean(bot)
+#               top = mean(top)
+#               ##
+#               #bot = min(D$zetaSeed[D$xiSeed==round(xi/xiRes)*xiRes])
+#               #top = max(D$zetaSeed[D$xiSeed==round(xi/xiRes)*xiRes])
+#               #
+#               return( zeta>bot & zeta<top & zeta>zetaBot & zeta<zetaTop )
+#               #return(T)
+#       }
+#)
+#lFPred = gpPredict(lFXStar, lFXStar[,2:3], lFFit)
+#lFPred[!mask] = NA
+#
+##bias
+#xiHat = exp(lFPred)/M
+#xiBias = sweep(xiHat, 1, xiStar)
+#xiBias[is.infinite(xiBias)] = NA
+##zbh = BBar(exp(lFPred), M, kappa, ww, WW, fit$alpha, fit$beta, fit$gamma)/BBar(0, M, kappa, ww, WW, fit$alpha, fit$beta, fit$gamma) 
+#zbh = matrix(getZetaBH(exp(lFPred)/M, M, kappa, WW, aS, a0), nrow(xiBias), ncol(xiBias))
+#zetaBias = sweep(zbh, 2, zetaStar)
+##zetaBias = sweep(matrix(0.5, nrow(xiHat), ncol(xiHat)), 2, zetaStar)
+#zetaBias[!mask] = NA
+#
+##
+#eucBias = mcmapply(function(xiHat, xi, zeta){
+#                myDist(xiHat, xi, zeta)
+#        }, xiHat, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
+#)
+#eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
+#
+##Now fit the lK Model and make lK related Predictions
+#
+##
+#lKy = D$lB0
+#lKV = diag(c(D$lB0V))
+#lKX = cbind(1, D$xiSeed, D$zetaSeed)
+#
+###
+##xAug = seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+##aug = cbind(rep(1, length(xAug)), xAug, getZetaBH(xAug, M, kappa, WW, aS, a0)) #1/(xAug+2))
+###xAug = seq(0.75, 4, 0.5) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+###aug = cbind(rep(1, length(xAug)), xAug, 1/(xAug+2))
+##lKX = rbind(lKX, aug)
+##lKy = c(lKy, log(B0))
+##lKVm = mean(D$lB0V, na.rm=T)
+##lKV = diag(c(D$lB0V, rep(lKVm, length(xAug))))
+#
+##
+#lKaxes = lKX[,2:3]
+##
+#registerData(lKy, lKX, lKaxes, lKV)
+#par = c(l1=0.5, l2=0.5, s2=0.5)
+#lKFit = gpMAP(par, hessian=F, psiSample=F, lower=c(eps(), rep(eps(), 2)))
+#writeLines("lK Fit:")
+#print(lKFit)
+#
+##lK prediction
+#lKXStar = cbind(1, expand.grid(xiStar, zetaStar))
+#lKPred = gpPredict(lKXStar, lKXStar[,2:3], lKFit)
+#lKPred[!mask] = NA
+#
+##biomass bias
+#kBias = exp(lKPred)-B0
+##zetaHat*B0Hat
+#bMSYHat = zbh*exp(lKPred) #exp(lKPred)/(xiHat+2)
+#bMSYBias = sweep(bMSYHat, 2, zetaStar*B0)
+#
+##MSY bias
+#bMSYStar = zetaStar*B0
+#fMSYStar = xiStar*M
+###SRR(Bmsy, a, b, g)
+##alpHat = getAlpha(-1, exp(lFPred), M)
+##betHat = getBeta(alpHat, -1, M, exp(lKPred))
+##msyHat = SRR(bMSYHat, alpHat, betHat, -1)
+##msyTru = matrix(NA, nrow=length(xiStar), ncol=length(zetaStar))
+###for(j in 1:length(zetaStar)){
+###     #
+###     for(i in 1:length(xiStar)){
+###             #
+###             par = getPar(xiStar[i], zetaStar[j], M)
+###             msyTru[i, j] = SRR(bMSYStar[j], log(par[1]), log(P0), par[2])
+###     }
+###}
+###msyBias = msyHat-msyTru
+#
+##
+#var = gpPredictVar(lFXStar, lFXStar[,2:3], tg=0, lFFit)
+#
+##
+#save.image(sprintf("%s.RData", mod))
+
+#
+#Magnitude
+#
+
+#Slow
+load('FlatT45N150A0-1AS2K0.1N84Edge.RData')
+cols = cols[c(1,4,2)]
+
+#
+lowTail = (1-(pnorm(1)-pnorm(-1)))/2
+highTail = 1-(1-(pnorm(1)-pnorm(-1)))/2
+
+#myDist = function(x, xi, zeta)
+#Lower
+eucBiasL = mcmapply(function(xiHat, xi, zeta){
+                myDist(xiHat, xi, zeta)
+        }, qlnorm(lowTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detec
+)
+#exp(lFPred-1.96*se)/M
+#xiHat
+eucBiasL = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
+#Upper
+eucBiasU = mcmapply(function(xiHat, xi, zeta){
+                myDist(xiHat, xi, zeta)
+        }, qlnorm(highTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detec
+)
+#exp(lFPred-1.96*se)/M
+#xiHat
+eucBiasU = matrix(eucBiasU, nrow=length(xiStar), ncol=length(zetaStar))
+
+#
+zlim = c(min(eucBiasU-eucBiasL, na.rm=T), max(eucBiasU-eucBiasL, na.rm=T))
+
+#Medium
+load('FlatT45N150A0-1AS1K0.5N56.RData')
+cols = cols[c(1,4,2)]
+
+#myDist = function(x, xi, zeta)
+#Lower
+eucBiasL = mcmapply(function(xiHat, xi, zeta){
+                myDist(xiHat, xi, zeta)
+        }, qlnorm(lowTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detec
+)
+#exp(lFPred-1.96*se)/M
+#xiHat
+eucBiasL = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
+#Upper
+eucBiasU = mcmapply(function(xiHat, xi, zeta){
+                myDist(xiHat, xi, zeta)
+        }, qlnorm(highTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detec
+)
+#exp(lFPred-1.96*se)/M
+#xiHat
+eucBiasU = matrix(eucBiasU, nrow=length(xiStar), ncol=length(zetaStar))
+
+#
+zlim = c(min(zlim[1], eucBiasU-eucBiasL, na.rm=T), max(zlim[2], eucBiasU-eucBiasL, na.rm=T))
+
+#Fast
+load('FlatT45N150A0-1AS0.1K10N56.RData')
 #cols = cols[c(1,4,2)]
+
 #
-##
-#lowTail = (1-(pnorm(1)-pnorm(-1)))/2
-#highTail = 1-(1-(pnorm(1)-pnorm(-1)))/2
+var[var<0]=eps()
+se = sqrt(var)
+
+#myDist = function(x, xi, zeta)
+#Lower
+eucBiasL = mcmapply(function(xiHat, xi, zeta){
+                myDist(xiHat, xi, zeta)
+        }, qlnorm(lowTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
+)
+#exp(lFPred-1.96*se)/M
+#xiHat
+eucBiasL = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
+#Upper
+eucBiasU = mcmapply(function(xiHat, xi, zeta){
+                myDist(xiHat, xi, zeta)
+        }, qlnorm(highTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
+)
+#exp(lFPred-1.96*se)/M
+#xiHat
+eucBiasU = matrix(eucBiasU, nrow=length(xiStar), ncol=length(zetaStar))
+
 #
-##myDist = function(x, xi, zeta)
-##Lower
-#eucBiasL = mcmapply(function(xiHat, xi, zeta){
-#                myDist(xiHat, xi, zeta)
-#        }, qlnorm(lowTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detec
-#)
-##exp(lFPred-1.96*se)/M
-##xiHat
-#eucBiasL = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
-##Upper
-#eucBiasU = mcmapply(function(xiHat, xi, zeta){
-#                myDist(xiHat, xi, zeta)
-#        }, qlnorm(highTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detec
-#)
-##exp(lFPred-1.96*se)/M
-##xiHat
-#eucBiasU = matrix(eucBiasU, nrow=length(xiStar), ncol=length(zetaStar))
-#
-##
-#zlim = c(min(eucBiasU-eucBiasL, na.rm=T), max(eucBiasU-eucBiasL, na.rm=T))
-#
-##Medium
-#load('FlatT45N150A0-1AS1K0.5N56.RData')
-#cols = cols[c(1,4,2)]
-#
-##myDist = function(x, xi, zeta)
-##Lower
-#eucBiasL = mcmapply(function(xiHat, xi, zeta){
-#                myDist(xiHat, xi, zeta)
-#        }, qlnorm(lowTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detec
-#)
-##exp(lFPred-1.96*se)/M
-##xiHat
-#eucBiasL = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
-##Upper
-#eucBiasU = mcmapply(function(xiHat, xi, zeta){
-#                myDist(xiHat, xi, zeta)
-#        }, qlnorm(highTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detec
-#)
-##exp(lFPred-1.96*se)/M
-##xiHat
-#eucBiasU = matrix(eucBiasU, nrow=length(xiStar), ncol=length(zetaStar))
-#
-##
-#zlim = c(min(zlim[1], eucBiasU-eucBiasL, na.rm=T), max(zlim[2], eucBiasU-eucBiasL, na.rm=T))
-#
-##Fast
-#load('FlatT45N150A0-1AS0.1K10N56.RData')
+zlim = c(min(zlim[1], eucBiasU-eucBiasL, na.rm=T), max(zlim[2], eucBiasU-eucBiasL, na.rm=T))
+
+png(sprintf("mag%s.png", mod))
+
+##Contrast
+#load('ExpT45N300AS0.1K10.RData')
 ##cols = cols[c(1,4,2)]
-#
-##
-#zlim = c(min(zlim[1], eucBiasU-eucBiasL, na.rm=T), max(zlim[2], eucBiasU-eucBiasL, na.rm=T))
 #
 ##
 #var[var<0]=eps()
@@ -687,20 +715,29 @@ save.image(sprintf("%s.RData", mod))
 #eucBiasU = matrix(eucBiasU, nrow=length(xiStar), ncol=length(zetaStar))
 #
 ##
-#image(xiStar, zetaStar, eucBiasU-eucBiasL,
-#        lwd  = 3,
-#        #col  = c(NA,cols[1]), #cols[1], #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), #co
-#        xlab = TeX("$F_{MSY}/M$"),
-#        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-#        main = TeX("Size of 1 SD Interval in RP Bias"), # Magnitude"), 
-#        ylim = c(zetaBot, zetaTop),
-#        xlim = c(xiBot, xiTop),
-#	zlim = c(-2, 7),
-#        cex.lab = 1.5,
-#        cex.main= 1.5
-#        #add = T
-#)
+#zlim = c(min(zlim[1], eucBiasU-eucBiasL, na.rm=T), max(zlim[2], eucBiasU-eucBiasL, na.rm=T))
+#
+#png(sprintf("mag%s.png", mod))
 
+#
+#PLOT
+#
 
+#
+image(xiStar, zetaStar, eucBiasU-eucBiasL,
+        lwd  = 3,
+        #col  = c(NA,cols[1]), #cols[1], #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), #co
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = TeX("Size of 1 SD Interval in RP Bias"), # Magnitude"), 
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+	zlim = zlim,
+        cex.lab = 1.5,
+        cex.main= 1.5
+        #add = T
+)
+
+dev.off()
 
 
