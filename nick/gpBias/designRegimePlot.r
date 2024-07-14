@@ -265,6 +265,10 @@ legend('bottomleft', legend=c('Logistic-Like', 'Ricker-Like', 'BH-Like', 'Cushin
 ##curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 dev.off()
 
+png("kicker.png")
+plot(D$xiSeed, D$zetaSeed, col=round(D$aSeed/M), pch=19); #curve(1/(x+2), add=T)
+dev.off()
+
 ##
 ##ARROW PLOT
 ##

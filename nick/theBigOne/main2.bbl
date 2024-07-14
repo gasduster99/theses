@@ -13,6 +13,11 @@ Marcel Ausloos and Michel Dirickx.
   to modern applications}.
 \newblock Springer Science \& Business Media, 2006.
 
+\bibitem{baranov_question_1918}
+Fedor~I. Baranov.
+\newblock {\em On the question of the biological basis of fisheries}.
+\newblock 1918.
+
 \bibitem{beverton_dynamics_1957}
 Raymond~JH Beverton and Sidney~J. Holt.
 \newblock {\em On the dynamics of exploited fish populations}, volume~11.
@@ -99,14 +104,6 @@ D.~H. Cushing.
   30(12):1965--1976, December 1973.
 \newblock Publisher: NRC Research Press.
 
-\bibitem{denney_lifehistory_2002}
-Nicola~H. Denney, Simon Jennings, and John~D. Reynolds.
-\newblock Life–history correlates of maximum population growth rates in
-  marine fishes.
-\newblock {\em Proceedings of the Royal Society of London. Series B: Biological
-  Sciences}, 269(1506):2229--2237, November 2002.
-\newblock Publisher: Royal Society.
-
 \bibitem{deriso_harvesting_1980}
 R.~B. Deriso.
 \newblock Harvesting {Strategies} and {Parameter} {Estimation} for an
@@ -158,6 +155,12 @@ William~W. Fox~Jr.
   1970.
 \newblock \_eprint:
   https://onlinelibrary.wiley.com/doi/pdf/10.1577/1548-8659\%281970\%2999\%3C80\%3AAESMFO\%3E2.0.CO\%3B2.
+
+\bibitem{friedman_simulation_2012}
+Linda~Weiser Friedman.
+\newblock {\em The {Simulation} {Metamodel}}.
+\newblock Springer Science \& Business Media, December 2012.
+\newblock Google-Books-ID: covTBwAAQBAJ.
 
 \bibitem{gotelli_primer_1995}
 Nicholas~J. Gotelli.
@@ -402,6 +405,14 @@ William~Edwin Ricker.
 \newblock {\em Journal of the Fisheries Board of Canada}, 11(5):559--623, 1954.
 \newblock Publisher: NRC Research Press Ottawa, Canada.
 
+\bibitem{santner_space-filling_2003}
+Thomas~J. Santner, Brian~J. Williams, and William~I. Notz.
+\newblock Space-{Filling} {Designs} for {Computer} {Experiments}.
+\newblock In Thomas~J. Santner, Brian~J. Williams, and William~I. Notz,
+  editors, {\em The {Design} and {Analysis} of {Computer} {Experiments}},
+  Springer {Series} in {Statistics}, pages 121--161. Springer, New York, NY,
+  2003.
+
 \bibitem{santner_design_2003}
 Thomas~J. Santner, Brian~J. Williams, William~I. Notz, and Brain~J. Williams.
 \newblock {\em The design and analysis of computer experiments}, volume~1.
@@ -448,6 +459,13 @@ Luca Scrucca.
 Claude~E Shannon.
 \newblock Communication in the {Presence} of {Noise}.
 \newblock {\em PROCEEDINGS OF THE IEEE}, 86(2), 1998.
+
+\bibitem{sharov_unknown_2021}
+Alexei Sharov.
+\newblock The unknown {Baranov}. {Forty} years of polemics over the formal
+  theory of the life of fishes.
+\newblock {\em ICES Journal of Marine Science}, 78(2):743--754, 2021.
+\newblock Publisher: Oxford University Press.
 
 \bibitem{soetaert_solving_2010}
 Karline Soetaert, Thomas Petzoldt, and R.~Woodrow Setzer.

@@ -15,7 +15,7 @@ BB = seq(0.15, 0.7, length.out=n)
 #
 png("designGrid.png")
 plot(-1,-1, xlim=c(min(FF), max(FF)), ylim=c(min(BB), max(BB)),
-	xlab=TeX("$F_{MSY}/M$"),
+	xlab=TeX("$F_{MSY}$"), #/M$"),
 	ylab=TeX("$B_{MSY}/B_0$"),
 	main="LHS Elements"
 )

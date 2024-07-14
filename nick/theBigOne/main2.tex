@@ -63,7 +63,7 @@
 
 % Declarations for Front Matter
 
-\title{A Metamodeling Approach for Bias estimation of Biological Reference Points}
+\title{A Metamodeling Approach for Bias Estimation of Biological Reference Points} %Under Two-Parameter Productivity Models}
 \author{Nicholas Grunloh}
 \degreeyear{2024}
 \degreemonth{August} %June}
@@ -96,21 +96,78 @@
 %
 \begin{abstract}
 Stock assessments often assume a two-parameter functional form
-(e.g., Beverton-Holt or Ricker) for the expected recruitment produced by a
+(e.g. Beverton-Holt, Ricker, or Logistic) for the expected recruitment produced by a
 given level of spawning output. Mangel et. al. \cite{mangel_perspective_2013} %Mangel et al. (2013) 
-and others have shown that biological reference points such as $\frac{F^*}{M}$
+and others have shown that biological reference points (RP) such as $\frac{F^*}{M}$
 and $\frac{B^*}{\bar{B}(0)}$ are largely determined by a single parameter
 (steepness) when using two-parameter relationships. These functions introduce
-strong correlations between reference points (RP) that are pre-determined by
-the functional form, rather than a biological characteristic of the stock.
-Mangel et. al. note that use of a three-parameter stock-recruitment
-relationship allows for independent estimation of these reference points. This
-research seeks to understand the nature of biases in reference points
-resulting from fitting a two-parameter logistic functional form when the true
-relationship follows a three-parameter stock-recruitment relationship (SRR). This  %study's findings suggest the
-work demonstrates the useful limits of the misspecified Schaefer model, and
-the mechanisms of model failure which arise from mapping a three-dimensional
-parameter space into two dimensions.
+strong correlations between RPs that are pre-determined by the functional form, 
+rather than a biological characteristic of the stock. Mangel et. al. note that 
+use of a three-parameter stock-recruitment relationship allows for independent 
+estimation of these RPs. 
+%metamodeling
+%By adopting 
+Built around these ideas, a novel simulation framework is developed to investigate  %this research seeks to 
+the nature of biases in RP estimation that results from fitting a 
+two-parameter functional form when the true relationship is more complicated. %follows a three-parameter form.
+%By developing 
+First methods for generating space-filling simulation designs in the RP space of 
+three-parameter models are developed. %that allow for controls on specific RP mode 
+By simulating misspecified RP inference under common two-parameter models over 
+these simulation designs a Gaussian Process metamodel of two-parameter RP 
+inference is developed to control for a spectrum of common ways that two-parameter 
+models are misspecified. 
+This analysis demonstrates the useful limits of 
+commonly used population dynamics models, informs the utility of reducing RP 
+bias, and suggests mechanisms for understanding how, and when, the most common 
+two-parameter models fail to estimate RPs.
+The studied models vary in complexity from the Schaefer model to delay 
+differential models including dynamics of individual growth and maturity. Additionally, 
+the methods presented can easily be extended to further include age-based frameworks.
+
+
+ 
+%%
+%{\color{red}metamodel}
+%A novel simulation framework is developed that specifically controls for RP 
+%model misspecification
+%%This  %study's findings suggest the
+%This work demonstrates the useful limits of commonly used population dynamics models.
+%
+%misspecified models such as 
+%the Beverton-Holt and Schaefer models in the production model setting. 
+%
+%the useful limits of the misspecified Schaefer model, and
+%the mechanisms of model failure which arise from mapping a three-dimensional
+%parameter space into two dimensions.
+%
+%
+%Developing simulation designs broadly over RP space serves as a necessary control on the 
+%nature of the simulated model misspecification that other studies have not considered. 
+%Furthermore, the GP metamodel used to analyze RP biases is explicit about trade-offs 
+%between RPs so as to inform the full utility of reducing bias, as well as to suggest 
+%mechanisms for understanding what causes bias. Additionally, the effect of contrast on 
+%estimation is considered together with model misspecification.
+
+%stock-recruitment relationship (SRR). 
+%%
+%A novel simulation framework is developed here that specifically controls for 
+%two-parameter RP model misspecification. 
+%%
+
+
+%By simulating missspecified RP inference under common two-parameter models 
+%a Guassian Process metamodel is used to analyze RP biases and 
+%%RPs that allow a metamodeling  to specificaly control for  three parameter
+%%
+%
+%Methods are developed here for generating space-filling simulation designs 
+%broadly over RP-space which are based on the structure of three-parameter RPs.
+%%serves as a necessary control on the
+%%nature of the simulated model misspecification that other studies have not considered.
+
+
+
 \end{abstract}
 
 %
@@ -356,7 +413,7 @@ most foundational components of most population dynamics models.
 %
 This thesis develops a metamodeling simulation framework for evaluating RP 
 estimation under misspecified two-parameter models of productivity. Analytical 
-and numerical methods are developing for simulating data broadly in RP space 
+and numerical methods are developed for simulating data broadly in RP space 
 under the Schnute and PT three-parameter models. 
 %analytical and numerical methods are provided for simulating data broadly in RP space under the Schnute and PT models. 
 By simulating from three-parameter models and observing RP estimation under misspecified two-parameter  
@@ -454,7 +511,7 @@ Indices are assumed to have multiplicative log-normal errors, and thus
 the following observation model arises naturally,
 %Pella Tomlinson
 \begin{align}
-I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2).
+I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2). \label{resp}
 \end{align}
 %
 Above $q$ is often referred to as the ``catchability parameter''; it serves as the %represents the %$ is often refered to as the catchability parameter and the catchab
@@ -467,7 +524,7 @@ entering the model through a process model on biomass.
 Biomass is assumed to evolve as an ODE through time. 
 %Initially the following form is 
 %Here I largely focus on in this case I focus on the following form
-The class of models is largely based on models of the following form,
+The class of models is largely based on the following form,
 %(although in the Chapter (\ref{delayChapter}) a related extension 
 %delay differential model is )
 %
@@ -484,7 +541,7 @@ $Z$, from the population.
 %  %stock recruitment relationship (SRR). Recruitment 
 Firstly, the population grows through a production function, $P(B)$. Production
 in this setting is defined as the net biomass increase due to all reproduction
-and maturation processes.
+and growth processes.
 % accounting for all naturally occurring %no migration the population is assumed closed. 
 %sources of mortality other than the recorded fishing from humans. 
 The production function is assumed to be a parametric (generally non-linear) 
@@ -494,7 +551,7 @@ production of biomass.
 %
 Secondly, the population decreases as biomass is removed by various sources 
 that are assumed to remove biomass linearly with biomass. Above, $Z(t)$, is 
-an aggregate rate of removal. When the fishing rate, $F(t)$, is the only 
+an aggregate rate of removal. Often the fishing rate, $F(t)$, is the only 
 explicitly modeled source of removal $Z(t)=F(t)$, however some models will 
 also included other linear terms in $Z(t)$. Commonly the rate of {\it natural 
 mortality} ($M$) is also included as an additional term so that $Z(t)=M+F(t)$.
@@ -507,17 +564,19 @@ mortality} ($M$) is also included as an additional term so that $Z(t)=M+F(t)$.
 %
 The general structure in Eq. (\ref{ode}) is the conceptual basis for most 
 modern fisheries models used in management \cite{hilborn_quantitative_1992, methot_stock_2013, winker_jabba_2018}. 
-As data permits this general structure is often expanded to model age, weight, 
+As data permit this general structure is often expanded to model age, weight, 
 and/or length classes \cite{schnute_general_1987, fournier_length-based_1987} 
 in the population via models called {\it age structured models} (ASM). ASMs 
 are currently considered best practice when there is %in ``data-rich'' settings when there is 
-considered enough quality data to establish length/age relationships and the 
-associated selectivity for these classes \cite{maunder_review_2013, cope_stock_2023}. 
+considered enough quality data to establish length/age relationships and 
+%the associated selectivity for these classes 
+the vulnerability of each class to fishing mortality (i.e. selectivity)
+\cite{maunder_review_2013, cope_stock_2023}. 
 Modeling age and length/weight structure in the population allows for 
 individual growth and maturity to be modeled as cohorts that age through time. 
 Despite this added complexity, at their core ASMs rely on similar dynamics as 
 seen in Eq. (\ref{ode}), however in ASMs the above ODE is expanded to a system 
-of interrelated ODEs describing how cohorts age through time. %for each age class.  
+of interrelated equations describing how cohorts age through time. %for each age class.  
 
 %
 {\it Delay-differential models} (DDM), as described in more detail in Chapter (\ref{delayChapter}), 
@@ -564,26 +623,29 @@ at steady state.
 MSY is then found by maximizing $\bar Y(F)$ with respect to $F$, and $F^*$ is 
 the fishing rate at MSY. Going forward let $^*$ decorate any value derived 
 under the condition of MSY.
+
 %%
 %While a number of different RPs exist which describe the population in different
 %(but related) ways, 
 Most RPs revolve around the concept of MSY (or robust ways of measuring MSY \cite{hilborn_pretty_2010,punt_management_2016}).
 Here the focus is primarily on the RPs $\frac{B^*}{\bar B(0)}$ and $\frac{F^*}{M}$ (or $F^*$ when appropriate)
 for their pervasive use in modern fisheries \cite{punt_extending_2019}. %mangel_perspective_2013,
-
 %{\color{red}
 %%Fisheries are very often managed based upon reference points (RPs) 
 %%which serve as simplified heuristic measures of population behavior. 
 %The mathematical form of RPs depends upon the model assumptions through the
 %production function. %({\color{red} cite}). 
 %}
-
 %
-$F^*$ is the afore mentioned fishing rate which results in MSY, and $\frac{B^*}{\bar B(0)}$
-is the depletion of the stock at MSY. %That is to say 
-$\frac{B^*}{\bar B(0)}$ describes
-the fraction of the unfished population biomass that will remain in the equilibrium
-at MSY. In general $F^*\in\mathbb{R}^+$ and \mbox{$\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$,}
+Here $F^*$ is the afore mentioned fishing rate which results in MSY, $M$ is natural mortality, 
+$\bar B(0)$ is the equilibrium biomass in the absence of fishing, and $B^*$ is 
+the equilibrium biomass when fishing at $F^*$ (i.e. $\bar B(F^*)$). 
+%$\frac{B^*}{\bar B(0)}$ %is the depletion of the stock at MSY. %That is to say 
+Thus, $\frac{F^*}{M}$ describes the fraction of mortality due to fishing when 
+the population is expected to yield MSY and $\frac{B^*}{\bar B(0)}$ describes 
+the fraction of the unfished population that will remain at MSY. 
+%equilibrium biomass at MSY as a fraction of the unfished biomass. 
+In general $\frac{F^*}{M}\in\mathbb{R}^+$ and \mbox{$\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$,} 
 however under the assumption of two-parameter production, %function production 
 models will be structurally unable to capture the full theoretical range of RPs.
 %\shortcite{mangel_perspective_2013}.
@@ -597,7 +659,7 @@ The two-parameter Fox model \cite{fox_jr_exponential_1970} limits $\left(F^*, \f
 Similarly the two-parameter Cushing \cite{cushing_dependence_1971, cushing_dependence_1973}, Beverton-Holt \cite[BH]{beverton_dynamics_1957}
 and Ricker \cite{ricker_stock_1954} production functions do not model the full theoretical space of
 RPs. Mangel et. al. \cite{mangel_perspective_2013} show that this is a 
-consequence of two parameter production functions and suggests the use of a 
+consequence of two-parameter production functions and suggests the use of  
 three-parameter functions instead. 
 %and others have shown that RPs can
 %be stucturally limited by the most commonly used assessment models.\cite{mangel_perspective_2013}%, yeakel_generalized_2015}.
@@ -611,10 +673,10 @@ clear that the addition of a third parameter in the production function will
 necessarily reduce estimation bias. However the utility of this bias reduction
 is still under debate because the particular mechanisms and behavior (direction and magnitude) %over relevant RPs %and mechanisms %behavior 
 of these biases for key management quantities %(and the mechanisms of inducing these biases) 
-are not fully understood or described \cite{munyandorero_analytical_2023}. Lee et. al. \cite{lee_can_2012} provides some
-evidence that estimation of productivity parameters %, and thus RPs via \shortcite{mangel_perspective_2013},
+are not fully understood or described \cite{munyandorero_analytical_2023}. 
+Lee et. al. \cite{lee_can_2012} provide some evidence that estimation of productivity parameters %, and thus RPs via \shortcite{mangel_perspective_2013},
 are dependent on changes in biomass trends through time (i.e. contrast) as well % as well as contrast in data %lacking contrast in biomass. 
-as model specification. Conn et. al. \cite{conn_when_2010} comes to similar conclusions %about steepness estimation
+as model specification. Conn et. al. \cite{conn_when_2010} come to similar conclusions %about steepness estimation
 via calibration modeling techniques. These studies indicate important factors that
 contribute to inferential failure. However they do not offer mechanisms of model
 failure, nor do their experimental designs allow for the control of different
@@ -639,16 +701,17 @@ types of model misspecification.
 %In this thesis 
 In Chapters (\ref{ptChapter}) and (\ref{schnuteChapter}) of this thesis I 
 consider the behavior of RP inference when index data are simulated from three-parameter 
+%the behavior of RP inference when index data are simulated from three-parameter
 PT and Schnute models of productivity, but the simulated data are fit using 
-intentionally misspecified two-parameter Logistic and BH models respectively. 
+intentionally misspecified two-parameter Schaefer and BH models respectively. 
 %(Chapters (\ref{ptChapter}) and (\ref{schnuteChapter}) respectivly). 
 %
 RP inference is simulated in the SPM setting, and the 
 results are then extended to the context of models that include individual 
 growth and maturity by developing a Schnute DDM in Chapter (\ref{delayChapter}).
 %
-In each simulation setting a derivation of RPs, and associated quantities, 
-under the three-parameter models is derived. %PT model.
+In each simulation setting equations for RPs and associated quantities 
+under the three-parameter models are derived. %PT model.
 Under the PT model simulation design is entirely analytical. Under the 
 Schnute model fully analytical designs are not possible. Thus %a method is developed for generating simulation designs which ensure
 in Chapter (\ref{schnuteChapter}) a method is presented for generating simulation designs under the Schnute model 
