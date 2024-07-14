@@ -115,7 +115,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsPTExpT45Sig0.3/'
+place = './modsPTExpT45Sig0.3N900/' #600/'
 odeMethod = "lsode"
 
 ###grid for simulation
@@ -135,7 +135,7 @@ minDiff = min((zetaMax-zetaMin)/n, (xiMax-xiMin)/n)
 binTrk = ceiling(abs(log10(minDiff)))
 
 #make new design
-if( T ){
+if( F ){
         #
         des = lhs(n, rbind(c(xiMin, xiMax),c(zetaMin, zetaMax)))
         colnames(des) = c('xi', 'zeta')
@@ -163,10 +163,11 @@ if( T ){
 datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen*.rda")))
 
 #
-#registerDoParallel(46)
-#opts = list(preschedule=F)
+registerDoParallel(46)
+opts = list(preschedule=F)
+foreach(i=1:length(datFiles), .options.multicore = opts) %dopar% {
 #foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
-for(i in 1:n){
+#for(i in 1:n){
 	#
         #DATA
         #
@@ -213,7 +214,7 @@ for(i in 1:n){
         )
         #fit = readRDS('modsPellaFineQFixRFixP010000/fit_xi4_zeta0.35.rda')
         fit$iterate(odeMethod)
-	break
+	#break
 	#optimization
         optAns = fit$optimize(cpue,
                 c('lsdo', 'lalpha'), #'lq'),
