@@ -111,7 +111,7 @@ of many different types to fit.
 
 %
 Delay differential models, DDMs (or delay difference models in discrete time) 
-are an intermediate approach between SPMs and ASMs. At their simplest DDMs do 
+are an intermediate approach between SPMs and ASMs. At their simplest, DDMs do 
 not necessarily model individual growth \cite{dick_depletion-based_2011, aalto_separating_2015}, 
 but still these models are beneficial in modeling the lag between egg production 
 and recruitment into the reproducing population.  %\cite{dick_depletion-based_2011, aalto_separating_2015}.
@@ -119,14 +119,16 @@ and recruitment into the reproducing population.  %\cite{dick_depletion-based_20
 %but even so the delayed structure of DDMs are beneficial in modeling the lag between egg production 
 %and recruitment into the reproducing population. 
 %as well as the natural autocorrelation often observed with stock size.
-More complex DDMs are capable of exactly representing simple ASMs with an 
-explicit and compact representation of simple individual growth and maturity 
-dynamics \cite{deriso_harvesting_1980, fournier_length-based_1987, schnute_general_1985, schnute_general_1987}.
+By linking selectivity and maturity together with a simplified knife-edge lagged 
+model, more complex DDMs are capable of exactly representing simple ASMs \cite{deriso_harvesting_1980, fournier_length-based_1987, schnute_general_1985, schnute_general_1987}. 
+%with an %explicit and compact representation of simple individual growth and maturity dynamics.
 %That said, DDMs are capable of explicitly representing simple individual growth and maturity dynamics 
 %\cite{walters_continuous_2020}, \cite[pg. 334]{hilborn_quantitative_1992} \cite{Quinn and Deriso 1999}.
+%
+%NOTE: maybe establish maturity linked to selectivity here
 When information about individual growth is available these DDMs have enough 
-growth and maturity modeling infrastructure to make use of the information 
-without requiring the use of heavily parameterized ASMs. %e.g. \cite{black rockfish assessment}.
+growth, lagged maturity, and lagged selectivity modeling infrastructure to make 
+use of the information without requiring the use of heavily parameterized ASMs. %e.g. \cite{black rockfish assessment}.
 %can put those data to use without the need to parameterize the full age at length table of a fully age stuctured model \cite{black rockfish assessment}.
 %}
 %DDMs that can tease out individual growth and maturity from recruitment to explain net production 
@@ -383,7 +385,7 @@ approximated by VB growth in weight directly.
 \end{wrapfigure}
 
 %Age structured fisheries models
-ASMs typically assume Von Bertalanffy %(VB) growth 
+ASMs typically assume von Bertalanffy %(VB) growth 
 \cite[VB]{von_bertalanffy_quantitative_1938} growth in length with age. To model
 weight the assumption of VB growth in length, 
 $l(a)=l_\infty(1-e^{-\kappa (a-a_0)})$, 
@@ -422,14 +424,17 @@ at very young ages, see Figure (\ref{vbComp}).
 
 %
 Together with VB growth, the DDM is derived from the assumption that
-both natural mortality and fishing selectivity are separately proportional
+both natural mortality and fishing selectivity are both proportional %separately proportional
 %the total mortality rate (from both natural and fishing mortality) is proportional 
 to a common Heaviside step function with age. That is to say, before a threshold
-age of selectivity, $a_s$, the population is assumed not to experience any
-mortality whatsoever, but all fish older then $a_s$ experience the same rate
+age of selectivity, $a_s$, no explicit mortality is modeled outside of what is 
+implied by the stock-recruitment relationship,
+%the population is assumed not to experience anymortality whatsoever, 
+but all fish older then $a_s$ experience the same rate
 of natural mortality. Simultaneously all fish older than $a_s$ are equally
 vulnerable to fishing (i.e. knife edge selectivity at age $a_s$), although
-fishing effort may vary through time. 
+fishing effort may vary through time. Maturity is also assumed to be knife edge at age $a_s$, with only 
+mature fish recruiting into the population.
 
 %
 Together the parameters $\kappa$ and $a_s$ control individual growth and 
@@ -477,7 +482,7 @@ into biomass and accounting for the growth of biomass with age.
 Eq (\ref{bEq}) of the above model expands the notion of biomass production into the
 processes of recruitment, individual growth, and maturity. The term $w(a_s)R(B;\theta)$
 represents the biomass of new recruits; with $w(a_s)$ representing the weight of individuals
-at the age of maturity, $a_s$, and $R(B;\theta)$ representing the number of new recruits
+at the age of maturity/selectivity, $a_s$, and $R(B;\theta)$ representing the number of new recruits
 entering the exploitable population at time $t$. The negative term, $(M+F)B$, represents all
 causes of mortality as it is applied to biomass. Finally, the term $\kappa \left[w_\infty N-B\right]$
 accounts for the net growth of the existing biomass by discounting the limiting maximal individual
@@ -731,7 +736,7 @@ propagation which quickly becomes significant using other schemes.
 %
 Each design location defines a complete Schnute DDM with
 the given RP values. Just as in Chapter (\ref{schnuteChapter}), $B_0$ is fixed 
-at $10000$, and $M$ is fixed at $0.2$; furthermore $a_0$ and $w_\infty$ (of VB 
+at $10000$, $q$ is fixed at $0.0005$, and $M$ is fixed at $0.2$; furthermore $a_0$ and $w_\infty$ (of VB 
 growth) were fixed to -1 and 1 respectively throughout.
 The values of $\kappa$ and $a_s$ are varied roughly along the line $w(a_s)=w_\infty-\frac{a_s}{3}$ 
 so as to produces a negatively correlated relationship between $\kappa$ and 
@@ -740,9 +745,11 @@ slow ($\kappa=0.1$,  $a_s=2$) individual growth simulation settings.
 Indices of abundance are simulated from the Schnute model at each design 
 location, a small amount of residual variation, $\sigma = 0.01$,
 is added to the simulated index, and the data are then fit with a misspecified
-BH model. The design captures various degrees of model misspecification
+BH model. $\sigma$ is later relaxed to $0.12$ in Section (\ref{oscillation}). The design captures various degrees of model misspecification
 relative to the BH model, so as to observe the effect of recruitment
 misspecification upon RP inference.
+
+%{\color{red} hint at larger $\sigma$}
 
 %%
 %{\color{red}
@@ -934,7 +941,7 @@ the proportionality constant of the index with process biomass, and $\sigma^2$
 models residual variation of the index.
 
 %
-In this setting, $\bm{\phi}$ and $q$ are fixed %at the true value of 0.0005 
+In this setting, $\bm{\phi}$ is fixed %and $q$ are fixed %at the true value of 0.0005 
 to focus on the inferential effects of model misspecification on recruitment
 parameters and RPs. Typically $\bm{\phi}$ is not well informed by index data and %Under the BH model  and typically
 would be estimated externally to the DDM for data-limited stocks.
@@ -1187,7 +1194,7 @@ minimal distance mapping of RPs onto the constrained BH set of RPs.
 %\subsubsection{low}
 Similarly, in the low contrast setting, Figure (\ref{prodLimit}, $right$) again
 shows the same two regime pattern of RP inference. Firstly, there is a region of
-relatively small model misspecification where the minimal distance mapping
+relatively small model misspecification where a similar nearly minimal distance mapping
 is preserved. Secondly, as model misspecification becomes greater (around the
 Ricker set) $\frac{F^*}{M}$ begins to be sharply underestimated. Above this
 break point in RP estimation inference appears to be driven toward the trivial RP
@@ -1262,7 +1269,7 @@ around the location of the break point where the low contrast model begins to
 dramatically underestimate $\frac{F^*}{M}$.
 %
 In the high contrast simulation setting Figure (\ref{moderateGrowth}; $left$) shows
-the RP mappings again demonstrate a nearly identical minimal distance mapping of
+the RP mappings again demonstrate a similar nearly minimal distance mapping of
 RPs onto the constrained BH RP set. In the low contrast setting Figure (\ref{moderateGrowth}; $right$) 
 shows a very similar two regime pattern of RP inference is observed, however the
 location of the break between these regimes appears at lower values of
@@ -1437,7 +1444,7 @@ the BH model estimates $\frac{F^*}{M}$ well (in the sense defined by $P$) is rej
 %
 For statistical evaluation, it is convenient to rearrange Eq. (\ref{pError})
 as \mbox{$\hat{F}^*\ge (1-P)F^*$}. $\hat{F}^*$ is then distributed as $LN(\hat y(\textbf{x}^\star), \hat \sigma^2(\textbf{x}^\star))$,
-and catestrophic model failure is predicted
+and catastrophic model failure is predicted
 %the notion that BH RP estimates are well estimated 
 %is rejected for  
 %rejection region (against the  that BH RP
@@ -1496,8 +1503,10 @@ simulations of each of the fast, medium, and slow growth simulation settings.
 %as defined by $P=0.5$.  
 Each line separates hypothetical stocks where simulations would expect the BH model %to experience 
 to catastrophically fail in RP estimation. % model failure when modeled with a BH model, such that stocks above each 
-A percent error of 50\% was chosen to represent the threshold of catastrophic model failure so that the shortest 
-distance mapping occurs below the lines and dramatic underestimation of $\frac{F^*}{M}$ occurs for data generated
+A percent error of 50\% was chosen to represent the threshold of catastrophic model failure so that the 
+nearly minimal distance mapping
+%shortest distance mapping 
+occurs below the lines and dramatic underestimation of $\frac{F^*}{M}$ occurs for data generated
 above each line.
 
 %$P=0.5$ was chosen to represent the threshold between the shortest distance mapping and 

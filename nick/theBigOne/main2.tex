@@ -291,8 +291,7 @@ I stand in awe of her willingness to indulge my various descriptions of minutia 
 
 %\part{First Part}
 
-%
-\linenumbers
+%\linenumbers
 
 %
 \chapter{Introduction \label{intro}}
@@ -534,7 +533,7 @@ The class of models is largely based on the following form,
 %{\color{red}$C=FB$ to set up yield calculations later
 Here biomass is assumed to change in time by two processes, net production of
 biomass into the population, $P(B)$, and various sources of biomass removal, 
-$Z$, from the population.
+$Z$, \mbox{from the population.}
 %Generally production appears as a nonlinear function of existing biomass, 
 %and removals are assumed to be linear in biomass.
 
@@ -860,16 +859,16 @@ The metamodel analysis of RP estimation under the BH model generalizes the RP
 mapping developed under the Schaefer model to more complex RP sets. Under the 
 BH model RP inference demonstrates an approximately shortest distance mapping 
 onto the constrained RP space as mediated by the information content provided 
-by the available contrast in the data. For the BH RP geometry this shortest 
-distance mapping ensures that if there is bias in one of $\frac{B^*}{B_0}$ or 
+by the available contrast in the data. For the BH RP geometry (unlike the Schaefer model) 
+this shortest distance mapping ensures that if there is bias in one of $\frac{B^*}{B_0}$ or 
 $\frac{F^*}{M}$, there will necessarily be bias in the other RP. These biases 
-tend to be conservative for stocks that are more density dependent than the 
-BH model, but leads to potentially hazardous overestimation of RPs for the most 
-%less density dependent than the BH model
-vulnerable stocks. Furthermore, the low contrast simulation setting 
-demonstrates that heavily misspecified BH models demonstrate a catastrophic 
-failure mode that dramatically underestimations $\frac{F^*}{M}$ and 
-prioritizes high level biomass tends in the data. 
+would tend to result in potentially overly cautious management for stocks that 
+are more density dependent than the BH model, but leads to overestimation of $\frac{F^*}{M}$ for %some the most 
+stocks that are less density dependent than the BH model. %(potentially hazardousvulnerable stocks. 
+Furthermore, the low contrast simulation setting demonstrates that heavily 
+misspecified BH models demonstrate a catastrophic failure mode that 
+dramatically underestimations $\frac{F^*}{M}$ so as to prioritize high level 
+biomass tends in the data. 
 %%brittleness that 
 %This catastrophic failure mode is a sort of self regulation of RPs where FM is almost
 %completely ignored for the purposes of preserving B̄(0)
@@ -889,12 +888,12 @@ prioritizes high level biomass tends in the data.
 %
 The development of the DDM in Chapter (\ref{delayChapter}) further 
 extends the simulation-based analysis of RPs to account for the effects of 
-individual growth and maturity dynamics. While $F^*$ is not analytical 
+individual growth and lagged maturity/selectivity dynamics. While $F^*$ is not analytical 
 under the general Schnute DDM, many of the special cases of the Schnute model 
 do provide analytical RP calculations for the DDM.
 %that account for individual growth and maturity. 
 Furthermore the analytical results derived under the general Schnute DDM 
-provide stable methods for navigating RPs to describe RP behavior for 
+provide stable methods for navigating RP space to describe RP behavior for 
 general density dependence simultaneously accounting for individual growth 
 and maturity. %even more generally. 
 % more generally to explore RP behaviorm more generally.
@@ -904,7 +903,7 @@ relative to the form of recruitment, but differed by the level of density
 dependence. The behavior of BH RP estimation in the DDM setting was generally 
 very similar to the SPM setting. The relationship between the form of recruitment 
 and individual growth interact under the BH model to make RP estimation more 
-brittle for slower growing stocks. This indicates that better, or more flexible, 
+brittle for slower growing stocks. This indicates that better, and/or more flexible, 
 models of recruitment may be required to develop more complex DDMs as useful 
 and practical models in stock assessment. 
 
@@ -954,6 +953,7 @@ California fisheries and is useful for the simulation purposes here, but
 methods of understanding the notion more generally would be extremely valuable.  
 %The notion of contrast developed in Section (\ref{catch}) if useful and representative of many California fisheries. 
 
+
 %
 While the DDM developed in Chapter (\ref{delayChapter}) parsimoniously develops 
 the most foundational biological processes in fisheries management, further 
@@ -963,10 +963,13 @@ step. Thorson et. al. \cite{thorson_case_2019} show that modeling recruitment de
 as a random effect composed with BH recruitment can reduce bias in estimates of depletion 
 and improve uncertainty quantification for data-limited models of Pacific hake. %such the DDM developed here.
 The methods presented in this thesis are an ideal framework for understanding those 
-results more broadly in terms of RP model misspecification. Furthermore, 
-expanding this study to incorporate age/length data and various models of selectivity 
-via more complex ASMs such as Stock Synthesis \cite{methot_stock_2013} or FIMS \cite{stawitz_fisheries_2023}
-could be an excellent direction for future work.
+results more broadly in terms of RP model misspecification. 
+Furthermore, the simulation framework developed here provides a straightforward 
+path for extending this analysis into the analysis of more complex ASMs such as Stock 
+Synthesis \cite{methot_stock_2013} or FIMS \cite{stawitz_fisheries_2023}.
+%Furthermore, expanding this study to incorporate age/length data and various models of selectivity 
+%via more complex ASMs such as Stock Synthesis \cite{methot_stock_2013} or FIMS \cite{stawitz_fisheries_2023}
+%could be an excellent direction for future work.
 
 %\cite{thorson_case_2019} 
 %a unifying sentence about processes uniting Recruitment deviations and ASMs 
@@ -988,20 +991,24 @@ could be an excellent direction for future work.
 
 %
 The metamodeling structures developed here have proven effective tools for understanding RP biases 
-in the SPM and DDM settings presented here, that said several improvements may be made to the metamodeling 
+in the SPM and DDM settings presented. That said, several improvements may be made to the metamodeling 
 simulation framework itself to facilitate this analysis in more complex settings. Improving the speed 
-of simulations from the order of a week to the order of days would allow the analysis to condition 
-on specific stock assessment models and data (i.e. catches, ages, lengths) to consider how RP model 
-misspecification may be specifically present in a given stock assessment. It was not considered a priority 
+of simulations would allow for more easily relaxing the simulation assumptions around estimating $q$ and 
+increasing the simulated values of residual variation.
+Descreasing simulation runtime to the order of days in more complex settings would allow the analysis to
+%from the order of a week to the order of days would allow the analysis to to tackle more complex models and 
+condition on specific stock assessment models and data (i.e. catches, ages, lengths) to consider how RP model 
+misspecification may manifest in a given stock assessment. It was not considered a priority 
 for the work presented in this thesis but by more effectively refining the simulation design through the 
 use of more pointed acquisition functions\cite{pourmohamad_bayesian_2021}, fewer simulations may be collected 
 \footnote{The primary factor for determining the run time of these simulations}. In particular, since 
-optimization is not a goal of the metamodel in this setting, developing Entropy-based acquisition functions 
+optimization is not a goal of the metamodel in this setting, developing entropy-based acquisition functions 
 \cite{hennig_entropy_2012, hernandez-lobato_predictive_2014} could be useful here. Furthermore, given the 
 catastrophic model failure that was observed under low contrast BH models, particularly in the slower 
 growing examples, it could be valuable to consider nonstationary GP metamodels \cite{gramacy_bayesian_2008, binois_hetgp_2021}. %, heinonen_non-stationary_2016}. 
-By considering nonstationary metamodels the catastrophic model failure may be more quickly and accurately 
-identified.
+By considering nonstationary metamodels these catastrophic failure modes 
+%(similar to that observed under the BH model in the low contrast examples shown here) 
+may be more quickly and accurately identified.
 
 %By documenting these directions for future work here it is the hope that these approaches may facilitate the future reseach of  
 
