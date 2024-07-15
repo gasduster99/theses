@@ -108,7 +108,7 @@ estimation of these RPs.
 %metamodeling
 %By adopting 
 Built around these ideas, a novel simulation framework is developed to investigate  %this research seeks to 
-the nature of biases in RP estimation that results from fitting a 
+the nature of biases in RP estimates that results from fitting a 
 two-parameter functional form when the true relationship is more complicated. %follows a three-parameter form.
 %By developing 
 First methods for generating space-filling simulation designs in the RP space of 
@@ -122,7 +122,7 @@ commonly used population dynamics models, informs the utility of reducing RP
 bias, and suggests mechanisms for understanding how, and when, the most common 
 two-parameter models fail to estimate RPs.
 The studied models vary in complexity from the Schaefer model to delay 
-differential models including dynamics of individual growth and maturity. Additionally, 
+differential models including dynamics of individual growth and lagged maturity. Additionally, 
 the methods presented can easily be extended to further include age-based frameworks.
 
 
@@ -411,7 +411,7 @@ most foundational components of most population dynamics models.
 
 %
 This thesis develops a metamodeling simulation framework for evaluating RP 
-estimation under misspecified two-parameter models of productivity. Analytical 
+estimates under misspecified two-parameter models of productivity. Analytical 
 and numerical methods are developed for simulating data broadly in RP space 
 under the Schnute and PT three-parameter models. 
 %analytical and numerical methods are provided for simulating data broadly in RP space under the Schnute and PT models. 
@@ -572,7 +572,7 @@ considered enough quality data to establish length/age relationships and
 the vulnerability of each class to fishing mortality (i.e. selectivity)
 \cite{maunder_review_2013, cope_stock_2023}. 
 Modeling age and length/weight structure in the population allows for 
-individual growth and maturity to be modeled as cohorts that age through time. 
+individual growth and lagged maturity to be modeled as cohorts that age through time. 
 Despite this added complexity, at their core ASMs rely on similar dynamics as 
 seen in Eq. (\ref{ode}), however in ASMs the above ODE is expanded to a system 
 of interrelated equations describing how cohorts age through time. %for each age class.  
@@ -669,7 +669,7 @@ three-parameter functions instead.
 %
 The bias-variance trade-off \cite{ramasubramanian_machine_2017} makes it
 clear that the addition of a third parameter in the production function will
-necessarily reduce estimation bias. However the utility of this bias reduction
+necessarily reduce estimate bias. However the utility of this bias reduction
 is still under debate because the particular mechanisms and behavior (direction and magnitude) %over relevant RPs %and mechanisms %behavior 
 of these biases for key management quantities %(and the mechanisms of inducing these biases) 
 are not fully understood or described \cite{munyandorero_analytical_2023}. 
@@ -898,9 +898,9 @@ general density dependence simultaneously accounting for individual growth
 and maturity. %even more generally. 
 % more generally to explore RP behaviorm more generally.
 % for the dev are analytical to  the analysis 
-The effects of individual growth and maturity on RPs were found to be small 
-relative to the form of recruitment, but differed by the level of density 
-dependence. The behavior of BH RP estimation in the DDM setting was generally 
+The effects of individual growth and maturity on RPs are found to be small 
+relative to the form of recruitment, but differ by the level of density 
+dependence. The behavior of BH RP estimation in the DDM setting is generally 
 very similar to the SPM setting. The relationship between the form of recruitment 
 and individual growth interact under the BH model to make RP estimation more 
 brittle for slower growing stocks. This indicates that better, and/or more flexible, 
@@ -965,7 +965,7 @@ and improve uncertainty quantification for data-limited models of Pacific hake. 
 The methods presented in this thesis are an ideal framework for understanding those 
 results more broadly in terms of RP model misspecification. 
 Furthermore, the simulation framework developed here provides a straightforward 
-path for extending this analysis into the analysis of more complex ASMs such as Stock 
+path for extending into the analysis of more complex ASMs such as Stock 
 Synthesis \cite{methot_stock_2013} or FIMS \cite{stawitz_fisheries_2023}.
 %Furthermore, expanding this study to incorporate age/length data and various models of selectivity 
 %via more complex ASMs such as Stock Synthesis \cite{methot_stock_2013} or FIMS \cite{stawitz_fisheries_2023}
@@ -995,7 +995,7 @@ in the SPM and DDM settings presented. That said, several improvements may be ma
 simulation framework itself to facilitate this analysis in more complex settings. Improving the speed 
 of simulations would allow for more easily relaxing the simulation assumptions around estimating $q$ and 
 increasing the simulated values of residual variation.
-Descreasing simulation runtime to the order of days in more complex settings would allow the analysis to
+Decreasing simulation run time to the order of days in more complex settings would allow the analysis to
 %from the order of a week to the order of days would allow the analysis to to tackle more complex models and 
 condition on specific stock assessment models and data (i.e. catches, ages, lengths) to consider how RP model 
 misspecification may manifest in a given stock assessment. It was not considered a priority 

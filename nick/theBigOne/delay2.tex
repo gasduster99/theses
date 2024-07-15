@@ -1043,8 +1043,8 @@ is expressed only in terms of biomass as stated in Eq. (\ref{bL}) of the previou
 
 %\begin{figure}[h!]
 \begin{wrapfigure}{r}{0.50\textwidth}
-%\vspace{-1.5cm}
-\vspace{-0.5cm}
+\vspace{-1.5cm}
+%\vspace{-0.5cm}
 \includegraphics[width=0.49\textwidth]{../ddBias/vbCurves.png}
 %\vspace{-1cm}
 \caption{Three hypothetical individual-growth curves, demonstrating 
@@ -1058,7 +1058,7 @@ described at the end of Section (\ref{delayDesign}). %spanning a range of indivi
 The larger values of $w(a_s)$ correspond to larger recruits relative 
 to maximum size; by comparing the RPs of models with larger values of 
 $w(a_s)$ in Figure (\ref{rpTriptic}) we can see that these models result in SPM-like RPs.
-When $w(a_s)$ is large recruits are near maximum size and thus there is little growth left 
+When $w(a_s)$ is large, recruits are near maximum size and thus there is little growth left 
 % to be This leaves little growth 
 to be evaluated by the biomass dynamics equations. In Figure (\ref{vbCurves}) the red curve 
 demonstrates a stock with fast growing individuals that provides an example of the SPM limit 
@@ -1232,12 +1232,12 @@ A level curve of $w(a_s; \kappa)=c$ is attained by increasing the value of $a_s$
 and decreasing $\kappa$ correspondingly, or vice versa.
 %
 The case where $a_s=1$ and $\kappa=0.5$ (resulting in $w(a_s)\approx0.6$)
-represents a reasonable biological example of moderate individual growth.
+represents a reasonable example of moderate individual growth.
+%biological example of moderate individual growth.
 %
 Similar examples of the $w(a_s)=0.6$ level curve result in much larger lags
 (discussed in Section (\ref{oscillation})) or larger $\kappa$'s which quickly
-tend toward behaviors previously described in the SPM
-setting.
+tend toward behaviors previously described in the SPM setting.
 
 %
 \begin{figure}[h!]
@@ -1306,8 +1306,8 @@ away from the $\frac{1}{x+2}$ limiting case.
 %this is true for all of the two parameter constrained constrained RP sets as
 %seen in Figure (\ref{rpTriptic}).
 
-%
-Despite the heavily growth influenced driven biomass dynamics in this setting, 
+%driven
+Despite the heavily growth influenced biomass dynamics in this setting, 
 the RP mappings seen in Figure (\ref{dramaticGrowth}) obviously bear a huge 
 resemblance to the previously seen RP mappings. Again the biggest differences 
 in the RP mappings occur around the location 
@@ -1548,16 +1548,19 @@ biological regimes explored here.
 %\clearpage
 \subsection{Oscillatory Growth. The Road to Chaos.\label{oscillation}}
 
-%
-While the above patterns of RP estimation follow for biologically inspired 
-growth patterns (i.e. $corr(a_s, \kappa)<0$),
-%of the $w(a_s; \kappa)=c$ level curve, 
-as $a_s$ increases to weaken (and eventually reverse) the biological negative 
+%%
+%While the above patterns of RP estimation follow for biologically inspired 
+%growth patterns (i.e. $corr(a_s, \kappa)<0$),
+While the above patterns of RP estimation follow for the negatively correlated 
+growth and maturity parameters (i.e. $corr(a_s, \kappa)<0$),
+%of the $w(a_s; \kappa)=c$ level curve,                  biological
+as $a_s$ increases to weaken (and eventually reverse) this negative 
 correlation between $a_s$ and $\kappa$, a regime of oscillatory dynamics appear. %also exists within these dynamics. 
 While RP estimation behaves somewhat similar in this oscillatory regime there 
-are unique features in this setting that are not present in the more biological 
-regimes. Below consider the oscillatory example of a logistic DDM with 
-$a_s=10$, $\kappa=0.1$ and fishing fixing at $F^*$.
+are unique features in this setting. 
+%that are not present in the more biological regimes. 
+Below consider the oscillatory example of a logistic DDM with 
+$a_s=10$, $\kappa=0.1$ and fishing fixing at $F^*$ (i.e. low contrast: $\chi=0$).
 %Moderate w(a_s)\approx0.6
 
 %{\color{red} maybe an appendix}
@@ -1620,9 +1623,9 @@ manner set off by the green biomass series crossing over from above $B^*$
 to below it. The example shown in Figure (\ref{shock}) exemplifies the oscillatory 
 phenomena simulated here, but the mechanism that produces these oscillations may
 occur with other forms of recruitment, or fishing, outside of logistic recruitment 
-whenever fishing cases biomass to cross over $B^*$ within the lagged recruitment 
-window. By repeatedly forcing the population biomass over the $B^*$ threshold in 
-this manner the dynamics can quickly resemble the behavior of chaotic equations \cite{ausloos_logistic_2006, sprott_simple_2007}. %ticresembling that of chaotic 
+whenever fishing causes biomass to cross over $B^*$ within the lagged recruitment 
+window. By repeatedly forcing the population biomass over the $B^*$ threshold, in 
+this manner, the dynamics can quickly resemble the behavior of chaotic equations \cite{ausloos_logistic_2006, sprott_simple_2007}. %ticresembling that of chaotic 
 
 %
 \subsubsection{RP Estimation}
@@ -1770,7 +1773,7 @@ Figure (\ref{estAK}) shows a subset of example model fits to Schnute data
 simulated broadly over RP space with residual variation, $\sigma=0.12$, 
 resulting in a CV of about 6\%.
 Model fits are shown both under the two-parameter BH model as well as under the
-three-parameter Schnute model, each model estimating all of its recruitment parameters as  
+three-parameter Schnute model, each model estimating all of its recruitment parameters  
 as well as the individual growth and maturity parameters $\kappa$ and $a_s$.
 %Notice that the BH model, even when additionally estimating $\kappa$ and $a_s$,
 %does not gain the flexibility to properly model Schnute data.
@@ -1867,7 +1870,7 @@ The general behavior of the RP mapping in the DDM setting is very similar to
 that observed under the SPM in Chapter (\ref{schnuteChapter}). In the presence of contrast 
 RPs consistently map onto the BH set in a manner resembling a shortest distance map inducing bias in both $\frac{F^*}{M}$ and $\frac{B^*}{\bar B(0)}$.
 In the low contrast setting the RP mapping has two primary regimes, a region of relatively 
-minor BH model misspecification with intact shortest distance RP estimation, and a region of %for relatively minor BH misspecification, and a region of 
+minor BH model misspecification with intact nearly shortest distance RP estimation, and a region of %for relatively minor BH misspecification, and a region of 
 catastrophic failure of RP estimation where $\frac{F^*}{M}$ is dramatically underestimated 
 outside of the intact region. This poses the same general risk profile for fisheries 
 management with BH RP estimates in the DDM setting as for the SPM. The primary difference 
@@ -1930,7 +1933,7 @@ incorrect specification of the BH model dampens the effects of those growth dyna
 The analysis of oscillatory dynamics demonstrate how individual growth 
 interacts with the form of recruitment. 
 This interaction under the BH model exacerbates model misspecification by 
-dampening the information that individual growth contributes to biomass dynamics.%as individual growth becomes a more important dynamic. 
+dampening the information that individual growth contributes to biomass dynamics. %as individual growth becomes a more important dynamic. 
 %in the slow growth setting when individual grows
 % BH model dampens the effect of growth dynamics
 At this time it is not best practice to estimate individual growth parameters 
@@ -1939,11 +1942,11 @@ is consistent with that practice when the BH model of recruitment is misspecifie
 However if recruitment is made more flexible by the use of a three-parameter model, 
 such as the Schnute curve, not only is the $\gamma$ parameter possible to estimate, but the
 flexibility that this adds to the model of recruitment is vital to tapping into 
-the information about $a_s$ and $\kappa$ that may available in index data. Of course if 
+the information about $a_s$ and $\kappa$ that may be available in index data. Of course if 
 index data is sufficiently noisy there may not be much discernible information available 
-about $a_s$ and $\kappa$ since the features they control in biomass dynamics may 
+about $a_s$ and/or $\kappa$ since the features they control in biomass dynamics may 
 easily be confused with residual variation, and the observed behavior of the BH model 
-demonstrates that that overly restricted models of recruitment worsen this effect.  
+demonstrates that overly restricted models of recruitment worsen this effect.  
 
 %
 The results presented here suggest that future work should be done
@@ -2005,7 +2008,7 @@ common models the RPs are analytical. The methods presented here for navigating 
 across the variety of different models representable by this compact DDM
 %analytical results presented here, 
 %as well as the methods presented for navigating these RPs, in this wide varity of different modeling situations 
-open the door to the countless future uses in stock assessment. 
+open the door to countless future uses in stock assessment. 
 %analysis   and  can  DDM and still mana  
 
 
