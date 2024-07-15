@@ -30,7 +30,7 @@
 \contentsline {figure}{\numberline {4.10}{\ignorespaces $top\nobreakspace {}left:$ Logistic DDM biomass over 30 epochs of time with $a_s=10$. Green, red, and blue colors indicate three 10 epoch long windows of biomass. v indicates local biomass oscillation maxima. $top\nobreakspace {}right:$ Surplus biomass production plotted over the range of biomasses shown. The biomass range of each 10 epoch window is shown in the vertical colored lines. $bottom\nobreakspace {}left:$ Surplus biomass production plotted through time. Colors correspond to the lagged biomass region that results in the evaluated yield. The black horizontal line demonstrates the pre-model assumption of biomass fixed at $B_0$. }}{98}{figure.4.10}%
 \contentsline {figure}{\numberline {4.11}{\ignorespaces RP mapping of BH DDM fit to high contrast Schnute DDM data under oscillatory growth ($a_s=10$ and $\kappa =0.1$). }}{101}{figure.4.11}%
 \contentsline {figure}{\numberline {4.12}{\ignorespaces Example BH fits ($red$) to Schnute data ($black$). Each example plot is arranged to mirror its location in RP space. }}{102}{figure.4.12}%
-\contentsline {figure}{\numberline {4.13}{\ignorespaces $\kappa $ and $a_s$ estimation under BH ($blue$) and Schnute ($green$) fits to Schnute data ($black$) arranged to mirror RP space. }}{102}{figure.4.13}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces $\kappa $ and $a_s$ estimation under BH ($blue$) and Schnute ($green$) fits to Schnute data ($black$) arranged to mirror RP space. }}{103}{figure.4.13}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
