@@ -63,7 +63,7 @@
 
 % Declarations for Front Matter
 
-\title{A Metamodeling Approach for Bias estimation of Biological Reference Points}
+\title{A Metamodeling Approach for Bias Estimation of Biological Reference Points} %Under Two-Parameter Productivity Models}
 \author{Nicholas Grunloh}
 \degreeyear{2024}
 \degreemonth{August} %June}
@@ -96,21 +96,78 @@
 %
 \begin{abstract}
 Stock assessments often assume a two-parameter functional form
-(e.g., Beverton-Holt or Ricker) for the expected recruitment produced by a
+(e.g. Beverton-Holt, Ricker, or Logistic) for the expected recruitment produced by a
 given level of spawning output. Mangel et. al. \cite{mangel_perspective_2013} %Mangel et al. (2013) 
-and others have shown that biological reference points such as $\frac{F^*}{M}$
+and others have shown that biological reference points (RP) such as $\frac{F^*}{M}$
 and $\frac{B^*}{\bar{B}(0)}$ are largely determined by a single parameter
 (steepness) when using two-parameter relationships. These functions introduce
-strong correlations between reference points (RP) that are pre-determined by
-the functional form, rather than a biological characteristic of the stock.
-Mangel et. al. note that use of a three-parameter stock-recruitment
-relationship allows for independent estimation of these reference points. This
-research seeks to understand the nature of biases in reference points
-resulting from fitting a two-parameter logistic functional form when the true
-relationship follows a three-parameter stock-recruitment relationship (SRR). This  %study's findings suggest the
-work demonstrates the useful limits of the misspecified Schaefer model, and
-the mechanisms of model failure which arise from mapping a three-dimensional
-parameter space into two dimensions.
+strong correlations between RPs that are pre-determined by the functional form, 
+rather than a biological characteristic of the stock. Mangel et. al. note that 
+use of a three-parameter stock-recruitment relationship allows for independent 
+estimation of these RPs. 
+%metamodeling
+%By adopting 
+Built around these ideas, a novel simulation framework is developed to investigate  %this research seeks to 
+the nature of biases in RP estimates that results from fitting a 
+two-parameter functional form when the true relationship is more complicated. %follows a three-parameter form.
+%By developing 
+First methods for generating space-filling simulation designs in the RP space of 
+three-parameter models are developed. %that allow for controls on specific RP mode 
+By simulating misspecified RP inference under common two-parameter models over 
+these simulation designs a Gaussian Process metamodel of two-parameter RP 
+inference is developed to control for a spectrum of common ways that two-parameter 
+models are misspecified. 
+This analysis demonstrates the useful limits of 
+commonly used population dynamics models, informs the utility of reducing RP 
+bias, and suggests mechanisms for understanding how, and when, the most common 
+two-parameter models fail to estimate RPs.
+The studied models vary in complexity from the Schaefer model to delay 
+differential models including dynamics of individual growth and lagged maturity. Additionally, 
+the methods presented can easily be extended to further include age-based frameworks.
+
+
+ 
+%%
+%{\color{red}metamodel}
+%A novel simulation framework is developed that specifically controls for RP 
+%model misspecification
+%%This  %study's findings suggest the
+%This work demonstrates the useful limits of commonly used population dynamics models.
+%
+%misspecified models such as 
+%the Beverton-Holt and Schaefer models in the production model setting. 
+%
+%the useful limits of the misspecified Schaefer model, and
+%the mechanisms of model failure which arise from mapping a three-dimensional
+%parameter space into two dimensions.
+%
+%
+%Developing simulation designs broadly over RP space serves as a necessary control on the 
+%nature of the simulated model misspecification that other studies have not considered. 
+%Furthermore, the GP metamodel used to analyze RP biases is explicit about trade-offs 
+%between RPs so as to inform the full utility of reducing bias, as well as to suggest 
+%mechanisms for understanding what causes bias. Additionally, the effect of contrast on 
+%estimation is considered together with model misspecification.
+
+%stock-recruitment relationship (SRR). 
+%%
+%A novel simulation framework is developed here that specifically controls for 
+%two-parameter RP model misspecification. 
+%%
+
+
+%By simulating missspecified RP inference under common two-parameter models 
+%a Guassian Process metamodel is used to analyze RP biases and 
+%%RPs that allow a metamodeling  to specificaly control for  three parameter
+%%
+%
+%Methods are developed here for generating space-filling simulation designs 
+%broadly over RP-space which are based on the structure of three-parameter RPs.
+%%serves as a necessary control on the
+%%nature of the simulated model misspecification that other studies have not considered.
+
+
+
 \end{abstract}
 
 %
@@ -234,8 +291,7 @@ I stand in awe of her willingness to indulge my various descriptions of minutia 
 
 %\part{First Part}
 
-%
-\linenumbers
+%\linenumbers
 
 %
 \chapter{Introduction \label{intro}}
@@ -355,8 +411,8 @@ most foundational components of most population dynamics models.
 
 %
 This thesis develops a metamodeling simulation framework for evaluating RP 
-estimation under misspecified two-parameter models of productivity. Analytical 
-and numerical methods are developing for simulating data broadly in RP space 
+estimates under misspecified two-parameter models of productivity. Analytical 
+and numerical methods are developed for simulating data broadly in RP space 
 under the Schnute and PT three-parameter models. 
 %analytical and numerical methods are provided for simulating data broadly in RP space under the Schnute and PT models. 
 By simulating from three-parameter models and observing RP estimation under misspecified two-parameter  
@@ -454,7 +510,7 @@ Indices are assumed to have multiplicative log-normal errors, and thus
 the following observation model arises naturally,
 %Pella Tomlinson
 \begin{align}
-I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2).
+I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2). \label{resp}
 \end{align}
 %
 Above $q$ is often referred to as the ``catchability parameter''; it serves as the %represents the %$ is often refered to as the catchability parameter and the catchab
@@ -467,7 +523,7 @@ entering the model through a process model on biomass.
 Biomass is assumed to evolve as an ODE through time. 
 %Initially the following form is 
 %Here I largely focus on in this case I focus on the following form
-The class of models is largely based on models of the following form,
+The class of models is largely based on the following form,
 %(although in the Chapter (\ref{delayChapter}) a related extension 
 %delay differential model is )
 %
@@ -477,14 +533,14 @@ The class of models is largely based on models of the following form,
 %{\color{red}$C=FB$ to set up yield calculations later
 Here biomass is assumed to change in time by two processes, net production of
 biomass into the population, $P(B)$, and various sources of biomass removal, 
-$Z$, from the population.
+$Z$, \mbox{from the population.}
 %Generally production appears as a nonlinear function of existing biomass, 
 %and removals are assumed to be linear in biomass.
 
 %  %stock recruitment relationship (SRR). Recruitment 
 Firstly, the population grows through a production function, $P(B)$. Production
 in this setting is defined as the net biomass increase due to all reproduction
-and maturation processes.
+and growth processes.
 % accounting for all naturally occurring %no migration the population is assumed closed. 
 %sources of mortality other than the recorded fishing from humans. 
 The production function is assumed to be a parametric (generally non-linear) 
@@ -494,7 +550,7 @@ production of biomass.
 %
 Secondly, the population decreases as biomass is removed by various sources 
 that are assumed to remove biomass linearly with biomass. Above, $Z(t)$, is 
-an aggregate rate of removal. When the fishing rate, $F(t)$, is the only 
+an aggregate rate of removal. Often the fishing rate, $F(t)$, is the only 
 explicitly modeled source of removal $Z(t)=F(t)$, however some models will 
 also included other linear terms in $Z(t)$. Commonly the rate of {\it natural 
 mortality} ($M$) is also included as an additional term so that $Z(t)=M+F(t)$.
@@ -507,17 +563,19 @@ mortality} ($M$) is also included as an additional term so that $Z(t)=M+F(t)$.
 %
 The general structure in Eq. (\ref{ode}) is the conceptual basis for most 
 modern fisheries models used in management \cite{hilborn_quantitative_1992, methot_stock_2013, winker_jabba_2018}. 
-As data permits this general structure is often expanded to model age, weight, 
+As data permit this general structure is often expanded to model age, weight, 
 and/or length classes \cite{schnute_general_1987, fournier_length-based_1987} 
 in the population via models called {\it age structured models} (ASM). ASMs 
 are currently considered best practice when there is %in ``data-rich'' settings when there is 
-considered enough quality data to establish length/age relationships and the 
-associated selectivity for these classes \cite{maunder_review_2013, cope_stock_2023}. 
+considered enough quality data to establish length/age relationships and 
+%the associated selectivity for these classes 
+the vulnerability of each class to fishing mortality (i.e. selectivity)
+\cite{maunder_review_2013, cope_stock_2023}. 
 Modeling age and length/weight structure in the population allows for 
-individual growth and maturity to be modeled as cohorts that age through time. 
+individual growth and lagged maturity to be modeled as cohorts that age through time. 
 Despite this added complexity, at their core ASMs rely on similar dynamics as 
 seen in Eq. (\ref{ode}), however in ASMs the above ODE is expanded to a system 
-of interrelated ODEs describing how cohorts age through time. %for each age class.  
+of interrelated equations describing how cohorts age through time. %for each age class.  
 
 %
 {\it Delay-differential models} (DDM), as described in more detail in Chapter (\ref{delayChapter}), 
@@ -564,26 +622,29 @@ at steady state.
 MSY is then found by maximizing $\bar Y(F)$ with respect to $F$, and $F^*$ is 
 the fishing rate at MSY. Going forward let $^*$ decorate any value derived 
 under the condition of MSY.
+
 %%
 %While a number of different RPs exist which describe the population in different
 %(but related) ways, 
 Most RPs revolve around the concept of MSY (or robust ways of measuring MSY \cite{hilborn_pretty_2010,punt_management_2016}).
 Here the focus is primarily on the RPs $\frac{B^*}{\bar B(0)}$ and $\frac{F^*}{M}$ (or $F^*$ when appropriate)
 for their pervasive use in modern fisheries \cite{punt_extending_2019}. %mangel_perspective_2013,
-
 %{\color{red}
 %%Fisheries are very often managed based upon reference points (RPs) 
 %%which serve as simplified heuristic measures of population behavior. 
 %The mathematical form of RPs depends upon the model assumptions through the
 %production function. %({\color{red} cite}). 
 %}
-
 %
-$F^*$ is the afore mentioned fishing rate which results in MSY, and $\frac{B^*}{\bar B(0)}$
-is the depletion of the stock at MSY. %That is to say 
-$\frac{B^*}{\bar B(0)}$ describes
-the fraction of the unfished population biomass that will remain in the equilibrium
-at MSY. In general $F^*\in\mathbb{R}^+$ and \mbox{$\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$,}
+Here $F^*$ is the afore mentioned fishing rate which results in MSY, $M$ is natural mortality, 
+$\bar B(0)$ is the equilibrium biomass in the absence of fishing, and $B^*$ is 
+the equilibrium biomass when fishing at $F^*$ (i.e. $\bar B(F^*)$). 
+%$\frac{B^*}{\bar B(0)}$ %is the depletion of the stock at MSY. %That is to say 
+Thus, $\frac{F^*}{M}$ describes the fraction of mortality due to fishing when 
+the population is expected to yield MSY and $\frac{B^*}{\bar B(0)}$ describes 
+the fraction of the unfished population that will remain at MSY. 
+%equilibrium biomass at MSY as a fraction of the unfished biomass. 
+In general $\frac{F^*}{M}\in\mathbb{R}^+$ and \mbox{$\frac{B^*}{\bar B(0)}\in\left(0, 1\right)$,} 
 however under the assumption of two-parameter production, %function production 
 models will be structurally unable to capture the full theoretical range of RPs.
 %\shortcite{mangel_perspective_2013}.
@@ -597,7 +658,7 @@ The two-parameter Fox model \cite{fox_jr_exponential_1970} limits $\left(F^*, \f
 Similarly the two-parameter Cushing \cite{cushing_dependence_1971, cushing_dependence_1973}, Beverton-Holt \cite[BH]{beverton_dynamics_1957}
 and Ricker \cite{ricker_stock_1954} production functions do not model the full theoretical space of
 RPs. Mangel et. al. \cite{mangel_perspective_2013} show that this is a 
-consequence of two parameter production functions and suggests the use of a 
+consequence of two-parameter production functions and suggests the use of  
 three-parameter functions instead. 
 %and others have shown that RPs can
 %be stucturally limited by the most commonly used assessment models.\cite{mangel_perspective_2013}%, yeakel_generalized_2015}.
@@ -608,13 +669,13 @@ three-parameter functions instead.
 %
 The bias-variance trade-off \cite{ramasubramanian_machine_2017} makes it
 clear that the addition of a third parameter in the production function will
-necessarily reduce estimation bias. However the utility of this bias reduction
+necessarily reduce estimate bias. However the utility of this bias reduction
 is still under debate because the particular mechanisms and behavior (direction and magnitude) %over relevant RPs %and mechanisms %behavior 
 of these biases for key management quantities %(and the mechanisms of inducing these biases) 
-are not fully understood or described \cite{munyandorero_analytical_2023}. Lee et. al. \cite{lee_can_2012} provides some
-evidence that estimation of productivity parameters %, and thus RPs via \shortcite{mangel_perspective_2013},
+are not fully understood or described \cite{munyandorero_analytical_2023}. 
+Lee et. al. \cite{lee_can_2012} provide some evidence that estimation of productivity parameters %, and thus RPs via \shortcite{mangel_perspective_2013},
 are dependent on changes in biomass trends through time (i.e. contrast) as well % as well as contrast in data %lacking contrast in biomass. 
-as model specification. Conn et. al. \cite{conn_when_2010} comes to similar conclusions %about steepness estimation
+as model specification. Conn et. al. \cite{conn_when_2010} come to similar conclusions %about steepness estimation
 via calibration modeling techniques. These studies indicate important factors that
 contribute to inferential failure. However they do not offer mechanisms of model
 failure, nor do their experimental designs allow for the control of different
@@ -639,16 +700,17 @@ types of model misspecification.
 %In this thesis 
 In Chapters (\ref{ptChapter}) and (\ref{schnuteChapter}) of this thesis I 
 consider the behavior of RP inference when index data are simulated from three-parameter 
+%the behavior of RP inference when index data are simulated from three-parameter
 PT and Schnute models of productivity, but the simulated data are fit using 
-intentionally misspecified two-parameter Logistic and BH models respectively. 
+intentionally misspecified two-parameter Schaefer and BH models respectively. 
 %(Chapters (\ref{ptChapter}) and (\ref{schnuteChapter}) respectivly). 
 %
 RP inference is simulated in the SPM setting, and the 
 results are then extended to the context of models that include individual 
 growth and maturity by developing a Schnute DDM in Chapter (\ref{delayChapter}).
 %
-In each simulation setting a derivation of RPs, and associated quantities, 
-under the three-parameter models is derived. %PT model.
+In each simulation setting equations for RPs and associated quantities 
+under the three-parameter models are derived. %PT model.
 Under the PT model simulation design is entirely analytical. Under the 
 Schnute model fully analytical designs are not possible. Thus %a method is developed for generating simulation designs which ensure
 in Chapter (\ref{schnuteChapter}) a method is presented for generating simulation designs under the Schnute model 
@@ -797,16 +859,16 @@ The metamodel analysis of RP estimation under the BH model generalizes the RP
 mapping developed under the Schaefer model to more complex RP sets. Under the 
 BH model RP inference demonstrates an approximately shortest distance mapping 
 onto the constrained RP space as mediated by the information content provided 
-by the available contrast in the data. For the BH RP geometry this shortest 
-distance mapping ensures that if there is bias in one of $\frac{B^*}{B_0}$ or 
+by the available contrast in the data. For the BH RP geometry (unlike the Schaefer model) 
+this shortest distance mapping ensures that if there is bias in one of $\frac{B^*}{B_0}$ or 
 $\frac{F^*}{M}$, there will necessarily be bias in the other RP. These biases 
-tend to be conservative for stocks that are more density dependent than the 
-BH model, but leads to potentially hazardous overestimation of RPs for the most 
-%less density dependent than the BH model
-vulnerable stocks. Furthermore, the low contrast simulation setting 
-demonstrates that heavily misspecified BH models demonstrate a catastrophic 
-failure mode that dramatically underestimations $\frac{F^*}{M}$ and 
-prioritizes high level biomass tends in the data. 
+would tend to result in potentially overly cautious management for stocks that 
+are more density dependent than the BH model, but leads to overestimation of $\frac{F^*}{M}$ for %some the most 
+stocks that are less density dependent than the BH model. %(potentially hazardousvulnerable stocks. 
+Furthermore, the low contrast simulation setting demonstrates that heavily 
+misspecified BH models demonstrate a catastrophic failure mode that 
+dramatically underestimations $\frac{F^*}{M}$ so as to prioritize high level 
+biomass tends in the data. 
 %%brittleness that 
 %This catastrophic failure mode is a sort of self regulation of RPs where FM is almost
 %completely ignored for the purposes of preserving B̄(0)
@@ -826,22 +888,22 @@ prioritizes high level biomass tends in the data.
 %
 The development of the DDM in Chapter (\ref{delayChapter}) further 
 extends the simulation-based analysis of RPs to account for the effects of 
-individual growth and maturity dynamics. While $F^*$ is not analytical 
+individual growth and lagged maturity/selectivity dynamics. While $F^*$ is not analytical 
 under the general Schnute DDM, many of the special cases of the Schnute model 
 do provide analytical RP calculations for the DDM.
 %that account for individual growth and maturity. 
 Furthermore the analytical results derived under the general Schnute DDM 
-provide stable methods for navigating RPs to describe RP behavior for 
+provide stable methods for navigating RP space to describe RP behavior for 
 general density dependence simultaneously accounting for individual growth 
 and maturity. %even more generally. 
 % more generally to explore RP behaviorm more generally.
 % for the dev are analytical to  the analysis 
-The effects of individual growth and maturity on RPs were found to be small 
-relative to the form of recruitment, but differed by the level of density 
-dependence. The behavior of BH RP estimation in the DDM setting was generally 
+The effects of individual growth and maturity on RPs are found to be small 
+relative to the form of recruitment, but differ by the level of density 
+dependence. The behavior of BH RP estimation in the DDM setting is generally 
 very similar to the SPM setting. The relationship between the form of recruitment 
 and individual growth interact under the BH model to make RP estimation more 
-brittle for slower growing stocks. This indicates that better, or more flexible, 
+brittle for slower growing stocks. This indicates that better, and/or more flexible, 
 models of recruitment may be required to develop more complex DDMs as useful 
 and practical models in stock assessment. 
 
@@ -891,6 +953,7 @@ California fisheries and is useful for the simulation purposes here, but
 methods of understanding the notion more generally would be extremely valuable.  
 %The notion of contrast developed in Section (\ref{catch}) if useful and representative of many California fisheries. 
 
+
 %
 While the DDM developed in Chapter (\ref{delayChapter}) parsimoniously develops 
 the most foundational biological processes in fisheries management, further 
@@ -900,10 +963,13 @@ step. Thorson et. al. \cite{thorson_case_2019} show that modeling recruitment de
 as a random effect composed with BH recruitment can reduce bias in estimates of depletion 
 and improve uncertainty quantification for data-limited models of Pacific hake. %such the DDM developed here.
 The methods presented in this thesis are an ideal framework for understanding those 
-results more broadly in terms of RP model misspecification. Furthermore, 
-expanding this study to incorporate age/length data and various models of selectivity 
-via more complex ASMs such as Stock Synthesis \cite{methot_stock_2013} or FIMS \cite{stawitz_fisheries_2023}
-could be an excellent direction for future work.
+results more broadly in terms of RP model misspecification. 
+Furthermore, the simulation framework developed here provides a straightforward 
+path for extending into the analysis of more complex ASMs such as Stock 
+Synthesis \cite{methot_stock_2013} or FIMS \cite{stawitz_fisheries_2023}.
+%Furthermore, expanding this study to incorporate age/length data and various models of selectivity 
+%via more complex ASMs such as Stock Synthesis \cite{methot_stock_2013} or FIMS \cite{stawitz_fisheries_2023}
+%could be an excellent direction for future work.
 
 %\cite{thorson_case_2019} 
 %a unifying sentence about processes uniting Recruitment deviations and ASMs 
@@ -925,20 +991,24 @@ could be an excellent direction for future work.
 
 %
 The metamodeling structures developed here have proven effective tools for understanding RP biases 
-in the SPM and DDM settings presented here, that said several improvements may be made to the metamodeling 
+in the SPM and DDM settings presented. That said, several improvements may be made to the metamodeling 
 simulation framework itself to facilitate this analysis in more complex settings. Improving the speed 
-of simulations from the order of a week to the order of days would allow the analysis to condition 
-on specific stock assessment models and data (i.e. catches, ages, lengths) to consider how RP model 
-misspecification may be specifically present in a given stock assessment. It was not considered a priority 
+of simulations would allow for more easily relaxing the simulation assumptions around estimating $q$ and 
+increasing the simulated values of residual variation.
+Decreasing simulation run time to the order of days in more complex settings would allow the analysis to
+%from the order of a week to the order of days would allow the analysis to to tackle more complex models and 
+condition on specific stock assessment models and data (i.e. catches, ages, lengths) to consider how RP model 
+misspecification may manifest in a given stock assessment. It was not considered a priority 
 for the work presented in this thesis but by more effectively refining the simulation design through the 
 use of more pointed acquisition functions\cite{pourmohamad_bayesian_2021}, fewer simulations may be collected 
 \footnote{The primary factor for determining the run time of these simulations}. In particular, since 
-optimization is not a goal of the metamodel in this setting, developing Entropy-based acquisition functions 
+optimization is not a goal of the metamodel in this setting, developing entropy-based acquisition functions 
 \cite{hennig_entropy_2012, hernandez-lobato_predictive_2014} could be useful here. Furthermore, given the 
 catastrophic model failure that was observed under low contrast BH models, particularly in the slower 
 growing examples, it could be valuable to consider nonstationary GP metamodels \cite{gramacy_bayesian_2008, binois_hetgp_2021}. %, heinonen_non-stationary_2016}. 
-By considering nonstationary metamodels the catastrophic model failure may be more quickly and accurately 
-identified.
+By considering nonstationary metamodels these catastrophic failure modes 
+%(similar to that observed under the BH model in the low contrast examples shown here) 
+may be more quickly and accurately identified.
 
 %By documenting these directions for future work here it is the hope that these approaches may facilitate the future reseach of  
 

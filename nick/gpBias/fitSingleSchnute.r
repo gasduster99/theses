@@ -121,9 +121,9 @@ P0 = 10000 #3000
 #SIM
 #
 
-#
-xiWho = 3.48
-zetaWho = 0.48
+#./modsSchnuteHHardFlatT30N150WWideN112/datGen_xi1.93_zeta0.45.rda
+xiWho = 1.93 #3.48
+zetaWho = 0.45 #0.48
 start = sprintf("./modsSchnuteHHardFlatT30N150WWideN112/datGen_xi%s_zeta%s.rda", xiWho, zetaWho)
 fileFit = sprintf("./fitSingle_xi%s_zeta%s.rda", xiWho, zetaWho)
 

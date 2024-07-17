@@ -417,6 +417,165 @@ rug(PBar(fit$alpha, fit$beta, fit$gamma, FMsy(fit$alpha, fit$gamma, fit$M), fit$
 legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", cols[1]), lwd=3)
 dev.off()
 
+#######################################################################################################################
+#
+#MID, MID HI
+#
+#######################################################################################################################
+
+
+##
+#xi = 3.5
+#zeta = 0.2
+xiMid = 2
+zetaMidHi = 0.45
+ 
+#minimize norm
+norms = sqrt((xiMid-xis)^2 + (zetaMidHi-zetas)^2)
+who   = which(min(norms)==norms)
+xi    = xis[who]
+zeta  = zetas[who]
+##
+#fileDat = sprintf('%s/datGen_xi%s_zeta%s.rda', dir, round(xi, binTrk), round(zeta, binTrk))
+#fileFit = sprintf('%s/fit_xi%s_zeta%s.rda', dir, round(xi, binTrk), round(zeta, binTrk))
+#
+fileDat = names(who)                            #sprintf('%s/datGen_xi%s_zeta%s.rda', dir, round(xi, binTrk), round(zet
+fileFit = gsub("datGen", "fit", fileDat)
+
+#
+dat = readRDS(fileDat)
+fit = readRDS(fileFit)
+fitS = readRDS('fitSingle_xi1.93_zeta0.45.rda') #fitSingle_xi3.48_zeta0.48.rda')
+
+#
+xMax = max(dat$N0, fit$N0, fitS$N0)
+grd = 0:xMax
+#yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), na.rm=T)
+
+#
+MM = 10^4
+who = c('lalpha', 'lbeta')
+C = fit$rsCov[who, who]
+m = c(fit$lalpha, fit$lbeta)
+sam = rmvnorm(MM, m, C)
+#
+CS = fitS$rsCov[who, who]
+mS = c(fitS$lalpha, fitS$lbeta)
+samS = rmvnorm(MM, mS, CS)
+
+#
+#grd = 0:xMax
+#lns = mapply(function(a, b){SRR(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
+#qLns = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
+
+#
+lns = mapply(function(a, b){SRR(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
+qSRR = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
+qYield = rowQuantiles(lns-M*grd, probs=c(0.025, 0.5, 0.975))
+#
+yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), qSRR, na.rm=T)
+
+#
+png(sprintf("yeildCurveCompare%sPrettyX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
+cols = brewer.pal(9, "Set1")
+x = seq(0, xMax, length.out=1000)
+y = yield(x, dat$lalpha, dat$lbeta, dat$gamma)
+#gap.plot(x, y, gap=c(200, 3200), type='l',
+curve(yield(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
+        lwd=3,
+        ylim=c(0, 3300), #yMax),
+        ylab="Yield",
+        xlab="B",
+        main="Estimated Yield Curves For Poorly Specified BH", #TeX(sprintf("$F_{MSY}/M$=%s  \t  $B_{MSY}/B_0$=%s", round(xi, binTrk), round(zeta, binTrk))),
+        cex.lab = 1.5,
+        cex.main= 1.4
+)
+polygon(c(grd, rev(grd)), chop(c(qYield[,1], rev(qYield[,3]))),
+        col=adjustcolor(cols[1], alpha.f=0.2),
+        border=F
+)
+curve(yield(x, fit$lalpha, fit$lbeta, fit$gamma), 0, PBar(fit$alpha, fit$beta, fit$gamma, 0, fit$M), lwd=3, add=T, col=cols[1])
+#rug(PBar(dat$alpha, dat$beta, dat$gamma, FMsy(dat$alpha, dat$gamma, dat$M), dat$M), lwd=3)
+#rug(PBar(fit$alpha, fit$beta, fit$gamma, FMsy(fit$alpha, fit$gamma, fit$M), fit$M), lwd=3, col='red')
+#rug(dat$N, lwd=3, ticksize=0.05)
+##rug(dat$N, line=0.75)
+##rug(fit$N, col=cols[1])
+legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", cols[1]), lwd=3)
+#legend("topright", legend=c("Schnute Truth", "Low Contrast BH Fit", "High Contrast BH Fit"), col=c("black", cols[1:2]), lwd=3)
+dev.off()
+
+#RELATIVE
+
+#
+lns = mapply(function(a, b){yield(grd, a, b, fit$gamma)}, sam[,1], sam[,2])
+qYield = rowQuantiles(lns, probs=c(0.025, 0.5, 0.975))
+#
+lnsS = mapply(function(a, b){yield(grd, a, b, fitS$gamma)}, samS[,1], samS[,2])
+qYieldS = rowQuantiles(lnsS, probs=c(0.025, 0.5, 0.975))
+#qYield = rowQuantiles(lns-M*grd, probs=c(0.025, 0.5, 0.975))
+##
+#yMax = max(SRR(grd, dat$lalpha, dat$lbeta, dat$gamma), SRR(grd, fit$lalpha, fit$lbeta, fit$gamma), qSRR, na.rm=T)
+
+#NOTE: this one
+png(sprintf("yeildRelCurveCompare%sPrettyX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
+cols = brewer.pal(9, "Set1")
+x = seq(0, xMax, length.out=1000)
+y = yield(x, dat$lalpha, dat$lbeta, dat$gamma)
+#gap.plot(x, y, gap=c(200, 3200), type='l',
+curve(yield(x*P0, dat$lalpha, dat$lbeta, dat$gamma), 0, 1, n=1000,
+        lwd=3,
+        ylim=c(0, 3300), #yMax),
+        ylab="Yield",
+        xlab=TeX("$B/B_0$"),
+        main="Estimated Yield Curves For Poorly Specified BH", #TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", round(xi, binTrk)*M, round(zeta, binTrk))),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+P0Fit = PBar(fit$alpha, fit$beta, fit$gamma, 0, fit$M)
+polygon(c(grd/P0Fit, rev(grd/P0Fit)), chop(c(qYield[,1], rev(qYield[,3]))),
+        col=adjustcolor(cols[1], alpha.f=0.2),
+        border=F
+)
+P0FitS = PBar(fitS$alpha, fitS$beta, fitS$gamma, 0, fitS$M)
+polygon(c(grd/P0FitS, rev(grd/P0FitS)), chop(c(qYieldS[,1], rev(qYieldS[,3]))),
+        col=adjustcolor(cols[2], alpha.f=0.2),
+        border=F
+)
+curve(yield(x*PBar(fit$alpha, fit$beta, fit$gamma, 0, fit$M), fit$lalpha, fit$lbeta, fit$gamma), 0, 1, lwd=3, add=T, col=cols[1])
+curve(yield(x*PBar(fitS$alpha, fitS$beta, fitS$gamma, 0, fitS$M), fitS$lalpha, fitS$lbeta, fitS$gamma), 0, 1, lwd=3, add=T, col=cols[2])
+#rug(PBar(dat$alpha, dat$beta, dat$gamma, FMsy(dat$alpha, dat$gamma, dat$M), dat$M), lwd=3)
+#rug(PBar(fit$alpha, fit$beta, fit$gamma, FMsy(fit$alpha, fit$gamma, fit$M), fit$M), lwd=3, col='red')
+#rug(dat$N, lwd=3, ticksize=0.05)
+##rug(dat$N, line=0.75)
+##rug(fit$N, col=cols[1])
+legend("topright", legend=c("Schnute Truth", "Low Contrast BH Fit", "High Contrast BH Fit"), col=c("black", cols[1:2]), lwd=3)
+dev.off()
+
+#
+png(sprintf("rR0Compare%sPrettyX%sZ%s.png", mod, round(xi, binTrk), round(zeta, binTrk)))
+cols = brewer.pal(9, "Set1")
+curve(SRR(x, dat$lalpha, dat$lbeta, dat$gamma)/SRR(P0, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000, #yield(x, dat$lalpha, dat$lbeta, dat$gamma), 0, xMax, n=1000,
+        lwd=3,
+        ylim=c(0, 2.5), #3300), #yMax),
+        ylab="Production",
+        xlab="B",
+        main=TeX(sprintf("$F_{MSY}$=%s  \t  $B_{MSY}/B_0$=%s", round(xi, binTrk)*M, round(zeta, binTrk))),
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+#polygon(c(grd, rev(grd)), c(qYield[,1], rev(qYield[,3])),
+#        col=adjustcolor(cols[1], alpha.f=0.2),
+#        border=F
+#)
+curve(SRR(x, fit$lalpha, fit$lbeta, fit$gamma)/SRR(PBar(fit$alpha, fit$beta, fit$gamma, 0, fit$M), fit$lalpha, fit$lbeta, fit$gamma), 0, xMax, lwd=3, add=T, col=cols[1])
+rug(PBar(dat$alpha, dat$beta, dat$gamma, FMsy(dat$alpha, dat$gamma, dat$M), dat$M), lwd=3)
+rug(PBar(fit$alpha, fit$beta, fit$gamma, FMsy(fit$alpha, fit$gamma, fit$M), fit$M), lwd=3, col='red')
+#rug(dat$N, lwd=3, ticksize=0.05)
+##rug(dat$N, line=0.75)
+##rug(fit$N, col=cols[1])
+legend("topright", legend=c("Schnute Truth", "BH Fit"), col=c("black", cols[1]), lwd=3)
+dev.off()
+
 
 
 

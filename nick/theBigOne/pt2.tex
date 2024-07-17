@@ -14,7 +14,7 @@
 %}
 
 %
-Historically the Schaefer model is a canonical model in fisheries. % is the Schaefer model. The
+The Schaefer model is a canonical model in fisheries. % is the Schaefer model. The
 %The basis of the Schaefer model is ripe with debate \cite{kingsland_refractory_1982}.
 %It is a much loved, and argued over, model \cite{kingsland_refractory_1982}.
 The basis of the Schaefer model is ripe with debate \cite{kingsland_refractory_1982},
@@ -50,9 +50,9 @@ following form,
 \begin{align}
 P(B; [r, K]) = r B \left(1-\frac{B}{K}\right). \label{logistic}
 \end{align}
-$r$ is a parameter controlling the maximum rate of population growth (biomass production) %per capita growth rate %of surplus biomass production 
+$r$ is a parameter controlling the maximum rate of net population growth (biomass production) %per capita growth rate %of surplus biomass production 
 for a population in the absence of competition for resources (i.e. the slope 
-of production function at the origin). $K$ is the so called ``carrying 
+of production function at the origin). $K$ is the so-called ``carrying 
 capacity'' of the population. In this context the carrying capacity can be 
 formally stated as steady state biomass in the absence of fishing \mbox{(i.e. 
 $\bar B(0)=K$).} The model is typically stated without natural mortality, $M$, 
@@ -97,12 +97,13 @@ $F^*=\frac{r}{2}$, which is half of the stock's maximum rate of productivity.
 %
 %{\color{red}
 While this idealized form is instructive, and convenient, these simplistic 
-dynamics are also potentially problematic. The symmetry of the logistic, 
-functional form that provides its relatively straight-forward RP analysis, also 
-assumes very rigid dynamics. It assumes dynamics in the lower 
-(resource limited) regime of the dynamics ($B\in(0, \frac{K}{2})$) 
-have the same shape as the upper (density limited) regime of production 
-dynamics ($B\in(\frac{K}{2}, K)$). 
+dynamics are also potentially problematic. The symmetry of the logistic 
+functional form that provides its relatively straight-forward RP analysis also 
+assumes very rigid dynamics. It assumes dynamics at smaller population sizes ($B\in(0, \frac{K}{2})$)
+%in the lower (EJ says not resource limited) regime of the dynamics ($B\in(0, \frac{K}{2})$) 
+mirror the dynamics of larger population sizes ($B\in(\frac{K}{2}, K)$).
+%(resource limited) #have the same shape as
+%regime of production dynamics ($B\in(\frac{K}{2}, K)$). 
 %What in nature ties these phenomena together so that this assumption should be true? 
 %}
 Maunder \cite{maunder_is_2003} argues that the Schaefer model is
@@ -124,7 +125,7 @@ avoid biased parameter estimates.
 %to reasonably approximate dynamics in many data poor stocks. %productivity shapes. 
 
 %
-The PT model is a three parameter generalization of the Schaefer model that uses 
+The PT model is a three-parameter generalization of the Schaefer model that uses 
 its extra parameter to explicitly control the location of $\frac{B^*}{\bar B(0)}$. 
 In doing so, the PT model can model the entire space of RPs and does so in a way that 
 retains much of the analytical appeal of the Schaefer model. While there are some oddities
@@ -227,7 +228,7 @@ appears as a limiting case as $\gamma\to1$).
 %
 In Figure (\ref{SrrPT}) PT production is shown for a range of parameter values
 so as to demonstrate the various productivity shapes that can be achieved under
-PT.
+the PT model.
 
 %
 While the form of the PT curve produces some limitations \cite{punt_extending_2019, fletcher_restructuring_1978} %\cite{fletcher_restructuring_1978}, %{(\color{red}cite)}, 
@@ -334,7 +335,7 @@ derivation, and the Lambert product logarithm, are given in \mbox{Appendix (\ref
 %
 Using Eq. (\ref{gammaOfB}) to obtain production parameters, a PT production model
 can be fully defined for any combination of the RPs $F^*$ and $\frac{B^*}{\bar B(0)}$.
-Since $K$ does not enter the RP calculation its value is fixed arbitrarily at 10000.
+Since $\bar B(0)$ alone does not enter the RP calculation its value is fixed arbitrarily at 10000.
 
 %
 %\begin{itemize}
@@ -354,9 +355,13 @@ Since $K$ does not enter the RP calculation its value is fixed arbitrarily at 10
 Indices of abundance are simulated from the three-parameter PT production model
 broadly over the space of $F^*$ and $\frac{B^*}{\bar B(0)}$ via a space filling
 design as described in Section (\ref{lhs}). A small amount of residual variation,
-$\sigma=0.01$, is added to the simulated index, and these data are then fit with a
-Schaefer model, at various degrees of misspecification, so as to observe the
-effect of productivity model misspecification upon RP inference.
+$\sigma=0.01$ in Eq. (\ref{resp}), is added to the simulated index, and these data 
+are then fit with a Schaefer model, at various degrees of misspecification, so 
+as to observe the effect of productivity model misspecification upon RP inference.
+Tests were performed with larger values of $\sigma$ leading to similar overall results 
+albeit requiring substantially more simulation runs.
+%with similar metamodel results 
+%{\color{red} Hint at small $\sigma$. State average CV.}
 
 %
 %\subsection{Design}
@@ -377,15 +382,15 @@ effect of productivity model misspecification upon RP inference.
 \subsection{Latin Hypercube Design \label{lhs}}
 
 %
-The goal of space filling design in this setting is to extend the notion of the
+The goal of the space-filling design in this setting is to extend the notion of the
 random sample (and its desirable parameter estimation properties) across the
 simulated RP domain so as to represent the simulated space as well as possible \cite{gramacy_surrogates_2020}.
 The simple random sample is the classical approach to unbiased parameter
 estimation, however simple randomness is patchy, often sampling some regions
 of design space quite densely, while leaving other regions of design space empty.
-Space filling designs aim to preserve (or enhance) parameter estimation properties
+Space-filling designs aim to preserve (or enhance) parameter estimation properties
 across the simulated domain \cite{devon_lin_latin_2015, stein_large_1987},
-while constraining samples to be spaced in some notion of spread over the entire space.
+while constraining samples to be spread over the entire space.
 Latin Hypercube Sampling \cite[LHS]{mckay_comparison_2000} is among the most
 foundational methods of generating the designs for use in computer experiments. 
 A Latin Hypercube Design \cite[LHD]{santner_design_2003} is thus an experimental 
@@ -429,7 +434,7 @@ elements. \label{LHS}
 %
 Each of the sampled locations represent a unique PT model with the sampled RP 
 values. Since the relationship mapping RPs analytically to productivity
-parameters can be found for the PT model, LHS designs the the PT model are 
+parameters can be found for the PT model, LHS designs for the PT model are 
 computed directly in RP space and Eq. (\ref{gammaOfB}) is used to map the
 sampled RP design locations to PT productivity parameters.
 \\
@@ -440,26 +445,32 @@ sampled RP design locations to PT productivity parameters.
 
 %{\color{red}
 %\begin{itemize}
+%\item add a couple more metamodeling/surrogate modeling citations\\
+%\item Clear up prediction $x*$ notation CRISPY\\
 %%Clear up $\sigma$ notation CRISPY\\
-%\item Indicate uses outside of \cite{kennedy_bayesian_2001}
+%%\item Indicate uses outside of \cite{kennedy_bayesian_2001}
 %\end{itemize}
 %}
 
 
 %
 At its core, a metamodel is simply a model of some mapping of inputs to outputs
-(the mapping itself is typically defined by a computer model). By modeling the
-mapping with a statistical model (that explicitly defines the relevant features of the
+(the mapping itself is typically defined by a computer model) \cite{santner_space-filling_2003}. 
+By modeling the mapping with a statistical model (that explicitly defines the relevant features of the
 mapping) a metamodel defines a specific ontology for the mapping.
 %representation of an ontology of the modeled mapping. %the mapping %that can be seen to form
 %By modeling the mapping as a statistical model, and 
 By simulating examples of the mapping, the inferential infrastructure of the
 statistical model is used to empirically learn an effective emulation of the
-mapping within the ontology defined by the statistical model. %, based on simulated examples of the mapping. 
+mapping within the ontology defined by the statistical model \cite{gramacy_surrogates_2020}. %, based on simulated examples of the mapping. 
 The predictive infrastructure of the statistical model is then useful as an
 approximate abstraction of the system itself to better understand the system
 through further data collection, cheap approximation of the mapping, and/or study
-of the mapping itself. 
+of the mapping itself \cite{friedman_simulation_2012}. 
+
+%\cite{gramacy_surrogates_2020}
+%\cite{santner_space-filling_2003}
+%\cite{friedman_simulation_2012}
 
 %\begin{itemize}
 %\item Goal of metamodel
@@ -500,11 +511,11 @@ complicated dynamics. %While the use of metamodels in this setting is
 Thus the goal of metamodeling in this setting is not typical Bayesian calibration \cite{kennedy_bayesian_2001} 
 of RPs, but rather %the goal is 
 to aid in the description (and simulation) of RP 
-model misspecification consquences. 
+model misspecification consequences. 
 Correcting these RP biases is clearly a goal, %may be aided by the RP mappings developed using the metamodels presented here
 but the best estimates of RPs will likely be come 
 from using the understanding developed by these metamodels to inform better, %to directly model andfit better 
-and more adequatly flexible, models of productivity directly.
+and more adequately flexible, models of productivity directly.
 %The metamodeling methodology is useful here convient in this setting for the more general goal of %style calibration goals of metamodeling
 
 %
@@ -567,7 +578,7 @@ so that the transformed RP quantities are both in $\mathbb{R}$.
 %At each design location of the simulation, fitting the restricted two-parameter
 %model results in a MLE of each of the productivity parameters
 %(i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
-These quantities are then modelled as GP models over the broader RP space.
+These quantities are then modeled as GP models over the broader RP space.
 To simplify the specification of the metamodel, let $\textbf{y}$ be a vector
 collecting the fitted MLEs for one of these quantities, and let
 $\bm{\omega}$ be a vector of estimates of the estimator variances (via the
@@ -616,7 +627,9 @@ R(\bm{x}, \bm{\tilde x}) &= \exp\left( \sum_{i=1}^2 \frac{-(x_{i}-\tilde x_{i})^
 $R$ has an anisotropic separable form which allows for differing length scales,
 $\ell_1$ and $\ell_2$, in the different RP axes. The flexibility to model
 correlations separately in the different RP axes is key due to the differences
-in the extent of the RP domains marginally.
+in the extent of the RP domains marginally. The matrix $\bm{R_{\ell}}$ is filled 
+out by evaluating the correlation function $R$ at each pairwise combination of 
+simulated design locations.
 %$\ell_1$ and $\ell_2$ model the length scales for $F^*$ and 
 %$\frac{B^*}{\bar B(0)}$
 %respectively. 
@@ -633,17 +646,17 @@ Predictive estimates are obtained via kriging \cite{cressie_statistics_2015} %{(
 %{\color{red}Let $\tilde~$ decorate any quantity that is derived 
 %under the metamodel prediction.}
 \begin{equation} \label{gpYHat} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
-        \hat y(\textbf{x}) = \beta_0 + \textbf{x}\bm{\beta} + \textbf{r(x)}'\bm{R}^{-1}_{\bm{\ell}}\Big(\textbf{y}-\big(\beta_0+\bm{X}\bm{\beta}\big)\Big)
+        \hat y(\textbf{x}^\star) = \beta_0 + \textbf{x}^\star\bm{\beta} + \textbf{r(x}^\star\textbf{)}'\bm{R}^{-1}_{\bm{\ell}}\Big(\textbf{y}-\big(\beta_0+\bm{X}\bm{\beta}\big)\Big)
 \end{equation}
 
 %
-$\hat y(\textbf{x})$ is the metamodel's predicted value of the modeled $\log(RP)$ estimates %MLEs
+$\hat y(\textbf{x}^\star)$ is the metamodel's predicted value of the modeled $\log(RP)$ estimates %MLEs
 %the modeled transformed {\color{red}transformed parameter}MLE 
 under the two-parameter production model, when the index of abundance %the metamodel at the 
-is generated from the three-parameter production model at RP location $\textbf{x}$.
-Finally, $\textbf{r(x)}$ is a vector-valued function of correlation function 
-evaluations for thepredictive location $\textbf{x}$ against all observations 
-in $\bm{X}$(i.e. $\textbf{r(x)}=\bm{R}(\textbf{x}, \bm{x}_i)~\forall~\bm{x}_i\in\bm{X}$).
+is generated from the three-parameter production model at RP location $\textbf{x}^\star$.
+Finally, $\textbf{r(x}^\star\textbf{)}$ is a vector-valued function of correlation function 
+evaluations for the predictive location $\textbf{x}^\star$ against all observations 
+in $\bm{X}$(i.e. $\textbf{r(x}^\star\textbf{)}=\bm{R}(\textbf{x}^\star, \bm{x}_i)~\forall~\bm{x}_i\in\bm{X}$).
 
 %%
 %{\color{red}
@@ -828,9 +841,11 @@ Thus the log likelihood can be written as
 \log\mathcal{L}(q, \sigma^2, \bm{\theta}; I) = - \frac{T}{2}\log(\sigma^2) - \frac{1}{2\sigma^2}\sum_t \log\left(\frac{I_t}{qB_t(\bm{\theta})}\right)^2. \label{logLike}
 \end{align}
 
-%
-In this setting, $q$ is fixed at 0.0005 and $M$ is fixed at 0.2, to focus on
-the inferential effects of model misspecification on biological parameters.
+%and $M$ is fixed at 0.2,
+In this setting $q$ is fixed at 0.0005 to focus on
+the inferential effects of model misspecification on biological parameters. 
+Furthermore, estimating both $q$ and $K$ introduces identifiability 
+issues since both parameters are responsible for setting the scale of dynamics. %determining the scale biomass 
 $\sigma^2$ and $\bm{\theta}$ are reparameterized to the log scale
 and fit via MLE.
 %$\sigma^2$ is allowed to be fit to assess overall model fit. 
@@ -886,8 +901,8 @@ continuity issue, unlike some potential assumptions for $C(t)$.
 
 %
 In practice $C(t)$ is determined by a series of observed, assumed known, catches.
-Catch observations are typically observed on a quarterly basis, but
-in practice may not be complete for every quarter (or year) of the modeled
+Catch observations are typically observed on a subannual basis, but
+in practice may not be complete for every epoch of the modeled
 period. It is overwhelmingly common to discretize the ODE in time. 
 %via Euler's method with integration step sizes to match the observation frequency of the modeled data. 
 This is often computationally convenient when the underlying species
@@ -918,7 +933,7 @@ catch is adequately parsimonious for the typical handling of catches.
 As previously mentioned, the overwhelming majority of implementations of
 stock assessment models discretize the ODE %using Euler's method 
 with the integration step sized fixed so as to match the observation frequency. 
-In this setting we explore model parameterizations that explore the full 
+In this setting we investigate model parameterizations that explore the full 
 extent of biologically relevant reference points. This exercise produces 
 some combinations of parameters that result in numerically stiff ODEs.
 
@@ -927,7 +942,7 @@ The concept of stiffness in ODEs is hard to precisely characterize.
 %({\color{red}cite}). Hairer and Wanner [5, p. 2] 
 Hairer and Wanner \cite[p.2]{wanner_solving_1996} describe stiffness in the
 following pragmatic sense, ``Stiff equations are problems for which explicit
-methods don't work''. It is hard to make this definition more mathematically
+methods don't work.'' It is hard to make this definition more mathematically
 precise, but due to the explicit discretization of the ODE this is a consistent 
 issue for models of very productive species in the low contrast simulations. 
 % parameterized
@@ -1152,9 +1167,9 @@ Any deviation from this minimal bias pattern is necessarily due to added bias in
 
 %
 The two simulation settings shown in Figure (\ref{arrowsPT}) are identical except
-for the amount of contrast present in the simulated index. The left panel of
+for the amount of contrast present in the simulated index. The right panel of
 Figure (\ref{arrowsPT}) shows RP biases in the low contrast setting, while the
-right panel shows the high contrast setting. Notice that in the low contrast
+left panel shows the high contrast setting. Notice that in the low contrast
 setting the RP bias pattern is far from the minimum distance mapping, however when
 contrast is added the mapping becomes much closer to a minimal vertical bias mapping.
 In the low contrast setting the observed bias is consistent with the pattern
@@ -1255,10 +1270,12 @@ poses a risk for populations coming from $\frac{B^*}{B_0}>0.5$, since
 overestimation of $F^*$ may lead to management that results in overfishing. 
 For the populations coming from $\frac{B^*}{B_0}<0.5$ the 
 underestimated $F^*$ would make management based on Schaefer model 
-estimates more conservative. Of these observed patterns it is certainly better 
-to be conservative in estimating $F^*$
-\footnote{It is thought that $\frac{B^*}{B_0}<0.5$ for most commonly modeled stocks.}, 
-however it is not enough to simply be conservative. Our ultimate goals in 
+estimates more conservative with respect to the possibility of overfishing, but 
+would also reduce the expected long-term yield of the fishery. 
+%Of these observed patterns it is certainly better to be conservative in estimating $F^*$
+%\footnote{It is thought that $\frac{B^*}{B_0}<0.5$ for most commonly modeled stocks.}, 
+%however it is not enough to simply be conservative. 
+Our ultimate goals in 
 modeling should be to provide an accurate summary of the stock with a complete 
 contextualization of our models' deficiencies. To that end, this work contextualizes
 RP estimation under the Schaefer model, and suggests that understanding the 
@@ -1303,14 +1320,14 @@ presence of contrast, $F^*$ estimation can enjoy very low bias even for a wide
 range of poorly specified models; conversely in the absence of contrast $F^*$ 
 estimation can suffer very large bias even for slightly misspecified models.
 This pattern is exemplified in the low-contrast setting where the Schaefer 
-model imposes little a'priori structure on $F^*$ and the low contrast index 
+model imposes little a priori structure on $F^*$ and the low contrast index 
 data poorly informs $F^*$, through $r$, via a biased view of the upper biomass 
 range of the PT curve.
 %Since the structure of the Scheafer model does not induce strong correlations 
 %between RPs, a luxury not granted under the BH model which will be introduced 
 %in Chapter (\ref{schnuteChapter}), it provides a unique modeling enviroment 
 %for understanding these estmation characteristics of $F^*$.
-In the high contrast setting the GP metamodel demonstrates a straight forward 
+In the high contrast setting the GP metamodel demonstrates a straightforward 
 vertical mapping of $F^*$, indicated minimal bias in $F^*$ estimates.
 
 %$~$\\

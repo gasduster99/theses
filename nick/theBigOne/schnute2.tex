@@ -4,11 +4,11 @@
 %
 The perspective of Beverton-Holt \cite{beverton_dynamics_1957} has been 
 foundational to the structure of modern fisheries models \cite{holden_beverton_1995}. 
-Evolving from the work of Von Bertalanffy \cite{von_bertalanffy_quantitative_1938}, 
+Evolving from the work of von Bertalanffy \cite{von_bertalanffy_quantitative_1938} (and before that Baranov \cite{baranov_question_1918, sharov_unknown_2021}), 
 alongside the Ricker \cite{ricker_stock_1954} and Schaefer \cite{schaefer_study_1957}   
-models, the perspective of Beverton-Holt shaped the following decades of fisheries 
-research. To this day, it is practically incumbent upon stock assessments to view the 
-BH model of recruitment as a default \cite{methot_stock_2013, dick_stock_2023}. %, black}. 
+models, the perspective of Beverton and Holt shaped the following decades of fisheries 
+research. To this day, it is practically incumbent upon many stock assessments in the United States 
+to view the BH model of recruitment as a default \cite{methot_stock_2013, dick_stock_2023}. %, black}. 
 
 %{\color{red} add black rockfish assessment assessment}
 
@@ -37,7 +37,8 @@ dependence \cite{gotelli_primer_1995} (albeit to a lesser extent).
 %Like the Schaefer model, the BH model begins the derivation of their 
 Unlike the Schaefer model, the BH approach to modeling productivity factors the 
 density dependence related to recruitment separately from terms relating to 
-natural mortality, behooving a more explicit model of natural mortality \cite{beverton_review_1959}.
+natural mortality in the adult population, behooving a more explicit model of 
+natural mortality \cite{beverton_review_1959}.
 %This behooves an additional and more explicit model of 
 %natural mortality \cite{beverton_review_1959} while recruitment is modeled separatly. 
 Similarly to the Schaefer model, the derivation of the recruitment 
@@ -49,8 +50,8 @@ and reparameterize to argue for the generality of the resulting recruitment
 relationship that we use today. 
 
 %
-For purposes of this study their recruitment relationship is 
-reparameterized as, % consider the % By solving this differential equation they derive 
+For purposes of this chapter their recruitment relationship is reparameterized 
+as a production function to model adult biomass production as, % consider the % By solving this differential equation they derive 
 %
 \begin{equation}
 P(B) = \frac{\alpha B}{1+\beta B}.
@@ -91,8 +92,8 @@ the modeling of surplus production. In this case, $MB$ represents linear natural
 mortality, but it also constitutes a replacement line where biological production 
 must exceed this rate of mortality to persist. Figure (\ref{srrBH}, $right$) 
 demonstrates how when the typical linear handling of natural mortality is 
-taken together with the BH model a left leaning surplus production curve is 
-produces that is reminiscent of PT curves for $\gamma_{PT}<2$ as can be seen in 
+taken together with the BH model a left-leaning surplus production curve is 
+produced that is reminiscent of PT curves for $\gamma_{PT}<2$ as can be seen in 
 Figure (\ref{SrrPT}).
   
 %{\color{red} talk about including $M$, plot BH and M and then yeild with RPs}
@@ -366,7 +367,7 @@ but rather shows that $F^*$ must respect the following expression,
 The lack of an analytical solution here is understood.
 Schnute \& Richards \cite[pg. 519]{schnute_analytical_1998} specifically point out that
 $F^*$ cannot be expressed analytically in terms of productivity parameters,
-but rather gives a partial analytical expression for the inverse relationship.
+but rather give a partial analytical expression for the inverse relationship.
 Although parameterized slightly differently, Schnute \& Richards %\cite[pg. 519]{schnute_analytical_1998} %\citeA{schnute_analytical_1998}
 derive expressions for $\alpha$ and $\beta$ as a function of RPs and $\gamma$.
 %rather suggests that a numerical solution 
@@ -432,15 +433,16 @@ sampled based on the form of $\zeta$ so that the overall simulation
 design is space filling. Ultimately this produces a similar LHD as described in 
 Section (\ref{sLHS}), however bypassing inaccurate numerical methods. 
 
-%
+%is fixed at $10000$ as in Chapter (\ref{ptChapter})
 Each design location defines a complete Schnute production model with the given
-RP values. $B_0$ is fixed at $10000$ as in Chapter (\ref{ptChapter}), and $M$ 
-is fixed at a typical value of $0.2$. Indices of abundance are simulated from 
-the Schnute model at each design location, a small amount of residual variation, 
-$\sigma=0.01$, is added to the simulated index, and the data are then fit 
-with a misspecified BH production model. The design at large captures various 
-degrees of model misspecification relativeto the BH model, so as to observe 
-the effect of productivity model misspecificationupon RP inference.
+RP values. $B_0$ and $q$ are fixed as in Chapter (\ref{ptChapter}), and $M$ 
+is fixed at a $0.2$. Various values of $M$ were tested leading to similar overall results. 
+Indices of abundance are simulated from the Schnute model at each design 
+location, a small amount of residual variation, $\sigma=0.01$, is added to the 
+simulated index, and the data are then fit with a misspecified BH production 
+model. The design at large captures various degrees of model misspecification 
+relative to the BH model, so as to observe the effect of productivity model 
+misspecification upon RP inference.
 %%
 %\clearpage
 %\subsection{Latin Hypercube Sampling \label{lhs}}
@@ -489,6 +491,7 @@ the effect of productivity model misspecificationupon RP inference.
 %the design space.
 
 %
+\clearpage
 \subsection{Design \label{sLHS}}
 
 %
@@ -498,8 +501,8 @@ the effect of productivity model misspecificationupon RP inference.
 \includegraphics[width=0.5\textwidth]{../gpBias/zeta.png}
 \vspace*{-1.3cm}
 \caption{$\zeta(\gamma)$ Plotted for $F^*=0.1$ and $M=0.2$. The point
-$(\gamma_{min}, \zeta_{min})$ shows the lowest biologically meaningful
-value of $\gamma$.} %; below which productivity is negative.}
+$(\gamma_{min}, \zeta_{min})$ shows the lowest %biologically meaningful
+theoretical value of $\gamma$ before surplus production becomes negative.}
 %\end{figure}
 \end{wrapfigure}
 
@@ -534,7 +537,8 @@ a careful navigation of the system of equations seen in Eq. (\ref{abgSys}).
 Under the Schnute model, let $\mathcal{F}$ and $\mathcal{B}$ represent regular grids on
 %Letting $\mathcal{F}$ and $\mathcal{B}$ be equally spaced grids, of size $n$, on 
 \mbox{$\frac{F^*}{M}\in(0.25, 4)$} and \mbox{$\frac{B^*}{B_0}\in(0.15, 0.7)$}
-respectively. These grids will serve as the scaffolding for computing an approximate LHD.
+respectively. Marginally this corresponds to $\frac{\alpha}{M}\in(2, 50)$ with the most typical values lying below 17. %based on the marginal 95\% highest density interval. 
+The grids $\mathcal{F}$ and $\mathcal{B}$ serve as the scaffolding for computing an approximate LHD.
 Furthermore, let the full design space be defined on the rectangle $R_{full}=(0.25, 4)\times(0.15, 0.7)$.
 
 %
@@ -544,10 +548,10 @@ variable, with realization $\gamma'$, and thinking of $\zeta(\gamma)$ as its
 cumulative distribution function (CDF). The aim is to model $\gamma$ as an
 easily sampled random variable with a CDF that closely approximates $\zeta$, so
 that $\zeta(\gamma')\dot\sim U(\zeta_{min},1)$ as closely as possible. The 
-point $(\gamma_{min}, \zeta_{min})$ are the lowest biologically meaningful
-values of $\gamma$ and $\frac{B^*}{B_0}$ respectively, for a given 
-$\frac{F^*}{M}$. Values of $\frac{B^*}{B_0}$ below $\zeta_{min}$ result in 
-negative productivity\cite{myers_maximum_1999, punt_extending_2019}. % defined by the relationship between Schnute productivity and linear natural mortality.
+point $(\gamma_{min}, \zeta_{min})$ are the lowest %biologically meaningful
+theoretical values of $\gamma$ and $\frac{B^*}{B_0}$ respectively (for a given 
+$\frac{F^*}{M}$) before surplus production becomes %. Under the Schnute model values of $\zeta(\gamma)$ below $\zeta_{min}$ result in 
+negative\cite{myers_maximum_1999, punt_extending_2019}. % productivity % defined by the relationship between Schnute productivity and linear natural mortality.
 There may be many good models for the distribution of $\gamma$, but in this 
 setting the following distribution is very effective,
 %
@@ -751,7 +755,7 @@ addition of about 60 augmenting designs of size $n'=5$.
 %below the desired level.
 %{\color{red} State how small in practice here.}
 
-%
+%\clearpage
 \subsection{Metamodeling}
 
 %
@@ -878,7 +882,7 @@ In all cases the restricted RP-space of the BH set is shown as the black curve.
 Bias in RP-space shown directionally. Arrows point from the location where
 data is generated, toward the location in the BH set where MLE projects estimated
 RPs. The intensity of color represents the excess bias relative
-to the shortest possible mapping. (\emph{bottom}) Relative bias in $F^*$.
+to the shortest possible mapping. (\emph{bottom}) Relative bias in $\frac{F^*}{M}$.
 }
 $~$\\$~$\\
 \end{minipage}
@@ -901,8 +905,8 @@ $~$\\$~$\\
 
 %
 Figure (\ref{contrastTrio}) shows metamodeled RP bias surfaces for inference
-under the BH model in the high contrast setting. The (\emph{left}) and
-(\emph{bottom}) panels focus only on the $\frac{B^*}{\bar B(0)}$ and
+under the BH model in the high contrast setting (i.e. $\chi=1$ as defined in Section (\ref{catch})). 
+The (\emph{left}) and (\emph{bottom}) panels focus only on the $\frac{B^*}{\bar B(0)}$ and
 $\frac{F^*}{M}$ components of bias respectively. In these panels bias is shown
 as relative bias, $\frac{\widehat{RP}-RP}{RP}$, similar to a percent error calculation.
 Where $RP$ represents the true value of the three-parameter RP, and $\widehat{RP}$ 
@@ -915,7 +919,7 @@ simulation setting. Unlike high contrast RP inference under the Schaefer model,
 where mainly bias in $\frac{B^*}{\bar B(0)}$ occurred, the BH model shows
 bias in both RPs here. Despite the bias in $\frac{B^*}{\bar B(0)}$ and
 $\frac{F^*}{M}$ these results are similar to that of the Schaefer model in
-that the overall mapping of RPs is very nearly a minimal distance mapping onto
+that the overall mapping of RPs is similar to a minimal distance mapping onto
 the constrained set of RPs. %In this setting the 
 The primary difference between Schaefer model and BH RP inference is the
 geometry of their limited RP spaces. Unlike the Schaefer model the BH set
@@ -978,7 +982,7 @@ to the shortest possible mapping.
 \end{wrapfigure}
 
 %
-Figure (\ref{bhLowArrows}) shows the mapping of RPs in the low contrast
+Figure (\ref{bhLowArrows}) shows the mapping of RPs in the low contrast (i.e. $\chi=0$ as defined in Section (\ref{catch}))
 simulation setting. Figures (\ref{bhLowArrows}) and (\ref{contrastTrio},
 \emph{top-right}) share a common scale for the intensity of color to
 facilitate comparison. In Figure (\ref{bhLowArrows}) notice that the mildly
@@ -1009,11 +1013,12 @@ this region still produced RPs estimates where the data informs both RPs.
 \vspace{-0.75cm}
 %\begin{figure}[h!]
 %\includegraphics[width=0.5\textwidth]{../gpBias/yeildCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png}
-\includegraphics[width=0.5\textwidth]{../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png}
+\includegraphics[width=0.5\textwidth]{../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX1.9707Z0.4633.png}
 %\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
 \vspace{-1cm}
 \caption{
-Yield curves for data generated with $\frac{F^*}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$.
+Yield curves for data generated with $\frac{F^*}{M}=1.97$ and $\frac{B^*}{\bar B(0)}=0.46$. %$\frac{F^*}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$.
 %Convert into $B/B_0$. Show the high contrast curve.
 }
 \label{bhFmsy}
@@ -1034,22 +1039,40 @@ Similarly the set of Ricker RPs (as well as the Schaefer set) include this
 trivial limiting point in common ($\frac{F^*}{M}=0$, $\frac{B^*}{\bar B(0)}=0.5$). 
 
 %
-Interestingly, in the high contrast setting this trivial mapping for highly
-misspecified BH models is not present. This suggests that, under a
-misspecified BH model, the presence of adequate information in the data to
-produce reasonable estimates of $\frac{F^*}{M}$, drives $\frac{B^*}{\bar B(0)}$
-below $0.5$ in accordance with $\frac{B^*}{\bar B(0)}=\frac{1}{F^*/M+2}$,
-even when the true $\frac{B^*}{\bar B(0)}>0.5$.
+Interestingly, in the high contrast setting this trivial mapping for 
+highly misspecified BH models is not present. The fact that removing contrast 
+produces larger biases in $\frac{F^*}{M}$ for the sake of 
+preserving $\frac{B^*}{\bar B(0)}$ (as best as possible within the BH set) suggests that 
+contrast is fundamental to informing $\frac{F^*}{M}$ under the BH model. 
+A similar observation was made under the Schaefer model and the mechanism driving this phenomenon %mechanism
+is established in Section (\ref{flat}).
+%As similar phenomenon
+%This is similar as was 
+%observed under the Schaefer model. A mechanism driving this phenomenon under the Schaefer 
+%model is established in Section (\ref{flat}). 
+Due to the lack of symmetry of the BH yield 
+curve such explicit mechanisms are more difficult to access in the BH setting, however extending this 
+%and is also %ed  Furthermore this notion is %That said, although the result 
+notion under the BH model is consistent with existing analyses under BH ASMs \cite{conn_when_2010, lee_can_2012}.    
+%This suggests that, under a
+%misspecified BH model, the presence of adequate information in the data to
+%produce reasonable estimates of $\frac{F^*}{M}$ 
+Thus when contrast is present, improved estimates of $\frac{F^*}{M}$ drive 
+compromised estimates of $\frac{B^*}{\bar B(0)}$
+%below $0.5$ 
+in accordance with $\frac{B^*}{\bar B(0)}=\frac{1}{F^*/M+2}$.
+%even when the true $\frac{B^*}{\bar B(0)}>0.5$.
 %This suggests that in the presence of adequate 
 %information in the data to produce reasonable estimates of $\frac{F^*}{M}$ 
 %drives $\frac{B^*}{\bar B(0)}$ away from 0.5, even when the true $\frac{B^*}{\bar B(0)}>0.5$. 
-This phenomena balances RP estimation within the constrained BH set as
+This phenomenon balances RP estimation within the constrained BH set as
 mediated by the information content of the data and the degree of model
-misspecification. When the information content in the data is too small to
+misspecification. When not enough contrast is present in the data to %is too little to
 drive a compromised RP estimate, inference completely disregards accurate
 estimation of $F^*$ in order to better estimate $\frac{B^*}{\bar B(0)}$
 by exploiting the common limiting behavior of the BH set and that of
-Ricker-like and Logistic-like models.
+Ricker/Logistic-like models.
+%to focus on fitting to the overall scale of biomass.
 %may fail by completely disregarding one RP so the sake of preserving whatever 
 %similarities may exist between the functional forms of the data and misspecified model. 
 
@@ -1130,11 +1153,11 @@ the role of model misspecification in biasing RP estimates.
 %{\color{red}extend PT patterns}
 The approximate LHD methods presented in this chapter extend the scope of the 
 simulation methodology to handle the analysis of models where fully analytical 
-designs are not possible, and the design refinement methods further allows the GP 
+designs are not possible, and the design refinement methods further allow the GP 
 to resolve more complicated response surfaces. % observed under the BH model. %RP inference behavior observed. 
 The GP metamodeling approach when applied in this setting generalizes the RP 
 bias pattern previously observed under the Schaefer model to demonstrate how 
-RP inference is oriented to the geometry of the two parameter model.  
+RP inference is oriented to the geometry of the two-parameter BH model.  
 
 
 %a more general pattern that highly
@@ -1145,9 +1168,10 @@ RP inference is oriented to the geometry of the two parameter model.
 %{\color{red}LHS and design refinement are critial to extending this work into that direction.
 
 
-%
-In all cases when model misspecification is removed, even with weakly 
-informative data, RP estimation is unbiased and well estimated. Thus contrast 
+%In all cases when model misspecification is removed
+As seen in all of the metamodeled trend figures (\ref{contrastTrio} and \ref{bhLowArrows}), 
+even with weakly informative data, when data are generated from RPs immediately around the BH set %(or nearly BH) data  RPs
+RP estimates are unbiased and well estimated. Thus contrast 
 alone is not the only factor leading to inferential failure. The particular RP 
 bias depends on the RP geometry of the fitted model relative to the data, and 
 the degree of contrast present in the data directs the mapping. 
@@ -1156,13 +1180,15 @@ the degree of contrast present in the data directs the mapping.
 %within the
 The available information in the data produces a region of intact RP estimation 
 for misspecified models with an approximately shortest distance map on to the BH set. 
-Outside of this intact region, the observed contrast cannot overcome the 
-degree of model misspecification resulting in catastrophic failure of RP estimation.  
+Outside of this intact region the observed contrast cannot overcome the degree 
+of model misspecification resulting in catastrophic failure of RP estimation as 
+observed in the low contrast simulation setting.  
 %{\color{red} ?self regulating to a simpler model?}
-This catastrophic failure mode is a sort of self regulation of RPs where $\frac{F^*}{M}$ 
+This catastrophic failure mode is akin to self regulation of RPs where $\frac{F^*}{M}$ 
 is almost completely ignored for the purposes of preserving $\frac{B^*}{\bar B(0)}$ 
-estimates as best as possible within the BH set. In a sense this failure mode produces 
-models that attempt to only focus on high level biomass tends.
+estimates as best as possible within the BH set. %In a sense 
+This failure mode produces 
+models that attempt to only focus on high-level biomass tends in the data.
 %theses models are opperating as simpler models attemping to only focus on the high level biomass tends.
 %though $\frac{F^*}{M}$ does not exist, reverting to a something like a constant at $\frac{B^*}{\bar B(0)}$.
 %, and the available  with a region of RP misspecification around the BH set.
@@ -1172,14 +1198,16 @@ models that attempt to only focus on high level biomass tends.
 %Model misspecification is a necessary but not sufficient condition for inducing
 %RP estimation bias.
 %
-Within the intact region the geometry of the BH set and the shortest distance map onto the BH set 
-correlates $\frac{F^*}{M}$ and $\frac{B^*}{\bar B(0)}$ estimation in a way that is 
-not observed for the Schaefer model.
+Within the intact region the geometry of the BH set and the nearly shortest distance 
+map onto the BH set correlates $\frac{F^*}{M}$ and $\frac{B^*}{\bar B(0)}$ 
+inference in a way that is not observed for the Schaefer model.
 %However, unlike the Schaefer model the geometry of 
 %the BH set correlates $\frac{F^*}{M}$ and $\frac{B^*}{\bar B(0)}$ estimation bias. 
-This not only makes %the BH RP geometry makes 
-contrast important for estimating $\frac{F^*}{M}$, but 
-also makes contrast a crucial factor for estimating $\frac{B^*}{\bar B(0)}$ in the BH model. 
+%the BH RP geometry makes
+Under the BH model this not only makes contrast important for the estimate of $\frac{F^*}{M}$, 
+but also means that the observed contrast will influence the estimate of 
+$\frac{B^*}{\bar B(0)}$ (as opposed to the Schaefer model where $\frac{B^*}{\bar B(0)}=\frac{1}{2}$ for all $\frac{F^*}{M}$. %when this is not true for the Schaefer model 
+%makes contrast a crucial factor for estimating $\frac{B^*}{\bar B(0)}$ in the BH model. 
 %%
 %Furthermore, due to the geometry of the BH set if either $\frac{F^*}{M}$ or $\frac{B^*}{\bar B(0)}$ 
 %are biased, this will neccessarily induce bias in the other RP.
@@ -1245,8 +1273,8 @@ also makes contrast a crucial factor for estimating $\frac{B^*}{\bar B(0)}$ in t
 
 %
 If the utility of RP estimation is measured in terms of minimizing the total 
-joint RP bias, the observed shortest distance RP mapping might be considered 
-a best-case scenario. %(at least within the {\color{blue}safe region}).
+joint RP bias, the observed approximately minimal distance RP mapping might be considered 
+a nearly best-case scenario. %(at least within the {\color{blue}safe region}).
 %In the sense minimum total bias of RP estimation (measured joinyly), the
 % where the total bias of RPs,
 %when measured jointly, is minimized.
@@ -1288,20 +1316,53 @@ does not encounter.
 %\end{itemize}
 
 %
-When one considers the implications of RP bias, overestimation of RPs carries
+When one considers the implications of RP bias, overestimation of $\frac{F^*}{M}$ carries
 the severe implication of management recommendations potentially leading to
-overfishing, while underestimation of RPs leads to overly cautious management.
+overfishing, while underestimation leads to overly cautious management.
 In this sense, when the true model is not known the geometry of the BH set together
-with the metamodeled bias trends makes BH RP estimates naturally cautious %conservative
-for most stocks. For the least vulnerable stocks (stocks above the BH set) the 
-BH model is likely to underestimate both $\frac{F^*}{M}$ and $\frac{B^*}{B_0}$.
-The most notable exception to this pattern stands for species in the Cushing-like 
-regime of Schnute RPs (stocks below the BH set). In this regime the BH
-model tends to be less biased overall however this regime represents the most 
-vulnerable stocks, and yet BH RPs are overestimated. This leads to the regrettable
-situation where the more common (and least vulnerable) stocks enjoy conservative 
-RP estimation, while the less common (but more vulnerable) stocks are subject to 
-subtle but systematic overestimation of RPs.
+with the metamodeled bias trends makes the BH model a naturally cautious model
+for most of the stocks modeled here.
+%\item
+%For most non-BH populations the BH model is
+%likely to make conservative errors in its estimates of $F^*$ and $\frac{B^*}{B_0}$.
+%\item
+The one notable exception to this tend stands for data
+generated in the Cushing-like regime of Schnute RPs. In this regime the BH
+model tends to be fairly unbiased overall, however the bias that is present
+for these populations tends to overestimate $\frac{F^*}{M}$. These 
+stocks have relatively small surplus production compared with most stocks outside 
+of this regime. This leads to the regrettable situation where some of the more 
+vulnerable stocks simulated here are subject to subtle but systematic overestimation 
+of $\frac{F^*}{M}$, while more productive stocks are managed in an overly cautious way.
+
+%some of the least resilant stocks to overfishing
+%
+%This has  potentially leading 
+%to overfishing for more severe management consequences for those populations.
+%(these are the most vulerable species).
+
+%%
+%When one considers the implications of RP bias, overestimation of $\frac{F^*}{M}$ carries
+%the severe implication of management recommendations potentially leading to
+%overfishing, while underestimation leads to overly cautious management.  
+%In this sense, when the true model is not known the geometry of the BH set together
+%with the metamodeled bias trends makes BH estimates naturally cautious %conservative
+%for the less vulnerable stocks modeled here. For the less vulnerable stocks (stocks above the BH set) the 
+%BH model is likely to underestimate $\frac{F^*}{M}$. %both ___ and $\frac{B^*}{B_0}$.
+%The most notable exception to this pattern stands for species in the Cushing-like 
+%regime of Schnute RPs (stocks below the BH set). In this regime the BH
+%model tends to be less biased overall however this regime represents the most 
+%vulnerable stocks, and yet $\frac{F^*}{M}$ tends to be overestimated by the BH model in this regime. 
+%This leads to the regrettable situation where the most vulnerable stocks are subject to 
+%subtle but systematic overestimation of $\frac{F^*}{M}$, while the less vulnerable 
+%stocks tend 
+%
+%the least vulnerable stocks 
+
+%This leads to the regrettable
+%situation where the more common (and least vulnerable) stocks enjoy conservative 
+%RP estimation, while the less common (but more vulnerable) stocks are subject to 
+%subtle but systematic overestimation of RPs.
 
 %% 
 %The scale of RP biases 
@@ -1345,11 +1406,12 @@ subtle but systematic overestimation of RPs.
 %
 It is important to fully recognize the limitations that the BH model of 
 productivity poses structurally, but also how statistical inference 
-interfaces with those structural limitations. While the BH model may result in 
-cautious RP estimates for many important species, it too may serve as a 
-headwind against our most vulnerable stocks. We should not merely accept the 
-potentially cautious RP estimation regimes as a rational of accepting the 
-pervasive use of the BH model in American fisheries.
+interfaces with those structural limitations. %While the BH model may result in 
+%cautious RP estimates for many important species, it too may serve as a 
+%headwind against many vulnerable stocks. 
+We should not merely accept the potentially cautious RP estimation regimes as 
+a rational of accepting the pervasive use of the BH model in American 
+fisheries.
 %degree of universal use of the BH model in the US. 
 By moving toward three-parameter models we can release these underlying 
 structural limitations \cite{mangel_perspective_2013}.
@@ -1364,9 +1426,9 @@ presented by RP proxies.
 %to solve a number of structural 
 %inconsistencies {\color{red}\cite{nickEJ}} in fisheries management (see 
 %Appendix (\ref{proxyMath}) for details). 
-Furthermore, the Schnute model analysed here makes an intuitive bridge model 
-for developing the use of three-parameter models more generally going forward.
-
+Furthermore, the Schnute model analyzed here makes an intuitive bridge model 
+for developing the use of three-parameter models going forward.
+%more generally
 
 
 %\color{red} three-parameter may be estimated directly, or the flexibility may be used to 

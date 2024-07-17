@@ -224,7 +224,8 @@ for(ai in 1:aI){ #sample(1:aI)){
 	}
 }
 #
-lines(xis, 1/(xis+2), lwd=2)
+xis = seq(0.05, 4.5, 0.1)
+lines(xis, 1/(xis+2), lwd=4)
 legend("topright", 
 	legend = c(
 		TeX("$w(a_s)$ High"), TeX("$w(a_s)$  Low")
