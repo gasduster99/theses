@@ -115,7 +115,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsPTExpT45Sig0.15/'#N600/' #'./modsPTExpT45Sig0.3N900/' #600/'
+place = './modsPTExpT45Sig0.15N900/' #N600/' #'./modsPTExpT45Sig0.3N900/' #600/'
 odeMethod = "lsode"
 
 ###grid for simulation
@@ -165,8 +165,8 @@ datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen
 #
 registerDoParallel(46)
 opts = list(preschedule=F)
-foreach(i=1:length(datFiles), .options.multicore = opts) %dopar% {
-#foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
+#foreach(i=1:length(datFiles), .options.multicore = opts) %dopar% {
+foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 #for(i in 1:n){
 	#
         #DATA
