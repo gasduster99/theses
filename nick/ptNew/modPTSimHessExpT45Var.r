@@ -115,7 +115,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsPTExpT45Sig0.15N900/' #N600/' #'./modsPTExpT45Sig0.3N900/' #600/'
+place = './modsPTExpT45Sig0.1/' #N600/' #'./modsPTExpT45Sig0.3N900/' #600/'
 odeMethod = "lsode"
 
 ###grid for simulation
@@ -150,7 +150,7 @@ if( F ){
                         time=1:TT, catch=FtFmsy,                                #constants
                         alpha=pars$alpha[i], beta=P0, gamma=pars$gamma[i],      #parameters
                         lalpha=log(pars$alpha[i]), lbeta=log(P0),               #reparameterize
-                        lq=log(0.00049), lsdo=log(0.15), #log(0.3), #log(0.01160256),                  #nuisance parameters
+                        lq=log(0.00049), lsdo=log(0.1), #log(0.3), #log(0.01160256),                  #nuisance parameters
                         xi=des$xi[i], zeta=des$zeta[i]                                  #other incidentals to carry along
                 )
                 datGen$iterate(odeMethod)
@@ -165,8 +165,8 @@ datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen
 #
 registerDoParallel(46)
 opts = list(preschedule=F)
-#foreach(i=1:length(datFiles), .options.multicore = opts) %dopar% {
-foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
+foreach(i=1:length(datFiles), .options.multicore = opts) %dopar% {
+#foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
 #for(i in 1:n){
 	#
         #DATA
