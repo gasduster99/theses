@@ -142,16 +142,24 @@ getData = function(dir, xiRange, zetaRange){
 
 #
 P0 = 10000
-#mod="FlatT30"; contrast=F; 
-#mod="ExpT45"; contrast=T;
-#mod="ExpT45MinCon"; contrast=T;
-mod="ExpT45Sig0.3"; contrast=T;
+#mod="FlatT30"; contrast=F; fv=1;
+#mod="ExpT45"; contrast=T; fv=1;
+#mod="ExpT45MinCon"; contrast=T; fv=1;
+#mod="ExpT45Sig0.1"; contrast=T; fv=10;
+##WORKED
+#mod="ExpT45Sig0.1N600"; contrast=T; fv=10;
+#mod="ExpT45Sig0.15"; contrast=T; fv=10;
+#mod="ExpT45Sig0.15N600"; contrast=T; fv=100;
+#mod="ExpT45Sig0.15N900"; contrast=T; fv=100;
+#mod="ExpT45Sig0.3"; contrast=T; fv=10;
+mod="ExpT45Sig0.3N600"; contrast=T; fv=10;
+mod="ExpT45Sig0.3N900"; contrast=T; fv=10;
 place = sprintf("./modsPT%s/", mod)
 
 #
 xiRes = 0.5
-zetaTop = 0.6 #0.7
-zetaBot = 0.2 #0.3# #0.1
+zetaTop = 0.6 #0.6 #0.7
+zetaBot = 0.25 #0.2 #0.3# #0.1
 xiBot = 0.1 #0.5
 xiTop = 0.7 #3.5
 
@@ -159,9 +167,11 @@ xiTop = 0.7 #3.5
 f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))[1] )
 
 #
-D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7))
+D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7)) #c(zetaBot, zetaTop)) #
 D = D[D$lFV>0 & D$lKV>0,]
+#D = D[!D$xiHat>1,]
 D = D[!(round(D$xiHat,1)<0.1 & D$zetaSeed>0.5),] #D[!(D$zetaSeed>0.6),] #D[!(D$xiHat<=D$xiSeed*3/4 & D$zetaSeed>0.5),]#
+#D = D[c(rep(T, 1), F),]
 
 #
 #GP INTERPOLATION
@@ -171,11 +181,11 @@ D = D[!(round(D$xiHat,1)<0.1 & D$zetaSeed>0.5),] #D[!(D$zetaSeed>0.6),] #D[!(D$x
 
 #pick a polynomial mean function
 lFy = D$lF
-lFV = diag(D$lFV)
+lFV = diag(D$lFV)*fv
 lFX = cbind(1, D$xiSeed, D$zetaSeed)
 
 #
-xAug = seq(xiBot, xiTop, 0.1)#seq(xiBot, xiTop, 0.001) #seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
+xAug = seq(xiBot, xiTop, 0.1) #seq(xiBot, xiTop, 0.1) #seq(xiBot, xiTop, 0.001) #seq(0.5, 4, 0.25) #xAug = c(xAug, seq(7/8, 3, xiRes)) #seq(7/8, 4.5, xiRes)
 aug = cbind(rep(1, length(xAug)), xAug, 1/(2))
 lFX = rbind(lFX, aug)
 lFy = c(lFy, log(xAug))
@@ -488,7 +498,7 @@ image(xiStar, zetaStar, (eucBias-ss),
 abline(h=0.5, lwd=3)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
-thin = c(T,rep(F,850))#125))#135))
+thin = c(T,rep(F,975)) #850))#125))#135))
 quiver(
         lFXStar[w,2][thin], lFXStar[w,3][thin],
         xiBias[w][thin], zetaBias[w][thin],
