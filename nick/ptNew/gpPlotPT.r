@@ -148,12 +148,13 @@ P0 = 10000
 #mod="ExpT45Sig0.1"; contrast=T; fv=10;
 ##WORKED
 #mod="ExpT45Sig0.1N600"; contrast=T; fv=10;
+mod="ExpT45Sig0.15Half"; contrast=T; fv=1;
 #mod="ExpT45Sig0.15"; contrast=T; fv=10;
 #mod="ExpT45Sig0.15N600"; contrast=T; fv=100;
 #mod="ExpT45Sig0.15N900"; contrast=T; fv=100;
 #mod="ExpT45Sig0.3"; contrast=T; fv=10;
-mod="ExpT45Sig0.3N600"; contrast=T; fv=10;
-mod="ExpT45Sig0.3N900"; contrast=T; fv=10;
+#mod="ExpT45Sig0.3N600"; contrast=T; fv=10;
+#mod="ExpT45Sig0.3N900"; contrast=T; fv=10;
 place = sprintf("./modsPT%s/", mod)
 
 #
@@ -171,7 +172,7 @@ D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7)) #c(zetaBot, zetaTop)) #
 D = D[D$lFV>0 & D$lKV>0,]
 #D = D[!D$xiHat>1,]
 D = D[!(round(D$xiHat,1)<0.1 & D$zetaSeed>0.5),] #D[!(D$zetaSeed>0.6),] #D[!(D$xiHat<=D$xiSeed*3/4 & D$zetaSeed>0.5),]#
-#D = D[c(rep(T, 1), F),]
+D = D[c(rep(T, 2), rep(F,3)),]
 
 #
 #GP INTERPOLATION
