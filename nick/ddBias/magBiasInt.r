@@ -630,7 +630,7 @@ eucBiasU = mcmapply(function(xiHat, xi, zeta){
 eucBiasU = matrix(eucBiasU, nrow=length(xiStar), ncol=length(zetaStar))
 
 #
-zlim = c(min(eucBiasU-eucBiasL, na.rm=T), max(eucBiasU-eucBiasL, na.rm=T))
+zlim = c(min(abs(eucBiasU-eucBiasL), na.rm=T), max(abs(eucBiasU-eucBiasL), na.rm=T))
 
 #Medium
 load('FlatT45N150A0-1AS1K0.5N56.RData')
@@ -655,7 +655,7 @@ eucBiasU = mcmapply(function(xiHat, xi, zeta){
 eucBiasU = matrix(eucBiasU, nrow=length(xiStar), ncol=length(zetaStar))
 
 #
-zlim = c(min(zlim[1], eucBiasU-eucBiasL, na.rm=T), max(zlim[2], eucBiasU-eucBiasL, na.rm=T))
+zlim = c(min(zlim[1], abs(eucBiasU-eucBiasL), na.rm=T), max(zlim[2], abs(eucBiasU-eucBiasL), na.rm=T))
 
 #Fast
 load('FlatT45N150A0-1AS0.1K10N56.RData')
@@ -684,39 +684,40 @@ eucBiasU = mcmapply(function(xiHat, xi, zeta){
 eucBiasU = matrix(eucBiasU, nrow=length(xiStar), ncol=length(zetaStar))
 
 #
-zlim = c(min(zlim[1], eucBiasU-eucBiasL, na.rm=T), max(zlim[2], eucBiasU-eucBiasL, na.rm=T))
+zlim = c(min(zlim[1], abs(eucBiasU-eucBiasL), na.rm=T), max(zlim[2], abs(eucBiasU-eucBiasL), na.rm=T))
 
 #png(sprintf("mag%s.png", mod))
 
-#Contrast
-load('ExpT45N300AS0.1K10.RData')
-#cols = cols[c(1,4,2)]
+##Contrast
+#load('ExpT45N300AS0.1K10.RData')
+##cols = cols[c(1,4,2)]
+#
+##
+#var[var<0]=eps()
+#se = sqrt(var)
+#
+##myDist = function(x, xi, zeta)
+##Lower
+#eucBiasL = mcmapply(function(xiHat, xi, zeta){
+#                myDist(xiHat, xi, zeta)
+#        }, qlnorm(lowTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
+#)
+##exp(lFPred-1.96*se)/M
+##xiHat
+#eucBiasL = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
+##Upper
+#eucBiasU = mcmapply(function(xiHat, xi, zeta){
+#                myDist(xiHat, xi, zeta)
+#        }, qlnorm(highTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
+#)
+##exp(lFPred-1.96*se)/M
+##xiHat
+#eucBiasU = matrix(eucBiasU, nrow=length(xiStar), ncol=length(zetaStar))
+#
+##
+#zlim = c(min(zlim[1], abs(eucBiasU-eucBiasL), na.rm=T), max(zlim[2], abs(eucBiasU-eucBiasL), na.rm=T))
 
 #
-var[var<0]=eps()
-se = sqrt(var)
-
-#myDist = function(x, xi, zeta)
-#Lower
-eucBiasL = mcmapply(function(xiHat, xi, zeta){
-                myDist(xiHat, xi, zeta)
-        }, qlnorm(lowTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
-)
-#exp(lFPred-1.96*se)/M
-#xiHat
-eucBiasL = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
-#Upper
-eucBiasU = mcmapply(function(xiHat, xi, zeta){
-                myDist(xiHat, xi, zeta)
-        }, qlnorm(highTail, lFPred, se)/M, lFXStar[,2], lFXStar[,3], mc.cores=6 #detectCores()
-)
-#exp(lFPred-1.96*se)/M
-#xiHat
-eucBiasU = matrix(eucBiasU, nrow=length(xiStar), ncol=length(zetaStar))
-
-#
-zlim = c(min(zlim[1], eucBiasU-eucBiasL, na.rm=T), max(zlim[2], eucBiasU-eucBiasL, na.rm=T))
-
 png(sprintf("mag%s.png", mod))
 
 #
@@ -724,9 +725,15 @@ png(sprintf("mag%s.png", mod))
 #
 
 #
-image(xiStar, zetaStar, eucBiasU-eucBiasL,
+zlim=c(0,5)
+#YlOrRd
+cols = hcl.colors(10, palette = "YlOrRd", rev=T)
+#cols[1] = cols[2]
+
+#
+image(xiStar, zetaStar, abs(eucBiasU-eucBiasL),
         lwd  = 3,
-        #col  = c(NA,cols[1]), #cols[1], #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), #co
+        col  = c(cols), #cols[1], #makeTransparent(c(NA,cols[3])), #cols[1:2], #('red', 'green'), #co
         xlab = TeX("$F_{MSY}/M$"),
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = TeX("Size of 1 SD Interval in RP Bias"), # Magnitude"), 
@@ -740,4 +747,15 @@ image(xiStar, zetaStar, eucBiasU-eucBiasL,
 
 dev.off()
 
+#
+png(sprintf("legendMagBias.png"), width = 150, height = 400)
+#show = seq(1, length(eucCols), length.out=20)
+plot.new()
+zlim=c(0.5,5)
+legend("top", #grconvertX(421.25, "device"), grconvertY(90, "device"), #grconvertX
+        sprintf("%1.1f", c(0,seq(zlim[1], zlim[2], length.out=length(cols)))), #seq(0, msThresh, length.out=20)), #round(rev(seq(min(eucB
+        fill = c(NA,cols), #adjustcolor(rev(eucCols[show]), alpha.f=0.
+        xpd = NA
+)
+dev.off()
 

@@ -265,9 +265,40 @@ legend('bottomleft', legend=c('Logistic-Like', 'Ricker-Like', 'BH-Like', 'Cushin
 ##curve(1/(x+2), from=0, to=4, lwd=3, add=T)
 dev.off()
 
+#
 png("kicker.png")
 plot(D$xiSeed, D$zetaSeed, col=round(D$aSeed/M), pch=19); #curve(1/(x+2), add=T)
+#alpha \in (0.5, 3)
+f = function(x){FMsy(0.5, x, M)}; f=Vectorize(f, 'x')
+#gamma in a variable range 
+gs = seq(-1, -0.1, 0.01)
+lines(unlist(f(gs))/M, getZeta(gs, unlist(f(gs)), M))
 dev.off()
+
+##NOTE: the contour idea didn't really work, probably just manually plot lines (handle NAs in getZeta)
+#xis = seq(min(D$xiSeed), max(D$xiSeed), 0.1)
+#gs = seq(-2.01, 2, 0.1)
+#as = matrix(NA, length(xis), length(gs))
+#zs = as
+#for(i in 1:length(gs)){
+#	#
+#	as[,i] = getAlpha(gs[i], xis*M, M)
+#	zs[,i] = getZeta(gs[i], xis*M, M)
+#}
+#
+#contour(xis, round(colMeans(zs), 2), as,
+#        method = "simple",
+#        #levels = seq(-1, 1, 0.1),
+#        labcex = 1.025,
+#        #lwd  = eps(),
+#        xlab = TeX("$F_{MSY}/M$"), #'Xi',
+#        ylab = TeX('$B_{MSY}/B_0$')
+#        #main = TeX("Relative Bias in Estimated $F_{MSY}$"),
+#        #ylim = c(zetaBot, zetaTop),
+#        #xlim = c(xiBot, xiBot),
+#        #zlim = c(-maxAbsXBias, maxAbsXBias),
+#        #add  = T
+#)
 
 ##
 ##ARROW PLOT

@@ -1,0 +1,997 @@
+\documentclass[ xcolor = pdftex, dvipsnames, table ]{beamer}
+
+\usetheme[compress]{Berlin}
+\usecolortheme{whale}
+\setlength{\parskip}{0.1in}
+\usepackage{bm}
+\usepackage{tikz}
+\usepackage{dsfont}
+\usepackage{graphicx}
+\usepackage{changepage}
+\usepackage{pgfgantt}
+\usepackage{nicefrac}
+\usepackage{scalerel}
+\usepackage{xcolor}
+%\usepackage{enumitem}
+
+%\title{Baysian Nonparametric Estimation of ODEs as Applied to the Stock Recruitment Relationship}
+\title{Metamodeling for Bias Estimation of Biological Reference Points Under Two-Parameter SRRs}
+\author{
+Nick Grunloh
+%\\$~$\\
+%In collaboration with:\\
+%Dr. E.J. Dick\\
+%Dr. H. K.H. Lee
+}
+\date{13 August 2024}
+
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+
+%\newenvironment{changemargin}[2]{%
+%\begin{list}{}{%
+%\setlength{\topsep}{0pt}%
+%\setlength{\leftmargin}{#1}%
+%\setlength{\rightmargin}{#2}%
+%\setlength{\listparindent}{\parindent}%
+%\setlength{\itemindent}{\parindent}%
+%\setlength{\parsep}{\parskip}%
+%}%
+%\item[]}{\end{list}}
+
+%\AtBeginSection[]
+%{
+%    \begin{frame}
+%        \frametitle{Table of Contents}
+%        \tableofcontents[currentsection, currentsubsection]
+%    \end{frame}
+%}
+%
+%\AtBeginSubsection[]
+%{
+%    \begin{frame}
+%        \frametitle{Table of Contents}
+%        \tableofcontents[currentsection, currentsubsection]
+%    \end{frame}
+%}
+
+%
+\begin{document}
+
+%
+\begin{frame}
+\titlepage
+\vspace*{-3cm}
+\begin{minipage}[h!]{0.49\textwidth}
+\hspace*{-0.25cm}
+\includegraphics[width=0.6\textwidth]{noaaText.png}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+\hspace*{2cm}
+\includegraphics[width=0.55\textwidth]{slug.jpg}
+\end{minipage}
+\end{frame}
+
+%
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+%
+\section{Introduction}
+\subsection{}
+\begin{frame}{Outline}
+    \tableofcontents[currentsection, currentsubsection]
+\end{frame}
+
+%
+\section{The Schaefer Model}
+\subsection{}
+\begin{frame}{Outline}
+    \tableofcontents[currentsection, currentsubsection]
+\end{frame}
+
+%
+\section{The Beverton-Holt Model}
+\subsection{}
+\begin{frame}{Outline}
+    \tableofcontents[currentsection, currentsubsection]
+\end{frame}
+
+%
+\section{Delay Differential Growth Extension}
+\subsection{}
+\begin{frame}{Outline}
+    \tableofcontents[currentsection, currentsubsection]
+\end{frame}
+
+
+
+%%
+%\section{Introduction}
+%\subsection{}
+%\begin{frame}{Outline} 
+%    \tableofcontents[currentsection, currentsubsection]
+%\end{frame}
+%
+%%
+%\begin{frame}{}
+%\includegraphics[width=0.49\textwidth]{../plots/hakeIndex.png}
+%\includegraphics[width=0.49\textwidth]{../plots/hakeCatch.png}
+%\begin{align*}
+%I_t &= q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2) \\
+%~\\
+%\frac{dB(t)}{dt} &= P(B(t);\bm{\theta}) - C(t)
+%\end{align*}
+%\end{frame}
+%
+%%
+%\begin{frame}{Schaefer Model}
+%\begin{minipage}[h!]{0.44\textwidth}
+%\begin{align*}
+%        P_{\bm{\theta}}(B) &= rB\left(1-\frac{B}{K}\right)\\
+%	~\\
+%        \bm{\theta} &= (r, K)
+%	%\\~&~\\
+%        %\gamma &= 2 \Rightarrow \text{Schaefer Model}
+%\end{align*}
+%%\color{red}Maybe add one with parameters but without RPs
+%\end{minipage}
+%\begin{minipage}[h!]{0.54\textwidth}
+%%\includegraphics[width=\textwidth]{~../../.././nick/gpBias/srrSchaeffer.png}
+%\includegraphics[width=1\textwidth]{../plots/srrSchaefferPar.png}
+%\end{minipage}
+%\end{frame}
+%
+%%%
+%%\begin{frame}{}
+%%\begin{align}
+%%C(t) = F(t)B(t)
+%%\end{align}
+%%\color{red}
+%%something about catch\\
+%%and MSY derivation\\ 
+%%concept of equilibrium quantities\\
+%%Concept of MSY from my document\\
+%%Concept of RP from Punt
+%%\end{frame}
+%
+%%
+%\begin{frame}{Schaefer Reference Points}
+%\only<1>{
+%\begin{minipage}[h!]{0.44\textwidth}
+%$~$\\
+%\vspace*{-1cm}
+%\hspace*{1.4cm}
+%\begin{align*}
+%	MSY &= \frac{rK}{4}\\
+%	~~~~~~&\\       
+%	%F_{MSY} &= \frac{r}{2}\\
+%	~\\
+%	~\\
+%	~\\
+%        %\frac{B_{MSY}}{B_0}&= \frac{1}{2}\\
+%\end{align*}
+%%\color{red}Maybe add one with only RPs
+%%\color{red}Add Mangle Citation
+%%{\color{red} Some words on RPs,  aybe some citations}
+%\end{minipage}
+%\begin{minipage}[h!]{0.54\textwidth}
+%%\includegraphics[width=\textwidth]{~../../.././nick/gpBias/srrSchaeffer.png}
+%\includegraphics[width=1\textwidth]{../plots/srrSchaefferRP.png}
+%\end{minipage}
+%}
+%\only<2>{
+%\begin{minipage}[h!]{0.44\textwidth}
+%\begin{align*}
+%	MSY &= \frac{rK}{4}\\
+%	~\\       
+%	F_{MSY} &= \frac{r}{2}\\
+%	~\\
+%        \frac{B_{MSY}}{B_0}&= \frac{1}{2}\\
+%\end{align*}
+%%\color{red}Maybe add one with only RPs
+%%\color{red}Add Mangle Citation
+%%{\color{red} Some words on RPs,  aybe some citations}
+%\end{minipage}
+%\begin{minipage}[h!]{0.54\textwidth}
+%%\includegraphics[width=\textwidth]{~../../.././nick/gpBias/srrSchaeffer.png}
+%\includegraphics[width=1\textwidth]{../plots/srrSchaefferRPplus.png}
+%\end{minipage}
+%}
+%\end{frame}
+%
+%%
+%\begin{frame}
+%\only<1>{
+%\hspace*{-0.5cm}
+%\begin{minipage}[h!]{0.59\textwidth}
+%Conceptually:
+%\begin{align*}
+%F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}\in\left(0, 1\right)
+%\end{align*}
+%$~$\\
+%Mangel et al. 2013, CJFAS:
+%\begin{itemize}
+%	\item BH Model: $~ F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{F_{MSY}/M+2}$
+%	\item Similar Constraint for Ricker and other 2 Parameter Curves
+%\end{itemize}
+%%\item A three-parameter relationship allows for independent estimation of these reference points
+%$~$\\
+%$~$\\
+%$~$\\
+%%Schaefer Model:
+%%\begin{align*}
+%%F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{2}
+%%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.39\textwidth}
+%$~$\\
+%\hspace*{-0.5cm}
+%\includegraphics[width=1.4\textwidth]{cjasFig.png}
+%\end{minipage}
+%}
+%\only<2>{
+%\hspace*{-0.5cm}
+%\begin{minipage}[h!]{0.59\textwidth}
+%Conceptually:
+%\begin{align*}
+%F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}\in\left(0, 1\right)
+%\end{align*}
+%$~$\\
+%Mangel et al. 2013, CJFAS:
+%\begin{itemize}
+%	\item BH Model: $~ F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{F_{MSY}/M+2}$
+%	\item Similar Constraint for Ricker and other 2 Parameter Curves
+%\end{itemize}
+%%\item A three-parameter relationship allows for independent estimation of these reference points
+%$~$\\
+%Schaefer Model:
+%\begin{align*}
+%F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{2}
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.39\textwidth}
+%$~$\\
+%\hspace*{-0.5cm}
+%\includegraphics[width=1.4\textwidth]{shaeferConst.png}
+%\end{minipage}
+%}
+%\end{frame}
+%
+%%
+%\section{Simulation}
+%\subsection{}
+%\begin{frame}{Outline}
+%    \tableofcontents[currentsection, currentsubsection]
+%\end{frame}
+%
+%%
+%\begin{frame}{Pella-Tomlinson Production Model}
+%\begin{minipage}[h!]{0.54\textwidth}
+%\begin{align*}
+%        I(t) &\sim LN(qB(t), \sigma^2)\\
+%        \frac{dB(t)}{dt} &= P_{\bm{\theta}}(B(t)) - F(t)B(t)\\
+%	~&~\\
+%        P_{\bm{\theta}}(B) &= \frac{rB}{\gamma-1} \left(1-\frac{B}{K}\right)^{\gamma-1}\\
+%        \bm{\theta} &= (r, K, \gamma)\\
+%        ~&~\\
+%        \gamma &= 2 \Rightarrow \text{Schaefer Model}
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.44\textwidth}
+%%\includegraphics[width=\textwidth]{~../../.././nick/gpBias/srrSchaeffer.png}
+%\includegraphics[width=1.15\textwidth]{../plots/srr1.1.png}
+%\end{minipage}
+%\end{frame}
+%
+%%%
+%%\begin{frame}{Catch}
+%%\only<1>{
+%%\vspace*{-0.1cm}
+%%\begin{center}
+%%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfFlatNoQX2Z0.6.png}
+%%\hspace*{1cm}
+%%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT45X2Z0.6.png}
+%%%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT90X2Z0.6.png}
+%%\end{center}
+%%\begin{align*}
+%%C(t) &= F(t)B(t)\\
+%%&= F_{MSY}\left(\frac{F(t)}{F_{MSY}}\right)B(t)\\
+%%\end{align*}
+%%}
+%%\only<2>{
+%%\vspace*{-0.1cm}
+%%\begin{center}
+%%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfFlatNoQX2Z0.6.png}
+%%\hspace*{1cm}
+%%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT45X2Z0.6.png}\\
+%%%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/rfExpT90X2Z0.6.png}\\
+%%\vspace*{-0.1cm}
+%%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png}
+%%\hspace*{1cm}
+%%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png}
+%%%\includegraphics[width=0.32\textwidth]{../../.././nick/gpBias/bioCatchExpT90X2Z0.6.png}
+%%\end{center}
+%%}
+%%\end{frame}
+%
+%%
+%\begin{frame}{Catch}
+%\includegraphics[width=0.49\textwidth]{../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png}
+%%\hspace*{1cm}
+%\includegraphics[width=0.49\textwidth]{../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png}
+%\end{frame}
+%
+%%
+%\begin{frame}
+%\only<1>{
+%\vspace{1.8cm}
+%%\begin{align*}
+%%\hspace*{-0.5cm}
+%%\bm{\theta}=\left[r = F^*\left( \frac{1-\frac{B^*}{\bar B(0)}}{\frac{B^*}{\bar B(0)}} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{\frac{B^*}{\bar B(0)}-1}{\frac{B^*}{\bar B(0)}} \right)},~K = 10000, ~\gamma = \frac{1}{\frac{B^*}{\bar B(0)}}\right]
+%%\end{align*}
+%$~$\\
+%\vspace*{-0.65cm}
+%\hspace*{1.72cm}
+%\begin{tikzpicture}
+%%\begin{center}
+%\node (img) at (0,0) 
+%	{\includegraphics[height=0.8\textheight]{shaeferDat.png}};
+%%\node (tol) at (-4,1.5) 
+%%	{\includegraphics[height=0.25\textheight]{../../.././nick/gpBias/bioExpT45X0.5Z0.6.png}};
+%%\node (tor) at (4,1.5) 
+%%	{\includegraphics[height=0.25\textheight]{../../.././nick/gpBias/bioExpT45X3.5Z0.6.png}};
+%%\node (bor) at (4,-1.5) 
+%%	{\includegraphics[height=0.25\textheight]{../../.././nick/gpBias/bioExpT45X3.5Z0.2.png}};
+%%\node (bol) at (-4,-1.5) 
+%%	{\includegraphics[height=0.25\textheight]{../../.././nick/gpBias/bioExpT45X0.5Z0.2.png}};
+%\end{tikzpicture}
+%}
+%\only<2>{
+%\vspace{1.8cm}
+%%\begin{align*}
+%%\hspace*{-0.5cm}
+%%\bm{\theta}=\left[r = F^*\left( \frac{1-\frac{B^*}{\bar B(0)}}{\frac{B^*}{\bar B(0)}} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{\frac{B^*}{\bar B(0)}-1}{\frac{B^*}{\bar B(0)}} \right)},~K = 10000, ~\gamma = \frac{1}{\frac{B^*}{\bar B(0)}}\right]
+%%\end{align*}
+%$~$\\
+%\vspace*{-0.65cm}
+%\begin{tikzpicture}
+%%\begin{center}
+%\node (img) at (0,0) 
+%	{\includegraphics[height=0.8\textheight]{shaeferDat.png}};
+%\node (tol) at (-4,1.5) 
+%	{\includegraphics[height=0.25\textheight]{../../.././nick/gpBias/bioExpT45X0.5Z0.6.png}};
+%\node (tor) at (4,1.5) 
+%	{\includegraphics[height=0.25\textheight]{../../.././nick/gpBias/bioExpT45X3.5Z0.6.png}};
+%\node (bor) at (4,-1.5) 
+%	{\includegraphics[height=0.25\textheight]{../../.././nick/gpBias/bioExpT45X3.5Z0.2.png}};
+%\node (bol) at (-4,-1.5) 
+%	{\includegraphics[height=0.25\textheight]{../../.././nick/gpBias/bioExpT45X0.5Z0.2.png}};
+%\end{tikzpicture}
+%}
+%\only<3>{
+%\vspace{-0.5cm}
+%\begin{align*}
+%\hspace*{-0.5cm}
+%\bm{\theta}=\left[r = F^*\left( \frac{1-\frac{B^*}{\bar B(0)}}{\frac{B^*}{\bar B(0)}} \right) \left(1-\frac{B^*}{\bar B(0)}\right)^{\left( \frac{\frac{B^*}{\bar B(0)}-1}{\frac{B^*}{\bar B(0)}} \right)},~K = 10000, ~\gamma = \frac{1}{\frac{B^*}{\bar B(0)}}\right]
+%\end{align*}
+%$~$\\
+%\vspace*{-0.65cm}
+%\begin{tikzpicture}
+%%\begin{center}
+%\node (img) at (0,0) 
+%	{\includegraphics[height=0.8\textheight]{shaeferDat.png}};
+%\node (tol) at (-4,1.5) 
+%	{\includegraphics[height=0.25\textheight]{../../.././nick/gpBias/bioExpT45X0.5Z0.6.png}};
+%\node (tor) at (4,1.5) 
+%	{\includegraphics[height=0.25\textheight]{../../.././nick/gpBias/bioExpT45X3.5Z0.6.png}};
+%\node (bor) at (4,-1.5) 
+%	{\includegraphics[height=0.25\textheight]{../../.././nick/gpBias/bioExpT45X3.5Z0.2.png}};
+%\node (bol) at (-4,-1.5) 
+%	{\includegraphics[height=0.25\textheight]{../../.././nick/gpBias/bioExpT45X0.5Z0.2.png}};
+%\end{tikzpicture}
+%}
+%\end{frame}
+%
+%%
+%\begin{frame}{Metamodel}
+%
+%\begin{equation*}
+%\underbrace{\left(F_{MSY}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{PT Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\hat F_{MSY}, \frac{\hat B_{MSY}}{\bar B(0)}\right)}_{\text{Shaefer Estimate}}
+%\end{equation*}
+%
+%\begin{itemize}
+%%\setlength{\itemindent}{-2.5em}
+%\item GP approximates constrained RP inference.  %over RP model misspecification.
+%\item Propogation of estimator uncertainty smooths bias estimation.
+%\item Explicitely highlights trade-offs induced in infered RPs.
+%\end{itemize}
+%%
+%\end{frame}
+%
+%%
+%\section{Results}
+%\subsection{Low Contrast}
+%\begin{frame}{Outline}
+%%
+%$~$\\
+%\tableofcontents[currentsection, currentsubsection]
+%%
+%\tikz[remember picture,overlay]
+% \node at (8,3.5) %([xshift=-2.5cm,yshift=-1.5cm]current page.north east) 
+%  {\includegraphics[width=0.5\textwidth]{../../.././nick/gpBias/bioCatchFlatNoQX2Z0.6.png}};
+%%
+%\end{frame}
+%
+%%
+%\begin{frame}
+%%$~$\\
+%%\vspace*{-0.5cm}
+%%\hspace*{-1.54cm}
+%%\begin{minipage}[h!]{0.325\textwidth}
+%%\hspace*{0.25cm}
+%%\includegraphics[width=1.2\textwidth]{../../.././nick/gpBias/fMSYRelBiasPellaFlatNoQ.png}
+%%\end{minipage}
+%%\begin{minipage}[h!]{0.325\textwidth}
+%%\hspace*{1cm}
+%%\includegraphics[width=1.2\textwidth]{../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png}
+%%\end{minipage}
+%%\begin{minipage}[h!]{0.325\textwidth}
+%%\hspace*{1.6cm}
+%\begin{center}
+%\includegraphics[height=\textheight]{../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png}
+%\end{center}
+%%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}{Components of Bias}
+%$~$\\
+%\vspace*{-0.5cm}
+%\hspace*{-1cm}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/fMSYRelBiasPellaFlatNoQ.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png}
+%\end{minipage}
+%%\begin{minipage}[h!]{0.325\textwidth}
+%%\hspace*{1.6cm}
+%%\includegraphics[width=1.2\textwidth]{../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png}
+%%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}%{Understanding $F_{MSY}$ Bias Mechanisms}
+%%$~$\\
+%%\vspace*{-0.5cm}
+%\begin{minipage}[h!]{0.325\textwidth}
+%\hspace*{-1cm}
+%\includegraphics[width=1.25\textwidth]{../../.././nick/gpBias/fMSYXRelBiasPellaFlatNoQ.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.325\textwidth}
+%%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/curveCompareFlatNoQX0.5Z0.6.png}\\
+%%\vspace*{1.5cm}
+%%\hspace*{1cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/curveCompareFlatNoQX0.5Z0.2.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.325\textwidth}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/curveCompareFlatNoQX3.5Z0.6.png}\\
+%%\vspace*{-0.5cm}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/curveCompareFlatNoQX3.5Z0.2.png}
+%\end{minipage}
+%%{\color{red} add $F_{MSY}$ Story words}
+%\end{frame}
+%
+%%
+%\begin{frame}%{Split $\frac{B_{MSY}}{B_0}$}
+%%\begin{equation*}
+%%\includegraphics[width=0.33\textwidth]{../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png}
+%%=
+%%\stretchleftright[500]{.}{\includegraphics[width=0.4\textwidth]{../../.././nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}}{/}
+%%\includegraphics[width=0.4\textwidth]{../../.././nick/gpBias/kRelBiasPellaFlatNoQ.png}
+%%%\left.
+%%%\vspace*{1cm}
+%%%\includegraphics[width=0.4\textwidth]{../../.././nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}
+%%%\middle/
+%%%\vspace*{-1cm}
+%%%\includegraphics[width=0.4\textwidth]{../../.././nick/gpBias/kRelBiasPellaFlatNoQ.png}\right.
+%%\end{equation*}
+%\begin{minipage}[h!]{0.49\textwidth}
+%%\hspace*{-0.75cm}
+%$~$\\\\
+%\includegraphics[height=0.55\textheight]{../../.././nick/gpBias/zetaRelBiasPellaFlatNoQ.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\hspace*{-0.5cm}
+%%\vspace*{1.5cm}
+%%\includegraphics[height=0.55\textheight]{../../.././nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}\\
+%\hspace*{-0.5cm}
+%%\vspace*{1cm}
+%%\includegraphics[height=0.55\textheight]{../../.././nick/gpBias/kRelBiasPellaFlatNoQ.png}
+%\begin{tikzpicture}
+%\node (img) at (0,0)
+%        {\includegraphics[height=0.55\textheight]{../../.././nick/gpBias/bMSYRelBiasPellaFlatNoQ.png}};
+%\node (img) at (0,-3.75)
+%        {\includegraphics[height=0.55\textheight]{../../.././nick/gpBias/kRelBiasPellaFlatNoQ.png}};
+%\draw [latex-latex](-4,-1.75) -- (-2.5,0);
+%\draw [latex-latex](-4,-2.25) -- (-2.5,-4);
+%\end{tikzpicture}
+%\end{minipage}
+%\end{frame}
+%
+%
+%
+%%
+%\subsection{High Contrast}
+%\begin{frame}{Outline}
+%%
+%$~$\\
+%\tableofcontents[currentsection, currentsubsection]
+%%
+%\tikz[remember picture,overlay]
+% \node at (8,3.5) %([xshift=-2.5cm,yshift=-1.5cm]current page.north east) 
+%  {\includegraphics[width=0.5\textwidth]{../../.././nick/gpBias/bioCatchExpT45X2Z0.6.png}};
+%%
+%\end{frame}
+%
+%%
+%\begin{frame}
+%%%$~$\\
+%%%\vspace*{-0.5cm}
+%%\begin{minipage}[h!]{0.49\textwidth}
+%%\hspace*{1cm}
+%%\includegraphics[width=0.75\textwidth]{../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png}\\
+%%%\vspace*{1.5cm}
+%%\hspace*{1cm}
+%%\includegraphics[width=0.75\textwidth]{../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png}
+%%%\includegraphics[width=0.75\textwidth]{../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png}
+%%\end{minipage}
+%%\begin{minipage}[h!]{0.49\textwidth}
+%%%\hspace*{-1cm}
+%%\includegraphics[width=0.75\textwidth]{../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png}\\
+%%%\includegraphics[width=0.75\textwidth]{../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png}\\
+%%%\vspace*{-0.5cm}
+%%\includegraphics[width=0.75\textwidth]{../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png}
+%%\end{minipage}
+%%{\color{red} add tug of war Story words}
+%\only<1>{
+%\begin{minipage}[h!]{0.325\textwidth}
+%\vspace*{-2.27cm}
+%\hspace*{-0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/bioCatchExpT45X1Z0.3}\\ %rfExpT45X2Z0.6.png}\\
+%%\hspace*{-0.75cm}
+%%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/bioCatchExpT90X1Z0.3} %rfExpT90X2Z0.6.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.325\textwidth}
+%\vspace*{-2.27cm}
+%\hspace*{-0.25cm}
+%%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/zetaBiasPellaExpT45.png}\\
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png}\\
+%%\hspace*{-0.25cm}
+%%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.325\textwidth}
+%\vspace*{-2.27cm}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png}\\
+%%\hspace*{0.25cm}
+%%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png}
+%\end{minipage}
+%}
+%\only<2>{
+%\begin{minipage}[h!]{0.325\textwidth}
+%\hspace*{-0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/bioCatchExpT45X1Z0.3}\\ %rfExpT45X2Z0.6.png}\\
+%\hspace*{-0.75cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/bioCatchExpT90X1Z0.3} %rfExpT90X2Z0.6.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.325\textwidth}
+%\hspace*{-0.25cm}
+%%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/zetaBiasPellaExpT45.png}\\
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/fMSYRelBiasPellaExpT45.png}\\
+%\hspace*{-0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/fMSYRelBiasPellaExpT90.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.325\textwidth}
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/bMSYRelBiasPellaExpT45.png}\\
+%\hspace*{0.25cm}
+%\includegraphics[width=1.1\textwidth]{../../.././nick/gpBias/bMSYRelBiasPellaExpT90.png}
+%\end{minipage}
+%}
+%\end{frame}
+%
+%
+%%
+%%\section{Conclusions}
+%\subsection{}
+%%
+%\begin{frame}{Summary}
+%\linespread{1.25}
+%%
+%$~$\\
+%\vspace*{-1.5cm}
+%\hspace*{-1cm}
+%\begin{itemize}	
+%	%\item Model misspecification is a necessary but not sufficient condition for inducing bias.
+%	%\item Different data informs different parts of the production function differently.
+%	%\item When Schaefer model is unlikely to be correctly specified, one should at best expect to only estimate either $B_{MSY}$ or $F_{MSY}$ correctly. % depending on the particular degree of model misspecification. 
+%	\item A rich simulation-based method for describing global RP bias and a stepping stone for understanding other models	
+%	\begin{itemize}
+%                \item[$\Rightarrow$] Productivity Extensions
+%                \item[$\Rightarrow$] Individual growth and maturity dynamics
+%        \end{itemize}
+%	\item In this severly constrained settings we pay for our modeling mistakes primarily in estimate bias.
+%	\item In practice the Schaefer model is at best only likely to reasonably estimate one of either $B_{MSY}$ or $F_{MSY}$.
+%	\item The observed contrast serves to distribute the available information among $B_{MSY}$ and $F_{MSY}$. 
+%	\begin{itemize}
+%		\item[$\Rightarrow$] Models of catch contextulize interpretation of RP estimation.
+%	\end{itemize}
+%	%
+%	%\item $F_{MSY}$ bias is strongly contrast dependent
+%	%\begin{itemize}
+%        %        \item[$\Rightarrow$] Bias depends on how similar the modeled and true production functions can be at the observed biomasses % of the true production function observed
+%	%	%\item[$\Rightarrow$] Contrast is key
+%        %\end{itemize}
+%	%\item In the overconstrained setting we pay for our modeling mistakes in bias
+%	%In practice, when the true model is not known and the Schaefer model is unlikely to be correctly specified, one should at best expect to only estimate either $B_{MSY}$ or $F_{MSY}$ correctly depending on the particular degree of model misspecification. The observed contrast then serves to distribute the available information among $B_{MSY}$ and $F_{MSY}$. 
+%\end{itemize}
+%\end{frame}
+%
+%%
+%\section{Proposals}
+%\subsection{Project \#2: Growth \& Productivity Extension}
+%\begin{frame}{Outline}
+%    \tableofcontents[currentsection, currentsubsection]
+%\end{frame}
+%
+%%
+%\begin{frame}{Productivity Extension}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\begin{align}
+%&\frac{dB}{dt} = P(B;\bm{\theta}) - (M+F)B \nonumber%\label{schunte}%
+%\end{align}
+%\begin{align}
+%&P(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}} \nonumber
+%\end{align}
+%\begin{align*}
+%\gamma = -1 &\Rightarrow \text{\color{ForestGreen}Beverton-Holt}\\
+%\gamma \rightarrow 0 &\Rightarrow \text{\color{RoyalBlue}Ricker}\\
+%\gamma = 1 &\Rightarrow  \text{\color{Red}Logistic}
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=\textwidth]{../plots/derisoSrr.png}
+%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}{Productivity Extension}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\begin{align}
+%P_\text{BH}(B;[\alpha, \beta, -1]) = \frac{\alpha B}{(1+\beta B)} \nonumber
+%\end{align}
+%\begin{align}
+%\frac{B_{MSY}}{\bar B(0)} = \frac{1}{\frac{F_{MSY}}{M}+2} \nonumber
+%\end{align}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=\textwidth]{../plots/bhRP.png}
+%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}{Growth Extension}
+%\begin{align*}%\kappa->0 slower that than a0->\infty
+%%B(a, t) &= w(a, t)N(a, t)\\ 
+%%\frac{dB}{dt} &= \overbrace{w(k)R(B(t-k))}^\text{Recruitment Biomass} + \overbrace{\mu w_\infty N(t)}^\text{Growth} - \overbrace{(M+F(t)+\mu)B(t)}^\text{Biomass Loss}\\
+%&\frac{dB}{dt} = \overbrace{w(a_0)R(B;\theta)}^\text{Recruitment Biomass} + \overbrace{\kappa \left[w_\infty N-B\right]}^\text{Net Growth} - \overbrace{(M+F)B}^\text{Mortality} \\%\label{bEq}\\
+%&\frac{dN}{dt} = R(B;\theta) - (M+F)N \\%\label{nEq}\\
+%&~\\
+%&R(B;[\alpha, \beta, \gamma]) = \alpha B(t-a_0)(1-\beta\gamma B(t-a_0))^{\frac{1}{\gamma}} \\%\label{srr}\\
+%&w(a) = w_\infty(1-e^{-\kappa a})\\ %\label{vbGrowth}
+%&~\\
+%&\theta' = [\alpha, \beta, \gamma] ~~~ ~~~ \text{Species Properties: } a_0,~\kappa,~w_\infty,~M
+%\end{align*}
+%%{\color{red} bullets of primary points of individual growth and maturity}
+%\end{frame}
+%
+%%
+%\subsection{Project \#3: Catch Interpolation}
+%\begin{frame}{Outline}
+%    \tableofcontents[currentsection, currentsubsection]
+%\end{frame}
+%%
+%\begin{frame}{Common Discretization}
+%\only<1>{
+%\vspace*{0.25cm}
+%\hspace*{-1cm}
+%\begin{minipage}[h!]{0.64\textwidth}
+%\begin{align*}
+%\frac{dB}{dt} &= P_\theta(B(t)) - C(t)
+%\end{align*}
+%
+%\begin{align*}
+%%\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
+%B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - c(\tau)
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.24\textwidth}
+%%\begin{center}
+%%Instantaneous
+%%\end{center}
+%\vspace{0.25cm} 
+%\begin{align*}
+%c(\tau) &= \int_\tau^{\tau+1} C(t)dt
+%\end{align*}
+%%$~$\\
+%%\begin{center}
+%%Yearly
+%%\end{center}
+%%\vspace*{-5cm}
+%%\hspace*{-2cm}
+%%\begin{tikzpicture}
+%%\draw [latex-](-8,-1) -- (-6,0);
+%%\draw [latex-](-3.5,-1.75) -- (-4,-0.25);
+%%\draw [latex-](-6.5,-3.25) -- (-5.5,-4);
+%%\draw [latex-](-5.75,-2.6) -- (-5.25,-4);
+%%\end{tikzpicture}
+%%%\includegraphics[width=1.9\textwidth]{../plots/eulerTry.png}
+%\end{minipage}
+%}
+%\only<2>{
+%\hspace*{-1cm}
+%\begin{minipage}[h!]{0.64\textwidth}
+%\begin{align*}
+%\frac{dB}{dt} &= P_\theta(B(t)) - C(t)
+%\end{align*}
+%
+%\begin{align*}
+%%\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
+%B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - c(\tau)
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.24\textwidth}
+%\begin{center}
+%Instantaneous
+%\end{center}
+%$~$\\ 
+%\begin{align*}
+%c(\tau) &= \int_\tau^{\tau+1} C(t)dt
+%\end{align*}
+%$~$\\
+%\begin{center}
+%Yearly
+%\end{center}
+%\vspace*{-5cm}
+%\hspace*{-2cm}
+%\begin{tikzpicture}
+%\draw [latex-](-8,-1) -- (-6,0);
+%\draw [latex-](-3.5,-1.75) -- (-4,-0.25);
+%\draw [latex-](-6.5,-3.25) -- (-5.5,-4);
+%\draw [latex-](-5.75,-2.6) -- (-5.25,-4);
+%\end{tikzpicture}
+%%\includegraphics[width=1.9\textwidth]{../plots/eulerTry.png}
+%\end{minipage}
+%}
+%\end{frame}
+%
+%%
+%\begin{frame}{Catch Interpolation}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\begin{align*}
+%&t\in\mathbb{R}^+ ~~~ ~~~ \tau=\lceil t \rceil-1\\
+%~\\
+%%&\mathds{E}[y(t)] = \int_\tau^{t} x(t^*) dt^* \\%~~~ \tau=\lceil t \rceil-1 \\
+%%&x(t) = \beta_0 + \sum_{j=1}^{T-1} \beta_j (t-\tau_j) \mathds{1}_{t>\tau_j}
+%&\mathds{E}[c(t)] = \int_\tau^{t} C(t^*) dt^* \\%~~~ \tau=\lceil t \rceil-1 \\
+%&C(t) = \beta_0 + \sum_{j=1}^{T-1} \beta_j (t-\tau_j) \mathds{1}_{t>\tau_j}
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=1.1\textwidth]{../plots/hakeCatch.png}
+%\end{minipage}
+%\end{frame}
+%
+%%
+%\begin{frame}
+%\only<1>{
+%\begin{align*} %\beta_0(\tau_i-\tau_{i-1})
+%\hspace*{-1cm} c(\tau_i) &= \beta_0 + \sum_{j=1}^{i-1} \beta_j \left[ \left(\frac{\tau_i^2}{2}-\tau_j\tau_i\right)\mathds{1}_{\tau_i>\tau_j} - \left(\frac{\tau_{i-1}^2}{2}-\tau_j\tau_{i-1}\right)\mathds{1}_{\tau_{i-1}>\tau_j}\right] + \epsilon_i \\
+%&\beta_j \sim N(0, \phi) ~~~~ ~~~~ \phi \sim \text{Half-Cauchy}(0, 1) ~~~~ ~~~~ \epsilon_i \sim N(0, \sigma^2_i) \nonumber
+%\end{align*}
+%%
+%\begin{minipage}[h!]{0.49\textwidth}
+%%\hspace{-1cm}
+%\includegraphics[width=1\textwidth]{../../.././nick/spline/dataPlots.png}%505.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%%\includegraphics[width=1\textwidth]{../../.././nick/spline/intCurves.png}%505.png}
+%\end{minipage}
+%}
+%\only<2>{
+%\begin{align*} %\beta_0(\tau_i-\tau_{i-1})
+%\hspace*{-1cm} c(\tau_i) &= \beta_0 + \sum_{j=1}^{i-1} \beta_j \left[ \left(\frac{\tau_i^2}{2}-\tau_j\tau_i\right)\mathds{1}_{\tau_i>\tau_j} - \left(\frac{\tau_{i-1}^2}{2}-\tau_j\tau_{i-1}\right)\mathds{1}_{\tau_{i-1}>\tau_j}\right] + \epsilon_i \\
+%&\beta_j \sim N(0, \phi) ~~~~ ~~~~ \phi \sim \text{Half-Cauchy}(0, 1) ~~~~ ~~~~ \epsilon_i \sim N(0, \sigma^2_i) \nonumber
+%\end{align*}
+%%
+%\begin{minipage}[h!]{0.49\textwidth}
+%%\hspace{-1cm}
+%\includegraphics[width=1\textwidth]{../../.././nick/spline/dataPlots.png}%505.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=1\textwidth]{../../.././nick/spline/intCurves.png}%505.png}
+%\end{minipage}
+%}
+%\only<3>{
+%\begin{align*}
+%\frac{dB}{dt} &= P_\theta(B(t)) - C(t)\\
+%%\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
+%B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - c(\tau)
+%\end{align*}
+%$~$\\
+%%
+%\begin{minipage}[h!]{0.49\textwidth}
+%%\hspace{-1cm}
+%\includegraphics[width=1\textwidth]{../../.././nick/spline/dataPlots.png}%505.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=1\textwidth]{../../.././nick/spline/intCurves.png}%505.png}
+%\end{minipage}
+%}
+%\end{frame}
+%
+%%\section{End}
+%\subsection{}
+%\begin{frame}{Timeline}
+%\hspace*{-0.5cm}
+%\scalebox{0.8}{
+%\begin{ganttchart}[today=3]{1}{16}
+%\gantttitlelist{2022,2023}{8} \\
+%\gantttitle{F}{2}
+%\gantttitle{W}{2}
+%\gantttitle{S}{2}
+%\gantttitle{S}{2}
+%\gantttitle{F}{2}
+%\gantttitle{W}{2}
+%\gantttitle{S}{2}
+%\gantttitle{S}{2}\\
+%\ganttgroup{Submit Project 1}{5}{6} \\
+%\ganttgroup{Productivity $\&$ Growth}{5}{10} \\
+%\ganttgroup{Catch Interpolation}{9}{12} \\
+%\ganttgroup{Write Thesis}{13}{14}
+%\end{ganttchart}
+%}
+%\end{frame}
+%
+%
+\section{End}
+
+%
+\begin{frame}
+\only<1>{
+$~$\\$~$\\
+\begin{minipage}[h!]{0.54\textwidth}
+Many Thanks:\\
+\begin{itemize}
+\item {\color{red}Dr. Marc Mangel}
+\item Collaborators at NOAA
+\item NMFS Sea Grant
+%\item Members of my Committee
+\end{itemize}
+\end{minipage}
+\begin{minipage}[h!]{0.44\textwidth}
+\includegraphics[width=0.9\textwidth]{rockFish.png}
+\end{minipage}
+
+%\vspace*{-0.5cm}
+\begin{minipage}[h!]{0.59\textwidth}
+\includegraphics[width=\textwidth]{seaGrant-logo.png}
+\end{minipage}
+\begin{minipage}[h!]{0.39\textwidth}
+%\includegraphics[width=\textwidth]{dssc.jpg}
+\includegraphics[width=0.8\textwidth]{slugArms_blank background.png}
+\end{minipage}
+}
+\only<2>{
+\frametitle{\color{red}Metamodel Details}
+\vspace*{-0.5cm}
+\begin{align*}
+	\hat\mu &= \widehat{log(r)} ~~ -or- ~~ \hat\mu = \widehat{log(K)}\\
+	~\\  
+        \bm{x} &= \left(F_{MSY}, \frac{B_{MSY}}{\bar B(0)}\right) \nonumber\\
+	~\\
+        \hat\mu &= \beta_0 + \bm{\beta}'\bm{x} + f(\bm{x}) + {\epsilon} \nonumber \\
+        f(\bm{x}) &\sim \text{GP}(0, \tau^2 R(\bm{x}, \bm{x'})) \nonumber \\
+        \epsilon_i &\sim \text{N}(0, \hat\omega_i).
+\end{align*}
+\begin{align*}   
+R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \right)
+\end{align*}
+}
+\only<3>{
+$~$\\$~$\\$~$\\
+\includegraphics[width=0.49\textwidth]{../../ptNew/directionalBiasSubPTExpT45Sig0.15.png}
+\includegraphics[width=0.49\textwidth]{../../ptNew/directionalBiasSubPTExpT45Sig0.1N600.png}
+\begin{tikzpicture}[overlay]
+\node[text width=6cm] at (5.5,6.5){High Contrast PT $\sigma=0.12$ Data};
+\node[text width=6cm] at (5,5.75){2x Samples};
+\node[text width=6cm] at (10,5.75){4x Samples};
+\end{tikzpicture}
+}
+\only<4>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+\node (img) at (-3.5,-1){\includegraphics[width=0.49\textwidth]{../../ddBias/magExpT45N300AS0.1K10.png}};
+\node (img) at (2,-1){\includegraphics[width=0.49\textwidth]{../../ddBias/magFlatT45N150A0-1AS0.1K10N56.png}};
+\node (img) at (5.5,-2){\includegraphics[width=0.2\textwidth]{../../ddBias/legendMagBias.png}};
+\node[text width=6cm] at (-1,2){Contrast};
+\node[text width=6cm] at (4.25,2){No Contrast};
+\end{tikzpicture}
+\end{center}
+}
+\only<5>{
+\begin{center}
+\includegraphics[width=0.5\textwidth]{mariacowCod.png}
+\end{center}
+}
+\only<6>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+\node (img) at (0,0){\includegraphics[width=0.8\textwidth]{schnutePostWOCapTrans.png}};	
+\node[text width=6cm] at (-2.6,2){Logistic};
+\node[text width=6cm] at (-2.35,0){Ricker};
+\node[text width=6cm] at (-2.1,-2){BH};
+\node[text width=12cm] at (0,-4){ \tiny Schnute, J. T., \& Kronlund, A. R. (2002). Estimating salmon stock recruitment relationships from catch and escapement data. Canadian Journal of Fisheries and Aquatic Sciences, 59(3), 433–449. };
+\end{tikzpicture}
+\end{center}
+%\end{center}
+%\begin{center}
+%\includegraphics[width=0.7\textwidth]{../../.././nick/gpBias/crossCovExpT45.png}
+%\end{center}
+}
+\end{frame}
+
+%\only<4>{
+%\begin{center}
+% Low Contrast $~~~~~~~~~~~~~~~~~~~~~~$ High Contrast\\
+%\includegraphics[width=0.49\textwidth]{../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png}
+%\includegraphics[width=0.49\textwidth]{../../.././nick/gpBias/directionalBiasPellaExpT45.png}
+%\end{center}
+%}
+%\only<5>{
+%\frametitle{\color{red}Deriso RP-Parameter System}
+%\begin{align*}
+%\frac{B_{MSY}}{\bar B(0)} &= \frac{ \left(\frac{\alpha}{M+F_{MSY}}\right)^\frac{1}{\gamma}-1 }{ \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 } \nonumber\\
+%\alpha &= (M+F_{MSY})\left[ 1-\frac{1}{\gamma}\left(\frac{F_{MSY}}{M+F_{MSY}}\right) \right]^{-\gamma} \label{system}\\
+%\beta  &= \frac{1}{\gamma\bar B(0)}\left( 1-\left(\frac{\alpha}{M}\right)^\frac{1}{\gamma} \right)  \nonumber
+%\end{align*}
+%}
+%\only<6>{
+%\frametitle{Common Discretization}
+%\hspace*{-1cm}
+%\begin{minipage}[h!]{0.64\textwidth}
+%\begin{align*}
+%\frac{dB}{dt} &= P_\theta(B(t)) - C(t)
+%\end{align*}
+%
+%\begin{align*}
+%%\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
+%B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - c(\tau)
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.24\textwidth}
+%\includegraphics[width=1.9\textwidth]{../plots/eulerTry.png}
+%\end{minipage}
+%}
+
+
+
+\end{document}
