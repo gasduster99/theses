@@ -25,8 +25,31 @@ Nick Grunloh
 }
 \date{13 August 2024}
 
+%
 \DeclareMathOperator*{\argmin}{\arg\!\min}
 \DeclareMathOperator*{\argmax}{\arg\!\max}
+
+%
+\newcommand{\kr}{ \frac{\kappa w_\infty}{w(a_s)} }
+\newcommand{\one}{
+        \left(\frac{Z(Z+\kappa)}{\alpha w(a_s)(Z+\kr)}\right)^\gamma
+}
+\newcommand{\two}{
+        \left(\frac{\gamma F}{\alpha w(a_s)}\right) \left(\frac{Z(Z+\kappa)}{\alpha w(a_s)(Z+\kr)}\right)^{\gamma-1}
+}
+\newcommand{\thr}{
+        \frac{\left(\kr\right)\left(\kappa-\kr\right)}{(Z+\kr)^2}
+}
+%
+\newcommand{\oneA}{
+        \left(\frac{Z^*(Z^*+\kappa)}{w(a_s)(Z^*+\kr)}\right)^\gamma
+}
+\newcommand{\twoA}{
+        \left(\frac{\gamma F^*}{w(a_s)}\right) \left(\frac{Z^*(Z^*+\kappa)}{w(a_s)(Z^*+\kr)}\right)^{\gamma-1}
+}
+\newcommand{\thrA}{
+        \frac{\left(\kr\right)\left(\kappa-\kr\right)}{(Z^*+\kr)^2}
+}
 
 %\newenvironment{changemargin}[2]{%
 %\begin{list}{}{%
@@ -85,10 +108,151 @@ Nick Grunloh
 \end{frame}
 
 %
+\begin{frame}
+	%
+	\begin{itemize}
+		\item MSA?
+		\item RPs
+		\item Steepness paper
+	\end{itemize}
+\end{frame}
+
+%
+\begin{frame}{Surplus Production Model General Structure}
+        %
+        \begin{align}
+	I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2). \label{resp}
+	\end{align}
+	
+	%
+	\begin{equation}
+	\frac{dB}{dt} = P(B(t); \bm{\theta}) - Z(t)B(t). \label{ode}
+	\end{equation}
+\end{frame}
+
+%
 \section{The Schaefer Model}
 \subsection{}
 \begin{frame}{Outline}
     \tableofcontents[currentsection, currentsubsection]
+\end{frame}
+
+%
+\begin{frame}
+
+%
+\begin{minipage}[h!]{0.49\textwidth}
+\begin{align*}
+P_{p}(B; [r, K]) &= r B\left(1-\left(\frac{B}{K}\right)\right)\\
+F^* &= \frac{r}{2}\\
+B^* &= \frac{K}{2}\\
+B_0 &= K\\
+\frac{B^*}{B_0} &= \frac{1}{2}
+\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=0.7\textwidth]{../plots/srrSchaeffer.png}
+\end{minipage}
+\end{frame}
+
+%
+\begin{frame}
+\begin{align}
+P_{p}(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{(\gamma-1)}\right). \label{pt}
+\end{align}
+\includegraphics[width=0.49\textwidth]{../../ptNew/g4PT.png}
+\end{frame}
+
+%
+\begin{frame}
+%
+\begin{equation}
+\frac{dB}{dt} = \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{\gamma-1}\right) - FB. \label{dBdtPT}
+\end{equation}
+
+%
+\begin{align}
+\bar B(F) = K\left(1-\frac{F(\gamma-1)}{r}\right)^{\frac{1}{(\gamma-1)}}. \label{BbarPT}
+\end{align}
+
+%
+\begin{align}\label{ptRP}
+&F^* = \frac{r}{\gamma}
+&\frac{B^*}{\bar B(0)} = \left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}
+\end{align}
+
+\end{frame}
+
+%
+\begin{frame}
+%
+\begin{align}\label{ptRP}
+&F^* = \frac{r}{\gamma}
+&\frac{B^*}{\bar B(0)} = \left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}
+\end{align}
+
+%
+\begin{align}
+&r = \gamma F^*
+&\gamma = \frac{W\left(\frac{B^*}{\bar B(0)}\log\left(\frac{B^*}{\bar B(0)}\right)\right)}{\log\left(\frac{B^*}{\bar B(0)}\right)}
+\end{align}
+
+\end{frame}
+
+%
+\begin{frame}
+%
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.44\textwidth]{../../ptNew/relFish.png}
+$~$
+\includegraphics[width=0.44\textwidth]{../../ptNew/relSeries.png}
+%\includegraphics[width=0.45\textwidth]{../../../theses/nick/gpBias/rfExpT45X2Z0.6.png}
+%\includegraphics[width=0.45\textwidth]{../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png}
+%\includegraphics[width=0.5\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png}
+%\vspace{-1cm}
+\caption{ \label{catchT45}
+($left$) Relative fishing with low, medium, and high contrast.
+($right$) Population biomass and catch at each associated level of contrast. %demonstrating contrast in a {\color{red}PT population} with $F^*=0.4$ and $
+}
+\label{catch45}
+\end{figure}
+\end{frame}
+
+%
+\begin{frame}
+\includegraphics[width=0.24\textwidth]{../../ptNew/srrCompareFlatT30X0.12Z0.573.png}
+\includegraphics[width=0.24\textwidth]{../../ptNew/srrCompareFlatT30X0.674Z0.599.png}\\
+\includegraphics[width=0.24\textwidth]{../../ptNew/srrCompareFlatT30X0.096Z0.22.png}
+\includegraphics[width=0.24\textwidth]{../../ptNew/srrCompareFlatT30X0.699Z0.201.png}
+\end{frame}
+
+%
+\begin{frame}
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.44\textwidth}
+\includegraphics[width=\textwidth]{../../ptNew/directionalBiasSubPTExpT45MinCon.png}
+\end{minipage}
+\begin{minipage}[h!]{0.44\textwidth}
+\includegraphics[width=\textwidth]{../../ptNew/directionalBiasSubPTFlatT30.png}
+\end{minipage}
+\begin{minipage}[h!]{0.09\textwidth}
+\hspace{-1cm}
+\includegraphics[width=1.5\textwidth]{../../ptNew/subLegnd.png}
+\end{minipage}
+\caption{
+Joint bias direction for ($F^*$, $\frac{B^*}{B_0}$) estimates under
+the misspecified Schaefer Model. The intensity of color represents the excess
+bias relative to the shortest possible mapping. Results in the low contrast setting
+are shown $right$, and the high contrast setting is shown $left$.
+}
+\label{arrowsPT}
+\end{figure}
+\end{frame}
+
+%
+\begin{frame}
+\includegraphics[width=0.5\textwidth]{../../ptNew/contrastTest3.png}
 \end{frame}
 
 %
@@ -99,13 +263,302 @@ Nick Grunloh
 \end{frame}
 
 %
+\begin{frame}
+\begin{equation}
+P(B) = \frac{\alpha B}{1+\beta B}.
+\end{equation}
+\begin{align}
+\frac{dB}{dt} = P(B;\theta) -MB -FB %(M+F)B. \label{schnuteSimple}
+\end{align}
+\begin{minipage}[h!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{../../gpBias/pBHandM.png}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{../../gpBias/yeildBH.png}
+\end{minipage}
+\end{frame}
+
+%
+\begin{frame}
+\begin{equation*}
+R(B;\alpha, \beta, \gamma) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}}
+\end{equation*}
+\includegraphics[width=1.1\textwidth]{../../gpBias/g3.png}
+\end{frame}
+
+%
+\begin{frame}
+%
+\begin{align}
+\bar{B}(F) &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M+F}{\alpha}\right)^\gamma\right).
+\label{BsEq}
+\end{align}
+\begin{align}
+B_0 &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{B0S}\\
+\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma }. \label{BratS}
+\end{align}
+
+%
+\begin{align}
+\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{FderivS}\\
+\frac{d \bar B}{dF} &= -\frac{1}{\beta}  \left(\frac{\left(\frac{M+F}{\alpha}\right)^\gamma}{F+M}\right)\label{dBdFS}.
+\end{align}
+
+\begin{align}\label{FmsyS}
+0 &= \frac{1}{\gamma} - \left(\frac{1}{\gamma} + \frac{F^*}{F^*+M}\right)\left(\frac{F^*+M}{\alpha}\right)^\gamma.
+\end{align}
+\end{frame}
+
+%
+\begin{frame}
+\begin{align}
+%\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
+\alpha &= (M+F^*)\left(1+\frac{\gamma F^*}{M+F^*}\right)^{1/\gamma} \nonumber\\
+\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{abgSys}\\
+\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \nonumber.
+\end{align}
+\end{frame}
+
+%
+\begin{frame}
+\begin{align}
+\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}
+\end{align}
+\includegraphics[width=0.5\textwidth]{../../gpBias/zeta.png}
+\end{frame}
+
+%animate between curve picture to RP curves
+\begin{frame}{Schnute Recruitment}
+%
+\vspace{-0.25cm}
+\begin{equation*}
+R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}{\gamma}}
+\end{equation*}
+%
+\begin{minipage}[h!]{0.46\textwidth}
+        %
+        \vspace{-1cm}
+        %
+        \begin{center}
+        {\color{Red}\underline{Logistic}}\\
+        $\gamma = 1$\\$~$\\
+        {\color{RoyalBlue}\underline{Ricker}}\\
+        $\gamma \rightarrow 0$\\$~$\\   %\Rightarrow \text{\color{RoyalBlue}Ricker}\\   
+        {\color{ForestGreen}\underline{Beverton-Holt}}\\
+        $\gamma = -1$           %\Rightarrow \text{\color{ForestGreen}Beverton-Holt}\\          %\Rightarrow  \text{\color{Red}Logistic}
+        \end{center}
+        %
+        %\begin{align*}
+        %%& R(B;[\alpha, \beta, \gamma]') = \alpha B(t-a_s)(1-\beta\gamma B(t-a_s))^{\frac{1}{\gamma}}
+        %%~&~\\
+        %&\gamma = -1 \Rightarrow \text{\color{ForestGreen}Beverton-Holt}\\
+        %&\gamma \rightarrow 0 \Rightarrow \text{\color{RoyalBlue}Ricker}\\
+        %&\gamma = 1 \Rightarrow  \text{\color{Red}Logistic}
+        %\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.52\textwidth}
+        \includegraphics[width=1.1\textwidth]{../../ddBias/designLineColorHHardFlatT30N150WWideN112.png}
+\end{minipage}
+\end{frame}
+
+%
+\begin{frame}
+%
+\begin{figure}[h!]
+\begin{minipage}[h!]{0.46\textwidth}
+\hspace*{-0.5cm}
+\includegraphics[width=1.175\textwidth]{../../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
+\hspace*{1cm}
+\vspace{-1cm}
+\caption{\label{contrastTrio}
+Heatplots showing the bias in RP estimation induced by model misspecification of
+the BH model in the high contrast simulation setting.
+In all cases the restricted RP-space of the BH set is shown as the black curve.
+(\emph{left}) Relative bias in $\frac{B^*}{\bar B(0)}$.  (\emph{top-right})
+Bias in RP-space shown directionally. Arrows point from the location where
+data is generated, toward the location in the BH set where MLE projects estimated
+RPs. The intensity of color represents the excess bias relative
+to the shortest possible mapping. (\emph{bottom}) Relative bias in $\frac{F^*}{M}$.
+}
+$~$\\$~$\\
+\end{minipage}
+\begin{minipage}[h!]{0.44\textwidth}
+\vspace{-0.8cm}
+\hspace*{-0.1cm}
+\includegraphics[width=1.2\textwidth]{../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png}\\
+\hspace*{-0.1cm}
+\includegraphics[width=1.2\textwidth]{../../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
+\end{minipage}
+\begin{minipage}[h!]{0.07\textwidth}
+\vspace{-9cm}
+\hspace*{0.2cm}
+\includegraphics[width=1.7\textwidth]{../../gpBias/legendSubSchnute.png}
+\end{minipage}
+\end{figure}
+\end{frame}
+
+%
+\begin{frame}
+\begin{minipage}[h!]{0.92\textwidth}
+\includegraphics[width=0.5\textwidth]{../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+\end{minipage}
+\begin{minipage}[h!]{0.06\textwidth}
+\vspace{-7cm}
+\hspace*{6cm}
+\includegraphics[width=1.7\textwidth]{../../gpBias/legendSubSchnute.png}
+\end{minipage}
+\color{red} Add Yeild curves from AFS presentation. 
+\end{frame}
+
+%
 \section{Delay Differential Growth Extension}
 \subsection{}
 \begin{frame}{Outline}
     \tableofcontents[currentsection, currentsubsection]
 \end{frame}
 
+%
+\begin{frame}{General Modeling Structure}
+\begin{align*}%\kappa->0 slower that than a0->\infty
+%B(a, t) &= w(a, t)N(a, t)\\ 
+%\frac{dB}{dt} &= \overbrace{w(k)R(B(t-k))}^\text{Recruitment Biomass} + \overbrace{\mu w_\infty N(t)}^\text{Growth} - \overbrace{(M+F(t)+\mu)B(t)}^\text{Biomass Loss}\\
+&\frac{dB}{dt} = \overbrace{w(a_s)R(B;\theta)}^\text{Recruitment Biomass} + \overbrace{\kappa \left[w_\infty N-B\right]}^\text{Net Growth} - \overbrace{(M+F)B}^\text{Mortality} \\%\label{
+&\frac{dN}{dt} = R(B;\theta) - (M+F)N \\%\label{nEq}\\
+&~\\
+&R(B_{t-a_s}; \alpha, \beta, \gamma): \text{Schnute Three Parameter Recruitment}\\
+&w(a) : \text{Von Bertalanffy Individual Growth}\\
+&\text{Knife-Edge Selectivity at age $a_s$}\\
+%&\theta' = [\alpha, \beta, \gamma] ~~~ ~~~ {\color{Red} \text{Species Properties: } a_0,~\kappa,~w_\infty,~M}
+\end{align*}
+%{\color{red} bullets of primary points of individual growth and maturity}
+\end{frame}
 
+%animate between curve picture to RP curves
+\begin{frame}{Schnute Recruitment}
+%
+\vspace{-0.25cm}
+\begin{equation*}
+R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}{\gamma}}
+\end{equation*}
+%
+\begin{minipage}[h!]{0.46\textwidth}
+        %
+        \vspace{-1cm}
+        %
+        \begin{center}
+        {\color{Red}\underline{Logistic}}\\
+        $\gamma = 1$\\$~$\\
+        {\color{RoyalBlue}\underline{Ricker}}\\
+        $\gamma \rightarrow 0$\\$~$\\   %\Rightarrow \text{\color{RoyalBlue}Ricker}\\   
+        {\color{ForestGreen}\underline{Beverton-Holt}}\\
+        $\gamma = -1$           %\Rightarrow \text{\color{ForestGreen}Beverton-Holt}\\          %\Rightarrow  \text{\color{Red}Logistic}
+        \end{center}
+        %
+        %\begin{align*}
+        %%& R(B;[\alpha, \beta, \gamma]') = \alpha B(t-a_s)(1-\beta\gamma B(t-a_s))^{\frac{1}{\gamma}}
+        %%~&~\\
+        %&\gamma = -1 \Rightarrow \text{\color{ForestGreen}Beverton-Holt}\\
+        %&\gamma \rightarrow 0 \Rightarrow \text{\color{RoyalBlue}Ricker}\\
+        %&\gamma = 1 \Rightarrow  \text{\color{Red}Logistic}
+        %\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.52\textwidth}
+        \only<1>{
+        \includegraphics[width=1.1\textwidth]{../../gpBias/g3.png} %./derisoSrr.png}
+        }\only<2>{
+        \includegraphics[width=1.1\textwidth]{../../ddBias/designLineColorHHardFlatT30N150WWideN112.png}
+        }
+\end{minipage}
+\end{frame}
+
+%
+\begin{frame}{\color{red}Von Bertalanffy Individual Growth}
+%
+\begin{minipage}[h!]{0.47\textwidth}
+        %
+        \vspace{-1cm}
+        \begin{align*}
+        w(a) = w_\infty(1-e^{-\kappa (a-a_0)}) %\\
+        \end{align*}
+        %\vspace*{-1cm}
+        \begin{itemize}
+        \item Instant Growth: \\(Production Model)\\
+        %\begin{align*}
+        $a_s \rightarrow 0 ~~~ \kappa \rightarrow \infty$\\$~$\\
+        %\end{align*}
+        \item Dynamic Growth:\\
+        %$a_s$ large relative to $\kappa$\\
+        $a_s$ : Not Instant\\
+        $~\kappa$ : Peakness of Dynamics
+        \end{itemize}
+        %{\color{red}
+        %limiting cases as prod model\\
+        %knife edge selectivity\\
+        %animate to RP space curve under BH.
+        %}
+\end{minipage}
+\begin{minipage}[h!]{0.51\textwidth}
+        %\includegraphics[width=1.1\textwidth]{./vbCurves.png}
+	\includegraphics[width=0.49\textwidth]{../../ddBias/rpTriptic.png}
+	\includegraphics[width=0.49\textwidth]{../../ddBias/growthTriptic.png}
+\end{minipage}
+\end{frame}
+
+%
+\begin{frame}
+%
+\begin{align}
+\bar{B}(F) &= \frac{1}{\beta\gamma} \left( 1 - \Big(\frac{(F + M) (F + M + \kappa)}{\alpha w(a_s)(F + M + \kr)}\Big)^\gamma\right) \label{BF}\\
+%\end{align}
+%\begin{align}
+\bar{N}(F) &= \frac{\alpha\bar{B}(F)(1-\beta\gamma\bar{B}(F))^{1/\gamma}}{F+M} \label{NF}
+\end{align}
+
+%\begingroup
+%\tiny
+%\begin{align}
+%\frac{d \bar{Y}}{dF} &= \frac{1}{\beta\gamma}\left[ 1 - \one - \two \left( 1 + \thr \right) \right]\label{dBdFS}
+%%&= (1-\left(\frac{(F+M)*(F+M+\kappa)}{\alpha*(F*w(a_s)+M*w(a_s)+\kappa*w_infty)}\right)^\gamma-(F*(((F+M)*(F+M+\kappa))/(\alpha*(F*w(a_s)+M*w(a_s)+\kappa
+%%&= ( 1-\Big(\frac{(F+M)(F+M+\kappa)}{\alpha w(a_s)(F+M+\kappa w_\infty/w(a_s))}\Big)^\gamma - ( F*( ((F+M)*(F+M+\kappa))/(\alpha*(F*w(a_s)+M*w(a_s)+\kapp
+%\end{align}
+%\endgroup
+
+%
+\begingroup
+\tiny
+\begin{align}
+\alpha & = \left[ \oneA + \twoA \left( 1 + \thrA \right) \right]^{\frac{1}{\gamma}} \label{aDelay}\\
+\beta &= \frac{1}{\gamma B_0} \left( 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma\right) \label{bDelay}%\\
+%\frac{B^*}{B_0} &= \frac{ 1 - \Big(\frac{(F^* + M) (F^* + M + \kappa)}{\alpha w(a_s)(F^* + M + \kr)}\Big)^\gamma }{ 1 - \Big(\frac{M (M + \kappa)}{\alpha
+\end{align}
+\endgroup
+
+\begin{align}
+\frac{B^*}{B_0} &= \frac{ 1 - \Big(\frac{(F^* + M) (F^* + M + \kappa)}{\alpha w(a_s)(F^* + M + \kr)}\Big)^\gamma }{ 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma }
+\label{gDelay}
+\end{align}
+
+\end{frame}
+
+%
+\begin{frame}
+	\includegraphics[width=0.33\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png}
+        \includegraphics[width=0.33\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png}
+        \includegraphics[width=0.33\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png}
+\end{frame}
+
+%
+\begin{frame}
+	%\includegraphics[width=0.49\textwidth]{../../ddBias/rpCurves.png}
+	\includegraphics[width=0.49\textwidth]{../../ddBias/vbPoster.png}
+	\includegraphics[width=0.24\textwidth]{../../ddBias/relErrorImagesBHDD0.5.png}
+\end{frame}
+
+%
+\begin{frame}
+\includegraphics[width=0.54\textwidth]{../../ddBias/rpSpaceww.png}
+\end{frame}
 
 %%
 %\section{Introduction}
