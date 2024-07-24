@@ -95,10 +95,10 @@ Nick Grunloh
 \end{minipage}
 \end{frame}
 
-%
-\begin{frame}{Outline}
-    \tableofcontents
-\end{frame}
+%%
+%\begin{frame}{Outline}
+%    \tableofcontents
+%\end{frame}
 
 %
 \section{Introduction}
@@ -109,26 +109,78 @@ Nick Grunloh
 
 %
 \begin{frame}
-	%
-	\begin{itemize}
-		\item MSA?
-		\item RPs
-		\item Steepness paper
-	\end{itemize}
+	\centering
+	\includegraphics[width=0.8\textwidth]{saCycle.png}\footnote{NOAA Fisheries Annual Stock Assessment Report 2020}
+	%*NOAA Fisheries Annual Stock Assessment Report 2020
 \end{frame}
+
+
 
 %
 \begin{frame}{Surplus Production Model General Structure}
         %
-        \begin{align}
+        \begin{align*}
 	I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2). \label{resp}
-	\end{align}
+	\end{align*}
 	
 	%
-	\begin{equation}
+	\begin{equation*}
 	\frac{dB}{dt} = P(B(t); \bm{\theta}) - Z(t)B(t). \label{ode}
-	\end{equation}
+	\end{equation*}
 \end{frame}
+
+%
+\begin{frame}
+\begin{minipage}[h!]{0.49\textwidth}
+	Reference Points:
+	\begin{itemize}
+	\setlength{\itemsep}{5mm}
+	\item Maximum sustainable Yield ($MSY$)
+	\item $F_{MSY}$\footnote{or $\frac{F_{MSY}}{M}$}: Fishing rate to achieve $MSY$
+	\item $\frac{B_{MSY}}{B_0}$: Biomass Depletion when at $MSY$
+	\item Driven by the shape of $P$ as determined by $\theta$.
+	\end{itemize}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+	\hspace{0.5cm}
+	\includegraphics[width=\textwidth]{../../advance/plots/yieldRPplusP.png}
+\end{minipage}
+\end{frame}
+
+%
+\begin{frame}
+\begin{minipage}[h!]{0.59\textwidth}
+Conceptually:
+\begin{align*}
+\frac{F_{MSY}}{M}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{B_{0}}\in\left(0, 1\right)
+\end{align*}
+%$~$\\
+%Mangel et al. 2013, CJFAS:
+\vspace{-0.5cm}
+\begin{itemize}
+	\setlength{\itemsep}{2mm}
+	\item Schaefer Model: $~ F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{2}$
+        \item BH Model: $~ \frac{F_{MSY}}{M}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{F_{MSY}/M+2}$
+        \item Similar Constraints for other Two-Parameter Models: \\$~~~~~$Fox, Ricker, etc...
+        \item Three-Parameter Models Allow Independent RP Estimation %More flexible models allow independent RP estimation
+\end{itemize}
+\end{minipage}
+\begin{minipage}[h!]{0.39\textwidth}
+$~$\\
+\hspace*{-0.5cm}
+\includegraphics[width=1.3\textwidth]{cjasFig.png}\footnote{\scriptsize Mangel et al. 2013, CJFAS}
+\end{minipage}
+\end{frame}
+
+%%
+%\begin{frame}
+%	%
+%	\begin{itemize}
+%		\item MSA?
+%		\item RPs
+%		\item Steepness paper
+%	\end{itemize}
+%\end{frame}
 
 %
 \section{The Schaefer Model}
@@ -139,57 +191,92 @@ Nick Grunloh
 
 %
 \begin{frame}
+\begin{itemize}
+\color{red}
+\item Observation model
+\item introduce logistic P
+\item something else?
+\end{itemize}
+\end{frame}
 
 %
-\begin{minipage}[h!]{0.49\textwidth}
+\begin{frame}
+%
+\begin{minipage}[h!]{0.54\textwidth}
+\only<1>{
+\begingroup
+\scriptsize
 \begin{align*}
-P_{p}(B; [r, K]) &= r B\left(1-\left(\frac{B}{K}\right)\right)\\
+P_{\ell}(B; [r, K]) &= r B\left(1-\left(\frac{B}{K}\right)\right)\\
+\end{align*}
+\endgroup
+\begin{align*}
 F^* &= \frac{r}{2}\\
-B^* &= \frac{K}{2}\\
-B_0 &= K\\
+&\\
+B^* = \frac{K}{2} ~~&~~ B_0 = K\\
 \frac{B^*}{B_0} &= \frac{1}{2}
 \end{align*}
+}
+\only<2>{
+$~$\\
+\begingroup
+\scriptsize
+\begin{align*}
+P_{pt}(B; [r, K, \gamma]) &= \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{(\gamma-1)}\right)
+\end{align*}
+\endgroup
+\begin{align*}
+&\\
+F^* =& \frac{r}{\gamma}~~\\
+&\\
+B^* = K\left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}} &~~ B_0 = K\\
+\frac{B^*}{B_0} =& \left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}~~
+\end{align*}
+}
 \end{minipage}
-\begin{minipage}[h!]{0.49\textwidth}
-\includegraphics[width=0.7\textwidth]{../plots/srrSchaeffer.png}
+\begin{minipage}[h!]{0.44\textwidth}
+\only<1>{$~$\\\includegraphics[width=1.1\textwidth]{../../ptNew/g5S.png}}%../plots/srrSchaeffer.png}}
+\only<2>{\includegraphics[width=1.1\textwidth]{../../ptNew/g5PT.png}}
 \end{minipage}
 \end{frame}
 
+%%
+%%\begin{frame}
+%\begin{align}
+%P_{p}(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{(\gamma-1)}\right). \label{pt}
+%\end{align}
+%\includegraphics[width=0.49\textwidth]{../../ptNew/g4PT.png}
+%\end{frame}
+
+%%
+%\begin{frame}
+%%
+%\begin{equation}
+%\frac{dB}{dt} = \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{\gamma-1}\right) - FB. \label{dBdtPT}
+%\end{equation}
 %
-\begin{frame}
-\begin{align}
-P_{p}(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{(\gamma-1)}\right). \label{pt}
-\end{align}
-\includegraphics[width=0.49\textwidth]{../../ptNew/g4PT.png}
-\end{frame}
+%%
+%\begin{align}
+%\bar B(F) = K\left(1-\frac{F(\gamma-1)}{r}\right)^{\frac{1}{(\gamma-1)}}. \label{BbarPT}
+%\end{align}
+%
+%%
+%\begin{align}\label{ptRP}
+%&F^* = \frac{r}{\gamma}
+%&\frac{B^*}{\bar B(0)} = \left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}
+%\end{align}
+%
+%\end{frame}
 
 %
 \begin{frame}
-%
-\begin{equation}
-\frac{dB}{dt} = \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{\gamma-1}\right) - FB. \label{dBdtPT}
-\end{equation}
-
-%
-\begin{align}
-\bar B(F) = K\left(1-\frac{F(\gamma-1)}{r}\right)^{\frac{1}{(\gamma-1)}}. \label{BbarPT}
-\end{align}
-
 %
 \begin{align}\label{ptRP}
 &F^* = \frac{r}{\gamma}
 &\frac{B^*}{\bar B(0)} = \left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}
 \end{align}
 
-\end{frame}
-
-%
-\begin{frame}
-%
-\begin{align}\label{ptRP}
-&F^* = \frac{r}{\gamma}
-&\frac{B^*}{\bar B(0)} = \left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}
-\end{align}
+\color{red} invert simulation design
 
 %
 \begin{align}
@@ -197,6 +284,12 @@ P_{p}(B; [r, K, \gamma]) = \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)
 &\gamma = \frac{W\left(\frac{B^*}{\bar B(0)}\log\left(\frac{B^*}{\bar B(0)}\right)\right)}{\log\left(\frac{B^*}{\bar B(0)}\right)}
 \end{align}
 
+\end{frame}
+
+%
+\begin{frame}
+\color{red}
+Introduce simulation
 \end{frame}
 
 %
@@ -217,14 +310,6 @@ $~$
 }
 \label{catch45}
 \end{figure}
-\end{frame}
-
-%
-\begin{frame}
-\includegraphics[width=0.24\textwidth]{../../ptNew/srrCompareFlatT30X0.12Z0.573.png}
-\includegraphics[width=0.24\textwidth]{../../ptNew/srrCompareFlatT30X0.674Z0.599.png}\\
-\includegraphics[width=0.24\textwidth]{../../ptNew/srrCompareFlatT30X0.096Z0.22.png}
-\includegraphics[width=0.24\textwidth]{../../ptNew/srrCompareFlatT30X0.699Z0.201.png}
 \end{frame}
 
 %
@@ -251,8 +336,36 @@ are shown $right$, and the high contrast setting is shown $left$.
 \end{frame}
 
 %
+\begin{frame}{Mechanism for Bias in $F_{MSY}$ via Contrast}
+
+\begin{minipage}[h!]{0.45\textwidth}
+\begin{itemize}
+\color{red}
+\item Only observe upper half
+\item learn about slope at origin from upper biomass range
+\end{itemize}
+\end{minipage}
+\begin{minipage}[h!]{0.50\textwidth}
+\only<1>{
+\includegraphics[width=0.47\textwidth]{../../ptNew/srrCompareFlatT30X0.12Z0.573.png}
+\includegraphics[width=0.47\textwidth]{../../ptNew/srrCompareFlatT30X0.674Z0.599.png}\\
+\includegraphics[width=0.47\textwidth]{../../ptNew/srrCompareFlatT30X0.096Z0.22.png}
+\includegraphics[width=0.47\textwidth]{../../ptNew/srrCompareFlatT30X0.699Z0.201.png}
+}
+\only<2>{
+\includegraphics[width=\textwidth]{../../ptNew/contrastTest3.png}
+}
+\end{minipage}
+\end{frame}
+
+%%
+%\begin{frame}
+%\includegraphics[width=0.5\textwidth]{../../ptNew/contrastTest3.png}
+%\end{frame}
+
+%
 \begin{frame}
-\includegraphics[width=0.5\textwidth]{../../ptNew/contrastTest3.png}
+\color{red} a quick summary
 \end{frame}
 
 %
@@ -363,52 +476,160 @@ R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}
 
 %
 \begin{frame}
-%
-\begin{figure}[h!]
+%\begin{figure}[h!]
 \begin{minipage}[h!]{0.46\textwidth}
-\hspace*{-0.5cm}
-\includegraphics[width=1.175\textwidth]{../../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
+\hspace*{0.5cm}
+%\includegraphics[width=1.175\textwidth]{../../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
+\includegraphics[height=0.49\textheight]{../../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
 \hspace*{1cm}
 \vspace{-1cm}
-\caption{\label{contrastTrio}
-Heatplots showing the bias in RP estimation induced by model misspecification of
-the BH model in the high contrast simulation setting.
-In all cases the restricted RP-space of the BH set is shown as the black curve.
-(\emph{left}) Relative bias in $\frac{B^*}{\bar B(0)}$.  (\emph{top-right})
-Bias in RP-space shown directionally. Arrows point from the location where
-data is generated, toward the location in the BH set where MLE projects estimated
-RPs. The intensity of color represents the excess bias relative
-to the shortest possible mapping. (\emph{bottom}) Relative bias in $\frac{F^*}{M}$.
-}
-$~$\\$~$\\
+%\caption{\label{contrastTrio}
+%Heatplots showing the bias in RP estimation induced by model misspecification of
+%the BH model in the high contrast simulation setting.
+%In all cases the restricted RP-space of the BH set is shown as the black curve.
+%(\emph{left}) Relative bias in $\frac{B^*}{\bar B(0)}$.  (\emph{top-right})
+%Bias in RP-space shown directionally. Arrows point from the location where
+%data is generated, toward the location in the BH set where MLE projects estimated
+%RPs. The intensity of color represents the excess bias relative
+%to the shortest possible mapping. (\emph{bottom}) Relative bias in $\frac{F^*}{M}$.
+%}
+$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\
 \end{minipage}
 \begin{minipage}[h!]{0.44\textwidth}
-\vspace{-0.8cm}
+$~$\\
+\vspace{-1cm}
 \hspace*{-0.1cm}
-\includegraphics[width=1.2\textwidth]{../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png}\\
-\hspace*{-0.1cm}
-\includegraphics[width=1.2\textwidth]{../../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
+\includegraphics[height=0.49\textheight]{../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png}\\
+$~$\\$~$\\
+\hspace*{0.1cm}
+\includegraphics[height=0.49\textheight]{../../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
 \end{minipage}
 \begin{minipage}[h!]{0.07\textwidth}
-\vspace{-9cm}
-\hspace*{0.2cm}
-\includegraphics[width=1.7\textwidth]{../../gpBias/legendSubSchnute.png}
+\vspace{-4cm}
+\hspace*{-1.25cm}
+\includegraphics[width=1.5\textwidth]{../../gpBias/legendSubSchnute.png}
 \end{minipage}
-\end{figure}
+%\end{figure}
 \end{frame}
 
 %
 \begin{frame}
-\begin{minipage}[h!]{0.92\textwidth}
-\includegraphics[width=0.5\textwidth]{../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
-%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+\only<1>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png}};
+        %\node at (4.5,2)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveTruthExpT45N150WideX3.348Z0.541.png}};
+        %\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png}};
+\end{tikzpicture}
+\end{center}
+}
+\only<2>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png}};
+        \node at (4.75,0)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png}}; 
+	\node at (1.25,0) [circle,fill,inner sep=1.75pt]{};
+	%\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png}};
+\end{tikzpicture}
+\end{center}
+}
+\only<3>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png}};
+        \node at (4.75,0)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png}};
+        \node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveFitExpT45N150WideX2.5Z0.45.png}};
+        \node at (1.25,0) [circle,fill,inner sep=1.75pt]{};
+        \node at (-0.35,-2) [circle,fill=red,inner sep=1.75pt]{};
+\end{tikzpicture}
+\end{center}
+}
+\end{frame}
+
+%
+\begin{frame}
+\only<1>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}};
+        %\node at (4.5,2)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveTruthExpT45N150WideX3.348Z0.541.png}};
+        %\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png}};
+\end{tikzpicture}
+\end{center}
+}
+\only<2>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}};
+        \node at (4.75,0)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png}}; 
+	\node at (1.25,0) [circle,fill,inner sep=1.75pt]{};
+	%\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png}};
+\end{tikzpicture}
+\end{center}
+}
+\only<3>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}};
+        \node at (4.75,0)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png}};
+        \node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveFitExpT45N150WideX2.5Z0.45.png}};
+        \node at (1.25,0) [circle,fill,inner sep=1.75pt]{};
+        \node at (-0.35,-2) [circle,fill=red,inner sep=1.75pt]{};
+\end{tikzpicture}
+\end{center}
+}
+\only<4>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteAnimateSourceHHardFlatT30N150WWideN112X3Z0.35.png}};
+        \node at (4.75,-1)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png}};
+        %\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png}};
+\end{tikzpicture}
+\end{center}
+}
+\only<5>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png}};
+        \node at (4.75,-1)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png}};
+        \node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.35.png}};
+\end{tikzpicture}
+\end{center}
+}
+\only<6>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png}};
+        \node at (4.75,-1)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png}};
+        \node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.35.png}};
+        \draw[very thick,blue] (-2.25,0.5) -- ++(5.25,-1.1);
+\end{tikzpicture}
+\end{center}
+}
+
+%\begin{minipage}[h!]{0.92\textwidth}
+%\includegraphics[width=0.5\textwidth]{../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
+%%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.06\textwidth}
+%\vspace{-7cm}
+%\hspace*{6cm}
+%\includegraphics[width=1.7\textwidth]{../../gpBias/legendSubSchnute.png}
+%\end{minipage}
+%\color{red} Add Yeild curves from AFS presentation. 
+\end{frame}
+
+\begin{frame}
+\begin{minipage}[h!]{0.49\textwidth}
+        \includegraphics[width=1\textwidth]{../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
 \end{minipage}
-\begin{minipage}[h!]{0.06\textwidth}
-\vspace{-7cm}
-\hspace*{6cm}
-\includegraphics[width=1.7\textwidth]{../../gpBias/legendSubSchnute.png}
+\begin{minipage}[h!]{0.49\textwidth}
+        \includegraphics[width=1\textwidth]{../../ddBias/designLineColorHHardFlatT30N150WWideN112.png}
 \end{minipage}
-\color{red} Add Yeild curves from AFS presentation. 
+\end{frame}
+
+\begin{frame}{}
+\color{red}Quick Summary and Transition
 \end{frame}
 
 %
@@ -1326,6 +1547,11 @@ R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}
 %
 %
 \section{End}
+
+%
+\begin{frame}
+\color{red} General Conclusions and future work.
+\end{frame}
 
 %
 \begin{frame}

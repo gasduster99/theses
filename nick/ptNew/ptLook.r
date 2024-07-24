@@ -157,3 +157,60 @@ curve(SRR(x*B0, a, b, 2)/SRR(B0-0.01, a, b, g), 0, 1, n=10000, col="black", add=
 #curve(SRR(x*B0, a, b, 2), 0, 1, n=10000, col="black", add=T, lwd=3)
 legend("topright", legend=c(TeX(sprintf("$\\gamma<2$")), TeX(sprintf("$\\gamma=2$")), TeX(sprintf("$\\gamma>2$"))), col=c(cols[2], "black", cols[1]), lwd=3)
 dev.off()
+
+#
+png('g5PT.png')
+curve(SRR(x*B0, a, b, gs[1])/SRR(B0-0.01, a, b, gs[1]), 0, 1, lwd=3, ylab="Yield", xlab="B/B0", main=TeX("$P_{pt}(B; \\theta)$"), col='white', n=10000) #ella-Tomlinson Production", col='white', n=10000)
+#curve(SRR(x*B0, a, b, gs[1]), 0, 1, lwd=3, ylab="P(B)", xlab="B/B0", main="Pella-Tomlinson Production", col='white', n=10000)
+#curve(SRR(x*B0, a, b, -1), 0, 5/b, lwd=3, n=10000, add=T)
+for(g in gs){
+	#
+	a = getAlphaSSR(b, g, msy)
+	B0 = PBar(a, b, g, 0)
+	print(g)
+	print(a)
+	#
+	w = 1 #c(3, 1)[round(g, 1)%%1==0]
+	curve(SRR(x*B0, a, b, g)/SRR(B0-0.01, a, b, g), 0, 1, n=10000, col=cols[sum(round(g,1)<reg)], add=T, lwd=w)	
+	#curve(SRR(x*B0, a, b, g), 0, 1, n=10000, col=cols[sum(round(g,1)<reg)], add=T, lwd=w)
+}
+g = 2
+a = getAlphaSSR(b, g, msy)
+B0 = PBar(a, b, g, 0)
+curve(SRR(x*B0, a, b, 2)/SRR(B0-0.01, a, b, g), 0, 1, n=10000, col="black", add=T, lwd=3)
+#curve(SRR(x*B0, a, b, 2), 0, 1, n=10000, col="black", add=T, lwd=3)
+legend("topright", legend=c(TeX(sprintf("$\\gamma<2$")), TeX(sprintf("$\\gamma=2$")), TeX(sprintf("$\\gamma>2$"))), col=c(cols[2], "black", cols[1]), lwd=3)
+dev.off()
+
+#
+png('g5S.png')
+#
+n=9
+cols = brewer.pal(9,'Set1')
+curve(SRR(x*B0, a, b, gs[1])/SRR(B0-0.01, a, b, gs[1]), 0, 1, lwd=3, ylab="Yield", xlab="B/B0", main=TeX("$P_{l}(B; \\theta)$"), col='white', n=10000) #ella-Tomlinson Production", col='white', n=10000)
+#curve(SRR(x*B0, a, b, gs[1]), 0, 1, lwd=3, ylab="P(B)", xlab="B/B0", main="Pella-Tomlinson Production", col='white', n=10000)
+#curve(SRR(x*B0, a, b, -1), 0, 5/b, lwd=3, n=10000, add=T)
+#for(g in gs){
+#	#
+#	a = getAlphaSSR(b, g, msy)
+#	B0 = PBar(a, b, g, 0)
+#	print(g)
+#	print(a)
+#	#
+#	w = 1 #c(3, 1)[round(g, 1)%%1==0]
+#	curve(SRR(x*B0, a, b, g)/SRR(B0-0.01, a, b, g), 0, 1, n=10000, col=cols[sum(round(g,1)<reg)], add=T, lwd=w)	
+#	#curve(SRR(x*B0, a, b, g), 0, 1, n=10000, col=cols[sum(round(g,1)<reg)], add=T, lwd=w)
+#}
+g = 2
+a = getAlphaSSR(b, g, msy)
+B0 = PBar(a, b, g, 0)
+curve(SRR(x*B0, a, b, 2)/SRR(B0-0.01, a, b, g), 0, 1, n=10000, col="black", add=T, lwd=3)
+#curve(SRR(x*B0, a, b, 2), 0, 1, n=10000, col="black", add=T, lwd=3)
+#legend("topright", legend=c(TeX(sprintf("$\\gamma<2$")), TeX(sprintf("$\\gamma=2$")), TeX(sprintf("$\\gamma>2$"))), col=c(cols[2], "black", cols[1]), lwd=3)
+#curve(a*x, lwd=3, col=cols[2], lty=1, add=T)
+#curve(*x, lwd=3, col=cols[1], add=T, lty=1)
+segments(0, 0, 1/2, SRR(B0/2, a, b, 2)/SRR(B0-0.01, a, b, g), col=cols[1], lty=1, lwd=3)
+segments(1/2, SRR(B0/2, a, b, 2)/SRR(B0-0.01, a, b, g), 1/2, 0, col=cols[3], lty=1, lwd=3)
+segments(1, SRR(B0/2, a, b, 2)/SRR(B0-0.01, a, b, g), 1, 0, col=cols[4], lty=1, lwd=3)
+legend("topright", legend=c("Yield", TeX("$B_{0}$"), TeX("$F_{MSY}B$"), TeX("$B_{MSY}$")), col=c("black", cols[c(4, 1, 3)]), lwd=3)
+dev.off()

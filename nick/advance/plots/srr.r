@@ -145,6 +145,17 @@ segments(K, SRR(K/2, r, K, 2), K, 0, col=cols[4], lty=1, lwd=3)
 legend("topleft", legend=c("Yield", TeX("$B_{0}$"), TeX("$F_{MSY}B$"), TeX("$B_{MSY}$")), col=c("black", cols[c(4, 1, 3)]), lwd=3)#, lty=c(1, 3, 3, 1, 1))
 dev.off()
 
+#
+png("yieldRPplusP.png")
+curve(SRR(x, r, K, 2), from=0, to=K, lwd=3, ylab="Yield", xlab="B", main=TeX("$P(B;\\theta)$"), cex.lab = 1.5, cex.main= 1.5)
+points(K/2, r*K/4, pch=19, cex=1.5)
+curve(Fr*x, lwd=3, col=cols[1], add=T, lty=1)
+#curve(SRR(x, r, K, 2)-Fr*x, from=0, to=K, lwd=3, col=cols[2], add=T)
+#curve(r*x, lwd=3, col=cols[2], lty=1, add=T)
+segments(K/2, SRR(K/2, r, K, 2), K/2, 0, col=cols[3], lty=1, lwd=3)
+segments(K, SRR(K/2, r, K, 2), K, 0, col=cols[4], lty=1, lwd=3)
+legend("topleft", legend=c("Yield", TeX("$B_{0}$"), TeX("$F_{MSY}B$"), TeX("$B_{MSY}$")), col=c("black", cols[c(4, 1, 3)]), lwd=3)#, lty=c(1, 3, 3, 1, 1))
+dev.off()
 
 #
 png("dBdtSchaeffer.png")
