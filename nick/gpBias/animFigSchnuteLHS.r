@@ -280,10 +280,10 @@ getData = function(dir, xiRange, zetaRange){
 
 #
 #mod = "ExpT45N150MinCon"; contrast=T;
-mod = "ExpT45N150Wide"; contrast=T; #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
+#mod = "ExpT45N150Wide"; contrast=T; #"FlatT30N150WideExpHotStart" #"FlatT30N150Wide"
 #mod = "HHardFlatT30N150WWideN56"; contrast=F;
 #mod = "HHardFlatT30N150WWideN84"; contrast=F;
-#mod = "HHardFlatT30N150WWideN112"; contrast=F;
+mod = "HHardFlatT30N150WWideN112"; contrast=F;
 #directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png
 #
 dir = sprintf("./modsSchnute%s/", mod)
@@ -714,6 +714,54 @@ image(xiStar, zetaStar, eucBias-ms,
         main = title[contrast+1], #TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
         xlim = c(xiBot, xiTop), # c(0, xiTop), #
+        zlim = (c(0, msThresh)), #1.71466050), #c(0, 1), #0.95),
+	cex.lab = 1.5,
+        cex.main= 1.5
+)
+greyRed =  colorRampPalette(c(eucCols[length(eucCols)],'grey10'))(4)[2]
+image(xiStar, zetaStar, (eucBias-ms),
+        col  = greyRed, #eucCols[length(eucCols)], #"grey10", #adjustcolor(xCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}$"),#'Xi',
+        ylab = TeX('$B_{MSY}/B_0$'),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        zlim = c(msThresh, max((eucBias-ms), msThresh, na.rm=T)), #log(c(lmThresh, max(eucBias/ms, mThresh, na.rm=T))),
+        add  = T
+)
+points(dotStar[freq,1], dotStar[freq,2], pch='.')
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+curve(1/(x+2), from=0, to=4, lwd=4, add=T)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,475)) #125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.065, length=0.175, lwd=2 #scale=0.05, length=0.15 
+)
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
+
+#
+title = c(TeX("Low Contrast"), TeX("High Contrast"))
+png(sprintf("directionalBiasSchnuteSubSpace%s.png", mod))
+#
+eg = expand.grid(xiStar, zetaStar)
+ms = apply(eg, 1, function(r){ stats::optimize(function(x){ sqrt((r[1]-x)^2 + (r[2]-(1/(x+2)))^2) }, c(0,4))$objective })
+ms = matrix(ms, nrow=length(xiStar), ncol=length(zetaStar))
+#
+msThresh = 3.11
+#
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, eucBias-ms,
+        col  = adjustcolor(eucCols, alpha.f=0.99),  #eucCols, #
+        xlab = TeX("$F_{MSY}/M$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = title[contrast+1], #TeX("Bias Direction for ($F_{MSY}/M$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(0, xiTop), #c(xiBot, xiTop), #
         zlim = (c(0, msThresh)), #1.71466050), #c(0, 1), #0.95),
 	cex.lab = 1.5,
         cex.main= 1.5
