@@ -212,5 +212,5 @@ curve(SRR(x*B0, a, b, 2)/SRR(B0-0.01, a, b, g), 0, 1, n=10000, col="black", add=
 segments(0, 0, 1/2, SRR(B0/2, a, b, 2)/SRR(B0-0.01, a, b, g), col=cols[1], lty=1, lwd=3)
 segments(1/2, SRR(B0/2, a, b, 2)/SRR(B0-0.01, a, b, g), 1/2, 0, col=cols[3], lty=1, lwd=3)
 segments(1, SRR(B0/2, a, b, 2)/SRR(B0-0.01, a, b, g), 1, 0, col=cols[4], lty=1, lwd=3)
-legend("topright", legend=c("Yield", TeX("$B_{0}$"), TeX("$F_{MSY}B$"), TeX("$B_{MSY}$")), col=c("black", cols[c(4, 1, 3)]), lwd=3)
+#legend("topright", legend=c("Yield", TeX("$B_{0}$"), TeX("$F_{MSY}B$"), TeX("$B_{MSY}$")), col=c("black", cols[c(4, 1, 3)]), lwd=3)
 dev.off()

@@ -117,8 +117,8 @@ Nick Grunloh
 
 
 %
-\begin{frame}{Surplus Production Model General Structure}
-        %
+\begin{frame}{Surplus Production Model General Structure} 
+	%
         \begin{align*}
 	I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2). \label{resp}
 	\end{align*}
@@ -191,12 +191,36 @@ $~$\\
 
 %
 \begin{frame}
-\begin{itemize}
-\color{red}
-\item Observation model
-\item introduce logistic P
-\item something else?
-\end{itemize}
+	\begin{minipage}[h!]{0.59\textwidth}
+	\begin{itemize}
+	\setlength\itemsep{1em}
+	\item $P_\ell$ is logistic production
+	\item Logistic map in discrete time 
+	%\begin{itemize}
+	%	\item Quadratic in $B$
+	%	\item Discrete time gives the logistic map.
+	%\end{itemize}
+	\item Implicit Natural Mortality
+	\item Explicit Fishing Mortality 
+	\end{itemize}
+	\end{minipage}
+	\begin{minipage}[h!]{0.39\textwidth}
+        %
+        \begin{align*}
+        I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2)
+        \end{align*}
+
+        %
+        \begin{equation*}
+        \frac{dB}{dt} = P_\ell(B(t); \bm{\theta}) - F(t)B(t)
+        \end{equation*}
+	\end{minipage}
+%\begin{itemize}
+%\color{red}
+%\item Observation model
+%\item introduce logistic P
+%\item something else?
+%\end{itemize}
 \end{frame}
 
 %
@@ -210,6 +234,7 @@ $~$\\
 P_{\ell}(B; [r, K]) &= r B\left(1-\left(\frac{B}{K}\right)\right)\\
 \end{align*}
 \endgroup
+\underline{Reference Points:}
 \begin{align*}
 F^* &= \frac{r}{2}\\
 &\\
@@ -225,8 +250,9 @@ $~$\\
 P_{pt}(B; [r, K, \gamma]) &= \frac{r B}{\gamma-1} \left(1-\left(\frac{B}{K}\right)^{(\gamma-1)}\right)
 \end{align*}
 \endgroup
+$~$\\
+\underline{Reference Points:}
 \begin{align*}
-&\\
 F^* =& \frac{r}{\gamma}~~\\
 &\\
 B^* = K\left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}} &~~ B_0 = K\\
@@ -271,26 +297,104 @@ B^* = K\left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}} &~~ B_0 = K\\
 %
 \begin{frame}
 %
-\begin{align}\label{ptRP}
+\begin{minipage}[h!]{0.59\textwidth}
+\only<1>{
+%
+\begin{align*}\label{ptRP}
 &F^* = \frac{r}{\gamma}
 &\frac{B^*}{\bar B(0)} = \left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}
-\end{align}
-
-\color{red} invert simulation design
+\end{align*}
 
 %
-\begin{align}
+\begin{center}
+\begin{tikzpicture}[overlay]
+\node at (-2,-0.5) {\includegraphics[height=0.12\textheight, angle=90]{doubleArrow.png}};
+%\vspace*{-2cm}
+\node at (0,-0.5) {Closed Form Inversion};
+%\vspace*{-1cm}
+\node at (2,-0.5) {\includegraphics[height=0.12\textheight, angle=270]{doubleArrow.png}};
+\end{tikzpicture}
+\end{center}
+
+%
+$~$\\
+\begin{align*}
 &r = \gamma F^*
 &\gamma = \frac{W\left(\frac{B^*}{\bar B(0)}\log\left(\frac{B^*}{\bar B(0)}\right)\right)}{\log\left(\frac{B^*}{\bar B(0)}\right)}
-\end{align}
-
-\end{frame}
+\end{align*}
+}
+\only<2>{
+%
+\begin{align*}\label{ptRP}
+&F^* = \frac{r}{\gamma}
+&\frac{B^*}{\bar B(0)} = \left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}
+\end{align*}
 
 %
-\begin{frame}
-\color{red}
-Introduce simulation
+\begin{center}
+\begin{tikzpicture}[overlay]
+\node at (-2,-0.5) {\includegraphics[height=0.12\textheight, angle=90]{doubleArrow.png}};
+%\vspace*{-2cm}
+\node at (0,-0.5) {Closed Form Inversion};
+%\vspace*{-1cm}
+\node at (2,-0.5) {\includegraphics[height=0.12\textheight, angle=270]{doubleArrow.png}};
+\end{tikzpicture}
+\end{center}
+
+%
+$~$\\
+\begin{align*}
+&r = \gamma F^*
+&\gamma = \frac{W\left(\frac{B^*}{\bar B(0)}\log\left(\frac{B^*}{\bar B(0)}\right)\right)}{\log\left(\frac{B^*}{\bar B(0)}\right)}
+\end{align*}
+}
+\only<3>{
+%\hspace{-1cm}
+\begin{equation*}
+\underbrace{\left(F_{MSY}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{PT Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\hat F_{MSY}, \frac{1}{2}\right)}_{\text{Shaefer Estimate}}
+\end{equation*}
+}
+\end{minipage}
+\begin{minipage}[h!]{0.39\textwidth}
+\begin{center}
+\begin{tikzpicture}[overlay]
+\only<1>{
+\node at (0.5,0) {\includegraphics[height=0.65\textheight]{../../ptNew/simplePTDesign.png}};%gpBias/designLineHHardExpT45N150M0.3Wide.png}};
+}
+\only<2>{
+\node at (0.5,-0.2) {\includegraphics[height=0.65\textheight]{../../ptNew/simplePTDesign.png}};
+\node[circle, draw, minimum size=9, inner sep=-2] at (0.6,-1.2){\tiny PT};
+\draw[latex-, very thick,black] (0.6,0.65) -- ++ (0,-1.65); %(0.6,-0.9) -- ++(1.9,2.3);
+\node[circle,fill=red, minimum size=9, inner sep=-2] at (0.6,0.75){\tiny $\ell$};
+}
+\only<3>{
+\node at (0.5,-0.1) {\includegraphics[height=0.65\textheight]{../../ptNew/simplePTDesign.png}};
+\node[circle, draw, minimum size=9, inner sep=-2] at (0.6,-1.1){\tiny PT};
+\draw[latex-, very thick,black] (0.6,0.75) -- ++ (0,-1.65); %(0.6,-0.9) -- ++(1.9,2.3);
+\node[circle,fill=red, minimum size=9, inner sep=-2] at (0.6,0.85){\tiny $\ell$};
+}
+\end{tikzpicture}
+\end{center}
+
+\end{minipage}
+
+%\vspace*{0.5cm}
+\only<1>{
+* Lambert $W$ function inverts $xe^x$ $s.t.$ $W(xe^x)=x$
+}
+
+\only<2>{
+$~$
+
+* Lambert $W$ function inverts $xe^x$ $s.t.$ $W(xe^x)=x$
+}
 \end{frame}
+
+%%
+%\begin{frame}
+%\color{red}
+%Show GP
+%\end{frame}
 
 %
 \begin{frame}
@@ -377,12 +481,56 @@ are shown $right$, and the high contrast setting is shown $left$.
 
 %
 \begin{frame}
-\begin{equation}
-P(B) = \frac{\alpha B}{1+\beta B}.
-\end{equation}
+	\begin{minipage}[h!]{0.49\textwidth}
+	\begin{itemize}
+	\setlength\itemsep{1em}
+	\item Beverton-Holt production	
+	\item Production asymptotes
+	\item Explicit Natural Mortality
+	\item Explicit Fishing Mortality 
+	\end{itemize}
+	\end{minipage}
+	\begin{minipage}[h!]{0.49\textwidth}
+        %
+        \begin{align*}
+        I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2)
+        \end{align*}
+
+        %
+        \begin{equation*}
+        \frac{dB}{dt} = P_{BH}(B(t); \bm{\theta}) -(M + F(t))B(t)
+        \end{equation*}
+	\end{minipage}
+%\begin{itemize}
+%\color{red}
+%\item Observation model
+%\item introduce logistic P
+%\item something else?
+%\end{itemize}
+\end{frame}
+
+%
+\begin{frame}
+\begin{minipage}[h!]{0.49\textwidth}
+\begin{equation*}
+P_{BH}(B) = \frac{\alpha B}{1+\beta B}.
+\end{equation*}
 \begin{align}
-\frac{dB}{dt} = P(B;\theta) -MB -FB %(M+F)B. \label{schnuteSimple}
+F^* = 
 \end{align}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+\end{minipage}
+\end{frame}
+
+%
+\begin{frame}
+\begin{equation*}
+P_{BH}(B;[\alpha, \beta]) = \frac{\alpha B}{1+\beta B}.
+\end{equation*}
+\begin{align*}
+\frac{dB}{dt} = P_{BH}(B;[\alpha, \beta]) -MB -FB %(M+F)B. \label{schnuteSimple}
+\end{align*}
 \begin{minipage}[h!]{0.49\textwidth}
         \includegraphics[width=\textwidth]{../../gpBias/pBHandM.png}
 \end{minipage}
@@ -394,9 +542,17 @@ P(B) = \frac{\alpha B}{1+\beta B}.
 %
 \begin{frame}
 \begin{equation*}
-R(B;\alpha, \beta, \gamma) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}}
+P_s(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}}
 \end{equation*}
-\includegraphics[width=1.1\textwidth]{../../gpBias/g3.png}
+\begin{minipage}[h!]{0.49\textwidth}
+\begin{align*}
+0 &= \frac{1}{\gamma} - \left(\frac{1}{\gamma} + \frac{F^*}{F^*+M}\right)\left(\frac{F^*+M}{\alpha}\right)^\gamma\\
+\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma }
+\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=0.65\textwidth]{../../gpBias/g3.png}
+\end{minipage}
 \end{frame}
 
 %
@@ -561,7 +717,7 @@ $~$\\$~$\\
 \begin{center}
 \begin{tikzpicture}[overlay]
         \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png}};
-        \node at (4.75,0)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png}}; 
+        \node at (4.75,0)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.55.png}}; %{\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png}}; 
 	\node at (2,1.4) [circle,fill=white,inner sep=2pt]{};
 	\node at (2,1.4) [circle,fill,inner sep=1.75pt]{};
 	%\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitExpT45N150WideX3.348Z0.541.png}};
@@ -572,55 +728,56 @@ $~$\\$~$\\
 \begin{center}
 \begin{tikzpicture}[overlay]
         \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png}};
-        \node at (4.75,0)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png}};
-        \node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveFitExpT45N150WideX2.5Z0.45.png}};
-        \node at (1.25,0) [circle,fill=white,inner sep=2pt]{};
-	\node at (1.25,0) [circle,fill,inner sep=1.75pt]{}; 
-	\node at (-0.35,-2) [circle,fill=red,inner sep=1.75pt]{};
+        \node at (4.75,0)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.55.png}}; %{\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png}};
+        \node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.55.png}}; %{\includegraphics[scale=0.18]{../../gpBias/yeildCurveFitExpT45N150WideX2.5Z0.45.png}};
+        \node at (2,1.4) [circle,fill=white,inner sep=2pt]{};
+        \node at (2,1.4) [circle,fill,inner sep=1.75pt]{};
+	\node at (-2,0.4) [circle,fill=red,inner sep=1.75pt]{};
+	%\node at (1.25,0) [circle,fill=white,inner sep=2pt]{};
+	%\node at (1.25,0) [circle,fill,inner sep=1.75pt]{}; 
+	%\node at (-0.35,-2) [circle,fill=red,inner sep=1.75pt]{};
 \end{tikzpicture}
 \end{center}
 }
 \only<4>{
 \begin{center}
 \begin{tikzpicture}[overlay]
-        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteAnimateSourceHHardFlatT30N150WWideN112X3Z0.35.png}};
+        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png}}; %{\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteAnimateSourceHHardFlatT30N150WWideN112X3Z0.35.png}};
         \node at (4.75,-1)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png}};
-        %\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png}};
+        \node at (2.15,-0.9) [circle,fill=white,inner sep=2pt]{};
+        \node at (2.15,-0.9) [circle,fill,inner sep=1.75pt]{};
+	%\node at (-4.75,-2.5)  {\includegraphics[scale=0.15]{../gpBias/yeildCurveFitHHardFlatT30N150WWideN56X3.497Z0.578.png}};
 \end{tikzpicture}
 \end{center}
 }
 \only<5>{
 \begin{center}
 \begin{tikzpicture}[overlay]
-        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png}};
+        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png}}; %\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png}};
         \node at (4.75,-1)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png}};
         \node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.35.png}};
+	\node at (2.15,-0.9) [circle,fill=white,inner sep=2pt]{};
+        \node at (2.15,-0.9) [circle,fill,inner sep=1.75pt]{};
+	\node at (0.45,-2.2) [circle,fill=red,inner sep=1.75pt]{};
 \end{tikzpicture}
 \end{center}
 }
-\only<6>{
-\begin{center}
-\begin{tikzpicture}[overlay]
-        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png}};
-        \node at (4.75,-1)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png}};
-        \node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.35.png}};
-        \draw[very thick,blue] (-2.25,0.5) -- ++(5.25,-1.1);
-\end{tikzpicture}
-\end{center}
-}
-
-%\begin{minipage}[h!]{0.92\textwidth}
-%\includegraphics[width=0.5\textwidth]{../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
-%%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
-%\end{minipage}
-%\begin{minipage}[h!]{0.06\textwidth}
-%\vspace{-7cm}
-%\hspace*{6cm}
-%\includegraphics[width=1.7\textwidth]{../../gpBias/legendSubSchnute.png}
-%\end{minipage}
-%\color{red} Add Yeild curves from AFS presentation. 
+%\only<6>{
+%\begin{center}
+%\begin{tikzpicture}[overlay]
+%        \node at (0.25,-0.5) {\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png}}; %\includegraphics[height=0.92\textheight]{../../gpBias/directionalBiasSchnuteAnimateSinkHHardFlatT30N150WWideN112X3Z0.35.png}};
+%        \node at (4.75,-1)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png}};
+%        \node at (-4.75,-2.25)  {\includegraphics[scale=0.18]{../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.35.png}};
+%        \draw[very thick,blue] (-2.25,0.5) -- ++(5.25,-1.1);
+%	\node at (2.15,-0.9) [circle,fill=white,inner sep=2pt]{};
+%        \node at (2.15,-0.9) [circle,fill,inner sep=1.75pt]{};
+%        \node at (0.45,-2.2) [circle,fill=red,inner sep=1.75pt]{};
+%\end{tikzpicture}
+%\end{center}
+%}
 \end{frame}
 
+%
 \begin{frame}
 \begin{minipage}[h!]{0.49\textwidth}
         \includegraphics[width=1\textwidth]{../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
