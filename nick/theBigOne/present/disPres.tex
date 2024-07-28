@@ -399,67 +399,119 @@ $~$
 %
 \begin{frame}
 %
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.44\textwidth]{../../ptNew/relFish.png}
-$~$
-\includegraphics[width=0.44\textwidth]{../../ptNew/relSeries.png}
-%\includegraphics[width=0.45\textwidth]{../../../theses/nick/gpBias/rfExpT45X2Z0.6.png}
-%\includegraphics[width=0.45\textwidth]{../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png}
-%\includegraphics[width=0.5\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png}
-%\vspace{-1cm}
-\caption{ \label{catchT45}
-($left$) Relative fishing with low, medium, and high contrast.
-($right$) Population biomass and catch at each associated level of contrast. %demonstrating contrast in a {\color{red}PT population} with $F^*=0.4$ and $
+\begin{minipage}[h!]{0.54\textwidth}
+\only<1>{
+\begin{align*}
+\frac{dB}{dt} &= P(B(t); \theta) - F(t)B(t)\\
+	&= P(B(t); \theta) - F^*_\theta\underbrace{\frac{F(t)}{F^*_\theta}}_{\substack{\text{Relative}\\\text{Fishing}}}B(t)\\
+\end{align*}
 }
-\label{catch45}
-\end{figure}
+\only<2>{
+\begin{align*}
+&~\\
+\frac{dB}{dt} &= P(B(t); \theta) - F(t)B(t)\\
+	&= P(B(t); \theta) - \underbrace{F^*_\theta\frac{F(t)}{F^*_\theta}B(t)}_{{\color{red}C(t)}}\\
+&~\\
+\end{align*}
+}
+\end{minipage}
+\begin{minipage}[h!]{0.34\textwidth}
+\only<1>{ \includegraphics[width=1.5\textwidth]{../../ptNew/relFish.png} }
+\only<2>{ 
+\begin{tikzpicture}[overlay]
+        \node at (2.8,0) {\includegraphics[width=1.5\textwidth]{../../ptNew/relSeries.png}};
+	\node at (3,1) {$B(t)$};
+	\node at (3,-1.5) {\color{red}$C(t)$};
+\end{tikzpicture}
+}
+\end{minipage}
+
+%%
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[width=0.44\textwidth]{../../ptNew/relFish.png}
+%$~$
+%\includegraphics[width=0.44\textwidth]{../../ptNew/relSeries.png}
+%%\includegraphics[width=0.45\textwidth]{../../../theses/nick/gpBias/rfExpT45X2Z0.6.png}
+%%\includegraphics[width=0.45\textwidth]{../../../theses/nick/gpBias/bioCatchExpT45X2Z0.6.png}
+%%\includegraphics[width=0.5\textwidth]{../../../theses/nick/gpBias/bioPostCompareExpT45X0.5Z0.6.png}
+%%\vspace{-1cm}
+%\caption{ \label{catchT45}
+%($left$) Relative fishing with low, medium, and high contrast.
+%($right$) Population biomass and catch at each associated level of contrast. %demonstrating contrast in a {\color{red}PT population} with $F^*=0.4$ and $
+%}
+%\label{catch45}
+%\end{figure}
 \end{frame}
 
 %
 \begin{frame}
-\begin{figure}[h!]
+%\begin{figure}[h!]
 \begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=\textwidth]{../../ptNew/directionalBiasSubPTExpT45MinCon.png}
+\includegraphics[width=1.1\textwidth]{../../ptNew/directionalBiasSubPTExpT45MinCon.png}
 \end{minipage}
 \begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=\textwidth]{../../ptNew/directionalBiasSubPTFlatT30.png}
+\includegraphics[width=1.1\textwidth]{../../ptNew/directionalBiasSubPTFlatT30.png}
 \end{minipage}
 \begin{minipage}[h!]{0.09\textwidth}
-\hspace{-1cm}
+%\hspace{-1cm}
 \includegraphics[width=1.5\textwidth]{../../ptNew/subLegnd.png}
 \end{minipage}
-\caption{
-Joint bias direction for ($F^*$, $\frac{B^*}{B_0}$) estimates under
-the misspecified Schaefer Model. The intensity of color represents the excess
-bias relative to the shortest possible mapping. Results in the low contrast setting
-are shown $right$, and the high contrast setting is shown $left$.
-}
-\label{arrowsPT}
-\end{figure}
+%\caption{
+%Joint bias direction for ($F^*$, $\frac{B^*}{B_0}$) estimates under
+%the misspecified Schaefer Model. The intensity of color represents the excess
+%bias relative to the shortest possible mapping. Results in the low contrast setting
+%are shown $right$, and the high contrast setting is shown $left$.
+%}
+%\label{arrowsPT}
+%\end{figure}
 \end{frame}
 
 %
 \begin{frame}{Mechanism for Bias in $F_{MSY}$ via Contrast}
 
-\begin{minipage}[h!]{0.45\textwidth}
+\only<1>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+\node at (-4.5,2) {\includegraphics[width=0.2\textwidth]{../../ptNew/srrCompareFlatT30X0.12Z0.573.png}};
+\node at (4.5,2) {\includegraphics[width=0.2\textwidth]{../../ptNew/srrCompareFlatT30X0.674Z0.599.png}};
+\node at (-4.5,-2.25) {\includegraphics[width=0.2\textwidth]{../../ptNew/srrCompareFlatT30X0.096Z0.22.png}};
+\node at (4.5,-2.25) {\includegraphics[width=0.2\textwidth]{../../ptNew/srrCompareFlatT30X0.699Z0.201.png}};
+\node at (0,-0.5) {\includegraphics[width=0.65\textwidth]{../../ptNew/directionalBiasSubPTFlatT30.png}};
+\end{tikzpicture}
+\end{center}
+}
+
+%\begin{minipage}[h!]{0.45\textwidth}
+%\begin{itemize}
+%\color{red}
+%\item Only observe upper half
+%\item learn about slope at origin from upper biomass range
+%\end{itemize}
+%\end{minipage}
+%\begin{minipage}[h!]{0.50\textwidth}
+%\only<1>{
+%\includegraphics[width=0.47\textwidth]{../../ptNew/srrCompareFlatT30X0.12Z0.573.png}
+%\includegraphics[width=0.47\textwidth]{../../ptNew/srrCompareFlatT30X0.674Z0.599.png}\\
+%\includegraphics[width=0.47\textwidth]{../../ptNew/srrCompareFlatT30X0.096Z0.22.png}
+%\includegraphics[width=0.47\textwidth]{../../ptNew/srrCompareFlatT30X0.699Z0.201.png}
+%}
+
+\only<2>{
+\begin{minipage}[h!]{0.49\textwidth}
 \begin{itemize}
 \color{red}
+\setlength\itemsep{1em}
 \item Only observe upper half
 \item learn about slope at origin from upper biomass range
+\item as contrast increases biases perspective deminishes
 \end{itemize}
 \end{minipage}
-\begin{minipage}[h!]{0.50\textwidth}
-\only<1>{
-\includegraphics[width=0.47\textwidth]{../../ptNew/srrCompareFlatT30X0.12Z0.573.png}
-\includegraphics[width=0.47\textwidth]{../../ptNew/srrCompareFlatT30X0.674Z0.599.png}\\
-\includegraphics[width=0.47\textwidth]{../../ptNew/srrCompareFlatT30X0.096Z0.22.png}
-\includegraphics[width=0.47\textwidth]{../../ptNew/srrCompareFlatT30X0.699Z0.201.png}
-}
-\only<2>{
-\includegraphics[width=\textwidth]{../../ptNew/contrastTest3.png}
-}
+\begin{minipage}[h!]{0.49\textwidth}
+\includegraphics[width=1.1\textwidth]{../../ptNew/contrastTest3.png}
 \end{minipage}
+}
+%\end{minipage}
 \end{frame}
 
 %%
@@ -468,8 +520,15 @@ are shown $right$, and the high contrast setting is shown $left$.
 %\end{frame}
 
 %
-\begin{frame}
-\color{red} a quick summary
+\begin{frame}{Summary}
+\begin{itemize}
+\color{red}
+\setlength\itemsep{1em}
+	\item A quick summary
+	\item just a few points will suffice
+	\item the quicker and more concise the better
+	\item transition to BH
+\end{itemize}
 \end{frame}
 
 %
@@ -509,19 +568,19 @@ are shown $right$, and the high contrast setting is shown $left$.
 %\end{itemize}
 \end{frame}
 
-%
-\begin{frame}
-\begin{minipage}[h!]{0.49\textwidth}
-\begin{equation*}
-P_{BH}(B) = \frac{\alpha B}{1+\beta B}.
-\end{equation*}
-\begin{align}
-F^* = 
-\end{align}
-\end{minipage}
-\begin{minipage}[h!]{0.49\textwidth}
-\end{minipage}
-\end{frame}
+%%
+%\begin{frame}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\begin{equation*}
+%P_{BH}(B) = \frac{\alpha B}{1+\beta B}.
+%\end{equation*}
+%\begin{align}
+%F^* = 
+%\end{align}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\end{minipage}
+%\end{frame}
 
 %
 \begin{frame}
@@ -543,65 +602,6 @@ P_{BH}(B;[\alpha, \beta]) = \frac{\alpha B}{1+\beta B}.
 \begin{frame}
 \begin{equation*}
 P_s(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}}
-\end{equation*}
-\begin{minipage}[h!]{0.49\textwidth}
-\begin{align*}
-0 &= \frac{1}{\gamma} - \left(\frac{1}{\gamma} + \frac{F^*}{F^*+M}\right)\left(\frac{F^*+M}{\alpha}\right)^\gamma\\
-\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma }
-\end{align*}
-\end{minipage}
-\begin{minipage}[h!]{0.49\textwidth}
-\includegraphics[width=0.65\textwidth]{../../gpBias/g3.png}
-\end{minipage}
-\end{frame}
-
-%
-\begin{frame}
-%
-\begin{align}
-\bar{B}(F) &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M+F}{\alpha}\right)^\gamma\right).
-\label{BsEq}
-\end{align}
-\begin{align}
-B_0 &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{B0S}\\
-\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma }. \label{BratS}
-\end{align}
-
-%
-\begin{align}
-\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{FderivS}\\
-\frac{d \bar B}{dF} &= -\frac{1}{\beta}  \left(\frac{\left(\frac{M+F}{\alpha}\right)^\gamma}{F+M}\right)\label{dBdFS}.
-\end{align}
-
-\begin{align}\label{FmsyS}
-0 &= \frac{1}{\gamma} - \left(\frac{1}{\gamma} + \frac{F^*}{F^*+M}\right)\left(\frac{F^*+M}{\alpha}\right)^\gamma.
-\end{align}
-\end{frame}
-
-%
-\begin{frame}
-\begin{align}
-%\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
-\alpha &= (M+F^*)\left(1+\frac{\gamma F^*}{M+F^*}\right)^{1/\gamma} \nonumber\\
-\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{abgSys}\\
-\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \nonumber.
-\end{align}
-\end{frame}
-
-%
-\begin{frame}
-\begin{align}
-\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}
-\end{align}
-\includegraphics[width=0.5\textwidth]{../../gpBias/zeta.png}
-\end{frame}
-
-%animate between curve picture to RP curves
-\begin{frame}{Schnute Recruitment}
-%
-\vspace{-0.25cm}
-\begin{equation*}
-R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}{\gamma}}
 \end{equation*}
 %
 \begin{minipage}[h!]{0.46\textwidth}
@@ -626,47 +626,221 @@ R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}
         %\end{align*}
 \end{minipage}
 \begin{minipage}[h!]{0.52\textwidth}
-        \includegraphics[width=1.1\textwidth]{../../ddBias/designLineColorHHardFlatT30N150WWideN112.png}
+        \includegraphics[width=1.1\textwidth]{../../gpBias/g3.png} %../../ddBias/designLineColorHHardFlatT30N150WWideN112.png}
 \end{minipage}
+
+%\begin{minipage}[h!]{0.49\textwidth}
+%\begin{align*}
+%0 &= \frac{1}{\gamma} - \left(\frac{1}{\gamma} + \frac{F^*}{F^*+M}\right)\left(\frac{F^*+M}{\alpha}\right)^\gamma\\
+%\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma }
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=0.65\textwidth]{../../gpBias/g3.png}
+%\end{minipage}
 \end{frame}
+
+%%
+%\begin{frame}
+%%
+%\begin{align}
+%\bar{B}(F) &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M+F}{\alpha}\right)^\gamma\right).
+%\label{BsEq}
+%\end{align}
+%\begin{align}
+%B_0 &= \frac{1}{\gamma \beta}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{B0S}\\
+%\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma }. \label{BratS}
+%\end{align}
+%
+%%
+%\begin{align}
+%\frac{d \bar{Y}}{dF} &= \bar B(F) + F \frac{d \bar B}{dF} \label{FderivS}\\
+%\frac{d \bar B}{dF} &= -\frac{1}{\beta}  \left(\frac{\left(\frac{M+F}{\alpha}\right)^\gamma}{F+M}\right)\label{dBdFS}.
+%\end{align}
+%
+%\begin{align}\label{FmsyS}
+%0 &= \frac{1}{\gamma} - \left(\frac{1}{\gamma} + \frac{F^*}{F^*+M}\right)\left(\frac{F^*+M}{\alpha}\right)^\gamma.
+%\end{align}
+%\end{frame}
 
 %
 \begin{frame}
-%\begin{figure}[h!]
-\begin{minipage}[h!]{0.46\textwidth}
-\hspace*{0.5cm}
-%\includegraphics[width=1.175\textwidth]{../../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
-\includegraphics[height=0.49\textheight]{../../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
-\hspace*{1cm}
-\vspace{-1cm}
-%\caption{\label{contrastTrio}
-%Heatplots showing the bias in RP estimation induced by model misspecification of
-%the BH model in the high contrast simulation setting.
-%In all cases the restricted RP-space of the BH set is shown as the black curve.
-%(\emph{left}) Relative bias in $\frac{B^*}{\bar B(0)}$.  (\emph{top-right})
-%Bias in RP-space shown directionally. Arrows point from the location where
-%data is generated, toward the location in the BH set where MLE projects estimated
-%RPs. The intensity of color represents the excess bias relative
-%to the shortest possible mapping. (\emph{bottom}) Relative bias in $\frac{F^*}{M}$.
-%}
-$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\
+
+{\color{red}
+some how softly introduce calculation via $F^*$, $B_0$, and $\frac{B^*}{B_0}$. Show the partial solution and link to Schnute and Richards citation. Setup $\zeta$ for next slide.
+}
+\begin{align}
+%\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
+\alpha &= (M+F^*)\left(1+\frac{\gamma F^*}{M+F^*}\right)^{1/\gamma} \nonumber\\
+\beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{abgSys}\\
+\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \nonumber.
+\end{align}
+\end{frame}
+
+
+%
+\begin{frame}
+
+{\color{red}
+Show approximated $t$ with rugs. explain/relabel $\zeta$. show qq plot.
+}
+
+%\begin{align}
+%\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}
+%\end{align}
+%\includegraphics[width=0.5\textwidth]{../../gpBias/zeta.png}
+%\end{frame}
+%%
+%\begin{frame}
+
+%
+\begin{minipage}[h!]{0.54\textwidth}
+$~$\\
+\hspace*{-2cm}
+\begin{align*}
+\frac{B^*}{B_0} = \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma }
+\end{align*}
+\only<1>{
+\begin{align*}
+~
+\end{align*}
+}
+\only<2>{
+{\color{RoyalBlue}
+\begin{align*}
+\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}
+\end{align*}
+}
+}
+\only<3>{
+{\color{RoyalBlue}
+\begin{align*}
+\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}
+\end{align*}
+}
+}
 \end{minipage}
 \begin{minipage}[h!]{0.44\textwidth}
-$~$\\
-\vspace{-1cm}
-\hspace*{-0.1cm}
-\includegraphics[height=0.49\textheight]{../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png}\\
-$~$\\$~$\\
-\hspace*{0.1cm}
-\includegraphics[height=0.49\textheight]{../../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
+\only<1>{\includegraphics[width=1.2\textwidth]{../../gpBias/zeta.png}}
+\only<2>{\includegraphics[width=1.2\textwidth]{../../gpBias/zetaPlusPlus.png}}
+\only<3>{\includegraphics[width=1.2\textwidth]{../../gpBias/qqPlot.png}}
 \end{minipage}
-\begin{minipage}[h!]{0.07\textwidth}
-\vspace{-4cm}
-\hspace*{-1.25cm}
-\includegraphics[width=1.5\textwidth]{../../gpBias/legendSubSchnute.png}
-\end{minipage}
-%\end{figure}
 \end{frame}
+
+
+
+%animate between curve picture to RP curves
+%\begin{frame}{Schnute LHS Design}
+%%%
+%%\vspace{-0.25cm}
+%%\begin{equation*}
+%%R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}{\gamma}}
+%%\end{equation*}
+%\begin{equation*}
+%P_s(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}}
+%\end{equation*}
+
+%
+\begin{frame}{Schnute LHS Design}
+%
+\begin{minipage}[h!]{0.54\textwidth}
+        %
+        \vspace{-1cm}
+        %
+	\only<1>{
+        \begin{center}
+        {\color{Red}\underline{Logistic}}\\
+        $\gamma = 1$\\$~$\\
+        {\color{RoyalBlue}\underline{Ricker}}\\
+        $\gamma \rightarrow 0$\\$~$\\   %\Rightarrow \text{\color{RoyalBlue}Ricker}\\   
+        {\color{ForestGreen}\underline{Beverton-Holt}}\\
+        $\gamma = -1$           %\Rightarrow \text{\color{ForestGreen}Beverton-Holt}\\          %\Rightarrow  \text{\color{Red}Logistic}
+        \end{center}
+	}
+	%
+	\only<2>{
+	$~$\\$~$\\$~$\\$~$\\
+	\begingroup
+	\scriptsize
+	\begin{equation*}
+	\underbrace{\left(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{Schnute Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\frac{\hat F_{MSY}}{M}, \frac{1}{\hat F_{MSY}/M+2}\right)}_{\text{BH Estimate}}
+	\end{equation*}
+	\endgroup
+	}
+%\hspace{-1cm}
+
+%\end{minipage}
+%\begin{minipage}[h!]{0.39\textwidth}
+%\begin{center}
+%\begin{tikzpicture}[overlay]
+%\only<1>{
+%\node at (0.5,0) {\includegraphics[height=0.65\textheight]{../../ptNew/simplePTDesign.png}};%gpBias/designLineHHardExpT45N150M0.3Wide.png}};	
+        %
+        %\begin{align*}
+        %%& R(B;[\alpha, \beta, \gamma]') = \alpha B(t-a_s)(1-\beta\gamma B(t-a_s))^{\frac{1}{\gamma}}
+        %%~&~\\
+        %&\gamma = -1 \Rightarrow \text{\color{ForestGreen}Beverton-Holt}\\
+        %&\gamma \rightarrow 0 \Rightarrow \text{\color{RoyalBlue}Ricker}\\
+        %&\gamma = 1 \Rightarrow  \text{\color{Red}Logistic}
+        %\end{align*}
+\end{minipage}
+\begin{minipage}[h!]{0.44\textwidth}
+        \only<1>{
+	\includegraphics[height=0.7\textheight]{../../ddBias/designLineColorHHardFlatT30N150WWideN112.png}}
+	\only<2>{
+	%\begin{center}
+	$~$\\
+	\begin{tikzpicture}[overlay]
+	\node at (2.75,0) {\includegraphics[height=0.7\textheight]{../../gpBias/designLineHHardExpT45N150M0.3Wide.png}};
+	\node[circle, draw, minimum size=7, inner sep=-2] at (4.35,1.5){\tiny S};
+	\draw[latex-, very thick,black] (2.35,-0.9) -- ++(1.9,2.3);
+	\node[circle,fill=red, minimum size=9, inner sep=-2] at (2.25,-1){\tiny BH};
+	\end{tikzpicture}
+	%\end{center}
+	%\includegraphics[width=1.1\textwidth]{../../gpBias/designLineHHardExpT45N150M0.3Wide.png}
+	}
+\end{minipage}
+\end{frame}
+
+
+%%
+%\begin{frame}
+%%\begin{figure}[h!]
+%\begin{minipage}[h!]{0.46\textwidth}
+%\hspace*{0.5cm}
+%%\includegraphics[width=1.175\textwidth]{../../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
+%\includegraphics[height=0.49\textheight]{../../gpBias/zetaRelBiasSchnuteExpT45N150Wide.png}\\
+%\hspace*{1cm}
+%\vspace{-1cm}
+%%\caption{\label{contrastTrio}
+%%Heatplots showing the bias in RP estimation induced by model misspecification of
+%%the BH model in the high contrast simulation setting.
+%%In all cases the restricted RP-space of the BH set is shown as the black curve.
+%%(\emph{left}) Relative bias in $\frac{B^*}{\bar B(0)}$.  (\emph{top-right})
+%%Bias in RP-space shown directionally. Arrows point from the location where
+%%data is generated, toward the location in the BH set where MLE projects estimated
+%%RPs. The intensity of color represents the excess bias relative
+%%to the shortest possible mapping. (\emph{bottom}) Relative bias in $\frac{F^*}{M}$.
+%%}
+%$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\$~$\\
+%\end{minipage}
+%\begin{minipage}[h!]{0.44\textwidth}
+%$~$\\
+%\vspace{-1cm}
+%\hspace*{-0.1cm}
+%\includegraphics[height=0.49\textheight]{../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png}\\
+%$~$\\$~$\\
+%\hspace*{0.1cm}
+%\includegraphics[height=0.49\textheight]{../../gpBias/fMSYRelBiasSchnuteExpT45N150Wide.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.07\textwidth}
+%\vspace{-4cm}
+%\hspace*{-1.25cm}
+%\includegraphics[width=1.5\textwidth]{../../gpBias/legendSubSchnute.png}
+%\end{minipage}
+%%\end{figure}
+%\end{frame}
+
 
 %
 \begin{frame}
