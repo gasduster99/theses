@@ -2140,11 +2140,14 @@ $~$\\$~$\\$~$\\
 \begin{align*}
 	\textbf{y} &= \widehat{log(F_{MSY})} ~~ -or- ~~ \textbf{y} = \widehat{log(B_0)}\\
 	~\\  
-        \bm{x} &= \left(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{\bar B(0)}\right) \nonumber\\
+        \bm{X} &= \left(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{\bar B(0)}\right) \nonumber\\
 	~\\
-        \textbf{y} &= \beta_0 + \bm{\beta}'\bm{x} + f(\bm{x}) + \bm{\epsilon} \nonumber \\
-        f(\bm{x}) &\sim \text{GP}(0, \tau^2 R(\bm{x}, \bm{x'})) \nonumber \\
-        \bm{\epsilon} &\sim \text{N}(0, \bm{\omega}'\bm{I}).
+	\textbf{y} &= \beta_0 + \bm{X}\bm{\beta} + \bm{v} + \bm{\epsilon} \nonumber \\
+        \bm{v} &\sim N_n(\bm{0}, \tau^2 \bm{R_{\ell}}) \\
+        \bm{\epsilon} &\sim N_n(\bm{0}, \bm{\omega}'\bm{I}) \nonumber
+        %\textbf{y} &= \beta_0 + \bm{\beta}'\bm{X} + f(\bm{x}) + \bm{\epsilon} \nonumber \\
+        %f(\bm{x}) &\sim \text{GP}(0, \tau^2 R(\bm{x}, \bm{x'})) \nonumber \\
+        %\bm{\epsilon} &\sim \text{N}(0, \bm{\omega}'\bm{I}).
 \end{align*}
 \begin{align*}   
 R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \right)
