@@ -8,6 +8,7 @@ library(EnvStats)
 library(numDeriv)
 library(rootSolve)
 library(latex2exp)
+library(RColorBrewer)
 #
 source('prodClass0.1.1.r')
 
@@ -85,6 +86,13 @@ FMsy = function(alpha, gamma, M){
         ##
         return(root)
 }
+
+#
+dttV = function(x, loc, scale, df, V, pV, left=-Inf, right=Inf){
+	#out = V*dbinom(n, 1, pV) 
+	(1-pV)*dtt(x, loc, scale, df, left, right) #+ pV
+}
+dttV = Vectorize(dttV, 'x')
 
 #
 rttV = function(n, loc, scale, df, V, pV, left=-Inf, right=Inf){
@@ -244,6 +252,127 @@ curve(g(x), minG, qtt(qq, peakG, sdZo, 2), col='blue', add=T)
 #
 h = function(x){ pttV(x, peakGo, sdZo, dfo, minG, pVo, left=minG) }
 curve(h(x), minG, qtt(qq, peakG, sdZo, 2), col='red', add=T)
+
+#
+#FOR THE PRES
+#
+
+#
+n = 150
+xi = 2.5 #3 #0.5 #seq(0, 4, length.out=n+1)
+ff = xi*M
+
+#
+broke = suppressWarnings(stats::optimize(function(x){z(x, ff, M)}, c(-100, 100)))
+minG = broke$minimum
+minZ = broke$objective
+#
+f = function(x){grad(z, x, ff=ff, M=M)}#pdf analogy    
+fv = Vectorize(f, "x")
+peak = stats::optimize(function(x){-log(fv(x))}, c(minZ, 100))
+peakG = peak$minimum
+
+#
+varZ = 1/optimHess(peakG, function(x){-log(fv(x))})
+
+#
+q = 0.9#9
+
+#
+l2_dist <- function(f, g) {
+  f_diff <- function(x) (f(x) - g(x))^2       
+  sqrt(integrate(f = f_diff, lower=minG, upper=qnorm(q, peakG, sqrt(varZ)), subdivisions=10^5)$value)
+}
+
+##
+#par = c(peakG, sqrt(varZ), 2, minG)
+#o = optim(par, 
+#	function(x){
+#	a = x[1]
+#	b = x[2]
+#	c = x[3]
+#	d = x[4]
+#        #(ptt(minG, peakG, x, df)-minZ)^2 +
+#        #(ptt(peakG, peakG, x, df)+ptt(minG, peakG, x, df)-z(peakG, ff, M))^2
+#        l2_dist(
+#                function(y){
+#                        ptt(y, a, b, c, left=d)
+#                        #ptt(y, a, b, c, left=minG)/(1+ptt(minG, a, b, c))+ptt(minG, a, b, c)
+#                },
+#                function(y){
+#                        z(y, ff, M)
+#                }
+#        )
+#	}
+#)
+#peakGo = o$par[1]
+#sdZ = o$par[2]
+#df = o$par[3]
+#lef = o$par[4]
+
+#
+par = c(peakG, sqrt(varZ), 2)
+o = optim(par, 
+	function(x){
+	#
+	a = x[1]
+	b = x[2]
+	c = x[3]
+	#d = x[4]
+	#
+        l2_dist(#          x, loc,scale,df, V, pV,   left=-Inf, right=Inf
+                function(y){#                  d
+			pttV(y, a, b, c, minG, minZ, left=minG)
+                },
+                function(y){
+                        z(y, ff, M)
+                }
+        )
+	}
+)
+peakGo = o$par[1]
+sdZo = o$par[2]
+dfo = o$par[3]
+pVo =  minZ #o1$par[4]
+
+
+
+#from=-5
+png('zetaTitle.png')
+curve(z(x, ff, M), -2, qtt(qq, peakG, sdZo, 2),
+        n=10000,
+        ylim=c(0,1),
+        lwd=3,
+        main=TeX("$\\frac{B_{MSY}}{B_0}(\\gamma)$"),
+        ylab=TeX("$B_{MSY}/B_0$"),
+        xlab=TeX("$\\gamma$")
+)
+points(minG, minZ, pch=19, cex=1.5)
+legend('topright', legend=TeX('$(\\gamma_{min}, \\zeta_{min})$'), pch=19)
+dev.off()
+
+#
+cols = brewer.pal(9, 'Set1')
+png('zetaPlusPlus.png')
+curve(z(x, ff, M), -2, qtt(qq, peakG, sdZo, 2),
+        n=10000,
+        ylim=c(0,1),
+        lwd=3,
+        main=TeX("$\\frac{B_{MSY}}{B_0}(\\gamma)$"),
+        ylab=TeX("$B_{MSY}/B_0$"),
+        xlab=TeX("$\\gamma$")
+)
+points(minG, minZ, pch=19, cex=1.5)
+legend('topright', legend=TeX('$(\\gamma_{min}, \\zeta_{min})$'), pch=19)
+gs = rttV(150, peakGo, sdZo, dfo, minG, pVo, left=minG)
+rug(gs, lwd=1)
+rug(z(gs, ff, M), side=2, lwd=1)
+curve(dttV(x, peakGo, sdZo, dfo, minG, pVo, left=minG), minG, qtt(qq, peakG, sdZo, 2), add=T, lwd=3, col=cols[2])
+segments(minG, 0, minG, minZ, col=cols[2])
+points(minG, minZ, pch=20, col=cols[2], cex=1.5)
+dev.off()
+
+
 
 
 

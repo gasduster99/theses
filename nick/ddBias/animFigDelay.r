@@ -340,12 +340,13 @@ fv = 1
 #mod = "ExpT45N300A0-1AS10K0.1N28"
 ##WORKED 
 #mod = "ExpT45N300AS0.1K10"; fv=1; colString="Reds 2"; mainTitle="High Contrast"
-#NOTE: refine a bit more
-mod = "ExpT45N150A0-1AS2K0.1"; fv=1; colString="Reds 2"; mainTitle="High Contrast"
+#mod = "ExpT45N300AS0.1K10Pres"; fv=1; colString="Reds 2"; mainTitle="Fast Growth" #"High Contrast"
+##NOTE: refine a bit more
+#mod = "ExpT45N150A0-1AS2K0.1"; fv=1; colString="Blues"; mainTitle="Slow Growth"
 #
 #mod = "ExpT45N150A0-1AS4K0.2"; fv=1
 #mod = "ExpT45N150A0-1AS4K0.2N28"; fv=1#1
-#mod = "ExpT45N150A0-1AS4K0.2N38"; fv=1; colString="Reds 2"; mainTitle="High Contrast"
+#mod = "ExpT45N150A0-1AS4K0.2N38"; fv=1; colString="Purples"; mainTitle="Medium Growth" #"High Contrast"
 
 ##failed Fmsy overestimated
 #mod = "FlatT45N300A0-1AS10K0.1"
@@ -360,6 +361,7 @@ mod = "ExpT45N150A0-1AS2K0.1"; fv=1; colString="Reds 2"; mainTitle="High Contras
 #mod = "FlatT45N150A0-1AS0.1K10"
 #mod = "FlatT45N150A0-1AS0.1K10N28"
 #mod = "FlatT45N150A0-1AS0.1K10N56"; fv=100; colString="Reds 2"; mainTitle="Low Contrast" #"Fast Growth"
+mod = "FlatT45N150A0-1AS0.1K10N56Pres"; fv=100; colString="Reds 2"; mainTitle="Fast Growth"
 #GOOD START: add refinment
 #mod = "FlatT45N150A0-1AS2K0.1"
 #mod = "FlatT45N150A0-1AS2K0.1N28"
@@ -762,7 +764,7 @@ image(xiStar, zetaStar, eucBias-ms,
 curve(bh(x), from=0, to=4, lwd=3, add=T)
 points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
 w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
-thin = c(T,rep(F,435)) #475))#135))
+thin = c(T,rep(F,475)) #435))#135))
 quiver(
         lFXStar[w,2][thin], lFXStar[w,3][thin],
         xiBias[w][thin], zetaBias[w][thin],

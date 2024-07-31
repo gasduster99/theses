@@ -12,6 +12,7 @@
 \usepackage{nicefrac}
 \usepackage{scalerel}
 \usepackage{xcolor}
+\usepackage[symbol]{footmisc}
 %\usepackage{enumitem}
 
 %\title{Baysian Nonparametric Estimation of ODEs as Applied to the Stock Recruitment Relationship}
@@ -136,7 +137,7 @@ Nick Grunloh
 	\begin{itemize}
 	\setlength{\itemsep}{5mm}
 	\item Maximum sustainable Yield ($MSY$)
-	\item $F_{MSY}$\footnote{or $\frac{F_{MSY}}{M}$}: Fishing rate to achieve $MSY$
+	\item $F_{MSY}$\footnote[1]{or $\frac{F_{MSY}}{M}$}: Fishing rate to achieve $MSY$
 	\item $\frac{B_{MSY}}{B_0}$: Biomass Depletion when at $MSY$
 	\item Driven by the shape of $P$ as determined by $\theta$.
 	\end{itemize}
@@ -147,28 +148,38 @@ Nick Grunloh
 \end{minipage}
 \end{frame}
 
-%
+%NOTE: STEP THRU CONSTRAINTS
 \begin{frame}
+\onslide<1->{
 \begin{minipage}[h!]{0.59\textwidth}
 Conceptually:
 \begin{align*}
 \frac{F_{MSY}}{M}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{B_{0}}\in\left(0, 1\right)
 \end{align*}
+}
 %$~$\\
 %Mangel et al. 2013, CJFAS:
 \vspace{-0.5cm}
 \begin{itemize}
-	\setlength{\itemsep}{2mm}
-	\item Schaefer Model: $~ F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{2}$
-        \item BH Model: $~ \frac{F_{MSY}}{M}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{F_{MSY}/M+2}$
-        \item Similar Constraints for other Two-Parameter Models: \\$~~~~~$Fox, Ricker, etc...
+	\setlength{\itemsep}{5mm}
+	\onslide<2->{ \item Schaefer Model: $~ F_{MSY}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{2}$ }
+        \onslide<3->{ \item BH Model: $~ \frac{F_{MSY}}{M}\in\mathbb{R}^+ ~~~ \frac{B_{MSY}}{\bar B(0)}=\frac{1}{F_{MSY}/M+2}$ }
+        \onslide<4->{
+	\item Similar Constraints for other Two-Parameter Models: \\$~~~~~$Fox, Ricker, etc... 
         \item Three-Parameter Models Allow Independent RP Estimation %More flexible models allow independent RP estimation
+	}
 \end{itemize}
 \end{minipage}
 \begin{minipage}[h!]{0.39\textwidth}
-$~$\\
-\hspace*{-0.5cm}
-\includegraphics[width=1.3\textwidth]{cjasFig.png}\footnote{\scriptsize Mangel et al. 2013, CJFAS}
+%$~$\\
+\only<1>{ \includegraphics[width=1.2\textwidth]{hatchRP.png} \\$~$\\}
+\only<2>{ \includegraphics[width=1.2\textwidth]{sRP.png} \\$~$\\}
+\only<3>{ \includegraphics[width=1.2\textwidth]{sbhRP.png} \\$~$\\}
+\only<4>{ 
+	%$~$\\
+	%\hspace*{-0.5cm}
+	\includegraphics[width=1.2\textwidth]{cjasFig.png}\footnote{\scriptsize Mangel et al. 2013, CJFAS} 
+}
 \end{minipage}
 \end{frame}
 
@@ -310,7 +321,7 @@ B^* = K\left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}} &~~ B_0 = K\\
 \begin{tikzpicture}[overlay]
 \node at (-2,-0.5) {\includegraphics[height=0.12\textheight, angle=90]{doubleArrow.png}};
 %\vspace*{-2cm}
-\node at (0,-0.5) {Closed Form Inversion};
+\node at (0,-0.5) {Closed-Form Inversion};
 %\vspace*{-1cm}
 \node at (2,-0.5) {\includegraphics[height=0.12\textheight, angle=270]{doubleArrow.png}};
 \end{tikzpicture}
@@ -335,7 +346,7 @@ $~$\\
 \begin{tikzpicture}[overlay]
 \node at (-2,-0.5) {\includegraphics[height=0.12\textheight, angle=90]{doubleArrow.png}};
 %\vspace*{-2cm}
-\node at (0,-0.5) {Closed Form Inversion};
+\node at (0,-0.5) {Closed-Form Inversion};
 %\vspace*{-1cm}
 \node at (2,-0.5) {\includegraphics[height=0.12\textheight, angle=270]{doubleArrow.png}};
 \end{tikzpicture}
@@ -538,65 +549,90 @@ $~$
     \tableofcontents[currentsection, currentsubsection]
 \end{frame}
 
-%
-\begin{frame}
-	\begin{minipage}[h!]{0.49\textwidth}
-	\begin{itemize}
-	\setlength\itemsep{1em}
-	\item Beverton-Holt production	
-	\item Production asymptotes
-	\item Explicit Natural Mortality
-	\item Explicit Fishing Mortality 
-	\end{itemize}
-	\end{minipage}
-	\begin{minipage}[h!]{0.49\textwidth}
-        %
-        \begin{align*}
-        I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2)
-        \end{align*}
-
-        %
-        \begin{equation*}
-        \frac{dB}{dt} = P_{BH}(B(t); \bm{\theta}) -(M + F(t))B(t)
-        \end{equation*}
-	\end{minipage}
-%\begin{itemize}
-%\color{red}
-%\item Observation model
-%\item introduce logistic P
-%\item something else?
-%\end{itemize}
-\end{frame}
-
 %%
 %\begin{frame}
-%\begin{minipage}[h!]{0.49\textwidth}
+%	\begin{minipage}[h!]{0.49\textwidth}
+%	\begin{itemize}
+%	\setlength\itemsep{1em}
+%	\item Beverton-Holt production	
+%	\item Production asymptotes
+%	\item Explicit Natural Mortality
+%	\item Explicit Fishing Mortality 
+%	\end{itemize}
+%	\end{minipage}
+%	\begin{minipage}[h!]{0.49\textwidth}
+%        %
+%        \begin{align*}
+%        I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2)
+%        \end{align*}
+%
+%        %
+%        \begin{equation*}
+%        \frac{dB}{dt} = P_{BH}(B(t); \bm{\theta}) -(M + F(t))B(t)
+%        \end{equation*}
+%	\end{minipage}
+%%\begin{itemize}
+%%\color{red}
+%%\item Observation model
+%%\item introduce logistic P
+%%\item something else?
+%%\end{itemize}
+%\end{frame}
+%
+%%%
+%%\begin{frame}
+%%\begin{minipage}[h!]{0.49\textwidth}
+%%\begin{equation*}
+%%P_{BH}(B) = \frac{\alpha B}{1+\beta B}.
+%%\end{equation*}
+%%\begin{align}
+%%F^* = 
+%%\end{align}
+%%\end{minipage}
+%%\begin{minipage}[h!]{0.49\textwidth}
+%%\end{minipage}
+%%\end{frame}
+%
+%%
+%\begin{frame}
 %\begin{equation*}
-%P_{BH}(B) = \frac{\alpha B}{1+\beta B}.
+%P_{BH}(B;[\alpha, \beta]) = \frac{\alpha B}{1+\beta B}.
 %\end{equation*}
-%\begin{align}
-%F^* = 
-%\end{align}
+%\begin{align*}
+%\frac{dB}{dt} = P_{BH}(B;[\alpha, \beta]) -MB -FB %(M+F)B. \label{schnuteSimple}
+%\end{align*}
+%\begin{minipage}[h!]{0.49\textwidth}
+%        \includegraphics[width=\textwidth]{../../gpBias/pBHandM.png}
 %\end{minipage}
 %\begin{minipage}[h!]{0.49\textwidth}
+%        \includegraphics[width=\textwidth]{../../gpBias/yeildBH.png}
 %\end{minipage}
 %\end{frame}
 
 %
 \begin{frame}
-\begin{equation*}
-P_{BH}(B;[\alpha, \beta]) = \frac{\alpha B}{1+\beta B}.
-\end{equation*}
+\begin{minipage}[h!]{0.54\textwidth}
+%
 \begin{align*}
-\frac{dB}{dt} = P_{BH}(B;[\alpha, \beta]) -MB -FB %(M+F)B. \label{schnuteSimple}
-\end{align*}
-\begin{minipage}[h!]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{../../gpBias/pBHandM.png}
+%\only<2>{&\\}
+&I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2)\\
+%\end{align*}
+%\begin{align*}
+\only<1>{ &\frac{dB}{dt} = P_{BH}(B;[\alpha, \beta]) -(M+F)B\\~\\} %\underbrace{(M+F)}_{Z(t)}B\\} %(M+F)B. \label{schnuteSimple}
+\only<2>{ &\frac{dB}{dt} = \underbrace{P_{BH}(B;[\alpha, \beta]) -MB}_{\text{Surplus Production}} -FB \\~\\} %~~~~\\}
+%\end{align*}
+%\begin{equation*}
+&\\
+&P_{BH}(B;[\alpha, \beta]) = \frac{\alpha B}{1+\beta B}
+\end{align*}     
 \end{minipage}
-\begin{minipage}[h!]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{../../gpBias/yeildBH.png}
+\begin{minipage}[h!]{0.34\textwidth}
+	\only<1>{$~$\\$~$\\\includegraphics[width=1.5\textwidth]{../../gpBias/pBHandM.png}}
+	\only<2>{\includegraphics[width=1.5\textwidth]{../../gpBias/yeildBH.png}}
 \end{minipage}
 \end{frame}
+
+
 
 %
 \begin{frame}
@@ -666,24 +702,77 @@ P_s(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}}
 %
 \begin{frame}
 
-{\color{red}
-some how softly introduce calculation via $F^*$, $B_0$, and $\frac{B^*}{B_0}$. Show the partial solution and link to Schnute and Richards citation. Setup $\zeta$ for next slide.
-}
-\begin{align}
+%{\color{red}
+%some how softly introduce calculation via $F^*$, $B_0$, and $\frac{B^*}{B_0}$. 
+%Show the partial solution and link to Schnute and Richards citation. 
+%Setup $\zeta$ for next slide.
+%$\alpha(\gamma)$.
+%}
+
+%
+%RPs $\mapsto$ $\theta$ or $\theta$ $\mapsto$ RPs
+
+%%
+%\begin{center}
+%\begin{tikzpicture}[overlay]
+%\node at (-1.5,-0.6) { RPs $\mapsto$ $\theta$ };
+%\node at (0,0) {\includegraphics[height=0.15\textheight]{doubleArrow.png}};
+%%\vspace*{-2cm}
+%\node at (0,-0.6) {$\substack{\text{Incomplete}\\\text{Inversion}}$};
+%%\vspace*{-1cm}
+%\node at (0,-1) {\includegraphics[height=0.15\textheight, angle=180]{doubleArrow.png}\footnote{Schnute, J. T., \& Richards, L. J. (1998). CJFAS}};
+%\node at (1.5,-0.6) { $\theta$ $\mapsto$ RPs };
+%\end{tikzpicture}
+%\end{center}
+
+%
+\begin{minipage}[h!]{0.44\textwidth}
+%
+$~$\\$~$\\$~$\\
+\begin{center}
+\begin{tikzpicture}[overlay]
+\node at (0,0.4) { RPs $\mapsto$ $\theta$ };
+\node at (-1,-0.5) {\includegraphics[height=0.12\textheight, angle=90]{doubleArrow.png}};
+%\vspace*{-2cm}
+\node at (0,-0.5) { $\substack{\text{Incomplete}\\\text{Inversion}}$ }; %Incomplete Inversion};
+%\vspace*{-1cm}
+\node at (1,-0.5) {\includegraphics[height=0.12\textheight, angle=270]{doubleArrow.png}};
+\node at (0,-1.6) { $\theta$ $\mapsto$ RPs };
+\end{tikzpicture}
+\end{center}
+$~$\\$~$\\$~$\\\footnote[0]{\tiny Schnute \& Richards (1998). CJFAS.}
+%
+\end{minipage}
+\begin{minipage}[h!]{0.54\textwidth}
+%
+\only<1>{
+\begin{align*}
 %\frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \\
 \alpha &= (M+F^*)\left(1+\frac{\gamma F^*}{M+F^*}\right)^{1/\gamma} \nonumber\\
 \beta &= \frac{1}{\gamma B_0}\left(1-\left(\frac{M}{\alpha}\right)^\gamma\right) \label{abgSys}\\
 \frac{B^*}{B_0} &= \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma } \nonumber.
-\end{align}
+\end{align*}
+}
+\only<2>{
+\begin{align*}
+&\alpha(\gamma)\\
+&\\
+&\beta(\alpha(\gamma), \gamma)\\
+&\\
+&\frac{B^*}{B_0}(\alpha(\gamma),\gamma)
+\end{align*}
+}
+%\end{frame}
+%
+\end{minipage}
 \end{frame}
 
 
 %
 \begin{frame}
-
-{\color{red}
-Show approximated $t$ with rugs. explain/relabel $\zeta$. show qq plot.
-}
+%{\color{red}
+%Show approximated $t$ with rugs. explain/relabel $\zeta$. show qq plot.
+%}
 
 %\begin{align}
 %\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}
@@ -698,7 +787,7 @@ Show approximated $t$ with rugs. explain/relabel $\zeta$. show qq plot.
 $~$\\
 \hspace*{-2cm}
 \begin{align*}
-\frac{B^*}{B_0} = \frac{1-\left(\frac{M+F^*}{\alpha}\right)^\gamma}{ 1-\left(\frac{M}{\alpha}\right)^\gamma }
+\frac{B^*}{B_0}(\gamma) = \frac{1-\left(\frac{M+F^*}{\alpha(\gamma)}\right)^\gamma}{ 1-\left(\frac{M}{\alpha(\gamma)}\right)^\gamma }
 \end{align*}
 \only<1>{
 \begin{align*}
@@ -706,24 +795,30 @@ $~$\\
 \end{align*}
 }
 \only<2>{
+\begingroup
+\scriptsize
 {\color{RoyalBlue}
 \begin{align*}
-\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}
+\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + (1-\zeta_{min})t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}
 \end{align*}
 }
+\endgroup
 }
 \only<3>{
+\begingroup
+\scriptsize
 {\color{RoyalBlue}
 \begin{align*}
-\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}
+\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + (1-\zeta_{min})t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}
 \end{align*}
 }
+\endgroup
 }
 \end{minipage}
 \begin{minipage}[h!]{0.44\textwidth}
-\only<1>{\includegraphics[width=1.2\textwidth]{../../gpBias/zeta.png}}
+\only<1>{\includegraphics[width=1.2\textwidth]{../../gpBias/zetaTitle.png}}
 \only<2>{\includegraphics[width=1.2\textwidth]{../../gpBias/zetaPlusPlus.png}}
-\only<3>{\includegraphics[width=1.2\textwidth]{../../gpBias/qqPlot.png}}
+\only<3>{\includegraphics[width=1.2\textwidth]{../../gpBias/qqUnif.png}}
 \end{minipage}
 \end{frame}
 
@@ -977,16 +1072,61 @@ $~$\\
 \begin{align*}%\kappa->0 slower that than a0->\infty
 %B(a, t) &= w(a, t)N(a, t)\\ 
 %\frac{dB}{dt} &= \overbrace{w(k)R(B(t-k))}^\text{Recruitment Biomass} + \overbrace{\mu w_\infty N(t)}^\text{Growth} - \overbrace{(M+F(t)+\mu)B(t)}^\text{Biomass Loss}\\
+&I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2)\\
+&\\
 &\frac{dB}{dt} = \overbrace{w(a_s)R(B;\theta)}^\text{Recruitment Biomass} + \overbrace{\kappa \left[w_\infty N-B\right]}^\text{Net Growth} - \overbrace{(M+F)B}^\text{Mortality} \\%\label{
 &\frac{dN}{dt} = R(B;\theta) - (M+F)N \\%\label{nEq}\\
-&~\\
-&R(B_{t-a_s}; \alpha, \beta, \gamma): \text{Schnute Three Parameter Recruitment}\\
-&w(a) : \text{Von Bertalanffy Individual Growth}\\
-&\text{Knife-Edge Selectivity at age $a_s$}\\
+%&~\\
+%&R(B_{t-a_s}; \alpha, \beta, \gamma): \text{Schnute Three Parameter Recruitment}\\
+%&w(a) : \text{Von Bertalanffy Individual Growth}\\
+%&\text{Knife-Edge Selectivity at age $a_s$}\\
 %&\theta' = [\alpha, \beta, \gamma] ~~~ ~~~ {\color{Red} \text{Species Properties: } a_0,~\kappa,~w_\infty,~M}
 \end{align*}
 %{\color{red} bullets of primary points of individual growth and maturity}
 \end{frame}
+
+%
+\begin{frame}{Individual Growth}
+%
+\begin{minipage}[h!]{0.47\textwidth}
+        %
+        \vspace{-1cm}
+        \begin{align*}
+        w(a) = w_\infty(1-e^{-\kappa (a-a_0)}) %\\
+        \end{align*}
+	%$a_s$ : Lagged Maturity/Knife-edge Selectivity\\
+        %$~\kappa$ : Individual Growth
+        \vspace*{-0.25cm}
+        \begin{itemize}
+	\setlength\itemsep{1em}
+        \item[$a_s$ :] Lagged Maturity \&\\Knife-Edge Selectivity
+	\item[$\kappa$ :] Individual Growth
+	\item Instant Growth: \\(Production Model)\\
+        %\begin{align*}
+        $a_s \rightarrow 0 ~~~ \kappa \rightarrow \infty$\\$~$\\
+        %\end{align*}
+        %\item Dynamic Growth:\\
+        %%$a_s$ large relative to $\kappa$\\
+        %$a_s$ : Not Instant\\
+        %$~\kappa$ : Peakness of Dynamics
+        \end{itemize}
+        %{\color{red}
+        %limiting cases as prod model\\
+        %knife edge selectivity\\
+        %animate to RP space curve under BH.
+        %}
+\end{minipage}
+\begin{minipage}[h!]{0.51\textwidth}
+        \includegraphics[width=1.1\textwidth]{../../ddBias/vbCurves.png}
+	%\includegraphics[width=0.49\textwidth]{../../ddBias/rpTriptic.png}
+	%\includegraphics[width=0.49\textwidth]{../../ddBias/growthTriptic.png}
+\end{minipage}
+\end{frame}
+
+%%
+%\begin{frame}{Growth}
+%
+%\end{frame}
 
 %animate between curve picture to RP curves
 \begin{frame}{Schnute Recruitment}
@@ -1018,56 +1158,29 @@ R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}
         %\end{align*}
 \end{minipage}
 \begin{minipage}[h!]{0.52\textwidth}
-        \only<1>{
+        %\only<1>{
         \includegraphics[width=1.1\textwidth]{../../gpBias/g3.png} %./derisoSrr.png}
-        }\only<2>{
-        \includegraphics[width=1.1\textwidth]{../../ddBias/designLineColorHHardFlatT30N150WWideN112.png}
-        }
+        %}
+	%\only<2>{
+        %\includegraphics[width=1.1\textwidth]{../../ddBias/designLineColorHHardFlatT30N150WWideN112.png}
+        %}
 \end{minipage}
 \end{frame}
 
-%
-\begin{frame}{\color{red}Von Bertalanffy Individual Growth}
-%
-\begin{minipage}[h!]{0.47\textwidth}
-        %
-        \vspace{-1cm}
-        \begin{align*}
-        w(a) = w_\infty(1-e^{-\kappa (a-a_0)}) %\\
-        \end{align*}
-        %\vspace*{-1cm}
-        \begin{itemize}
-        \item Instant Growth: \\(Production Model)\\
-        %\begin{align*}
-        $a_s \rightarrow 0 ~~~ \kappa \rightarrow \infty$\\$~$\\
-        %\end{align*}
-        \item Dynamic Growth:\\
-        %$a_s$ large relative to $\kappa$\\
-        $a_s$ : Not Instant\\
-        $~\kappa$ : Peakness of Dynamics
-        \end{itemize}
-        %{\color{red}
-        %limiting cases as prod model\\
-        %knife edge selectivity\\
-        %animate to RP space curve under BH.
-        %}
-\end{minipage}
-\begin{minipage}[h!]{0.51\textwidth}
-        %\includegraphics[width=1.1\textwidth]{./vbCurves.png}
-	\includegraphics[width=0.49\textwidth]{../../ddBias/rpTriptic.png}
-	\includegraphics[width=0.49\textwidth]{../../ddBias/growthTriptic.png}
-\end{minipage}
-\end{frame}
+%%NOTE: RP Space
+%\begin{frame}
+%\includegraphics[width=0.54\textwidth]{../../ddBias/rpSpaceww.png}
+%\end{frame}
 
 %
 \begin{frame}
-%
-\begin{align}
-\bar{B}(F) &= \frac{1}{\beta\gamma} \left( 1 - \Big(\frac{(F + M) (F + M + \kappa)}{\alpha w(a_s)(F + M + \kr)}\Big)^\gamma\right) \label{BF}\\
-%\end{align}
+%%
 %\begin{align}
-\bar{N}(F) &= \frac{\alpha\bar{B}(F)(1-\beta\gamma\bar{B}(F))^{1/\gamma}}{F+M} \label{NF}
-\end{align}
+%\bar{B}(F) &= \frac{1}{\beta\gamma} \left( 1 - \Big(\frac{(F + M) (F + M + \kappa)}{\alpha w(a_s)(F + M + \kr)}\Big)^\gamma\right) \label{BF}\\
+%%\end{align}
+%%\begin{align}
+%\bar{N}(F) &= \frac{\alpha\bar{B}(F)(1-\beta\gamma\bar{B}(F))^{1/\gamma}}{F+M} \label{NF}
+%\end{align}
 
 %\begingroup
 %\tiny
@@ -1081,38 +1194,133 @@ R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}
 %
 \begingroup
 \tiny
-\begin{align}
-\alpha & = \left[ \oneA + \twoA \left( 1 + \thrA \right) \right]^{\frac{1}{\gamma}} \label{aDelay}\\
-\beta &= \frac{1}{\gamma B_0} \left( 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma\right) \label{bDelay}%\\
+\begin{gather*}
+~~~~ \alpha  = \left[ \oneA + \twoA \left( 1 + \thrA \right) \right]^{\frac{1}{\gamma}} \label{aDelay}\\ ~\\
+\beta = \frac{1}{\gamma B_0} \left( 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma\right) \\ ~\\
 %\frac{B^*}{B_0} &= \frac{ 1 - \Big(\frac{(F^* + M) (F^* + M + \kappa)}{\alpha w(a_s)(F^* + M + \kr)}\Big)^\gamma }{ 1 - \Big(\frac{M (M + \kappa)}{\alpha
-\end{align}
+%\end{align*}
+%\endgroup
+%\begin{align}
+\frac{B^*}{B_0} = \frac{ 1 - \Big(\frac{(F^* + M) (F^* + M + \kappa)}{\alpha w(a_s)(F^* + M + \kr)}\Big)^\gamma }{ 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma }
+%\label{gDelay}
+\end{gather*}
 \endgroup
 
-\begin{align}
-\frac{B^*}{B_0} &= \frac{ 1 - \Big(\frac{(F^* + M) (F^* + M + \kappa)}{\alpha w(a_s)(F^* + M + \kr)}\Big)^\gamma }{ 1 - \Big(\frac{M (M + \kappa)}{\alpha w(a_s)(M + \kr)}\Big)^\gamma }
-\label{gDelay}
-\end{align}
+
+%\begin{align*}
+%&\alpha(\gamma)\\
+%&\\
+%&\beta(\alpha(\gamma), \gamma)\\
+%&\\
+%&\frac{B^*}{B_0}(\alpha(\gamma),\gamma)
+%\end{align*}
+%-5.85
+%-3.5
+\begin{center}
+\begin{tikzpicture}[overlay]
+\node at (-5.65,3.95) { $\alpha(\gamma):$ };
+\node at (-5.4,2.65) { $\beta(\alpha(\gamma), \gamma):$ };
+\node at (-5.3,1.2) { $\frac{B^*}{B_0}(\alpha(\gamma), \gamma):$ };
+\end{tikzpicture}
+\end{center}
 
 \end{frame}
 
 %
 \begin{frame}
-	\includegraphics[width=0.33\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png}
-        \includegraphics[width=0.33\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png}
-        \includegraphics[width=0.33\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png}
+\only<1>{ \includegraphics[width=0.49\textwidth]{../../gpBias/zetaPlusPlus.png} }
+\only<2>{ \includegraphics[width=0.49\textwidth]{../../gpBias/zetaPlusPlus.png} }
+%
+\only<3>{
+        $~$\\
+        \begingroup
+        \scriptsize
+        \begin{equation*}
+        \underbrace{\left(\frac{F^*}{M}, \frac{B^*}{\bar B(0)}\right)}_{\text{Schnute Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\frac{\hat F^*}{M}, \frac{B^*}{B_0}(-1; \hat F^*)\right)}_{\text{BH Estimate}}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        \end{equation*}
+        \endgroup
+}
+
+ \begin{tikzpicture}[overlay]
+        \only<2>{{\node at (8.5,3.45) {\includegraphics[height=0.7\textheight]{../../gpBias/designLineHHardExpT45N150M0.3Wide.png}};}}
+	\only<3>{{\node at (8.5,1.75) {\includegraphics[height=0.7\textheight]{../../gpBias/designLineHHardExpT45N150M0.3Wide.png}};}}
+	\only<3>{
+        \node[circle, draw, minimum size=7, inner sep=-2] at (10.1,3.25){\tiny S};
+        \draw[latex-, very thick,black] (8.1,0.85) -- ++(1.9,2.3);
+        \node[circle,fill=red, minimum size=9, inner sep=-2] at (8.0,0.72){\tiny BH};
+	}
+\end{tikzpicture}
+%\includegraphics[width=0.49\textwidth]{../../gpBias/zetaPlusPlus.png}
 \end{frame}
 
 %
-\begin{frame}
-	%\includegraphics[width=0.49\textwidth]{../../ddBias/rpCurves.png}
-	\includegraphics[width=0.49\textwidth]{../../ddBias/vbPoster.png}
-	\includegraphics[width=0.24\textwidth]{../../ddBias/relErrorImagesBHDD0.5.png}
+\begin{frame}{High Contrast}
+	\begin{minipage}[h!]{0.51\textwidth}
+	%
+	\includegraphics[width=\textwidth]{../../ddBias/vbPoster.png}
+	\end{minipage}
+	\begin{minipage}[h!]{0.47\textwidth}
+	\centering
+	\vspace{-0.25cm}
+	\includegraphics[height=0.28\textheight]{../../ddBias/directionalBiasDDSubExpT45N300AS0.1K10PresReds 2.png}\\ %directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png}\\
+        \includegraphics[height=0.28\textheight]{../../ddBias/directionalBiasDDSubExpT45N150A0-1AS4K0.2N38Purples.png}\\ %directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png}\\
+	%\hspace{0.05cm}directionalBiasDDSubExpT45N150A0-1AS2K0.1Reds 2.png
+	\includegraphics[height=0.28\textheight]{../../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1Blues.png} %directionalBiasDDSubExpT45N150A0-1AS2K0.1Reds 2.png}
+	%%
+	%\includegraphics[width=0.32\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png}
+        %\includegraphics[width=0.32\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png}
+        %\includegraphics[width=0.32\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png}	
+	\end{minipage}
 \end{frame}
 
 %
-\begin{frame}
-\includegraphics[width=0.54\textwidth]{../../ddBias/rpSpaceww.png}
+\begin{frame}{Low Contrast}
+	\begin{minipage}[h!]{0.51\textwidth}
+	%
+	\includegraphics[width=\textwidth]{../../ddBias/vbPoster.png}
+	\end{minipage}
+	\begin{minipage}[h!]{0.47\textwidth}
+	%
+	\centering
+	\only<1>{
+	\vspace{-0.25cm}
+	\includegraphics[height=0.28\textheight]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56PresReds 2.png}\\
+        \includegraphics[height=0.28\textheight]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png}\\
+	\hspace{0.1cm}
+	\includegraphics[height=0.28\textheight]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png}
+	}
+	\only<2>{
+	$~$\\
+	\vspace*{0.3cm}	
+	\includegraphics[width=\textwidth]{../../ddBias/relErrorImagesBHDD0.5.png}
+	}
+	\end{minipage}
 \end{frame}
+
+%
+\begin{frame}{Oscillation}
+	\centering
+	\includegraphics[width=0.6\textwidth]{../../ddBias/shockBiomassSurplus.png}
+\end{frame}
+
+%%
+%\begin{frame}
+%	\includegraphics[width=0.32\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56Reds 2.png}
+%        \includegraphics[width=0.32\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png}
+%        \includegraphics[width=0.32\textwidth]{../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png}
+%\end{frame}
+%
+%%
+%\begin{frame}
+%	%\includegraphics[width=0.49\textwidth]{../../ddBias/rpCurves.png}
+%	\includegraphics[width=0.49\textwidth]{../../ddBias/vbPoster.png}
+%	\includegraphics[width=0.24\textwidth]{../../ddBias/relErrorImagesBHDD0.5.png}
+%\end{frame}
+%
+%%
+%\begin{frame}
+%\includegraphics[width=0.54\textwidth]{../../ddBias/rpSpaceww.png}
+%\end{frame}
 
 %%
 %\section{Introduction}
@@ -1893,7 +2101,7 @@ $~$\\$~$\\
 \begin{minipage}[h!]{0.54\textwidth}
 Many Thanks:\\
 \begin{itemize}
-\item {\color{red}Dr. Marc Mangel}
+\item UCSC Advisors %{\color{red}Dr. Marc Mangel}
 \item Collaborators at NOAA
 \item NMFS Sea Grant
 %\item Members of my Committee
@@ -1913,34 +2121,46 @@ Many Thanks:\\
 \end{minipage}
 }
 \only<2>{
-\frametitle{\color{red}Metamodel Details}
-\vspace*{-0.5cm}
-\begin{align*}
-	\hat\mu &= \widehat{log(r)} ~~ -or- ~~ \hat\mu = \widehat{log(K)}\\
-	~\\  
-        \bm{x} &= \left(F_{MSY}, \frac{B_{MSY}}{\bar B(0)}\right) \nonumber\\
-	~\\
-        \hat\mu &= \beta_0 + \bm{\beta}'\bm{x} + f(\bm{x}) + {\epsilon} \nonumber \\
-        f(\bm{x}) &\sim \text{GP}(0, \tau^2 R(\bm{x}, \bm{x'})) \nonumber \\
-        \epsilon_i &\sim \text{N}(0, \hat\omega_i).
-\end{align*}
-\begin{align*}   
-R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \right)
-\end{align*}
-}
-\only<3>{
 $~$\\$~$\\$~$\\
 \includegraphics[width=0.32\textwidth]{../../ptNew/directionalBiasSubPTExpT45Sig0.15Half.png}
 \includegraphics[width=0.32\textwidth]{../../ptNew/directionalBiasSubPTExpT45Sig0.15.png}
 \includegraphics[width=0.32\textwidth]{../../ptNew/directionalBiasSubPTExpT45Sig0.1N600.png}
+%\includegraphics[width=1.5\textwidth]{../../ptNew/subLegnd.png}
 \begin{tikzpicture}[overlay]
 \node[text width=6cm] at (-5.25,4.5){High Contrast PT $\sigma=0.12$ Data};
 \node[text width=6cm] at (-7.15,-0.5){1x Samples};
 \node[text width=6cm] at (-3.35,-0.5){2x Samples};
 \node[text width=6cm] at (0.15,-0.5){4x Samples};
+\node at (0,1.8) { \includegraphics[width=0.08\textwidth]{../../ptNew/subLegnd.png} };
 \end{tikzpicture}
 }
+\only<3>{
+\frametitle{Metamodel Details}
+\vspace*{-0.5cm}
+\begin{align*}
+	\textbf{y} &= \widehat{log(F_{MSY})} ~~ -or- ~~ \textbf{y} = \widehat{log(B_0)}\\
+	~\\  
+        \bm{x} &= \left(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{\bar B(0)}\right) \nonumber\\
+	~\\
+        \textbf{y} &= \beta_0 + \bm{\beta}'\bm{x} + f(\bm{x}) + \bm{\epsilon} \nonumber \\
+        f(\bm{x}) &\sim \text{GP}(0, \tau^2 R(\bm{x}, \bm{x'})) \nonumber \\
+        \bm{\epsilon} &\sim \text{N}(0, \bm{\omega}'\bm{I}).
+\end{align*}
+\begin{align*}   
+R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \right)
+\end{align*}
+}
 \only<4>{
+\frametitle{Prediction}
+\begin{equation*} %\label{gpYHat} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+        \hat y(\textbf{x}^\star) = \beta_0 + \textbf{x}^\star\bm{\beta} + \textbf{r(x}^\star\textbf{)}'\bm{R}^{-1}_{\bm{\ell}}\Big(\textbf{y}-\big(\beta_0+\bm{X}\bm{\beta}\big)\Big)
+\end{equation*}
+$~$\\
+\begin{equation*} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+       \hat \sigma^2(\textbf{x}^\star) = \textbf{R(x}^\star, \textbf{x}^\star\textbf{)} - \textbf{r(x}^\star\textbf{)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x}^\star\textbf{)}
+\end{equation*}
+}
+\only<5>{
 \begin{center}
 \begin{tikzpicture}[overlay]
 \node (img) at (-3.5,-1){\includegraphics[width=0.49\textwidth]{../../ddBias/magExpT45N300AS0.1K10.png}};
@@ -1951,12 +2171,12 @@ $~$\\$~$\\$~$\\
 \end{tikzpicture}
 \end{center}
 }
-\only<5>{
+\only<6>{
 \begin{center}
 \includegraphics[width=0.5\textwidth]{mariacowCod.png}
 \end{center}
 }
-\only<6>{
+\only<7>{
 \begin{center}
 \begin{tikzpicture}[overlay]
 \node (img) at (0,0){\includegraphics[width=0.8\textwidth]{schnutePostWOCapTrans.png}};	
@@ -1970,6 +2190,11 @@ $~$\\$~$\\$~$\\
 %\begin{center}
 %\includegraphics[width=0.7\textwidth]{../../.././nick/gpBias/crossCovExpT45.png}
 %\end{center}
+}
+\only<8>{
+\begin{center}
+\includegraphics[width=0.7\textwidth]{../../ddBias/rpSpaceww.png}
+\end{center}
 }
 \end{frame}
 

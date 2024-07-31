@@ -561,13 +561,13 @@ setting the following distribution is very effective,
 %
 %is very effective,
 \begin{align}
-\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}. \label{mixT}
+\gamma' \sim \zeta_{min}\delta(\gamma_{min}) + (1-\zeta_{min})t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}. \label{mixT}
 \end{align}
 
-%
-Above, $t$ is the density of the three-parameter location-scale family Student's $t$
+%three-parameter location-scale family Student's $t$
+Above, $t(\mu, \sigma, \nu)\bm{1}_{\gamma>\gamma_{min}}$ is the density of the truncated location-scale family Student's $t$
 distribution with location $\mu$, scale $\sigma$, and degrees of freedom $\nu$.
-$\bm{1}_{\gamma>\gamma_{min}}$ is an indicator function that serves to truncate the
+$\bm{1}_{\gamma>\gamma_{min}}$ is an indicator function truncating the
 Student's $t$ distribution at the lower bound $\gamma_{min}$.
 $\delta(\gamma_{min})$ is the Dirac delta function evaluated at $\gamma_{min}$,
 which is scaled by the known value $\zeta_{min}$; this places probability mass
