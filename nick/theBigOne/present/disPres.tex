@@ -533,12 +533,13 @@ $~$
 %
 \begin{frame}{Summary}
 \begin{itemize}
-\color{red}
 \setlength\itemsep{1em}
-	\item A quick summary
-	\item just a few points will suffice
-	\item the quicker and more concise the better
-	\item transition to BH
+	%\item PT model provides a fully analytical three parameter generalization \
+	\item PT three-parameter generalization allows fully analytical \\RP designs.
+	\item Novel simulation framework explicitly controlling for \\RP misspecification. % and a useful notion of contrast.
+	\item The useful notion of contrast developed here together with the simplified geometry of the 
+	Schaefer model exposes a mechanism for RP bias
+	\item What to do when the simulation design is not analytical?
 \end{itemize}
 \end{frame}
 
@@ -1056,8 +1057,27 @@ $~$\\
 \end{minipage}
 \end{frame}
 
-\begin{frame}{}
-\color{red}Quick Summary and Transition
+\begin{frame}{Summary}
+%\color{red}Quick Summary and Transition
+\begin{itemize}
+\setlength\itemsep{1em}
+        %\item PT model provides a fully analytical three parameter generalization \
+        \item Schnute three-parameter generalizing model is very attractive since it  
+	interpolates the most common models of productivity. 
+	\begin{itemize}
+		\item Logistic, Ricker, Beverton-Holt
+	\end{itemize}
+	%however simulation design is not analytical and numerically trechreous. %  allows fully analytical \\RP designs.        \item Novel simulation framework explicitly controlling for \\RP misspecification. % and a useful notion of contrast.
+        \item A stable method of generating simulation designs desite non-analytical 
+	and numerically trechreous RPs$\leftrightarrow\theta$.	
+	\item GP metamodel demonstrates that misspecified BH models enjoy some sense of optimality in RP estimation.
+	\begin{itemize}
+	 	\item Nearly shortest distance RP mapping as mediated by contrast.
+		\item but misspecified BH models induce a risk structure in RPs.
+	\end{itemize}
+	\item Can more complex biological dynamics help RP estimation?
+\end{itemize}
+
 \end{frame}
 
 %
@@ -1117,7 +1137,12 @@ $~$\\
         %}
 \end{minipage}
 \begin{minipage}[h!]{0.51\textwidth}
+	\only<1>{
+        \includegraphics[width=1.1\textwidth]{../plots/vbOpt.png}
+	}
+	\only<2>{
         \includegraphics[width=1.1\textwidth]{../../ddBias/vbCurves.png}
+	}
 	%\includegraphics[width=0.49\textwidth]{../../ddBias/rpTriptic.png}
 	%\includegraphics[width=0.49\textwidth]{../../ddBias/growthTriptic.png}
 \end{minipage}
@@ -1299,9 +1324,203 @@ R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}
 
 %
 \begin{frame}{Oscillation}
-	\centering
-	\includegraphics[width=0.6\textwidth]{../../ddBias/shockBiomassSurplus.png}
+	%\centering
+        \begin{minipage}[h!]{0.39\textwidth}
+	\begin{itemize}
+        \setlength\itemsep{1em}
+	\item large $a_s$
+	\item Fishing shocks \\within $a_s$
+	\item Repeated shocks \\can lead to chaos.
+	\end{itemize}
+	\end{minipage}
+        \begin{minipage}[h!]{0.59\textwidth}
+	\includegraphics[width=\textwidth]{../../ddBias/shockBiomassSurplus.png}
+	\end{minipage}
+	%\includegraphics[width=0.6\textwidth]{../../ddBias/shockBiomassSurplus.png}
 \end{frame}
+
+%%
+%\begin{frame}{More}
+%        %\centering
+%        %\includegraphics[width=0.6\textwidth]{../../ddBias/shockBiomassSurplus.png}
+%\end{frame}
+
+%
+\section{End}
+
+%
+\begin{frame}{Conclusions}
+\begin{itemize}
+\setlength\itemsep{1em}
+\item Similar RP mapping under BH-DDM as the BH-SPM. 
+\item As growth dynamics are emphasized, the BH model becomes more brittle.
+\item Emphasizes the need to use more flexible SRR models. 
+\end{itemize}
+\underline{Future Work:}
+\begin{itemize}
+	\setlength\itemsep{1em}	
+	\item Recruitment Deviations
+	\item Further metamodeling techniques can expidite the simulation 
+		into more challenging simulation applications.
+	\begin{itemize}
+		\item Targeted aquisition functions 
+		\item Non-stationarity metamodels
+	\end{itemize}
+\end{itemize}
+%\color{red} General Conclusions and future work.
+\end{frame}
+
+%
+\begin{frame}
+\only<1>{
+$~$\\$~$\\
+\begin{minipage}[h!]{0.54\textwidth}
+Many Thanks:\\
+\begin{itemize}
+\item UCSC Advisors %{\color{red}Dr. Marc Mangel}
+\item Collaborators at NOAA
+\item NMFS Sea Grant
+%\item Members of my Committee
+\end{itemize}
+\end{minipage}
+\begin{minipage}[h!]{0.44\textwidth}
+\includegraphics[width=0.9\textwidth]{rockFish.png}
+\end{minipage}
+
+%\vspace*{-0.5cm}
+\begin{minipage}[h!]{0.69\textwidth}
+\includegraphics[width=\textwidth]{seaGrant-logo.png}
+\end{minipage}
+\begin{minipage}[h!]{0.29\textwidth}
+%\includegraphics[width=\textwidth]{dssc.jpg}
+\includegraphics[width=\textwidth]{slugArms_blank background.png}
+\end{minipage}
+}
+\only<2>{
+$~$\\$~$\\$~$\\
+\includegraphics[width=0.32\textwidth]{../../ptNew/directionalBiasSubPTExpT45Sig0.15Half.png}
+\includegraphics[width=0.32\textwidth]{../../ptNew/directionalBiasSubPTExpT45Sig0.15.png}
+\includegraphics[width=0.32\textwidth]{../../ptNew/directionalBiasSubPTExpT45Sig0.1N600.png}
+%\includegraphics[width=1.5\textwidth]{../../ptNew/subLegnd.png}
+\begin{tikzpicture}[overlay]
+\node[text width=6cm] at (-5.25,4.5){High Contrast PT $\sigma=0.12$ Data};
+\node[text width=6cm] at (-7.15,-0.5){1x Samples};
+\node[text width=6cm] at (-3.35,-0.5){2x Samples};
+\node[text width=6cm] at (0.15,-0.5){4x Samples};
+\node at (0,1.8) { \includegraphics[width=0.08\textwidth]{../../ptNew/subLegnd.png} };
+\end{tikzpicture}
+}
+\only<3>{
+\frametitle{Metamodel Details}
+\vspace*{-0.5cm}
+\begin{align*}
+	\textbf{y} &= \widehat{log(F_{MSY})} ~~ -or- ~~ \textbf{y} = \widehat{log(B_0)}\\
+	~\\  
+        \bm{X} &= \left(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{\bar B(0)}\right) \nonumber\\
+	~\\
+	\textbf{y} &= \beta_0 + \bm{X}\bm{\beta} + \bm{v} + \bm{\epsilon} \nonumber \\
+        \bm{v} &\sim N_n(\bm{0}, \tau^2 \bm{R_{\ell}}) \\
+        \bm{\epsilon} &\sim N_n(\bm{0}, \bm{\omega}'\bm{I}) \nonumber
+        %\textbf{y} &= \beta_0 + \bm{\beta}'\bm{X} + f(\bm{x}) + \bm{\epsilon} \nonumber \\
+        %f(\bm{x}) &\sim \text{GP}(0, \tau^2 R(\bm{x}, \bm{x'})) \nonumber \\
+        %\bm{\epsilon} &\sim \text{N}(0, \bm{\omega}'\bm{I}).
+\end{align*}
+\begin{align*}   
+R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \right)
+\end{align*}
+}
+\only<4>{
+\frametitle{Prediction}
+\begin{equation*} %\label{gpYHat} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+        \hat y(\textbf{x}^\star) = \beta_0 + \textbf{x}^\star\bm{\beta} + \textbf{r(x}^\star\textbf{)}'\bm{R}^{-1}_{\bm{\ell}}\Big(\textbf{y}-\big(\beta_0+\bm{X}\bm{\beta}\big)\Big)
+\end{equation*}
+$~$\\
+\begin{equation*} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
+       \hat \sigma^2(\textbf{x}^\star) = \textbf{R(x}^\star, \textbf{x}^\star\textbf{)} - \textbf{r(x}^\star\textbf{)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x}^\star\textbf{)}
+\end{equation*}
+}
+\only<5>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+\node (img) at (-3.5,-1){\includegraphics[width=0.49\textwidth]{../../ddBias/magExpT45N300AS0.1K10.png}};
+\node (img) at (2,-1){\includegraphics[width=0.49\textwidth]{../../ddBias/magFlatT45N150A0-1AS0.1K10N56.png}};
+\node (img) at (5.5,-2){\includegraphics[width=0.2\textwidth]{../../ddBias/legendMagBias.png}};
+\node[text width=6cm] at (-1,2){Contrast};
+\node[text width=6cm] at (4.25,2){No Contrast};
+\end{tikzpicture}
+\end{center}
+}
+\only<6>{
+\begin{center}
+\includegraphics[width=0.5\textwidth]{mariacowCod.png}
+\end{center}
+}
+\only<7>{
+\begin{center}
+\begin{tikzpicture}[overlay]
+\node (img) at (0,0){\includegraphics[width=0.8\textwidth]{schnutePostWOCapTrans.png}};	
+\node[text width=6cm] at (-2.6,2){Logistic};
+\node[text width=6cm] at (-2.35,0){Ricker};
+\node[text width=6cm] at (-2.1,-2){BH};
+\node[text width=12cm] at (0,-4){ \tiny Schnute, J. T., \& Kronlund, A. R. (2002). Estimating salmon stock recruitment relationships from catch and escapement data. Canadian Journal of Fisheries and Aquatic Sciences, 59(3), 433–449. };
+\end{tikzpicture}
+\end{center}
+%\end{center}
+%\begin{center}
+%\includegraphics[width=0.7\textwidth]{../../.././nick/gpBias/crossCovExpT45.png}
+%\end{center}
+}
+\only<8>{
+\begin{center}
+\includegraphics[width=0.7\textwidth]{../../ddBias/rpSpaceww.png}
+\end{center}
+}
+\only<9>{
+%../ddBias/rpTriptic.png
+\begin{center}
+\includegraphics[width=0.7\textwidth]{../../ddBias/rpTriptic.png}
+\end{center}
+}
+\only<10>{
+%../ddBias/rpTriptic.png
+\begin{center}
+\includegraphics[width=\textwidth]{../../ddBias/growthTriptic.png}
+\end{center}
+}
+\end{frame}
+
+%\only<4>{
+%\begin{center}
+% Low Contrast $~~~~~~~~~~~~~~~~~~~~~~$ High Contrast\\
+%\includegraphics[width=0.49\textwidth]{../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png}
+%\includegraphics[width=0.49\textwidth]{../../.././nick/gpBias/directionalBiasPellaExpT45.png}
+%\end{center}
+%}
+%\only<5>{
+%\frametitle{\color{red}Deriso RP-Parameter System}
+%\begin{align*}
+%\frac{B_{MSY}}{\bar B(0)} &= \frac{ \left(\frac{\alpha}{M+F_{MSY}}\right)^\frac{1}{\gamma}-1 }{ \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 } \nonumber\\
+%\alpha &= (M+F_{MSY})\left[ 1-\frac{1}{\gamma}\left(\frac{F_{MSY}}{M+F_{MSY}}\right) \right]^{-\gamma} \label{system}\\
+%\beta  &= \frac{1}{\gamma\bar B(0)}\left( 1-\left(\frac{\alpha}{M}\right)^\frac{1}{\gamma} \right)  \nonumber
+%\end{align*}
+%}
+%\only<6>{
+%\frametitle{Common Discretization}
+%\hspace*{-1cm}
+%\begin{minipage}[h!]{0.64\textwidth}
+%\begin{align*}
+%\frac{dB}{dt} &= P_\theta(B(t)) - C(t)
+%\end{align*}
+%
+%\begin{align*}
+%%\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
+%B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - c(\tau)
+%\end{align*}
+%\end{minipage}
+%\begin{minipage}[h!]{0.24\textwidth}
+%\includegraphics[width=1.9\textwidth]{../plots/eulerTry.png}
+%\end{minipage}
+%}
 
 %%
 %\begin{frame}
@@ -2086,154 +2305,5 @@ R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}
 %}
 %\end{frame}
 %
-%
-\section{End}
-
-%
-\begin{frame}
-\color{red} General Conclusions and future work.
-\end{frame}
-
-%
-\begin{frame}
-\only<1>{
-$~$\\$~$\\
-\begin{minipage}[h!]{0.54\textwidth}
-Many Thanks:\\
-\begin{itemize}
-\item UCSC Advisors %{\color{red}Dr. Marc Mangel}
-\item Collaborators at NOAA
-\item NMFS Sea Grant
-%\item Members of my Committee
-\end{itemize}
-\end{minipage}
-\begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=0.9\textwidth]{rockFish.png}
-\end{minipage}
-
-%\vspace*{-0.5cm}
-\begin{minipage}[h!]{0.69\textwidth}
-\includegraphics[width=\textwidth]{seaGrant-logo.png}
-\end{minipage}
-\begin{minipage}[h!]{0.29\textwidth}
-%\includegraphics[width=\textwidth]{dssc.jpg}
-\includegraphics[width=\textwidth]{slugArms_blank background.png}
-\end{minipage}
-}
-\only<2>{
-$~$\\$~$\\$~$\\
-\includegraphics[width=0.32\textwidth]{../../ptNew/directionalBiasSubPTExpT45Sig0.15Half.png}
-\includegraphics[width=0.32\textwidth]{../../ptNew/directionalBiasSubPTExpT45Sig0.15.png}
-\includegraphics[width=0.32\textwidth]{../../ptNew/directionalBiasSubPTExpT45Sig0.1N600.png}
-%\includegraphics[width=1.5\textwidth]{../../ptNew/subLegnd.png}
-\begin{tikzpicture}[overlay]
-\node[text width=6cm] at (-5.25,4.5){High Contrast PT $\sigma=0.12$ Data};
-\node[text width=6cm] at (-7.15,-0.5){1x Samples};
-\node[text width=6cm] at (-3.35,-0.5){2x Samples};
-\node[text width=6cm] at (0.15,-0.5){4x Samples};
-\node at (0,1.8) { \includegraphics[width=0.08\textwidth]{../../ptNew/subLegnd.png} };
-\end{tikzpicture}
-}
-\only<3>{
-\frametitle{Metamodel Details}
-\vspace*{-0.5cm}
-\begin{align*}
-	\textbf{y} &= \widehat{log(F_{MSY})} ~~ -or- ~~ \textbf{y} = \widehat{log(B_0)}\\
-	~\\  
-        \bm{X} &= \left(\frac{F_{MSY}}{M}, \frac{B_{MSY}}{\bar B(0)}\right) \nonumber\\
-	~\\
-	\textbf{y} &= \beta_0 + \bm{X}\bm{\beta} + \bm{v} + \bm{\epsilon} \nonumber \\
-        \bm{v} &\sim N_n(\bm{0}, \tau^2 \bm{R_{\ell}}) \\
-        \bm{\epsilon} &\sim N_n(\bm{0}, \bm{\omega}'\bm{I}) \nonumber
-        %\textbf{y} &= \beta_0 + \bm{\beta}'\bm{X} + f(\bm{x}) + \bm{\epsilon} \nonumber \\
-        %f(\bm{x}) &\sim \text{GP}(0, \tau^2 R(\bm{x}, \bm{x'})) \nonumber \\
-        %\bm{\epsilon} &\sim \text{N}(0, \bm{\omega}'\bm{I}).
-\end{align*}
-\begin{align*}   
-R(\bm{x}, \bm{x'}) &= \exp\left( \sum_{j=1}^2 \frac{-(x_j-x'_j)^2}{2\ell_j^2} \right)
-\end{align*}
-}
-\only<4>{
-\frametitle{Prediction}
-\begin{equation*} %\label{gpYHat} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
-        \hat y(\textbf{x}^\star) = \beta_0 + \textbf{x}^\star\bm{\beta} + \textbf{r(x}^\star\textbf{)}'\bm{R}^{-1}_{\bm{\ell}}\Big(\textbf{y}-\big(\beta_0+\bm{X}\bm{\beta}\big)\Big)
-\end{equation*}
-$~$\\
-\begin{equation*} %k(x) a n−vector with kν,j (x) = K(x, xj ), for all xj ∈ X
-       \hat \sigma^2(\textbf{x}^\star) = \textbf{R(x}^\star, \textbf{x}^\star\textbf{)} - \textbf{r(x}^\star\textbf{)}'\bm{R}^{-1}_{\bm{\ell}}\textbf{r(x}^\star\textbf{)}
-\end{equation*}
-}
-\only<5>{
-\begin{center}
-\begin{tikzpicture}[overlay]
-\node (img) at (-3.5,-1){\includegraphics[width=0.49\textwidth]{../../ddBias/magExpT45N300AS0.1K10.png}};
-\node (img) at (2,-1){\includegraphics[width=0.49\textwidth]{../../ddBias/magFlatT45N150A0-1AS0.1K10N56.png}};
-\node (img) at (5.5,-2){\includegraphics[width=0.2\textwidth]{../../ddBias/legendMagBias.png}};
-\node[text width=6cm] at (-1,2){Contrast};
-\node[text width=6cm] at (4.25,2){No Contrast};
-\end{tikzpicture}
-\end{center}
-}
-\only<6>{
-\begin{center}
-\includegraphics[width=0.5\textwidth]{mariacowCod.png}
-\end{center}
-}
-\only<7>{
-\begin{center}
-\begin{tikzpicture}[overlay]
-\node (img) at (0,0){\includegraphics[width=0.8\textwidth]{schnutePostWOCapTrans.png}};	
-\node[text width=6cm] at (-2.6,2){Logistic};
-\node[text width=6cm] at (-2.35,0){Ricker};
-\node[text width=6cm] at (-2.1,-2){BH};
-\node[text width=12cm] at (0,-4){ \tiny Schnute, J. T., \& Kronlund, A. R. (2002). Estimating salmon stock recruitment relationships from catch and escapement data. Canadian Journal of Fisheries and Aquatic Sciences, 59(3), 433–449. };
-\end{tikzpicture}
-\end{center}
-%\end{center}
-%\begin{center}
-%\includegraphics[width=0.7\textwidth]{../../.././nick/gpBias/crossCovExpT45.png}
-%\end{center}
-}
-\only<8>{
-\begin{center}
-\includegraphics[width=0.7\textwidth]{../../ddBias/rpSpaceww.png}
-\end{center}
-}
-\end{frame}
-
-%\only<4>{
-%\begin{center}
-% Low Contrast $~~~~~~~~~~~~~~~~~~~~~~$ High Contrast\\
-%\includegraphics[width=0.49\textwidth]{../../.././nick/gpBias/directionalBiasPellaFlatNoQ.png}
-%\includegraphics[width=0.49\textwidth]{../../.././nick/gpBias/directionalBiasPellaExpT45.png}
-%\end{center}
-%}
-%\only<5>{
-%\frametitle{\color{red}Deriso RP-Parameter System}
-%\begin{align*}
-%\frac{B_{MSY}}{\bar B(0)} &= \frac{ \left(\frac{\alpha}{M+F_{MSY}}\right)^\frac{1}{\gamma}-1 }{ \left(\frac{\alpha}{M}\right)^\frac{1}{\gamma}-1 } \nonumber\\
-%\alpha &= (M+F_{MSY})\left[ 1-\frac{1}{\gamma}\left(\frac{F_{MSY}}{M+F_{MSY}}\right) \right]^{-\gamma} \label{system}\\
-%\beta  &= \frac{1}{\gamma\bar B(0)}\left( 1-\left(\frac{\alpha}{M}\right)^\frac{1}{\gamma} \right)  \nonumber
-%\end{align*}
-%}
-%\only<6>{
-%\frametitle{Common Discretization}
-%\hspace*{-1cm}
-%\begin{minipage}[h!]{0.64\textwidth}
-%\begin{align*}
-%\frac{dB}{dt} &= P_\theta(B(t)) - C(t)
-%\end{align*}
-%
-%\begin{align*}
-%%\frac{B(\tau+h)-B(\tau)}{h} &\approx h \left[P_\theta(B(\tau)) - C(\tau)\right]\\
-%B(\tau+1) &\approx B(\tau) + P_\theta(B(\tau)) - c(\tau)
-%\end{align*}
-%\end{minipage}
-%\begin{minipage}[h!]{0.24\textwidth}
-%\includegraphics[width=1.9\textwidth]{../plots/eulerTry.png}
-%\end{minipage}
-%}
-
-
 
 \end{document}
