@@ -16,7 +16,8 @@
 %\usepackage{enumitem}
 
 %\title{Baysian Nonparametric Estimation of ODEs as Applied to the Stock Recruitment Relationship}
-\title{Metamodeling for Bias Estimation of Biological Reference Points Under Two-Parameter SRRs}
+%\title{Metamodeling for Bias Estimation of Biological Reference Points Under Two-Parameter SRRs}
+\title{A Metamodeling Approach for Bias Estimation of Biological Reference Points}
 \author{
 Nick Grunloh
 %\\$~$\\
@@ -110,24 +111,37 @@ Nick Grunloh
 
 %
 \begin{frame}
+	$~$\\
 	\centering
-	\includegraphics[width=0.8\textwidth]{saCycle.png}\footnote{NOAA Fisheries Annual Stock Assessment Report 2020}
+	\begin{tikzpicture}[overlay]
+	\node at (0,0) {\includegraphics[width=0.8\textwidth]{saCycle.png}\footnote{NOAA Fisheries Annual Stock Assessment Report 2020}};
+	\node (a) at (-0.25,-1.65) {};
+	\node (b) at (2.5,-1.65) {};
+	\onslide<2->{
+	\draw[->, line width=1mm] (a) edge[bend right] node[below, near end, text=black]{RPs} (b);
+	}
+	\end{tikzpicture}
 	%*NOAA Fisheries Annual Stock Assessment Report 2020
 \end{frame}
 
 
 
 %
-\begin{frame}{Surplus Production Model General Structure} 
+\begin{frame}{Surplus Production Model General Structure}
+	\centering 
+	\includegraphics[width=0.4\textwidth]{../plots/hakeIndex.png}
+	\includegraphics[width=0.4\textwidth]{../plots/hakeCatch.png}
 	%
         \begin{align*}
-	I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2). \label{resp}
+	I_t = q B_t e^\epsilon ~~~ \epsilon\sim N(0, \sigma^2) \label{resp}\\
+	~\\
+	\frac{dB}{dt} = P(B(t); \bm{\theta}) - Z(t)B(t)
 	\end{align*}
 	
-	%
-	\begin{equation*}
-	\frac{dB}{dt} = P(B(t); \bm{\theta}) - Z(t)B(t). \label{ode}
-	\end{equation*}
+	%%
+	%\begin{equation*}
+	%\frac{dB}{dt} = P(B(t); \bm{\theta}) - Z(t)B(t) \label{ode}
+	%\end{equation*}
 \end{frame}
 
 %
@@ -136,7 +150,7 @@ Nick Grunloh
 	Reference Points:
 	\begin{itemize}
 	\setlength{\itemsep}{5mm}
-	\item Maximum sustainable Yield ($MSY$)
+	\item Maximum Sustainable Yield ($MSY$)
 	\item $F_{MSY}$\footnote[1]{or $\frac{F_{MSY}}{M}$}: Fishing rate to achieve $MSY$
 	\item $\frac{B_{MSY}}{B_0}$: Biomass Depletion when at $MSY$
 	\item Driven by the shape of $P$ as determined by $\theta$.
