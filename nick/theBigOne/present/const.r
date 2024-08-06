@@ -59,3 +59,15 @@ abline(h=0.5, lwd=3)
 curve(1/(x+2), col='red', add=T, lwd=3)
 dev.off()
 
+#
+png("bhRP.png")
+plot(-1, -1, 
+        ylab=TeX("$B_{MSY}/B_0$"),
+        xlab=TeX("$F_{MSY}/M$"),
+        xlim=c(0, 3),
+        ylim=c(0, 1),
+        main="RP Space"
+)
+#abline(h=0.5, lwd=3)
+curve(1/(x+2), col='red', add=T, lwd=3)
+dev.off()

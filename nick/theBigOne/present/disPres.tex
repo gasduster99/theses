@@ -348,51 +348,53 @@ $~$\\
 &\gamma = \frac{W\left(\frac{B^*}{\bar B(0)}\log\left(\frac{B^*}{\bar B(0)}\right)\right)}{\log\left(\frac{B^*}{\bar B(0)}\right)}
 \end{align*}
 }
+%\only<2>{
+%%
+%\begin{align*}\label{ptRP}
+%&F^* = \frac{r}{\gamma}
+%&\frac{B^*}{\bar B(0)} = \left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}
+%\end{align*}
+%
+%%
+%\begin{center}
+%\begin{tikzpicture}[overlay]
+%\node at (-2,-0.5) {\includegraphics[height=0.12\textheight, angle=90]{doubleArrow.png}};
+%%\vspace*{-2cm}
+%\node at (0,-0.5) {Closed-Form Inversion};
+%%\vspace*{-1cm}
+%\node at (2,-0.5) {\includegraphics[height=0.12\textheight, angle=270]{doubleArrow.png}};
+%\end{tikzpicture}
+%\end{center}
+%
+%%
+%$~$\\
+%\begin{align*}
+%&r = \gamma F^*
+%&\gamma = \frac{W\left(\frac{B^*}{\bar B(0)}\log\left(\frac{B^*}{\bar B(0)}\right)\right)}{\log\left(\frac{B^*}{\bar B(0)}\right)}
+%\end{align*}
+%}
 \only<2>{
-%
-\begin{align*}\label{ptRP}
-&F^* = \frac{r}{\gamma}
-&\frac{B^*}{\bar B(0)} = \left(\frac{1}{\gamma}\right)^{\frac{1}{\gamma-1}}
-\end{align*}
-
-%
-\begin{center}
-\begin{tikzpicture}[overlay]
-\node at (-2,-0.5) {\includegraphics[height=0.12\textheight, angle=90]{doubleArrow.png}};
-%\vspace*{-2cm}
-\node at (0,-0.5) {Closed-Form Inversion};
-%\vspace*{-1cm}
-\node at (2,-0.5) {\includegraphics[height=0.12\textheight, angle=270]{doubleArrow.png}};
-\end{tikzpicture}
-\end{center}
-
-%
-$~$\\
-\begin{align*}
-&r = \gamma F^*
-&\gamma = \frac{W\left(\frac{B^*}{\bar B(0)}\log\left(\frac{B^*}{\bar B(0)}\right)\right)}{\log\left(\frac{B^*}{\bar B(0)}\right)}
-\end{align*}
-}
-\only<3>{
 %\hspace{-1cm}
 \begin{equation*}
-\underbrace{\left(F_{MSY}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{PT Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\hat F_{MSY}, \frac{1}{2}\right)}_{\text{Shaefer Estimate}}
+\underbrace{\left(F_{MSY}, \frac{B_{MSY}}{\bar B(0)}\right)}_{\text{PT Truth}} {\text{GP}\atop{\mapsto\atop~}} \underbrace{\left(\hat F_{MSY}, \frac{1}{2}\right)}_{\text{Schaefer Estimate}}
 \end{equation*}
 }
 \end{minipage}
 \begin{minipage}[h!]{0.39\textwidth}
 \begin{center}
 \begin{tikzpicture}[overlay]
+%\only<1>{
+%\node at (0.5,0) {\includegraphics[height=0.65\textheight]{../../ptNew/simplePTDesign.png}};%gpBias/designLineHHardExpT45N150M0.3Wide.png}};
+%}
+%\only<2>{
 \only<1>{
-\node at (0.5,0) {\includegraphics[height=0.65\textheight]{../../ptNew/simplePTDesign.png}};%gpBias/designLineHHardExpT45N150M0.3Wide.png}};
-}
-\only<2>{
 \node at (0.5,-0.2) {\includegraphics[height=0.65\textheight]{../../ptNew/simplePTDesign.png}};
 \node[circle, draw, minimum size=9, inner sep=-2] at (0.6,-1.2){\tiny PT};
 \draw[latex-, very thick,black] (0.6,0.65) -- ++ (0,-1.65); %(0.6,-0.9) -- ++(1.9,2.3);
 \node[circle,fill=red, minimum size=9, inner sep=-2] at (0.6,0.75){\tiny $\ell$};
 }
-\only<3>{
+%\only<3>{
+\only<2>{
 \node at (0.5,-0.1) {\includegraphics[height=0.65\textheight]{../../ptNew/simplePTDesign.png}};
 \node[circle, draw, minimum size=9, inner sep=-2] at (0.6,-1.1){\tiny PT};
 \draw[latex-, very thick,black] (0.6,0.75) -- ++ (0,-1.65); %(0.6,-0.9) -- ++(1.9,2.3);
@@ -405,14 +407,16 @@ $~$\\
 
 %\vspace*{0.5cm}
 \only<1>{
-* Lambert $W$ function inverts $xe^x$ $s.t.$ $W(xe^x)=x$
-}
-
-\only<2>{
 $~$
 
 * Lambert $W$ function inverts $xe^x$ $s.t.$ $W(xe^x)=x$
 }
+
+%\only<2>{
+%$~$
+%
+%* Lambert $W$ function inverts $xe^x$ $s.t.$ $W(xe^x)=x$
+%}
 \end{frame}
 
 %%
@@ -525,11 +529,13 @@ $~$
 \only<2>{
 \begin{minipage}[h!]{0.49\textwidth}
 \begin{itemize}
-\color{red}
+%\color{red}
 \setlength\itemsep{1em}
-\item Only observe upper half
-\item learn about slope at origin from upper biomass range
-\item as contrast increases biases perspective deminishes
+\item Low contrast limits the observation window on production. % the yeild curve observed. %Only observe upper half
+%\item learn about slope at origin from upper biomass range
+\item As contrast increases \\ $F^*$ bias diminishes.
+\item Bias in $\frac{B^*}{B_0}$ remains, but these biases are independent of $F^*$.
+%\item Under the Schaefer Model $\frac{B^*}{B_0}$ is fixed at \frac{1}{2}$; ias  but biases are independent of $F^*$.
 \end{itemize}
 \end{minipage}
 \begin{minipage}[h!]{0.49\textwidth}
@@ -635,6 +641,7 @@ $~$
 %\begin{align*}
 \only<1>{ &\frac{dB}{dt} = P_{BH}(B;[\alpha, \beta]) -(M+F)B\\~\\} %\underbrace{(M+F)}_{Z(t)}B\\} %(M+F)B. \label{schnuteSimple}
 \only<2>{ &\frac{dB}{dt} = \underbrace{P_{BH}(B;[\alpha, \beta]) -MB}_{\text{Surplus Production}} -FB \\~\\} %~~~~\\}
+\only<3>{ &\frac{dB}{dt} = \underbrace{P_{BH}(B;[\alpha, \beta]) -MB}_{\text{Surplus Production}} -FB \\~\\}
 %\end{align*}
 %\begin{equation*}
 &\\
@@ -644,16 +651,19 @@ $~$
 \begin{minipage}[h!]{0.34\textwidth}
 	\only<1>{$~$\\$~$\\\includegraphics[width=1.5\textwidth]{../../gpBias/pBHandM.png}}
 	\only<2>{\includegraphics[width=1.5\textwidth]{../../gpBias/yeildBH.png}}
+	\only<3>{\includegraphics[width=1.5\textwidth]{bhRP.png}}	
 \end{minipage}
 \end{frame}
 
 
 
 %
-\begin{frame}
+\begin{frame}{Three Parameter Schnute Generalization}
+\vspace{-0.25cm}
 \begin{equation*}
 P_s(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}}
 \end{equation*}
+%\vspace{-0.5cm}
 %
 \begin{minipage}[h!]{0.46\textwidth}
         %
@@ -676,7 +686,7 @@ P_s(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}}
         %&\gamma = 1 \Rightarrow  \text{\color{Red}Logistic}
         %\end{align*}
 \end{minipage}
-\begin{minipage}[h!]{0.52\textwidth}
+\begin{minipage}[h!]{0.52\textwidth}	
         \includegraphics[width=1.1\textwidth]{../../gpBias/g3.png} %../../ddBias/designLineColorHHardFlatT30N150WWideN112.png}
 \end{minipage}
 
@@ -715,7 +725,7 @@ P_s(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}}
 %\end{frame}
 
 %
-\begin{frame}
+\begin{frame}{Schnute RPs Challenges}
 
 %{\color{red}
 %some how softly introduce calculation via $F^*$, $B_0$, and $\frac{B^*}{B_0}$. 
@@ -743,7 +753,7 @@ P_s(B;[\alpha, \beta, \gamma]) = \alpha B(1-\beta\gamma B)^{\frac{1}{\gamma}}
 %
 \begin{minipage}[h!]{0.44\textwidth}
 %
-$~$\\$~$\\$~$\\
+$~$\\$~$\\
 \begin{center}
 \begin{tikzpicture}[overlay]
 \node at (0,0.4) { RPs $\mapsto$ $\theta$ };
@@ -784,7 +794,7 @@ $~$\\$~$\\$~$\\\footnote[0]{\tiny Schnute \& Richards (1998). CJFAS.}
 
 
 %
-\begin{frame}
+\begin{frame}{Sudo Inverse Inverse-CDF Sampling}
 %{\color{red}
 %Show approximated $t$ with rugs. explain/relabel $\zeta$. show qq plot.
 %}
@@ -1082,8 +1092,8 @@ $~$\\
 		\item Logistic, Ricker, Beverton-Holt
 	\end{itemize}
 	%however simulation design is not analytical and numerically trechreous. %  allows fully analytical \\RP designs.        \item Novel simulation framework explicitly controlling for \\RP misspecification. % and a useful notion of contrast.
-        \item A stable method of generating simulation designs desite non-analytical 
-	and numerically trechreous RPs$\leftrightarrow\theta$.	
+        \item A stable method of generating simulation designs despite non-analytical 
+	and numerically treacherous RPs$\leftrightarrow\theta$.	
 	\item GP metamodel demonstrates that misspecified BH models enjoy some sense of optimality in RP estimation.
 	\begin{itemize}
 	 	\item Nearly shortest distance RP mapping as mediated by contrast.
@@ -1117,6 +1127,7 @@ $~$\\
 %&\theta' = [\alpha, \beta, \gamma] ~~~ ~~~ {\color{Red} \text{Species Properties: } a_0,~\kappa,~w_\infty,~M}
 \end{align*}
 %{\color{red} bullets of primary points of individual growth and maturity}
+\footnote[0]{\tiny Walters, C. J. (2020). The continuous time Schnute-Deriso delay difference model for age-structured population dynamics, with example application to the Peru anchoveta stock. University of British Columbia.}
 \end{frame}
 
 %
@@ -1212,7 +1223,7 @@ R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}
 %\end{frame}
 
 %
-\begin{frame}
+\begin{frame}{Growth Further Complicates RPs}
 %%
 %\begin{align}
 %\bar{B}(F) &= \frac{1}{\beta\gamma} \left( 1 - \Big(\frac{(F + M) (F + M + \kappa)}{\alpha w(a_s)(F + M + \kr)}\Big)^\gamma\right) \label{BF}\\
@@ -1264,6 +1275,7 @@ R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}
 \end{center}
 
 \end{frame}
+
 
 %
 \begin{frame}
@@ -1342,8 +1354,8 @@ R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}
         \begin{minipage}[h!]{0.39\textwidth}
 	\begin{itemize}
         \setlength\itemsep{1em}
-	\item large $a_s$
-	\item Fishing shocks \\within $a_s$
+	\item Large $a_s$ window.
+	\item Fishing shocks \\within $a_s$ window.
 	\item Repeated shocks \\can lead to chaos.
 	\end{itemize}
 	\end{minipage}
@@ -1374,10 +1386,10 @@ R(B;\alpha, \beta, \gamma) = \alpha B_{t-a_s}(1-\beta\gamma B_{t-a_s})^{\frac{1}
 \begin{itemize}
 	\setlength\itemsep{1em}	
 	\item Recruitment Deviations
-	\item Further metamodeling techniques can expidite the simulation 
+	\item Further metamodeling techniques can expedite the simulation 
 		into more challenging simulation applications.
 	\begin{itemize}
-		\item Targeted aquisition functions 
+		\item Targeted acquisition functions 
 		\item Non-stationarity metamodels
 	\end{itemize}
 \end{itemize}

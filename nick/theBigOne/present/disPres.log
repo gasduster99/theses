@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.2)  4 AUG 2024 12:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.2)  6 AUG 2024 12:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1180,12 +1180,12 @@ Package pdftex.def Info: saCycle.png  used on input line 125.
  [4
 
 ]
-<../plots/hakeIndex.png, id=405, 481.8pt x 481.8pt>
+<../plots/hakeIndex.png, id=406, 481.8pt x 481.8pt>
 File: ../plots/hakeIndex.png Graphic file (type png)
 <use ../plots/hakeIndex.png>
 Package pdftex.def Info: ../plots/hakeIndex.png  used on input line 145.
 (pdftex.def)             Requested size: 122.91406pt x 122.9125pt.
-<../plots/hakeCatch.png, id=406, 481.8pt x 481.8pt>
+<../plots/hakeCatch.png, id=407, 481.8pt x 481.8pt>
 File: ../plots/hakeCatch.png Graphic file (type png)
 <use ../plots/hakeCatch.png>
 Package pdftex.def Info: ../plots/hakeCatch.png  used on input line 145.
@@ -1197,7 +1197,7 @@ Overfull \vbox (1.09999pt too high) detected at line 145
 [5
 
  <../plots/hakeIndex.png> <../plots/hakeCatch.png>]
-<../../advance/plots/yieldRPplusP.png, id=482, 481.8pt x 481.8pt>
+<../../advance/plots/yieldRPplusP.png, id=483, 481.8pt x 481.8pt>
 File: ../../advance/plots/yieldRPplusP.png Graphic file (type png)
 <use ../../advance/plots/yieldRPplusP.png>
 Package pdftex.def Info: ../../advance/plots/yieldRPplusP.png  used on input li
@@ -1228,8 +1228,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 198--198
 
 [7
 
- <./hatchRP.png (PNG copy)>]
-<sRP.png, id=620, 481.8pt x 481.8pt>
+ <./hatchRP.png>]
+<sRP.png, id=621, 481.8pt x 481.8pt>
 File: sRP.png Graphic file (type png)
 <use sRP.png>
 Package pdftex.def Info: sRP.png  used on input line 198.
@@ -1247,7 +1247,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 198--198
 [8
 
  <./sRP.png>]
-<sbhRP.png, id=688, 481.8pt x 481.8pt>
+<sbhRP.png, id=690, 481.8pt x 481.8pt>
 File: sbhRP.png Graphic file (type png)
 <use sbhRP.png>
 Package pdftex.def Info: sbhRP.png  used on input line 198.
@@ -1264,8 +1264,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 198--198
 
 [9
 
- <./sbhRP.png (PNG copy)>]
-<cjasFig.png, id=755, 433.1382pt x 434.5836pt>
+ <./sbhRP.png>]
+<cjasFig.png, id=758, 433.1382pt x 434.5836pt>
 File: cjasFig.png Graphic file (type png)
 <use cjasFig.png>
 Package pdftex.def Info: cjasFig.png  used on input line 198.
@@ -1297,7 +1297,7 @@ n/10.95 (\OT1/mathkerncmss/m/sl/10.95 t\OT1/cmss/m/n/10.95 )
 [12
 
 ]
-<../../ptNew/g5S.png, id=961, 481.8pt x 481.8pt>
+<../../ptNew/g5S.png, id=962, 481.8pt x 481.8pt>
 File: ../../ptNew/g5S.png Graphic file (type png)
 <use ../../ptNew/g5S.png>
 Package pdftex.def Info: ../../ptNew/g5S.png  used on input line 292.
@@ -1309,12 +1309,12 @@ Overfull \hbox (13.52165pt too wide) in paragraph at lines 292--292
 
 [13
 
- <../../ptNew/g5S.png (PNG copy)>]
+ <../../ptNew/g5S.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 292--292
 
  []
 
-<../../ptNew/g5PT.png, id=1031, 481.8pt x 481.8pt>
+<../../ptNew/g5PT.png, id=1034, 481.8pt x 481.8pt>
 File: ../../ptNew/g5PT.png Graphic file (type png)
 <use ../../ptNew/g5PT.png>
 Package pdftex.def Info: ../../ptNew/g5PT.png  used on input line 292.
@@ -1326,264 +1326,265 @@ Overfull \hbox (13.52165pt too wide) in paragraph at lines 292--292
 
 [14
 
- <../../ptNew/g5PT.png (PNG copy)>]
-<doubleArrow.png, id=1102, 385.44pt x 385.44pt>
+ <../../ptNew/g5PT.png>]
+<doubleArrow.png, id=1104, 385.44pt x 385.44pt>
 File: doubleArrow.png Graphic file (type png)
 <use doubleArrow.png>
-Package pdftex.def Info: doubleArrow.png  used on input line 416.
+Package pdftex.def Info: doubleArrow.png  used on input line 420.
 (pdftex.def)             Requested size: 26.87769pt x 26.8819pt.
 File: doubleArrow.png Graphic file (type png)
 <use doubleArrow.png>
-Package pdftex.def Info: doubleArrow.png  used on input line 416.
+Package pdftex.def Info: doubleArrow.png  used on input line 420.
 (pdftex.def)             Requested size: 26.87769pt x 26.8819pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 416--416
+Underfull \hbox (badness 10000) in paragraph at lines 420--420
 
  []
 
-<../../ptNew/simplePTDesign.png, id=1103, 481.8pt x 481.8pt>
+<../../ptNew/simplePTDesign.png, id=1105, 481.8pt x 481.8pt>
 File: ../../ptNew/simplePTDesign.png Graphic file (type png)
 <use ../../ptNew/simplePTDesign.png>
-Package pdftex.def Info: ../../ptNew/simplePTDesign.png  used on input line 416
+Package pdftex.def Info: ../../ptNew/simplePTDesign.png  used on input line 420
 .
 (pdftex.def)             Requested size: 145.61446pt x 145.61488pt.
 [15
 
  <./doubleArrow.png> <../../ptNew/simplePTDesign.png>]
-File: doubleArrow.png Graphic file (type png)
-<use doubleArrow.png>
-Package pdftex.def Info: doubleArrow.png  used on input line 416.
-(pdftex.def)             Requested size: 26.87769pt x 26.8819pt.
-File: doubleArrow.png Graphic file (type png)
-<use doubleArrow.png>
-Package pdftex.def Info: doubleArrow.png  used on input line 416.
-(pdftex.def)             Requested size: 26.87769pt x 26.8819pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 416--416
-
- []
+Package amsmath Warning: Foreign command \atop;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 420.
 
 File: ../../ptNew/simplePTDesign.png Graphic file (type png)
 <use ../../ptNew/simplePTDesign.png>
-Package pdftex.def Info: ../../ptNew/simplePTDesign.png  used on input line 416
+Package pdftex.def Info: ../../ptNew/simplePTDesign.png  used on input line 420
 .
 (pdftex.def)             Requested size: 145.61446pt x 145.61488pt.
 [16
 
 ]
-
-Package amsmath Warning: Foreign command \atop;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 416.
-
-File: ../../ptNew/simplePTDesign.png Graphic file (type png)
-<use ../../ptNew/simplePTDesign.png>
-Package pdftex.def Info: ../../ptNew/simplePTDesign.png  used on input line 416
-.
-(pdftex.def)             Requested size: 145.61446pt x 145.61488pt.
-[17
-
-]
-<../../ptNew/relFish.png, id=1305, 481.8pt x 481.8pt>
+<../../ptNew/relFish.png, id=1241, 481.8pt x 481.8pt>
 File: ../../ptNew/relFish.png Graphic file (type png)
 <use ../../ptNew/relFish.png>
-Package pdftex.def Info: ../../ptNew/relFish.png  used on input line 470.
+Package pdftex.def Info: ../../ptNew/relFish.png  used on input line 474.
 (pdftex.def)             Requested size: 156.71613pt x 156.71547pt.
 
-Overfull \hbox (52.23871pt too wide) in paragraph at lines 470--470
+Overfull \hbox (52.23871pt too wide) in paragraph at lines 474--474
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 470--470
+Underfull \hbox (badness 10000) in paragraph at lines 474--474
 
  []
 
-[18
+[17
 
  <../../ptNew/relFish.png>]
-<../../ptNew/relSeries.png, id=1373, 481.8pt x 481.8pt>
+<../../ptNew/relSeries.png, id=1310, 481.8pt x 481.8pt>
 File: ../../ptNew/relSeries.png Graphic file (type png)
 <use ../../ptNew/relSeries.png>
-Package pdftex.def Info: ../../ptNew/relSeries.png  used on input line 470.
+Package pdftex.def Info: ../../ptNew/relSeries.png  used on input line 474.
 (pdftex.def)             Requested size: 156.71613pt x 156.71547pt.
- [19
+ [18
 
  <../../ptNew/relSeries.png>]
-<../../ptNew/directionalBiasSubPTExpT45MinCon.png, id=1441, 481.8pt x 481.8pt>
+<../../ptNew/directionalBiasSubPTExpT45MinCon.png, id=1378, 481.8pt x 481.8pt>
 File: ../../ptNew/directionalBiasSubPTExpT45MinCon.png Graphic file (type png)
 <use ../../ptNew/directionalBiasSubPTExpT45MinCon.png>
 Package pdftex.def Info: ../../ptNew/directionalBiasSubPTExpT45MinCon.png  used
- on input line 493.
+ on input line 497.
 (pdftex.def)             Requested size: 148.72993pt x 148.7242pt.
 
-Overfull \hbox (13.52165pt too wide) in paragraph at lines 493--493
+Overfull \hbox (13.52165pt too wide) in paragraph at lines 497--497
 [][] 
  []
 
-<../../ptNew/directionalBiasSubPTFlatT30.png, id=1442, 481.8pt x 481.8pt>
+<../../ptNew/directionalBiasSubPTFlatT30.png, id=1379, 481.8pt x 481.8pt>
 File: ../../ptNew/directionalBiasSubPTFlatT30.png Graphic file (type png)
 <use ../../ptNew/directionalBiasSubPTFlatT30.png>
 Package pdftex.def Info: ../../ptNew/directionalBiasSubPTFlatT30.png  used on i
-nput line 493.
+nput line 497.
 (pdftex.def)             Requested size: 148.72993pt x 148.7242pt.
 
-Overfull \hbox (13.52165pt too wide) in paragraph at lines 493--493
+Overfull \hbox (13.52165pt too wide) in paragraph at lines 497--497
 [][] 
  []
 
-<../../ptNew/subLegnd.png, id=1443, 150.5625pt x 401.5pt>
+<../../ptNew/subLegnd.png, id=1380, 150.5625pt x 401.5pt>
 File: ../../ptNew/subLegnd.png Graphic file (type png)
 <use ../../ptNew/subLegnd.png>
-Package pdftex.def Info: ../../ptNew/subLegnd.png  used on input line 493.
+Package pdftex.def Info: ../../ptNew/subLegnd.png  used on input line 497.
 (pdftex.def)             Requested size: 41.48242pt x 110.61807pt.
 
-Overfull \hbox (13.82747pt too wide) in paragraph at lines 493--493
+Overfull \hbox (13.82747pt too wide) in paragraph at lines 497--497
 [][] 
  []
 
-[20
+[19
 
  <../../ptNew/directionalBiasSubPTExpT45MinCon.png> <../../ptNew/directionalBia
 sSubPTFlatT30.png> <../../ptNew/subLegnd.png>]
-<../../ptNew/srrCompareFlatT30X0.12Z0.573.png, id=1514, 481.8pt x 481.8pt>
+<../../ptNew/srrCompareFlatT30X0.12Z0.573.png, id=1450, 481.8pt x 481.8pt>
 File: ../../ptNew/srrCompareFlatT30X0.12Z0.573.png Graphic file (type png)
 <use ../../ptNew/srrCompareFlatT30X0.12Z0.573.png>
 Package pdftex.def Info: ../../ptNew/srrCompareFlatT30X0.12Z0.573.png  used on 
-input line 540.
+input line 546.
 (pdftex.def)             Requested size: 61.45703pt x 61.45258pt.
-<../../ptNew/srrCompareFlatT30X0.674Z0.599.png, id=1515, 481.8pt x 481.8pt>
+<../../ptNew/srrCompareFlatT30X0.674Z0.599.png, id=1451, 481.8pt x 481.8pt>
 File: ../../ptNew/srrCompareFlatT30X0.674Z0.599.png Graphic file (type png)
 <use ../../ptNew/srrCompareFlatT30X0.674Z0.599.png>
 Package pdftex.def Info: ../../ptNew/srrCompareFlatT30X0.674Z0.599.png  used on
- input line 540.
+ input line 546.
 (pdftex.def)             Requested size: 61.45703pt x 61.45258pt.
-<../../ptNew/srrCompareFlatT30X0.096Z0.22.png, id=1516, 481.8pt x 481.8pt>
+<../../ptNew/srrCompareFlatT30X0.096Z0.22.png, id=1452, 481.8pt x 481.8pt>
 File: ../../ptNew/srrCompareFlatT30X0.096Z0.22.png Graphic file (type png)
 <use ../../ptNew/srrCompareFlatT30X0.096Z0.22.png>
 Package pdftex.def Info: ../../ptNew/srrCompareFlatT30X0.096Z0.22.png  used on 
-input line 540.
+input line 546.
 (pdftex.def)             Requested size: 61.45703pt x 61.45258pt.
-<../../ptNew/srrCompareFlatT30X0.699Z0.201.png, id=1517, 481.8pt x 481.8pt>
+<../../ptNew/srrCompareFlatT30X0.699Z0.201.png, id=1453, 481.8pt x 481.8pt>
 File: ../../ptNew/srrCompareFlatT30X0.699Z0.201.png Graphic file (type png)
 <use ../../ptNew/srrCompareFlatT30X0.699Z0.201.png>
 Package pdftex.def Info: ../../ptNew/srrCompareFlatT30X0.699Z0.201.png  used on
- input line 540.
+ input line 546.
 (pdftex.def)             Requested size: 61.45703pt x 61.45258pt.
 File: ../../ptNew/directionalBiasSubPTFlatT30.png Graphic file (type png)
 <use ../../ptNew/directionalBiasSubPTFlatT30.png>
 Package pdftex.def Info: ../../ptNew/directionalBiasSubPTFlatT30.png  used on i
-nput line 540.
+nput line 546.
 (pdftex.def)             Requested size: 199.73653pt x 199.73007pt.
- [21
+ [20
 
  <../../ptNew/srrCompareFlatT30X0.12Z0.573.png> <../../ptNew/srrCompareFlatT30X
 0.674Z0.599.png> <../../ptNew/srrCompareFlatT30X0.096Z0.22.png> <../../ptNew/sr
 rCompareFlatT30X0.699Z0.201.png>]
-<../../ptNew/contrastTest3.png, id=1589, 481.8pt x 481.8pt>
+<../../ptNew/contrastTest3.png, id=1526, 481.8pt x 481.8pt>
 File: ../../ptNew/contrastTest3.png Graphic file (type png)
 <use ../../ptNew/contrastTest3.png>
-Package pdftex.def Info: ../../ptNew/contrastTest3.png  used on input line 540.
+Package pdftex.def Info: ../../ptNew/contrastTest3.png  used on input line 546.
 
 (pdftex.def)             Requested size: 165.632pt x 165.62569pt.
 
-Overfull \hbox (15.05829pt too wide) in paragraph at lines 540--540
+Overfull \hbox (15.05829pt too wide) in paragraph at lines 546--546
 [][] 
  []
 
-[22
+[21
 
- <../../ptNew/contrastTest3.png>] [23
+ <../../ptNew/contrastTest3.png>] [22
 
-] (./disPres.toc) [24
+] (./disPres.toc) [23
 
 ]
-<../../gpBias/pBHandM.png, id=1795, 481.8pt x 481.8pt>
+<../../gpBias/pBHandM.png, id=1730, 481.8pt x 481.8pt>
 File: ../../gpBias/pBHandM.png Graphic file (type png)
 <use ../../gpBias/pBHandM.png>
-Package pdftex.def Info: ../../gpBias/pBHandM.png  used on input line 648.
+Package pdftex.def Info: ../../gpBias/pBHandM.png  used on input line 656.
 (pdftex.def)             Requested size: 156.71613pt x 156.71547pt.
 
-Overfull \hbox (52.23871pt too wide) in paragraph at lines 648--648
+Overfull \hbox (52.23871pt too wide) in paragraph at lines 656--656
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 648--648
+Underfull \hbox (badness 10000) in paragraph at lines 656--656
+
+ []
+
+[24
+
+ <../../gpBias/pBHandM.png (PNG copy)>]
+<../../gpBias/yeildBH.png, id=1799, 481.8pt x 481.8pt>
+File: ../../gpBias/yeildBH.png Graphic file (type png)
+<use ../../gpBias/yeildBH.png>
+Package pdftex.def Info: ../../gpBias/yeildBH.png  used on input line 656.
+(pdftex.def)             Requested size: 156.71613pt x 156.71547pt.
+
+Overfull \hbox (52.23871pt too wide) in paragraph at lines 656--656
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 656--656
 
  []
 
 [25
 
- <../../gpBias/pBHandM.png (PNG copy)>]
-<../../gpBias/yeildBH.png, id=1862, 481.8pt x 481.8pt>
-File: ../../gpBias/yeildBH.png Graphic file (type png)
-<use ../../gpBias/yeildBH.png>
-Package pdftex.def Info: ../../gpBias/yeildBH.png  used on input line 648.
+ <../../gpBias/yeildBH.png>]
+<bhRP.png, id=1867, 481.8pt x 481.8pt>
+File: bhRP.png Graphic file (type png)
+<use bhRP.png>
+Package pdftex.def Info: bhRP.png  used on input line 656.
 (pdftex.def)             Requested size: 156.71613pt x 156.71547pt.
 
-Overfull \hbox (52.23871pt too wide) in paragraph at lines 648--648
+Overfull \hbox (52.23871pt too wide) in paragraph at lines 656--656
 [][] 
  []
 
 [26
 
- <../../gpBias/yeildBH.png>]
-<../../gpBias/g3.png, id=1930, 481.8pt x 481.8pt>
+ <./bhRP.png>]
+<../../gpBias/g3.png, id=1935, 481.8pt x 481.8pt>
 File: ../../gpBias/g3.png Graphic file (type png)
 <use ../../gpBias/g3.png>
-Package pdftex.def Info: ../../gpBias/g3.png  used on input line 692.
+Package pdftex.def Info: ../../gpBias/g3.png  used on input line 702.
 (pdftex.def)             Requested size: 175.77222pt x 175.77098pt.
 
-Overfull \hbox (15.98018pt too wide) in paragraph at lines 692--692
+Overfull \hbox (15.98018pt too wide) in paragraph at lines 702--702
 [][] 
+ []
+
+
+Overfull \vbox (9.47969pt too high) detected at line 702
  []
 
 [27
 
  <../../gpBias/g3.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 783--783
+Underfull \hbox (badness 10000) in paragraph at lines 793--793
 
  []
 
 File: doubleArrow.png Graphic file (type png)
 <use doubleArrow.png>
-Package pdftex.def Info: doubleArrow.png  used on input line 783.
+Package pdftex.def Info: doubleArrow.png  used on input line 793.
 (pdftex.def)             Requested size: 26.87769pt x 26.8819pt.
 File: doubleArrow.png Graphic file (type png)
 <use doubleArrow.png>
-Package pdftex.def Info: doubleArrow.png  used on input line 783.
+Package pdftex.def Info: doubleArrow.png  used on input line 793.
 (pdftex.def)             Requested size: 26.87769pt x 26.8819pt.
 [28
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 783--783
+Underfull \hbox (badness 10000) in paragraph at lines 793--793
 
  []
 
 File: doubleArrow.png Graphic file (type png)
 <use doubleArrow.png>
-Package pdftex.def Info: doubleArrow.png  used on input line 783.
+Package pdftex.def Info: doubleArrow.png  used on input line 793.
 (pdftex.def)             Requested size: 26.87769pt x 26.8819pt.
 File: doubleArrow.png Graphic file (type png)
 <use doubleArrow.png>
-Package pdftex.def Info: doubleArrow.png  used on input line 783.
+Package pdftex.def Info: doubleArrow.png  used on input line 793.
 (pdftex.def)             Requested size: 26.87769pt x 26.8819pt.
 [29
 
 ]
-<../../gpBias/zetaTitle.png, id=2133, 481.8pt x 481.8pt>
+<../../gpBias/zetaTitle.png, id=2136, 481.8pt x 481.8pt>
 File: ../../gpBias/zetaTitle.png Graphic file (type png)
 <use ../../gpBias/zetaTitle.png>
-Package pdftex.def Info: ../../gpBias/zetaTitle.png  used on input line 838.
+Package pdftex.def Info: ../../gpBias/zetaTitle.png  used on input line 848.
 (pdftex.def)             Requested size: 162.24951pt x 162.24393pt.
 
-Overfull \hbox (27.04123pt too wide) in paragraph at lines 838--838
+Overfull \hbox (27.04123pt too wide) in paragraph at lines 848--848
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 838--838
+Underfull \hbox (badness 10000) in paragraph at lines 848--848
 
  []
 
@@ -1591,89 +1592,89 @@ Underfull \hbox (badness 10000) in paragraph at lines 838--838
 
  <../../gpBias/zetaTitle.png>]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <8> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 838.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 848.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 838.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 848.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 838.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 848.
 
-<../../gpBias/zetaPlusPlus.png, id=2200, 481.8pt x 481.8pt>
+<../../gpBias/zetaPlusPlus.png, id=2205, 481.8pt x 481.8pt>
 File: ../../gpBias/zetaPlusPlus.png Graphic file (type png)
 <use ../../gpBias/zetaPlusPlus.png>
-Package pdftex.def Info: ../../gpBias/zetaPlusPlus.png  used on input line 838.
+Package pdftex.def Info: ../../gpBias/zetaPlusPlus.png  used on input line 848.
 
 (pdftex.def)             Requested size: 162.24951pt x 162.24393pt.
 
-Overfull \hbox (27.04123pt too wide) in paragraph at lines 838--838
+Overfull \hbox (27.04123pt too wide) in paragraph at lines 848--848
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 838--838
+Underfull \hbox (badness 10000) in paragraph at lines 848--848
 
  []
 
 [31
 
  <../../gpBias/zetaPlusPlus.png (PNG copy)>]
-<../../gpBias/qqUnif.png, id=2269, 481.8pt x 481.8pt>
+<../../gpBias/qqUnif.png, id=2274, 481.8pt x 481.8pt>
 File: ../../gpBias/qqUnif.png Graphic file (type png)
 <use ../../gpBias/qqUnif.png>
-Package pdftex.def Info: ../../gpBias/qqUnif.png  used on input line 838.
+Package pdftex.def Info: ../../gpBias/qqUnif.png  used on input line 848.
 (pdftex.def)             Requested size: 162.24951pt x 162.24393pt.
 
-Overfull \hbox (27.04123pt too wide) in paragraph at lines 838--838
+Overfull \hbox (27.04123pt too wide) in paragraph at lines 848--848
 [][] 
  []
 
 [32
 
  <../../gpBias/qqUnif.png (PNG copy)>]
-<../../ddBias/designLineColorHHardFlatT30N150WWideN112.png, id=2337, 481.8pt x 
+<../../ddBias/designLineColorHHardFlatT30N150WWideN112.png, id=2341, 481.8pt x 
 481.8pt>
 File: ../../ddBias/designLineColorHHardFlatT30N150WWideN112.png Graphic file (t
 ype png)
 <use ../../ddBias/designLineColorHHardFlatT30N150WWideN112.png>
 Package pdftex.def Info: ../../ddBias/designLineColorHHardFlatT30N150WWideN112.
-png  used on input line 913.
+png  used on input line 923.
 (pdftex.def)             Requested size: 156.81104pt x 156.81682pt.
 
-Overfull \hbox (21.60275pt too wide) in paragraph at lines 913--913
+Overfull \hbox (21.60275pt too wide) in paragraph at lines 923--923
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 913--913
+Underfull \hbox (badness 10000) in paragraph at lines 923--923
 
  []
 
 [33
 
  <../../ddBias/designLineColorHHardFlatT30N150WWideN112.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 913--913
+Underfull \hbox (badness 10000) in paragraph at lines 923--923
 
  []
 
-<../../gpBias/designLineHHardExpT45N150M0.3Wide.png, id=2404, 481.8pt x 481.8pt
+<../../gpBias/designLineHHardExpT45N150M0.3Wide.png, id=2409, 481.8pt x 481.8pt
 >
 File: ../../gpBias/designLineHHardExpT45N150M0.3Wide.png Graphic file (type png
 )
 <use ../../gpBias/designLineHHardExpT45N150M0.3Wide.png>
 Package pdftex.def Info: ../../gpBias/designLineHHardExpT45N150M0.3Wide.png  us
-ed on input line 913.
+ed on input line 923.
 (pdftex.def)             Requested size: 156.81104pt x 156.81682pt.
 [34
 
  <../../gpBias/designLineHHardExpT45N150M0.3Wide.png>]
-<../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png, id=2474, 481.8p
+<../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png, id=2477, 481.8p
 t x 481.8pt>
 File: ../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png Graphic fil
 e (type png)
 <use ../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png>
 Package pdftex.def Info: ../../gpBias/directionalBiasSchnuteSubTitleExpT45N150W
-ide.png  used on input line 987.
+ide.png  used on input line 997.
 (pdftex.def)             Requested size: 206.0966pt x 206.1026pt.
  [35
 
@@ -1682,15 +1683,15 @@ File: ../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png Graphic fil
 e (type png)
 <use ../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png>
 Package pdftex.def Info: ../../gpBias/directionalBiasSchnuteSubTitleExpT45N150W
-ide.png  used on input line 987.
+ide.png  used on input line 997.
 (pdftex.def)             Requested size: 206.0966pt x 206.1026pt.
-<../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png, id=2542, 481.8pt x 48
+<../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png, id=2547, 481.8pt x 48
 1.8pt>
 File: ../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png Graphic file (typ
 e png)
 <use ../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png>
 Package pdftex.def Info: ../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.pn
-g  used on input line 987.
+g  used on input line 997.
 (pdftex.def)             Requested size: 86.72025pt x 86.72025pt.
  [36
 
@@ -1699,32 +1700,32 @@ File: ../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png Graphic fil
 e (type png)
 <use ../../gpBias/directionalBiasSchnuteSubTitleExpT45N150Wide.png>
 Package pdftex.def Info: ../../gpBias/directionalBiasSchnuteSubTitleExpT45N150W
-ide.png  used on input line 987.
+ide.png  used on input line 997.
 (pdftex.def)             Requested size: 206.0966pt x 206.1026pt.
 File: ../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png Graphic file (typ
 e png)
 <use ../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.png>
 Package pdftex.def Info: ../../gpBias/yeildCurveTruthExpT45N150WideX2.5Z0.45.pn
-g  used on input line 987.
+g  used on input line 997.
 (pdftex.def)             Requested size: 86.72025pt x 86.72025pt.
-<../../gpBias/yeildCurveFitExpT45N150WideX2.5Z0.45.png, id=2609, 481.8pt x 481.
+<../../gpBias/yeildCurveFitExpT45N150WideX2.5Z0.45.png, id=2614, 481.8pt x 481.
 8pt>
 File: ../../gpBias/yeildCurveFitExpT45N150WideX2.5Z0.45.png Graphic file (type 
 png)
 <use ../../gpBias/yeildCurveFitExpT45N150WideX2.5Z0.45.png>
 Package pdftex.def Info: ../../gpBias/yeildCurveFitExpT45N150WideX2.5Z0.45.png 
- used on input line 987.
+ used on input line 997.
 (pdftex.def)             Requested size: 86.72025pt x 86.72025pt.
  [37
 
  <../../gpBias/yeildCurveFitExpT45N150WideX2.5Z0.45.png>]
 <../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png, id=2
-680, 481.8pt x 481.8pt>
+683, 481.8pt x 481.8pt>
 File: ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png 
 Graphic file (type png)
 <use ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png>
 Package pdftex.def Info: ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT3
-0N150WWideN112.png  used on input line 1062.
+0N150WWideN112.png  used on input line 1072.
 (pdftex.def)             Requested size: 206.0966pt x 206.1026pt.
  [38
 
@@ -1733,15 +1734,15 @@ File: ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png
 Graphic file (type png)
 <use ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png>
 Package pdftex.def Info: ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT3
-0N150WWideN112.png  used on input line 1062.
+0N150WWideN112.png  used on input line 1072.
 (pdftex.def)             Requested size: 206.0966pt x 206.1026pt.
-<../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.55.png, id=2749, 481
+<../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.55.png, id=2753, 481
 .8pt x 481.8pt>
 File: ../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.55.png Graphic 
 file (type png)
 <use ../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.55.png>
 Package pdftex.def Info: ../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X
-3Z0.55.png  used on input line 1062.
+3Z0.55.png  used on input line 1072.
 (pdftex.def)             Requested size: 86.72025pt x 86.72025pt.
  [39
 
@@ -1750,21 +1751,21 @@ File: ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png
 Graphic file (type png)
 <use ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png>
 Package pdftex.def Info: ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT3
-0N150WWideN112.png  used on input line 1062.
+0N150WWideN112.png  used on input line 1072.
 (pdftex.def)             Requested size: 206.0966pt x 206.1026pt.
 File: ../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.55.png Graphic 
 file (type png)
 <use ../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.55.png>
 Package pdftex.def Info: ../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X
-3Z0.55.png  used on input line 1062.
+3Z0.55.png  used on input line 1072.
 (pdftex.def)             Requested size: 86.72025pt x 86.72025pt.
-<../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.55.png, id=2817, 481.8
+<../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.55.png, id=2821, 481.8
 pt x 481.8pt>
 File: ../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.55.png Graphic fi
 le (type png)
 <use ../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.55.png>
 Package pdftex.def Info: ../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z
-0.55.png  used on input line 1062.
+0.55.png  used on input line 1072.
 (pdftex.def)             Requested size: 86.72025pt x 86.72025pt.
  [40
 
@@ -1773,15 +1774,15 @@ File: ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png
 Graphic file (type png)
 <use ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png>
 Package pdftex.def Info: ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT3
-0N150WWideN112.png  used on input line 1062.
+0N150WWideN112.png  used on input line 1072.
 (pdftex.def)             Requested size: 206.0966pt x 206.1026pt.
-<../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png, id=2885, 481
+<../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png, id=2890, 481
 .8pt x 481.8pt>
 File: ../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png Graphic 
 file (type png)
 <use ../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png>
 Package pdftex.def Info: ../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X
-3Z0.35.png  used on input line 1062.
+3Z0.35.png  used on input line 1072.
 (pdftex.def)             Requested size: 86.72025pt x 86.72025pt.
 
 [41
@@ -1791,39 +1792,39 @@ File: ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png
 Graphic file (type png)
 <use ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT30N150WWideN112.png>
 Package pdftex.def Info: ../../gpBias/directionalBiasSchnuteSubSpaceHHardFlatT3
-0N150WWideN112.png  used on input line 1062.
+0N150WWideN112.png  used on input line 1072.
 (pdftex.def)             Requested size: 206.0966pt x 206.1026pt.
 File: ../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png Graphic 
 file (type png)
 <use ../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X3Z0.35.png>
 Package pdftex.def Info: ../../gpBias/yeildCurveTruthHHardFlatT30N150WWideN112X
-3Z0.35.png  used on input line 1062.
+3Z0.35.png  used on input line 1072.
 (pdftex.def)             Requested size: 86.72025pt x 86.72025pt.
-<../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.35.png, id=2953, 481.8
+<../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.35.png, id=2958, 481.8
 pt x 481.8pt>
 File: ../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.35.png Graphic fi
 le (type png)
 <use ../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.35.png>
 Package pdftex.def Info: ../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z
-0.35.png  used on input line 1062.
+0.35.png  used on input line 1072.
 (pdftex.def)             Requested size: 86.72025pt x 86.72025pt.
 
 [42
 
  <../../gpBias/yeildCurveFitHHardFlatT30N150WWideN112X3Z0.35.png>]
-<../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png, id=3020, 
+<../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png, id=3025, 
 481.8pt x 481.8pt>
 File: ../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png Graph
 ic file (type png)
 <use ../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png>
 Package pdftex.def Info: ../../gpBias/directionalBiasSchnuteSubHHardFlatT30N150
-WWideN112.png  used on input line 1072.
+WWideN112.png  used on input line 1082.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
 File: ../../ddBias/designLineColorHHardFlatT30N150WWideN112.png Graphic file (t
 ype png)
 <use ../../ddBias/designLineColorHHardFlatT30N150WWideN112.png>
 Package pdftex.def Info: ../../ddBias/designLineColorHHardFlatT30N150WWideN112.
-png  used on input line 1072.
+png  used on input line 1082.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
  [43
 
@@ -1835,36 +1836,36 @@ png  used on input line 1072.
 ] [46
 
 ]
-<../plots/vbOpt.png, id=3293, 481.8pt x 481.8pt>
+<../plots/vbOpt.png, id=3296, 481.8pt x 481.8pt>
 File: ../plots/vbOpt.png Graphic file (type png)
 <use ../plots/vbOpt.png>
-Package pdftex.def Info: ../plots/vbOpt.png  used on input line 1163.
+Package pdftex.def Info: ../plots/vbOpt.png  used on input line 1174.
 (pdftex.def)             Requested size: 172.3887pt x 172.38922pt.
 
-Overfull \hbox (15.67256pt too wide) in paragraph at lines 1163--1163
+Overfull \hbox (15.67256pt too wide) in paragraph at lines 1174--1174
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1163--1163
+Underfull \hbox (badness 10000) in paragraph at lines 1174--1174
 
  []
 
 [47
 
  <../plots/vbOpt.png>]
-<../../ddBias/vbCurves.png, id=3361, 481.8pt x 481.8pt>
+<../../ddBias/vbCurves.png, id=3365, 481.8pt x 481.8pt>
 File: ../../ddBias/vbCurves.png Graphic file (type png)
 <use ../../ddBias/vbCurves.png>
-Package pdftex.def Info: ../../ddBias/vbCurves.png  used on input line 1163.
+Package pdftex.def Info: ../../ddBias/vbCurves.png  used on input line 1174.
 (pdftex.def)             Requested size: 172.3887pt x 172.38922pt.
 
-Overfull \hbox (15.67256pt too wide) in paragraph at lines 1163--1163
+Overfull \hbox (15.67256pt too wide) in paragraph at lines 1174--1174
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1163--1163
+Underfull \hbox (badness 10000) in paragraph at lines 1174--1174
 
  []
 
@@ -1873,26 +1874,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 1163--1163
  <../../ddBias/vbCurves.png>]
 File: ../../gpBias/g3.png Graphic file (type png)
 <use ../../gpBias/g3.png>
-Package pdftex.def Info: ../../gpBias/g3.png  used on input line 1207.
+Package pdftex.def Info: ../../gpBias/g3.png  used on input line 1218.
 (pdftex.def)             Requested size: 175.77222pt x 175.77098pt.
 
-Overfull \hbox (15.98018pt too wide) in paragraph at lines 1207--1207
+Overfull \hbox (15.98018pt too wide) in paragraph at lines 1218--1218
 [][] 
  []
 
 
-Overfull \vbox (9.47969pt too high) detected at line 1207
+Overfull \vbox (9.47969pt too high) detected at line 1218
  []
 
 [49
 
 ]
-Overfull \hbox (21.1092pt too wide) detected at line 1266
+Overfull \hbox (21.1092pt too wide) detected at line 1277
 []
  []
 
 
-Overfull \hbox (1.27776pt too wide) in alignment at lines 1266--1266
+Overfull \hbox (1.27776pt too wide) in alignment at lines 1277--1277
 [] []
  []
 
@@ -1901,7 +1902,7 @@ Overfull \hbox (1.27776pt too wide) in alignment at lines 1266--1266
 ]
 File: ../../gpBias/zetaPlusPlus.png Graphic file (type png)
 <use ../../gpBias/zetaPlusPlus.png>
-Package pdftex.def Info: ../../gpBias/zetaPlusPlus.png  used on input line 1293
+Package pdftex.def Info: ../../gpBias/zetaPlusPlus.png  used on input line 1305
 .
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
  [51
@@ -1909,19 +1910,19 @@ Package pdftex.def Info: ../../gpBias/zetaPlusPlus.png  used on input line 1293
 ]
 File: ../../gpBias/zetaPlusPlus.png Graphic file (type png)
 <use ../../gpBias/zetaPlusPlus.png>
-Package pdftex.def Info: ../../gpBias/zetaPlusPlus.png  used on input line 1293
+Package pdftex.def Info: ../../gpBias/zetaPlusPlus.png  used on input line 1305
 .
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
 File: ../../gpBias/designLineHHardExpT45N150M0.3Wide.png Graphic file (type png
 )
 <use ../../gpBias/designLineHHardExpT45N150M0.3Wide.png>
 Package pdftex.def Info: ../../gpBias/designLineHHardExpT45N150M0.3Wide.png  us
-ed on input line 1293.
+ed on input line 1305.
 (pdftex.def)             Requested size: 156.81104pt x 156.81682pt.
  [52
 
 ]
-Overfull \hbox (3.43762pt too wide) detected at line 1293
+Overfull \hbox (3.43762pt too wide) detected at line 1305
 [] [] []  [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] 
 [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [
 ] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] []
@@ -1932,39 +1933,39 @@ File: ../../gpBias/designLineHHardExpT45N150M0.3Wide.png Graphic file (type png
 )
 <use ../../gpBias/designLineHHardExpT45N150M0.3Wide.png>
 Package pdftex.def Info: ../../gpBias/designLineHHardExpT45N150M0.3Wide.png  us
-ed on input line 1293.
+ed on input line 1305.
 (pdftex.def)             Requested size: 156.81104pt x 156.81682pt.
 [53
 
 ]
-<../../ddBias/vbPoster.png, id=3763, 401.5pt x 401.5pt>
+<../../ddBias/vbPoster.png, id=3767, 401.5pt x 401.5pt>
 File: ../../ddBias/vbPoster.png Graphic file (type png)
 <use ../../ddBias/vbPoster.png>
-Package pdftex.def Info: ../../ddBias/vbPoster.png  used on input line 1313.
+Package pdftex.def Info: ../../ddBias/vbPoster.png  used on input line 1325.
 (pdftex.def)             Requested size: 156.71614pt x 156.71915pt.
-<../../ddBias/directionalBiasDDSubExpT45N300AS0.1K10PresReds 2.png, id=3764, 48
+<../../ddBias/directionalBiasDDSubExpT45N300AS0.1K10PresReds 2.png, id=3768, 48
 1.8pt x 481.8pt>
 File: ../../ddBias/directionalBiasDDSubExpT45N300AS0.1K10PresReds 2.png Graphic
  file (type png)
 <use ../../ddBias/directionalBiasDDSubExpT45N300AS0.1K10PresReds 2.png>
 Package pdftex.def Info: ../../ddBias/directionalBiasDDSubExpT45N300AS0.1K10Pre
-sReds 2.png  used on input line 1313.
+sReds 2.png  used on input line 1325.
 (pdftex.def)             Requested size: 62.72441pt x 62.72673pt.
-<../../ddBias/directionalBiasDDSubExpT45N150A0-1AS4K0.2N38Purples.png, id=3765,
+<../../ddBias/directionalBiasDDSubExpT45N150A0-1AS4K0.2N38Purples.png, id=3769,
  481.8pt x 481.8pt>
 File: ../../ddBias/directionalBiasDDSubExpT45N150A0-1AS4K0.2N38Purples.png Grap
 hic file (type png)
 <use ../../ddBias/directionalBiasDDSubExpT45N150A0-1AS4K0.2N38Purples.png>
 Package pdftex.def Info: ../../ddBias/directionalBiasDDSubExpT45N150A0-1AS4K0.2
-N38Purples.png  used on input line 1313.
+N38Purples.png  used on input line 1325.
 (pdftex.def)             Requested size: 62.72441pt x 62.72673pt.
-<../../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1Blues.png, id=3766, 481.
+<../../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1Blues.png, id=3770, 481.
 8pt x 481.8pt>
 File: ../../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1Blues.png Graphic f
 ile (type png)
 <use ../../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1Blues.png>
 Package pdftex.def Info: ../../ddBias/directionalBiasDDSubExpT45N150A0-1AS2K0.1
-Blues.png  used on input line 1313.
+Blues.png  used on input line 1325.
 (pdftex.def)             Requested size: 62.72441pt x 62.72673pt.
  [54
 
@@ -1974,32 +1975,32 @@ Blues.png  used on input line 1313.
 1AS2K0.1Blues.png (PNG copy)>]
 File: ../../ddBias/vbPoster.png Graphic file (type png)
 <use ../../ddBias/vbPoster.png>
-Package pdftex.def Info: ../../ddBias/vbPoster.png  used on input line 1337.
+Package pdftex.def Info: ../../ddBias/vbPoster.png  used on input line 1349.
 (pdftex.def)             Requested size: 156.71614pt x 156.71915pt.
 <../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56PresReds 2.png, id=
-3835, 481.8pt x 481.8pt>
+3838, 481.8pt x 481.8pt>
 File: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56PresReds 2.png
  Graphic file (type png)
 <use ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K10N56PresReds 2.png>
 
 Package pdftex.def Info: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS0.1K
-10N56PresReds 2.png  used on input line 1337.
+10N56PresReds 2.png  used on input line 1349.
 (pdftex.def)             Requested size: 62.72441pt x 62.72673pt.
-<../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png, id=3836
+<../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png, id=3839
 , 481.8pt x 481.8pt>
 File: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png Gra
 phic file (type png)
 <use ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png>
 Package pdftex.def Info: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.
-5N56Purples.png  used on input line 1337.
+5N56Purples.png  used on input line 1349.
 (pdftex.def)             Requested size: 62.72441pt x 62.72673pt.
 <../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png, id=38
-37, 481.8pt x 481.8pt>
+40, 481.8pt x 481.8pt>
 File: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png G
 raphic file (type png)
 <use ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.1N84EdgeBlues.png>
 Package pdftex.def Info: ../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS2K0.
-1N84EdgeBlues.png  used on input line 1337.
+1N84EdgeBlues.png  used on input line 1349.
 (pdftex.def)             Requested size: 62.72441pt x 62.72673pt.
  [55
 
@@ -2009,74 +2010,74 @@ G copy)> <../../ddBias/directionalBiasDDSubFlatT45N150A0-1AS1K0.5N56Purples.png
 es.png (PNG copy)>]
 File: ../../ddBias/vbPoster.png Graphic file (type png)
 <use ../../ddBias/vbPoster.png>
-Package pdftex.def Info: ../../ddBias/vbPoster.png  used on input line 1337.
+Package pdftex.def Info: ../../ddBias/vbPoster.png  used on input line 1349.
 (pdftex.def)             Requested size: 156.71614pt x 156.71915pt.
-<../../ddBias/relErrorImagesBHDD0.5.png, id=3905, 481.8pt x 481.8pt>
+<../../ddBias/relErrorImagesBHDD0.5.png, id=3909, 481.8pt x 481.8pt>
 File: ../../ddBias/relErrorImagesBHDD0.5.png Graphic file (type png)
 <use ../../ddBias/relErrorImagesBHDD0.5.png>
 Package pdftex.def Info: ../../ddBias/relErrorImagesBHDD0.5.png  used on input 
-line 1337.
+line 1349.
 (pdftex.def)             Requested size: 144.4266pt x 144.42348pt.
  [56
 
  <../../ddBias/relErrorImagesBHDD0.5.png (PNG copy)>]
-<../../ddBias/shockBiomassSurplus.png, id=3971, 481.8pt x 481.8pt>
+<../../ddBias/shockBiomassSurplus.png, id=3975, 481.8pt x 481.8pt>
 File: ../../ddBias/shockBiomassSurplus.png Graphic file (type png)
 <use ../../ddBias/shockBiomassSurplus.png>
 Package pdftex.def Info: ../../ddBias/shockBiomassSurplus.png  used on input li
-ne 1354.
+ne 1366.
 (pdftex.def)             Requested size: 181.2999pt x 181.29944pt.
  [57
 
  <../../ddBias/shockBiomassSurplus.png (PNG copy)>] [58
 
 ]
-<rockFish.png, id=4104, 716.6775pt x 422.57875pt>
+<rockFish.png, id=4107, 716.6775pt x 422.57875pt>
 File: rockFish.png Graphic file (type png)
 <use rockFish.png>
-Package pdftex.def Info: rockFish.png  used on input line 1504.
+Package pdftex.def Info: rockFish.png  used on input line 1516.
 (pdftex.def)             Requested size: 121.68661pt x 71.74716pt.
-<seaGrant-logo.png, id=4105, 216.81pt x 83.31125pt>
+<seaGrant-logo.png, id=4108, 216.81pt x 83.31125pt>
 File: seaGrant-logo.png Graphic file (type png)
 <use seaGrant-logo.png>
-Package pdftex.def Info: seaGrant-logo.png  used on input line 1504.
+Package pdftex.def Info: seaGrant-logo.png  used on input line 1516.
 (pdftex.def)             Requested size: 212.03075pt x 81.47919pt.
-<slugArms_blank background.png, id=4106, 1027.84pt x 1027.84pt>
+<slugArms_blank background.png, id=4109, 1027.84pt x 1027.84pt>
 File: slugArms_blank background.png Graphic file (type png)
 <use slugArms_blank background.png>
-Package pdftex.def Info: slugArms_blank background.png  used on input line 1504
+Package pdftex.def Info: slugArms_blank background.png  used on input line 1516
 .
 (pdftex.def)             Requested size: 89.112pt x 89.09827pt.
  [59
 
  <./rockFish.png> <./seaGrant-logo.png> <./slugArms_blank background.png>]
-<../../ptNew/directionalBiasSubPTExpT45Sig0.15Half.png, id=4175, 481.8pt x 481.
+<../../ptNew/directionalBiasSubPTExpT45Sig0.15Half.png, id=4178, 481.8pt x 481.
 8pt>
 File: ../../ptNew/directionalBiasSubPTExpT45Sig0.15Half.png Graphic file (type 
 png)
 <use ../../ptNew/directionalBiasSubPTExpT45Sig0.15Half.png>
 Package pdftex.def Info: ../../ptNew/directionalBiasSubPTExpT45Sig0.15Half.png 
- used on input line 1504.
+ used on input line 1516.
 (pdftex.def)             Requested size: 98.335pt x 98.32854pt.
-<../../ptNew/directionalBiasSubPTExpT45Sig0.15.png, id=4176, 481.8pt x 481.8pt>
+<../../ptNew/directionalBiasSubPTExpT45Sig0.15.png, id=4179, 481.8pt x 481.8pt>
 
 File: ../../ptNew/directionalBiasSubPTExpT45Sig0.15.png Graphic file (type png)
 
 <use ../../ptNew/directionalBiasSubPTExpT45Sig0.15.png>
 Package pdftex.def Info: ../../ptNew/directionalBiasSubPTExpT45Sig0.15.png  use
-d on input line 1504.
+d on input line 1516.
 (pdftex.def)             Requested size: 98.335pt x 98.32854pt.
-<../../ptNew/directionalBiasSubPTExpT45Sig0.1N600.png, id=4177, 481.8pt x 481.8
+<../../ptNew/directionalBiasSubPTExpT45Sig0.1N600.png, id=4180, 481.8pt x 481.8
 pt>
 File: ../../ptNew/directionalBiasSubPTExpT45Sig0.1N600.png Graphic file (type p
 ng)
 <use ../../ptNew/directionalBiasSubPTExpT45Sig0.1N600.png>
 Package pdftex.def Info: ../../ptNew/directionalBiasSubPTExpT45Sig0.1N600.png  
-used on input line 1504.
+used on input line 1516.
 (pdftex.def)             Requested size: 98.335pt x 98.32854pt.
 File: ../../ptNew/subLegnd.png Graphic file (type png)
 <use ../../ptNew/subLegnd.png>
-Package pdftex.def Info: ../../ptNew/subLegnd.png  used on input line 1504.
+Package pdftex.def Info: ../../ptNew/subLegnd.png  used on input line 1516.
 (pdftex.def)             Requested size: 24.58374pt x 65.55235pt.
  [60
 
@@ -2084,10 +2085,10 @@ Package pdftex.def Info: ../../ptNew/subLegnd.png  used on input line 1504.
 alBiasSubPTExpT45Sig0.15.png> <../../ptNew/directionalBiasSubPTExpT45Sig0.1N600
 .png>]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1504
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1516
 .
 
-Overfull \vbox (0.92502pt too high) detected at line 1504
+Overfull \vbox (0.92502pt too high) detected at line 1516
  []
 
 [61
@@ -2095,65 +2096,65 @@ Overfull \vbox (0.92502pt too high) detected at line 1504
 ] [62
 
 ]
-<../../ddBias/magExpT45N300AS0.1K10.png, id=4382, 481.8pt x 481.8pt>
+<../../ddBias/magExpT45N300AS0.1K10.png, id=4385, 481.8pt x 481.8pt>
 File: ../../ddBias/magExpT45N300AS0.1K10.png Graphic file (type png)
 <use ../../ddBias/magExpT45N300AS0.1K10.png>
 Package pdftex.def Info: ../../ddBias/magExpT45N300AS0.1K10.png  used on input 
-line 1504.
+line 1516.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
-<../../ddBias/magFlatT45N150A0-1AS0.1K10N56.png, id=4383, 481.8pt x 481.8pt>
+<../../ddBias/magFlatT45N150A0-1AS0.1K10N56.png, id=4386, 481.8pt x 481.8pt>
 File: ../../ddBias/magFlatT45N150A0-1AS0.1K10N56.png Graphic file (type png)
 <use ../../ddBias/magFlatT45N150A0-1AS0.1K10N56.png>
 Package pdftex.def Info: ../../ddBias/magFlatT45N150A0-1AS0.1K10N56.png  used o
-n input line 1504.
+n input line 1516.
 (pdftex.def)             Requested size: 150.57372pt x 150.56947pt.
-<../../ddBias/legendMagBias.png, id=4384, 150.5625pt x 401.5pt>
+<../../ddBias/legendMagBias.png, id=4387, 150.5625pt x 401.5pt>
 File: ../../ddBias/legendMagBias.png Graphic file (type png)
 <use ../../ddBias/legendMagBias.png>
-Package pdftex.def Info: ../../ddBias/legendMagBias.png  used on input line 150
-4.
+Package pdftex.def Info: ../../ddBias/legendMagBias.png  used on input line 151
+6.
 (pdftex.def)             Requested size: 61.45703pt x 163.88701pt.
  [63
 
  <../../ddBias/magExpT45N300AS0.1K10.png (PNG copy)> <../../ddBias/magFlatT45N1
 50A0-1AS0.1K10N56.png (PNG copy)> <../../ddBias/legendMagBias.png>]
-<mariacowCod.png, id=4452, 399.4925pt x 558.085pt>
+<mariacowCod.png, id=4455, 399.4925pt x 558.085pt>
 File: mariacowCod.png Graphic file (type png)
 <use mariacowCod.png>
-Package pdftex.def Info: mariacowCod.png  used on input line 1504.
+Package pdftex.def Info: mariacowCod.png  used on input line 1516.
 (pdftex.def)             Requested size: 153.64493pt x 214.63773pt.
  [64
 
  <./mariacowCod.png>]
-<schnutePostWOCapTrans.png, id=4520, 745.78625pt x 591.20876pt>
+<schnutePostWOCapTrans.png, id=4523, 745.78625pt x 591.20876pt>
 File: schnutePostWOCapTrans.png Graphic file (type png)
 <use schnutePostWOCapTrans.png>
-Package pdftex.def Info: schnutePostWOCapTrans.png  used on input line 1504.
+Package pdftex.def Info: schnutePostWOCapTrans.png  used on input line 1516.
 (pdftex.def)             Requested size: 245.83282pt x 194.87396pt.
  [65
 
  <./schnutePostWOCapTrans.png>]
-<../../ddBias/rpSpaceww.png, id=4586, 505.89pt x 505.89pt>
+<../../ddBias/rpSpaceww.png, id=4589, 505.89pt x 505.89pt>
 File: ../../ddBias/rpSpaceww.png Graphic file (type png)
 <use ../../ddBias/rpSpaceww.png>
-Package pdftex.def Info: ../../ddBias/rpSpaceww.png  used on input line 1504.
+Package pdftex.def Info: ../../ddBias/rpSpaceww.png  used on input line 1516.
 (pdftex.def)             Requested size: 215.10196pt x 215.1046pt.
  [66
 
  <../../ddBias/rpSpaceww.png>]
-<../../ddBias/rpTriptic.png, id=4653, 481.8pt x 481.8pt>
+<../../ddBias/rpTriptic.png, id=4657, 481.8pt x 481.8pt>
 File: ../../ddBias/rpTriptic.png Graphic file (type png)
 <use ../../ddBias/rpTriptic.png>
-Package pdftex.def Info: ../../ddBias/rpTriptic.png  used on input line 1504.
+Package pdftex.def Info: ../../ddBias/rpTriptic.png  used on input line 1516.
 (pdftex.def)             Requested size: 215.10196pt x 215.1024pt.
  [67
 
  <../../ddBias/rpTriptic.png>]
-<../../ddBias/growthTriptic.png, id=4720, 1445.4pt x 481.8pt>
+<../../ddBias/growthTriptic.png, id=4724, 1445.4pt x 481.8pt>
 File: ../../ddBias/growthTriptic.png Graphic file (type png)
 <use ../../ddBias/growthTriptic.png>
-Package pdftex.def Info: ../../ddBias/growthTriptic.png  used on input line 150
-4.
+Package pdftex.def Info: ../../ddBias/growthTriptic.png  used on input line 151
+6.
 (pdftex.def)             Requested size: 307.28987pt x 102.43076pt.
  [68
 
@@ -2168,70 +2169,49 @@ Package pdftex.def Info: ../../ddBias/growthTriptic.png  used on input line 150
 \openout8 = `disPres.snm'.
 
  (./disPres.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `disPres.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `disPres.out':
-(rerunfilecheck)             Before: 19E4F5D7107CA6FDBF8A8C43205FC2F0;890
-(rerunfilecheck)             After:  7A470E71E287D8D45A1E8D1519248679;890.
+Package rerunfilecheck Info: File `disPres.out' has not changed.
+(rerunfilecheck)             Checksum: C0849E7095B9558BAC9D60543DB05724;890.
  ) 
 Here is how much of TeX's memory you used:
- 28549 strings out of 478268
- 595464 string characters out of 5846348
- 890982 words of memory out of 5000000
- 45905 multiletter control sequences out of 15000+600000
+ 28553 strings out of 478268
+ 595506 string characters out of 5846348
+ 892034 words of memory out of 5000000
+ 45911 multiletter control sequences out of 15000+600000
  499932 words of font info for 120 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,20n,122p,411b,868s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{Outline0.4.1.44} has been referenced but does not e
-xist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{Outline0.3.1.23} has been referenced but does not e
-xist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{Outline0.2.1.10} has been referenced but does not e
-xist, replaced by a fixed one
-
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/
-usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</u
-sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb
-></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.p
-fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex
-8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10
-.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.p
-fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
-></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
-/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><
-/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.p
-fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pf
-b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb
-></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><
-/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></u
-sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></u
-sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
-r/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/
-local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/lo
-cal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loca
-l/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/
-local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfso1000.pfb></usr/lo
-cal/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/loca
-l/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb>
-Output written on disPres.pdf (68 pages, 6067819 bytes).
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.p
+fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pf
+b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7
+.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cm
+ex8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5
+.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.p
+fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb
+></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8
+.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.
+pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.p
+fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb
+></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
+</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb>
+</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb>
+</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
+usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></us
+r/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/
+local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/lo
+cal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></us
+r/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfso1000.pfb></usr/
+local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/lo
+cal/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb>
+Output written on disPres.pdf (68 pages, 6055391 bytes).
 PDF statistics:
- 4937 PDF objects out of 5155 (max. 8388607)
- 4609 compressed objects within 47 object streams
- 153 named destinations out of 1000 (max. 500000)
- 445 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 4939 PDF objects out of 5155 (max. 8388607)
+ 4605 compressed objects within 47 object streams
+ 150 named destinations out of 1000 (max. 500000)
+ 450 words of extra memory for PDF output out of 10000 (max. 10000000)
 
