@@ -137,6 +137,28 @@ getData = function(dir, xiRange, zetaRange){
 }
 
 #
+yStarOnGrid = function(x, xGrid, yGrid){
+        #x      : nx2 matrix with columns 'x^1y^0' & 'x^1y^0'
+        #xGrid  : mx2 matrix of predicted locations
+        #yGrid  : m-vector of predictions over xGrid
+        #
+
+        #
+        lons = round(x[,1],1) #'x^1y^0'], 1)
+        lats = round(x[,2],1) #'x^0y^1'], 1)
+        #
+        yOut = matrix(NA, nrow=nrow(x), ncol=1)
+        for(i in 1:nrow(x)){
+                #where = which(xGrid[,'x^1y^0']==lons[i] & xGrid[,'x^0y^1']==lats[i])
+                where = which(xGrid[,1]==lons[i] & xGrid[,2]==lats[i])
+		print(where)
+		yOut[i] = yGrid[where]
+        }
+        #
+        return( yOut )
+}
+
+#
 #DATA
 #
 
@@ -170,9 +192,9 @@ f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))[
 #
 D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7)) #c(zetaBot, zetaTop)) #
 D = D[D$lFV>0 & D$lKV>0,]
-#D = D[!D$xiHat>1,]
-D = D[!(round(D$xiHat,1)<0.1 & D$zetaSeed>0.5),] #D[!(D$zetaSeed>0.6),] #D[!(D$xiHat<=D$xiSeed*3/4 & D$zetaSeed>0.5),]#
-D = D[c(rep(T, 2), rep(F,3)),]
+##D = D[!D$xiHat>1,]
+#D = D[!(round(D$xiHat,1)<0.1 & D$zetaSeed>0.5),] #D[!(D$zetaSeed>0.6),] #D[!(D$xiHat<=D$xiSeed*3/4 & D$zetaSeed>0.5),]#
+#D = D[c(rep(T, 2), rep(F,3)),]
 
 #
 #GP INTERPOLATION
@@ -994,4 +1016,33 @@ show = seq(1, length(xCols), length.out=nCol) #20)
 #)
 dev.off()
 
+#
+#RESIDUALS
+#
+
+##residuals
+#take = X[,3]!=0.5
+#yRes = y[take]
+#XRes = X[take,]
+#gpPredRes = gpPredict(XRes, XRes[,2:3], gpFit, asMat=F)
+#png(sprintf('pellaResiduals%s.png', mod))
+#plot(XRes[,2], XRes[,3], col=map2color(yRes-gpPredRes, hcl.colors(10, "Blue-Red 3", rev=F)), pch=19)
+#dev.off()
+#
+##
+#png(sprintf("pellaRes%sHist2.png", mod))
+#hist(yRes-gpPredRes)
+#dev.off()
+
+##
+#pdf('residPlot.pdf')
+#gD = as.geodata(cbind(grid[,'x^1y^0'], grid[,'x^0y^1'], res))
+#plot(gD, lowess=T)
+#dev.off()
+
+###
+##pdf("residPlot%s.png", mod)
+##gD = as.geodata(cbind(grid[,'x^1y^0'], grid[,'x^0y^1'], res))
+#lFPredVec = gpPredict(lFXStar, lFXStar[,2:3], lFFit, asMat=F)
+#lFPredOnGrid = yStarOnGrid(lFX[,2:3], lFXStar[,2:3], lFPredVec)
 
