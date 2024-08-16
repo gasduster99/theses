@@ -171,9 +171,9 @@ nF = 0
 P0 = 10000
 #mod="FlatT30"; contrast=F; fv=1; nF=1; mod=sprintf("%snF%s", mod, nF); title="150 Samples"; nar=975;
 #mod="FlatT30"; contrast=F; fv=1; nF=3; mod=sprintf("%snF%s", mod, nF); title="100 Samples"; nar=975;
-mod="FlatT30"; contrast=F; fv=1; nF=6; mod=sprintf("%snF%s", mod, nF); title="50 Samples"; nar=750;
+#mod="FlatT30"; contrast=F; fv=1; nF=6; mod=sprintf("%snF%s", mod, nF); title="50 Samples"; nar=750;
 #mod="ExpT45"; contrast=T; fv=1;
-#mod="ExpT45MinCon2X"; contrast=T; fv=1; title="150 Samples"; nar=850;
+mod="ExpT45MinCon2X"; contrast=T; fv=1; title="150 Samples"; nar=850;
 #mod="ExpT45MinCon"; contrast=T; fv=1; nF=0; title="100 Samples"; nar=850;
 #mod="ExpT45MinCon"; contrast=T; fv=1; nF=1; mod=sprintf("%snF%s", mod, nF); title="50 Samples"; nar=600; #850;
 #mod="ExpT45Sig0.1"; contrast=T; fv=10;
@@ -333,6 +333,7 @@ ssObs = (U$zetaSeed-0.5)
 rast = rasterize(v, r, abs(U$xiHat-U$xiSeed)) # #(eucBiasObs-U$zetaSeed)) #(eucBias-ss) )#U[,2])
 #(eucBias-ss)
 eucCols = c(hcl.colors(41, "Reds 2", rev=T))#, "black")
+eucCols = adjustcolor(eucCols, alpha.f=0.8)
 
 #
 png(sprintf("obsDirectionalBiasSub%s.png", mod))
