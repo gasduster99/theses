@@ -4,6 +4,7 @@ rm(list=ls())
 library(VGAM)
 library(boot)
 library(gMOIP)
+library(dismo)
 library(pracma)
 library(mvtnorm)
 library(graphics)
@@ -163,14 +164,22 @@ yStarOnGrid = function(x, xGrid, yGrid){
 #
 
 #
+nT = 1
+nF = 0
+
+#
 P0 = 10000
-#mod="FlatT30"; contrast=F; fv=1;
+#mod="FlatT30"; contrast=F; fv=1; nF=1; mod=sprintf("%snF%s", mod, nF); title="150 Samples"; nar=975;
+#mod="FlatT30"; contrast=F; fv=1; nF=3; mod=sprintf("%snF%s", mod, nF); title="100 Samples"; nar=975;
+mod="FlatT30"; contrast=F; fv=1; nF=6; mod=sprintf("%snF%s", mod, nF); title="50 Samples"; nar=750;
 #mod="ExpT45"; contrast=T; fv=1;
-#mod="ExpT45MinCon"; contrast=T; fv=1;
+#mod="ExpT45MinCon2X"; contrast=T; fv=1; title="150 Samples"; nar=850;
+#mod="ExpT45MinCon"; contrast=T; fv=1; nF=0; title="100 Samples"; nar=850;
+#mod="ExpT45MinCon"; contrast=T; fv=1; nF=1; mod=sprintf("%snF%s", mod, nF); title="50 Samples"; nar=600; #850;
 #mod="ExpT45Sig0.1"; contrast=T; fv=10;
 ##WORKED
 #mod="ExpT45Sig0.1N600"; contrast=T; fv=10;
-mod="ExpT45Sig0.15Half"; contrast=T; fv=1;
+#mod="ExpT45Sig0.15Half"; contrast=T; fv=1;
 #mod="ExpT45Sig0.15"; contrast=T; fv=10;
 #mod="ExpT45Sig0.15N600"; contrast=T; fv=100;
 #mod="ExpT45Sig0.15N900"; contrast=T; fv=100;
@@ -182,7 +191,7 @@ place = sprintf("../ptNew/modsPT%s/", mod)
 #
 xiRes = 0.5
 zetaTop = 0.6 #0.6 #0.7
-zetaBot = 0.25 #0.2 #0.3# #0.1
+zetaBot = 0.2 #0.3# #0.1
 xiBot = 0.1 #0.5
 xiTop = 0.7 #3.5
 
@@ -191,10 +200,10 @@ f = sprintf( "%s%s", place, list.files(path=place, pattern=glob2rx("fit*.rda"))[
 
 #
 D = getData(place, c(xiBot, xiTop), c(zetaBot, 0.7)) #c(zetaBot, zetaTop)) #
-#D = D[D$lFV>0 & D$lKV>0,]
+D = D[D$lFV>0 & D$lKV>0,]
 ##D = D[!D$xiHat>1,]
-#D = D[!(round(D$xiHat,1)<0.1 & D$zetaSeed>0.5),] #D[!(D$zetaSeed>0.6),] #D[!(D$xiHat<=D$xiSeed*3/4 & D$zetaSeed>0.5),]#
-#D = D[c(rep(T, 2), rep(F,3)),]
+D = D[!(round(D$xiHat,1)<0.1 & D$zetaSeed>0.5),] #D[!(D$zetaSeed>0.6),] #D[!(D$xiHat<=D$xiSeed*3/4 & D$zetaSeed>0.5),]#
+D = D[c(rep(T, nT), rep(F,nF)),]
 
 #
 #GP INTERPOLATION
@@ -298,15 +307,91 @@ eucBias = matrix(eucBias, nrow=length(xiStar), ncol=length(zetaStar))
 #
 
 #
-plot(D$xiSeed[c(T,F)], D$zetaSeed[c(T,F)])
-quiver(D$xiSeed[c(T,F)], D$zetaSeed[c(T,F)], D$xiHat[c(T,F)]-D$xiSeed[c(T,F)], D$zetaHat[c(T,F)]-D$zetaSeed[c(T,F)])
+nx = 1000
+ny = 2*1000
+r = raster(matrix(1:(nx*ny), nx, ny))
 
+#
+#U = D[c(T,F),c("xiSeed", "zetaSeed", "xiHat", "zetaHat")] #cbind(D$xiSeed[c(T,F)], D$zetaSeed)
+U = D[,c("xiSeed", "zetaSeed", "xiHat", "zetaHat")]
+U = U[U$zetaSeed<0.6,]
+#plot(D$xiSeed[c(T,F)], D$zetaSeed[c(T,F)])
+#quiver(D$xiSeed[c(T,F)], D$zetaSeed[c(T,F)], D$xiHat[c(T,F)]-D$xiSeed[c(T,F)], D$zetaHat[c(T,F)]-D$zetaSeed[c(T,F)])
+#
+v = voronoi(U)
 
-##F* bias
+##
+#eg = expand.grid(xiStar, zetaStar)
+#ss = matrix(abs(eg[,2]-0.5), nrow=length(xiStar), ncol=length(zetaStar))
+ssThresh = 0.25
+
+#
+eucBiasObs = sqrt((U$xiHat-U$xiSeed)^2+(U$zetaHat-U$zetaSeed)^2)
+ssObs = (U$zetaSeed-0.5)
+
+#eucBiasObs-ssObs)#
+rast = rasterize(v, r, abs(U$xiHat-U$xiSeed)) # #(eucBiasObs-U$zetaSeed)) #(eucBias-ss) )#U[,2])
+#(eucBias-ss)
+eucCols = c(hcl.colors(41, "Reds 2", rev=T))#, "black")
+
+#
+png(sprintf("obsDirectionalBiasSub%s.png", mod))
+plot(clamp(rast, 0, ssThresh), 
+	col=eucCols, 
+	xlim=c(0.1, 0.7), 
+	ylim=c(0.2, 0.6), 
+	asp=NA, 
+	zlim=c(0, ssThresh),
+	ylab="Bmsy/B0",
+	xlab="Fmsy",
+	main="Nearest Neighbor Interpolation of Raw Data"
+)
+#points(U)
+quiver(U$xiSeed, U$zetaSeed, U$xiHat-U$xiSeed, U$zetaHat-U$zetaSeed, scale=0.065, length=0.175, lwd=2)
+#segments(U$xiSeed, U$zetaSeed, U$xiHat, U$zetaHat)
+abline(h=0.5, lwd=3)
+dev.off()
+
+#
+png(sprintf("obsDirectionalBiasSubLine%s.png", mod))
+plot(clamp(rast, 0, ssThresh), col=eucCols, xlim=c(0.1, 0.7), ylim=c(0.25, 0.6), asp=NA, zlim=c(0, 0.25))
+#points(U)
+#quiver(U$xiSeed, U$zetaSeed, U$xiHat-U$xiSeed, U$zetaHat-U$zetaSeed, scale=0.025)
+segments(U$xiSeed, U$zetaSeed, U$xiHat, U$zetaHat)
+abline(h=0.5, lwd=3)
+dev.off()
+
+##with color
+#
+##eucBiasObs-ssObs)#
+#rast = rasterize(v, r, U$xiHat-U$xiSeed) # #(eucBiasObs-U$zetaSeed)) #(eucBias-ss) )#U[,2])
+##(eucBias-ss)
+#redCols = c(hcl.colors(41, "Reds 2", rev=T))#, "black")
+#blueCols = c(hcl.colors(41, "Blue 2", rev=T))
 #
 ##
-#freq = c(T,F,F,F,F,F)
+#png(sprintf("obsDirectionalBiasSubLineColor%s.png", mod))
+#plot(rast, col=redCols, xlim=c(0.1, 0.7), ylim=c(0.25, 0.6), asp=NA, zlim=c(0, 0.25))
+#plot(rast, col=blueCols, xlim=c(0.1, 0.7), ylim=c(0.25, 0.6), asp=NA, zlim=c(-0.25, 0), add=T)
+##points(U)
+##quiver(U$xiSeed, U$zetaSeed, U$xiHat-U$xiSeed, U$zetaHat-U$zetaSeed, scale=0.025)
+#segments(U$xiSeed, U$zetaSeed, U$xiHat, U$zetaHat)
+#abline(h=0.5, lwd=3)
+#dev.off()
+
+##
+#eucBiasObs = mcmapply(function(xiHat, xi, zeta){
+#                myDist(xiHat, xi, zeta)
+#        }, U$xiHat, U$xiSeed, U$zetaSeed, mc.cores=6 #detectCores()
+#)
+#eucBiasObs = matrix(eucBiasObs, nrow=length(U$xiSeed), ncol=length(U$zetaSeed))
+
+
+#F* bias
+
 #
+freq = c(T,F,F,F,F,F)
+
 ##
 #png(sprintf("fMSYBiasPT%s.png", mod))
 #nCols = 100
@@ -491,68 +576,69 @@ quiver(D$xiSeed[c(T,F)], D$zetaSeed[c(T,F)], D$xiHat[c(T,F)]-D$xiSeed[c(T,F)], D
 ##points(D$xiSeed, D$zetaSeed)
 #dev.off()
 #
+
 ##
 #title = c(TeX("Low Contrast"), TeX("High Contrast"))
+
 #
-##
-#eg = expand.grid(xiStar, zetaStar)
-#ss = matrix(abs(eg[,2]-0.5), nrow=length(xiStar), ncol=length(zetaStar))
-#ssThresh = 0.25
-##
-#png(sprintf("directionalBiasSubPT%s.png", mod))
-#eucCols = hcl.colors(41, "Reds 2", rev=T)
-##par(mar=c(5, 4, 4, 5)+0.1)
-#par(mar=c(5, 5, 4, 4)+0.1)
-#image(xiStar, zetaStar, (eucBias-ss),
-#        col  = adjustcolor(eucCols, alpha.f=0.99),
-#        xlab = TeX("$F_{MSY}$"),
-#        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
-#        main = title[contrast+1], #TeX("Bias Direction for ($F_{MSY}$, $B_{MSY}/B_0$) Jointly"),
-#        ylim = c(zetaBot, zetaTop),
-#        xlim = c(xiBot, xiTop),
-#	zlim = c(0, ssThresh), #0.6), #1), #
-#        cex.lab = 1.5,
-#        cex.main= 1.5
-#)
-#greyRed =  colorRampPalette(c(eucCols[length(eucCols)],'grey10'))(4)[2]
-#image(xiStar, zetaStar, (eucBias-ss),
-#        col  = greyRed, #eucCols[length(eucCols)], #"grey10", #adjustcolor(xCols, alpha.f=0.6),
-#        xlab = TeX("$F_{MSY}$"),#'Xi',
-#        ylab = TeX('$B_{MSY}/B_0$'),
-#        ylim = c(zetaBot, zetaTop),
-#        xlim = c(xiBot, xiTop),
-#        zlim = c(ssThresh, max((eucBias-ss), ssThresh, na.rm=T)), #log(c(lmThresh, max(eucBias/ms, mThresh, na.rm=T))),
-#        add  = T
-#)
-##curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
-##curve(1/(x+2), from=0, to=4, lwd=3, add=T)
-#abline(h=0.5, lwd=3)
-#points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
-#w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
-#thin = c(T,rep(F,975)) #850))#125))#135))
-#quiver(
-#        lFXStar[w,2][thin], lFXStar[w,3][thin],
-#        xiBias[w][thin], zetaBias[w][thin],
-#        scale=0.065, length=0.175, lwd=2
-#)
-#show = seq(1, length(eucCols), length.out=20)
-##legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
-##        sprintf("%1.2f", rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), length.out=leng
-##        fill = rev(eucCols[show]), 
-##        xpd = NA
-##)
-##points(D$xiSeed, D$zetaSeed)
-#dev.off()
+eg = expand.grid(xiStar, zetaStar)
+ss = matrix(abs(eg[,2]-0.5), nrow=length(xiStar), ncol=length(zetaStar))
+ssThresh = 0.25
 #
-#png('subLegnd.png', width = 150, height = 400)
-#plot.new()
-#legend("top", #grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
-#        sprintf("%1.2f", seq(0, ssThresh, length.out=20)), #rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), lengt
-#        fill = eucCols[seq(1, 41, 2)], #rev(eucCols[show]), 
+png(sprintf("directionalBiasSubPT%s.png", mod))
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, (eucBias-ss),
+        col  = adjustcolor(eucCols, alpha.f=0.99),
+        xlab = TeX("$F_{MSY}$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = title, #title[contrast+1], #TeX("Bias Direction for ($F_{MSY}$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+	zlim = c(0, ssThresh), #0.6), #1), #
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+greyRed =  colorRampPalette(c(eucCols[length(eucCols)],'grey10'))(4)[2]
+image(xiStar, zetaStar, (eucBias-ss),
+        col  = greyRed, #eucCols[length(eucCols)], #"grey10", #adjustcolor(xCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}$"),#'Xi',
+        ylab = TeX('$B_{MSY}/B_0$'),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        zlim = c(ssThresh, max((eucBias-ss), ssThresh, na.rm=T)), #log(c(lmThresh, max(eucBias/ms, mThresh, na.rm=T))),
+        add  = T
+)
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+#curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+abline(h=0.5, lwd=3)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,nar)) #975)) #850))#125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.065, length=0.175, lwd=2
+)
+show = seq(1, length(eucCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.2f", rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), length.out=leng
+#        fill = rev(eucCols[show]), 
 #        xpd = NA
 #)
-#dev.off()
-#
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
+
+png('subLegnd.png', width = 150, height = 400)
+plot.new()
+legend("top", #grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+        sprintf("%1.2f", seq(0, ssThresh, length.out=20)), #rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), lengt
+        fill = eucCols[seq(1, 41, 2)], #rev(eucCols[show]), 
+        xpd = NA
+)
+dev.off()
+
 ##
 #eg = expand.grid(xiStar, zetaStar)
 #ss = matrix(abs(eg[,2]-0.5), nrow=length(xiStar), ncol=length(zetaStar))
