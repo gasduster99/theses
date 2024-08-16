@@ -115,7 +115,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsPTExpT45MinCon/'
+place = './modsPTExpT45MinCon2x/'
 odeMethod = "lsode"
 
 ###grid for simulation
@@ -130,7 +130,7 @@ zetaMin = 0.15
 xiMax = 0.8  #3.75
 xiMin = 0.05 #0.25
 #
-n = 300
+n = 100
 minDiff = min((zetaMax-zetaMin)/n, (xiMax-xiMin)/n)
 binTrk = ceiling(abs(log10(minDiff)))
 

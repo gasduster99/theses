@@ -115,7 +115,7 @@ P0 = 10000 #3000
 #
 
 #a place to store data
-place = './modsPTExpT45Sig0.1N600/' #'./modsPTExpT45Sig0.3N900/' #600/'
+place = './modsPTExpT45Sig0.3N900/' #600/'  './modsPTExpT45Sig0.1N600/' #
 odeMethod = "lsode"
 
 ###grid for simulation
@@ -130,7 +130,7 @@ zetaMin = 0.15
 xiMax = 0.8  #3.75
 xiMin = 0.05 #0.25
 #
-n = 300
+n = 100
 minDiff = min((zetaMax-zetaMin)/n, (xiMax-xiMin)/n)
 binTrk = ceiling(abs(log10(minDiff)))
 
@@ -166,8 +166,8 @@ datFiles = sprintf("%s%s", place, list.files(path=place, pattern=glob2rx("datGen
 registerDoParallel(46)
 opts = list(preschedule=F)
 #foreach(i=1:length(datFiles), .options.multicore = opts) %dopar% {
-foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
-#for(i in 1:n){
+#foreach(i=rev(1:length(datFiles)), .options.multicore = opts) %dopar% {
+for(i in 1:n){
 	#
         #DATA
         #
