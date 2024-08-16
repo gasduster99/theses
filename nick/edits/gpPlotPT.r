@@ -169,11 +169,11 @@ nF = 0
 
 #
 P0 = 10000
-#mod="FlatT30"; contrast=F; fv=1; nF=1; mod=sprintf("%snF%s", mod, nF); title="150 Samples"; nar=975;
+mod="FlatT30"; contrast=F; fv=1; nF=1; mod=sprintf("%snF%s", mod, nF); title="150 Samples"; nar=975;
 #mod="FlatT30"; contrast=F; fv=1; nF=3; mod=sprintf("%snF%s", mod, nF); title="100 Samples"; nar=975;
 #mod="FlatT30"; contrast=F; fv=1; nF=6; mod=sprintf("%snF%s", mod, nF); title="50 Samples"; nar=750;
 #mod="ExpT45"; contrast=T; fv=1;
-mod="ExpT45MinCon2X"; contrast=T; fv=1; title="150 Samples"; nar=850;
+#mod="ExpT45MinCon2X"; contrast=T; fv=1; title="150 Samples"; nar=850;
 #mod="ExpT45MinCon"; contrast=T; fv=1; nF=0; title="100 Samples"; nar=850;
 #mod="ExpT45MinCon"; contrast=T; fv=1; nF=1; mod=sprintf("%snF%s", mod, nF); title="50 Samples"; nar=600; #850;
 #mod="ExpT45Sig0.1"; contrast=T; fv=10;
@@ -595,6 +595,72 @@ image(xiStar, zetaStar, (eucBias-ss),
         xlab = TeX("$F_{MSY}$"),
         ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
         main = title, #title[contrast+1], #TeX("Bias Direction for ($F_{MSY}$, $B_{MSY}/B_0$) Jointly"),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+	zlim = c(0, ssThresh), #0.6), #1), #
+        cex.lab = 1.5,
+        cex.main= 1.5
+)
+greyRed =  colorRampPalette(c(eucCols[length(eucCols)],'grey10'))(4)[2]
+image(xiStar, zetaStar, (eucBias-ss),
+        col  = greyRed, #eucCols[length(eucCols)], #"grey10", #adjustcolor(xCols, alpha.f=0.6),
+        xlab = TeX("$F_{MSY}$"),#'Xi',
+        ylab = TeX('$B_{MSY}/B_0$'),
+        ylim = c(zetaBot, zetaTop),
+        xlim = c(xiBot, xiTop),
+        zlim = c(ssThresh, max((eucBias-ss), ssThresh, na.rm=T)), #log(c(lmThresh, max(eucBias/ms, mThresh, na.rm=T))),
+        add  = T
+)
+#curve(x/(2*x+1), from=0, to=12, lwd=3, add=T) 
+#curve(1/(x+2), from=0, to=4, lwd=3, add=T)
+abline(h=0.5, lwd=3)
+points(lFXStar[!mask,2][freq], lFXStar[!mask,3][freq], pch='.')
+w = T #!mask #& xBias<16 #(XStar[,2]>0.5 & XStar[,2]<3.5 & XStar[,3]>0.2 & XStar[,3]<0.75) 
+thin = c(T,rep(F,nar)) #975)) #850))#125))#135))
+quiver(
+        lFXStar[w,2][thin], lFXStar[w,3][thin],
+        xiBias[w][thin], zetaBias[w][thin],
+        scale=0.065, length=0.175, lwd=2
+)
+show = seq(1, length(eucCols), length.out=20)
+#legend(grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+#        sprintf("%1.2f", rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), length.out=leng
+#        fill = rev(eucCols[show]), 
+#        xpd = NA
+#)
+#points(D$xiSeed, D$zetaSeed)
+dev.off()
+
+png('subLegnd.png', width = 150, height = 400)
+plot.new()
+legend("top", #grconvertX(415, "device"), grconvertY(90, "device"), #grconvertX(0.5, "device"), grconvertY(1, "device"),  #
+        sprintf("%1.2f", seq(0, ssThresh, length.out=20)), #rev(seq(min(eucBias[xiMask, zetaMask], na.rm=T), max(eucBias[xiMask, zetaMask], na.rm=T), lengt
+        fill = eucCols[seq(1, 41, 2)], #rev(eucCols[show]), 
+        xpd = NA
+)
+dev.off()
+
+#
+#
+#
+
+#
+title = c(TeX("Low Contrast"), TeX("High Contrast"))
+
+#
+eg = expand.grid(xiStar, zetaStar)
+ss = matrix(abs(eg[,2]-0.5), nrow=length(xiStar), ncol=length(zetaStar))
+ssThresh = 0.25
+#
+png(sprintf("directionalBiasSubPTTitle%s.png", mod))
+eucCols = hcl.colors(41, "Reds 2", rev=T)
+#par(mar=c(5, 4, 4, 5)+0.1)
+par(mar=c(5, 5, 4, 4)+0.1)
+image(xiStar, zetaStar, (eucBias-ss),
+        col  = adjustcolor(eucCols, alpha.f=0.99),
+        xlab = TeX("$F_{MSY}$"),
+        ylab = TeX('$B_{MSY}/B_0$'), #'Zeta',
+        main = title[contrast+1], #TeX("Bias Direction for ($F_{MSY}$, $B_{MSY}/B_0$) Jointly"),
         ylim = c(zetaBot, zetaTop),
         xlim = c(xiBot, xiTop),
 	zlim = c(0, ssThresh), #0.6), #1), #
