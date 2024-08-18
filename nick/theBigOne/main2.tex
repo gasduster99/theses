@@ -413,7 +413,7 @@ most foundational components of most population dynamics models.
 This thesis develops a metamodeling simulation framework for evaluating RP 
 estimates under misspecified two-parameter models of productivity. Analytical 
 and numerical methods are developed for simulating data broadly in RP space 
-under the Schnute and PT three-parameter models. 
+under the Schnute and Pella-Tomlinson (PT) three-parameter models. 
 %analytical and numerical methods are provided for simulating data broadly in RP space under the Schnute and PT models. 
 By simulating from three-parameter models and observing RP estimation under misspecified two-parameter  
 % is then observed. A GP metamodel is presented for explicit 
@@ -666,6 +666,7 @@ three-parameter functions instead.
 %production functions that do not model the full theoretical space of
 %RPs \shortcite{mangel_perspective_2013}.
 
+{\color{red}
 
 %
 \begin{wrapfigure}{r}{0.5\textwidth}
@@ -674,28 +675,85 @@ three-parameter functions instead.
 \includegraphics[width=0.5\textwidth]{../edits/namibibRP.png}
 \vspace{-1cm}
 \caption{
-Schaefer and PT RP MLEs and associated interquartile confidence regions.  
+Schaefer and PT RP MLEs and associated interquartile regions.  
 %Yield curves for data generated with $\frac{F^*}{M}=1.97$ and $\frac{B^*}{\bar B(0)}=0.46$. %$\frac{F^*}{M}=3.48$ and $\frac{B^*}{\bar 
 %Convert into $B/B_0$. Show the high contrast curve.
 }
-\label{bhFmsy}
+\label{exRP}
 %\end{figure}
 \end{wrapfigure}
 
-%EDIT #4
-{\color{red}
-\begin{itemize}
-\item critisism of PT on Nambibian Hake data
-\item sensitivity to early observations, and small sample size.
-\item \cite{punt_model_1988} \cite{hilborn_ecological_1997} \cite{rankin_alternative_2015}
-\item at the same time motivate RP flexibility it affords.
 %
-\item As we will develop in further in Section (\ref{ptRef}) the analytical convience of the PT allows for reparameterization directly into RPs allowing straight forward MLE inference.
-\item While there may be plenty of critism of the PT model's use here, a key critque of the Namibian hake data is the small size and sentivity to a small number of the observations. %is the quality and volumne in many ways the PT model is more honest 
-\item The Schaefer model does not reflect any of these data shortcomings in its very precise estimates.
-\item In many ways the PT model is far more honest about those shortcomings of the data and reflects those data shortcomings in in larger estimate uncertainty which is a much more honest representation of the inforemation content of these data.
-\end{itemize}
-\clearpage}
+By fitting the Namibian Hake data from Figure (\ref{hakeData}) with a 
+two-parameter Schaefer model, as compared with a three-parameter PT model, 
+the restrictive RP estimation under two-parameter models can be seen.
+As will be developed further in Section (\ref{ptRef}), both models can be 
+reparameterized directly in terms of their RPs, allowing for straight-forward 
+inference. %of RPs. 
+%Figure (\ref{exRP}) shows these RP estimates in the broader three-parameter RP space. 
+%with the Scahefer model's RP space shown by the horizontal line at $\frac{B^*}{\bar B(0)}=\frac{1}{2}$. 
+%ranging from
+A number of quirks in these data have been noted over the years including small sample size, 
+the possible presence of outliers, and changes in the fishing fleet over the modeled period 
+\cite{punt_model_1988, hilborn_ecological_1997, rankin_alternative_2015}.   
+%There may be plenty of critism of the PT model's use on these data, a key critque of the 
+%Namibian hake data itself is the small size {\color{green}and sensitivity to a small number of the 
+%observations} \cite{punt_model_1988, hilborn_ecological_1997, rankin_alternative_2015}.
+That said, the use of the Schaefer model here is a classic SPM example and it commonly outperforms 
+more complex models on these data.
+%, but does not reflect any of these data shortcomings in its RP estimates 
+%producing unrealistically tight uncertainty bounds in $F^*$ and is constrained to the 
+%horizontal line shown at $\frac{B^*}{\bar B(0)}=\frac{1}{2}$. 
+While the use of the PT model here may well be disputed when compared with the Schaefer model, 
+in many ways the PT model is far more honest about the short-comings of the data in its 
+RP inference. 
+The Schaefer model does not admit many shortcomings in its RP estimates, with unrealistically 
+tight uncertainty bounds in $F^*$ and absolute certainty that $\frac{B^*}{\bar B(0)}=\frac{1}{2}$. 
+The mere fact that PT can model $\frac{B^*}{\bar B(0)}$ more generally than the 
+Schaefer model lets the PT model reflect the shortcomings of these data 
+to provide a more honest representation of RP uncertainty.
+%in the form of more realistic estimates of RP uncertainty. 
+%Given the shortcomings of these data, the PT RPs are a much more honest representation of the data. %fully contextulazed information of these data. 
+%While the Schaefer model is 
+Even with the small size of these data and the additional parameters of the PT, the PT model 
+demonstrates evidence to explore models that allow $\frac{B^*}{\bar B(0)}$ to be estimated below 
+$\frac{1}{2}$, with only a 10\% confidence that $\frac{B^*}{\bar B(0)}\ge\frac{1}{2}$ marginally.
+%%values $\frac{B^*}{\bar B(0)}$ below $\frac{1}{2}$ 
+%Based on this excersize, the PT model only estimates 10\% confidence that 
+%$\frac{B^*}{\bar B(0)}>=\frac{1}{2}$ marginally.
+
+%Furthermore based on the the PT 
+%Marginally 90\% confidence $\frac{B^*}{\bar B(0)}<\frac{1}{2}$. with only
+}
+
+%Both models can be reparameterized directly in terms of their RPs, Figure (\ref{exRP})
+%shows the fitted RPs
+%Figure ()
+
+%as an example of the restrictive 
+%RP estimation  
+%
+%The restrictive nature of two-parameter models on RP estimation may be 
+%
+%%EDIT #4
+%{\color{red}
+%\begin{itemize}
+%\item critisism of PT on Nambibian Hake data
+%\item sensitivity to early observations, and small sample size.
+%\item \cite{punt_model_1988} \cite{hilborn_ecological_1997} \cite{rankin_alternative_2015}
+%\item at the same time motivate RP flexibility it affords.
+%%
+%\item As we will develop in further in Section (\ref{ptRef}) the analytical convience of the 
+%PT allows for reparameterization directly into RPs allowing straight forward MLE inference.
+%\item While there may be plenty of critism of the PT model's use here, a key critque of the 
+%Namibian hake data is the small size and sentivity to a small number of the observations. %is the quality and volumne in many ways the PT model is more honest 
+%\item The Schaefer model does not reflect any of these data shortcomings in its very precise estimates.
+%\item 
+%In many ways the PT model is far more honest about those shortcomings of the data and 
+%reflects those data shortcomings in in larger estimate uncertainty which is a 
+%much more honest representation of the inforemation content of these data.
+%\end{itemize}
+%\clearpage}
 
 %
 The bias-variance trade-off \cite{ramasubramanian_machine_2017} makes it
@@ -712,7 +770,7 @@ contribute to inferential failure. However they do not offer mechanisms of model
 failure, nor do their experimental designs allow for the control of different
 types of model misspecification.
 % as those effects interact with the information content of a given biomass series.  
-ptRef
+%ptRef
 
 %Despite this understanding of productivity estimation,
 %the implications have not been extended to a joint description of biases on the scale of
@@ -986,13 +1044,32 @@ methods of understanding the notion more generally would be extremely valuable.
 
 %EDIT #3.2
 {\color{red}
-SOME DISCUSSION abotub fixed q.
-%
-The low contrast settings described through-out describe an extremely poorly 
-informated inference setting, and as a result contributes to the weak identifiably 
-described in Section (\ref{modelFit}) for the $q$ catchability parameter.
-By 
+%SOME DISCUSSION abotub fixed q.
+%%
+%The low contrast settings described through-out describe an extremely poorly 
+%informated inference setting, and as a result contributes to the weak identifiably 
+%described in Section (\ref{modelFit}) for the $q$ catchability parameter.
+%By 
 
+%
+The catchability parameter, $q$, is fixed throughout this work due to the weak 
+identifiability between $q$ and $K$ (or $\beta$ as the case may be). As described in Section (\ref{modelFit}), 
+this issue arrises when estimating both quantities in low contrast simulations. %, as described in Section (\ref{modelFit}). 
+This work explores the lower extent of contrast by fixing $q$ to focus 
+on the estimation properties of $\theta$, and therefore RPs, in 
+the weakest information settings. That said, many stock assessments enjoy more 
+informative data than the minimal contrast setting simulated here, and often $q$ 
+is not known. By tuning $\chi$ to the lowest value that allows identification of 
+$q$ over the range of simulated RPs, one may extend this 
+work to estimate $q$, albeit over a smaller range of contrast. 
+This is a natural direction for future work and would also contribute to 
+developing a more specific understanding of the role of contrast in fisheries 
+models.
+%further developing a more complete notion of contrast. 
+%he previously stated broader goal stated previously about undertanding contrast more generally. 
+%around the useful limits of various fisheries data  with respect to contrast.
+%the lower bound 
+%of $\chi$ above 0 one may determine a minimal contrast allows identification of both $q$ and 
 %here very low contrast stocks 
 }
 
@@ -1045,13 +1122,18 @@ for the work presented in this thesis but by more effectively refining the simul
 use of more pointed acquisition functions\cite{pourmohamad_bayesian_2021}, fewer simulations may be collected 
 \footnote{The primary factor for determining the run time of these simulations}. In particular, since 
 optimization is not a goal of the metamodel in this setting, developing entropy-based acquisition functions 
-\cite{hennig_entropy_2012, hernandez-lobato_predictive_2014} could be useful here. Furthermore, given the 
+\cite{hennig_entropy_2012, hernandez-lobato_predictive_2014} could be useful here. 
+{\color{red} 
+
+\textit{how good an assumption is statiojnarity of the GP used.}
+
+Furthermore, given the 
 catastrophic model failure that was observed under low contrast BH models, particularly in the slower 
 growing examples, it could be valuable to consider nonstationary GP metamodels \cite{gramacy_bayesian_2008, binois_hetgp_2021}. %, heinonen_non-stationary_2016}. 
 By considering nonstationary metamodels these catastrophic failure modes 
 %(similar to that observed under the BH model in the low contrast examples shown here) 
 may be more quickly and accurately identified.
-
+}
 %By documenting these directions for future work here it is the hope that these approaches may facilitate the future reseach of  
 
 % however as using these methods in the context of more complexbiological models or  

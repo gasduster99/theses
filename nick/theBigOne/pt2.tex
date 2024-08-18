@@ -804,8 +804,8 @@ the production model ODE.
 \subsection{Two-Parameter Production Model Inference\label{modelFit} }
 
 %
-The simulated mapping results from fitting an intentionally misspecified two
-parameter production model to index of abundance data that are generated from
+The simulated mapping results from fitting an intentionally misspecified 
+two-parameter production model to index of abundance data that are generated from
 a more complex three-parameter model of productivity.
 %The simulation results in an intentionally (and controlled) 
 %misspecified two-parameter production model. 
@@ -845,15 +845,38 @@ Thus the log likelihood can be written as
 In this setting $q$ is fixed at 0.0005 to focus on
 the inferential effects of model misspecification on biological parameters. 
 Furthermore, estimating both $q$ and $K$ introduces identifiability 
-issues since both parameters are responsible for setting the scale of dynamics. %determining the scale biomass 
-$\sigma^2$ and $\bm{\theta}$ are reparameterized to the log scale
-and fit via MLE.
+issues in low contrast settings since both parameters are responsible for 
+setting the scale of dynamics. %determining the scale biomass 
+%Note that $K$ appears in the expression of $\bar B$ as a leading multiplier.
+In low contrast settings when $B_t\approx\bar B(\bm{\theta})$ for most $t$, 
+the product $qB_t(\bm{\theta})$ is essentially $q\bar B(\bm{\theta})$. In turn, % which in turn 
+$q\bar B(\bm{\theta})$ can be written as $qK(1-F/r)$ to reveal the product $qK$. 
+%exposes the leading $K$ from the $\bar B$ expression, and reveals the product $qK$. 
+Since the likelihood will take the same value when swapping the values of $K$ 
+and $q$ in these cases, only their product may be identified. %rather than the parameters.
+This identifiablity issue may be resolved by adding informative priors (i.e. 
+essentially choosing a value for one of the parameters), or by adding enough 
+contrast so as to inform the correlation structure between the rest of the model 
+parameters well enough to indirectly inform $K$ and $q$ individually.
+%to essentally   
+%to inform $r$ well enough so that the correlation structure between $r$ and $K$ 
+%can 
+% on the parameters or  
+% demonstrating
+%and $r$ is very poorly informed
+%, only the product $qB_t(\bm{\theta})$ may be identified but individually $q$ and 
+%$\bar B(\bm{\theta})$ may exchange values to result in the same product. Thus 
+%the values $q$ and $\bar B(\bm{\theta})$ are not indiviually identifiable in 
+%these cases.
+
+%issue. %makes this issue when the 
+Beyond these identifiability issues, the parameters $\sigma^2$ and $\bm{\theta}$ 
+are reparameterized to the log scale and fit via MLE.
 %$\sigma^2$ is allowed to be fit to assess overall model fit. 
 Reparameterizing the parameters to the log scale improves the reliability
 of optimization, in addition to facilitating the use of Hessian information
 for estimating MLE standard errors.
 %$r$ and $K$ are reparameterized as $log(r)$ and $log(K)$ to improve the regularity of 
-
 %
 Given that the biological parameters enter the likelihood via a nonlinear ODE,
 and further the parameters themselves are related to each other nonlinearly,
@@ -1121,7 +1144,7 @@ misspecification of the Schaefer model, can be seen. %to be seen. % in Figure (\
 \includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTExpT45MinCon.png}
 \end{minipage}
 \begin{minipage}[h!]{0.44\textwidth}
-\includegraphics[width=\textwidth]{../ptNew/directionalBiasSubPTFlatT30.png}
+\includegraphics[width=\textwidth]{../edits/directionalBiasSubPTTitleFlatT30nF1.png}%../ptNew/directionalBiasSubPTFlatT30.png}
 \end{minipage}
 \begin{minipage}[h!]{0.09\textwidth}
 \hspace{-1cm}

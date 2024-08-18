@@ -164,13 +164,13 @@ yStarOnGrid = function(x, xGrid, yGrid){
 
 #
 P0 = 10000
-#mod="FlatT30"; contrast=F; fv=1;
+mod="FlatT30"; contrast=F; fv=1;
 #mod="ExpT45"; contrast=T; fv=1;
 #mod="ExpT45MinCon"; contrast=T; fv=1;
 #mod="ExpT45Sig0.1"; contrast=T; fv=10;
 ##WORKED
 #mod="ExpT45Sig0.1N600"; contrast=T; fv=10;
-mod="ExpT45Sig0.15Half"; contrast=T; fv=1;
+#mod="ExpT45Sig0.15Half"; contrast=T; fv=1;
 #mod="ExpT45Sig0.15"; contrast=T; fv=10;
 #mod="ExpT45Sig0.15N600"; contrast=T; fv=100;
 #mod="ExpT45Sig0.15N900"; contrast=T; fv=100;
@@ -195,6 +195,7 @@ D = D[D$lFV>0 & D$lKV>0,]
 ##D = D[!D$xiHat>1,]
 #D = D[!(round(D$xiHat,1)<0.1 & D$zetaSeed>0.5),] #D[!(D$zetaSeed>0.6),] #D[!(D$xiHat<=D$xiSeed*3/4 & D$zetaSeed>0.5),]#
 #D = D[c(rep(T, 2), rep(F,3)),]
+#D = D[c(T,F),]
 
 #
 #GP INTERPOLATION

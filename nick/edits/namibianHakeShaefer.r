@@ -242,16 +242,16 @@ fitSRPNat = prodModel$new(
         #xi=datGen$xi, zeta=datGen$zeta          #other incidentals to carry a
 )
 
-#optimize
-optSRPNat = fitSRPNat$optimize(cpue,
-        c('lsdo', 'Fmsy', 'lbeta'),
-        lower   = c(log(0.001), 0.1,  log(1000)),
-        upper   = c(  log(0.3),   1, log(10000)),
-        gaBoost = F, #list(maxiter=1e3, run=10, popSize=1e5), #T, #
-        #method         = "Nelder-Mead", 
-        cov     = T,
-        fitQ = T
-)
+##optimize
+#optSRPNat = fitSRPNat$optimize(cpue,
+#        c('lsdo', 'Fmsy', 'lbeta'),
+#        lower   = c(log(0.001), 0.1,  log(1000)),
+#        upper   = c(  log(0.3),   1, log(10000)),
+#        gaBoost = F, #list(maxiter=1e3, run=10, popSize=1e5), #T, #
+#        #method         = "Nelder-Mead", 
+#        cov     = T,
+#        fitQ = T
+#)
 
 ##optimize
 #optPTRPNat = fitPTRPNat$optimize(cpue,
@@ -284,19 +284,26 @@ set.seed(4)
 
 #
 fitPTRPNat = readRDS("PTRPNat.rda")
-samNat = rmvnorm(1000, c(fitPTRPNat$Fmsy, fitPTRPNat$zeta), fitPTRPNat$rsCov[c("Fmsy", "zeta"), c("Fmsy", "zeta")])
-#png("namibibRP.png")
+fitPTRP = readRDS("PTRP.rda")
+fitPT = readRDS("PT.rda")
+fit = readRDS("schaefer.rda")
+
+#
+samNat = rmvnorm(1000, c(fitPTRPNat$Fmsy, fitPTRPNat$zeta), fitPTRPNat$rsCov[c("Fmsy", "zeta"), c("Fmsy", "zeta")]%*%diag(c(0.7,1)))#diag(c(0.85,1.05))) #matrix(c(0.85, 1.1, 1.1, 1.05), 2, 2)) #
+png("namibibRP.png")
 #samE = cbind( exp(sam[,1]), boot::inv.logit(sam[,2]) )
 plot(samNat[,1], samNat[,2], xlab="Fmsy", ylab="Bmsy/B0", main="Namibian Hake RP Estimates", xlim=c(0.1, 0.7), ylim=c(0.1, 0.8), col="white")
+abline(h=0.5)
 #point(c(fitPTRP$lFmsy, fitPTRP$logitZeta), pch=19)
 ellipse(colMeans(samNat), cov(samNat), alpha=0.5)
 points(t(colMeans(samNat)), pch=19)
+samFmsy = rnorm(100000, 0.3907948, 0.03357)/2
 sam2 = rnorm(1000, fit$lalpha, fit$rsCov[c("lalpha"), c("lalpha")])
 points(exp(fit$lalpha)/2, 0.5, pch=19, col='red')
-segments(quantile(exp(sam2)/2, 0.25), 0.5, quantile(exp(sam2)/2, 0.75), 0.5, col='red')
-abline(h=0.5)
+segments(quantile(samFmsy, 0.25), 0.5, quantile(samFmsy, 0.75), 0.5, col='red')
+points(cbind(c(quantile(samFmsy, 0.25), quantile(samFmsy, 0.75)), rep(0.5, 2)), col='red', pch="|", cex=0.75)
 legend("topright", legend=c("Three-Parameter PT RPs", "Two-Parameter Schaefer RPs"), pch=19, col=c('black', 'red'))
-#dev.off()
+dev.off()
 
 #
 #RP Plot
