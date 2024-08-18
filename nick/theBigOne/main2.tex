@@ -31,9 +31,8 @@
 \usepackage{bbm}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
-%\usepackage{dingbat}
-%\usepackage{newclude}
 \usepackage{mathtools, nccmath}
+\usepackage{rotating}
 
 
 %
@@ -675,7 +674,9 @@ three-parameter functions instead.
 \includegraphics[width=0.5\textwidth]{../edits/namibibRP.png}
 \vspace{-1cm}
 \caption{
-Schaefer and PT RP MLEs and associated interquartile regions.  
+Schaefer and PT RP MLEs and associated interquartile confidence regions. 
+The PT curve models the entire two-dimensional RP space shown and the Schaefer model 
+limits RP estimates to the horzontal line at $\frac{B^*}{\bar B(0)}=\frac{1}{2}$. 
 %Yield curves for data generated with $\frac{F^*}{M}=1.97$ and $\frac{B^*}{\bar B(0)}=0.46$. %$\frac{F^*}{M}=3.48$ and $\frac{B^*}{\bar 
 %Convert into $B/B_0$. Show the high contrast curve.
 }
@@ -688,12 +689,11 @@ By fitting the Namibian Hake data from Figure (\ref{hakeData}) with a
 two-parameter Schaefer model, as compared with a three-parameter PT model, 
 the restrictive RP estimation under two-parameter models can be seen.
 As will be developed further in Section (\ref{ptRef}), both models can be 
-reparameterized directly in terms of their RPs, allowing for straight-forward 
-inference. %of RPs. 
-%Figure (\ref{exRP}) shows these RP estimates in the broader three-parameter RP space. 
+reparameterized directly in terms of their RPs, allowing for straight-forward inference.  
+Figure (\ref{exRP}) shows these RP estimates in relation to the respective two/three-parameter RP spaces under each model. %in the broader three-parameter RP space. 
 %with the Scahefer model's RP space shown by the horizontal line at $\frac{B^*}{\bar B(0)}=\frac{1}{2}$. 
-%ranging from
-A number of quirks in these data have been noted over the years including small sample size, 
+%ranging from %over the years
+A number of quirks in these data have been noted including small sample size, 
 the possible presence of outliers, and changes in the fishing fleet over the modeled period 
 \cite{punt_model_1988, hilborn_ecological_1997, rankin_alternative_2015}.   
 %There may be plenty of critism of the PT model's use on these data, a key critque of the 
@@ -709,9 +709,9 @@ in many ways the PT model is far more honest about the short-comings of the data
 RP inference. 
 The Schaefer model does not admit many shortcomings in its RP estimates, with unrealistically 
 tight uncertainty bounds in $F^*$ and absolute certainty that $\frac{B^*}{\bar B(0)}=\frac{1}{2}$. 
-The mere fact that PT can model $\frac{B^*}{\bar B(0)}$ more generally than the 
+The fact that PT can model $\frac{B^*}{\bar B(0)}$ more generally than the 
 Schaefer model lets the PT model reflect the shortcomings of these data 
-to provide a more honest representation of RP uncertainty.
+to provide a more honest representation of RP estimates with wider uncertainty bounds. %in the form of .
 %in the form of more realistic estimates of RP uncertainty. 
 %Given the shortcomings of these data, the PT RPs are a much more honest representation of the data. %fully contextulazed information of these data. 
 %While the Schaefer model is 

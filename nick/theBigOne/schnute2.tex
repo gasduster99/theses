@@ -749,36 +749,75 @@ from the existing samples. An augmenting design $X_{n'} = LHS_{n'}(R_{(x_a, d_a)
 %the DDM converges to thepreviously studied SPM.
 is collected and added to $X_n$. Design refinement carries on recursively 
 collecting augmenting designs in this way until %the maximin distance is sufficiently small to demonstrate 
-stability of the metamodel. Typically design refinement converged after the 
-addition of about 60 augmenting designs of size $n'=5$.
+stability of the metamodel. Typically design refinement in Chapters (\ref{schnuteChapter}) 
+and (\ref{delayChapter}) converged after the addition of about 60 augmenting designs of size $n'=5$.
 % with a maximin distance of   
 %below the desired level.
 %{\color{red} State how small in practice here.}
 
-%
-\paragraph{High Contrast}
+{\color{red}
+\subsubsection{Metamodel Convergence\label{converge}}
 
+%
+To demonstrate how convergence of the metamodel is identified %below results are shown from the 
+Figure (\ref{edit2}) shows the convergence process using the results from Section (\ref{ptTrends})
+as an example. The  metamodels shown in the first collumn are made with an 
+intentionally sparse intial design (50 samples) to examplify an unconverged 
+metamodel. As more samples are added to the design, the metamodeled pattern 
+orignally shown in Figure (\ref{arrowsPT}) appears. %(around 100 samples). 
+
+%\vspace*{-5cm}
+%\begin{figure}[h!]
+\begin{sidewaysfigure}[h!] 
+%\begin{minipage}[h!]{0.49\textwidth}
+\begin{center}
+\textbf{High Contrast}
 %50
-\includegraphics[width=0.32\textwidth]{../edits/directionalBiasSubPTExpT45MinConnF1.png}
+\includegraphics[width=0.25\textwidth]{../edits/directionalBiasSubPTExpT45MinConnF1.png}%\\
 %100
-\includegraphics[width=0.32\textwidth]{../edits/directionalBiasSubPTExpT45MinCon.png}
+\includegraphics[width=0.25\textwidth]{../edits/directionalBiasSubPTExpT45MinCon.png}%\\
 %200
-\includegraphics[width=0.32\textwidth]{../edits/directionalBiasSubPTExpT45MinCon2X.png}\\
-\includegraphics[width=0.49\textwidth]{../edits/obsDirectionalBiasSubExpT45MinCon2X.png}
-
-%
-\paragraph{Low Contrast}
-
+\includegraphics[width=0.25\textwidth]{../edits/directionalBiasSubPTExpT45MinCon2X.png}%\\
+%observed
+\includegraphics[width=0.25\textwidth]{../edits/obsDirectionalBiasSubExpT45MinCon2X.png}
+%\end{minipage}
+%\begin{minipage}[h!]{0.49\textwidth}
+\\$~$\\$~$\\
+\textbf{Low Contrast}
 %50
-\includegraphics[width=0.32\textwidth]{../edits/directionalBiasSubPTFlatT30nF6.png}%7.png}
+\includegraphics[width=0.25\textwidth]{../edits/directionalBiasSubPTFlatT30nF6.png}%\\
 %100
-\includegraphics[width=0.32\textwidth]{../edits/directionalBiasSubPTFlatT30nF3.png}
+\includegraphics[width=0.25\textwidth]{../edits/directionalBiasSubPTFlatT30nF3.png}%\\
 %150 %200
-\includegraphics[width=0.32\textwidth]{../edits/directionalBiasSubPTFlatT30nF1.png}\\
-%200
-\includegraphics[width=0.49\textwidth]{../edits/obsDirectionalBiasSubFlatT30nF1.png}
+\includegraphics[width=0.25\textwidth]{../edits/directionalBiasSubPTFlatT30nF1.png}%\\
+%observed
+\includegraphics[width=0.25\textwidth]{../edits/obsDirectionalBiasSubFlatT30nF1.png}
+%\end{minipage}
+%\end{figure}
+\end{center}
+\caption{ \label{edit2}
+An example demonstrating convergence of the metamodeled trends describing RP biases of 
+the Schaefer model in the high/low ($top/bottom$) contrast simulation settings as first 
+shown in Figure (\ref{arrowsPT}). In each case, %the first column shows the 
+the first column demonstrates the unconverged metamodels with an inital 50 sample design. %(demonstrating the unconverged metamodels), and 
+The second and third collumns demonstrate the metamodel trends with progressively more dense designs. 
+The final collumn shows the a nearest neighbour interpolation of the raw data of the most dense design.
+%unconverged metamodel (with 50 dessamples), each subsequent collumn shows the metamodel after an additional 50 
+%samples  demonstrates an  the metamodel is  The first three collumns show progressively more dense designs
+}
+\end{sidewaysfigure} 
 
+%
+\clearpage
+\noindent
+%the metamodel trends are stable and do not %change with addition samples.
+As more samples are added beyond this point the metamodel trends are stable 
+and do not change with addition densification of the underlying design. A 
+nearest neighbour interpolation of the raw data from the densest design is 
+shown to demonstrate that the converged metamodel follows the same basic 
+mappings described by the simulated models.%The interpolation of the most denbse desijgn is shown to demonstrate that the 
 
+}
 %\clearpage
 \subsection{Metamodeling}
 
