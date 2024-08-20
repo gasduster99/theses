@@ -755,16 +755,16 @@ and (\ref{delayChapter}) converged after the addition of about 60 augmenting des
 %below the desired level.
 %{\color{red} State how small in practice here.}
 
-{\color{red}
+{\color{blue}
 \subsubsection{Metamodel Convergence\label{converge}}
 
 %
 To demonstrate how convergence of the metamodel is identified %below results are shown from the 
 Figure (\ref{edit2}) shows the convergence process using the results from Section (\ref{ptTrends})
-as an example. The  metamodels shown in the first collumn are made with an 
-intentionally sparse intial design (50 samples) to examplify an unconverged 
-metamodel. As more samples are added to the design, the metamodeled pattern 
-orignally shown in Figure (\ref{arrowsPT}) appears. %(around 100 samples). 
+as an example. The  metamodel trends shown in the first column are made with an 
+intentionally sparse initial design (50 samples) to exemplify an unconverged 
+metamodel. As more samples are added to the initial sparse design, the pattern 
+\mbox{originally shown in Figure (\ref{arrowsPT}) emerges.} %appears (with 100 samples).}
 
 %\vspace*{-5cm}
 %\begin{figure}[h!]
@@ -799,9 +799,9 @@ orignally shown in Figure (\ref{arrowsPT}) appears. %(around 100 samples).
 An example demonstrating convergence of the metamodeled trends describing RP biases of 
 the Schaefer model in the high/low ($top/bottom$) contrast simulation settings as first 
 shown in Figure (\ref{arrowsPT}). In each case, %the first column shows the 
-the first column demonstrates the unconverged metamodels with an inital 50 sample design. %(demonstrating the unconverged metamodels), and 
-The second and third collumns demonstrate the metamodel trends with progressively more dense designs. 
-The final collumn shows the a nearest neighbour interpolation of the raw data of the most dense design.
+the first column demonstrates the unconverged metamodels with an initial 50 sample design. %(demonstrating the unconverged metamodels), and 
+The second and third columns demonstrate the metamodel trends with progressively more dense designs. 
+The final column shows the a nearest neighbor interpolation of the raw data of the most dense design.
 %unconverged metamodel (with 50 dessamples), each subsequent collumn shows the metamodel after an additional 50 
 %samples  demonstrates an  the metamodel is  The first three collumns show progressively more dense designs
 }
@@ -812,8 +812,8 @@ The final collumn shows the a nearest neighbour interpolation of the raw data of
 \noindent
 %the metamodel trends are stable and do not %change with addition samples.
 As more samples are added beyond this point the metamodel trends are stable 
-and do not change with addition densification of the underlying design. A 
-nearest neighbour interpolation of the raw data from the densest design is 
+and do not change with additional densification of the underlying design. A 
+nearest neighbor interpolation of the raw data from the densest design is 
 shown to demonstrate that the converged metamodel follows the same basic 
 mappings described by the simulated models.%The interpolation of the most denbse desijgn is shown to demonstrate that the 
 
@@ -922,13 +922,27 @@ BH model is misspecified for those data.
 %
 \subsection{Metamodeled Trends \label{sMeta}}
 
+%{\color{red}
 %
 Unlike the Schaefer model, the BH set is not a constant in
-$\frac{B^*}{B_0}$. Under the BH model, bias in $\frac{B^*}{B_0}$ is no
-longer entirely defined by the degree of model misspecification, but rather the
-structure of BH RPs allows bias in both $\frac{B^*}{B_0}$ and $\frac{F^*}{M}$
-to interact as a function of contrast in the data.
+$\frac{B^*}{B_0}$. %Under the BH model $\frac{B^*}{B_0}=\frac{1}{\frac{F^*}{M}+2}$, 
+Under the BH model, bias in $\frac{B^*}{B_0}$ is no longer entirely defined by the degree of model 
+misspecification, but rather the structure of BH RPs allows bias in both $\frac{B^*}{B_0}$ 
+and $\frac{F^*}{M}$ to interact as a function of contrast in the data.
 %This has the effect of allowing the bias in $\frac{B^*}{B_0}$ and $F^*$ 
+
+{\color{blue}
+Recall that metamodeling occurs on the scale of $\log(F^*)$ under the BH model.
+Under the BH model $\frac{B^*}{\bar B(0)}=\frac{1}{\frac{F^*}{M}+2}$; by transforming metamodel
+predictions of $\log(F^*)$ to $\frac{F^*}{M}$ and $\frac{B^*}{\bar B(0)}$, via this relationship, 
+metamodeled predictions of BH RPs are obtained. The deterministic restriction that the BH model 
+places on RPs allows a GP with a one dimensional response to model both BH RPs simultaneously 
+through the $\frac{B^*}{\bar B(0)}=\frac{1}{\frac{F^*}{M}+2}$ RP relationship.
+%GP to  While the mapping 
+%By further subtracting the true data generating PT RPs from these predicted Schaefer RPs
+%at each point in RP space a pattern of inferential RP bias, induced by model 
+%misspecification of the Schaefer model, can be seen.
+}
 
 %
 \begin{figure}[h!]
@@ -1016,13 +1030,14 @@ such a stock.
 %add legend
 %}
 
-
+%\clearpage
 \subsubsection{Low Contrast \label{schnuteLowResults}}
 
 %
 \begin{wrapfigure}{r}{0.5\textwidth}
-\vspace{-0.5cm}
-%%\vspace{-1.25cm}
+%\vspace{-0.5cm}
+\vspace{-3.55cm}
+%\vspace{-1.25cm}
 %\begin{figure}[h!]
 \begin{minipage}[h!]{0.92\textwidth}
 \includegraphics[width=0.5\textwidth]{../gpBias/directionalBiasSchnuteSubHHardFlatT30N150WWideN112.png}
@@ -1055,6 +1070,23 @@ The primary difference in this low contrast setting, is the break point
 around $\frac{B^*}{\bar B(0)}=0.4$ above which $\frac{F^*}{M}$ is sharply
 underestimated.
 
+%
+\begin{wrapfigure}{r}{0.5\textwidth}
+%\vspace{-2cm}
+%\begin{figure}[h!]
+%\includegraphics[width=0.5\textwidth]{../gpBias/yeildCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png}
+\includegraphics[width=0.5\textwidth]{../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX1.9707Z0.4633.png}
+%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
+\vspace{-1cm}
+\caption{
+Yield curves for data generated with $\frac{F^*}{M}=1.97$ and $\frac{B^*}{\bar B(0)}=0.46$. %$\frac{F^*}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$.
+%Convert into $B/B_0$. Show the high contrast curve.
+}
+\label{bhFmsy}
+%\end{figure}
+\end{wrapfigure}
+
 %inferential intact regiem
 The region of RPs where the BH model manages to recover the minimal 
 distance mapping is a regime of dynamics where RP inference of remains 
@@ -1070,23 +1102,6 @@ this region still produced RPs estimates where the data informs both RPs.
 %% here, %(as large as $X$ in the worst case) within this region, 
 %this region can be considered safe in the sense that even for low contrast data
 %RP estimation under the the BH model recovers the minimal distance mapping.
-
-%
-\begin{wrapfigure}{r}{0.5\textwidth}
-\vspace{-0.75cm}
-%\begin{figure}[h!]
-%\includegraphics[width=0.5\textwidth]{../gpBias/yeildCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png}
-%\includegraphics[width=0.5\textwidth]{../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX3.4791Z0.4662.png}
-\includegraphics[width=0.5\textwidth]{../gpBias/yeildRelCurveCompareHHardFlatT30N150WWideN112PrettyX1.9707Z0.4633.png}
-%\includegraphics[width=0.5\textwidth]{../gpBias/rGridHHardFlatT30N150WWideN112.png}
-\vspace{-1cm}
-\caption{
-Yield curves for data generated with $\frac{F^*}{M}=1.97$ and $\frac{B^*}{\bar B(0)}=0.46$. %$\frac{F^*}{M}=3.48$ and $\frac{B^*}{\bar B(0)}=0.48$.
-%Convert into $B/B_0$. Show the high contrast curve.
-}
-\label{bhFmsy}
-%\end{figure}
-\end{wrapfigure}
 
 %
 Outside of this region of intact RP inference, RP estimation breaks from the minimal 

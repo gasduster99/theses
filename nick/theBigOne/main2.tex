@@ -665,7 +665,7 @@ three-parameter functions instead.
 %production functions that do not model the full theoretical space of
 %RPs \shortcite{mangel_perspective_2013}.
 
-{\color{red}
+{\color{blue}
 
 %
 \begin{wrapfigure}{r}{0.5\textwidth}
@@ -676,7 +676,7 @@ three-parameter functions instead.
 \caption{
 Schaefer and PT RP MLEs and associated interquartile confidence regions. 
 The PT curve models the entire two-dimensional RP space shown and the Schaefer model 
-limits RP estimates to the horzontal line at $\frac{B^*}{\bar B(0)}=\frac{1}{2}$. 
+limits RP estimates to the horizontal line at $\frac{B^*}{\bar B(0)}=\frac{1}{2}$. 
 %Yield curves for data generated with $\frac{F^*}{M}=1.97$ and $\frac{B^*}{\bar B(0)}=0.46$. %$\frac{F^*}{M}=3.48$ and $\frac{B^*}{\bar 
 %Convert into $B/B_0$. Show the high contrast curve.
 }
@@ -1006,6 +1006,53 @@ and practical models in stock assessment.
 %\end{itemize}
 %\end{itemize}
 
+%
+{\color{blue} %Stationarity of GP
+
+%NOTE: unknown patterns and flexibility with respect to nonlinear shapes
+In most of the simulation settings described, the stationarity of the GP is a 
+reasonable and well motivated assumption of the metamodel structure. In both 
+the high and low contrast settings, RP estimates under the Schaefer model
+%, discussed in Chapter (\ref{ptChapter}), 
+are smoothly varying over RP space with a steady linear mean and spatial correlation 
+structure. Similar well motivated 
+%as well as a consistent spatial correlation structure. Similar well motivated 
+stationarity is observed in the high contrast BH simulations in both of the SPM 
+and DDM settings. 
+%
+%Furthermore, the nonlinear constraint that the BH model imposes in RP space 
+%imposed by the BH model makes the  
+However, in the low contrast BH simulations the catastrophic failure mode in 
+$\frac{F^*}{M}$ results in a distinct behavior that likely implies 
+a different mean and correlation structure than the intact mode implies. %RP estimation mode implies. 
+%of %nearly shortest distance RP estimates imply. %all of the other cases. 
+%In these cases t
+The flexibility of the GP still accurately captures the very distinct 
+RP estimation pattern in these regions, but due to %performs well, but due to 
+the change in the underlying mechanism of model failure in these cases, 
+%the spatial 
+%correlation structure in these cases is likely different. 
+the simulation requires more design samples to produce 
+convergence of the metamodel when the catastrophic failure mode in
+$\frac{F^*}{M}$ is present. 
+%In the intact region, of these low contrast settings the 
+%As seen in Figure (\ref{breaks}), the boundary between these different estimation processes 
+%are non-linear in the design RP space and will vary with the growth dynamics of 
+%the modeled stock.
+
+
+%\begin{itemize}
+%\item stationarity is good for PT high and low contrast
+%\item BH SPM and DDM in high contrast is well modeled as a stationary GP
+%\item low contrast BH models introduce a clear nonstationarity.
+%\begin{itemize}
+%	\item The catestrophic failure mode results in RP estimates that 
+%	\item that said the stationary model is able to identify this break point
+%\end{itemize} 
+%\end{itemize}
+
+}
+
 \subsection{Future Work}
 
 %the most complete picture of how RPs are estimated yet
@@ -1043,7 +1090,7 @@ methods of understanding the notion more generally would be extremely valuable.
 %The notion of contrast developed in Section (\ref{catch}) if useful and representative of many California fisheries. 
 
 %EDIT #3.2
-{\color{red}
+{\color{blue}
 %SOME DISCUSSION abotub fixed q.
 %%
 %The low contrast settings described through-out describe an extremely poorly 
@@ -1054,7 +1101,7 @@ methods of understanding the notion more generally would be extremely valuable.
 %
 The catchability parameter, $q$, is fixed throughout this work due to the weak 
 identifiability between $q$ and $K$ (or $\beta$ as the case may be). As described in Section (\ref{modelFit}), 
-this issue arrises when estimating both quantities in low contrast simulations. %, as described in Section (\ref{modelFit}). 
+this issue arises when estimating both quantities in low contrast simulations. %, as described in Section (\ref{modelFit}). 
 This work explores the lower extent of contrast by fixing $q$ to focus 
 on the estimation properties of $\theta$, and therefore RPs, in 
 the weakest information settings. That said, many stock assessments enjoy more 
@@ -1123,17 +1170,18 @@ use of more pointed acquisition functions\cite{pourmohamad_bayesian_2021}, fewer
 \footnote{The primary factor for determining the run time of these simulations}. In particular, since 
 optimization is not a goal of the metamodel in this setting, developing entropy-based acquisition functions 
 \cite{hennig_entropy_2012, hernandez-lobato_predictive_2014} could be useful here. 
-{\color{red} 
-
-\textit{how good an assumption is statiojnarity of the GP used.}
-
+%{\color{red} 
+%\textit{how good an assumption is statiojnarity of the GP used.}
+%
 Furthermore, given the 
 catastrophic model failure that was observed under low contrast BH models, particularly in the slower 
 growing examples, it could be valuable to consider nonstationary GP metamodels \cite{gramacy_bayesian_2008, binois_hetgp_2021}. %, heinonen_non-stationary_2016}. 
 By considering nonstationary metamodels these catastrophic failure modes 
 %(similar to that observed under the BH model in the low contrast examples shown here) 
 may be more quickly and accurately identified.
-}
+%}
+
+
 %By documenting these directions for future work here it is the hope that these approaches may facilitate the future reseach of  
 
 % however as using these methods in the context of more complexbiological models or  
