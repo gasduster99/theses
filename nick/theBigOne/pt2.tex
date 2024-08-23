@@ -558,14 +558,18 @@ three-parameter production model.
 %modeled covariance function.
 
 %
-While index of abundance data are generated from three-parameter models, at each
-design location of the simulation, fitting the restricted two-parameter model
-results in a maximum likelihood estimate (MLE; and associated estimation
-uncertainty) of each of the productivity parameters. For the Schaefer model 
-the MLEs of the productivity parameters are transformed (via the expressions 
-developed in Section (\ref{ptRef}) with $\gamma=2$) to $\log(F^*)$ and $\log(B_0)$
-%as previously developed in Section (\ref{ptRef}) with $\gamma=2$. These quantities 
-so that the transformed RP quantities are both in $\mathbb{R}$. 
+{\color{blue} %While
+Indices of abundance are generated from three-parameter models; by
+%, at each design location of the simulation, 
+fitting these data with the restricted two-parameter model maximum likelihood estimates (MLE; and associated estimation
+uncertainty) of each of the productivity parameters, and thus RPs, are obtained. 
+%For the Schaefer model the MLE of $r$ is transformed to $\log(F^*)=\log(\frac{r}{2})$ %and $\log(B_0)$
+%%the productivity parameters are transformed (via the expressions developed in Section (\ref{ptRef}) with $\gamma=2$) 
+%%to $\log(F^*)$ %and $\log(B_0)$
+%%as previously developed in Section (\ref{ptRef}) with $\gamma=2$. These quantities 
+%%so that the transformed RP quantities are both in $\mathbb{R}$. 
+%so that the modeled quantity, $\log(F^*)$, is in $\mathbb{R}$.
+%
 %of RPs, via 
 %For the Schaefer model 
 %the productivity parameters estimated are reparameterized as $\log(r)$ and 
@@ -578,14 +582,17 @@ so that the transformed RP quantities are both in $\mathbb{R}$.
 %At each design location of the simulation, fitting the restricted two-parameter
 %model results in a MLE of each of the productivity parameters
 %(i.e. Schaefer:[$log(r)$, $log(K)$], BH:[$log(\alpha)$, $log(\beta)$]).
-These quantities are then modeled as GP models over the broader RP space.
+%
+%
+%These quantities are then modeled as GP models over the broader RP space.
 To simplify the specification of the metamodel, let $\textbf{y}$ be a vector
-collecting the fitted MLEs for one of these quantities, and let
+collecting the fitted MLEs for $\log(F^*)$, and let %=\log\left(\frac{r}{2}\right)$, and let  
+%(transformed so that the free RP under the Schaefer model is in $\mathbb{R}$), and let
 $\bm{\omega}$ be a vector of estimates of the estimator variances (via the
 inverted Fisher information) at each $\textbf{y}$.
 %
-Each of the transformed RP estimates are then modeled using
-independent instances of the following GP metamodel. %in Eq (\ref{GPModel}). 
+The transformed RP estimates are then modeled using the following GP metamodel. %in Eq (\ref{GPModel}). 
+}
 
 %
 \begin{align} \label{GPModel}
@@ -657,6 +664,33 @@ is generated from the three-parameter production model at RP location $\textbf{x
 Finally, $\textbf{r(x}^\star\textbf{)}$ is a vector-valued function of correlation function 
 evaluations for the predictive location $\textbf{x}^\star$ against all observations 
 in $\bm{X}$(i.e. $\textbf{r(x}^\star\textbf{)}=\bm{R}(\textbf{x}^\star, \bm{x}_i)~\forall~\bm{x}_i\in\bm{X}$).
+
+
+{\color{blue}
+%Recall that metamodeling occurs on the scale of $\log(F^*)$ under the Schaefer model. 
+Recall that under the Schaefer model $\frac{B^*}{\bar B(0)}=0.5$; by transforming 
+metamodel predictions of $\log(F^*)$ back to $F^*$, metamodeled predictions of Schaefer 
+RPs are obtained.
+ %via the expressions in Eq. (\ref{ptRP}).
+%Recall that metamodeling
+%occurs on the scales of $log(F^*)$ and $log(B_0)$,
+%%the inferred productivity parameters of the restrictedproduction model,
+%%by transforming  %(in this case the Schaefer model when fitting PT data. 
+%by transforming metamodel predictions via the expressions in Section (\ref{ptRef}), %Eq. (\ref{ptRP}), 
+%metamodeled predictions are obtained for the Schaefer RPs $F^*$ and $\frac{B^*}{B_0}$. 
+By further subtracting the PT RPs from these predicted Schaefer RPs 
+at each point in RP space a pattern of RP estimation biases, induced by model 
+misspecification of the Schaefer model, can be visualized as will be seen in Figure (\ref{arrowsPT}).
+
+In order to investigate metamodeled bias surfaces for $B^*$ or $MSY$ individually 
+it is necessary to separate the quantity $B^*$ from the ratio $\frac{B^*}{B_0}$. 
+In order to do this, the additional metamodeled quantity $\log(B_0)$ was considered 
+using the same structure as seen in this section. Ultimately those results were 
+found to be consistent with the results presented throughout and thus were not 
+included. %The metamodeled quantity $\log(B_0)$ does not appear anywhere else in this analysis. 
+%. due not contribute to the overall analysis that appears in this document. 
+}
+%{\color{red} a sentence about modeling $\log(B_0)$ to look at $B^*$ and/or $MSY$}
 
 %%
 %{\color{red}
@@ -1028,25 +1062,7 @@ due to the limited range of the production function that is observed
 %Below the Schaefer line PT is shallower to the right of $B^*$ than it is on the
 %left and so the logistic parabola estimate tends to under estimate $F^*$.
 
-%
-Figure (\ref{flatProd}) shows four of the most misspecified example
-production function fits as compared to the true data generating PT production
-functions. The rug plots below each set of curves show how the observed
-biomasses decay exponentially from $K$ to $B^*$ in each case. In particular,
-notice how observations only exist where the PT biomass is greater than $B^*$.
-Due to the leaning of the true PT curves, and the symmetry of the 
-%logistic parabola, the 
-%logistic curve only observes information about its slope at the
-%origin from data observed on the right portion of the PT curves. 
-%The top two
-%panels of Figure (\ref{flatProd}) shows PT data generated such
-%that $\frac{B^*}{\bar B(0)}>0.5$; in these cases PT is steeper to the right of
-%$B^*$ than it is on the left, and so the the logistic curve over-estimates $r$,
-%and consequently also over-estimates $F^*$. %for data generated above the Schaefer line. 
-%The bottom two panels of Figure (\ref{flatProd}) show PT data
-%generated with $\frac{B^*}{\bar B(0)}<0.5$ and where the vice versa phenomena
-%occurs. PT is shallower to the right of $B^*$ than it is on the left and so the
-%logistic parabola estimate tends to under estimate $F^*$.
+
 %\begin{figure}[h!]
 \begin{wrapfigure}{r}{0.5\textwidth}
 %\vspace{-0.5cm}
@@ -1073,25 +1089,71 @@ in the simulated RP-space. Observed biomasses are plotted in the rug plots below
 \label{flatProd}
 %\end{figure}
 \end{wrapfigure}
-%%
-%Figure (\ref{flatProd}) shows four of the most misspecified example
-%production function fits as compared to the true data generating PT production
-%functions. The rug plots below each set of curves show how the observed
-%biomasses decay exponentially from $K$ to $B^*$ in each case. In particular,
-%notice how observations only exist where the PT biomass is greater than $B^*$.
-%Due to the leaning of the true PT curves, and the symmetry of the 
-logistic
+
+%
+Figure (\ref{flatProd}) shows four of the most misspecified example
+production function fits as compared to the true data generating PT production
+functions. The rug plots below each set of curves show how the observed
+biomasses decay exponentially from $K$ to $B^*$ in each case. In particular,
+notice how observations only exist where the PT biomass is greater than $B^*$.
+Due to the leaning of the true PT curves, and the symmetry of the logistic 
 parabola, the logistic curve only observes information about its slope at the
 origin from data observed on the right portion of the PT curves. 
 The top two
-panels of Figure (\ref{flatProd}) shows PT data generated such
+panels of Figure (\ref{flatProd}) show PT data generated such
 that $\frac{B^*}{\bar B(0)}>0.5$; in these cases PT is steeper to the right of
-$B^*$ than it is on the left, and so the the logistic curve over-estimates $r$,
-and consequently also over-estimates $F^*$. %for data generated above the Schaefer line. 
+$B^*$ than it is on the left, and so the the logistic curve overestimates $r$,
+and consequently also overestimates $F^*$. %for data generated above the Schaefer line. 
 The bottom two panels of Figure (\ref{flatProd}) show PT data
 generated with $\frac{B^*}{\bar B(0)}<0.5$ and where the vice versa phenomena
 occurs. PT is shallower to the right of $B^*$ than it is on the left and so the
-logistic parabola estimate tends to under estimate $F^*$.
+logistic parabola estimate tends to underestimate $F^*$.
+
+%%\begin{figure}[h!]
+%\begin{wrapfigure}{r}{0.5\textwidth}
+%%\vspace{-0.5cm}
+%%\begin{minipage}[h!]{0.49\textwidth}
+%\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.12Z0.573.png}
+%\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.674Z0.599.png}\\
+%\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.096Z0.22.png}
+%\includegraphics[width=0.24\textwidth]{../ptNew/srrCompareFlatT30X0.699Z0.201.png}
+%%\end{minipage}
+%%\begin{minipage}[h!]{0.49\textwidth}
+%%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.116Z0.62.png}
+%%%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.702Z0.614.png}\\
+%%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.774Z0.586.png}\\
+%%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.065Z0.226.png}
+%%\includegraphics[width=0.45\textwidth]{../ptNew/srrCompareExpT45X0.715Z0.17.png}
+%%\end{minipage}
+%\caption{
+%A comparison of the true PT production function (in black) and the estimated logistic curve (in red)
+%with 95\% CI shown. The examples shown represent the four corners of maximum model misspecification
+%in the simulated RP-space. Observed biomasses are plotted in the rug plots below the curves.
+%%Fitted logistic production function verses true PT production function. 
+%%Observed biomass plotted along x-axis.
+%}
+%\label{flatProd}
+%%\end{figure}
+%\end{wrapfigure}
+%%%
+%%Figure (\ref{flatProd}) shows four of the most misspecified example
+%%production function fits as compared to the true data generating PT production
+%%functions. The rug plots below each set of curves show how the observed
+%%biomasses decay exponentially from $K$ to $B^*$ in each case. In particular,
+%%notice how observations only exist where the PT biomass is greater than $B^*$.
+%%Due to the leaning of the true PT curves, and the symmetry of the 
+%logistic
+%parabola, the logistic curve only observes information about its slope at the
+%origin from data observed on the right portion of the PT curves. 
+%The top two
+%panels of Figure (\ref{flatProd}) shows PT data generated such
+%that $\frac{B^*}{\bar B(0)}>0.5$; in these cases PT is steeper to the right of
+%$B^*$ than it is on the left, and so the the logistic curve over-estimates $r$,
+%and consequently also over-estimates $F^*$. %for data generated above the Schaefer line. 
+%The bottom two panels of Figure (\ref{flatProd}) show PT data
+%generated with $\frac{B^*}{\bar B(0)}<0.5$ and where the vice versa phenomena
+%occurs. PT is shallower to the right of $B^*$ than it is on the left and so the
+%logistic parabola estimate tends to under estimate $F^*$.
 
 %
 \subsection{Metamodeled Trends \label{ptTrends}}
@@ -1123,8 +1185,8 @@ identifies a complete PT model with different combinations of parameters values.
 Recall that when $\gamma=2$ for the PT model, the PT curve becomes a parabola
 and is equivalent to the logistic curve of the Schaefer model. Since the
 logistic curve is symmetric about $B^*$, the Schaefer model must fix the value of
-$\frac{B^*}{\bar B(0)}$ at the constant $0.5$ for any value of $F^*$. So
-the line through RP space defined by $\frac{B^*}{\bar B(0)}=0.5 ~~ \forall ~~ F^*$,
+$\frac{B^*}{\bar B(0)}$ at the constant $0.5$ for any value of $F^*$. The line 
+through RP space defined by $\frac{B^*}{\bar B(0)}=0.5 ~~ \forall ~~ F^*$,
 defines the subset of RP space where $\gamma=2$ and where the PT model is
 equivalent to the Schaefer model. For brevity this subset of RP where $\frac{B^*}{\bar B(0)}=0.5$
 will be referred to as the ``Schaefer set''. Thus simulated data that are
@@ -1143,21 +1205,6 @@ individual simulation runs will at best show jittery trends due to the stochasti
 nature of statistical inference. The GP metamodel accounts for this
 stochasticity %, filters out jitters, %  and allows for the jitters to be filtered out 
 to focus analysis on the signal in the simulation results. 
-{\color{blue}
-Recall that metamodeling occurs on the scale of $\log(F^*)$ under the Schaefer model. 
-Under the Schaefer model $\frac{B^*}{\bar B(0)}=0.5$; by transforming metamodel 
-predictions of $\log(F^*)$ to $F^*$ metamodeled predictions of Schaefer RPs are obtained.
- %via the expressions in Eq. (\ref{ptRP}).
-%Recall that metamodeling
-%occurs on the scales of $log(F^*)$ and $log(B_0)$,
-%%the inferred productivity parameters of the restrictedproduction model,
-%%by transforming  %(in this case the Schaefer model when fitting PT data. 
-%by transforming metamodel predictions via the expressions in Section (\ref{ptRef}), %Eq. (\ref{ptRP}), 
-%metamodeled predictions are obtained for the Schaefer RPs $F^*$ and $\frac{B^*}{B_0}$. 
-By further subtracting the true data generating PT RPs from these predicted Schaefer RPs 
-at each point in RP space a pattern of inferential RP bias, induced by model 
-misspecification of the Schaefer model, can be seen. %to be seen. % in Figure (\ref{arrowsPT}).
-}
 
 %using the relevant transformations given in Eq. (\ref{ptRP}) , \ref{BratS}, \ref{FmsyS}) with $\gamma$
 %fixed to the restricting case.
@@ -1227,8 +1274,7 @@ for data generated below the Schaefer line and overestimated above the Schaefer 
 In the high contrast simulation the mapping is nearly minimal distance with the exception
 of PT data generated with simultaneously low $\frac{B^*}{B_0}$ and high $F^*$.
 
-%
-\clearpage
+%\clearpage
 \subsection{Contrast \& $F^*$ Bias}
 
 %
@@ -1270,7 +1316,8 @@ Furthermore a more complex model of fishing may be necessary.
 
 %{\color{red}Maybe show MSY bias for high and low contrast.}
 
-%\clearpage
+%
+\clearpage
 \section{Discussion}
 
 %;

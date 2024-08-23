@@ -165,7 +165,35 @@ TT = length(cpue)
 #plot(cpue)
 #fit$plotMean(add=T)
 #fit$plotBand()
+
 #
+fit = readRDS("schaefer.rda")
+fitPT = readRDS("PT.rda")
+
+#
+fitSRP = prodModel$new(
+        dNdt=dPdtRP, N0Funk=function(lbeta){exp(lbeta)}, #
+        time=1:TT, catch=catch, #FtFmsy,    #schaefer   #constants
+        #alpha=1, beta=cpue[1]/0.00049, gamma=0.8363341,   #parameters
+        #lalpha=fit$lalpha, lbeta=fit$lbeta,    #reparameterize
+        #dPdtRP = function(t, P, lFmsy, lbeta, logitZeta, catch)
+	lbeta=fitPT$lbeta, lFmsy=log(getFmsy(exp(fitPT$lalpha), fitPT$gamma)), logitZeta=logit(0.5), 
+	lq=fit$lq, lsdo=fit$lsdo  #nuisance parameters
+        #xi=datGen$xi, zeta=datGen$zeta          #other incidentals to carry a
+)
+
+#optimize
+optSRP = fitSRP$optimize(cpue,
+        c('lsdo', 'lFmsy', 'lbeta'),
+        lower   = c(log(0.001), log(0.1), log(1000)),
+        upper   = c(log(0.3),   log(1), log(10000)),
+        gaBoost = T, #list(maxiter=1e3, run=10, popSize=1e5), #T, #
+        #method         = "Nelder-Mead", 
+        cov     = T,
+        fitQ = T
+)
+
+
 ##
 #fitPT = prodModel$new(
 #        dNdt=dPdt, N0Funk=function(lbeta){exp(lbeta)}, #
@@ -215,32 +243,32 @@ TT = length(cpue)
 #)
 ##
 
+##
+#fitPTRP = readRDS("PTRP.rda")
 #
-fitPTRP = readRDS("PTRP.rda")
-
+##
+#fitPTRPNat = prodModel$new(
+#        dNdt=dPdtRPNat, N0Funk=function(lbeta){exp(lbeta)}, #
+#        time=1:TT, catch=catch, #FtFmsy,    #schaefer   #constants
+#        #alpha=1, beta=cpue[1]/0.00049, gamma=0.8363341,   #parameters
+#        #lalpha=fit$lalpha, lbeta=fit$lbeta,    #reparameterize
+#        #dPdtRP = function(t, P, lFmsy, lbeta, logitZeta, catch)
+#       lbeta=fitPTRP$lbeta, Fmsy=exp(fitPTRP$lFmsy), zeta=boot::inv.logit(fitPTRP$logitZeta), 
+#       lq=fitPTRP$lq, lsdo=fitPTRP$lsdo  #nuisance parameters
+#        #xi=datGen$xi, zeta=datGen$zeta          #other incidentals to carry a
+#)
 #
-fitPTRPNat = prodModel$new(
-        dNdt=dPdtRPNat, N0Funk=function(lbeta){exp(lbeta)}, #
-        time=1:TT, catch=catch, #FtFmsy,    #schaefer   #constants
-        #alpha=1, beta=cpue[1]/0.00049, gamma=0.8363341,   #parameters
-        #lalpha=fit$lalpha, lbeta=fit$lbeta,    #reparameterize
-        #dPdtRP = function(t, P, lFmsy, lbeta, logitZeta, catch)
-       lbeta=fitPTRP$lbeta, Fmsy=exp(fitPTRP$lFmsy), zeta=boot::inv.logit(fitPTRP$logitZeta), 
-       lq=fitPTRP$lq, lsdo=fitPTRP$lsdo  #nuisance parameters
-        #xi=datGen$xi, zeta=datGen$zeta          #other incidentals to carry a
-)
-
-#
-fitSRPNat = prodModel$new(
-        dNdt=dPdtRPNat, N0Funk=function(lbeta){exp(lbeta)}, #
-        time=1:TT, catch=catch, #FtFmsy,    #schaefer   #constants
-        #alpha=1, beta=cpue[1]/0.00049, gamma=0.8363341,   #parameters
-        #lalpha=fit$lalpha, lbeta=fit$lbeta,    #reparameterize
-        #dPdtRP = function(t, P, lFmsy, lbeta, logitZeta, catch)
-       lbeta=fitPTRP$lbeta, Fmsy=exp(fitPTRP$lFmsy), zeta=0.5, #boot::inv.logit(fitPTRP$logitZeta),
-       lq=fitPTRP$lq, lsdo=fitPTRP$lsdo  #nuisance parameters
-        #xi=datGen$xi, zeta=datGen$zeta          #other incidentals to carry a
-)
+##
+#fitSRPNat = prodModel$new(
+#        dNdt=dPdtRPNat, N0Funk=function(lbeta){exp(lbeta)}, #
+#        time=1:TT, catch=catch, #FtFmsy,    #schaefer   #constants
+#        #alpha=1, beta=cpue[1]/0.00049, gamma=0.8363341,   #parameters
+#        #lalpha=fit$lalpha, lbeta=fit$lbeta,    #reparameterize
+#        #dPdtRP = function(t, P, lFmsy, lbeta, logitZeta, catch)
+#       lbeta=fitPTRP$lbeta, Fmsy=exp(fitPTRP$lFmsy), zeta=0.5, #boot::inv.logit(fitPTRP$logitZeta),
+#       lq=fitPTRP$lq, lsdo=fitPTRP$lsdo  #nuisance parameters
+#        #xi=datGen$xi, zeta=datGen$zeta          #other incidentals to carry a
+#)
 
 ##optimize
 #optSRPNat = fitSRPNat$optimize(cpue,
@@ -288,31 +316,31 @@ fitPTRP = readRDS("PTRP.rda")
 fitPT = readRDS("PT.rda")
 fit = readRDS("schaefer.rda")
 
+##
+#samNat = rmvnorm(1000, c(fitPTRPNat$Fmsy, fitPTRPNat$zeta), fitPTRPNat$rsCov[c("Fmsy", "zeta"), c("Fmsy", "zeta")]%*%diag(c(0.7,1)))#diag(c(0.85,1.05))) #matrix(c(0.85, 1.1, 1.1, 1.05), 2, 2)) #
+#png("namibibRP.png")
+##samE = cbind( exp(sam[,1]), boot::inv.logit(sam[,2]) )
+#plot(samNat[,1], samNat[,2], xlab="Fmsy", ylab="Bmsy/B0", main="Namibian Hake RP Estimates", xlim=c(0.1, 0.7), ylim=c(0.1, 0.8), col="white")
+#abline(h=0.5)
+##point(c(fitPTRP$lFmsy, fitPTRP$logitZeta), pch=19)
+#ellipse(colMeans(samNat), cov(samNat), alpha=0.5)
+#points(t(colMeans(samNat)), pch=19)
+#samFmsy = rnorm(100000, 0.3907948, 0.03357)/2
+#sam2 = rnorm(1000, fit$lalpha, fit$rsCov[c("lalpha"), c("lalpha")])
+#points(exp(fit$lalpha)/2, 0.5, pch=19, col='red')
+#segments(quantile(samFmsy, 0.25), 0.5, quantile(samFmsy, 0.75), 0.5, col='red')
+#points(cbind(c(quantile(samFmsy, 0.25), quantile(samFmsy, 0.75)), rep(0.5, 2)), col='red', pch="|", cex=0.75)
+#legend("topright", legend=c("Three-Parameter PT RPs", "Two-Parameter Schaefer RPs"), pch=19, col=c('black', 'red'))
+#dev.off()
 #
-samNat = rmvnorm(1000, c(fitPTRPNat$Fmsy, fitPTRPNat$zeta), fitPTRPNat$rsCov[c("Fmsy", "zeta"), c("Fmsy", "zeta")]%*%diag(c(0.7,1)))#diag(c(0.85,1.05))) #matrix(c(0.85, 1.1, 1.1, 1.05), 2, 2)) #
-png("namibibRP.png")
-#samE = cbind( exp(sam[,1]), boot::inv.logit(sam[,2]) )
-plot(samNat[,1], samNat[,2], xlab="Fmsy", ylab="Bmsy/B0", main="Namibian Hake RP Estimates", xlim=c(0.1, 0.7), ylim=c(0.1, 0.8), col="white")
-abline(h=0.5)
-#point(c(fitPTRP$lFmsy, fitPTRP$logitZeta), pch=19)
-ellipse(colMeans(samNat), cov(samNat), alpha=0.5)
-points(t(colMeans(samNat)), pch=19)
-samFmsy = rnorm(100000, 0.3907948, 0.03357)/2
-sam2 = rnorm(1000, fit$lalpha, fit$rsCov[c("lalpha"), c("lalpha")])
-points(exp(fit$lalpha)/2, 0.5, pch=19, col='red')
-segments(quantile(samFmsy, 0.25), 0.5, quantile(samFmsy, 0.75), 0.5, col='red')
-points(cbind(c(quantile(samFmsy, 0.25), quantile(samFmsy, 0.75)), rep(0.5, 2)), col='red', pch="|", cex=0.75)
-legend("topright", legend=c("Three-Parameter PT RPs", "Two-Parameter Schaefer RPs"), pch=19, col=c('black', 'red'))
-dev.off()
-
+##
+##RP Plot
+##
 #
-#RP Plot
-#
-
-#
-fitPTRP = readRDS("PTRP.rda")
-fitPT = readRDS("PT.rda")
-fit = readRDS("schaefer.rda")
+##
+#fitPTRP = readRDS("PTRP.rda")
+#fitPT = readRDS("PT.rda")
+#fit = readRDS("schaefer.rda")
 
 ##1, 4
 #set.seed(4)
@@ -331,6 +359,46 @@ fit = readRDS("schaefer.rda")
 ##
 #plot(ptXi(exp(fitPT$lalpha),fitPT$gamma), ptZeta(fitPT$gamma), xlim=c(0, 3), ylim=c(0,1))
 #abline(h=0.5)
+
+
+##
+#fit$lbeta = log(2709)
+#
+##MSY
+#opt2 = fit$optimize(cpue, 
+#       c('lsdo', 'lalpha', 'lbeta'), 
+#       lower   = c(log(0.001), log(0.1), log(100)), 
+#       upper   = c(log(0.3), 0, log(10000)),  
+#       gaBoost = T, #list(maxiter=1e3, run=10, popSize=1e5), #T, #
+#       #method         = "Nelder-Mead", 
+#       cov     = T,
+#       fitQ = T
+#)
+
+#sam = rmvnorm(100, c(fitPTRP$lFmsy, fitPTRP$logitZeta), fitPTRP$rsCov[c("lFmsy", "logitZeta"), c("lFmsy", "logitZeta")])
+
+#
+samAlpha = rnorm(100000, 0.3907948, 0.03357)
+var(log(samAlpha))
+fSam = fit$plotRS(sample=T)
+
+#quantile(exp(fSam[,'lalpha'])*exp(fSam[,'lbeta'])/4, c(0.025, 0.5, 0.975))
+#    2.5%      50%    97.5% 
+#242.7426 258.4884 274.4757
+
+ptrpSam = fitPTRP$plotRS(sample=T)
+#quantile(exp(ptrpSam[,'lFmsy'])*exp(ptrpSam[,'lbeta'])*boot::inv.logit(ptrpSam[,'logitZeta']), c(0.025, 0.5, 0.975))
+#    2.5%      50%    97.5% 
+#185.2508 247.9858 270.1450
+
+#
+ptrpNatSam = fitPTRPNat$plotRS(sample=T)
+#quantile(ptrpNatSam[,'Fmsy']*exp(ptrpNatSam[,'lbeta'])*ptrpNatSam[,'zeta'], c(0.025, 0.975))
+#23.28432 263.00736
+
+#
+#JUNK
+#
 
 
 

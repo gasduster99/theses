@@ -188,6 +188,16 @@ Robert~B. Gramacy and Herbert~KH Lee.
 \newblock {\em Statistics and Computing}, 22(3):713--722, 2012.
 \newblock Publisher: Springer.
 
+\bibitem{heinonen_non-stationary_2016}
+Markus Heinonen, Henrik Mannerström, Juho Rousu, Samuel Kaski, and Harri
+  Lähdesmäki.
+\newblock Non-{Stationary} {Gaussian} {Process} {Regression} with {Hamiltonian}
+  {Monte} {Carlo}.
+\newblock In {\em Proceedings of the 19th {International} {Conference} on
+  {Artificial} {Intelligence} and {Statistics}}, pages 732--740. PMLR, May
+  2016.
+\newblock ISSN: 1938-7228.
+
 \bibitem{hennig_entropy_2012}
 Philipp Hennig and Christian~J. Schuler.
 \newblock Entropy search for information-efficient global optimization.
