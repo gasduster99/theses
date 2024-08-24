@@ -381,20 +381,34 @@ fit = readRDS("schaefer.rda")
 samAlpha = rnorm(100000, 0.3907948, 0.03357)
 var(log(samAlpha))
 fSam = fit$plotRS(sample=T)
-
 #quantile(exp(fSam[,'lalpha'])*exp(fSam[,'lbeta'])/4, c(0.025, 0.5, 0.975))
 #    2.5%      50%    97.5% 
 #242.7426 258.4884 274.4757
+#NOTE: this one mode 259
+MSY is estimated to be 259 with 95% confidence bounds ranging from 243 to 274.
 
+#
+srpSam = fitSRP$plotRS(sample=T)
+#quantile(exp(srpSam[,"lFmsy"])*exp(srpSam[,"lbeta"])/2, c(0,0.5, 0.975))
+#      0%      50%    97.5% 
+#229.8369 258.6063 275.5214
+
+#
 ptrpSam = fitPTRP$plotRS(sample=T)
 #quantile(exp(ptrpSam[,'lFmsy'])*exp(ptrpSam[,'lbeta'])*boot::inv.logit(ptrpSam[,'logitZeta']), c(0.025, 0.5, 0.975))
 #    2.5%      50%    97.5% 
 #185.2508 247.9858 270.1450
+#NOTE: 254
+MSY is estimated to be 254 with 95% confidence bounds ranging from 185 to 270.
+
 
 #
 ptrpNatSam = fitPTRPNat$plotRS(sample=T)
 #quantile(ptrpNatSam[,'Fmsy']*exp(ptrpNatSam[,'lbeta'])*ptrpNatSam[,'zeta'], c(0.025, 0.975))
+#     2.5%       50%     97.5% 
+# 24.82783 232.19361 262.77564 
 #23.28432 263.00736
+#254
 
 #
 #JUNK
