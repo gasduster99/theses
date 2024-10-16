@@ -398,8 +398,8 @@ ptrpSam = fitPTRP$plotRS(sample=T)
 #quantile(exp(ptrpSam[,'lFmsy'])*exp(ptrpSam[,'lbeta'])*boot::inv.logit(ptrpSam[,'logitZeta']), c(0.025, 0.5, 0.975))
 #    2.5%      50%    97.5% 
 #185.2508 247.9858 270.1450
-#NOTE: 254
-MSY is estimated to be 254 with 95% confidence bounds ranging from 185 to 270.
+#NOTE: 254 323
+#MSY is estimated to be 254 with 95% confidence bounds ranging from 185 to 270.
 
 
 #

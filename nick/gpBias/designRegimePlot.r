@@ -62,6 +62,14 @@ FMsy = function(alpha, gamma, M){
 	if(gamma==-1){ return(sqrt(alpha*M)-M) }
 	#
         FUpper = alpha-M
+	#
+        out <- tryCatch({
+                #uniroot(function(FF){ eval(dFBdFexpr) }, c(0, 10))$root
+        	out = uniroot.all(function(ff){ a(gamma, ff, M)-alpha }, c(0, FUpper))
+	}, error=function(err){
+                out = NA
+        })
+
         root = uniroot.all(function(ff){ a(gamma, ff, M)-alpha }, c(0, FUpper))
 
         #root = uniroot.all(function(ff){ 1 - ff/gamma/(M+ff) - (alpha/(M+ff))^(-1/gamma) }, c(0, 
@@ -69,7 +77,7 @@ FMsy = function(alpha, gamma, M){
         #if(length(root)<1){ return(NA) }
         #if(length(root)>1){ return(root[1]) }
         ##
-        return(root)
+        return(out)
 }
 
 #
@@ -266,13 +274,19 @@ legend('bottomleft', legend=c('Logistic-Like', 'Ricker-Like', 'BH-Like', 'Cushin
 dev.off()
 
 #
-png("kicker.png")
+png("isoAlphaLHS.png")
 plot(D$xiSeed, D$zetaSeed, col=round(D$aSeed/M), pch=19); #curve(1/(x+2), add=T)
 #alpha \in (0.5, 3)
-f = function(x){FMsy(0.5, x, M)}; f=Vectorize(f, 'x')
-#gamma in a variable range 
-gs = seq(-1, -0.1, 0.01)
-lines(unlist(f(gs))/M, getZeta(gs, unlist(f(gs)), M))
+#use half integers to get the dividing line
+for(aM in seq(0.5, 6, 0.1001)/M){
+	#
+	alpha = round(aM)*M
+	#
+	f = function(x){FMsy(alpha, x, M)}; f=Vectorize(f, 'x')
+	#gamma in a variable range 
+	gs = seq(-2, 3, 0.101) #seq(-1.25, 3, 0.101) #seq(-1, 3, 0.101) #-0.1, 0.01)
+	lines((unlist(f(gs))/M)[!is.na(getZeta(gs, unlist(f(gs)), M))], getZeta(gs, unlist(f(gs)), M)[!is.na(getZeta(gs, unlist(f(gs)), M))], col=round(alpha/M), lwd=3)
+}
 dev.off()
 
 ##NOTE: the contour idea didn't really work, probably just manually plot lines (handle NAs in getZeta)
